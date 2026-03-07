@@ -93,8 +93,7 @@ struct QRCodeView: View {
         VStack(spacing: 0) {
             Spacer()
 
-            // QR Display Area
-            VStack(spacing: 32) {
+            VStack(spacing: 24) {
                 // Input Field
                 TextField("qr.input.placeholder", text: $qrText)
                     .textFieldStyle(.plain)
@@ -108,9 +107,8 @@ struct QRCodeView: View {
                         RoundedRectangle(cornerRadius: 12, style: .continuous)
                             .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                     )
-                    .frame(maxWidth: 500)
 
-                // QR Code
+                // QR Code — same width as field (fills container)
                 if let qrImage = cachedQRImage {
                     ZStack {
                         if showBackground {
@@ -125,47 +123,48 @@ struct QRCodeView: View {
                             .scaledToFit()
                             .padding(showBackground ? 16 : 0)
                     }
-                    .frame(width: 280, height: 280)
+                    .aspectRatio(1, contentMode: .fit)
                     .transition(.scale.combined(with: .opacity))
                 }
 
-                // Format Selection & Download
-                VStack(spacing: 20) {
-                    HStack(spacing: 12) {
-                        ForEach(QRExportFormat.allCases) { format in
-                            Button {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    selectedFormat = format
-                                }
-                            } label: {
-                                Text(format.rawValue)
-                                    .font(.system(size: 12, weight: .bold))
-                                    .frame(width: 60, height: 36)
-                                    .background(selectedFormat == format ? Color.accentColor : Color.primary.opacity(0.05))
-                                    .foregroundStyle(selectedFormat == format ? .white : .primary)
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                // Format buttons — full width, equal split
+                HStack(spacing: 8) {
+                    ForEach(QRExportFormat.allCases) { format in
+                        Button {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                selectedFormat = format
                             }
-                            .buttonStyle(.plain)
-                            .handCursor()
+                        } label: {
+                            Text(format.rawValue)
+                                .font(.system(size: 12, weight: .bold))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 36)
+                                .background(selectedFormat == format ? Color.accentColor : Color.primary.opacity(0.05))
+                                .foregroundStyle(selectedFormat == format ? .white : .primary)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
+                        .buttonStyle(.plain)
+                        .handCursor()
                     }
-
-                    Button(action: downloadQRCode) {
-                        HStack {
-                            Image(systemName: "square.and.arrow.down")
-                            Text("qr.download")
-                                .fontWeight(.semibold)
-                        }
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
-                        .background(Color.accentColor)
-                        .foregroundStyle(.white)
-                        .clipShape(Capsule())
-                    }
-                    .buttonStyle(.plain)
-                    .handCursor()
                 }
+
+                // Download button — full width
+                Button(action: downloadQRCode) {
+                    HStack {
+                        Image(systemName: "square.and.arrow.down")
+                        Text("qr.download")
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color.accentColor)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                .buttonStyle(.plain)
+                .handCursor()
             }
+            .frame(maxWidth: 400)
             .padding(40)
 
             Spacer()
@@ -178,7 +177,7 @@ struct QRCodeView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header
                 HStack {
-                    Text("qr.title")
+                    Text("convert.settings.title")
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -198,7 +197,7 @@ struct QRCodeView: View {
                                     selectedSize = size
                                     customSize = "\(Int(size))"
                                 } label: {
-                                    Text("\(Int(size))px")
+                                    Text(String(format: "%dpx", Int(size)))
                                         .font(.system(size: 10, weight: .medium))
                                         .frame(maxWidth: .infinity)
                                         .padding(.vertical, 6)

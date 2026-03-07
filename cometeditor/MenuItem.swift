@@ -10,21 +10,18 @@ import SwiftUI
 enum MenuSection: String, CaseIterable {
     case main
     case tools
-    case document
 
     var title: LocalizedStringKey? {
         switch self {
         case .main: return nil
         case .tools: return "menu.tools"
-        case .document: return "menu.document"
         }
     }
 
     var items: [MenuItem] {
         switch self {
         case .main: return [.home]
-        case .tools: return [.convertImage, .videoConvert]
-        case .document: return [.pdfEdit, .qrCode]
+        case .tools: return [.convertImage, .videoConvert, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr]
         }
     }
 }
@@ -33,8 +30,12 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     case home
     case convertImage
     case videoConvert
+    case stockImage
     case pdfEdit
     case qrCode
+    case bgRemove
+    case ocr
+    case team
 
     var id: String { rawValue }
 
@@ -43,8 +44,12 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .home: return "menu.home"
         case .convertImage: return "menu.convertImage"
         case .videoConvert: return "menu.videoConvert"
+        case .stockImage: return "menu.stockImage"
         case .pdfEdit: return "menu.pdfEdit"
         case .qrCode: return "menu.qrCode"
+        case .bgRemove: return "menu.bgRemove"
+        case .ocr: return "menu.ocr"
+        case .team: return "menu.team"
         }
     }
 
@@ -53,8 +58,12 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .home: return "house.fill"
         case .convertImage: return "photo.on.rectangle.angled"
         case .videoConvert: return "video.fill"
+        case .stockImage: return "photo.stack.fill"
         case .pdfEdit: return "doc.text.fill"
         case .qrCode: return "qrcode"
+        case .bgRemove: return "person.and.background.dotted"
+        case .ocr: return "text.viewfinder"
+        case .team: return "person.3.fill"
         }
     }
 }

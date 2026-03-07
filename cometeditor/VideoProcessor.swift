@@ -22,11 +22,11 @@ enum VideoConversionError: Error, LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .invalidSource: return "Geçersiz kaynak video biçimi."
-        case .cannotCreateAssetWriter: return "Video yazıcısı (AVAssetWriter) başlatılamadı."
-        case .cannotCreatePixelBufferPool: return "Bellek havuzu ataması (PixelBufferPool) oluşturulamadı."
-        case .decoderError: return "Video akışı çözümlenemedi (Decoding hatası)."
-        case .writerFailure: return "Video yazma işlemi sırasında hata oluştu."
+        case .invalidSource: return NSLocalizedString("video.error.invalidSource", comment: "")
+        case .cannotCreateAssetWriter: return NSLocalizedString("video.error.assetWriter", comment: "")
+        case .cannotCreatePixelBufferPool: return NSLocalizedString("video.error.pixelBufferPool", comment: "")
+        case .decoderError: return NSLocalizedString("video.error.decoder", comment: "")
+        case .writerFailure: return NSLocalizedString("video.error.writerFailure", comment: "")
         }
     }
 }
@@ -148,7 +148,7 @@ class VideoProcessor: ObservableObject {
         
         // --- Metadata Preservation ---
         if settings?.keepMetadata ?? true {
-             let assetForMetadata = AVAsset(url: input)
+             let assetForMetadata = AVURLAsset(url: input)
              Task {
                  if let metadata = try? await assetForMetadata.load(.metadata) {
                      writer.metadata = metadata
@@ -230,7 +230,7 @@ class VideoProcessor: ObservableObject {
                     }
                     
                     while !writerInput.isReadyForMoreMediaData {
-                        usleep(5_000)
+                        usleep(2_000)
                     }
                     
                     var pixelBuffer: CVPixelBuffer?
@@ -325,9 +325,8 @@ class VideoProcessor: ObservableObject {
                         while cvc_decoder_read_audio_frame(ctx, &aFrame) == CVC_SUCCESS {
                             if aFrame.internal_frame == nil { break }
                             
-                            // Block until audio writer is ready
                             while !aInput.isReadyForMoreMediaData {
-                                usleep(2_000)
+                                usleep(1_000)
                             }
                             
                             self.appendAudioFrame(aFrame, to: aInput)

@@ -1,5 +1,31 @@
 import SwiftUI
 import AppKit
+import Combine
+
+// MARK: - Language Manager
+// Changes app language at runtime without resetting the view hierarchy.
+// Updating `currentLanguage` triggers `.environment(\.locale, ...)` which causes
+// SwiftUI to re-resolve all LocalizedStringKey bindings in place.
+final class LanguageManager: ObservableObject {
+    static let shared = LanguageManager()
+    @Published var currentLanguage: String
+
+    private init() {
+        if let saved = UserDefaults.standard.string(forKey: "appLanguage") {
+            currentLanguage = saved
+        } else {
+            let preferred = Locale.preferredLanguages.first ?? "en"
+            currentLanguage = preferred.hasPrefix("tr") ? "tr" : "en"
+        }
+    }
+
+    func setLanguage(_ lang: String) {
+        UserDefaults.standard.set(lang, forKey: "appLanguage")
+        withAnimation(.easeInOut(duration: 0.15)) {
+            currentLanguage = lang
+        }
+    }
+}
 
 // MARK: - Hand Cursor Hover
 extension View {

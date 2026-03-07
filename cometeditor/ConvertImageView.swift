@@ -599,9 +599,22 @@ struct ConvertImageView: View {
 
             var dimStr = ""
             var nsImage: NSImage? = nil
-            if let img = NSImage(contentsOf: url) {
-                nsImage = img
-                dimStr = "- \(Int(img.size.width))x\(Int(img.size.height))"
+            if let src = CGImageSourceCreateWithURL(url as CFURL, nil) {
+                // Boyutları full-res'ten al
+                if let props = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
+                   let w = props[kCGImagePropertyPixelWidth] as? Int,
+                   let h = props[kCGImagePropertyPixelHeight] as? Int {
+                    dimStr = "- \(w)x\(h)"
+                }
+                // Thumbnail olarak 240px yükle (bellek tasarrufu)
+                let thumbOpts: [CFString: Any] = [
+                    kCGImageSourceCreateThumbnailFromImageAlways: true,
+                    kCGImageSourceThumbnailMaxPixelSize: 240,
+                    kCGImageSourceCreateThumbnailWithTransform: true
+                ]
+                if let cg = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOpts as CFDictionary) {
+                    nsImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+                }
             }
 
             let item = ImageItem(url: url, image: nsImage, fileSizeString: fileSizeStr, dimensionsString: dimStr)

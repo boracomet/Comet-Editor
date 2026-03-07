@@ -174,39 +174,6 @@ struct FeatureCard: View {
 
 
 
-struct BatchProcessView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "square.stack.3d.up.fill")
-                .font(.system(size: 48, weight: .light))
-                .foregroundStyle(Color.secondary)
-            Text("Batch Process")
-                .font(.title2)
-                .foregroundStyle(Color.primary)
-            Text("Process multiple files at once")
-                .font(.subheadline)
-                .foregroundStyle(Color.secondary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct SettingsView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "gearshape.fill")
-                .font(.system(size: 48, weight: .light))
-                .foregroundStyle(Color.secondary)
-            Text("Settings")
-                .font(.title2)
-                .foregroundStyle(Color.primary)
-            Text("Configure your preferences")
-                .font(.subheadline)
-                .foregroundStyle(Color.secondary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
 
 #Preview {
     HomeView()

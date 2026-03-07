@@ -9,16 +9,16 @@ import SwiftUI
 
 @main
 struct cometeditorApp: App {
-    @AppStorage("appLanguage") private var appLanguage: String = "en"
     @StateObject private var appState = GlobalAppState()
-    
+    @StateObject private var languageManager = LanguageManager.shared
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .frame(minWidth: 900, minHeight: 600)
-                .environment(\.locale, Locale(identifier: appLanguage))
+                .environment(\.locale, Locale(identifier: languageManager.currentLanguage))
                 .environmentObject(appState)
-                .id(appLanguage)
+                .environmentObject(languageManager)
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 1100, height: 700)

@@ -63,7 +63,7 @@ struct VideoConvertView: View {
                             }
                         }
 
-                    VideoPlayer(player: AVPlayer(url: preview.url))
+                    InlineVideoPlayer(url: preview.url)
                         .frame(minWidth: 600, minHeight: 400)
                         .padding(60)
                         .shadow(color: .black.opacity(0.5), radius: 20, x: 0, y: 10)
@@ -743,6 +743,133 @@ struct VideoConversionSettings {
     let resolutionScale: ResolutionScale
     let removeAudio: Bool
     let keepMetadata: Bool
+}
+
+// MARK: - InlineVideoPlayer
+// Custom video player with always-visible controls (controlsStyle = .none + SwiftUI toolbar)
+struct InlineVideoPlayer: View {
+    let url: URL
+
+    @State private var player: AVPlayer
+    @State private var isPlaying = false
+    @State private var currentTime: Double = 0
+    @State private var duration: Double = 1
+    @State private var timeObserver: Any? = nil
+
+    init(url: URL) {
+        self.url = url
+        _player = State(initialValue: AVPlayer(url: url))
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            VideoPlayerView(player: player)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            // Always-visible toolbar
+            HStack(spacing: 12) {
+                Button {
+                    if isPlaying {
+                        player.pause()
+                    } else {
+                        player.play()
+                    }
+                    isPlaying.toggle()
+                } label: {
+                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.white)
+                        .frame(width: 28, height: 28)
+                }
+                .buttonStyle(.plain)
+
+                Slider(value: $currentTime, in: 0...max(duration, 1)) { editing in
+                    if !editing {
+                        let target = CMTime(seconds: currentTime, preferredTimescale: 600)
+                        player.seek(to: target, toleranceBefore: .zero, toleranceAfter: .zero)
+                    }
+                }
+                .accentColor(.white)
+
+                Text(formatTime(currentTime))
+                    .font(.system(size: 11, weight: .medium, design: .monospaced))
+                    .foregroundStyle(.white.opacity(0.8))
+                    .frame(width: 40, alignment: .trailing)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(Color.black.opacity(0.7))
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .onAppear {
+            setupPlayer()
+        }
+        .onDisappear {
+            player.pause()
+            if let obs = timeObserver {
+                player.removeTimeObserver(obs)
+            }
+        }
+    }
+
+    private func setupPlayer() {
+        // Load duration
+        Task {
+            if let item = player.currentItem {
+                let dur = try? await item.asset.load(.duration)
+                await MainActor.run {
+                    duration = CMTimeGetSeconds(dur ?? .zero)
+                    if duration.isNaN || duration <= 0 { duration = 1 }
+                }
+            }
+        }
+
+        // Time observer
+        let interval = CMTime(seconds: 0.1, preferredTimescale: 600)
+        timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { time in
+            currentTime = CMTimeGetSeconds(time)
+        }
+
+        // Auto-detect play state
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
+            isPlaying = false
+            currentTime = 0
+            player.seek(to: .zero)
+        }
+
+        player.play()
+        isPlaying = true
+    }
+
+    private func formatTime(_ seconds: Double) -> String {
+        guard !seconds.isNaN else { return "0:00" }
+        let s = Int(seconds)
+        return String(format: "%d:%02d", s / 60, s % 60)
+    }
+}
+
+// NSViewRepresentable wrapper for AVPlayerLayer-based playback (no controls chrome)
+private struct VideoPlayerView: NSViewRepresentable {
+    let player: AVPlayer
+
+    func makeNSView(context: Context) -> NSView {
+        let view = PlayerLayerView()
+        view.playerLayer.player = player
+        view.playerLayer.videoGravity = .resizeAspect
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {}
+}
+
+private final class PlayerLayerView: NSView {
+    override func makeBackingLayer() -> CALayer { AVPlayerLayer() }
+    var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        wantsLayer = true
+    }
+    required init?(coder: NSCoder) { fatalError() }
 }
 
 #Preview {

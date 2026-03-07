@@ -14,34 +14,26 @@ import CoreGraphics
 // macOS 14+ marks it Sendable; this wrapper silences the warning on older targets.
 private struct SentImage: @unchecked Sendable { let nsImage: NSImage? }
 
-struct PDFItem: Identifiable, Equatable {
-    let id = UUID()
-    let url: URL
-    let document: PDFDocument?
-    let fileSizeString: String
-    var fileName: String { url.lastPathComponent }
 
-    static func == (lhs: PDFItem, rhs: PDFItem) -> Bool { lhs.id == rhs.id }
-}
 
 struct PDFEditView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
-    @State private var selectedPDF: PDFItem? = nil
-    @State private var currentPageIndex: Int = 0
-    @State private var documentVersion: Int = 0
     @State private var isDropTargeted = false
 
     // Compression state
     @State private var isCompressing = false
     @State private var compressionProgress: Double = 0
-    @State private var compressionTargetFolder: URL? = nil
 
-    // Reorder modal
-    @State private var showReorderModal = false
+    // Reorder state (lifted so inspector can access)
+    @State private var reorderSelectedPositions: Set<Int> = []
+    @State private var reorderNoSelectionHint = false
+
+    // Add Content modal
+    @State private var showAddContentModal = false
 
     @EnvironmentObject var appState: GlobalAppState
     @Environment(\.colorScheme) private var colorScheme
-
+ 
     var body: some View {
         HStack(spacing: 0) {
             mainContentArea
@@ -53,10 +45,10 @@ struct PDFEditView: View {
                 .frame(width: 260)
         }
         .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
-        .sheet(isPresented: $showReorderModal) {
-            if let pdf = selectedPDF, let document = pdf.document {
-                PDFPageReorderView(document: document) { newOrder in
-                    applyReorder(newOrder, for: pdf)
+        .sheet(isPresented: $showAddContentModal) {
+            if let pdf = appState.selectedPDF {
+                AddContentModal(pdf: pdf, currentPageIndex: appState.pdfPageIndex) { document in
+                    appState.pdfDocumentVersion += 1
                 }
             }
         }
@@ -65,8 +57,31 @@ struct PDFEditView: View {
     // MARK: - Main Content Area
     @ViewBuilder
     private var mainContentArea: some View {
-        if let pdf = selectedPDF {
-            pdfViewer(pdf)
+        if let pdf = appState.selectedPDF {
+            switch appState.pdfViewMode {
+            case .viewer:
+                pdfViewer(pdf)
+                    .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
+            case .reorder:
+                if let document = pdf.document {
+                    PDFPageReorderView(
+                        document: document,
+                        selectedPositions: $reorderSelectedPositions,
+                        noSelectionHint: $reorderNoSelectionHint,
+                        onSave: { newOrder in
+                            applyReorder(newOrder, for: pdf)
+                            appState.pdfReorderPageOrder = nil
+                            reorderSelectedPositions = []
+                            withAnimation(.easeInOut(duration: 0.3)) { appState.pdfViewMode = .viewer }
+                        }, onCancel: {
+                            appState.pdfReorderPageOrder = nil
+                            reorderSelectedPositions = []
+                            withAnimation(.easeInOut(duration: 0.3)) { appState.pdfViewMode = .viewer }
+                        }
+                    )
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                }
+            }
         } else {
             emptyDropZone
         }
@@ -79,17 +94,52 @@ struct PDFEditView: View {
             HStack {
                 Spacer()
                 VStack(spacing: 2) {
-                    Text(pdf.fileName)
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(Color.primary)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                        .frame(maxWidth: 400)
-                    Text(String(
-                        format: NSLocalizedString("pdf.page.info", comment: ""),
-                        currentPageIndex + 1,
-                        pdf.document?.pageCount ?? 0
-                    ))
+                    HStack(spacing: 8) {
+                        Text(pdf.fileName)
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(Color.primary)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        
+                        if appState.selectedPDF != nil {
+                            Button {
+                                withAnimation {
+                                    appState.selectedPDF = nil
+                                    appState.pdfPageIndex = 0
+                                    appState.pdfDocumentVersion = 0
+                                }
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(Color.secondary.opacity(0.5))
+                                    .font(.system(size: 14))
+                            }
+                            .buttonStyle(.plain)
+                            .handCursor()
+                        }
+                    }
+                    .frame(maxWidth: 400)
+
+                    HStack(spacing: 6) {
+                        Text(String(
+                            format: NSLocalizedString("pdf.page.info", comment: ""),
+                            appState.pdfPageIndex + 1,
+                            pdf.document?.pageCount ?? 0
+                        ))
+                        if !pdf.fileSizeString.isEmpty {
+                            Text("•")
+                            Text(pdf.fileSizeString)
+                            if pdf.fileSizeBytes > 0 {
+                                let optimized = ByteCountFormatter.string(
+                                    fromByteCount: Int64(Double(pdf.fileSizeBytes) * 0.10),
+                                    countStyle: .file
+                                )
+                                Text("→")
+                                    .foregroundStyle(Color.secondary.opacity(0.5))
+                                Text("~\(optimized)")
+                                    .foregroundStyle(Color.green.opacity(0.8))
+                            }
+                        }
+                    }
                     .font(.system(size: 11))
                     .foregroundStyle(Color.secondary)
                 }
@@ -108,8 +158,8 @@ struct PDFEditView: View {
                 if let document = pdf.document {
                     PDFSinglePageView(
                         document: document,
-                        pageIndex: currentPageIndex,
-                        version: documentVersion
+                        pageIndex: appState.pdfPageIndex,
+                        version: appState.pdfDocumentVersion
                     )
                 }
 
@@ -117,38 +167,38 @@ struct PDFEditView: View {
                 HStack {
                     Button {
                         withAnimation(.easeInOut(duration: 0.15)) {
-                            currentPageIndex = max(0, currentPageIndex - 1)
+                            appState.pdfPageIndex = max(0, appState.pdfPageIndex - 1)
                         }
                     } label: {
-                        navArrow(systemName: "chevron.left", enabled: currentPageIndex > 0)
+                        navArrow(systemName: "chevron.left", enabled: appState.pdfPageIndex > 0)
                     }
                     .buttonStyle(.plain)
                     .handCursor()
-                    .disabled(currentPageIndex == 0)
+                    .disabled(appState.pdfPageIndex == 0)
                     .padding(.leading, 16)
 
                     Spacer()
 
                     Button {
                         withAnimation(.easeInOut(duration: 0.15)) {
-                            currentPageIndex = min((pdf.document?.pageCount ?? 1) - 1, currentPageIndex + 1)
+                            appState.pdfPageIndex = min((pdf.document?.pageCount ?? 1) - 1, appState.pdfPageIndex + 1)
                         }
                     } label: {
-                        let hasNext = currentPageIndex < (pdf.document?.pageCount ?? 1) - 1
+                        let hasNext = appState.pdfPageIndex < (pdf.document?.pageCount ?? 1) - 1
                         navArrow(systemName: "chevron.right", enabled: hasNext)
                     }
                     .buttonStyle(.plain)
                     .handCursor()
-                    .disabled(currentPageIndex >= (pdf.document?.pageCount ?? 1) - 1)
+                    .disabled(appState.pdfPageIndex >= (pdf.document?.pageCount ?? 1) - 1)
                     .padding(.trailing, 16)
                 }
 
                 // Keyboard arrow navigation
                 HStack(spacing: 0) {
-                    Button("") { currentPageIndex = max(0, currentPageIndex - 1) }
+                    Button("") { appState.pdfPageIndex = max(0, appState.pdfPageIndex - 1) }
                         .keyboardShortcut(.leftArrow, modifiers: [])
                         .opacity(0).frame(width: 0, height: 0)
-                    Button("") { currentPageIndex = min((pdf.document?.pageCount ?? 1) - 1, currentPageIndex + 1) }
+                    Button("") { appState.pdfPageIndex = min((pdf.document?.pageCount ?? 1) - 1, appState.pdfPageIndex + 1) }
                         .keyboardShortcut(.rightArrow, modifiers: [])
                         .opacity(0).frame(width: 0, height: 0)
                 }
@@ -180,21 +230,26 @@ struct PDFEditView: View {
                             PDFThumbnailCell(
                                 document: document,
                                 index: index,
-                                isSelected: currentPageIndex == index
-                            ) {
-                                withAnimation(.easeInOut(duration: 0.15)) {
-                                    currentPageIndex = index
+                                isSelected: appState.pdfPageIndex == index,
+                                canDelete: document.pageCount > 1,
+                                onTap: {
+                                    withAnimation(.easeInOut(duration: 0.15)) {
+                                        appState.pdfPageIndex = index
+                                    }
+                                },
+                                onDelete: {
+                                    deletePage(at: index, from: pdf)
                                 }
-                            }
+                            )
                             .id(index)
                         }
                     }
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 8)
-                .id(documentVersion)
+                .id(appState.pdfDocumentVersion)
             }
-            .frame(height: 108)
+            .frame(height: 168)
             .background(Color.primary.opacity(0.02))
             .mask {
                 HStack(spacing: 0) {
@@ -226,11 +281,11 @@ struct PDFEditView: View {
                         .frame(width: 40)
                 }
             }
-            .onChange(of: currentPageIndex) { index in
+            .onChange(of: appState.pdfPageIndex) { index in
                 withAnimation { proxy.scrollTo(index, anchor: .center) }
             }
-            .onChange(of: documentVersion) { _ in
-                withAnimation { proxy.scrollTo(currentPageIndex, anchor: .center) }
+            .onChange(of: appState.pdfDocumentVersion) { _ in
+                withAnimation { proxy.scrollTo(appState.pdfPageIndex, anchor: .center) }
             }
         }
         .padding(.bottom, 8)
@@ -238,7 +293,13 @@ struct PDFEditView: View {
 
     // MARK: - Empty Drop Zone
     private var emptyDropZone: some View {
-        Button(action: selectFileFromFinder) {
+        ZStack {
+            PDFDropTargetView(isTargeted: $isDropTargeted, onDrop: { url in
+                loadPDF(url: url)
+            }, onClick: {
+                selectFileFromFinder()
+            })
+
             VStack(spacing: 12) {
                 Image(systemName: "doc.badge.plus")
                     .font(.system(size: 40, weight: .ultraLight))
@@ -250,11 +311,9 @@ struct PDFEditView: View {
                     .font(.system(size: 12))
                     .foregroundStyle(Color.secondary)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(Rectangle())
+            .allowsHitTesting(false)
         }
-        .buttonStyle(.plain)
-        .handCursor()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(24)
         .overlay(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
@@ -264,13 +323,6 @@ struct PDFEditView: View {
                 )
                 .padding(24)
         )
-        .onDrop(of: [.pdf], isTargeted: $isDropTargeted) { providers in
-            guard let provider = providers.first else { return false }
-            _ = provider.loadObject(ofClass: URL.self) { url, _ in
-                if let url = url { DispatchQueue.main.async { loadPDF(url: url) } }
-            }
-            return true
-        }
     }
 
     // MARK: - Inspector Panel
@@ -279,132 +331,46 @@ struct PDFEditView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header — always "Ayarlar"
                 HStack {
-                    Text("pdf.settings.title")
+                    Text(LocalizedStringKey("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
-                    if selectedPDF != nil {
-                        Button {
-                            withAnimation {
-                                selectedPDF = nil
-                                currentPageIndex = 0
-                                documentVersion = 0
-                            }
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(Color.secondary.opacity(0.5))
-                                .font(.system(size: 16))
-                        }
-                        .buttonStyle(.plain)
-                        .handCursor()
-                    }
                 }
                 .padding(.horizontal, 16)
                 .frame(height: 52)
 
                 Divider()
 
-                if selectedPDF == nil {
-                    VStack(spacing: 16) {
-                        Image(systemName: "doc.text")
-                            .font(.system(size: 36, weight: .ultraLight))
-                            .foregroundStyle(Color.secondary.opacity(0.4))
-                        Text(LocalizedStringKey("pdf.drop.title"))
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundStyle(Color.secondary.opacity(0.6))
-                            .multilineTextAlignment(.center)
-                        Text(LocalizedStringKey("pdf.drop.subtitle"))
-                            .font(.system(size: 11))
-                            .foregroundStyle(Color.secondary.opacity(0.4))
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.top, 48)
-                    .padding(.horizontal, 20)
-                }
-
-                if let pdf = selectedPDF {
-                    let pageCount = pdf.document?.pageCount ?? 0
-
-                    // Current Page
-                    inspectorSection("pdf.tools.currentPage") {
-                        HStack {
-                            Text("\(currentPageIndex + 1) / \(pageCount)")
-                                .font(.system(size: 14, weight: .semibold, design: .monospaced))
-                                .foregroundStyle(Color.primary)
-                            Spacer()
-                            HStack(spacing: 0) {
-                                Button {
-                                    if currentPageIndex > 0 { withAnimation { currentPageIndex -= 1 } }
-                                } label: {
-                                    Image(systemName: "minus")
-                                        .font(.system(size: 11, weight: .medium))
-                                        .frame(width: 28, height: 26)
-                                }
-                                .buttonStyle(.plain)
-                                .disabled(currentPageIndex == 0)
-
-                                Divider().frame(height: 16)
-
-                                Button {
-                                    if currentPageIndex < pageCount - 1 { withAnimation { currentPageIndex += 1 } }
-                                } label: {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 11, weight: .medium))
-                                        .frame(width: 28, height: 26)
-                                }
-                                .buttonStyle(.plain)
-                                .disabled(currentPageIndex >= pageCount - 1)
-                            }
-                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(0.05)))
-                            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Color.primary.opacity(0.1), lineWidth: 1))
-                        }
-                    }
-
-                    Divider()
+                Group {
+                    let pdf = appState.selectedPDF
+                    let pageCount = pdf?.document?.pageCount ?? 0
 
                     // Page Management
                     inspectorSection("pdf.tools.pageManagement") {
                         VStack(spacing: 2) {
-                            toolButton(icon: "trash", title: "pdf.tools.deletePage", tint: .red) {
-                                deletePage(at: currentPageIndex, from: pdf)
-                            }
-                            .disabled(pageCount <= 1)
-
-                            toolButton(icon: "arrow.up.doc", title: "pdf.tools.insertBefore") {
-                                insertPage(at: currentPageIndex, after: false, into: pdf)
-                            }
-
-                            toolButton(icon: "arrow.down.doc", title: "pdf.tools.insertAfter") {
-                                insertPage(at: currentPageIndex, after: true, into: pdf)
+                            toolButton(icon: "plus.rectangle.on.rectangle", title: "pdf.tools.addContent") {
+                                showAddContentModal = true
                             }
 
                             toolButton(icon: "arrow.up.arrow.down", title: "pdf.tools.reorder") {
-                                showReorderModal = true
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    if appState.pdfReorderPageOrder == nil {
+                                        appState.pdfReorderPageOrder = Array(0..<pageCount)
+                                    }
+                                    appState.pdfViewMode = .reorder
+                                }
                             }
                         }
                     }
 
                     Divider()
 
-                    // PDF Actions
-                    inspectorSection("pdf.tools.actions") {
-                        VStack(spacing: 2) {
-                            toolButton(icon: "doc.on.doc", title: "pdf.tools.merge") {
-                                mergePDF(into: pdf)
-                            }
-                        }
-                    }
-
-                    Divider()
-
-                    // WebP Compression
-                    inspectorSection("pdf.tools.compressSection") {
+                    // Hedef Klasör
+                    inspectorSection("pdf.tools.targetFolder") {
                         VStack(alignment: .leading, spacing: 10) {
-                            // Target folder picker
                             HStack(spacing: 8) {
                                 Group {
-                                    if let folder = compressionTargetFolder {
+                                    if let folder = appState.pdfCompressionTargetFolder {
                                         Text(truncatedPath(folder.path))
                                             .font(.system(size: 11, weight: .medium, design: .monospaced))
                                             .foregroundStyle(Color.primary.opacity(0.8))
@@ -431,12 +397,11 @@ struct PDFEditView: View {
                                     let panel = NSOpenPanel()
                                     panel.canChooseFiles = false
                                     panel.canChooseDirectories = true
-                                    if panel.runModal() == .OK { compressionTargetFolder = panel.url }
+                                    if panel.runModal() == .OK { appState.pdfCompressionTargetFolder = panel.url }
                                 }
                                 .controlSize(.small)
                             }
 
-                            // Progress bar
                             if isCompressing {
                                 VStack(alignment: .leading, spacing: 4) {
                                     ProgressView(value: compressionProgress, total: 1.0)
@@ -446,44 +411,50 @@ struct PDFEditView: View {
                                         .foregroundStyle(Color.secondary)
                                 }
                             }
-
-                            // Compress button
-                            Button {
-                                Task { await compressWithWebP(pdf) }
-                            } label: {
-                                HStack {
-                                    if isCompressing {
-                                        ProgressView().controlSize(.small)
-                                        Text(LocalizedStringKey("video.processing"))
-                                    } else {
-                                        Image(systemName: "arrow.down.circle")
-                                        Text("pdf.tools.compress")
-                                    }
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .controlSize(.regular)
-                            .disabled(compressionTargetFolder == nil || isCompressing)
                         }
                     }
 
                     Divider()
 
-                    // Save
-                    VStack {
-                        Button { savePDF(pdf) } label: {
+                    // Optimize + Save
+                    VStack(spacing: 8) {
+                        Button {
+                            if let pdf = pdf { Task { await compressWithWebP(pdf) } }
+                        } label: {
+                            HStack {
+                                if isCompressing {
+                                    ProgressView().controlSize(.small)
+                                    Text(LocalizedStringKey("video.processing"))
+                                } else {
+                                    Image(systemName: "arrow.down.circle")
+                                    Text(LocalizedStringKey("pdf.tools.optimize"))
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 28)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
+                        .disabled(appState.pdfCompressionTargetFolder == nil || isCompressing || pdf == nil)
+
+                        Button {
+                            if let pdf = pdf { savePDF(pdf) }
+                        } label: {
                             HStack {
                                 Image(systemName: "square.and.arrow.down")
                                 Text("pdf.tools.save")
                             }
                             .frame(maxWidth: .infinity)
+                            .frame(height: 28)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
+                        .disabled(pdf == nil)
                     }
                     .padding(16)
                 }
+                .disabled(appState.selectedPDF == nil)
+                .opacity(appState.selectedPDF == nil ? 0.6 : 1.0)
             }
         }
         .background(Material.bar)
@@ -530,59 +501,44 @@ struct PDFEditView: View {
 
     // MARK: - PDF Operations
 
+    private func deleteReorderSelected(from pdf: PDFItem) {
+        guard let document = pdf.document, !reorderSelectedPositions.isEmpty else { return }
+        let pageOrder = appState.pdfReorderPageOrder ?? Array(0..<document.pageCount)
+
+        // Original page indices to delete, sorted descending for safe removal
+        let indicesToDelete = reorderSelectedPositions
+            .compactMap { pos -> Int? in pos < pageOrder.count ? pageOrder[pos] : nil }
+            .sorted(by: >)
+
+        guard document.pageCount - indicesToDelete.count >= 1 else { return }
+
+        let deletedSet = Set(indicesToDelete)
+        for idx in indicesToDelete { document.removePage(at: idx) }
+
+        // Remap remaining entries: shift indices down by how many deleted entries were below them
+        let newPageOrder = pageOrder
+            .filter { !deletedSet.contains($0) }
+            .map { origIdx -> Int in origIdx - indicesToDelete.filter { $0 < origIdx }.count }
+
+        appState.pdfReorderPageOrder = newPageOrder
+        appState.pdfDocumentVersion += 1
+        reorderSelectedPositions = []
+    }
+
     private func deletePage(at index: Int, from pdf: PDFItem) {
         guard let document = pdf.document, document.pageCount > 1 else { return }
         document.removePage(at: index)
-        currentPageIndex = min(index, document.pageCount - 1)
-        documentVersion += 1
+        appState.pdfPageIndex = min(index, document.pageCount - 1)
+        appState.pdfDocumentVersion += 1
     }
 
-    private func insertPage(at index: Int, after: Bool, into pdf: PDFItem) {
-        guard let document = pdf.document else { return }
-        let panel = NSOpenPanel()
-        panel.allowedContentTypes = [.pdf]
-        panel.allowsMultipleSelection = false
-        panel.canChooseFiles = true
-        guard panel.runModal() == .OK else { return }
-
-        let insertAt = after ? index + 1 : index
-        for url in panel.urls {
-            guard let src = PDFDocument(url: url) else { continue }
-            for i in 0..<src.pageCount {
-                if let page = src.page(at: i) {
-                    document.insert(page, at: insertAt + i)
-                }
-            }
-        }
-        currentPageIndex = insertAt
-        documentVersion += 1
-    }
-
-    private func mergePDF(into pdf: PDFItem) {
-        guard let document = pdf.document else { return }
-        let panel = NSOpenPanel()
-        panel.allowedContentTypes = [.pdf]
-        panel.allowsMultipleSelection = true
-        panel.canChooseFiles = true
-        guard panel.runModal() == .OK else { return }
-
-        for url in panel.urls {
-            guard let src = PDFDocument(url: url) else { continue }
-            for i in 0..<src.pageCount {
-                if let page = src.page(at: i) {
-                    document.insert(page, at: document.pageCount)
-                }
-            }
-        }
-        documentVersion += 1
-    }
 
     /// Renders every page to a CGImage, compresses via CometImageCodec WebP,
     /// and packs the result into a new PDF — significantly reduces file size for image-heavy PDFs.
     @MainActor
     private func compressWithWebP(_ pdf: PDFItem) async {
         guard let document = pdf.document,
-              let targetFolder = compressionTargetFolder else { return }
+              let targetFolder = appState.pdfCompressionTargetFolder else { return }
 
         isCompressing = true
         compressionProgress = 0
@@ -597,7 +553,7 @@ struct PDFEditView: View {
             counter += 1
         }
 
-        let dpi: CGFloat = 150.0
+        let dpi: CGFloat = 96.0
         var mediaBox = CGRect.zero
         guard let ctx = CGContext(outputURL as CFURL, mediaBox: &mediaBox, nil) else { return }
 
@@ -612,38 +568,36 @@ struct PDFEditView: View {
             let pxW = Int(bounds.width * scale)
             let pxH = Int(bounds.height * scale)
 
-            // 1. Render page to bitmap on a background thread (CGPDFPage rendering is thread-safe)
+            // Capture pageRef on the main thread — PDFPage is not thread-safe
+            let pageRef = page.pageRef
+
+            // 1. Render page to bitmap on a background thread
             let cgImage = await Task.detached(priority: .userInitiated) { () -> CGImage? in
+                guard let pageRef else { return nil }
                 let cs = CGColorSpaceCreateDeviceRGB()
+                // byteOrder32Little + premultipliedFirst = BGRA, native Apple format
                 guard let bCtx = CGContext(
                     data: nil, width: pxW, height: pxH,
                     bitsPerComponent: 8, bytesPerRow: 0, space: cs,
-                    bitmapInfo: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
+                    bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
                 ) else { return nil }
                 bCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
                 bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
                 bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
-                if let ref = page.pageRef { bCtx.drawPDFPage(ref) }
+                bCtx.drawPDFPage(pageRef)
                 return bCtx.makeImage()
             }.value
 
             guard let cgImage else { continue }
 
-            // 2. Encode to WebP via CometImageCodec
-            let tempURL = FileManager.default.temporaryDirectory
-                .appendingPathComponent(UUID().uuidString + ".webp")
-            _ = try? await CometImageCodec.shared.convert(
-                cgImage: cgImage, outputURL: tempURL,
-                format: .webp, quality: CodecQuality(value: 80)
-            )
-
-            // 3. Decode WebP back to CGImage (native on macOS 14+; falls back to rendered CGImage on older)
+            // 2. Compress via JPEG entirely in memory — no temp files, no sandbox issues
             var finalImage: CGImage = cgImage
-            if let src = CGImageSourceCreateWithURL(tempURL as CFURL, nil),
-               let decoded = CGImageSourceCreateImageAtIndex(src, 0, nil) {
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let jpegData = bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: 0.35 as NSNumber]),
+               let provider = CGDataProvider(data: jpegData as CFData),
+               let decoded = CGImage(jpegDataProviderSource: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) {
                 finalImage = decoded
             }
-            try? FileManager.default.removeItem(at: tempURL)
 
             // 4. Draw into output PDF at the original page dimensions
             var pageBox = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
@@ -673,8 +627,8 @@ struct PDFEditView: View {
             guard originalIndex < pages.count else { continue }
             document.insert(pages[originalIndex], at: insertIndex)
         }
-        currentPageIndex = min(currentPageIndex, document.pageCount - 1)
-        documentVersion += 1
+        appState.pdfPageIndex = min(appState.pdfPageIndex, document.pageCount - 1)
+        appState.pdfDocumentVersion += 1
     }
 
     private func savePDF(_ pdf: PDFItem) {
@@ -693,28 +647,294 @@ struct PDFEditView: View {
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
         panel.allowedContentTypes = [.pdf]
-        if panel.runModal() == .OK, let url = panel.url { loadPDF(url: url) }
+        panel.begin { response in
+            guard response == .OK, let url = panel.url else { return }
+            DispatchQueue.main.async { self.loadPDF(url: url) }
+        }
     }
 
     private func loadPDF(url: URL) {
         let doc = PDFDocument(url: url)
         var sizeString = ""
+        var sizeBytes: Int64 = 0
         if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path),
            let size = attrs[.size] as? Int64 {
+            sizeBytes = size
             let fmt = ByteCountFormatter()
             fmt.allowedUnits = [.useAll]
             fmt.countStyle = .file
             sizeString = fmt.string(fromByteCount: size)
         }
-        currentPageIndex = 0
-        documentVersion = 0
-        withAnimation { selectedPDF = PDFItem(url: url, document: doc, fileSizeString: sizeString) }
+        appState.pdfPageIndex = 0
+        appState.pdfDocumentVersion = 0
+        appState.pdfReorderPageOrder = nil
+        withAnimation { appState.selectedPDF = PDFItem(url: url, document: doc, fileSizeString: sizeString, fileSizeBytes: sizeBytes) }
+    }
+}
+
+// MARK: - AddContentModal
+private struct AddContentModal: View {
+    let pdf: PDFItem
+    let currentPageIndex: Int
+    var onDone: (PDFDocument) -> Void
+
+    enum ContentType { case pdf, image }
+    enum InsertPosition { case before, after, atEnd }
+
+    @State private var contentType: ContentType = .pdf
+    @State private var insertPosition: InsertPosition = .after
+    @State private var customPageNumber: Int = 1
+    @State private var useCurrentPage: Bool = true
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            // Title
+            HStack {
+                Text(LocalizedStringKey("pdf.addContent.title"))
+                    .font(.system(size: 16, weight: .bold))
+                Spacer()
+                Button { dismiss() } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(.secondary)
+                        .padding(6)
+                        .background(Circle().fill(Color.primary.opacity(0.08)))
+                }
+                .buttonStyle(.plain)
+            }
+            .padding(20)
+
+            Divider()
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Content type picker
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(LocalizedStringKey("pdf.addContent.typeLabel"))
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundStyle(.secondary)
+
+                        HStack(spacing: 10) {
+                            typeButton(label: "pdf.addContent.typePDF", icon: "doc.fill", selected: contentType == .pdf) {
+                                contentType = .pdf
+                            }
+                            typeButton(label: "pdf.addContent.typeImage", icon: "photo.fill", selected: contentType == .image) {
+                                contentType = .image
+                            }
+                        }
+                    }
+
+                    Divider()
+
+                    // Insert position
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(LocalizedStringKey("pdf.addContent.positionLabel"))
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundStyle(.secondary)
+
+                        // Use current page or custom
+                        Toggle(isOn: $useCurrentPage) {
+                            Text(String(format: NSLocalizedString("pdf.addContent.currentPage", comment: ""), currentPageIndex + 1))
+                                .font(.system(size: 13))
+                        }
+                        .toggleStyle(.checkbox)
+
+                        if !useCurrentPage {
+                            HStack(spacing: 8) {
+                                Text(LocalizedStringKey("pdf.addContent.pageNumber"))
+                                    .font(.system(size: 13))
+                                TextField("", value: $customPageNumber, formatter: {
+                                    let f = NumberFormatter()
+                                    f.minimum = 1
+                                    f.maximum = NSNumber(value: pdf.document?.pageCount ?? 1)
+                                    return f
+                                }())
+                                .textFieldStyle(.roundedBorder)
+                                .frame(width: 60)
+                            }
+                        }
+
+                        Picker("", selection: $insertPosition) {
+                            Text(LocalizedStringKey("pdf.addContent.before")).tag(InsertPosition.before)
+                            Text(LocalizedStringKey("pdf.addContent.after")).tag(InsertPosition.after)
+                            Text(LocalizedStringKey("pdf.addContent.atEnd")).tag(InsertPosition.atEnd)
+                        }
+                        .pickerStyle(.radioGroup)
+                        .labelsHidden()
+                    }
+                }
+                .padding(20)
+            }
+
+            Divider()
+
+            // Action button
+            HStack {
+                Spacer()
+                Button {
+                    performInsert()
+                    dismiss()
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "plus.circle.fill")
+                        Text(LocalizedStringKey("pdf.addContent.chooseFile"))
+                    }
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+            }
+            .padding(20)
+        }
+        .frame(width: 360)
+        .fixedSize(horizontal: false, vertical: true)
+    }
+
+    @ViewBuilder
+    private func typeButton(label: LocalizedStringKey, icon: String, selected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Image(systemName: icon)
+                    .font(.system(size: 14))
+                Text(label)
+                    .font(.system(size: 13, weight: .medium))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(selected ? Color.accentColor.opacity(0.15) : Color.primary.opacity(0.05))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(selected ? Color.accentColor : Color.primary.opacity(0.1), lineWidth: selected ? 1.5 : 1)
+            )
+            .foregroundStyle(selected ? Color.accentColor : Color.primary)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func performInsert() {
+        guard let document = pdf.document else { return }
+
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = contentType == .pdf
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+
+        switch contentType {
+        case .pdf:
+            panel.allowedContentTypes = [.pdf]
+        case .image:
+            panel.allowedContentTypes = [.png, .jpeg, .tiff, .heic, .bmp, .gif, .webP]
+        }
+
+        guard panel.runModal() == .OK else { return }
+
+        let refPage = useCurrentPage ? currentPageIndex : max(0, customPageNumber - 1)
+
+        let insertAt: Int
+        switch insertPosition {
+        case .before: insertAt = refPage
+        case .after:  insertAt = refPage + 1
+        case .atEnd:  insertAt = document.pageCount
+        }
+
+        var offset = 0
+        for url in panel.urls {
+            switch contentType {
+            case .pdf:
+                guard let src = PDFDocument(url: url) else { continue }
+                for i in 0..<src.pageCount {
+                    if let page = src.page(at: i) {
+                        document.insert(page, at: min(insertAt + offset, document.pageCount))
+                        offset += 1
+                    }
+                }
+            case .image:
+                guard let nsImage = NSImage(contentsOf: url),
+                      let page = PDFPage(image: nsImage) else { continue }
+                document.insert(page, at: min(insertAt + offset, document.pageCount))
+                offset += 1
+            }
+        }
+
+        onDone(document)
+    }
+}
+
+// MARK: - PDFDropTargetView
+// Uses AppKit NSDraggingDestination directly to avoid SwiftUI onDrop conflicts
+// inside NavigationSplitView (kDragIPCWithinWindow issue).
+private struct PDFDropTargetView: NSViewRepresentable {
+    @Binding var isTargeted: Bool
+    var onDrop: (URL) -> Void
+    var onClick: () -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    func makeNSView(context: Context) -> NSView {
+        let view = DropView()
+        view.coordinator = context.coordinator
+        view.registerForDraggedTypes([.fileURL, NSPasteboard.PasteboardType("com.adobe.pdf")])
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        (nsView as? DropView)?.coordinator = context.coordinator
+    }
+
+    class Coordinator {
+        var parent: PDFDropTargetView
+        init(_ parent: PDFDropTargetView) { self.parent = parent }
+    }
+
+    class DropView: NSView {
+        weak var coordinator: Coordinator?
+
+        // Allows the view to receive the first click even when the window is not key
+        override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
+
+        override func mouseUp(with event: NSEvent) {
+            coordinator?.parent.onClick()
+        }
+
+        override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+            if urlFromDragging(sender) != nil {
+                coordinator?.parent.isTargeted = true
+                return .copy
+            }
+            return []
+        }
+
+        override func draggingExited(_ sender: NSDraggingInfo?) {
+            coordinator?.parent.isTargeted = false
+        }
+
+        override func draggingEnded(_ sender: NSDraggingInfo) {
+            coordinator?.parent.isTargeted = false
+        }
+
+        override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+            guard let url = urlFromDragging(sender) else { return false }
+            DispatchQueue.main.async { self.coordinator?.parent.onDrop(url) }
+            return true
+        }
+
+        private func urlFromDragging(_ sender: NSDraggingInfo) -> URL? {
+            guard let items = sender.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: [
+                .urlReadingFileURLsOnly: true,
+                .urlReadingContentsConformToTypes: ["com.adobe.pdf"]
+            ]) as? [URL] else { return nil }
+            return items.first
+        }
     }
 }
 
 // MARK: - PDFSinglePageView
 // Renders the current page asynchronously at HD resolution to avoid blocking the main thread.
-// Uses .task(id:) so a new render is automatically triggered when pageIndex or documentVersion changes.
+// Uses .task(id:) so a new render is automatically triggered when pdfPageIndex or pdfDocumentVersion changes.
 struct PDFSinglePageView: View {
     let document: PDFDocument
     let pageIndex: Int
@@ -777,48 +997,86 @@ struct PDFThumbnailCell: View {
     let document: PDFDocument
     let index: Int
     let isSelected: Bool
+    let canDelete: Bool
     let onTap: () -> Void
+    let onDelete: () -> Void
 
     @State private var thumbnail: NSImage? = nil
+    @State private var aspectRatio: CGFloat = 0.707
+
+    private let cellWidth: CGFloat = 100
+
+    // Compute aspect ratio synchronously from document on init to avoid layout flash
+    private var initialAspectRatio: CGFloat {
+        guard let bounds = document.page(at: index)?.bounds(for: .mediaBox),
+              bounds.height > 0 else { return 0.707 }
+        return bounds.width / bounds.height
+    }
 
     var body: some View {
-        VStack(spacing: 4) {
-            ZStack {
-                Color.white
-                if let img = thumbnail {
-                    Image(nsImage: img)
-                        .resizable()
-                        .scaledToFit()
-                        .clipped()
-                } else {
-                    ProgressView().controlSize(.mini)
+        VStack(spacing: 5) {
+            ZStack(alignment: .topTrailing) {
+                ZStack {
+                    Color.white
+                    if let img = thumbnail {
+                        Image(nsImage: img)
+                            .resizable()
+                            .scaledToFill()
+                            .clipped()
+                    } else {
+                        ProgressView().controlSize(.mini)
+                    }
+                }
+                .frame(width: cellWidth, height: cellWidth / aspectRatio)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .strokeBorder(
+                            isSelected ? Color.accentColor : Color.primary.opacity(0.12),
+                            lineWidth: isSelected ? 2 : 1
+                        )
+                )
+                .shadow(color: .black.opacity(isSelected ? 0.18 : 0.07),
+                        radius: isSelected ? 4 : 2, x: 0, y: 2)
+
+                // Delete button — always visible top-right
+                if canDelete {
+                    Button {
+                        onDelete()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 7, weight: .bold))
+                            .foregroundStyle(.white)
+                            .padding(4)
+                            .background(Color.black.opacity(0.55))
+                            .clipShape(Circle())
+                    }
+                    .buttonStyle(.plain)
+                    .offset(x: 6, y: -6)
                 }
             }
-            .frame(width: 56, height: 72)
-            .clipShape(RoundedRectangle(cornerRadius: 3))
-            .overlay(
-                RoundedRectangle(cornerRadius: 3)
-                    .strokeBorder(
-                        isSelected ? Color.accentColor : Color.primary.opacity(0.12),
-                        lineWidth: isSelected ? 2 : 1
-                    )
-            )
-            .shadow(color: .black.opacity(isSelected ? 0.18 : 0.07),
-                    radius: isSelected ? 4 : 2, x: 0, y: 2)
 
             Text("\(index + 1)")
-                .font(.system(size: 9, weight: isSelected ? .bold : .medium))
+                .font(.system(size: 10, weight: isSelected ? .bold : .medium))
                 .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
         }
         .onTapGesture { onTap() }
         .handCursor()
-        .task {
+        .onAppear {
+            // Set aspect ratio immediately on appear — prevents layout flash
+            aspectRatio = initialAspectRatio
+        }
+        .task(id: index) {
             guard thumbnail == nil else { return }
             let doc = document
             let idx = index
+            let ratio = initialAspectRatio
+            aspectRatio = ratio
+            let renderW = cellWidth * 2
+            let renderH = renderW / ratio
             let result = await Task.detached(priority: .utility) {
                 SentImage(nsImage: doc.page(at: idx)?.thumbnail(
-                    of: CGSize(width: 112, height: 144), for: .mediaBox
+                    of: CGSize(width: renderW, height: renderH), for: .mediaBox
                 ))
             }.value
             if let img = result.nsImage { thumbnail = img }
@@ -830,22 +1088,29 @@ struct PDFThumbnailCell: View {
 
 struct PDFPageReorderView: View {
     let document: PDFDocument
+    @Binding var selectedPositions: Set<Int>
+    @Binding var noSelectionHint: Bool
     let onSave: ([Int]) -> Void
+    let onCancel: () -> Void
 
-    @Environment(\.dismiss) private var dismiss
-
-    @State private var pageOrder: [Int]
-    @State private var selectedPositions: Set<Int> = []
+    @EnvironmentObject var appState: GlobalAppState
+    @State private var lastSelectedIndex: Int? = nil
     @State private var draggingPositions: Set<Int> = []
-    @State private var dropTargetPosition: Int? = nil
+    @State private var scrollPosition: Int? = nil // To programmatically scroll
 
-    init(document: PDFDocument, onSave: @escaping ([Int]) -> Void) {
-        self.document = document
-        self.onSave = onSave
-        self._pageOrder = State(initialValue: Array(0..<document.pageCount))
+    // Helper to get a stable pageOrder binding from appState
+    private var pageOrderBinding: Binding<[Int]> {
+        Binding(
+            get: { appState.pdfReorderPageOrder ?? Array(0..<document.pageCount) },
+            set: { appState.pdfReorderPageOrder = $0 }
+        )
     }
 
-    private let columns = [GridItem(.adaptive(minimum: 108, maximum: 140), spacing: 14)]
+    private var pageOrder: [Int] {
+        appState.pdfReorderPageOrder ?? Array(0..<document.pageCount)
+    }
+
+    private let columns = [GridItem(.adaptive(minimum: 162, maximum: 210), spacing: 14)]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -860,17 +1125,16 @@ struct PDFPageReorderView: View {
                 }
                 Spacer()
                 if !selectedPositions.isEmpty {
-                    Text("\(selectedPositions.count) seçili")
+                    Text(String(format: NSLocalizedString("pdf.reorder.selectedCount", comment: ""), selectedPositions.count))
                         .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(.secondary)
                 }
-                Button(role: .cancel) { dismiss() } label: {
+                Button(role: .cancel) { onCancel() } label: {
                     Text(LocalizedStringKey("alert.cancel"))
                 }
                 .keyboardShortcut(.escape, modifiers: [])
                 Button {
                     onSave(pageOrder)
-                    dismiss()
                 } label: {
                     Text(LocalizedStringKey("pdf.reorder.save"))
                 }
@@ -884,48 +1148,97 @@ struct PDFPageReorderView: View {
 
             // Hint bar
             HStack(spacing: 6) {
-                Image(systemName: "info.circle")
+                Image(systemName: noSelectionHint ? "exclamationmark.triangle" : "info.circle")
                     .font(.system(size: 11))
-                    .foregroundStyle(.secondary)
-                Text(LocalizedStringKey("pdf.reorder.hint"))
+                    .foregroundStyle(noSelectionHint ? Color.orange : Color.secondary)
+                Text(LocalizedStringKey(noSelectionHint ? "pdf.reorder.selectToDelete" : "pdf.reorder.hint"))
                     .font(.system(size: 11))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(noSelectionHint ? Color.orange : Color.secondary)
                 Spacer()
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 8)
-            .background(Color.primary.opacity(0.025))
+            .background(noSelectionHint ? Color.orange.opacity(0.08) : Color.primary.opacity(0.025))
+            .animation(.easeInOut(duration: 0.2), value: noSelectionHint)
+            .onChange(of: selectedPositions) { _ in
+                if noSelectionHint { noSelectionHint = false }
+            }
 
             Divider()
-
+ 
             // Page grid
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(Array(pageOrder.enumerated()), id: \.element) { position, pageIndex in
-                        reorderCell(position: position, pageIndex: pageIndex)
+            GeometryReader { geometry in
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        ZStack(alignment: .top) {
+                            // Page grid
+                            LazyVGrid(columns: columns, spacing: 14) {
+                                ForEach(Array(pageOrder.enumerated()), id: \.element) { position, pageIndex in
+                                    reorderCell(position: position, pageIndex: pageIndex)
+                                        .onDrop(of: [UTType.plainText], delegate: ReorderDropDelegate(
+                                            targetPosition: position,
+                                            pageOrder: pageOrderBinding,
+                                            selectedPositions: $selectedPositions,
+                                            draggingPositions: $draggingPositions,
+                                            geometry: geometry,
+                                            proxy: proxy
+                                        ))
+                                }
+
+                                // Invisible end drop zone — allows dropping after the last page
+                                Color.clear
+                                    .frame(height: 10)
+                                    .onDrop(of: [UTType.plainText], delegate: ReorderDropDelegate(
+                                        targetPosition: pageOrder.count - 1,
+                                        pageOrder: pageOrderBinding,
+                                        selectedPositions: $selectedPositions,
+                                        draggingPositions: $draggingPositions,
+                                        geometry: geometry,
+                                        proxy: proxy
+                                    ))
+                            }
+                            .padding(20)
+                            .animation(.easeInOut, value: pageOrder)
+                        }
                     }
                 }
-                .padding(20)
             }
         }
-        .frame(minWidth: 700, minHeight: 520)
+        .frame(minWidth: 400, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
+        .background(Color.primary.opacity(0.02))
     }
 
     @ViewBuilder
     private func reorderCell(position: Int, pageIndex: Int) -> some View {
         let isSelected = selectedPositions.contains(position)
-        let isDragTarget = dropTargetPosition == position && !draggingPositions.contains(position)
-
+        
         ReorderPageCell(
             document: document,
             pageIndex: pageIndex,
             displayNumber: position + 1,
             isSelected: isSelected,
-            isDragTarget: isDragTarget
+            onDelete: {
+                if pageOrder.count > 1 {
+                    withAnimation {
+                        var newOrder = pageOrder
+                        newOrder.remove(at: position)
+                        appState.pdfReorderPageOrder = newOrder
+                        selectedPositions.removeAll()
+                    }
+                }
+            }
         )
         .onTapGesture {
-            let ctrl = NSApp.currentEvent?.modifierFlags.contains(.control) ?? false
-            if ctrl {
+            let flags = NSApp.currentEvent?.modifierFlags ?? []
+            let isCommand = flags.contains(.command) || flags.contains(.control)
+            let isShift = flags.contains(.shift)
+            
+            if isShift, let last = lastSelectedIndex {
+                let start = min(last, position)
+                let end = max(last, position)
+                let range = Set(start...end)
+                selectedPositions.formUnion(range)
+            } else if isCommand {
                 if selectedPositions.contains(position) {
                     selectedPositions.remove(position)
                 } else {
@@ -934,24 +1247,16 @@ struct PDFPageReorderView: View {
             } else {
                 selectedPositions = [position]
             }
+            lastSelectedIndex = position
         }
         .onDrag {
             if !selectedPositions.contains(position) {
                 selectedPositions = [position]
+                lastSelectedIndex = position
             }
             draggingPositions = selectedPositions
             return NSItemProvider(object: NSString(string: "\(position)"))
         }
-        .onDrop(
-            of: [UTType.plainText],
-            delegate: PageDropDelegate(
-                targetPosition: position,
-                pageOrder: $pageOrder,
-                selectedPositions: $selectedPositions,
-                draggingPositions: $draggingPositions,
-                dropTargetPosition: $dropTargetPosition
-            )
-        )
     }
 }
 
@@ -962,56 +1267,94 @@ struct ReorderPageCell: View {
     let pageIndex: Int
     let displayNumber: Int
     let isSelected: Bool
-    let isDragTarget: Bool
+    let onDelete: () -> Void
 
     @State private var thumbnail: NSImage? = nil
+    @State private var isHovered = false
+    @State private var aspectRatio: CGFloat = 0.707 // default A4 portrait
+
+    private let cellWidth: CGFloat = 135
 
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 6) {
             ZStack {
                 Color.white
                 if let img = thumbnail {
                     Image(nsImage: img)
                         .resizable()
-                        .scaledToFit()
-                        .padding(2)
+                        .scaledToFill()
+                        .clipped()
                 } else {
-                    ProgressView().controlSize(.mini)
+                    Circle()
+                        .stroke(Color.secondary.opacity(0.2), lineWidth: 2)
+                        .frame(width: 14, height: 14)
+                        .overlay(
+                            Circle()
+                                .trim(from: 0, to: 0.3)
+                                .stroke(Color.secondary, lineWidth: 2)
+                                .rotationEffect(.degrees(thumbnail == nil ? 360 : 0))
+                                .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: thumbnail == nil)
+                        )
                 }
-                if isDragTarget {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color.accentColor.opacity(0.15))
+
+                // Overlay for selection/hover
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(isSelected ? Color.accentColor.opacity(0.1) : (isHovered ? Color.primary.opacity(0.03) : Color.clear))
+
+                // Delete button on hover
+                if isHovered {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button(action: onDelete) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 8, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .padding(4)
+                                    .background(Color.black.opacity(0.6))
+                                    .clipShape(Circle())
+                            }
+                            .buttonStyle(.plain)
+                            .handCursor()
+                            .padding(4)
+                        }
+                        Spacer()
+                    }
                 }
             }
-            .frame(width: 84, height: 108)
-            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .frame(width: cellWidth, height: cellWidth / aspectRatio)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
             .overlay(
-                RoundedRectangle(cornerRadius: 4)
+                RoundedRectangle(cornerRadius: 6)
                     .strokeBorder(
-                        isSelected ? Color.accentColor
-                            : (isDragTarget ? Color.accentColor.opacity(0.6) : Color.primary.opacity(0.1)),
-                        lineWidth: isSelected ? 2.5 : (isDragTarget ? 2 : 1)
+                        isSelected ? Color.accentColor : Color.primary.opacity(0.1),
+                        lineWidth: isSelected ? 2 : 1
                     )
             )
-            .shadow(color: .black.opacity(isSelected ? 0.18 : 0.06),
-                    radius: isSelected ? 6 : 2, x: 0, y: 2)
+            .shadow(color: .black.opacity(isSelected ? 0.15 : 0.05),
+                    radius: isSelected ? 4 : 2, x: 0, y: 2)
 
             Text("\(displayNumber)")
                 .font(.system(size: 10, weight: isSelected ? .bold : .medium))
                 .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
         }
-        .padding(6)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(isSelected ? Color.accentColor.opacity(0.07) : Color.clear)
-        )
+        .padding(4)
+        .contentShape(Rectangle())
+        .onHover { isHovered = $0 }
         .task {
             guard thumbnail == nil else { return }
             let doc = document
             let idx = pageIndex
+            // Read aspect ratio before detached task
+            if let bounds = doc.page(at: idx)?.bounds(for: .mediaBox), bounds.height > 0 {
+                aspectRatio = bounds.width / bounds.height
+            }
+            let ratio = aspectRatio
+            let renderW = cellWidth * 2
+            let renderH = renderW / ratio
             let result = await Task.detached(priority: .utility) {
                 SentImage(nsImage: doc.page(at: idx)?.thumbnail(
-                    of: CGSize(width: 168, height: 216), for: .mediaBox
+                    of: CGSize(width: renderW, height: renderH), for: .mediaBox
                 ))
             }.value
             if let img = result.nsImage { thumbnail = img }
@@ -1019,58 +1362,84 @@ struct ReorderPageCell: View {
     }
 }
 
-// MARK: - PageDropDelegate
+// MARK: - ReorderDropDelegate
 
-struct PageDropDelegate: DropDelegate {
+struct ReorderDropDelegate: DropDelegate {
     let targetPosition: Int
     @Binding var pageOrder: [Int]
     @Binding var selectedPositions: Set<Int>
     @Binding var draggingPositions: Set<Int>
-    @Binding var dropTargetPosition: Int?
+    let geometry: GeometryProxy
+    let proxy: ScrollViewProxy
 
     func validateDrop(info: DropInfo) -> Bool {
         !draggingPositions.isEmpty && !draggingPositions.contains(targetPosition)
     }
 
     func dropEntered(info: DropInfo) {
-        guard !draggingPositions.contains(targetPosition) else { return }
-        dropTargetPosition = targetPosition
-    }
+        handleScroll(at: info.location)
 
-    func dropExited(info: DropInfo) {
-        if dropTargetPosition == targetPosition { dropTargetPosition = nil }
+        guard !draggingPositions.contains(targetPosition) else { return }
+
+        let sortedDragging = draggingPositions.sorted()
+
+        withAnimation(.easeInOut(duration: 0.25)) {
+            var newOrder = pageOrder
+            let draggedItems = sortedDragging.map { pageOrder[$0] }
+
+            for index in sortedDragging.reversed() {
+                newOrder.remove(at: index)
+            }
+
+            // Insert after target if dragging from before it, insert before otherwise.
+            // This gives natural "slide past" behaviour.
+            let minDragging = sortedDragging.min() ?? 0
+            let insertAfter = minDragging < targetPosition
+
+            var insertionIndex = targetPosition
+            let itemsBeforeTarget = sortedDragging.filter { $0 < targetPosition }.count
+            insertionIndex -= itemsBeforeTarget
+            if insertAfter { insertionIndex += 1 }
+
+            newOrder.insert(contentsOf: draggedItems, at: min(max(0, insertionIndex), newOrder.count))
+            pageOrder = newOrder
+
+            var newSelection: Set<Int> = []
+            for item in draggedItems {
+                if let newIdx = newOrder.firstIndex(of: item) {
+                    newSelection.insert(newIdx)
+                }
+            }
+            selectedPositions = newSelection
+            draggingPositions = newSelection
+        }
     }
 
     func dropUpdated(info: DropInfo) -> DropProposal? {
-        DropProposal(operation: .move)
+        handleScroll(at: info.location)
+        return DropProposal(operation: .move)
     }
 
     func performDrop(info: DropInfo) -> Bool {
-        dropTargetPosition = nil
-        let sortedDragging = draggingPositions.sorted()
-        guard !sortedDragging.isEmpty, !sortedDragging.contains(targetPosition) else {
-            draggingPositions = []
-            return false
-        }
-
-        let draggedPages = sortedDragging.map { pageOrder[$0] }
-
-        var newOrder = pageOrder
-        for pos in sortedDragging.reversed() { newOrder.remove(at: pos) }
-
-        // Adjust insert index for removed items
-        var insertAt = targetPosition
-        for pos in sortedDragging where pos < targetPosition { insertAt -= 1 }
-        insertAt = max(0, min(insertAt, newOrder.count))
-
-        for (i, page) in draggedPages.enumerated() {
-            newOrder.insert(page, at: insertAt + i)
-        }
-
-        pageOrder = newOrder
-        selectedPositions = Set(insertAt..<(insertAt + draggedPages.count))
         draggingPositions = []
         return true
+    }
+
+    private func handleScroll(at location: CGPoint) {
+        let scrollPadding: CGFloat = 80
+        if location.y > geometry.size.height - scrollPadding {
+            // Scroll down
+            let nextIndex = min(pageOrder.count - 1, targetPosition + 2)
+            withAnimation {
+                proxy.scrollTo(nextIndex, anchor: .bottom)
+            }
+        } else if location.y < scrollPadding {
+            // Scroll up: Subtract more to ensure we move beyond current visibility
+            let prevIndex = max(0, targetPosition - 4)
+            withAnimation {
+                proxy.scrollTo(prevIndex, anchor: .top)
+            }
+        }
     }
 }
 

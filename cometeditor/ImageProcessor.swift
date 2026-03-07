@@ -129,10 +129,15 @@ actor ImageProcessor {
         // Handle Metadata
         var imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [CFString: Any] ?? [:]
         if !preserveMetadata {
-            // Strip metadata by removing standard dictionary keys
             imageProperties.removeValue(forKey: kCGImagePropertyExifDictionary)
+            imageProperties.removeValue(forKey: kCGImagePropertyExifAuxDictionary)
             imageProperties.removeValue(forKey: kCGImagePropertyTIFFDictionary)
             imageProperties.removeValue(forKey: kCGImagePropertyGPSDictionary)
+            imageProperties.removeValue(forKey: kCGImagePropertyIPTCDictionary)
+            imageProperties.removeValue(forKey: kCGImagePropertyMakerAppleDictionary)
+            if #available(macOS 12.0, *) {
+                imageProperties.removeValue(forKey: "{XMP}" as CFString)
+            }
         }
         
         CGImageDestinationAddImage(destination, cgImage, imageProperties as CFDictionary)

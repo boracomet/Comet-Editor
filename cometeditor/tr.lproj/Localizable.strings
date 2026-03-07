@@ -25,11 +25,13 @@
 
 "menu.team.title" = "Ekibimiz";
 "menu.team.subtitle" = "Comet Editor'ın arkasındaki yetenekli isimlerle tanışın";
+"team.product_of" = "Cometdevs.com ürünüdür";
+"team.thanks_grafix" = "Grafix Topluluğuna Katkılarından Dolayı Teşekkür Ederiz.";
 
 "menu.videoConvert" = "Video Dönüştür";
 "video.drop.title" = "Videoyu Sürükle ve Bırak";
 "video.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
-"video.settings.format" = "Video Formatı";
+"video.settings.format" = "FORMAT";
 
 "home.visitWebsite" = "Web sitemize git";
 
@@ -57,7 +59,7 @@
 "video.settings.resize" = "YENİDEN BOYUTLANDIR";
 "video.settings.audio" = "SES";
 "video.settings.audio.remove" = "Sesi kaldır";
-"video.settings.metadata" = "PİRESEL VERİ";
+"video.settings.metadata" = "ÜSTVERI KORUMA";
 "video.settings.fps.desc" = "Girilen FPS üzerinde olan videolar yavaşlatılır/limitlenir.";
 "video.processing" = "İşleniyor...";
 "video.saved.gain" = "kazanç";
@@ -84,9 +86,41 @@
 "pdf.reorder.title" = "Sayfa Sırası";
 "pdf.reorder.hint" = "Ctrl basılı tutarak çoklu seçim yapın, sürükleyerek sıralayın.";
 "pdf.reorder.save" = "Sıralamayı Kaydet";
+"pdf.reorder.selectToDelete" = "Silinecek sayfaları seçin";
+"pdf.reorder.selectedCount" = "%d sayfa seçili";
 "pdf.tools.compressSection" = "BOYUT KÜÇÜLT";
 "pdf.tools.compress" = "WebP ile Sıkıştır";
+"pdf.tools.targetFolder" = "HEDEF KLASÖR";
 
+"pdf.tools.addContent" = "Ek İçerik Ekle";
+"pdf.addContent.title" = "Ek İçerik Ekle";
+"pdf.addContent.typeLabel" = "İÇERİK TÜRÜ";
+"pdf.addContent.typePDF" = "PDF Dosyası";
+"pdf.addContent.typeImage" = "Resim";
+"pdf.addContent.positionLabel" = "EKLEME KONUMU";
+"pdf.addContent.currentPage" = "Mevcut sayfayı kullan (Sayfa %lld)";
+"pdf.addContent.pageNumber" = "Sayfa numarası:";
+"pdf.addContent.before" = "Bu sayfanın önüne ekle";
+"pdf.addContent.after" = "Bu sayfanın arkasına ekle";
+"pdf.addContent.atEnd" = "Sona ekle";
+"pdf.addContent.chooseFile" = "Dosya Seç & Ekle";
+
+"menu.team" = "Ekibimiz";
+"menu.stockImage" = "Stok Görsel";
+"stock.search.placeholder" = "Unsplash'ta ara...";
+"stock.search.button" = "Ara";
+"stock.random" = "Rastgele Yenile";
+"stock.loading" = "Yükleniyor...";
+"stock.source" = "Kaynak: Unsplash";
+"stock.selected" = "%d seçili";
+"stock.deselectAll" = "Seçimi Kaldır";
+"stock.loadMore" = "Daha Fazla Yükle";
+"stock.download" = "Seçilenleri İndir";
+"stock.download.count" = "%d Fotoğraf İndir";
+"stock.photo.by" = "Fotoğraf: %@";
+"stock.inspector.quality" = "İNDİRME KALİTESİ";
+"stock.quality.regular" = "Normal (1080px)";
+"stock.quality.full" = "Tam Çözünürlük";
 "menu.qrCode" = "QR Kod";
 "qr.title" = "QR Kod Oluşturucu";
 "qr.input.placeholder" = "URL veya metin giriniz...";
@@ -99,3 +133,48 @@
 "qr.settings.resolution" = "ÇÖZÜNÜRLÜK";
 "qr.settings.customSize" = "Özel Çözünürlük (px)";
 "qr.download" = "QR Kodu İndir";
+
+"menu.bgRemove" = "Arka Plan Sil";
+"bgremove.unavailable.title" = "macOS 14 Gerekli";
+"bgremove.unavailable.subtitle" = "Arka Plan Silme özelliği Apple'ın Neural Engine teknolojisini kullanır.\nLütfen macOS 14 Sonoma veya daha üst bir sürüme güncelleyin.";
+"bgremove.drop.title" = "Resimleri Sürükle ve Bırak";
+"bgremove.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"bgremove.processing" = "İşleniyor...";
+"bgremove.save.all" = "Tümünü Kaydet";
+"bgremove.save.count" = "%d Resim Kaydet";
+"bgremove.preview.ready" = "Önizleme hazır";
+"bgremove.before" = "Önce";
+"bgremove.after" = "Sonra";
+"bgremove.settings.title" = "Ayarlar";
+"bgremove.settings.format" = "FORMAT";
+"bgremove.settings.targetFolder" = "HEDEF KLASÖR";
+"bgremove.drop.title" = "Resmi Sürükle ve Bırak";
+"bgremove.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"bgremove.processing" = "Arka plan siliniyor...";
+"bgremove.download" = "Resmi Kaydet";
+"bgremove.settings.outputFormat" = "ÇIKTI FORMATI";
+"bgremove.settings.background" = "ARKA PLAN";
+"bgremove.settings.bgColor" = "Arka Plan Rengi";
+"bgremove.settings.showBg" = "Arka Plan Rengi Ekle";
+"bgremove.settings.padding" = "DOLGU";
+"bgremove.settings.paddingAmount" = "Dolgu (px)";
+"bgremove.settings.refine" = "KENAR İYİLEŞTİR";
+"bgremove.settings.feather" = "Yumuşatma";
+"bgremove.settings.featherAmount" = "Yumuşatma Miktarı";
+
+"video.error.invalidSource" = "Geçersiz kaynak video biçimi.";
+"video.error.assetWriter" = "Video yazıcısı başlatılamadı.";
+"video.error.pixelBufferPool" = "Bellek havuzu oluşturulamadı.";
+"video.error.decoder" = "Video akışı çözümlenemedi.";
+"video.error.writerFailure" = "Video yazma işlemi sırasında hata oluştu.";
+
+"menu.ocr" = "Resmi Yazıya Çevir";
+"ocr.drop.title" = "Resmi Sürükle ve Bırak";
+"ocr.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"ocr.processing" = "Metin tanınıyor...";
+"ocr.result.placeholder" = "Tanınan metin burada görünecek";
+"ocr.copy" = "Kopyala";
+"ocr.edit" = "Düzenle";
+"ocr.clear" = "Temizle";
+"ocr.newFile" = "Yeni Dosya";
+"ocr.copied" = "Kopyalandı!";

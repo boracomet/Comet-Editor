@@ -10,7 +10,7 @@ import SwiftUI
 struct SidebarView: View {
     @Binding var selectedItem: MenuItem
     @EnvironmentObject var appState: GlobalAppState
-    @AppStorage("appLanguage") private var appLanguage: String = "en"
+    @EnvironmentObject var languageManager: LanguageManager
     
     var body: some View {
         VStack(spacing: 0) {
@@ -69,21 +69,21 @@ struct SidebarView: View {
             // Language Picker Mock/Button
             Menu {
                 Button {
-                    appLanguage = "tr"
+                    languageManager.setLanguage("tr")
                 } label: {
                     Text("🇹🇷 Türkçe")
                 }
-                
+
                 Button {
-                    appLanguage = "en"
+                    languageManager.setLanguage("en")
                 } label: {
                     Text("🇬🇧 English")
                 }
             } label: {
                 HStack(spacing: 6) {
-                    Text(appLanguage == "tr" ? "🇹🇷" : "🇬🇧")
+                    Text(languageManager.currentLanguage == "tr" ? "🇹🇷" : "🇬🇧")
                         .font(.system(size: 14))
-                    Text(appLanguage == "tr" ? "Türkçe" : "English")
+                    Text(languageManager.currentLanguage == "tr" ? "Türkçe" : "English")
                         .font(.system(size: 13, weight: .semibold))
                     Image(systemName: "chevron.up")
                         .font(.system(size: 10, weight: .bold))
@@ -108,7 +108,9 @@ struct SidebarView: View {
             
             // Team Button
             Button {
-                appState.showingTeamModal = true
+                withAnimation {
+                    selectedItem = .team
+                }
             } label: {
                 Image(systemName: "questionmark")
                     .font(.system(size: 13, weight: .bold))

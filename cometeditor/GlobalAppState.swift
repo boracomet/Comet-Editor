@@ -1,6 +1,7 @@
 import SwiftUI
 import Foundation
 import Combine
+@preconcurrency import PDFKit
 
 // MARK: - Models
 struct ImageItem: Identifiable, Equatable {
@@ -27,14 +28,41 @@ struct VideoItem: Identifiable, Equatable {
     var fileName: String { url.lastPathComponent }
 }
 
+struct PDFItem: Identifiable, Equatable {
+    let id = UUID()
+    let url: URL
+    let document: PDFDocument?
+    let fileSizeString: String
+    let fileSizeBytes: Int64
+    var fileName: String { url.lastPathComponent }
+
+    static func == (lhs: PDFItem, rhs: PDFItem) -> Bool { lhs.id == rhs.id }
+}
+
+enum PDFViewMode {
+    case viewer
+    case reorder
+}
+
 class GlobalAppState: ObservableObject {
     // Shared File Lists
     @Published var selectedImages: [ImageItem] = []
     @Published var selectedVideos: [VideoItem] = []
     
+    // PDF Editor State
+    @Published var selectedPDF: PDFItem? = nil
+    @Published var pdfPageIndex: Int = 0
+    @Published var pdfDocumentVersion: Int = 0
+    @Published var pdfViewMode: PDFViewMode = .viewer
+    @Published var pdfCompressionTargetFolder: URL? = nil
+    @Published var pdfReorderPageOrder: [Int]? = nil
+    
     // Persistent Folder
     @Published var targetFolder: URL? = nil {
         didSet {
+            if let old = oldValue {
+                old.stopAccessingSecurityScopedResource()
+            }
             saveFolderBookmark()
         }
     }
