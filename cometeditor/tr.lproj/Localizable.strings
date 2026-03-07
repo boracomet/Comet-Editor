@@ -1,0 +1,101 @@
+"convert.drop.title" = "Resmi Sürükle ve Bırak";
+"convert.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"convert.settings.title" = "Ayarlar";
+"convert.settings.format" = "Format";
+"convert.settings.quality" = "Kalite";
+"convert.settings.resize" = "Yeniden Boyutlandır";
+"convert.settings.enable" = "Aktifleştir";
+"convert.settings.scale" = "Ölçek";
+"convert.settings.scale.amount" = "Ölçek";
+"convert.scale.original" = "Orijinal";
+"convert.settings.width" = "Genişlik px";
+"convert.settings.height" = "Yükseklik px";
+"meta.info" = "Metadata Koruma";
+"convert.settings.targetFolder" = "Hedef Klasör";
+"convert.settings.noFolder" = "Seçilmedi";
+"convert.settings.chooseFolder" = "Finder'dan Seç";
+"convert.settings.convertButton" = "Dönüştür";
+"convert.clearAll" = "Tümünü Temizle";
+"convert.addMore" = "Ekle";
+"menu.home" = "Ana Sayfa";
+"menu.convertImage" = "Resim Dönüştür";
+"menu.batchProcess" = "Toplu İşlem";
+"menu.settings" = "Ayarlar";
+"menu.tools" = "Araçlar";
+
+"menu.team.title" = "Ekibimiz";
+"menu.team.subtitle" = "Comet Editor'ın arkasındaki yetenekli isimlerle tanışın";
+
+"menu.videoConvert" = "Video Dönüştür";
+"video.drop.title" = "Videoyu Sürükle ve Bırak";
+"video.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"video.settings.format" = "Video Formatı";
+
+"home.visitWebsite" = "Web sitemize git";
+
+"alert.success.title" = "Başarılı";
+"alert.error.title" = "Hata";
+"alert.ok" = "Tamam";
+"alert.cancel" = "İptal";
+"alert.openFolder" = "Klasörü Aç";
+"alert.success.message.image" = "Resimler başarıyla %@ konumuna kaydedildi.";
+"alert.success.message.video" = "Videolar başarıyla %@ konumuna kaydedildi.";
+"alert.error.generic" = "İşlem sırasında bir hata oluştu.";
+
+"home.welcome" = "Comet Editor'a Hoş Geldiniz";
+"home.welcome.subtitle" = "En iyi resim düzenleme ve dönüştürme merkeziniz.";
+"home.feature.convert.title" = "Resim Dönüştür";
+"home.feature.convert.desc" = "Tekil resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
+"home.feature.batch.title" = "Toplu İşlem";
+"home.feature.batch.desc" = "Binlerce fotoğrafı aynı anda optimize edin, boyutlandırın ve dönüştürün.";
+"home.feature.recent.title" = "Son Projeler";
+"home.feature.recent.desc" = "Son düzenleme oturumlarınıza ve dışa aktarımlarınıza erişin.";
+"home.feature.opt.title" = "Resim Optimizasyonu";
+"home.feature.opt.desc" = "Görüntü kalitesini kaybetmeden sıkıştırın ve iyileştirin.";
+
+"video.settings.fps" = "FPS LİMİTİ";
+"video.settings.resize" = "YENİDEN BOYUTLANDIR";
+"video.settings.audio" = "SES";
+"video.settings.audio.remove" = "Sesi kaldır";
+"video.settings.metadata" = "PİRESEL VERİ";
+"video.settings.fps.desc" = "Girilen FPS üzerinde olan videolar yavaşlatılır/limitlenir.";
+"video.processing" = "İşleniyor...";
+"video.saved.gain" = "kazanç";
+"video.saved.increased" = "(Büyüdü)";
+
+"menu.document" = "DOKÜMAN";
+"menu.pdfEdit" = "PDF Düzenle";
+"pdf.drop.title" = "PDF Sürükle ve Bırak";
+"pdf.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"pdf.settings.title" = "PDF Ayarları";
+"pdf.page.count" = "%lld Sayfa";
+
+"pdf.tools.currentPage" = "MEVCUT SAYFA";
+"pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
+"pdf.tools.deletePage" = "Sayfayı Sil";
+"pdf.tools.insertBefore" = "Önüne Ekle";
+"pdf.tools.insertAfter" = "Arkasına Ekle";
+"pdf.tools.actions" = "PDF İŞLEMLERİ";
+"pdf.tools.merge" = "PDF Birleştir";
+"pdf.tools.optimize" = "PDF Optimize Et";
+"pdf.tools.save" = "PDF Kaydet";
+"pdf.tools.reorder" = "Sayfaları Sırala";
+"pdf.page.info" = "%lld. Sayfa / %lld";
+"pdf.reorder.title" = "Sayfa Sırası";
+"pdf.reorder.hint" = "Ctrl basılı tutarak çoklu seçim yapın, sürükleyerek sıralayın.";
+"pdf.reorder.save" = "Sıralamayı Kaydet";
+"pdf.tools.compressSection" = "BOYUT KÜÇÜLT";
+"pdf.tools.compress" = "WebP ile Sıkıştır";
+
+"menu.qrCode" = "QR Kod";
+"qr.title" = "QR Kod Oluşturucu";
+"qr.input.placeholder" = "URL veya metin giriniz...";
+"qr.settings.colors" = "RENKLER";
+"qr.settings.fgColor" = "QR Rengi";
+"qr.settings.bgColor" = "Arka Plan Rengi";
+"qr.settings.showBg" = "Arka Planı Göster";
+"qr.settings.cornerRadius" = "Köşe Yumuşatma";
+"qr.settings.format" = "DIŞA AKTAR";
+"qr.settings.resolution" = "ÇÖZÜNÜRLÜK";
+"qr.settings.customSize" = "Özel Çözünürlük (px)";
+"qr.download" = "QR Kodu İndir";

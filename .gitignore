@@ -1,0 +1,31 @@
+# Build artifacts
+build/
+DerivedData/
+*.o
+*.so
+*.dylib
+
+# Ignore .a files globally except in third_party
+*.a
+!third_party/**/*.a
+
+# Dependencies (FFmpeg sources and local builds)
+third_party/ffmpeg_src/
+third_party/ffmpeg_build/
+third_party/build/
+third_party/libwebp/
+third_party/libvpx/
+third_party/x264/
+
+# Keep compiled libraries for Xcode Cloud
+# third_party/install/
+# third_party/ffmpeg_install/
+
+# Log files
+*.log
+
+# macOS specific
+.DS_Store
+
+# Ruby/Scripts temp files
+/tmp/

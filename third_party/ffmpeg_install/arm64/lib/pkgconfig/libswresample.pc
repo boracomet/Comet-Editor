@@ -1,0 +1,14 @@
+prefix=/Users/boradev/Desktop/comet/cometeditor/third_party/ffmpeg_install/arm64
+exec_prefix=${prefix}
+libdir=/Users/boradev/Desktop/comet/cometeditor/third_party/ffmpeg_install/arm64/lib
+includedir=/Users/boradev/Desktop/comet/cometeditor/third_party/ffmpeg_install/arm64/include
+
+Name: libswresample
+Description: FFmpeg audio resampling library
+Version: 5.1.100
+Requires: libavutil >= 59.8.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lswresample -lm
+Libs.private: 
+Cflags: -I${includedir}

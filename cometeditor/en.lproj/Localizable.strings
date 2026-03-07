@@ -1,0 +1,101 @@
+"convert.drop.title" = "Drag & Drop Image";
+"convert.drop.subtitle" = "or click to browse files";
+"convert.settings.title" = "Settings";
+"convert.settings.format" = "Format";
+"convert.settings.quality" = "Quality";
+"convert.settings.resize" = "Resize";
+"convert.settings.enable" = "Enable";
+"convert.settings.scale" = "Scale";
+"convert.settings.scale.amount" = "Scale Amount";
+"convert.scale.original" = "Original";
+"convert.settings.width" = "Width px";
+"convert.settings.height" = "Height px";
+"meta.info" = "Metadata Protection";
+"convert.settings.targetFolder" = "Target Folder";
+"convert.settings.noFolder" = "Not Selected";
+"convert.settings.chooseFolder" = "Choose from Finder";
+"convert.settings.convertButton" = "Convert";
+"convert.clearAll" = "Clear All";
+"convert.addMore" = "Add";
+"menu.home" = "Home";
+"menu.convertImage" = "Convert Image";
+"menu.batchProcess" = "Batch Process";
+"menu.settings" = "Settings";
+"menu.tools" = "Tools";
+
+"menu.team.title" = "Our Team";
+"menu.team.subtitle" = "Meet the talented people behind Comet Editor";
+
+"menu.videoConvert" = "Video Convert";
+"video.drop.title" = "Drag & Drop Video";
+"video.drop.subtitle" = "or click to browse video files";
+"video.settings.format" = "Video Format";
+
+"home.visitWebsite" = "Visit our website";
+
+"alert.success.title" = "Success";
+"alert.error.title" = "Error";
+"alert.ok" = "OK";
+"alert.cancel" = "Cancel";
+"alert.openFolder" = "Open Folder";
+"alert.success.message.image" = "Images successfully saved to %@.";
+"alert.success.message.video" = "Videos successfully saved to %@.";
+"alert.error.generic" = "An error occurred during processing.";
+
+"home.welcome" = "Welcome to Comet Editor";
+"home.welcome.subtitle" = "Your ultimate image editing and conversion hub.";
+"home.feature.convert.title" = "Convert Image";
+"home.feature.convert.desc" = "Convert single images to formats like PNG, JPG, WebP, HEIF and more.";
+"home.feature.batch.title" = "Batch Process";
+"home.feature.batch.desc" = "Optimize, resize, and convert thousands of photos at once.";
+"home.feature.recent.title" = "Recent Projects";
+"home.feature.recent.desc" = "Access your latest editing sessions and exports.";
+"home.feature.opt.title" = "Image Optimization";
+"home.feature.opt.desc" = "Compress and enhance image quality without loss.";
+
+"video.settings.fps" = "FPS LIMIT";
+"video.settings.resize" = "RESIZE";
+"video.settings.audio" = "AUDIO";
+"video.settings.audio.remove" = "Remove audio";
+"video.settings.metadata" = "METADATA PROTECTION";
+"video.settings.fps.desc" = "Videos above the entered FPS will be slowed down/limited.";
+"video.processing" = "Processing...";
+"video.saved.gain" = "saved";
+"video.saved.increased" = "(got larger)";
+
+"menu.document" = "DOCUMENT";
+"menu.pdfEdit" = "PDF Edit";
+"pdf.drop.title" = "Drag & Drop PDF";
+"pdf.drop.subtitle" = "or click to browse PDF files";
+"pdf.settings.title" = "PDF Settings";
+"pdf.page.count" = "%lld Pages";
+
+"pdf.tools.currentPage" = "CURRENT PAGE";
+"pdf.tools.pageManagement" = "PAGE MANAGEMENT";
+"pdf.tools.deletePage" = "Delete Page";
+"pdf.tools.insertBefore" = "Insert Before";
+"pdf.tools.insertAfter" = "Insert After";
+"pdf.tools.actions" = "PDF ACTIONS";
+"pdf.tools.merge" = "Merge PDF";
+"pdf.tools.optimize" = "Optimize PDF";
+"pdf.tools.save" = "Save PDF";
+"pdf.tools.reorder" = "Reorder Pages";
+"pdf.page.info" = "Page %lld of %lld";
+"pdf.reorder.title" = "Page Order";
+"pdf.reorder.hint" = "Hold Ctrl to multi-select, then drag to reorder.";
+"pdf.reorder.save" = "Save Order";
+"pdf.tools.compressSection" = "REDUCE FILE SIZE";
+"pdf.tools.compress" = "Compress with WebP";
+
+"menu.qrCode" = "QR Code";
+"qr.title" = "QR Code Generator";
+"qr.input.placeholder" = "Enter URL or text here...";
+"qr.settings.colors" = "COLORS";
+"qr.settings.fgColor" = "Foreground Color";
+"qr.settings.bgColor" = "Background Color";
+"qr.settings.showBg" = "Show Background";
+"qr.settings.cornerRadius" = "Corner Radius";
+"qr.settings.format" = "EXPORT FORMAT";
+"qr.settings.resolution" = "RESOLUTION";
+"qr.settings.customSize" = "Custom Size (px)";
+"qr.download" = "Download QR Code";
