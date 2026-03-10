@@ -17,6 +17,8 @@ struct UnsplashPhoto: Identifiable, Equatable {
     let description: String?
     let photographerName: String
     let unsplashURL: URL
+    let originalWidth: Int?
+    let originalHeight: Int?
     var isSelected: Bool = false
 }
 
@@ -25,6 +27,7 @@ struct UnsplashPhoto: Identifiable, Equatable {
 struct StockImageView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.colorScheme) private var colorScheme
 
     @State private var searchQuery: String = ""
@@ -38,22 +41,21 @@ struct StockImageView: View {
     @State private var selectedFormat: ImageFormat = .jpeg
     @State private var quality: Double = 8
     @State private var scaleEnabled: Bool = false
-    @State private var scaleSelection: String = "convert.scale.original"
-    @State private var resizeEnabled: Bool = false
-    @State private var customWidth: String = ""
-    @State private var customHeight: String = ""
+    @State private var scaleSelection: String = "75%"
     @State private var metadataEnabled: Bool = true
     @State private var isDownloading: Bool = false
     @State private var downloadProgress: Double = 0
 
     @State private var previewPhoto: UnsplashPhoto? = nil
+    @State private var showScrollTop: Bool = false
 
     @State private var showSuccessAlert = false
     @State private var showErrorAlert = false
     @State private var alertMessage: String = ""
+    @EnvironmentObject var windowState: WindowStateObserver
 
     private var scaleOptions: [String] {
-        ["convert.scale.original", "25%", "50%", "75%", "125%", "150%", "200%"]
+        ["25%", "50%", "75%"]
     }
     private var selectedPhotos: [UnsplashPhoto] { photos.filter(\.isSelected) }
     private var selectedCount: Int { selectedPhotos.count }
@@ -68,7 +70,7 @@ struct StockImageView: View {
             inspectorPanel
                 .frame(width: 260)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
         .onAppear { if photos.isEmpty { Task { await loadRandom() } } }
         .overlay {
             if let photo = previewPhoto {
@@ -184,10 +186,10 @@ struct StockImageView: View {
             .padding(40)
         } else {
             VStack(spacing: 0) {
-                // Source label + selected count bar
-                HStack {
-                    Spacer()
-                    if selectedCount > 0 {
+                // Selected count bar — only shown when items are selected
+                if selectedCount > 0 {
+                    HStack {
+                        Spacer()
                         Text(String(format: NSLocalizedString("stock.selected", comment: ""), selectedCount))
                             .font(.system(size: 11, weight: .semibold))
                             .foregroundStyle(Color.accentColor)
@@ -201,24 +203,58 @@ struct StockImageView: View {
                         .buttonStyle(.plain)
                         .handCursor()
                     }
-                }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 8)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 8)
 
-                Divider()
+                    Divider()
+                }
 
                 GeometryReader { geo in
-                    ScrollView(.vertical) {
-                        MasonryGrid(
-                            photos: photos,
-                            availableWidth: geo.size.width,
-                            hasMore: hasMore,
-                            isLoading: isLoading,
-                            onTap: { i in photos[i].isSelected.toggle() },
-                            onPreview: { i in previewPhoto = photos[i] },
-                            onLoadMore: { Task { await loadMore() } }
-                        )
-                        .padding(2)
+                    ScrollViewReader { proxy in
+                        ScrollView(.vertical) {
+                            MasonryGrid(
+                                photos: photos,
+                                availableWidth: geo.size.width,
+                                hasMore: hasMore,
+                                isLoading: isLoading,
+                                onTap: { i in photos[i].isSelected.toggle() },
+                                onPreview: { i in previewPhoto = photos[i] },
+                                onLoadMore: { Task { await loadMore() } },
+                                onScroll: { _ in }
+                            )
+                            .id("top")
+                            .background(
+                                GeometryReader { inner in
+                                    Color.clear.preference(
+                                        key: ScrollOffsetKey.self,
+                                        value: -inner.frame(in: .named("stockScroll")).minY
+                                    )
+                                }
+                            )
+                        }
+                        .coordinateSpace(name: "stockScroll")
+                        .onPreferenceChange(ScrollOffsetKey.self) { offset in
+                            showScrollTop = offset > 300
+                        }
+                        .overlay(alignment: .bottomTrailing) {
+                            if showScrollTop {
+                                Button {
+                                    withAnimation { proxy.scrollTo("top", anchor: .top) }
+                                } label: {
+                                    Image(systemName: "chevron.up")
+                                        .font(.system(size: 12, weight: .semibold))
+                                        .foregroundStyle(.white)
+                                        .frame(width: 34, height: 34)
+                                        .background(Circle().fill(Color.primary.opacity(0.75)))
+                                        .shadow(radius: 4)
+                                }
+                                .buttonStyle(.plain)
+                                .handCursor()
+                                .padding(16)
+                                .transition(.scale.combined(with: .opacity))
+                            }
+                        }
+                        .animation(.easeInOut(duration: 0.2), value: showScrollTop)
                     }
                 }
             }
@@ -231,7 +267,7 @@ struct StockImageView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text(LocalizedStringKey("convert.settings.title"))
+                    Text(LanguageManager.shared.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -278,9 +314,7 @@ struct StockImageView: View {
                                 .toggleStyle(.switch)
                                 .controlSize(.small)
                                 .labelsHidden()
-                                .onChange(of: scaleEnabled) { newValue in
-                                    if newValue { resizeEnabled = false }
-                                }
+                                .onChange(of: scaleEnabled) { _ in }
                         }
                         if scaleEnabled {
                             Picker("", selection: $scaleSelection) {
@@ -291,46 +325,6 @@ struct StockImageView: View {
                             .pickerStyle(.menu)
                             .labelsHidden()
                             .padding(.top, 2)
-                        }
-                    }
-                }
-
-                Divider()
-
-                // Resize
-                inspectorSection("convert.settings.resize") {
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Text(LocalizedStringKey("convert.settings.enable"))
-                                .font(.system(size: 13))
-                            Spacer()
-                            Toggle("", isOn: $resizeEnabled)
-                                .toggleStyle(.switch)
-                                .controlSize(.small)
-                                .labelsHidden()
-                                .onChange(of: resizeEnabled) { newValue in
-                                    if newValue { scaleEnabled = false }
-                                }
-                        }
-                        if resizeEnabled {
-                            HStack(spacing: 8) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(LocalizedStringKey("convert.settings.width"))
-                                        .font(.system(size: 10))
-                                        .foregroundStyle(Color.secondary)
-                                    TextField("", text: $customWidth)
-                                        .textFieldStyle(.roundedBorder)
-                                        .font(.system(size: 12, design: .monospaced))
-                                }
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(LocalizedStringKey("convert.settings.height"))
-                                        .font(.system(size: 10))
-                                        .foregroundStyle(Color.secondary)
-                                    TextField("", text: $customHeight)
-                                        .textFieldStyle(.roundedBorder)
-                                        .font(.system(size: 12, design: .monospaced))
-                                }
-                            }
                         }
                     }
                 }
@@ -424,8 +418,8 @@ struct StockImageView: View {
                             } else {
                                 Image(systemName: "arrow.down.circle.fill")
                                 Text(selectedCount > 0
-                                     ? String(format: NSLocalizedString("stock.download.count", comment: ""), selectedCount)
-                                     : NSLocalizedString("stock.download", comment: ""))
+                                     ? String(format: languageManager.string("stock.download.count"), selectedCount)
+                                     : languageManager.string("stock.download"))
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -519,8 +513,6 @@ struct StockImageView: View {
         } else {
             scaleFactor = 1.0
         }
-        let customSize: CGSize? = resizeEnabled ? CGSize(width: Double(customWidth) ?? 0, height: Double(customHeight) ?? 0) : nil
-
         for (i, photo) in toDownload.enumerated() {
             let url = photo.regularURL
             do {
@@ -531,7 +523,7 @@ struct StockImageView: View {
                 let outputName = "\(photo.id)_unsplash.\(ext)"
                 let outputURL = folder.appendingPathComponent(outputName)
 
-                try await save(image: nsImage, to: outputURL, format: selectedFormat, scale: scaleFactor, customSize: customSize)
+                try await save(image: nsImage, to: outputURL, format: selectedFormat, scale: scaleFactor, customSize: nil)
             } catch { }
 
             downloadProgress = Double(i + 1) / Double(toDownload.count)
@@ -616,6 +608,7 @@ private struct MasonryGrid: View {
     let onTap: (Int) -> Void
     let onPreview: (Int) -> Void
     let onLoadMore: () -> Void
+    let onScroll: (CGFloat) -> Void
     private let columnCount = 4
     private let spacing: CGFloat = 2
 
@@ -728,13 +721,27 @@ private struct StockPhotoCell: View {
                             .foregroundStyle(.white.opacity(0.8))
                             .underline()
                     }
+                    if let w = photo.originalWidth, let h = photo.originalHeight {
+                        Text("\(w)×\(h)")
+                            .font(.system(size: 9, design: .monospaced))
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
                 }
                 .padding(8)
             }
 
-            // Selection indicator top-right + preview bottom-right
+            // Selection indicator top-right + web icon top-left + preview bottom-right
             VStack {
                 HStack {
+                    Link(destination: photo.unsplashURL) {
+                        Image(systemName: "globe")
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .padding(6)
+                            .background(Color.black.opacity(0.55))
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                    }
+                    .padding(6)
                     Spacer()
                     ZStack {
                         Circle()
@@ -785,7 +792,12 @@ private struct StockPhotoCell: View {
     }
 }
 
-/// MARK: - Enums
+// MARK: - Scroll Offset Key
+
+private struct ScrollOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = nextValue() }
+}
 
 // MARK: - Unsplash JSON Models
 
@@ -796,6 +808,8 @@ private struct UnsplashRandomItem: Decodable {
     let urls: UnsplashURLs
     let links: UnsplashLinks
     let user: UnsplashUser
+    let width: Int?
+    let height: Int?
 
     var toPhoto: UnsplashPhoto? {
         guard let thumb = URL(string: urls.thumb),
@@ -809,7 +823,9 @@ private struct UnsplashRandomItem: Decodable {
             regularURL: regular,
             description: description ?? alt_description,
             photographerName: user.name,
-            unsplashURL: htmlLink
+            unsplashURL: htmlLink,
+            originalWidth: width,
+            originalHeight: height
         )
     }
 }
@@ -903,6 +919,7 @@ private struct StockPhotoPreviewModal: View {
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .shadow(radius: 32)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .transition(.opacity.animation(.easeInOut(duration: 0.2)))
         .task {
             isLoading = true

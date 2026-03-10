@@ -39,6 +39,7 @@ struct QRCodeView: View {
 
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var windowState: WindowStateObserver
 
     private let context = CIContext()
     private let filter = CIFilter.qrCodeGenerator()
@@ -55,7 +56,7 @@ struct QRCodeView: View {
             inspectorPanel
                 .frame(width: 260)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
         .onAppear {
             updateQRImage()
             centerColorPanel()
@@ -177,7 +178,7 @@ struct QRCodeView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header
                 HStack {
-                    Text("convert.settings.title")
+                    Text(LanguageManager.shared.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()

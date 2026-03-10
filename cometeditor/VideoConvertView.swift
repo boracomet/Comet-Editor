@@ -26,6 +26,7 @@ struct VideoConvertView: View {
 
     @EnvironmentObject var appState: GlobalAppState
     @State private var previewItem: VideoItem? = nil
+    @State private var previewPlayer: AVPlayer? = nil
     @State private var isDropTargeted = false
     @State private var showSuccessAlert = false
     @State private var showErrorAlert = false
@@ -36,12 +37,20 @@ struct VideoConvertView: View {
     @State private var totalProcessingCount: Int = 0
 
     @StateObject private var processor = VideoProcessor()
+    @EnvironmentObject var windowState: WindowStateObserver
 
     var body: some View {
         HStack(spacing: 0) {
             // MARK: - Main Area
-            mainContentArea
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Group {
+                if previewItem != nil {
+                    inlinePreview
+                } else {
+                    mainContentArea
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .animation(.easeInOut(duration: 0.18), value: previewItem != nil)
 
             Divider()
 
@@ -49,53 +58,7 @@ struct VideoConvertView: View {
             inspectorPanel
                 .frame(width: 260)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
-        .overlay {
-            // ZStack is always present; allowsHitTesting disables interaction immediately on dismiss,
-            // preventing the macOS SwiftUI hit-test lingering bug after transition animations.
-            ZStack {
-                if let preview = previewItem {
-                    Color.black.opacity(0.85)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                previewItem = nil
-                            }
-                        }
-
-                    InlineVideoPlayer(url: preview.url)
-                        .frame(minWidth: 600, minHeight: 400)
-                        .padding(60)
-                        .shadow(color: .black.opacity(0.5), radius: 20, x: 0, y: 10)
-
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Button {
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    previewItem = nil
-                                }
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundStyle(.white)
-                                    .padding(10)
-                                    .background(Circle().fill(Color.white.opacity(0.2)))
-                            }
-                            .buttonStyle(.plain)
-                            .handCursor()
-                            .padding(.top, 20)
-                            .padding(.trailing, 20)
-                        }
-                        Spacer()
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .allowsHitTesting(previewItem != nil)
-            .animation(.easeInOut(duration: 0.2), value: previewItem != nil)
-            .zIndex(100)
-        }
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showSuccessAlert) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
             if let folderURL = appState.targetFolder {
@@ -112,6 +75,62 @@ struct VideoConvertView: View {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
         } message: { error in
             Text(error.localizedDescription)
+        }
+        .onChange(of: previewItem) { item in
+            previewPlayer?.pause()
+            if let item {
+                previewPlayer = AVPlayer(url: item.url)
+                previewPlayer?.play()
+            } else {
+                previewPlayer = nil
+            }
+        }
+    }
+
+    // MARK: - Inline Preview
+    private var inlinePreview: some View {
+        VStack(spacing: 0) {
+            // Info bar
+            HStack(spacing: 12) {
+                Image(systemName: "video")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(Color.accentColor)
+                if let item = previewItem {
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(item.fileName)
+                            .font(.system(size: 13, weight: .semibold))
+                            .lineLimit(1)
+                        Text(item.fileSizeString + " · " + item.durationString + (item.resolutionString.map { " · \($0)" } ?? ""))
+                            .font(.system(size: 11))
+                            .foregroundStyle(Color.secondary)
+                    }
+                }
+                Spacer()
+                Button {
+                    withAnimation(.easeInOut(duration: 0.18)) {
+                        previewItem = nil
+                    }
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(Color.secondary)
+                        .padding(7)
+                        .background(Color.primary.opacity(0.08))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 14)
+
+            Divider()
+
+            // Video canvas
+            if let player = previewPlayer {
+                VideoPlayer(player: player)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
         }
     }
 
@@ -213,83 +232,89 @@ struct VideoConvertView: View {
     }
 
     private func videoGridItem(_ item: VideoItem) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // Video Box
-            GeometryReader { geo in
-                Group {
-                    if let nsImage = item.thumbnail {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .scaledToFill()
-                    } else {
-                        Rectangle()
-                            .fill(Color.secondary.opacity(0.1))
-                            .overlay(
-                                Image(systemName: "play.fill")
-                                    .font(.system(size: 24))
-                                    .foregroundStyle(Color.secondary)
-                            )
+        GeometryReader { geo in
+            Group {
+                if let nsImage = item.thumbnail {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Rectangle()
+                        .fill(Color.secondary.opacity(0.1))
+                        .overlay(
+                            Image(systemName: "play.fill")
+                                .font(.system(size: 24))
+                                .foregroundStyle(Color.secondary)
+                        )
+                }
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    previewItem = item
+                }
+            }
+            .handCursor()
+            .frame(width: geo.size.width, height: geo.size.height)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            // Bottom info bar
+            .overlay(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(item.fileName)
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(item.isCompleted ? Color.green : .white)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                    HStack(spacing: 4) {
+                        Text("\(item.fileSizeString) · \(item.durationString)")
+                            .font(.system(size: 9))
+                            .foregroundStyle(.white.opacity(0.75))
+                        if let res = item.resolutionString {
+                            Text("· \(res)")
+                                .font(.system(size: 9, design: .monospaced))
+                                .foregroundStyle(.white.opacity(0.65))
+                        }
+                        if let savedStr = item.savedSizeString {
+                            Text(savedStr)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(Color.green)
+                        }
                     }
                 }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        previewItem = item
-                    }
-                }
-                .handCursor()
-                .frame(width: geo.size.width, height: 110)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 6)
+                .background(
+                    LinearGradient(
+                        colors: [.clear, .black.opacity(0.75)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 )
-                .overlay(alignment: .topTrailing) {
-                    Button {
-                        appState.selectedVideos.removeAll(where: { $0.id == item.id })
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(5)
-                            .background(Color.black.opacity(0.6))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .handCursor()
-                    .padding(6)
-                }
             }
-            .frame(height: 110)
-
-            // Text Info
-            VStack(alignment: .leading, spacing: 4) {
-                Text(item.fileName)
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(item.isCompleted ? Color.green : Color.primary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-
-                Text("\(item.fileSizeString) • \(item.durationString)")
-                    .font(.system(size: 11))
-                    .foregroundStyle(Color.secondary)
-
-                if let res = item.resolutionString, let fps = item.fpsString {
-                    Text("\(res) • \(fps)")
-                        .font(.system(size: 10, weight: .medium, design: .monospaced))
-                        .foregroundStyle(Color.secondary.opacity(0.8))
+            // Delete button — top-right corner
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    appState.selectedVideos.removeAll(where: { $0.id == item.id })
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(5)
+                        .background(Color.black.opacity(0.55))
+                        .clipShape(Circle())
                 }
-
-                if let savedStr = item.savedSizeString {
-                    Text(savedStr)
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(Color.green)
-                        .padding(.top, 2)
-                }
+                .buttonStyle(.plain)
+                .handCursor()
+                .padding(6)
             }
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
+            )
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 4)
+        .frame(height: 120)
     }
 
     // MARK: - Inspector Panel
@@ -298,7 +323,7 @@ struct VideoConvertView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header
                 HStack {
-                    Text("convert.settings.title")
+                    Text(LanguageManager.shared.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -686,18 +711,18 @@ enum VideoFormat: String, CaseIterable, Identifiable {
 }
 
 enum FPSLimit: String, CaseIterable, Identifiable {
-    case original = "Orijinal"
-    case fps60 = "60 FPS"
-    case fps30 = "30 FPS"
-    case fps24 = "24 FPS"
+    case original = "original"
+    case fps60 = "fps60"
+    case fps30 = "fps30"
+    case fps24 = "fps24"
 
     var id: String { rawValue }
     var title: LocalizedStringKey {
         switch self {
-        case .original: return "convert.scale.original"
-        case .fps60: return "60 FPS"
-        case .fps30: return "30 FPS"
-        case .fps24: return "24 FPS"
+        case .original: return "video.fps.original"
+        case .fps60: return "video.fps.60"
+        case .fps30: return "video.fps.30"
+        case .fps24: return "video.fps.24"
         }
     }
 
@@ -712,19 +737,19 @@ enum FPSLimit: String, CaseIterable, Identifiable {
 }
 
 enum ResolutionScale: String, CaseIterable, Identifiable {
-    case original = "Orijinal"
-    case scale75 = "%75 Boyut"
-    case scale50 = "%50 Boyut"
-    case scale25 = "%25 Boyut (Düşük Kalite)"
+    case original = "original"
+    case scale75 = "scale75"
+    case scale50 = "scale50"
+    case scale25 = "scale25"
 
     var id: String { rawValue }
 
     var title: LocalizedStringKey {
         switch self {
-        case .original: return "convert.scale.original"
-        case .scale75: return "%75"
-        case .scale50: return "%50"
-        case .scale25: return "%25"
+        case .original: return "video.resolution.original"
+        case .scale75: return "video.resolution.75"
+        case .scale50: return "video.resolution.50"
+        case .scale25: return "video.resolution.25"
         }
     }
 
@@ -745,132 +770,6 @@ struct VideoConversionSettings {
     let keepMetadata: Bool
 }
 
-// MARK: - InlineVideoPlayer
-// Custom video player with always-visible controls (controlsStyle = .none + SwiftUI toolbar)
-struct InlineVideoPlayer: View {
-    let url: URL
-
-    @State private var player: AVPlayer
-    @State private var isPlaying = false
-    @State private var currentTime: Double = 0
-    @State private var duration: Double = 1
-    @State private var timeObserver: Any? = nil
-
-    init(url: URL) {
-        self.url = url
-        _player = State(initialValue: AVPlayer(url: url))
-    }
-
-    var body: some View {
-        VStack(spacing: 0) {
-            VideoPlayerView(player: player)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-            // Always-visible toolbar
-            HStack(spacing: 12) {
-                Button {
-                    if isPlaying {
-                        player.pause()
-                    } else {
-                        player.play()
-                    }
-                    isPlaying.toggle()
-                } label: {
-                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(.white)
-                        .frame(width: 28, height: 28)
-                }
-                .buttonStyle(.plain)
-
-                Slider(value: $currentTime, in: 0...max(duration, 1)) { editing in
-                    if !editing {
-                        let target = CMTime(seconds: currentTime, preferredTimescale: 600)
-                        player.seek(to: target, toleranceBefore: .zero, toleranceAfter: .zero)
-                    }
-                }
-                .accentColor(.white)
-
-                Text(formatTime(currentTime))
-                    .font(.system(size: 11, weight: .medium, design: .monospaced))
-                    .foregroundStyle(.white.opacity(0.8))
-                    .frame(width: 40, alignment: .trailing)
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color.black.opacity(0.7))
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .onAppear {
-            setupPlayer()
-        }
-        .onDisappear {
-            player.pause()
-            if let obs = timeObserver {
-                player.removeTimeObserver(obs)
-            }
-        }
-    }
-
-    private func setupPlayer() {
-        // Load duration
-        Task {
-            if let item = player.currentItem {
-                let dur = try? await item.asset.load(.duration)
-                await MainActor.run {
-                    duration = CMTimeGetSeconds(dur ?? .zero)
-                    if duration.isNaN || duration <= 0 { duration = 1 }
-                }
-            }
-        }
-
-        // Time observer
-        let interval = CMTime(seconds: 0.1, preferredTimescale: 600)
-        timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { time in
-            currentTime = CMTimeGetSeconds(time)
-        }
-
-        // Auto-detect play state
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
-            isPlaying = false
-            currentTime = 0
-            player.seek(to: .zero)
-        }
-
-        player.play()
-        isPlaying = true
-    }
-
-    private func formatTime(_ seconds: Double) -> String {
-        guard !seconds.isNaN else { return "0:00" }
-        let s = Int(seconds)
-        return String(format: "%d:%02d", s / 60, s % 60)
-    }
-}
-
-// NSViewRepresentable wrapper for AVPlayerLayer-based playback (no controls chrome)
-private struct VideoPlayerView: NSViewRepresentable {
-    let player: AVPlayer
-
-    func makeNSView(context: Context) -> NSView {
-        let view = PlayerLayerView()
-        view.playerLayer.player = player
-        view.playerLayer.videoGravity = .resizeAspect
-        return view
-    }
-
-    func updateNSView(_ nsView: NSView, context: Context) {}
-}
-
-private final class PlayerLayerView: NSView {
-    override func makeBackingLayer() -> CALayer { AVPlayerLayer() }
-    var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
-    override init(frame: NSRect) {
-        super.init(frame: frame)
-        wantsLayer = true
-    }
-    required init?(coder: NSCoder) { fatalError() }
-}
 
 #Preview {
     VideoConvertView(columnVisibility: .constant(.all))

@@ -11,6 +11,7 @@ struct ContentView: View {
     @AppStorage("selectedMenuItem") private var selectedItemRaw: String = MenuItem.home.rawValue
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var windowState: WindowStateObserver
 
     private var selectedItem: Binding<MenuItem> {
         Binding(
@@ -35,7 +36,7 @@ struct ContentView: View {
     private var contentView: some View {
         switch selectedItem.wrappedValue {
         case .home:
-            HomeView()
+            HomeView(onNavigate: { item in selectedItemRaw = item.rawValue })
         case .convertImage:
             ConvertImageView(columnVisibility: $columnVisibility)
         case .videoConvert:
@@ -50,8 +51,28 @@ struct ContentView: View {
             BgRemoveView(columnVisibility: $columnVisibility)
         case .ocr:
             OCRView(columnVisibility: $columnVisibility)
+        case .fontDownload:
+            FontDownloadView(columnVisibility: $columnVisibility)
         case .team:
             TeamModalView()
         }
+    }
+}
+
+// MARK: - Coming Soon
+struct ComingSoonView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "clock.badge.fill")
+                .font(.system(size: 48, weight: .ultraLight))
+                .foregroundStyle(Color.secondary.opacity(0.5))
+            Text(LocalizedStringKey("app.comingSoon.title"))
+                .font(.system(size: 22, weight: .bold))
+                .foregroundStyle(Color.primary)
+            Text(LocalizedStringKey("app.comingSoon.message"))
+                .font(.system(size: 14))
+                .foregroundStyle(Color.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

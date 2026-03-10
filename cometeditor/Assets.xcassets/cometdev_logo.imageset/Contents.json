@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "cometdev-dark.svg"
+      "filename" : "cometdevs-dark.svg"
     },
     {
       "idiom" : "universal",
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cometdev-white.svg"
+      "filename" : "cometdevs-white.svg"
     }
   ],
   "info" : {

@@ -32,6 +32,7 @@ struct PDFEditView: View {
     @State private var showAddContentModal = false
 
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var windowState: WindowStateObserver
     @Environment(\.colorScheme) private var colorScheme
  
     var body: some View {
@@ -44,12 +45,19 @@ struct PDFEditView: View {
             inspectorPanel
                 .frame(width: 260)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
         .sheet(isPresented: $showAddContentModal) {
             if let pdf = appState.selectedPDF {
-                AddContentModal(pdf: pdf, currentPageIndex: appState.pdfPageIndex) { document in
-                    appState.pdfDocumentVersion += 1
-                }
+                AddContentModal(pdf: pdf, currentPageIndex: appState.pdfPageIndex,
+                    onWillInsert: { document in
+                        if let data = document.dataRepresentation() {
+                            appState.pushPDFUndo(data: data)
+                        }
+                    },
+                    onDone: { _ in
+                        appState.pdfDocumentVersion += 1
+                    }
+                )
             }
         }
     }
@@ -61,7 +69,10 @@ struct PDFEditView: View {
             switch appState.pdfViewMode {
             case .viewer:
                 pdfViewer(pdf)
-                    .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
+                    .transition(.opacity)
+            case .scroll:
+                pdfScrollView(pdf)
+                    .transition(.opacity)
             case .reorder:
                 if let document = pdf.document {
                     PDFPageReorderView(
@@ -72,14 +83,14 @@ struct PDFEditView: View {
                             applyReorder(newOrder, for: pdf)
                             appState.pdfReorderPageOrder = nil
                             reorderSelectedPositions = []
-                            withAnimation(.easeInOut(duration: 0.3)) { appState.pdfViewMode = .viewer }
+                            withAnimation(.easeInOut(duration: 0.25)) { appState.pdfViewMode = .viewer }
                         }, onCancel: {
                             appState.pdfReorderPageOrder = nil
                             reorderSelectedPositions = []
-                            withAnimation(.easeInOut(duration: 0.3)) { appState.pdfViewMode = .viewer }
+                            withAnimation(.easeInOut(duration: 0.25)) { appState.pdfViewMode = .viewer }
                         }
                     )
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                    .transition(.opacity)
                 }
             }
         } else {
@@ -88,120 +99,196 @@ struct PDFEditView: View {
     }
 
     // MARK: - PDF Viewer
-    private func pdfViewer(_ pdf: PDFItem) -> some View {
-        VStack(spacing: 0) {
-            // Info bar — PDF name + page count centered above the page
-            HStack {
-                Spacer()
-                VStack(spacing: 2) {
-                    HStack(spacing: 8) {
-                        Text(pdf.fileName)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(Color.primary)
-                            .lineLimit(1)
-                            .truncationMode(.middle)
-                        
-                        if appState.selectedPDF != nil {
-                            Button {
-                                withAnimation {
-                                    appState.selectedPDF = nil
-                                    appState.pdfPageIndex = 0
-                                    appState.pdfDocumentVersion = 0
-                                }
-                            } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundStyle(Color.secondary.opacity(0.5))
-                                    .font(.system(size: 14))
-                            }
-                            .buttonStyle(.plain)
-                            .handCursor()
+    // MARK: - Shared Info Bar
+    private func pdfInfoBar(_ pdf: PDFItem) -> some View {
+        ZStack {
+            // Center — file name + page info
+            VStack(spacing: 2) {
+                HStack(spacing: 8) {
+                    Text(pdf.fileName)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                    Button {
+                        withAnimation {
+                            appState.selectedPDF = nil
+                            appState.pdfPageIndex = 0
+                            appState.pdfDocumentVersion = 0
+                            appState.clearPDFHistory()
                         }
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(Color.secondary.opacity(0.5))
+                            .font(.system(size: 14))
                     }
-                    .frame(maxWidth: 400)
+                    .buttonStyle(.plain)
+                    .handCursor()
+                }
+                .frame(maxWidth: 400)
 
-                    HStack(spacing: 6) {
+                HStack(spacing: 6) {
+                    if appState.pdfViewMode == .viewer {
                         Text(String(
                             format: NSLocalizedString("pdf.page.info", comment: ""),
                             appState.pdfPageIndex + 1,
                             pdf.document?.pageCount ?? 0
                         ))
-                        if !pdf.fileSizeString.isEmpty {
-                            Text("•")
-                            Text(pdf.fileSizeString)
-                            if pdf.fileSizeBytes > 0 {
-                                let optimized = ByteCountFormatter.string(
-                                    fromByteCount: Int64(Double(pdf.fileSizeBytes) * 0.10),
-                                    countStyle: .file
-                                )
-                                Text("→")
-                                    .foregroundStyle(Color.secondary.opacity(0.5))
+                    } else {
+                        Text(String(format: NSLocalizedString("pdf.page.count", comment: ""), pdf.document?.pageCount ?? 0))
+                    }
+                    if !pdf.fileSizeString.isEmpty {
+                        Text("•")
+                        Text(pdf.fileSizeString)
+                        if pdf.fileSizeBytes > 0 {
+                            let optimized = ByteCountFormatter.string(
+                                fromByteCount: Int64(Double(pdf.fileSizeBytes) * 0.10),
+                                countStyle: .file
+                            )
+                            Text("→").foregroundStyle(Color.secondary.opacity(0.5))
+                            HStack(spacing: 4) {
+                                Text(LocalizedStringKey("pdf.estimatedSize"))
                                 Text("~\(optimized)")
-                                    .foregroundStyle(Color.green.opacity(0.8))
+                                    .fontWeight(.semibold)
                             }
+                            .foregroundStyle(Color.green.opacity(0.85))
                         }
                     }
-                    .font(.system(size: 11))
-                    .foregroundStyle(Color.secondary)
+                }
+                .font(.system(size: 11))
+                .foregroundStyle(Color.secondary)
+            }
+
+            // Left — undo/redo
+            HStack {
+                HStack(spacing: 4) {
+                    Button {
+                        if let document = pdf.document { appState.pdfUndo(document: document) }
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundStyle(appState.canUndo ? Color.primary : Color.secondary.opacity(0.4))
+                            .frame(width: 28, height: 28)
+                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(appState.canUndo ? 0.07 : 0.03)))
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+                    .disabled(!appState.canUndo)
+                    .keyboardShortcut("z", modifiers: .command)
+
+                    Button {
+                        if let document = pdf.document { appState.pdfRedo(document: document) }
+                    } label: {
+                        Image(systemName: "arrow.uturn.forward")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundStyle(appState.canRedo ? Color.primary : Color.secondary.opacity(0.4))
+                            .frame(width: 28, height: 28)
+                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(appState.canRedo ? 0.07 : 0.03)))
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+                    .disabled(!appState.canRedo)
+                    .keyboardShortcut("z", modifiers: [.command, .shift])
                 }
                 Spacer()
             }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 10)
-            .background(Color.primary.opacity(0.025))
+            .padding(.horizontal, 16)
+
+            // Right — view mode toggle
+            HStack {
+                Spacer()
+                HStack(spacing: 4) {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) { appState.pdfViewMode = .viewer }
+                    } label: {
+                        Image(systemName: "square.grid.2x2.fill")
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(appState.pdfViewMode == .viewer ? .white : Color.primary.opacity(0.4))
+                            .frame(width: 30, height: 30)
+                            .background(RoundedRectangle(cornerRadius: 7).fill(appState.pdfViewMode == .viewer ? Color.accentColor : Color.primary.opacity(0.06)))
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) { appState.pdfViewMode = .scroll }
+                    } label: {
+                        Image(systemName: "rectangle.grid.1x2.fill")
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(appState.pdfViewMode == .scroll ? .white : Color.primary.opacity(0.4))
+                            .frame(width: 30, height: 30)
+                            .background(RoundedRectangle(cornerRadius: 7).fill(appState.pdfViewMode == .scroll ? Color.accentColor : Color.primary.opacity(0.06)))
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+                }
+                .padding(.trailing, 16)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 10)
+        .background(Color.primary.opacity(0.025))
+    }
+
+    private func pdfViewer(_ pdf: PDFItem) -> some View {
+        VStack(spacing: 0) {
+            pdfInfoBar(pdf)
 
             Divider()
 
             // Page viewer + arrows
-            ZStack {
-                Color.primary.opacity(0.02)
-
-                if let document = pdf.document {
-                    PDFSinglePageView(
-                        document: document,
-                        pageIndex: appState.pdfPageIndex,
-                        version: appState.pdfDocumentVersion
-                    )
-                }
-
-                // Navigation arrows
-                HStack {
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.15)) {
-                            appState.pdfPageIndex = max(0, appState.pdfPageIndex - 1)
-                        }
-                    } label: {
-                        navArrow(systemName: "chevron.left", enabled: appState.pdfPageIndex > 0)
+            HStack(spacing: 0) {
+                // Left arrow — outside page area
+                Button {
+                    withAnimation(.easeInOut(duration: 0.15)) {
+                        appState.pdfPageIndex = max(0, appState.pdfPageIndex - 1)
                     }
-                    .buttonStyle(.plain)
-                    .handCursor()
-                    .disabled(appState.pdfPageIndex == 0)
-                    .padding(.leading, 16)
+                } label: {
+                    navArrow(systemName: "chevron.left", enabled: appState.pdfPageIndex > 0)
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+                .disabled(appState.pdfPageIndex == 0)
+                .padding(.horizontal, 12)
+                .frame(maxHeight: .infinity)
+                .background(Color.primary.opacity(0.02))
 
-                    Spacer()
-
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.15)) {
-                            appState.pdfPageIndex = min((pdf.document?.pageCount ?? 1) - 1, appState.pdfPageIndex + 1)
-                        }
-                    } label: {
-                        let hasNext = appState.pdfPageIndex < (pdf.document?.pageCount ?? 1) - 1
-                        navArrow(systemName: "chevron.right", enabled: hasNext)
+                ZStack {
+                    Color.primary.opacity(0.02)
+                    if let document = pdf.document {
+                        PDFSinglePageView(
+                            document: document,
+                            pageIndex: appState.pdfPageIndex,
+                            version: appState.pdfDocumentVersion
+                        )
                     }
-                    .buttonStyle(.plain)
-                    .handCursor()
-                    .disabled(appState.pdfPageIndex >= (pdf.document?.pageCount ?? 1) - 1)
-                    .padding(.trailing, 16)
+                    // Keyboard arrow navigation (invisible)
+                    HStack(spacing: 0) {
+                        Button("") { appState.pdfPageIndex = max(0, appState.pdfPageIndex - 1) }
+                            .keyboardShortcut(.leftArrow, modifiers: [])
+                            .opacity(0).frame(width: 0, height: 0)
+                        Button("") { appState.pdfPageIndex = min((pdf.document?.pageCount ?? 1) - 1, appState.pdfPageIndex + 1) }
+                            .keyboardShortcut(.rightArrow, modifiers: [])
+                            .opacity(0).frame(width: 0, height: 0)
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                // Keyboard arrow navigation
-                HStack(spacing: 0) {
-                    Button("") { appState.pdfPageIndex = max(0, appState.pdfPageIndex - 1) }
-                        .keyboardShortcut(.leftArrow, modifiers: [])
-                        .opacity(0).frame(width: 0, height: 0)
-                    Button("") { appState.pdfPageIndex = min((pdf.document?.pageCount ?? 1) - 1, appState.pdfPageIndex + 1) }
-                        .keyboardShortcut(.rightArrow, modifiers: [])
-                        .opacity(0).frame(width: 0, height: 0)
+                // Right arrow — outside page area
+                Button {
+                    withAnimation(.easeInOut(duration: 0.15)) {
+                        appState.pdfPageIndex = min((pdf.document?.pageCount ?? 1) - 1, appState.pdfPageIndex + 1)
+                    }
+                } label: {
+                    let hasNext = appState.pdfPageIndex < (pdf.document?.pageCount ?? 1) - 1
+                    navArrow(systemName: "chevron.right", enabled: hasNext)
                 }
+                .buttonStyle(.plain)
+                .handCursor()
+                .disabled(appState.pdfPageIndex >= (pdf.document?.pageCount ?? 1) - 1)
+                .padding(.horizontal, 12)
+                .frame(maxHeight: .infinity)
+                .background(Color.primary.opacity(0.02))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
@@ -211,12 +298,45 @@ struct PDFEditView: View {
         }
     }
 
+    // MARK: - PDF Scroll View (all pages stacked)
+    private func pdfScrollView(_ pdf: PDFItem) -> some View {
+        VStack(spacing: 0) {
+            pdfInfoBar(pdf)
+
+            Divider()
+
+            ScrollView(.vertical) {
+                if let document = pdf.document {
+                    LazyVStack(spacing: 0) {
+                        ForEach(0..<document.pageCount, id: \.self) { index in
+                            PDFSinglePageView(
+                                document: document,
+                                pageIndex: index,
+                                version: appState.pdfDocumentVersion,
+                                canDelete: document.pageCount > 1,
+                                onDelete: { deletePage(at: index, from: pdf) }
+                            )
+                            .id(index)
+                            .onTapGesture {
+                                appState.pdfPageIndex = index
+                            }
+                        }
+                    }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 16)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.primary.opacity(0.02))
+        }
+    }
+
     private func navArrow(systemName: String, enabled: Bool) -> some View {
         Image(systemName: systemName)
-            .font(.system(size: 18, weight: .semibold))
-            .foregroundStyle(enabled ? Color.primary : Color.secondary.opacity(0.4))
-            .frame(width: 40, height: 40)
-            .background(Circle().fill(Color.primary.opacity(enabled ? 0.07 : 0.04)))
+            .font(.system(size: 14, weight: .semibold))
+            .foregroundStyle(enabled ? Color.primary : Color.secondary.opacity(0.3))
+            .frame(width: 30, height: 30)
+            .background(Circle().fill(Color.primary.opacity(enabled ? 0.07 : 0.03)))
             .overlay(Circle().strokeBorder(Color.primary.opacity(0.08), lineWidth: 1))
     }
 
@@ -224,7 +344,7 @@ struct PDFEditView: View {
     private func thumbnailStrip(_ pdf: PDFItem) -> some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 10) {
+                LazyHStack(spacing: 12) {
                     if let document = pdf.document {
                         ForEach(0..<document.pageCount, id: \.self) { index in
                             PDFThumbnailCell(
@@ -233,23 +353,21 @@ struct PDFEditView: View {
                                 isSelected: appState.pdfPageIndex == index,
                                 canDelete: document.pageCount > 1,
                                 onTap: {
-                                    withAnimation(.easeInOut(duration: 0.15)) {
-                                        appState.pdfPageIndex = index
-                                    }
+                                    appState.pdfPageIndex = index
                                 },
                                 onDelete: {
                                     deletePage(at: index, from: pdf)
                                 }
                             )
-                            .id(index)
+                            // Use version+index composite ID so cells fully rebuild after deletion
+                            .id("\(appState.pdfDocumentVersion)-\(index)")
                         }
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 8)
-                .id(appState.pdfDocumentVersion)
+                .padding(.vertical, 20)
             }
-            .frame(height: 168)
+            .fixedSize(horizontal: false, vertical: true)
             .background(Color.primary.opacity(0.02))
             .mask {
                 HStack(spacing: 0) {
@@ -331,7 +449,7 @@ struct PDFEditView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header — always "Ayarlar"
                 HStack {
-                    Text(LocalizedStringKey("convert.settings.title"))
+                    Text(LanguageManager.shared.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -417,21 +535,20 @@ struct PDFEditView: View {
                     Divider()
 
                     // Optimize + Save
-                    VStack(spacing: 8) {
+                    VStack(spacing: 10) {
                         Button {
                             if let pdf = pdf { Task { await compressWithWebP(pdf) } }
                         } label: {
-                            HStack {
+                            HStack(spacing: 8) {
                                 if isCompressing {
                                     ProgressView().controlSize(.small)
                                     Text(LocalizedStringKey("video.processing"))
                                 } else {
-                                    Image(systemName: "arrow.down.circle")
+                                    Image(systemName: "arrow.down.circle.fill")
                                     Text(LocalizedStringKey("pdf.tools.optimize"))
                                 }
                             }
                             .frame(maxWidth: .infinity)
-                            .frame(height: 28)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
@@ -440,12 +557,11 @@ struct PDFEditView: View {
                         Button {
                             if let pdf = pdf { savePDF(pdf) }
                         } label: {
-                            HStack {
-                                Image(systemName: "square.and.arrow.down")
-                                Text("pdf.tools.save")
+                            HStack(spacing: 8) {
+                                Image(systemName: "square.and.arrow.down.fill")
+                                Text(LocalizedStringKey("pdf.tools.save"))
                             }
                             .frame(maxWidth: .infinity)
-                            .frame(height: 28)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
@@ -505,7 +621,6 @@ struct PDFEditView: View {
         guard let document = pdf.document, !reorderSelectedPositions.isEmpty else { return }
         let pageOrder = appState.pdfReorderPageOrder ?? Array(0..<document.pageCount)
 
-        // Original page indices to delete, sorted descending for safe removal
         let indicesToDelete = reorderSelectedPositions
             .compactMap { pos -> Int? in pos < pageOrder.count ? pageOrder[pos] : nil }
             .sorted(by: >)
@@ -515,7 +630,6 @@ struct PDFEditView: View {
         let deletedSet = Set(indicesToDelete)
         for idx in indicesToDelete { document.removePage(at: idx) }
 
-        // Remap remaining entries: shift indices down by how many deleted entries were below them
         let newPageOrder = pageOrder
             .filter { !deletedSet.contains($0) }
             .map { origIdx -> Int in origIdx - indicesToDelete.filter { $0 < origIdx }.count }
@@ -528,7 +642,9 @@ struct PDFEditView: View {
     private func deletePage(at index: Int, from pdf: PDFItem) {
         guard let document = pdf.document, document.pageCount > 1 else { return }
         document.removePage(at: index)
-        appState.pdfPageIndex = min(index, document.pageCount - 1)
+        let newCount = document.pageCount
+        let newIndex = index >= newCount ? newCount - 1 : index
+        appState.pdfPageIndex = newIndex
         appState.pdfDocumentVersion += 1
     }
 
@@ -615,15 +731,21 @@ struct PDFEditView: View {
     }
 
     private func applyReorder(_ newOrder: [Int], for pdf: PDFItem) {
-        guard let document = pdf.document, newOrder.count == document.pageCount else { return }
-        // Collect all pages before any removal (PDFPage is a reference type, stays alive)
-        let pages = (0..<document.pageCount).compactMap { document.page(at: $0) }
-        // Remove all (back to front)
-        for i in stride(from: document.pageCount - 1, through: 0, by: -1) {
+        guard let document = pdf.document, !newOrder.isEmpty else { return }
+        // newOrder contains current sequential indices (0..<document.pageCount after deletions)
+        // Just reorder existing pages by the given order
+        let pageCount = document.pageCount
+        let validOrder = newOrder.filter { $0 < pageCount }
+        guard validOrder.count == pageCount else { return }
+
+        if let data = document.dataRepresentation() {
+            appState.pushPDFUndo(data: data)
+        }
+        let pages = (0..<pageCount).compactMap { document.page(at: $0) }
+        for i in stride(from: pageCount - 1, through: 0, by: -1) {
             document.removePage(at: i)
         }
-        // Re-insert in new order
-        for (insertIndex, originalIndex) in newOrder.enumerated() {
+        for (insertIndex, originalIndex) in validOrder.enumerated() {
             guard originalIndex < pages.count else { continue }
             document.insert(pages[originalIndex], at: insertIndex)
         }
@@ -676,6 +798,7 @@ struct PDFEditView: View {
 private struct AddContentModal: View {
     let pdf: PDFItem
     let currentPageIndex: Int
+    var onWillInsert: (PDFDocument) -> Void
     var onDone: (PDFDocument) -> Void
 
     enum ContentType { case pdf, image }
@@ -832,6 +955,8 @@ private struct AddContentModal: View {
 
         guard panel.runModal() == .OK else { return }
 
+        onWillInsert(document)
+
         let refPage = useCurrentPage ? currentPageIndex : max(0, customPageNumber - 1)
 
         let insertAt: Int
@@ -939,29 +1064,52 @@ struct PDFSinglePageView: View {
     let document: PDFDocument
     let pageIndex: Int
     let version: Int
+    var canDelete: Bool = false
+    var onDelete: (() -> Void)? = nil
 
     @State private var renderedImage: NSImage? = nil
+    @State private var isHovered = false
 
     var body: some View {
-        ZStack {
-            if let image = renderedImage {
-                Image(nsImage: image)
-                    .resizable()
-                    .interpolation(.high)
-                    .antialiased(true)
-                    .aspectRatio(contentMode: .fit)
-                    .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
-            } else {
-                // Placeholder with approximate page aspect ratio
-                RoundedRectangle(cornerRadius: 2)
-                    .fill(Color.white)
-                    .aspectRatio(pageAspectRatio, contentMode: .fit)
-                    .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 2)
-                    .overlay(ProgressView().controlSize(.regular))
+        ZStack(alignment: .topTrailing) {
+            ZStack {
+                if let image = renderedImage {
+                    Image(nsImage: image)
+                        .resizable()
+                        .interpolation(.high)
+                        .antialiased(true)
+                        .aspectRatio(contentMode: .fit)
+                        .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
+                } else {
+                    // Placeholder with approximate page aspect ratio
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(Color.white)
+                        .aspectRatio(pageAspectRatio, contentMode: .fit)
+                        .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 2)
+                        .overlay(ProgressView().controlSize(.regular))
+                }
+            }
+            .padding(.horizontal, 48)
+            .padding(.vertical, 5)
+
+            // Delete button — top-right corner, visible on hover
+            if canDelete, isHovered, let onDelete {
+                Button(action: onDelete) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 9, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(5)
+                        .background(Color.black.opacity(0.6))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+                .padding(.top, 12)
+                .padding(.trailing, 56)
             }
         }
-        .padding(48)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onHover { isHovered = $0 }
         .task(id: "\(pageIndex)-\(version)") {
             renderedImage = nil
             await renderAsync()
@@ -1004,7 +1152,7 @@ struct PDFThumbnailCell: View {
     @State private var thumbnail: NSImage? = nil
     @State private var aspectRatio: CGFloat = 0.707
 
-    private let cellWidth: CGFloat = 100
+    private let cellHeight: CGFloat = 160
 
     // Compute aspect ratio synchronously from document on init to avoid layout flash
     private var initialAspectRatio: CGFloat {
@@ -1013,57 +1161,62 @@ struct PDFThumbnailCell: View {
         return bounds.width / bounds.height
     }
 
-    var body: some View {
-        VStack(spacing: 5) {
-            ZStack(alignment: .topTrailing) {
-                ZStack {
-                    Color.white
-                    if let img = thumbnail {
-                        Image(nsImage: img)
-                            .resizable()
-                            .scaledToFill()
-                            .clipped()
-                    } else {
-                        ProgressView().controlSize(.mini)
-                    }
-                }
-                .frame(width: cellWidth, height: cellWidth / aspectRatio)
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .strokeBorder(
-                            isSelected ? Color.accentColor : Color.primary.opacity(0.12),
-                            lineWidth: isSelected ? 2 : 1
-                        )
-                )
-                .shadow(color: .black.opacity(isSelected ? 0.18 : 0.07),
-                        radius: isSelected ? 4 : 2, x: 0, y: 2)
+    private var cellWidth: CGFloat { cellHeight * aspectRatio }
 
-                // Delete button — always visible top-right
+    var body: some View {
+        VStack(spacing: 6) {
+            ZStack {
+                Color.white
+                if let img = thumbnail {
+                    Image(nsImage: img)
+                        .resizable()
+                        .scaledToFill()
+                        .clipped()
+                } else {
+                    ProgressView().controlSize(.mini)
+                }
+
+                // Delete button — inside image, top-right corner
                 if canDelete {
-                    Button {
-                        onDelete()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 7, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(4)
-                            .background(Color.black.opacity(0.55))
-                            .clipShape(Circle())
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button {
+                                onDelete()
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 7, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .padding(4)
+                                    .background(Color.black.opacity(0.55))
+                                    .clipShape(Circle())
+                            }
+                            .buttonStyle(.plain)
+                            .padding(5)
+                        }
+                        Spacer()
                     }
-                    .buttonStyle(.plain)
-                    .offset(x: 6, y: -6)
                 }
             }
+            .frame(width: cellWidth, height: cellHeight)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(
+                        isSelected ? Color.accentColor : Color.primary.opacity(0.12),
+                        lineWidth: isSelected ? 2 : 1
+                    )
+            )
+            .shadow(color: .black.opacity(isSelected ? 0.18 : 0.07),
+                    radius: isSelected ? 4 : 2, x: 0, y: 2)
 
             Text("\(index + 1)")
-                .font(.system(size: 10, weight: isSelected ? .bold : .medium))
+                .font(.system(size: 11, weight: isSelected ? .bold : .medium))
                 .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
         }
         .onTapGesture { onTap() }
         .handCursor()
         .onAppear {
-            // Set aspect ratio immediately on appear — prevents layout flash
             aspectRatio = initialAspectRatio
         }
         .task(id: index) {
@@ -1072,8 +1225,8 @@ struct PDFThumbnailCell: View {
             let idx = index
             let ratio = initialAspectRatio
             aspectRatio = ratio
-            let renderW = cellWidth * 2
-            let renderH = renderW / ratio
+            let renderH = cellHeight * 2
+            let renderW = renderH * ratio
             let result = await Task.detached(priority: .utility) {
                 SentImage(nsImage: doc.page(at: idx)?.thumbnail(
                     of: CGSize(width: renderW, height: renderH), for: .mediaBox
@@ -1175,6 +1328,7 @@ struct PDFPageReorderView: View {
                             LazyVGrid(columns: columns, spacing: 14) {
                                 ForEach(Array(pageOrder.enumerated()), id: \.element) { position, pageIndex in
                                     reorderCell(position: position, pageIndex: pageIndex)
+                                        .id("\(appState.pdfDocumentVersion)-\(pageIndex)")
                                         .onDrop(of: [UTType.plainText], delegate: ReorderDropDelegate(
                                             targetPosition: position,
                                             pageOrder: pageOrderBinding,
@@ -1198,7 +1352,7 @@ struct PDFPageReorderView: View {
                                     ))
                             }
                             .padding(20)
-                            .animation(.easeInOut, value: pageOrder)
+                            .animation(.easeInOut(duration: 0.15), value: pageOrder)
                         }
                     }
                 }
@@ -1218,14 +1372,24 @@ struct PDFPageReorderView: View {
             displayNumber: position + 1,
             isSelected: isSelected,
             onDelete: {
-                if pageOrder.count > 1 {
-                    withAnimation {
-                        var newOrder = pageOrder
-                        newOrder.remove(at: position)
-                        appState.pdfReorderPageOrder = newOrder
-                        selectedPositions.removeAll()
-                    }
+                // Snapshot pageOrder at the moment button is pressed to avoid stale reads
+                let currentOrder = appState.pdfReorderPageOrder ?? Array(0..<document.pageCount)
+                guard currentOrder.count > 1 else { return }
+                // pageIndex captured from ForEach directly — find its position in the current order
+                let pageIndexToDelete = pageIndex
+                guard currentOrder.contains(pageIndexToDelete),
+                      let positionInOrder = currentOrder.firstIndex(of: pageIndexToDelete) else { return }
+                // Remove from document using the original page index
+                document.removePage(at: pageIndexToDelete)
+                // Rebuild pageOrder from the snapshot: remove the deleted entry and remap
+                var newOrder = currentOrder
+                newOrder.remove(at: positionInOrder)
+                let updated = newOrder.map { idx -> Int in
+                    idx > pageIndexToDelete ? idx - 1 : idx
                 }
+                appState.pdfReorderPageOrder = updated
+                selectedPositions.removeAll()
+                appState.pdfDocumentVersion += 1
             }
         )
         .onTapGesture {

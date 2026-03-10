@@ -19,6 +19,9 @@
 "convert.addMore" = "Add";
 "menu.home" = "Home";
 "menu.convertImage" = "Convert Image";
+"menu.imageEdit" = "Image Editor";
+"menu.videoEdit" = "Video Editor";
+"menu.badge.soon" = "Coming Soon";
 "menu.batchProcess" = "Batch Process";
 "menu.settings" = "Settings";
 "menu.tools" = "Tools";
@@ -26,7 +29,7 @@
 "menu.team.title" = "Our Team";
 "menu.team.subtitle" = "Meet the talented people behind Comet Editor";
 "team.product_of" = "A product of Cometdevs.com";
-"team.thanks_grafix" = "We are grateful for contributions to the Grafix Community.";
+"team.thanks_grafix" = "We thank the Grafix community for their contributions.";
 
 "menu.videoConvert" = "Video Convert";
 "video.drop.title" = "Drag & Drop Video";
@@ -45,15 +48,14 @@
 "alert.error.generic" = "An error occurred during processing.";
 
 "home.welcome" = "Welcome to Comet Editor";
-"home.welcome.subtitle" = "Your ultimate image editing and conversion hub.";
-"home.feature.convert.title" = "Convert Image";
-"home.feature.convert.desc" = "Convert single images to formats like PNG, JPG, WebP, HEIF and more.";
-"home.feature.batch.title" = "Batch Process";
-"home.feature.batch.desc" = "Optimize, resize, and convert thousands of photos at once.";
-"home.feature.recent.title" = "Recent Projects";
-"home.feature.recent.desc" = "Access your latest editing sessions and exports.";
-"home.feature.opt.title" = "Image Optimization";
-"home.feature.opt.desc" = "Compress and enhance image quality without loss.";
+"home.welcome.subtitle" = "Everything you need in one app.";
+"home.feature.convertImage.desc" = "Convert images to PNG, JPG, WebP, HEIF and more.";
+"home.feature.videoConvert.desc" = "Convert and compress your videos with ease.";
+"home.feature.stockImage.desc" = "Browse and download free high-quality stock photos.";
+"home.feature.pdfEdit.desc" = "Edit, reorder, compress and manage your PDF files.";
+"home.feature.qrCode.desc" = "Generate and customize QR codes instantly.";
+"home.feature.bgRemove.desc" = "Remove image backgrounds automatically with AI.";
+"home.feature.ocr.desc" = "Extract text from images using optical recognition.";
 
 "video.settings.fps" = "FPS LIMIT";
 "video.settings.resize" = "RESIZE";
@@ -91,6 +93,7 @@
 "pdf.tools.compressSection" = "REDUCE FILE SIZE";
 "pdf.tools.compress" = "Compress with WebP";
 "pdf.tools.targetFolder" = "TARGET FOLDER";
+"pdf.estimatedSize" = "Estimated Optimized Size";
 
 "pdf.tools.addContent" = "Add Content";
 "pdf.addContent.title" = "Add Content";
@@ -178,3 +181,86 @@
 "ocr.clear" = "Clear";
 "ocr.newFile" = "New File";
 "ocr.copied" = "Copied!";
+
+"app.comingSoon.title" = "Coming Soon";
+"app.comingSoon.message" = "This feature will be available soon.";
+"app.version" = "v1.0.0-beta";
+
+"language.turkish" = "Türkçe";
+"language.english" = "English";
+
+"video.fps.original" = "Original";
+"video.fps.60" = "60 FPS";
+"video.fps.30" = "30 FPS";
+"video.fps.24" = "24 FPS";
+"video.resolution.original" = "Original";
+"video.resolution.75" = "75% Size";
+"video.resolution.50" = "50% Size";
+"video.resolution.25" = "25% Size (Low Quality)";
+
+"menu.fontDownload" = "Font Download";
+"home.feature.fontDownload.desc" = "Browse and download Google Fonts directly to your Mac.";
+"font.search.placeholder" = "Search fonts...";
+"font.preview.custom" = "Type something...";
+"font.inspector.preview" = "Preview";
+"font.inspector.fontSize" = "Font Size";
+"font.inspector.feeling" = "Feeling";
+"font.inspector.language" = "Language / Writing System";
+
+"font.feeling.business" = "Business";
+"font.feeling.calm" = "Calm";
+"font.feeling.cute" = "Cute";
+"font.feeling.vintage" = "Vintage";
+"font.feeling.sophisticated" = "Sophisticated";
+"font.feeling.active" = "Active";
+"font.feeling.innovative" = "Innovative";
+"font.feeling.fancy" = "Fancy";
+"font.feeling.playful" = "Playful";
+"font.feeling.artistic" = "Artistic";
+"font.feeling.loud" = "Loud";
+"font.feeling.futuristic" = "Futuristic";
+"font.feeling.stiff" = "Stiff";
+"font.feeling.happy" = "Happy";
+
+"font.writing.all" = "All";
+"font.writing.latin" = "Latin";
+"font.writing.cyrillic" = "Cyrillic";
+"font.writing.greek" = "Greek";
+"font.writing.arabic" = "Arabic";
+"font.writing.hebrew" = "Hebrew";
+"font.writing.devanagari" = "Devanagari";
+"font.writing.chinese_simplified" = "Chinese (Simplified)";
+"font.writing.chinese_traditional" = "Chinese (Traditional)";
+"font.writing.japanese" = "Japanese";
+"font.writing.korean" = "Korean";
+"font.writing.thai" = "Thai";
+"font.writing.vietnamese" = "Vietnamese";
+
+// MARK: - Video Edit
+"videoedit.title" = "Video Editor";
+"videoedit.tool.trim" = "Trim";
+"videoedit.tool.audio" = "Audio";
+"videoedit.tool.text" = "Text";
+"videoedit.tool.filter" = "Filter";
+"videoedit.tool.speed" = "Speed";
+"videoedit.preview.drop" = "Drag and drop video or media file";
+"videoedit.preview.drop.sub" = "or click to add a file";
+"videoedit.timeline.split" = "Split";
+"videoedit.timeline.delete" = "Delete Layer";
+"videoedit.timeline.zoom" = "Zoom";
+"videoedit.settings.format" = "FORMAT";
+"videoedit.settings.resolution" = "RESOLUTION";
+"videoedit.settings.fps" = "FPS";
+"videoedit.export" = "Export";
+"videoedit.files.title" = "FILES";
+"videoedit.files.add" = "Add File";
+"videoedit.tools.title" = "TOOLS";
+"videoedit.trim.start" = "Start";
+"videoedit.trim.end" = "End";
+"videoedit.audio.volume" = "Volume";
+"videoedit.speed.label" = "Speed";
+"videoedit.track.video" = "Video";
+"videoedit.track.audio" = "Audio";
+"videoedit.nofile" = "No files added yet";
+"videoedit.timeline.addText" = "Add Text";
+"videoedit.timeline.addImage" = "Add Image";

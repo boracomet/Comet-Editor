@@ -63,51 +63,36 @@ struct BgRemoveItem: Identifiable {
 private struct BgRemoveMainView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var windowState: WindowStateObserver
     @Environment(\.colorScheme) private var colorScheme
 
-    @State private var items: [BgRemoveItem] = []
     @State private var isDropTargeted = false
-    @State private var previewItemID: UUID? = nil
-
-    // Inspector
-    @State private var selectedFormat: BgRemoveFormat = .png
-    @State private var featherRadius: Float = 1.5
-
     @State private var showSuccessAlert = false
     @State private var showErrorAlert = false
     @State private var alertMessage = ""
 
-    private var readyCount: Int { items.filter { $0.result != nil }.count }
+    private var readyCount: Int { appState.bgRemoveItems.filter { $0.result != nil }.count }
 
     var body: some View {
         HStack(spacing: 0) {
-            mainContent
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Group {
+                if let id = appState.bgRemovePreviewItemID, let item = appState.bgRemoveItems.first(where: { $0.id == id }) {
+                    inlinePreview(item: item)
+                } else {
+                    mainContent
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .animation(.easeInOut(duration: 0.18), value: appState.bgRemovePreviewItemID != nil)
+
             Divider()
             inspectorPanel
                 .frame(width: 260)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
-        .overlay {
-            if let id = previewItemID, let item = items.first(where: { $0.id == id }) {
-                GeometryReader { geo in
-                    ZStack {
-                        Color.black.opacity(0.45)
-                            .ignoresSafeArea()
-                            .onTapGesture { previewItemID = nil }
-                        BgRemovePreviewModal(item: item, onClose: { previewItemID = nil })
-                            .frame(
-                                width: min(geo.size.width - 60, 860),
-                                height: min(geo.size.height - 60, 560)
-                            )
-                            .background(Color(NSColor.windowBackgroundColor))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .shadow(color: Color.black.opacity(0.15), radius: 24, x: 0, y: 12)
-                            .position(x: geo.size.width / 2, y: geo.size.height / 2)
-                    }
-                }
-                .transition(.opacity.animation(.easeInOut(duration: 0.2)))
-            }
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .onChange(of: appState.bgRemoveFeatherRadius) { _ in
+            guard !appState.bgRemoveItems.isEmpty else { return }
+            Task { await reprocessAll() }
         }
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showSuccessAlert) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) {}
@@ -120,15 +105,114 @@ private struct BgRemoveMainView: View {
         } message: { Text(alertMessage) }
     }
 
+    // MARK: - Inline Preview (Before / After split)
+
+    @ViewBuilder
+    private func inlinePreview(item: BgRemoveItem) -> some View {
+        VStack(spacing: 0) {
+            // Info bar — same layout as ConvertImageView
+            HStack(spacing: 12) {
+                Image(systemName: "person.and.background.dotted")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(Color.accentColor)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(item.fileName)
+                        .font(.system(size: 13, weight: .semibold))
+                        .lineLimit(1)
+                    Text(item.fileSizeString)
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color.secondary)
+                }
+                Spacer()
+                Button {
+                    withAnimation(.easeInOut(duration: 0.18)) { appState.bgRemovePreviewItemID = nil }
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(Color.secondary)
+                        .padding(7)
+                        .background(Color.primary.opacity(0.08))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 14)
+
+            Divider()
+
+            // Before / After canvases
+            HStack(spacing: 0) {
+                // Before — original image fills the pane
+                ZStack {
+                    Color(NSColor.underPageBackgroundColor)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    Image(nsImage: item.original)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
+                .overlay(alignment: .topLeading) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "photo")
+                            .font(.system(size: 9, weight: .medium))
+                        Text(LocalizedStringKey("bgremove.before"))
+                            .font(.system(size: 10, weight: .bold))
+                    }
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 6).padding(.vertical, 3)
+                    .background(Color.black.opacity(0.55))
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .padding(10)
+                }
+
+                Divider()
+
+                // After — checkerboard fills the pane, result on top
+                ZStack {
+                    CheckerboardView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    if let result = item.result {
+                        Image(nsImage: result)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else if item.isProcessing {
+                        ProgressView().controlSize(.large)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
+                .overlay(alignment: .topLeading) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 9, weight: .medium))
+                        Text(LocalizedStringKey("bgremove.after"))
+                            .font(.system(size: 10, weight: .bold))
+                    }
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 6).padding(.vertical, 3)
+                    .background(Color.black.opacity(0.55))
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .padding(10)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
     // MARK: - Main content
 
     private var mainContent: some View {
         VStack(spacing: 0) {
             // Toolbar
-            if !items.isEmpty {
+            if !appState.bgRemoveItems.isEmpty {
                 HStack(spacing: 12) {
                     Button {
-                        items = []
+                        appState.bgRemoveItems = []
                     } label: {
                         HStack(spacing: 6) {
                             Image(systemName: "xmark")
@@ -155,7 +239,7 @@ private struct BgRemoveMainView: View {
 
                     Spacer()
 
-                    if items.contains(where: { $0.isProcessing }) {
+                    if appState.bgRemoveItems.contains(where: { $0.isProcessing }) {
                         HStack(spacing: 8) {
                             ProgressView().controlSize(.small)
                             Text(LocalizedStringKey("bgremove.processing"))
@@ -169,7 +253,7 @@ private struct BgRemoveMainView: View {
                 Divider()
             }
 
-            if items.isEmpty {
+            if appState.bgRemoveItems.isEmpty {
                 dropZone
             } else {
                 itemGrid
@@ -217,11 +301,11 @@ private struct BgRemoveMainView: View {
     private var itemGrid: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 380, maximum: 520), spacing: 16)], spacing: 16) {
-                ForEach($items) { $item in
+                ForEach($appState.bgRemoveItems) { $item in
                     BgRemoveCard(
                         item: $item,
                         onRemove: { removeItem(item) },
-                        onTap: { if item.result != nil { previewItemID = item.id } }
+                        onTap: { if item.result != nil { appState.bgRemovePreviewItemID = item.id } }
                     )
                 }
             }
@@ -238,7 +322,7 @@ private struct BgRemoveMainView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text(LocalizedStringKey("bgremove.settings.title"))
+                    Text(LanguageManager.shared.string("bgremove.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                     Spacer()
                 }
@@ -248,7 +332,7 @@ private struct BgRemoveMainView: View {
                 Divider()
 
                 inspectorSection("bgremove.settings.format") {
-                    Picker("", selection: $selectedFormat) {
+                    Picker("", selection: $appState.bgRemoveFormat) {
                         ForEach(BgRemoveFormat.allCases) { f in
                             Text(f.label).tag(f)
                         }
@@ -299,23 +383,23 @@ private struct BgRemoveMainView: View {
                 inspectorSection("bgremove.settings.refine") {
                     VStack(alignment: .leading, spacing: 8) {
                         Toggle(LocalizedStringKey("bgremove.settings.feather"), isOn: Binding(
-                            get: { featherRadius > 0 },
-                            set: { featherRadius = $0 ? 1.5 : 0 }
+                            get: { appState.bgRemoveFeatherRadius > 0 },
+                            set: { appState.bgRemoveFeatherRadius = $0 ? 1.5 : 0 }
                         ))
                         .toggleStyle(.switch)
                         .controlSize(.small)
 
-                        if featherRadius > 0 {
+                        if appState.bgRemoveFeatherRadius > 0 {
                             VStack(alignment: .leading, spacing: 4) {
                                 HStack {
                                     Text(LocalizedStringKey("bgremove.settings.featherAmount"))
                                         .font(.system(size: 11))
                                         .foregroundStyle(Color.secondary)
                                     Spacer()
-                                    Text(String(format: "%.1f", featherRadius))
+                                    Text(String(format: "%.1f", appState.bgRemoveFeatherRadius))
                                         .font(.system(size: 11, weight: .medium, design: .monospaced))
                                 }
-                                Slider(value: $featherRadius, in: 0.5...8.0, step: 0.5)
+                                Slider(value: $appState.bgRemoveFeatherRadius, in: 0.5...8.0, step: 0.5)
                                     .controlSize(.small)
                             }
                         }
@@ -339,6 +423,7 @@ private struct BgRemoveMainView: View {
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                     .disabled(readyCount == 0 || appState.targetFolder == nil)
+
                 }
                 .padding(16)
             }
@@ -375,51 +460,75 @@ private struct BgRemoveMainView: View {
             guard let img = NSImage(contentsOf: url) else { return nil }
             return BgRemoveItem(url: url, original: img)
         }
-        items.append(contentsOf: newItems)
+        appState.bgRemoveItems.append(contentsOf: newItems)
         Task { await processAll(newItems) }
     }
 
     @MainActor
     private func processAll(_ newItems: [BgRemoveItem]) async {
         for item in newItems {
-            guard let idx = items.firstIndex(where: { $0.id == item.id }) else { continue }
-            items[idx].isProcessing = true
+            guard let idx = appState.bgRemoveItems.firstIndex(where: { $0.id == item.id }) else { continue }
+            appState.bgRemoveItems[idx].isProcessing = true
 
             guard let cg = item.original.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
-                items[idx].isProcessing = false
+                appState.bgRemoveItems[idx].isProcessing = false
                 continue
             }
 
             do {
                 let resultCG = try await BgRemoveEngine.shared.removeBackground(
-                    from: cg, featherRadius: featherRadius
+                    from: cg, featherRadius: appState.bgRemoveFeatherRadius
                 )
-                items[idx].result = NSImage(cgImage: resultCG,
+                appState.bgRemoveItems[idx].result = NSImage(cgImage: resultCG,
                                             size: NSSize(width: resultCG.width, height: resultCG.height))
             } catch {
-                items[idx].error = error.localizedDescription
+                appState.bgRemoveItems[idx].error = error.localizedDescription
             }
-            items[idx].isProcessing = false
+            appState.bgRemoveItems[idx].isProcessing = false
+        }
+    }
+
+    @MainActor
+    private func reprocessAll() async {
+        let snapshot = appState.bgRemoveItems
+        for item in snapshot {
+            guard let idx = appState.bgRemoveItems.firstIndex(where: { $0.id == item.id }) else { continue }
+            appState.bgRemoveItems[idx].isProcessing = true
+            appState.bgRemoveItems[idx].result = nil
+            guard let cg = item.original.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+                appState.bgRemoveItems[idx].isProcessing = false
+                continue
+            }
+            do {
+                let resultCG = try await BgRemoveEngine.shared.removeBackground(
+                    from: cg, featherRadius: appState.bgRemoveFeatherRadius
+                )
+                appState.bgRemoveItems[idx].result = NSImage(cgImage: resultCG,
+                                            size: NSSize(width: resultCG.width, height: resultCG.height))
+            } catch {
+                appState.bgRemoveItems[idx].error = error.localizedDescription
+            }
+            appState.bgRemoveItems[idx].isProcessing = false
         }
     }
 
     private func removeItem(_ item: BgRemoveItem) {
-        items.removeAll { $0.id == item.id }
+        appState.bgRemoveItems.removeAll { $0.id == item.id }
     }
 
     @MainActor
     private func saveAll() async {
         guard let folder = appState.targetFolder else { return }
         var savedCount = 0
-        for item in items where item.result != nil {
+        for item in appState.bgRemoveItems where item.result != nil {
             guard let result = item.result,
                   let tiff = result.tiffRepresentation,
                   let rep = NSBitmapImageRep(data: tiff) else { continue }
 
             let baseName = item.url.deletingPathExtension().lastPathComponent
-            let outputURL = folder.appendingPathComponent("\(baseName)_nobg.\(selectedFormat.ext)")
+            let outputURL = folder.appendingPathComponent("\(baseName)_nobg.\(appState.bgRemoveFormat.ext)")
 
-            switch selectedFormat {
+            switch appState.bgRemoveFormat {
             case .png:
                 if let data = rep.representation(using: .png, properties: [:]),
                    (try? data.write(to: outputURL)) != nil { savedCount += 1 }
@@ -579,97 +688,6 @@ private struct BgRemoveCard: View {
         .padding(12)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.primary.opacity(0.03)))
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.primary.opacity(0.06), lineWidth: 1))
-    }
-}
-
-// MARK: - Preview Modal
-
-private struct BgRemovePreviewModal: View {
-    let item: BgRemoveItem
-    let onClose: () -> Void
-
-    var body: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack(spacing: 12) {
-                Image(systemName: "person.and.background.dotted")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(Color.accentColor)
-                Text(item.fileName)
-                    .font(.system(size: 13, weight: .semibold, design: .monospaced))
-                    .foregroundStyle(Color.primary.opacity(0.9))
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                Spacer()
-                Button { onClose() } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(Color.secondary)
-                        .padding(7)
-                        .background(Color.primary.opacity(0.08))
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
-                .keyboardShortcut(.escape, modifiers: [])
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 14)
-
-            Divider()
-
-            HStack(spacing: 0) {
-                // Before
-                VStack(spacing: 0) {
-                    HStack {
-                        Image(systemName: "photo")
-                            .font(.system(size: 10, weight: .medium))
-                        Text(LocalizedStringKey("bgremove.before"))
-                            .font(.system(size: 11, weight: .semibold))
-                    }
-                    .foregroundStyle(Color.secondary)
-                    .padding(.vertical, 10)
-
-                    Divider()
-
-                    Image(nsImage: item.original)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(20)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-                Divider()
-
-                // After
-                VStack(spacing: 0) {
-                    HStack {
-                        Image(systemName: "sparkles")
-                            .font(.system(size: 10, weight: .medium))
-                        Text(LocalizedStringKey("bgremove.after"))
-                            .font(.system(size: 11, weight: .semibold))
-                    }
-                    .foregroundStyle(Color.accentColor)
-                    .padding(.vertical, 8)
-
-                    Divider()
-
-                    if let result = item.result {
-                        ZStack {
-                            CheckerboardView()
-                            Image(nsImage: result)
-                                .resizable()
-                                .scaledToFit()
-                                .padding(20)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

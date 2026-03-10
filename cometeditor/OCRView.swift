@@ -12,10 +12,9 @@ import UniformTypeIdentifiers
 struct OCRView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
 
-    @State private var selectedImage: NSImage? = nil
-    @State private var imageURL: URL? = nil
-    @State private var recognizedText: String = ""
-    @State private var isProcessing = false
+    @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var windowState: WindowStateObserver
+
     @State private var isEditing = false
     @State private var isDropTargeted = false
     @State private var isCopied = false
@@ -32,7 +31,7 @@ struct OCRView: View {
             rightPanel
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
     }
 
     // MARK: - Sol Panel
@@ -41,7 +40,7 @@ struct OCRView: View {
         VStack(spacing: 0) {
             // Toolbar
             HStack(spacing: 10) {
-                if selectedImage != nil {
+                if appState.ocrImage != nil {
                     Button {
                         reset()
                     } label: {
@@ -71,7 +70,7 @@ struct OCRView: View {
 
                 Spacer()
 
-                if isProcessing {
+                if appState.ocrIsProcessing {
                     HStack(spacing: 8) {
                         ProgressView().controlSize(.small)
                         Text(LocalizedStringKey("ocr.processing"))
@@ -82,18 +81,19 @@ struct OCRView: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
-            .opacity(selectedImage != nil || isProcessing ? 1 : 0)
+            .opacity(appState.ocrImage != nil || appState.ocrIsProcessing ? 1 : 0)
 
-            if selectedImage != nil { Divider() }
+            if appState.ocrImage != nil { Divider() }
 
-            if let img = selectedImage {
-                ScrollView([.vertical, .horizontal]) {
+            if let img = appState.ocrImage {
+                GeometryReader { geo in
                     Image(nsImage: img)
                         .resizable()
                         .scaledToFit()
-                        .padding(20)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(width: geo.size.width, height: geo.size.height)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(12)
                 .onDrop(of: [UTType.image], isTargeted: $isDropTargeted) { providers in
                     handleDrop(providers: providers)
                 }
@@ -111,7 +111,7 @@ struct OCRView: View {
             HStack(spacing: 8) {
                 Spacer()
 
-                if !recognizedText.isEmpty {
+                if !appState.ocrRecognizedText.isEmpty {
                     Button {
                         isEditing.toggle()
                     } label: {
@@ -127,7 +127,7 @@ struct OCRView: View {
 
                     Button {
                         NSPasteboard.general.clearContents()
-                        NSPasteboard.general.setString(recognizedText, forType: .string)
+                        NSPasteboard.general.setString(appState.ocrRecognizedText, forType: .string)
                         isCopied = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { isCopied = false }
                     } label: {
@@ -148,7 +148,7 @@ struct OCRView: View {
 
             Divider()
 
-            if recognizedText.isEmpty && !isProcessing {
+            if appState.ocrRecognizedText.isEmpty && !appState.ocrIsProcessing {
                 VStack(spacing: 12) {
                     Image(systemName: "text.alignleft")
                         .font(.system(size: 40, weight: .light))
@@ -160,13 +160,13 @@ struct OCRView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if isEditing {
-                TextEditor(text: $recognizedText)
+                TextEditor(text: $appState.ocrRecognizedText)
                     .font(.system(size: 13))
                     .padding(20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 ScrollView {
-                    Text(recognizedText)
+                    Text(appState.ocrRecognizedText)
                         .font(.system(size: 13))
                         .textSelection(.enabled)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -235,9 +235,9 @@ struct OCRView: View {
 
     private func loadImage(url: URL) {
         guard let img = NSImage(contentsOf: url) else { return }
-        selectedImage = img
-        imageURL = url
-        recognizedText = ""
+        appState.ocrImage = img
+        appState.ocrImageURL = url
+        appState.ocrRecognizedText = ""
         isEditing = false
         Task { await recognizeText(in: img) }
     }
@@ -245,8 +245,8 @@ struct OCRView: View {
     @MainActor
     private func recognizeText(in image: NSImage) async {
         guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return }
-        isProcessing = true
-        defer { isProcessing = false }
+        appState.ocrIsProcessing = true
+        defer { appState.ocrIsProcessing = false }
 
         let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
@@ -261,18 +261,18 @@ struct OCRView: View {
         do {
             try handler.perform([request])
             let observations = request.results ?? []
-            recognizedText = observations
+            appState.ocrRecognizedText = observations
                 .compactMap { $0.topCandidates(1).first?.string }
                 .joined(separator: "\n")
         } catch {
-            recognizedText = error.localizedDescription
+            appState.ocrRecognizedText = error.localizedDescription
         }
     }
 
     private func reset() {
-        selectedImage = nil
-        imageURL = nil
-        recognizedText = ""
+        appState.ocrImage = nil
+        appState.ocrImageURL = nil
+        appState.ocrRecognizedText = ""
         isEditing = false
         isCopied = false
     }

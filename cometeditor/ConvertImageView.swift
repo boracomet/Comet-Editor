@@ -16,13 +16,14 @@ struct ConvertImageView: View {
     @State private var scaleEnabled = false
     @State private var scaleSelection: String = "convert.scale.original"
     var scaleOptions: [String] {
-        ["convert.scale.original", "%75", "%50", "%25"]
+        ["convert.scale.original", "%75"]
     }
     @State private var customWidth: String = ""
     @State private var customHeight: String = ""
     @State private var metadataEnabled = true
 
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var windowState: WindowStateObserver
     @State private var isProcessing = false
     @State private var showSuccessAlert = false
     @State private var isDropTargeted = false
@@ -30,12 +31,23 @@ struct ConvertImageView: View {
 
     // Preview Image Modal
     @State private var previewItem: ImageItem?
+    @State private var previewFullImage: NSImage?
+    @State private var previewZoom: CGFloat = 1.0
+    @State private var previewOffset: CGSize = .zero
+    @State private var previewImageFrame: CGSize = .zero
 
     var body: some View {
         HStack(spacing: 0) {
             // MARK: - Main Area
-            mainContentArea
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Group {
+                if previewItem != nil {
+                    inlinePreview
+                } else {
+                    mainContentArea
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .animation(.easeInOut(duration: 0.18), value: previewItem != nil)
 
             Divider()
 
@@ -43,58 +55,25 @@ struct ConvertImageView: View {
             inspectorPanel
                 .frame(width: 260)
         }
-        .ignoresSafeArea(edges: columnVisibility == .detailOnly ? [] : .top)
-        .overlay {
-            // ZStack is always present; allowsHitTesting disables interaction immediately on dismiss,
-            // preventing the macOS SwiftUI hit-test lingering bug after transition animations.
-            ZStack {
-                if let nsImage = previewItem?.image {
-                    Color.black.opacity(0.85)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                previewItem = nil
-                            }
-                        }
-
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(60)
-                        .shadow(color: .black.opacity(0.5), radius: 20, x: 0, y: 10)
-                        .onTapGesture {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                previewItem = nil
-                            }
-                        }
-
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Button {
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    previewItem = nil
-                                }
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundStyle(.white)
-                                    .padding(10)
-                                    .background(Circle().fill(Color.white.opacity(0.2)))
-                            }
-                            .buttonStyle(.plain)
-                            .handCursor()
-                            .padding(.top, 20)
-                            .padding(.trailing, 20)
-                        }
-                        Spacer()
+        .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .onChange(of: previewItem) { item in
+            guard let item else {
+                previewFullImage = nil
+                return
+            }
+            Task.detached(priority: .userInitiated) {
+                let url = item.url
+                _ = url.startAccessingSecurityScopedResource()
+                defer { url.stopAccessingSecurityScopedResource() }
+                guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
+                      let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return }
+                let fullImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+                await MainActor.run {
+                    withAnimation(.easeInOut(duration: 0.15)) {
+                        previewFullImage = fullImage
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .allowsHitTesting(previewItem != nil)
-            .animation(.easeInOut(duration: 0.2), value: previewItem != nil)
-            .zIndex(100)
         }
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showSuccessAlert) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
@@ -106,6 +85,102 @@ struct ConvertImageView: View {
         } message: {
             if let path = appState.targetFolder?.path {
                 Text(String(format: NSLocalizedString("alert.success.message.image", comment: ""), path))
+            }
+        }
+    }
+
+    // MARK: - Inline Preview (full-area, replaces grid)
+    private var inlinePreview: some View {
+        VStack(spacing: 0) {
+            // Info bar
+            HStack(spacing: 12) {
+                Image(systemName: "photo")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(Color.accentColor)
+                if let item = previewItem {
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(item.fileName)
+                            .font(.system(size: 13, weight: .semibold))
+                            .lineLimit(1)
+                        Text(item.fileSizeString + " " + item.dimensionsString)
+                            .font(.system(size: 11))
+                            .foregroundStyle(Color.secondary)
+                    }
+                }
+                Spacer()
+                Button {
+                    withAnimation(.easeInOut(duration: 0.18)) {
+                        previewItem = nil; previewFullImage = nil
+                        previewZoom = 1.0; previewOffset = .zero
+                    }
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(Color.secondary)
+                        .padding(7)
+                        .background(Color.primary.opacity(0.08))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 14)
+
+            Divider()
+
+            // Image canvas
+            ZStack {
+                Color(NSColor.underPageBackgroundColor)
+                if previewFullImage == nil && previewItem?.image == nil {
+                    ProgressView().controlSize(.large)
+                }
+                if let nsImage = previewFullImage ?? previewItem?.image {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .scaledToFit()
+                        .background(
+                            GeometryReader { g in
+                                Color.clear
+                                    .onAppear { previewImageFrame = g.size }
+                                    .onChange(of: g.size) { previewImageFrame = $0 }
+                            }
+                        )
+                        .scaleEffect(previewZoom)
+                        .offset(previewOffset)
+                        .gesture(DragGesture().onChanged { v in
+                            if previewZoom > 1.0 { previewOffset = clampedOffset(v.translation) }
+                        })
+                        .gesture(MagnificationGesture()
+                            .onChanged { v in
+                                previewZoom = max(1.0, min(v, 6.0))
+                                previewOffset = clampedOffset(previewOffset)
+                            }
+                            .onEnded { _ in
+                                if previewZoom < 1.05 {
+                                    withAnimation(.spring()) { previewZoom = 1.0; previewOffset = .zero }
+                                }
+                            }
+                        )
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
+            .onScrollWheel { event in
+                if event.type == .magnify {
+                    let delta = event.magnification
+                    if abs(delta) > 0 {
+                        let z = max(1.0, min(previewZoom + delta * previewZoom, 6.0))
+                        previewZoom = z
+                        previewOffset = clampedOffset(previewOffset)
+                        if z <= 1.0 { previewOffset = .zero }
+                    }
+                } else if event.type == .scrollWheel && previewZoom > 1.0 {
+                    previewOffset = clampedOffset(CGSize(
+                        width: previewOffset.width - event.scrollingDeltaX,
+                        height: previewOffset.height - event.scrollingDeltaY
+                    ))
+                }
             }
         }
     }
@@ -209,62 +284,68 @@ struct ConvertImageView: View {
     }
 
     private func imageGridItem(_ item: ImageItem) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // Image Box
-            GeometryReader { geo in
-                Group {
-                    if let nsImage = item.image {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .scaledToFill()
-                    } else {
-                        Color.secondary.opacity(0.2)
-                    }
-                }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        previewItem = item
-                    }
-                }
-                .handCursor()
-                .frame(width: geo.size.width, height: 110)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-                )
-                .overlay(alignment: .topTrailing) {
-                    Button {
-                        appState.selectedImages.removeAll(where: { $0.id == item.id })
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(5)
-                            .background(Color.black.opacity(0.6))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .handCursor()
-                    .padding(6)
+        GeometryReader { geo in
+            Group {
+                if let nsImage = item.image {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Color.secondary.opacity(0.2)
                 }
             }
-            .frame(height: 110)
-
-            // Text Info
-            VStack(alignment: .leading, spacing: 4) {
-                Text(item.fileName)
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(Color.primary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-
-                Text("\(item.fileSizeString) \(item.dimensionsString)")
-                    .font(.system(size: 11))
-                    .foregroundStyle(Color.secondary)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
+            }
+            .handCursor()
+            .frame(width: geo.size.width, height: geo.size.height)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
+            )
+            // Bottom info bar
+            .overlay(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(item.fileName)
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                    Text("\(item.fileSizeString) · \(item.dimensionsString)")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.white.opacity(0.75))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 6)
+                .background(
+                    LinearGradient(
+                        colors: [.clear, .black.opacity(0.72)],
+                        startPoint: .top, endPoint: .bottom
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                )
+            }
+            // Delete button — top-right corner
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    appState.selectedImages.removeAll(where: { $0.id == item.id })
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(5)
+                        .background(Color.black.opacity(0.55))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+                .padding(6)
             }
         }
+        .frame(height: 120)
     }
 
     // MARK: - Inspector Panel
@@ -273,7 +354,7 @@ struct ConvertImageView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header
                 HStack {
-                    Text("convert.settings.title")
+                    Text(LanguageManager.shared.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -478,6 +559,17 @@ struct ConvertImageView: View {
             }
         }
         .background(Material.bar)
+    }
+
+    // MARK: - Preview Offset Clamp
+    // Limits pan so the image never scrolls beyond its own edges.
+    private func clampedOffset(_ offset: CGSize) -> CGSize {
+        let maxX = max(0, previewImageFrame.width * (previewZoom - 1) / 2)
+        let maxY = max(0, previewImageFrame.height * (previewZoom - 1) / 2)
+        return CGSize(
+            width: min(maxX, max(-maxX, offset.width)),
+            height: min(maxY, max(-maxY, offset.height))
+        )
     }
 
     // MARK: - Conversion Logic

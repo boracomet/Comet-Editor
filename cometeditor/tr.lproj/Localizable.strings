@@ -19,14 +19,17 @@
 "convert.addMore" = "Ekle";
 "menu.home" = "Ana Sayfa";
 "menu.convertImage" = "Resim Dönüştür";
+"menu.imageEdit" = "Resim Düzenle";
+"menu.videoEdit" = "Video Düzenle";
+"menu.badge.soon" = "Çok Yakında";
 "menu.batchProcess" = "Toplu İşlem";
 "menu.settings" = "Ayarlar";
 "menu.tools" = "Araçlar";
 
 "menu.team.title" = "Ekibimiz";
-"menu.team.subtitle" = "Comet Editor'ın arkasındaki yetenekli isimlerle tanışın";
+"menu.team.subtitle" = "Uygulamanın arkasındaki yetenekli isimlerle tanışın";
 "team.product_of" = "Cometdevs.com ürünüdür";
-"team.thanks_grafix" = "Grafix Topluluğuna Katkılarından Dolayı Teşekkür Ederiz.";
+"team.thanks_grafix" = "Grafix topluluğuna değerli katkılarından dolayı teşekkür ederiz.";
 
 "menu.videoConvert" = "Video Dönüştür";
 "video.drop.title" = "Videoyu Sürükle ve Bırak";
@@ -45,21 +48,20 @@
 "alert.error.generic" = "İşlem sırasında bir hata oluştu.";
 
 "home.welcome" = "Comet Editor'a Hoş Geldiniz";
-"home.welcome.subtitle" = "En iyi resim düzenleme ve dönüştürme merkeziniz.";
-"home.feature.convert.title" = "Resim Dönüştür";
-"home.feature.convert.desc" = "Tekil resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
-"home.feature.batch.title" = "Toplu İşlem";
-"home.feature.batch.desc" = "Binlerce fotoğrafı aynı anda optimize edin, boyutlandırın ve dönüştürün.";
-"home.feature.recent.title" = "Son Projeler";
-"home.feature.recent.desc" = "Son düzenleme oturumlarınıza ve dışa aktarımlarınıza erişin.";
-"home.feature.opt.title" = "Resim Optimizasyonu";
-"home.feature.opt.desc" = "Görüntü kalitesini kaybetmeden sıkıştırın ve iyileştirin.";
+"home.welcome.subtitle" = "Tüm ihtiyaçlarınız tek bir uygulamada.";
+"home.feature.convertImage.desc" = "Resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
+"home.feature.videoConvert.desc" = "Videolarınızı kolayca dönüştürün ve sıkıştırın.";
+"home.feature.stockImage.desc" = "Ücretsiz yüksek kaliteli stok fotoğraflara göz atın ve indirin.";
+"home.feature.pdfEdit.desc" = "PDF dosyalarınızı düzenleyin, yeniden sıralayın ve sıkıştırın.";
+"home.feature.qrCode.desc" = "Anında QR kod oluşturun ve özelleştirin.";
+"home.feature.bgRemove.desc" = "Yapay zeka ile resim arka planlarını otomatik kaldırın.";
+"home.feature.ocr.desc" = "Optik tanıma ile resimlerden metin çıkarın.";
 
 "video.settings.fps" = "FPS LİMİTİ";
 "video.settings.resize" = "YENİDEN BOYUTLANDIR";
 "video.settings.audio" = "SES";
 "video.settings.audio.remove" = "Sesi kaldır";
-"video.settings.metadata" = "ÜSTVERI KORUMA";
+"video.settings.metadata" = "METADATA KORUMA";
 "video.settings.fps.desc" = "Girilen FPS üzerinde olan videolar yavaşlatılır/limitlenir.";
 "video.processing" = "İşleniyor...";
 "video.saved.gain" = "kazanç";
@@ -91,6 +93,7 @@
 "pdf.tools.compressSection" = "BOYUT KÜÇÜLT";
 "pdf.tools.compress" = "WebP ile Sıkıştır";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
+"pdf.estimatedSize" = "Tahmini Optimize Boyutu";
 
 "pdf.tools.addContent" = "Ek İçerik Ekle";
 "pdf.addContent.title" = "Ek İçerik Ekle";
@@ -178,3 +181,86 @@
 "ocr.clear" = "Temizle";
 "ocr.newFile" = "Yeni Dosya";
 "ocr.copied" = "Kopyalandı!";
+
+"app.comingSoon.title" = "Çok Yakında";
+"app.comingSoon.message" = "Bu özellik yakında kullanıma sunulacak.";
+"app.version" = "v1.0.0-beta";
+
+"language.turkish" = "Türkçe";
+"language.english" = "English";
+
+"video.fps.original" = "Orijinal";
+"video.fps.60" = "60 FPS";
+"video.fps.30" = "30 FPS";
+"video.fps.24" = "24 FPS";
+"video.resolution.original" = "Orijinal";
+"video.resolution.75" = "%75 Boyut";
+"video.resolution.50" = "%50 Boyut";
+"video.resolution.25" = "%25 Boyut (Düşük Kalite)";
+
+"menu.fontDownload" = "Font İndir";
+"home.feature.fontDownload.desc" = "Google Fonts'tan fontları doğrudan Mac'inize göz atın ve indirin.";
+"font.search.placeholder" = "Font ara...";
+"font.preview.custom" = "Bir şeyler yazın...";
+"font.inspector.preview" = "Önizleme";
+"font.inspector.fontSize" = "Yazı Boyutu";
+"font.inspector.feeling" = "Duygu";
+"font.inspector.language" = "Dil / Yazı Sistemi";
+
+"font.feeling.business" = "İş";
+"font.feeling.calm" = "Sakin";
+"font.feeling.cute" = "Sevimli";
+"font.feeling.vintage" = "Nostaljik";
+"font.feeling.sophisticated" = "Zarif";
+"font.feeling.active" = "Aktif";
+"font.feeling.innovative" = "Yenilikçi";
+"font.feeling.fancy" = "Gösterişli";
+"font.feeling.playful" = "Eğlenceli";
+"font.feeling.artistic" = "Sanatsal";
+"font.feeling.loud" = "Dikkat Çekici";
+"font.feeling.futuristic" = "Fütüristik";
+"font.feeling.stiff" = "Sert";
+"font.feeling.happy" = "Mutlu";
+
+"font.writing.all" = "Tümü";
+"font.writing.latin" = "Latin";
+"font.writing.cyrillic" = "Kiril";
+"font.writing.greek" = "Yunan";
+"font.writing.arabic" = "Arap";
+"font.writing.hebrew" = "İbrani";
+"font.writing.devanagari" = "Devanagari";
+"font.writing.chinese_simplified" = "Çince (Basitleştirilmiş)";
+"font.writing.chinese_traditional" = "Çince (Geleneksel)";
+"font.writing.japanese" = "Japonca";
+"font.writing.korean" = "Korece";
+"font.writing.thai" = "Tayca";
+"font.writing.vietnamese" = "Vietnamca";
+
+// MARK: - Video Edit
+"videoedit.title" = "Video Düzenle";
+"videoedit.tool.trim" = "Kırp";
+"videoedit.tool.audio" = "Ses";
+"videoedit.tool.text" = "Metin";
+"videoedit.tool.filter" = "Filtre";
+"videoedit.tool.speed" = "Hız";
+"videoedit.preview.drop" = "Video veya medya dosyası sürükleyin";
+"videoedit.preview.drop.sub" = "veya dosya eklemek için tıklayın";
+"videoedit.timeline.split" = "Böl";
+"videoedit.timeline.delete" = "Katmanı Sil";
+"videoedit.timeline.zoom" = "Zoom";
+"videoedit.settings.format" = "FORMAT";
+"videoedit.settings.resolution" = "ÇÖZÜNÜRLÜK";
+"videoedit.settings.fps" = "FPS";
+"videoedit.export" = "Dışa Aktar";
+"videoedit.files.title" = "DOSYALAR";
+"videoedit.files.add" = "Dosya Ekle";
+"videoedit.tools.title" = "ARAÇLAR";
+"videoedit.trim.start" = "Başlangıç";
+"videoedit.trim.end" = "Bitiş";
+"videoedit.audio.volume" = "Ses Seviyesi";
+"videoedit.speed.label" = "Hız";
+"videoedit.track.video" = "Video";
+"videoedit.track.audio" = "Ses";
+"videoedit.nofile" = "Henüz dosya eklenmedi";
+"videoedit.timeline.addText" = "Metin Ekle";
+"videoedit.timeline.addImage" = "Görsel Ekle";

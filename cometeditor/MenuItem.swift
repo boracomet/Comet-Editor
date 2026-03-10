@@ -21,7 +21,7 @@ enum MenuSection: String, CaseIterable {
     var items: [MenuItem] {
         switch self {
         case .main: return [.home]
-        case .tools: return [.convertImage, .videoConvert, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr]
+        case .tools: return [.convertImage, .videoConvert, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
         }
     }
 }
@@ -35,6 +35,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     case qrCode
     case bgRemove
     case ocr
+    case fontDownload
     case team
 
     var id: String { rawValue }
@@ -49,6 +50,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .qrCode: return "menu.qrCode"
         case .bgRemove: return "menu.bgRemove"
         case .ocr: return "menu.ocr"
+        case .fontDownload: return "menu.fontDownload"
         case .team: return "menu.team"
         }
     }
@@ -63,7 +65,10 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .qrCode: return "qrcode"
         case .bgRemove: return "person.and.background.dotted"
         case .ocr: return "text.viewfinder"
+        case .fontDownload: return "character.textbox"
         case .team: return "person.3.fill"
         }
     }
+
+    var badge: String? { nil }
 }
