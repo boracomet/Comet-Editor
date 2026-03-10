@@ -20,7 +20,6 @@
 "menu.home" = "Ana Sayfa";
 "menu.convertImage" = "Resim Dönüştür";
 "menu.imageEdit" = "Resim Düzenle";
-"menu.videoEdit" = "Video Düzenle";
 "menu.badge.soon" = "Çok Yakında";
 "menu.batchProcess" = "Toplu İşlem";
 "menu.settings" = "Ayarlar";
@@ -235,32 +234,3 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
-// MARK: - Video Edit
-"videoedit.title" = "Video Düzenle";
-"videoedit.tool.trim" = "Kırp";
-"videoedit.tool.audio" = "Ses";
-"videoedit.tool.text" = "Metin";
-"videoedit.tool.filter" = "Filtre";
-"videoedit.tool.speed" = "Hız";
-"videoedit.preview.drop" = "Video veya medya dosyası sürükleyin";
-"videoedit.preview.drop.sub" = "veya dosya eklemek için tıklayın";
-"videoedit.timeline.split" = "Böl";
-"videoedit.timeline.delete" = "Katmanı Sil";
-"videoedit.timeline.zoom" = "Zoom";
-"videoedit.settings.format" = "FORMAT";
-"videoedit.settings.resolution" = "ÇÖZÜNÜRLÜK";
-"videoedit.settings.fps" = "FPS";
-"videoedit.export" = "Dışa Aktar";
-"videoedit.files.title" = "DOSYALAR";
-"videoedit.files.add" = "Dosya Ekle";
-"videoedit.tools.title" = "ARAÇLAR";
-"videoedit.trim.start" = "Başlangıç";
-"videoedit.trim.end" = "Bitiş";
-"videoedit.audio.volume" = "Ses Seviyesi";
-"videoedit.speed.label" = "Hız";
-"videoedit.track.video" = "Video";
-"videoedit.track.audio" = "Ses";
-"videoedit.nofile" = "Henüz dosya eklenmedi";
-"videoedit.timeline.addText" = "Metin Ekle";
-"videoedit.timeline.addImage" = "Görsel Ekle";

@@ -20,7 +20,6 @@
 "menu.home" = "Home";
 "menu.convertImage" = "Convert Image";
 "menu.imageEdit" = "Image Editor";
-"menu.videoEdit" = "Video Editor";
 "menu.badge.soon" = "Coming Soon";
 "menu.batchProcess" = "Batch Process";
 "menu.settings" = "Settings";
@@ -235,32 +234,3 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
-
-// MARK: - Video Edit
-"videoedit.title" = "Video Editor";
-"videoedit.tool.trim" = "Trim";
-"videoedit.tool.audio" = "Audio";
-"videoedit.tool.text" = "Text";
-"videoedit.tool.filter" = "Filter";
-"videoedit.tool.speed" = "Speed";
-"videoedit.preview.drop" = "Drag and drop video or media file";
-"videoedit.preview.drop.sub" = "or click to add a file";
-"videoedit.timeline.split" = "Split";
-"videoedit.timeline.delete" = "Delete Layer";
-"videoedit.timeline.zoom" = "Zoom";
-"videoedit.settings.format" = "FORMAT";
-"videoedit.settings.resolution" = "RESOLUTION";
-"videoedit.settings.fps" = "FPS";
-"videoedit.export" = "Export";
-"videoedit.files.title" = "FILES";
-"videoedit.files.add" = "Add File";
-"videoedit.tools.title" = "TOOLS";
-"videoedit.trim.start" = "Start";
-"videoedit.trim.end" = "End";
-"videoedit.audio.volume" = "Volume";
-"videoedit.speed.label" = "Speed";
-"videoedit.track.video" = "Video";
-"videoedit.track.audio" = "Audio";
-"videoedit.nofile" = "No files added yet";
-"videoedit.timeline.addText" = "Add Text";
-"videoedit.timeline.addImage" = "Add Image";
