@@ -161,9 +161,9 @@ struct VETimeline: Identifiable {
     func playingClips(at t: TimeInterval) -> [PlayingClip] {
         tracks.enumerated().flatMap { (z, track) in
             track.clips.filter { $0.isPlaying(at: t) }.map {
-                PlayingClip(trackId: track.id, clip: $0, zIndex: -z)
+                PlayingClip(trackId: track.id, clip: $0, zIndex: z)
             }
-        }.sorted { $0.zIndex < $1.zIndex }
+        }.sorted { $0.zIndex > $1.zIndex }
     }
 }
 
@@ -400,7 +400,10 @@ struct VELibraryClipThumb: View {
         }
         if let trackId = matchingTrack?.id {
             let offset = state.timeline[trackId]?.clips.map { $0.offset + $0.clip.length }.max() ?? 0
-            state.timeline[trackId]?.insert(clip: OffsetClip(clip: clip, offset: offset))
+            let newOffsetClip = OffsetClip(clip: clip, offset: offset)
+            if let idx = state.timeline.tracks.firstIndex(where: { $0.id == trackId }) {
+                state.timeline.tracks[idx].clipsById[newOffsetClip.id] = newOffsetClip
+            }
         } else {
             var newTrack = Track(name: clip.category == .audio
                 ? "Audio \(state.timeline.tracks.count + 1)"
@@ -699,7 +702,9 @@ struct VEToolbar: View {
                 VEToolBtn(icon: "trash", tip: "Delete") {
                     if let sel = state.selection {
                         state.pushUndo()
-                        state.timeline[sel.trackId]?.remove(clipId: sel.clipId)
+                        if let idx = state.timeline.tracks.firstIndex(where: { $0.id == sel.trackId }) {
+                            state.timeline.tracks[idx].clipsById.removeValue(forKey: sel.clipId)
+                        }
                         state.selection = nil
                     } else if !state.timeline.tracks.isEmpty {
                         state.pushUndo()
