@@ -458,20 +458,24 @@ struct VEVideoPanel: View {
         }
         .aspectRatio(16.0 / 9.0, contentMode: .fit)
         .clipped()
-        .onChange(of: state.cursor) { _ in syncPlayers() }
+        .onChange(of: state.cursor) { _ in
+            // Play modunda seek yapma — player zaten oynuyor, cursor sadece UI için
+            if !state.isPlaying { seekPlayers() }
+        }
         .onChange(of: state.isPlaying) { playing in
             if playing {
                 playStartDate = Date()
                 playStartCursor = state.cursor
-                syncPlayers()
-                playTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+                startPlayers()
+                playTimer = Timer.scheduledTimer(withTimeInterval: 1.0 / 30.0, repeats: true) { _ in
                     guard let startDate = playStartDate, let startCursor = playStartCursor else { return }
-                    state.cursor = startCursor + (-startDate.timeIntervalSinceNow)
+                    DispatchQueue.main.async {
+                        state.cursor = startCursor + (-startDate.timeIntervalSinceNow)
+                    }
                 }
-                players.values.forEach { $0.play() }
             } else {
                 playTimer?.invalidate(); playTimer = nil
-                players.values.forEach { $0.pause() }
+                pausePlayers()
             }
         }
     }
@@ -485,7 +489,8 @@ struct VEVideoPanel: View {
         return player
     }
 
-    private func syncPlayers() {
+    // Sadece scrubbing modunda (play değilken) seek yap
+    private func seekPlayers() {
         let playing = state.timeline.playingClips(at: state.cursor)
         let playingIds = Set(playing.map { $0.clip.id })
         for id in players.keys where !playingIds.contains(id) {
@@ -495,12 +500,33 @@ struct VEVideoPanel: View {
         for p in playing {
             let clipOffset = p.clip.clipOffset(for: state.cursor)
             let player = playerFor(p)
-            player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
-            if state.isPlaying {
-                player.volume = Float(p.clip.clip.volume)
+            let seekTime = CMTime(seconds: clipOffset, preferredTimescale: 600)
+            player.seek(to: seekTime, toleranceBefore: .zero, toleranceAfter: .zero)
+        }
+    }
+
+    // Play başlarken: doğru pozisyondan başlat
+    private func startPlayers() {
+        let playing = state.timeline.playingClips(at: state.cursor)
+        let playingIds = Set(playing.map { $0.clip.id })
+        for id in players.keys where !playingIds.contains(id) {
+            players[id]?.pause()
+            players.removeValue(forKey: id)
+        }
+        for p in playing {
+            let clipOffset = p.clip.clipOffset(for: state.cursor)
+            let player = playerFor(p)
+            player.volume = Float(p.clip.clip.volume)
+            // Seek bitti sonra play et
+            let seekTime = CMTime(seconds: clipOffset, preferredTimescale: 600)
+            player.seek(to: seekTime, toleranceBefore: .zero, toleranceAfter: .zero) { _ in
                 player.play()
             }
         }
+    }
+
+    private func pausePlayers() {
+        players.values.forEach { $0.pause() }
     }
 }
 
@@ -840,27 +866,33 @@ struct VETimelineView: View {
 
         switch drag {
         case .inactive:
-            // Trim check on selected clip
-            if let sel = state.selection, let oc = state.timeline[sel.trackId]?[sel.clipId] {
-                let clipX = timeToX(oc.offset, laneW: laneW)
-                let clipEndX = timeToX(oc.offset + oc.clip.length, laneW: laneW)
-                if abs(pt.x - clipX) <= trimHitW {
-                    drag = .trimLeft(trackId: sel.trackId, clipId: sel.clipId, startX: pt.x, startClip: oc)
-                    return
-                }
-                if abs(pt.x - clipEndX) <= trimHitW {
-                    drag = .trimRight(trackId: sel.trackId, clipId: sel.clipId, startX: pt.x, startClip: oc)
-                    return
-                }
-            }
-            // Clip hit test
             let trackIdx = Int((pt.y - 20) / trackH)
-            if trackIdx >= 0 && trackIdx < state.timeline.tracks.count {
+            if trackIdx >= 0 && trackIdx < state.timeline.tracks.count && pt.x >= labelW {
                 let track = state.timeline.tracks[trackIdx]
-                for oc in track.clips {
+
+                // Önce trim kontrolü: seçili clip'in kenarlarına yakınsa trim başlat
+                if let sel = state.selection, sel.trackId == track.id,
+                   let oc = track.clipsById[sel.clipId] {
                     let clipX = timeToX(oc.offset, laneW: laneW)
-                    let clipW = CGFloat(oc.clip.length) * pps
-                    if pt.x >= clipX && pt.x <= clipX + clipW && pt.x >= labelW {
+                    let clipEndX = timeToX(oc.offset + oc.clip.length, laneW: laneW)
+                    // Sol trim: sol kenarın trimHitW px içindeyse
+                    if pt.x >= clipX - trimHitW / 2 && pt.x <= clipX + trimHitW {
+                        drag = .trimLeft(trackId: sel.trackId, clipId: sel.clipId, startX: pt.x, startClip: oc)
+                        return
+                    }
+                    // Sağ trim: sağ kenarın trimHitW px içindeyse
+                    if pt.x >= clipEndX - trimHitW && pt.x <= clipEndX + trimHitW / 2 {
+                        drag = .trimRight(trackId: sel.trackId, clipId: sel.clipId, startX: pt.x, startClip: oc)
+                        return
+                    }
+                }
+
+                // Clip hit test (orta bölge)
+                let sortedClips = track.clips.sorted(by: { $0.offset < $1.offset })
+                for oc in sortedClips {
+                    let clipX = timeToX(oc.offset, laneW: laneW)
+                    let clipW = max(trimHitW * 2 + 2, CGFloat(oc.clip.length) * pps)
+                    if pt.x >= clipX && pt.x <= clipX + clipW {
                         let dx = pt.x - clipX
                         state.selection = VESelection(trackId: track.id, clipId: oc.id)
                         drag = .clip(trackId: track.id, clipId: oc.id, dxInClip: dx)
@@ -868,6 +900,7 @@ struct VETimelineView: View {
                     }
                 }
             }
+
             // Cursor grab
             let cursorX = timeToX(state.cursor, laneW: laneW)
             if abs(pt.x - cursorX) <= cursorHitW {
@@ -890,19 +923,25 @@ struct VETimelineView: View {
             let newTime = xToTime(pt.x - dxInClip, laneW: laneW)
             let targetIdx = Int((pt.y - 20) / trackH)
             if targetIdx >= 0 && targetIdx < state.timeline.tracks.count {
-                let targetTrack = state.timeline.tracks[targetIdx]
-                if targetTrack.id != tid {
-                    if var movedClip = state.timeline[tid]?.remove(clipId: cid) {
-                        movedClip.id = UUID()
-                        movedClip.offset = max(0, newTime)
-                        state.timeline[targetTrack.id]?.insert(clip: movedClip)
-                        state.selection = VESelection(trackId: targetTrack.id, clipId: movedClip.id)
-                        drag = .clip(trackId: targetTrack.id, clipId: movedClip.id, dxInClip: dxInClip)
-                    }
+                let targetTrackId = state.timeline.tracks[targetIdx].id
+                if targetTrackId != tid {
+                    // Track arası taşıma — value semantics için doğrudan index üzerinden çalış
+                    guard let srcIdx = state.timeline.tracks.firstIndex(where: { $0.id == tid }),
+                          let dstIdx = state.timeline.tracks.firstIndex(where: { $0.id == targetTrackId }),
+                          var movedClip = state.timeline.tracks[srcIdx].clipsById[cid] else { return }
+                    state.timeline.tracks[srcIdx].clipsById.removeValue(forKey: cid)
+                    movedClip.id = UUID()
+                    movedClip.offset = max(0, newTime)
+                    state.timeline.tracks[dstIdx].clipsById[movedClip.id] = movedClip
+                    state.selection = VESelection(trackId: targetTrackId, clipId: movedClip.id)
+                    drag = .clip(trackId: targetTrackId, clipId: movedClip.id, dxInClip: dxInClip)
                     return
                 }
             }
-            state.timeline[tid]?[cid]?.offset = max(0, newTime)
+            // Aynı track içinde kaydır
+            if let idx = state.timeline.tracks.firstIndex(where: { $0.id == tid }) {
+                state.timeline.tracks[idx].clipsById[cid]?.offset = max(0, newTime)
+            }
 
         case .trimLeft(let tid, let cid, let sx, let startClip):
             let delta = Double(v.location.x - sx) / state.timelineZoom
@@ -910,13 +949,17 @@ struct VETimelineView: View {
             oc.offset = startClip.offset + delta
             oc.clip.start = startClip.clip.start + delta
             oc.clip.length = startClip.clip.length - delta
-            state.timeline[tid]?[cid] = oc
+            if let idx = state.timeline.tracks.firstIndex(where: { $0.id == tid }) {
+                state.timeline.tracks[idx].clipsById[cid] = oc
+            }
 
         case .trimRight(let tid, let cid, let sx, let startClip):
             let delta = Double(v.location.x - sx) / state.timelineZoom
             var oc = startClip
             oc.clip.length = startClip.clip.length + delta
-            state.timeline[tid]?[cid] = oc
+            if let idx = state.timeline.tracks.firstIndex(where: { $0.id == tid }) {
+                state.timeline.tracks[idx].clipsById[cid] = oc
+            }
         }
     }
 
