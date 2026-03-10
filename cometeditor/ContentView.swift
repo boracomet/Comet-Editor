@@ -53,6 +53,8 @@ struct ContentView: View {
             OCRView(columnVisibility: $columnVisibility)
         case .fontDownload:
             FontDownloadView(columnVisibility: $columnVisibility)
+        case .videoEdit:
+            VideoEditView(columnVisibility: $columnVisibility)
         case .team:
             TeamModalView()
         }
