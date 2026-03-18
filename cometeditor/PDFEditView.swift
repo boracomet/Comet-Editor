@@ -80,7 +80,7 @@ struct PDFEditView: View {
                         selectedPositions: $reorderSelectedPositions,
                         noSelectionHint: $reorderNoSelectionHint,
                         onSave: { newOrder in
-                            applyReorder(newOrder, for: pdf)
+                            await applyReorder(newOrder, for: pdf)
                             appState.pdfReorderPageOrder = nil
                             reorderSelectedPositions = []
                             withAnimation(.easeInOut(duration: 0.25)) { appState.pdfViewMode = .viewer }
@@ -128,7 +128,11 @@ struct PDFEditView: View {
                 .frame(maxWidth: 400)
 
                 HStack(spacing: 6) {
-                    if appState.pdfViewMode == .viewer {
+                    if appState.pdfIsDeletingPage {
+                        ProgressView().controlSize(.small)
+                        Text(LocalizedStringKey("pdf.deleting"))
+                            .foregroundStyle(Color.secondary)
+                    } else if appState.pdfViewMode == .viewer {
                         Text(String(
                             format: NSLocalizedString("pdf.page.info", comment: ""),
                             appState.pdfPageIndex + 1,
@@ -313,7 +317,7 @@ struct PDFEditView: View {
                                 document: document,
                                 pageIndex: index,
                                 version: appState.pdfDocumentVersion,
-                                canDelete: document.pageCount > 1,
+                                canDelete: document.pageCount > 1 && !appState.pdfIsDeletingPage,
                                 onDelete: { deletePage(at: index, from: pdf) }
                             )
                             .id(index)
@@ -351,7 +355,7 @@ struct PDFEditView: View {
                                 document: document,
                                 index: index,
                                 isSelected: appState.pdfPageIndex == index,
-                                canDelete: document.pageCount > 1,
+                                canDelete: document.pageCount > 1 && !appState.pdfIsDeletingPage,
                                 onTap: {
                                     appState.pdfPageIndex = index
                                 },
@@ -537,7 +541,7 @@ struct PDFEditView: View {
                     // Optimize + Save
                     VStack(spacing: 10) {
                         Button {
-                            if let pdf = pdf { Task { await compressWithWebP(pdf) } }
+                            if let pdf = pdf { Task { await compressPDF(pdf) } }
                         } label: {
                             HStack(spacing: 8) {
                                 if isCompressing {
@@ -627,8 +631,24 @@ struct PDFEditView: View {
 
         guard document.pageCount - indicesToDelete.count >= 1 else { return }
 
+        // Serialize only the pages being deleted (sorted ascending for correct undo re-insert)
+        var undoRecords: [PDFDeletedPage] = []
+        for idx in indicesToDelete.sorted() {
+            if let page = document.page(at: idx) {
+                let singleDoc = PDFDocument()
+                singleDoc.insert(page, at: 0)
+                if let data = singleDoc.dataRepresentation() {
+                    undoRecords.append(PDFDeletedPage(originalIndex: idx, pageData: data))
+                }
+            }
+        }
+
+        // Delete pages immediately for instant visual feedback (descending to keep indices valid)
+        let oldPageCount = document.pageCount
         let deletedSet = Set(indicesToDelete)
         for idx in indicesToDelete { document.removePage(at: idx) }
+        let newPageCount = document.pageCount
+        appState.updateSelectedPDFSizeAfterPageDeletion(oldPageCount: oldPageCount, newPageCount: newPageCount)
 
         let newPageOrder = pageOrder
             .filter { !deletedSet.contains($0) }
@@ -637,22 +657,40 @@ struct PDFEditView: View {
         appState.pdfReorderPageOrder = newPageOrder
         appState.pdfDocumentVersion += 1
         reorderSelectedPositions = []
+
+        if !undoRecords.isEmpty {
+            appState.pushPageDeletionUndo(undoRecords)
+        }
     }
 
     private func deletePage(at index: Int, from pdf: PDFItem) {
         guard let document = pdf.document, document.pageCount > 1 else { return }
+        guard let page = document.page(at: index) else { return }
+
+        // Serialize only the single page being deleted — much faster than the full doc
+        let singlePageDoc = PDFDocument()
+        singlePageDoc.insert(page, at: 0)
+        let pageData = singlePageDoc.dataRepresentation()
+
+        // Delete the page immediately for instant visual feedback
+        let oldPageCount = document.pageCount
         document.removePage(at: index)
         let newCount = document.pageCount
-        let newIndex = index >= newCount ? newCount - 1 : index
-        appState.pdfPageIndex = newIndex
+        appState.pdfPageIndex = index >= newCount ? newCount - 1 : index
         appState.pdfDocumentVersion += 1
+        appState.updateSelectedPDFSizeAfterPageDeletion(oldPageCount: oldPageCount, newPageCount: newCount)
+
+        // Push lightweight undo record (just the single deleted page)
+        if let data = pageData {
+            appState.pushPageDeletionUndo([PDFDeletedPage(originalIndex: index, pageData: data)])
+        }
     }
 
 
-    /// Renders every page to a CGImage, compresses via CometImageCodec WebP,
+    /// Renders every page to a CGImage, compresses via JPEG (PDF-native format),
     /// and packs the result into a new PDF — significantly reduces file size for image-heavy PDFs.
     @MainActor
-    private func compressWithWebP(_ pdf: PDFItem) async {
+    private func compressPDF(_ pdf: PDFItem) async {
         guard let document = pdf.document,
               let targetFolder = appState.pdfCompressionTargetFolder else { return }
 
@@ -706,7 +744,7 @@ struct PDFEditView: View {
 
             guard let cgImage else { continue }
 
-            // 2. Compress via JPEG entirely in memory — no temp files, no sandbox issues
+            // 2. Compress via JPEG (PDF-native) entirely in memory — no temp files, no sandbox issues
             var finalImage: CGImage = cgImage
             let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
             if let jpegData = bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: 0.35 as NSNumber]),
@@ -730,7 +768,7 @@ struct PDFEditView: View {
         compressionProgress = 1.0
     }
 
-    private func applyReorder(_ newOrder: [Int], for pdf: PDFItem) {
+    private func applyReorder(_ newOrder: [Int], for pdf: PDFItem) async {
         guard let document = pdf.document, !newOrder.isEmpty else { return }
         // newOrder contains current sequential indices (0..<document.pageCount after deletions)
         // Just reorder existing pages by the given order
@@ -738,16 +776,22 @@ struct PDFEditView: View {
         let validOrder = newOrder.filter { $0 < pageCount }
         guard validOrder.count == pageCount else { return }
 
-        if let data = document.dataRepresentation() {
-            appState.pushPDFUndo(data: data)
-        }
+        await Task.yield()
+
+        guard let data = document.dataRepresentation() else { return }
+        appState.pushPDFUndo(data: data)
+        await Task.yield()
+
         let pages = (0..<pageCount).compactMap { document.page(at: $0) }
         for i in stride(from: pageCount - 1, through: 0, by: -1) {
             document.removePage(at: i)
         }
+        await Task.yield()
+
         for (insertIndex, originalIndex) in validOrder.enumerated() {
             guard originalIndex < pages.count else { continue }
             document.insert(pages[originalIndex], at: insertIndex)
+            if insertIndex % 5 == 4 { await Task.yield() }
         }
         appState.pdfPageIndex = min(appState.pdfPageIndex, document.pageCount - 1)
         appState.pdfDocumentVersion += 1
@@ -1243,13 +1287,14 @@ struct PDFPageReorderView: View {
     let document: PDFDocument
     @Binding var selectedPositions: Set<Int>
     @Binding var noSelectionHint: Bool
-    let onSave: ([Int]) -> Void
+    let onSave: ([Int]) async -> Void
     let onCancel: () -> Void
 
     @EnvironmentObject var appState: GlobalAppState
     @State private var lastSelectedIndex: Int? = nil
     @State private var draggingPositions: Set<Int> = []
     @State private var scrollPosition: Int? = nil // To programmatically scroll
+    @State private var isSavingOrder = false
 
     // Helper to get a stable pageOrder binding from appState
     private var pageOrderBinding: Binding<[Int]> {
@@ -1277,6 +1322,34 @@ struct PDFPageReorderView: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
+                HStack(spacing: 4) {
+                    Button {
+                        appState.pdfUndo(document: document)
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundStyle(appState.canUndo ? Color.primary : Color.secondary.opacity(0.4))
+                            .frame(width: 28, height: 28)
+                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(appState.canUndo ? 0.07 : 0.03)))
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+                    .disabled(!appState.canUndo)
+                    .keyboardShortcut("z", modifiers: .command)
+                    Button {
+                        appState.pdfRedo(document: document)
+                    } label: {
+                        Image(systemName: "arrow.uturn.forward")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundStyle(appState.canRedo ? Color.primary : Color.secondary.opacity(0.4))
+                            .frame(width: 28, height: 28)
+                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(appState.canRedo ? 0.07 : 0.03)))
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+                    .disabled(!appState.canRedo)
+                    .keyboardShortcut("z", modifiers: [.command, .shift])
+                }
                 if !selectedPositions.isEmpty {
                     Text(String(format: NSLocalizedString("pdf.reorder.selectedCount", comment: ""), selectedPositions.count))
                         .font(.system(size: 11, weight: .medium))
@@ -1286,13 +1359,26 @@ struct PDFPageReorderView: View {
                     Text(LocalizedStringKey("alert.cancel"))
                 }
                 .keyboardShortcut(.escape, modifiers: [])
+                .disabled(isSavingOrder)
                 Button {
-                    onSave(pageOrder)
+                    let order = pageOrder
+                    isSavingOrder = true
+                    Task { @MainActor in
+                        await Task.yield()
+                        await onSave(order)
+                        isSavingOrder = false
+                    }
                 } label: {
-                    Text(LocalizedStringKey("pdf.reorder.save"))
+                    if isSavingOrder {
+                        ProgressView().controlSize(.small)
+                        Text(LocalizedStringKey("pdf.reorder.saving"))
+                    } else {
+                        Text(LocalizedStringKey("pdf.reorder.save"))
+                    }
                 }
                 .buttonStyle(.borderedProminent)
                 .keyboardShortcut(.return, modifiers: [.command])
+                .disabled(isSavingOrder)
             }
             .padding(.horizontal, 20)
             .frame(height: 56)
@@ -1301,12 +1387,19 @@ struct PDFPageReorderView: View {
 
             // Hint bar
             HStack(spacing: 6) {
-                Image(systemName: noSelectionHint ? "exclamationmark.triangle" : "info.circle")
-                    .font(.system(size: 11))
-                    .foregroundStyle(noSelectionHint ? Color.orange : Color.secondary)
-                Text(LocalizedStringKey(noSelectionHint ? "pdf.reorder.selectToDelete" : "pdf.reorder.hint"))
-                    .font(.system(size: 11))
-                    .foregroundStyle(noSelectionHint ? Color.orange : Color.secondary)
+                if appState.pdfIsDeletingPage {
+                    ProgressView().controlSize(.small)
+                    Text(LocalizedStringKey("pdf.deleting"))
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color.secondary)
+                } else {
+                    Image(systemName: noSelectionHint ? "exclamationmark.triangle" : "info.circle")
+                        .font(.system(size: 11))
+                        .foregroundStyle(noSelectionHint ? Color.orange : Color.secondary)
+                    Text(LocalizedStringKey(noSelectionHint ? "pdf.reorder.selectToDelete" : "pdf.reorder.hint"))
+                        .font(.system(size: 11))
+                        .foregroundStyle(noSelectionHint ? Color.orange : Color.secondary)
+                }
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1372,16 +1465,22 @@ struct PDFPageReorderView: View {
             displayNumber: position + 1,
             isSelected: isSelected,
             onDelete: {
-                // Snapshot pageOrder at the moment button is pressed to avoid stale reads
                 let currentOrder = appState.pdfReorderPageOrder ?? Array(0..<document.pageCount)
                 guard currentOrder.count > 1 else { return }
-                // pageIndex captured from ForEach directly — find its position in the current order
                 let pageIndexToDelete = pageIndex
                 guard currentOrder.contains(pageIndexToDelete),
                       let positionInOrder = currentOrder.firstIndex(of: pageIndexToDelete) else { return }
-                // Remove from document using the original page index
+                guard let pageToDelete = document.page(at: pageIndexToDelete) else { return }
+
+                // Serialize only the single page (fast)
+                let singleDoc = PDFDocument()
+                singleDoc.insert(pageToDelete, at: 0)
+                let pageData = singleDoc.dataRepresentation()
+
+                // Delete immediately — instant visual feedback
+                let oldPageCount = document.pageCount
                 document.removePage(at: pageIndexToDelete)
-                // Rebuild pageOrder from the snapshot: remove the deleted entry and remap
+                appState.updateSelectedPDFSizeAfterPageDeletion(oldPageCount: oldPageCount, newPageCount: document.pageCount)
                 var newOrder = currentOrder
                 newOrder.remove(at: positionInOrder)
                 let updated = newOrder.map { idx -> Int in
@@ -1390,6 +1489,10 @@ struct PDFPageReorderView: View {
                 appState.pdfReorderPageOrder = updated
                 selectedPositions.removeAll()
                 appState.pdfDocumentVersion += 1
+
+                if let data = pageData {
+                    appState.pushPageDeletionUndo([PDFDeletedPage(originalIndex: pageIndexToDelete, pageData: data)])
+                }
             }
         )
         .onTapGesture {
@@ -1433,6 +1536,7 @@ struct ReorderPageCell: View {
     let isSelected: Bool
     let onDelete: () -> Void
 
+    @EnvironmentObject var appState: GlobalAppState
     @State private var thumbnail: NSImage? = nil
     @State private var isHovered = false
     @State private var aspectRatio: CGFloat = 0.707 // default A4 portrait
@@ -1465,8 +1569,8 @@ struct ReorderPageCell: View {
                 RoundedRectangle(cornerRadius: 6)
                     .fill(isSelected ? Color.accentColor.opacity(0.1) : (isHovered ? Color.primary.opacity(0.03) : Color.clear))
 
-                // Delete button on hover
-                if isHovered {
+                // Delete button on hover (hidden during delete to prevent double-tap)
+                if isHovered, !appState.pdfIsDeletingPage {
                     VStack {
                         HStack {
                             Spacer()

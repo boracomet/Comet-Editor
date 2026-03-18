@@ -96,6 +96,10 @@ CVCResult cvc_decoder_read_audio_packet(CVCDecoderContext *ctx,
 CVCResult cvc_decoder_read_audio_frame(CVCDecoderContext *ctx,
                                        CVCAudioFrame *out_frame);
 
+// Drain audio queue only (no file read). Use when removing audio to prevent
+// queue growth. Returns number of frames discarded.
+int cvc_decoder_drain_audio_queue(CVCDecoderContext *ctx);
+
 // Free the internal packet data
 void cvc_audio_packet_free(CVCAudioPacket *packet);
 

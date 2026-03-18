@@ -63,8 +63,10 @@
 "video.settings.metadata" = "METADATA KORUMA";
 "video.settings.fps.desc" = "Girilen FPS üzerinde olan videolar yavaşlatılır/limitlenir.";
 "video.processing" = "İşleniyor...";
+"video.cancel" = "İptal Et";
 "video.saved.gain" = "kazanç";
 "video.saved.increased" = "(Büyüdü)";
+"video.optimized" = "Optimize Edildi";
 
 "menu.document" = "DOKÜMAN";
 "menu.pdfEdit" = "PDF Düzenle";
@@ -87,10 +89,12 @@
 "pdf.reorder.title" = "Sayfa Sırası";
 "pdf.reorder.hint" = "Ctrl basılı tutarak çoklu seçim yapın, sürükleyerek sıralayın.";
 "pdf.reorder.save" = "Sıralamayı Kaydet";
+"pdf.reorder.saving" = "Kaydediliyor...";
+"pdf.deleting" = "Siliniyor...";
 "pdf.reorder.selectToDelete" = "Silinecek sayfaları seçin";
 "pdf.reorder.selectedCount" = "%d sayfa seçili";
 "pdf.tools.compressSection" = "BOYUT KÜÇÜLT";
-"pdf.tools.compress" = "WebP ile Sıkıştır";
+"pdf.tools.compress" = "JPEG ile Sıkıştır";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
 "pdf.estimatedSize" = "Tahmini Optimize Boyutu";
 

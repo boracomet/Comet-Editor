@@ -75,15 +75,21 @@ private struct BgRemoveMainView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Group {
-                if let id = appState.bgRemovePreviewItemID, let item = appState.bgRemoveItems.first(where: { $0.id == id }) {
-                    inlinePreview(item: item)
-                } else {
-                    mainContent
+            VStack(spacing: 0) {
+                // Animated content area (ConvertImageView gibi — toolbar altta)
+                Group {
+                    if let id = appState.bgRemovePreviewItemID,
+                       let item = appState.bgRemoveItems.first(where: { $0.id == id }) {
+                        inlinePreview(item: item)
+                    } else if appState.bgRemoveItems.isEmpty {
+                        dropZone
+                    } else {
+                        itemGridWithBottomBar
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .animation(.easeInOut(duration: 0.18), value: appState.bgRemovePreviewItemID != nil)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(.easeInOut(duration: 0.18), value: appState.bgRemovePreviewItemID != nil)
 
             Divider()
             inspectorPanel
@@ -204,63 +210,6 @@ private struct BgRemoveMainView: View {
         }
     }
 
-    // MARK: - Main content
-
-    private var mainContent: some View {
-        VStack(spacing: 0) {
-            // Toolbar
-            if !appState.bgRemoveItems.isEmpty {
-                HStack(spacing: 12) {
-                    Button {
-                        appState.bgRemoveItems = []
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 11, weight: .semibold))
-                            Text(LocalizedStringKey("convert.clearAll"))
-                                .font(.system(size: 13))
-                        }
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-
-                    Button {
-                        openFilePicker()
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: "plus")
-                                .font(.system(size: 11, weight: .semibold))
-                            Text(LocalizedStringKey("convert.addMore"))
-                                .font(.system(size: 13))
-                        }
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-
-                    Spacer()
-
-                    if appState.bgRemoveItems.contains(where: { $0.isProcessing }) {
-                        HStack(spacing: 8) {
-                            ProgressView().controlSize(.small)
-                            Text(LocalizedStringKey("bgremove.processing"))
-                                .font(.system(size: 12))
-                                .foregroundStyle(Color.secondary)
-                        }
-                    }
-                }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 12)
-                Divider()
-            }
-
-            if appState.bgRemoveItems.isEmpty {
-                dropZone
-            } else {
-                itemGrid
-            }
-        }
-    }
-
     // MARK: - Drop zone
 
     private var dropZone: some View {
@@ -296,23 +245,79 @@ private struct BgRemoveMainView: View {
         }
     }
 
-    // MARK: - Item grid (Before/After kart yapısı)
+    // MARK: - Item grid + Bottom bar (ConvertImageView yapısı — butonlar altta, tıklanabilir)
+    private var itemGridWithBottomBar: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 380, maximum: 520), spacing: 16)], spacing: 16) {
+                    ForEach($appState.bgRemoveItems) { $item in
+                        BgRemoveCard(
+                            item: $item,
+                            onRemove: { removeItem(item) },
+                            onTap: {
+                                if item.result != nil {
+                                    withAnimation(.easeInOut(duration: 0.18)) {
+                                        appState.bgRemovePreviewItemID = item.id
+                                    }
+                                }
+                            }
+                        )
+                    }
+                }
+                .padding(20)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onDrop(of: [UTType.image], isTargeted: $isDropTargeted) { providers in
+                handleDrop(providers: providers)
+            }
 
-    private var itemGrid: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 380, maximum: 520), spacing: 16)], spacing: 16) {
-                ForEach($appState.bgRemoveItems) { $item in
-                    BgRemoveCard(
-                        item: $item,
-                        onRemove: { removeItem(item) },
-                        onTap: { if item.result != nil { appState.bgRemovePreviewItemID = item.id } }
-                    )
+            Divider()
+
+            // Bottom Action Bar — orta alanın altında ortalanmış
+            HStack(spacing: 16) {
+                Spacer(minLength: 0)
+                Button {
+                    appState.bgRemoveItems = []
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 12))
+                        Text(LocalizedStringKey("convert.clearAll"))
+                            .font(.system(size: 13, weight: .medium))
+                    }
+                    .foregroundStyle(Color.primary.opacity(0.7))
+                }
+                .buttonStyle(.plain)
+                .handCursor()
+
+                Button {
+                    openFilePicker()
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 12, weight: .semibold))
+                        Text(LocalizedStringKey("convert.addMore"))
+                            .font(.system(size: 13, weight: .semibold))
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.regular)
+                .handCursor()
+
+                Spacer(minLength: 0)
+
+                if appState.bgRemoveItems.contains(where: { $0.isProcessing }) {
+                    HStack(spacing: 8) {
+                        ProgressView().controlSize(.small)
+                        Text(LocalizedStringKey("bgremove.processing"))
+                            .font(.system(size: 12))
+                            .foregroundStyle(Color.secondary)
+                    }
                 }
             }
-            .padding(20)
-        }
-        .onDrop(of: [UTType.image], isTargeted: $isDropTargeted) { providers in
-            handleDrop(providers: providers)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 24)
+            .padding(.vertical, 12)
         }
     }
 
@@ -466,6 +471,8 @@ private struct BgRemoveMainView: View {
 
     @MainActor
     private func processAll(_ newItems: [BgRemoveItem]) async {
+        appState.processingMenuItem = .bgRemove
+        defer { appState.processingMenuItem = nil }
         for item in newItems {
             guard let idx = appState.bgRemoveItems.firstIndex(where: { $0.id == item.id }) else { continue }
             appState.bgRemoveItems[idx].isProcessing = true
@@ -490,6 +497,8 @@ private struct BgRemoveMainView: View {
 
     @MainActor
     private func reprocessAll() async {
+        appState.processingMenuItem = .bgRemove
+        defer { appState.processingMenuItem = nil }
         let snapshot = appState.bgRemoveItems
         for item in snapshot {
             guard let idx = appState.bgRemoveItems.firstIndex(where: { $0.id == item.id }) else { continue }

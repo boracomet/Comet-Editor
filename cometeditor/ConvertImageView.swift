@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import os
 
 struct ConvertImageView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
@@ -16,7 +17,7 @@ struct ConvertImageView: View {
     @State private var scaleEnabled = false
     @State private var scaleSelection: String = "convert.scale.original"
     var scaleOptions: [String] {
-        ["convert.scale.original", "%75"]
+        ["convert.scale.original", "%75", "%50", "%25"]
     }
     @State private var customWidth: String = ""
     @State private var customHeight: String = ""
@@ -536,6 +537,7 @@ struct ConvertImageView: View {
                 // Convert Button
                 VStack {
                     Button {
+                        isProcessing = true
                         Task { await performConversion() }
                     } label: {
                         HStack {
@@ -575,8 +577,11 @@ struct ConvertImageView: View {
     // MARK: - Conversion Logic
     private func performConversion() async {
         guard let folderURL = appState.targetFolder else { return }
-
-        isProcessing = true
+        appState.processingMenuItem = .convertImage
+        defer {
+            isProcessing = false
+            appState.processingMenuItem = nil
+        }
 
         // Parse scale selection
         var mappedScaling: Double? = nil
@@ -622,12 +627,11 @@ struct ConvertImageView: View {
             var hasError = false
             for await result in group {
                 if case .failure(let error) = result {
-                    print("Failed to convert image: \(error.localizedDescription)")
+                    Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "ConvertImageView").error("Failed to convert image: \(error.localizedDescription)")
                     hasError = true
                 }
             }
 
-            isProcessing = false
             if !hasError {
                 showSuccessAlert = true
             }
@@ -635,15 +639,20 @@ struct ConvertImageView: View {
     }
 
     // MARK: - Helper Methods
+    private static let supportedImageTypes: [UTType] = {
+        let optionalTypes: [UTType?] = [
+            .image, .rawImage,
+            UTType("com.adobe.photoshop-image"),
+            UTType("com.adobe.illustrator.ai-image"),
+            UTType("com.adobe.encapsulated-postscript")
+        ]
+        return optionalTypes.compactMap { $0 }
+    }()
+
     private func handleDrop(_ providers: [NSItemProvider]) -> Bool {
         var handled = false
         for provider in providers {
-            let supportedTypes: [UTType] = [.image, .rawImage,
-                                          UTType("com.adobe.photoshop-image")!,
-                                          UTType("com.adobe.illustrator.ai-image")!,
-                                          UTType("com.adobe.encapsulated-postscript")!]
-
-            let isSupported = supportedTypes.contains { type in
+            let isSupported = Self.supportedImageTypes.contains { type in
                 provider.hasItemConformingToTypeIdentifier(type.identifier)
             }
 
@@ -666,10 +675,7 @@ struct ConvertImageView: View {
         panel.allowsMultipleSelection = true
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
-        panel.allowedContentTypes = [.image, .rawImage,
-                                   UTType("com.adobe.photoshop-image")!,
-                                   UTType("com.adobe.illustrator.ai-image")!,
-                                   UTType("com.adobe.encapsulated-postscript")!]
+        panel.allowedContentTypes = Self.supportedImageTypes
 
         if panel.runModal() == .OK {
             loadImages(from: panel.urls)

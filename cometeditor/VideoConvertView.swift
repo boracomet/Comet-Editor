@@ -18,7 +18,7 @@ struct VideoConvertView: View {
     // Advanced Settings
     @State private var fpsEnabled: Bool = false
     @State private var scaleEnabled: Bool = false
-    @State private var audioEnabled: Bool = false
+    @State private var removeAudio: Bool = false
     @State private var metadataEnabled: Bool = true
 
     @State private var selectedFPS: FPSLimit = .original
@@ -36,7 +36,7 @@ struct VideoConvertView: View {
     @State private var currentProcessingIndex: Int = 0
     @State private var totalProcessingCount: Int = 0
 
-    @StateObject private var processor = VideoProcessor()
+    @EnvironmentObject var processor: VideoProcessor
     @EnvironmentObject var windowState: WindowStateObserver
 
     var body: some View {
@@ -100,7 +100,7 @@ struct VideoConvertView: View {
                         Text(item.fileName)
                             .font(.system(size: 13, weight: .semibold))
                             .lineLimit(1)
-                        Text(item.fileSizeString + " · " + item.durationString + (item.resolutionString.map { " · \($0)" } ?? ""))
+                        Text([item.fileSizeString, item.durationString, item.resolutionString, item.fpsString].compactMap { $0 }.joined(separator: " · "))
                             .font(.system(size: 11))
                             .foregroundStyle(Color.secondary)
                     }
@@ -257,27 +257,47 @@ struct VideoConvertView: View {
             .handCursor()
             .frame(width: geo.size.width, height: geo.size.height)
             .clipShape(RoundedRectangle(cornerRadius: 8))
+            // Süre — kapak sol üst köşede
+            .overlay(alignment: .topLeading) {
+                Text(item.durationString)
+                    .font(.system(size: 9, weight: .semibold, design: .monospaced))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 3)
+                    .background(Color.black.opacity(0.55))
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .padding(6)
+            }
             // Bottom info bar
             .overlay(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 2) {
+                    if item.isCompleted, let savedStr = item.savedSizeString {
+                        Text(savedStr)
+                            .font(.system(size: 9, weight: .bold))
+                            .foregroundStyle(Color.green)
+                    }
+                    if item.isCompleted, let newSize = item.convertedSizeString {
+                        Text("\(NSLocalizedString("video.optimized", comment: "")): \(newSize)")
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundStyle(Color.green)
+                    }
                     Text(item.fileName)
                         .font(.system(size: 10, weight: .semibold))
                         .foregroundStyle(item.isCompleted ? Color.green : .white)
                         .lineLimit(1)
                         .truncationMode(.middle)
                     HStack(spacing: 4) {
-                        Text("\(item.fileSizeString) · \(item.durationString)")
+                        Text(item.fileSizeString)
                             .font(.system(size: 9))
                             .foregroundStyle(.white.opacity(0.75))
                         if let res = item.resolutionString {
-                            Text("· \(res)")
+                            Text("· \(res)\(item.fpsString.map { " · \($0)" } ?? "")")
                                 .font(.system(size: 9, design: .monospaced))
                                 .foregroundStyle(.white.opacity(0.65))
-                        }
-                        if let savedStr = item.savedSizeString {
-                            Text(savedStr)
-                                .font(.system(size: 9, weight: .bold))
-                                .foregroundStyle(Color.green)
+                        } else if let fps = item.fpsString {
+                            Text("· \(fps)")
+                                .font(.system(size: 9, design: .monospaced))
+                                .foregroundStyle(.white.opacity(0.65))
                         }
                     }
                 }
@@ -426,7 +446,7 @@ struct VideoConvertView: View {
                         Text("video.settings.audio.remove")
                             .font(.system(size: 13))
                         Spacer()
-                        Toggle("", isOn: $audioEnabled)
+                        Toggle("", isOn: $removeAudio)
                             .toggleStyle(.switch)
                             .controlSize(.small)
                             .labelsHidden()
@@ -512,23 +532,36 @@ struct VideoConvertView: View {
                             .foregroundStyle(Color.secondary)
                     }
 
-                    Button {
-                        performVideoConversion()
-                    } label: {
-                        HStack {
-                            if processor.isProcessing {
-                                ProgressView().controlSize(.small)
-                                Text(LocalizedStringKey("video.processing"))
-                            } else {
-                                Image(systemName: "video.fill")
-                                Text("convert.settings.convertButton")
+                    HStack(spacing: 12) {
+                        Button {
+                            performVideoConversion()
+                        } label: {
+                            HStack {
+                                if processor.isProcessing {
+                                    ProgressView().controlSize(.small)
+                                    Text(LocalizedStringKey("video.processing"))
+                                } else {
+                                    Image(systemName: "video.fill")
+                                    Text("convert.settings.convertButton")
+                                }
                             }
+                            .frame(maxWidth: .infinity)
                         }
-                        .frame(maxWidth: .infinity)
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
+                        .disabled(appState.targetFolder == nil || appState.selectedVideos.isEmpty || processor.isProcessing)
+
+                        if processor.isProcessing {
+                            Button {
+                                appState.videoConversionCancelled = true
+                                appState.videoConversionTask?.cancel()
+                            } label: {
+                                Text(LocalizedStringKey("video.cancel"))
+                            }
+                            .buttonStyle(.bordered)
+                            .controlSize(.large)
+                        }
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-                    .disabled(appState.targetFolder == nil || appState.selectedVideos.isEmpty || processor.isProcessing)
                 }
                 .padding(16)
             }
@@ -540,18 +573,26 @@ struct VideoConvertView: View {
     private func performVideoConversion() {
         guard let folder = appState.targetFolder else { return }
 
+        processor.isProcessing = true
+        processor.progress = 0
+
         // Reset old statuses
         for i in 0..<appState.selectedVideos.count {
             appState.selectedVideos[i].isCompleted = false
             appState.selectedVideos[i].savedSizeString = nil
+            appState.selectedVideos[i].convertedSizeString = nil
         }
 
         totalProcessingCount = appState.selectedVideos.count
         currentProcessingIndex = 0
 
-        Task {
+        appState.processingMenuItem = .videoConvert
+        appState.videoConversionCancelled = false
+        appState.videoConversionTask = Task {
             do {
                 for (index, video) in appState.selectedVideos.enumerated() {
+                    if Task.isCancelled { break }
+
                     await MainActor.run {
                         currentProcessingIndex = index + 1
                     }
@@ -570,7 +611,7 @@ struct VideoConvertView: View {
                     let settings = VideoConversionSettings(
                         fpsLimit: fpsEnabled ? selectedFPS : .original,
                         resolutionScale: scaleEnabled ? selectedScale : .original,
-                        removeAudio: !audioEnabled,
+                        removeAudio: removeAudio,
                         keepMetadata: metadataEnabled
                     )
 
@@ -581,7 +622,9 @@ struct VideoConvertView: View {
                         outputURL: outputURL,
                         format: selectedFormat,
                         quality: quality,
-                        settings: settings
+                        settings: settings,
+                        manageProcessingState: false,
+                        cancellationCheck: { appState.videoConversionCancelled }
                     )
 
                     let newSize = (try? FileManager.default.attributesOfItem(atPath: outputURL.path)[.size] as? Int64) ?? 0
@@ -601,16 +644,27 @@ struct VideoConvertView: View {
                         }
                     }
 
+                    let newSizeStr = newSize > 0 ? ByteCountFormatter.string(fromByteCount: newSize, countStyle: .file) : nil
+
                     await MainActor.run {
                         appState.selectedVideos[index].isCompleted = true
                         appState.selectedVideos[index].savedSizeString = savedStr
+                        appState.selectedVideos[index].convertedSizeString = newSizeStr
                     }
                 }
-                showSuccessAlert = true
+                if !Task.isCancelled {
+                    showSuccessAlert = true
+                }
             } catch {
-                currentError = error
-                showErrorAlert = true
+                if !Task.isCancelled && !(error is CancellationError) {
+                    currentError = error
+                    showErrorAlert = true
+                }
             }
+            processor.isProcessing = false
+            appState.processingMenuItem = nil
+            appState.videoConversionTask = nil
+            appState.videoConversionCancelled = false
         }
     }
 

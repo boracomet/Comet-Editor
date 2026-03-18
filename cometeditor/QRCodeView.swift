@@ -191,7 +191,7 @@ struct QRCodeView: View {
                 // Resolution Section
                 inspectorSection("qr.settings.resolution") {
                     VStack(alignment: .leading, spacing: 12) {
-                        // Preset Sizes
+                        // Preset Sizes — active only when selected and custom field not manually edited
                         HStack(spacing: 8) {
                             ForEach(sizeOptions, id: \.self) { size in
                                 Button {
@@ -210,7 +210,7 @@ struct QRCodeView: View {
                             }
                         }
 
-                        // Custom Size
+                        // Custom Size — when edited, presets deselect and this value is used
                         VStack(alignment: .leading, spacing: 4) {
                             Text("qr.settings.customSize")
                                 .font(.system(size: 11, weight: .medium))
@@ -219,7 +219,7 @@ struct QRCodeView: View {
                                 .textFieldStyle(.roundedBorder)
                                 .controlSize(.small)
                                 .onChange(of: customSize) { _ in
-                                    selectedSize = 0 // Deselect presets
+                                    selectedSize = 0
                                 }
                         }
                     }
@@ -314,7 +314,12 @@ struct QRCodeView: View {
         filter.message = Data(string.utf8)
 
         if let outputImage = filter.outputImage {
-            let currentSize = CGFloat(Int(customSize) ?? Int(selectedSize))
+            let parsedCustom = Int(customSize)
+            let currentSize: CGFloat = {
+                if let custom = parsedCustom, custom > 0 { return CGFloat(custom) }
+                if sizeOptions.contains(selectedSize) { return selectedSize }
+                return 512
+            }()
 
             // Apply foreground color; use clear background to avoid color mismatch
             let colorFilter = CIFilter.falseColor()

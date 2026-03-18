@@ -234,18 +234,30 @@ struct OCRView: View {
     }
 
     private func loadImage(url: URL) {
-        guard let img = NSImage(contentsOf: url) else { return }
-        appState.ocrImage = img
-        appState.ocrImageURL = url
+        appState.ocrIsProcessing = true
         appState.ocrRecognizedText = ""
         isEditing = false
-        Task { await recognizeText(in: img) }
+        Task {
+            // Load file data off the main thread, then construct NSImage on main thread
+            let data = await Task.detached { try? Data(contentsOf: url) }.value
+            guard let data, let img = NSImage(data: data) else {
+                await MainActor.run { appState.ocrIsProcessing = false }
+                return
+            }
+            await MainActor.run {
+                appState.ocrImage = img
+                appState.ocrImageURL = url
+            }
+            await recognizeText(in: img)
+        }
     }
 
     @MainActor
     private func recognizeText(in image: NSImage) async {
-        guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return }
-        appState.ocrIsProcessing = true
+        guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+            appState.ocrIsProcessing = false
+            return
+        }
         defer { appState.ocrIsProcessing = false }
 
         let request = VNRecognizeTextRequest()
@@ -258,13 +270,19 @@ struct OCRView: View {
         }
 
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-        do {
-            try handler.perform([request])
-            let observations = request.results ?? []
-            appState.ocrRecognizedText = observations
-                .compactMap { $0.topCandidates(1).first?.string }
-                .joined(separator: "\n")
-        } catch {
+        let result: Result<[String], Error> = await Task.detached {
+            do {
+                try handler.perform([request])
+                let observations = request.results ?? []
+                return .success(observations.compactMap { $0.topCandidates(1).first?.string })
+            } catch {
+                return .failure(error)
+            }
+        }.value
+        switch result {
+        case .success(let lines):
+            appState.ocrRecognizedText = lines.joined(separator: "\n")
+        case .failure(let error):
             appState.ocrRecognizedText = error.localizedDescription
         }
     }

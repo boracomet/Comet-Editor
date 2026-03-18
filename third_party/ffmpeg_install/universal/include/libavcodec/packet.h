@@ -398,10 +398,10 @@ AVPacketSideData *av_packet_side_data_new(AVPacketSideData **psd, int *pnb_sd,
 /**
  * Wrap existing data as packet side data.
  *
- * @param psd   pointer to an array of side data to which the side data should
+ * @param sd    pointer to an array of side data to which the side data should
  *              be added. *sd may be NULL, in which case the array will be
  *              initialized
- * @param pnb_sd pointer to an integer containing the number of entries in
+ * @param nb_sd pointer to an integer containing the number of entries in
  *              the array. The integer value will be increased by 1 on success.
  * @param type  side data type
  * @param data  a data array. It must be allocated with the av_malloc() family

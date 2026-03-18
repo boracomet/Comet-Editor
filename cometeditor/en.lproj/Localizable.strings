@@ -63,8 +63,10 @@
 "video.settings.metadata" = "METADATA PROTECTION";
 "video.settings.fps.desc" = "Videos above the entered FPS will be slowed down/limited.";
 "video.processing" = "Processing...";
+"video.cancel" = "Cancel";
 "video.saved.gain" = "saved";
 "video.saved.increased" = "(got larger)";
+"video.optimized" = "Optimized";
 
 "menu.document" = "DOCUMENT";
 "menu.pdfEdit" = "PDF Edit";
@@ -87,10 +89,12 @@
 "pdf.reorder.title" = "Page Order";
 "pdf.reorder.hint" = "Hold Ctrl to multi-select, then drag to reorder.";
 "pdf.reorder.save" = "Save Order";
+"pdf.reorder.saving" = "Saving...";
 "pdf.reorder.selectToDelete" = "Select pages to delete";
+"pdf.deleting" = "Deleting...";
 "pdf.reorder.selectedCount" = "%d pages selected";
 "pdf.tools.compressSection" = "REDUCE FILE SIZE";
-"pdf.tools.compress" = "Compress with WebP";
+"pdf.tools.compress" = "Compress with JPEG";
 "pdf.tools.targetFolder" = "TARGET FOLDER";
 "pdf.estimatedSize" = "Estimated Optimized Size";
 

@@ -12,6 +12,7 @@ struct cometeditorApp: App {
     @StateObject private var appState = GlobalAppState()
     @StateObject private var languageManager = LanguageManager.shared
     @StateObject private var windowState = WindowStateObserver()
+    @StateObject private var videoProcessor = VideoProcessor()
 
     var body: some Scene {
         WindowGroup {
@@ -21,6 +22,7 @@ struct cometeditorApp: App {
                 .environmentObject(appState)
                 .environmentObject(languageManager)
                 .environmentObject(windowState)
+                .environmentObject(videoProcessor)
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 1100, height: 700)

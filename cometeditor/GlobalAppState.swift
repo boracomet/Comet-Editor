@@ -1,7 +1,11 @@
 import SwiftUI
 import Foundation
 import Combine
+import os
 @preconcurrency import PDFKit
+
+// Hangi sekmede batch işlem devam ediyor (sidebar'da loader göstermek için)
+// Tab değişince işlem durmaz — Task view'dan bağımsız çalışır
 
 // MARK: - Models
 struct ImageItem: Identifiable, Equatable {
@@ -24,6 +28,7 @@ struct VideoItem: Identifiable, Equatable {
     
     var isCompleted: Bool = false
     var savedSizeString: String? = nil
+    var convertedSizeString: String? = nil
     
     var fileName: String { url.lastPathComponent }
 }
@@ -45,12 +50,34 @@ enum PDFViewMode {
     case reorder  // drag-to-reorder grid
 }
 
-// Snapshot of a full PDF document state for undo/redo
+// Snapshot of a full PDF document state for undo/redo (used for reorder/compress)
 struct PDFSnapshot {
     let documentData: Data // full serialized PDF
 }
 
+// Single deleted page stored for fast page-level undo/redo
+struct PDFDeletedPage {
+    let originalIndex: Int
+    let pageData: Data  // serialized single-page PDF (fast to capture/restore)
+}
+
+// Undo/redo entry: either a full doc snapshot (reorder, compress) or page-level op (deletion)
+enum PDFUndoEntry {
+    case fullSnapshot(PDFSnapshot)
+    /// Applying = re-insert stored pages at their original indices (undo of a deletion)
+    case pageInsertion([PDFDeletedPage])
+    /// Applying = re-delete pages at stored indices (redo of a deletion)
+    case pageDeletion([PDFDeletedPage])
+}
+
 class GlobalAppState: ObservableObject {
+    /// Hangi menü öğesinde batch işlem devam ediyor — sidebar'da loader gösterilir
+    @Published var processingMenuItem: MenuItem? = nil
+    /// Video dönüşüm task'ı — iptal için (VideoConvertView dışından da erişilebilir)
+    var videoConversionTask: Task<Void, Never>? = nil
+    /// Video dönüşümü iptal isteği — Task.detached içinden okunur (miras almaz)
+    var videoConversionCancelled: Bool = false
+
     // Shared File Lists
     @Published var selectedImages: [ImageItem] = []
     @Published var selectedVideos: [VideoItem] = []
@@ -64,45 +91,104 @@ class GlobalAppState: ObservableObject {
         didSet { savePDFFolderBookmark() }
     }
     @Published var pdfReorderPageOrder: [Int]? = nil
+    @Published var pdfIsDeletingPage = false
 
-    // Undo/Redo stacks (full document snapshots)
-    private(set) var pdfUndoStack: [PDFSnapshot] = []
-    private(set) var pdfRedoStack: [PDFSnapshot] = []
+    // Undo/Redo stacks
+    private(set) var pdfUndoStack: [PDFUndoEntry] = []
+    private(set) var pdfRedoStack: [PDFUndoEntry] = []
 
     var canUndo: Bool { !pdfUndoStack.isEmpty }
     var canRedo: Bool { !pdfRedoStack.isEmpty }
 
-    // Serialize the document state in the background and push onto the undo stack.
-    // Must be called AFTER the mutation so the UI updates instantly.
-    // PDFDocument.dataRepresentation() is called on a background thread via a
-    // detached Task; the document must not be mutated again until this completes,
-    // but for single-page deletions this is safe in practice.
+    // Push a full-document snapshot (used for reorder, compress, add-content)
     func pushPDFUndo(data: Data) {
-        pdfUndoStack.append(PDFSnapshot(documentData: data))
+        pdfUndoStack.append(.fullSnapshot(PDFSnapshot(documentData: data)))
+        pdfRedoStack = []
+        objectWillChange.send()
+    }
+
+    // Push a fast page-deletion undo entry (stores only deleted page(s), not the full doc)
+    func pushPageDeletionUndo(_ records: [PDFDeletedPage]) {
+        pdfUndoStack.append(.pageInsertion(records))
         pdfRedoStack = []
         objectWillChange.send()
     }
 
     func pdfUndo(document: PDFDocument) {
-        guard let snapshot = pdfUndoStack.popLast() else { return }
-        if let currentData = document.dataRepresentation() {
-            pdfRedoStack.append(PDFSnapshot(documentData: currentData))
+        guard let entry = pdfUndoStack.popLast() else { return }
+        switch entry {
+        case .fullSnapshot(let snapshot):
+            if let currentData = document.dataRepresentation() {
+                pdfRedoStack.append(.fullSnapshot(PDFSnapshot(documentData: currentData)))
+            }
+            restoreSnapshot(snapshot, into: document)
+
+        case .pageInsertion(let records):
+            // Undo a deletion: re-insert pages; push pageDeletion (same records) for redo
+            pdfRedoStack.append(.pageDeletion(records))
+            let sorted = records.sorted { $0.originalIndex < $1.originalIndex }
+            for record in sorted {
+                if let singleDoc = PDFDocument(data: record.pageData),
+                   let page = singleDoc.page(at: 0) {
+                    let insertAt = min(record.originalIndex, document.pageCount)
+                    document.insert(page, at: insertAt)
+                }
+            }
+            if let first = sorted.first {
+                pdfPageIndex = min(first.originalIndex, document.pageCount - 1)
+            }
+            pdfDocumentVersion += 1
+            objectWillChange.send()
+
+        case .pageDeletion:
+            // pageDeletion lives only in the redo stack, not the undo stack — ignore
+            break
         }
-        restoreSnapshot(snapshot, into: document)
     }
 
     func pdfRedo(document: PDFDocument) {
-        guard let snapshot = pdfRedoStack.popLast() else { return }
-        if let currentData = document.dataRepresentation() {
-            pdfUndoStack.append(PDFSnapshot(documentData: currentData))
+        guard let entry = pdfRedoStack.popLast() else { return }
+        switch entry {
+        case .fullSnapshot(let snapshot):
+            if let currentData = document.dataRepresentation() {
+                pdfUndoStack.append(.fullSnapshot(PDFSnapshot(documentData: currentData)))
+            }
+            restoreSnapshot(snapshot, into: document)
+
+        case .pageDeletion(let records):
+            // Redo a deletion: delete pages again; reuse stored records for undo
+            pdfUndoStack.append(.pageInsertion(records))
+            let sorted = records.sorted { $0.originalIndex > $1.originalIndex }
+            for record in sorted {
+                guard record.originalIndex < document.pageCount else { continue }
+                document.removePage(at: record.originalIndex)
+            }
+            pdfPageIndex = min(pdfPageIndex, max(0, document.pageCount - 1))
+            pdfDocumentVersion += 1
+            objectWillChange.send()
+
+        case .pageInsertion:
+            // pageInsertion lives only in the undo stack — ignore
+            break
         }
-        restoreSnapshot(snapshot, into: document)
     }
 
     func clearPDFHistory() {
         pdfUndoStack = []
         pdfRedoStack = []
         objectWillChange.send()
+    }
+
+    /// Updates selectedPDF's estimated file size when pages are deleted.
+    /// Uses proportional estimation: newSize ≈ oldSize × (newPageCount / oldPageCount)
+    func updateSelectedPDFSizeAfterPageDeletion(oldPageCount: Int, newPageCount: Int) {
+        guard let pdf = selectedPDF, oldPageCount > 0, newPageCount > 0 else { return }
+        let newBytes = Int64(Double(pdf.fileSizeBytes) * Double(newPageCount) / Double(oldPageCount))
+        let formatter = ByteCountFormatter()
+        formatter.allowedUnits = .useAll
+        formatter.countStyle = .file
+        let newSizeString = formatter.string(fromByteCount: newBytes)
+        selectedPDF = PDFItem(url: pdf.url, document: pdf.document, fileSizeString: newSizeString, fileSizeBytes: newBytes)
     }
 
     private func restoreSnapshot(_ snapshot: PDFSnapshot, into document: PDFDocument) {
@@ -118,6 +204,16 @@ class GlobalAppState: ObservableObject {
         }
         pdfPageIndex = min(pdfPageIndex, document.pageCount - 1)
         pdfDocumentVersion += 1
+        pdfReorderPageOrder = nil
+        // Update estimated file size from restored snapshot
+        let newBytes = Int64(snapshot.documentData.count)
+        if let pdf = selectedPDF, newBytes > 0 {
+            let formatter = ByteCountFormatter()
+            formatter.allowedUnits = .useAll
+            formatter.countStyle = .file
+            let newSizeString = formatter.string(fromByteCount: newBytes)
+            selectedPDF = PDFItem(url: pdf.url, document: pdf.document, fileSizeString: newSizeString, fileSizeBytes: newBytes)
+        }
         objectWillChange.send()
     }
 
@@ -176,7 +272,7 @@ class GlobalAppState: ObservableObject {
             let bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
             UserDefaults.standard.set(bookmarkData, forKey: bookmarkKey)
         } catch {
-            print("Failed to save folder bookmark: \(error.localizedDescription)")
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to save folder bookmark: \(error.localizedDescription)")
         }
     }
 
@@ -194,7 +290,7 @@ class GlobalAppState: ObservableObject {
                 DispatchQueue.main.async { self.targetFolder = url }
             }
         } catch {
-            print("Failed to resolve folder bookmark: \(error.localizedDescription)")
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to resolve folder bookmark: \(error.localizedDescription)")
         }
     }
 
@@ -207,7 +303,7 @@ class GlobalAppState: ObservableObject {
             let bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
             UserDefaults.standard.set(bookmarkData, forKey: pdfFolderBookmarkKey)
         } catch {
-            print("Failed to save PDF folder bookmark: \(error.localizedDescription)")
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to save PDF folder bookmark: \(error.localizedDescription)")
         }
     }
 
@@ -225,7 +321,7 @@ class GlobalAppState: ObservableObject {
                 DispatchQueue.main.async { self.pdfCompressionTargetFolder = url }
             }
         } catch {
-            print("Failed to resolve PDF folder bookmark: \(error.localizedDescription)")
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to resolve PDF folder bookmark: \(error.localizedDescription)")
         }
     }
 }

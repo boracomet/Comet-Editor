@@ -62,11 +62,8 @@ actor ImageProcessor {
             throw ImageProcessorError.sourceInvalid
         }
         
-        let options = NSMutableDictionary()
-        
-        // Quality Mapping (1-10 mapped to 0.1-1.0)
+        // Quality Mapping (0-10 slider → 0.1-1.0 for lossy formats)
         let normalizedQuality = min(max(quality / 10.0, 0.1), 1.0)
-        options[kCGImageDestinationLossyCompressionQuality] = normalizedQuality
         
         // Scale / Resize Logic
         var downsampleOptions: [CFString: Any] = [:]
@@ -105,7 +102,9 @@ actor ImageProcessor {
         if format == .webp || format == .avif {
             let codecFormat: CodecFormat = format == .webp ? .webp : .avif
             let isLossless = quality >= 10.0
-            let codecQuality = CodecQuality(value: Int(quality * 10.0), lossless: isLossless)
+            // 0-10 slider → 75-100 (kalite düşmesini önlemek için min 75)
+            let codecValue = isLossless ? 100 : max(75, min(100, Int(75 + (quality / 10.0) * 25)))
+            let codecQuality = CodecQuality(value: codecValue, lossless: isLossless)
             
             _ = try await CometImageCodec.shared.convert(
                 cgImage: cgImage,
@@ -126,7 +125,7 @@ actor ImageProcessor {
             throw ImageProcessorError.destinationCreationFailed
         }
         
-        // Handle Metadata
+        // Handle Metadata + Compression Quality (JPEG, HEIF, TIFF lossy vb.)
         var imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [CFString: Any] ?? [:]
         if !preserveMetadata {
             imageProperties.removeValue(forKey: kCGImagePropertyExifDictionary)
@@ -139,6 +138,8 @@ actor ImageProcessor {
                 imageProperties.removeValue(forKey: "{XMP}" as CFString)
             }
         }
+        // Kalite ayarını ekle — JPEG, HEIF, TIFF lossy için uygulanır; PNG/BMP/GIF yok sayar
+        imageProperties[kCGImageDestinationLossyCompressionQuality] = normalizedQuality
         
         CGImageDestinationAddImage(destination, cgImage, imageProperties as CFDictionary)
         

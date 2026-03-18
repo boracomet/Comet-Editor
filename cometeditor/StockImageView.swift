@@ -409,6 +409,8 @@ struct StockImageView: View {
                     }
 
                     Button {
+                        isDownloading = true
+                        downloadProgress = 0
                         Task { await downloadSelected() }
                     } label: {
                         HStack {
@@ -457,7 +459,26 @@ struct StockImageView: View {
             let (data, _) = try await URLSession.shared.data(for: request)
             let items = try JSONDecoder().decode([UnsplashRandomItem].self, from: data)
             photos = items.compactMap(\.toPhoto)
-            hasMore = false
+            hasMore = true  // Aşağı kaydırınca daha fazla random yüklensin
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    @MainActor
+    private func loadRandomMore() async {
+        guard searchQuery.isEmpty else { return }
+        isLoading = true
+        errorMessage = nil
+        defer { isLoading = false }
+
+        var request = URLRequest(url: URL(string: "https://api.unsplash.com/photos/random?count=30")!, cachePolicy: .reloadIgnoringLocalCacheData)
+        headers.forEach { request.setValue($1, forHTTPHeaderField: $0) }
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let items = try JSONDecoder().decode([UnsplashRandomItem].self, from: data)
+            photos.append(contentsOf: items.compactMap(\.toPhoto))
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -493,18 +514,27 @@ struct StockImageView: View {
 
     @MainActor
     private func loadMore() async {
-        currentPage += 1
-        await performSearch(reset: false)
+        if searchQuery.isEmpty {
+            await loadRandomMore()
+        } else {
+            currentPage += 1
+            await performSearch(reset: false)
+        }
     }
 
     // MARK: - Download
 
     @MainActor
     private func downloadSelected() async {
-        guard let folder = appState.targetFolder else { return }
-        isDownloading = true
-        downloadProgress = 0
-        defer { isDownloading = false }
+        guard let folder = appState.targetFolder else {
+            isDownloading = false
+            return
+        }
+        appState.processingMenuItem = .stockImage
+        defer {
+            isDownloading = false
+            appState.processingMenuItem = nil
+        }
 
         let toDownload = selectedPhotos
         let scaleFactor: Double
@@ -859,67 +889,72 @@ private struct StockPhotoPreviewModal: View {
     @State private var isLoading = true
 
     var body: some View {
-        ZStack {
-            Color.black.opacity(0.5)
-                .ignoresSafeArea()
-                .onTapGesture { onClose() }
+        GeometryReader { geo in
+            ZStack {
+                Color.black.opacity(0.5)
+                    .ignoresSafeArea()
+                    .onTapGesture { onClose() }
 
-            VStack(spacing: 0) {
-                // Header
-                HStack(spacing: 12) {
-                    Image(systemName: "photo")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(Color.accentColor)
-                    VStack(alignment: .leading, spacing: 2) {
-                        if let desc = photo.description {
-                            Text(desc)
-                                .font(.system(size: 13, weight: .semibold))
-                                .lineLimit(1)
+                VStack(spacing: 0) {
+                    // Header
+                    HStack(spacing: 12) {
+                        Image(systemName: "photo")
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(Color.accentColor)
+                        VStack(alignment: .leading, spacing: 2) {
+                            if let desc = photo.description {
+                                Text(desc)
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .lineLimit(1)
+                            }
+                            Link(destination: photo.unsplashURL) {
+                                Text(String(format: NSLocalizedString("stock.photo.by", comment: ""), photo.photographerName))
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(Color.accentColor)
+                            }
                         }
-                        Link(destination: photo.unsplashURL) {
-                            Text(String(format: NSLocalizedString("stock.photo.by", comment: ""), photo.photographerName))
-                                .font(.system(size: 11))
-                                .foregroundStyle(Color.accentColor)
+                        Spacer()
+                        Button { onClose() } label: {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundStyle(Color.secondary)
+                                .padding(7)
+                                .background(Color.primary.opacity(0.08))
+                                .clipShape(Circle())
+                        }
+                        .buttonStyle(.plain)
+                        .keyboardShortcut(.escape, modifiers: [])
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 14)
+
+                    Divider()
+
+                    ZStack {
+                        Color.black
+                        if isLoading {
+                            ProgressView()
+                                .controlSize(.large)
+                        }
+                        if let img = loadedImage {
+                            Image(nsImage: img)
+                                .resizable()
+                                .scaledToFit()
+                                .padding(16)
                         }
                     }
-                    Spacer()
-                    Button { onClose() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundStyle(Color.secondary)
-                            .padding(7)
-                            .background(Color.primary.opacity(0.08))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .keyboardShortcut(.escape, modifiers: [])
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 14)
-
-                Divider()
-
-                ZStack {
-                    Color.black
-                    if isLoading {
-                        ProgressView()
-                            .controlSize(.large)
-                    }
-                    if let img = loadedImage {
-                        Image(nsImage: img)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(16)
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(
+                    width: min(900, geo.size.width * 0.92),
+                    height: min(620, geo.size.height * 0.90)
+                )
+                .background(Color(NSColor.windowBackgroundColor))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .shadow(radius: 32)
             }
-            .frame(width: 900, height: 620)
-            .background(Color(NSColor.windowBackgroundColor))
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            .shadow(radius: 32)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .transition(.opacity.animation(.easeInOut(duration: 0.2)))
         .task {
             isLoading = true

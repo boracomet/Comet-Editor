@@ -12,6 +12,7 @@ import VideoToolbox
 import Combine
 import SwiftUI
 import CoreImage
+import os
 
 enum VideoConversionError: Error, LocalizedError {
     case invalidSource
@@ -41,21 +42,24 @@ class VideoProcessor: ObservableObject {
         cvc_engine_init()
     }
     
-    func convert(inputURL: URL, outputURL: URL, format: VideoFormat, quality: Double, settings: VideoConversionSettings? = nil) async throws {
-        self.isProcessing = true
-        self.progress = 0.0
-        
+    func convert(inputURL: URL, outputURL: URL, format: VideoFormat, quality: Double, settings: VideoConversionSettings? = nil, manageProcessingState: Bool = true, cancellationCheck: (() -> Bool)? = nil) async throws {
+        if manageProcessingState {
+            self.isProcessing = true
+            self.progress = 0.0
+        }
         defer {
-            self.isProcessing = false
+            if manageProcessingState {
+                self.isProcessing = false
+            }
         }
         
         // This hybrid process delegates Demuxing & Decoding to the C Core (FFmpeg),
         // and generates the final output using AVFoundation (Hardware Accelerated H.265/H.264 Encoder).
-        try await processWithCVCHybrid(input: inputURL, output: outputURL, format: format, quality: quality, settings: settings)
+        try await processWithCVCHybrid(input: inputURL, output: outputURL, format: format, quality: quality, settings: settings, cancellationCheck: cancellationCheck)
     }
     
     // MARK: - Core Hybrid Pipeline (C-Decoding -> Swift-Encoding)
-    private func processWithCVCHybrid(input: URL, output: URL, format: VideoFormat, quality: Double, settings: VideoConversionSettings?) async throws {
+    private func processWithCVCHybrid(input: URL, output: URL, format: VideoFormat, quality: Double, settings: VideoConversionSettings?, cancellationCheck: (() -> Bool)? = nil) async throws {
         // 1. Initialize C Decoder Context
         var info = CVCVideoInfo()
         var readResult: CVCResult = CVC_SUCCESS
@@ -64,7 +68,7 @@ class VideoProcessor: ObservableObject {
         
         guard let ctx = ctx, readResult == CVC_SUCCESS else {
             let errorMsg = String(cString: cvc_get_error_string(readResult))
-            print("CVC Decoder Open Failed: \(errorMsg)")
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "VideoProcessor").error("CVC Decoder Open Failed: \(errorMsg)")
             throw VideoConversionError.decoderError
         }
         
@@ -96,18 +100,31 @@ class VideoProcessor: ObservableObject {
         let finalHeight = targetHeight % 2 == 0 ? targetHeight : targetHeight - 1
         
         // Convert our generic 0-10 quality scale to an AVFoundation bitrate heuristic
-        // minBPP (0.01) -> Extremely small size, noticeable artifacts.
-        // maxBPP (0.15) -> Excellent quality, larger size.
         let minBPP: Double = 0.01
         let maxBPP: Double = 0.15
         let bpp = minBPP + (quality / 10.0) * (maxBPP - minBPP)
         
         let originalFramerate = info.framerate > 0 ? info.framerate : 30.0
         let targetFramerate = settings?.fpsLimit.value ?? originalFramerate
-        // Cap target framerate so we don't accidentally "speed up" or calculate higher bitrate if limit > original
         let finalFramerate = min(targetFramerate, originalFramerate)
         
-        let targetBitrate = Double(finalWidth * finalHeight) * finalFramerate * bpp
+        let targetBitrate: Double
+        let isReducingFps = finalFramerate < originalFramerate - 0.5
+        let frameDuration = info.duration_sec
+        
+        if isReducingFps, frameDuration > 0,
+           let attrs = try? FileManager.default.attributesOfItem(atPath: input.path),
+           let fileSize = attrs[.size] as? Int64, fileSize > 0 {
+            // FPS düşürülüyorsa kaynak bitrate'e göre hedef belirle (boyut artışını önler)
+            let sourceBitsPerSec = Double(fileSize) * 8.0 / frameDuration
+            let videoRatio = 0.85
+            let sourceVideoBps = sourceBitsPerSec * videoRatio
+            let derivedBitrate = sourceVideoBps * (finalFramerate / originalFramerate)
+            let minBitrate = 500_000.0
+            targetBitrate = max(derivedBitrate, minBitrate)
+        } else {
+            targetBitrate = Double(finalWidth * finalHeight) * finalFramerate * bpp
+        }
         
         let videoSettings: [String: Any] = [
             AVVideoCodecKey: compressionCodec,
@@ -148,12 +165,10 @@ class VideoProcessor: ObservableObject {
         
         // --- Metadata Preservation ---
         if settings?.keepMetadata ?? true {
-             let assetForMetadata = AVURLAsset(url: input)
-             Task {
-                 if let metadata = try? await assetForMetadata.load(.metadata) {
-                     writer.metadata = metadata
-                 }
-             }
+            let assetForMetadata = AVURLAsset(url: input)
+            if let metadata = try? await assetForMetadata.load(.metadata) {
+                writer.metadata = metadata
+            }
         }
         
         // --- Audio Logic (Placeholder for future bridge mapping) ---
@@ -175,12 +190,10 @@ class VideoProcessor: ObservableObject {
         }
         
         // 4. Decode loop
-        let frameDuration = info.duration_sec
         var currentPTS: Double = 0.0
         
         let fpsLimit = settings?.fpsLimit.value
-        let minFrameDeltaSecs: Double? = fpsLimit != nil ? (1.0 / fpsLimit!) : nil
-        var lastAppendedPTS: Double = -1.0
+        let needsFpsLimit = fpsLimit != nil && fpsLimit! < originalFramerate - 0.01
         
         let needsScaling = (finalWidth != info.width) || (finalHeight != info.height)
         let ciContext = CIContext(options: [.cacheIntermediates: false]) // Fast CoreImage context for hardware scaling
@@ -207,9 +220,13 @@ class VideoProcessor: ObservableObject {
         
         // 4. Start processing
         // Push the processing to a background detached task context to not freeze UI
+        let checkCancel = cancellationCheck
         let finalStatus = await Task.detached(priority: .userInitiated) { () -> Bool in
             var isFinished = false
+            var outputFrameCount = 0
+            var lastOutputIndex: Int = -1
             while !isFinished {
+                if checkCancel?() == true { return false }
                 let success: Bool = autoreleasepool {
                     var cvcFrame = CVCVideoFrame()
                     let readResult = cvc_decoder_read_video_frame(ctx, &cvcFrame)
@@ -222,11 +239,14 @@ class VideoProcessor: ObservableObject {
                         return false 
                     }
                     
-                    if let minDelta = minFrameDeltaSecs, lastAppendedPTS >= 0 {
-                        if (cvcFrame.pts_sec - lastAppendedPTS) < minDelta {
+                    // FPS limit: output first source frame in each output frame "bucket" (fixes 60->24 giving 20fps)
+                    if needsFpsLimit, let limit = fpsLimit {
+                        let outputIndex = Int(cvcFrame.pts_sec * limit)
+                        if outputIndex <= lastOutputIndex {
                             cvc_video_frame_free(&cvcFrame)
                             return true
                         }
+                        lastOutputIndex = outputIndex
                     }
                     
                     while !writerInput.isReadyForMoreMediaData {
@@ -310,31 +330,42 @@ class VideoProcessor: ObservableObject {
                             CVPixelBufferUnlockBaseAddress(pb, [])
                         }
                         
-                        let time = CMTime(seconds: cvcFrame.pts_sec, preferredTimescale: 600)
+                        // Use synthetic timestamps for CFR output (avoids 22fps etc. from VFR/source PTS)
+                        let outputPTS = Double(outputFrameCount) / finalFramerate
+                        let time = CMTime(seconds: outputPTS, preferredTimescale: 600)
                         pixelBufferAdaptor.append(pb, withPresentationTime: time)
                         
-                        lastAppendedPTS = cvcFrame.pts_sec
+                        outputFrameCount += 1
                         currentPTS = cvcFrame.pts_sec
                     }
                     
+                    let videoPTS = cvcFrame.pts_sec
                     cvc_video_frame_free(&cvcFrame)
                     
-                    // 2. Audio Sync: Catch up audio to video PTS
-                    if shouldIncludeAudio, let aInput = audioInput {
-                        var aFrame = CVCAudioFrame()
-                        while cvc_decoder_read_audio_frame(ctx, &aFrame) == CVC_SUCCESS {
-                            if aFrame.internal_frame == nil { break }
-                            
-                            while !aInput.isReadyForMoreMediaData {
-                                usleep(1_000)
+                    // 2. Audio Sync or Drain
+                    if hasAudio {
+                        if shouldIncludeAudio, let aInput = audioInput {
+                            var aFrame = CVCAudioFrame()
+                            while cvc_decoder_read_audio_frame(ctx, &aFrame) == CVC_SUCCESS {
+                                if aFrame.internal_frame == nil { break }
+                                
+                                var waitCount = 0
+                                while !aInput.isReadyForMoreMediaData {
+                                    usleep(1_000)
+                                    waitCount += 1
+                                    if waitCount > 5000 || writer.status == .failed { break }
+                                }
+                                if writer.status == .failed { cvc_audio_frame_free(&aFrame); break }
+                                
+                                self.appendAudioFrame(aFrame, to: aInput)
+                                let aPTS = aFrame.pts_sec
+                                cvc_audio_frame_free(&aFrame)
+                                
+                                if aPTS > videoPTS { break }
                             }
-                            
-                            self.appendAudioFrame(aFrame, to: aInput)
-                            let aPTS = aFrame.pts_sec
-                            cvc_audio_frame_free(&aFrame)
-                            
-                            // Sync: If audio is already ahead of current video frame, stop catching up for this iteration
-                            if aPTS > cvcFrame.pts_sec { break }
+                        } else {
+                            // Ses kaldırıldığında sadece queue'dan boşalt (dosyadan okumaz, video paketi kaybı yok)
+                            _ = cvc_decoder_drain_audio_queue(ctx)
                         }
                     }
                     
@@ -342,6 +373,7 @@ class VideoProcessor: ObservableObject {
                 }
                 
                 if !success { return false }
+                if checkCancel?() == true { return false }
                 
                 Task { @MainActor in
                     if frameDuration > 0 {
@@ -354,6 +386,9 @@ class VideoProcessor: ObservableObject {
         
         if !finalStatus {
             writer.cancelWriting()
+            if checkCancel?() == true {
+                throw CancellationError()
+            }
             throw VideoConversionError.decoderError
         }
         

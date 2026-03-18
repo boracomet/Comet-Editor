@@ -86,10 +86,11 @@ final class GoogleFontsService: ObservableObject {
 
         let sortParam: String
         switch sortBy {
-        case .trending:  sortParam = "trending"
-        case .popular:   sortParam = "popularity"
-        case .newest:    sortParam = "date"
-        case .alpha:     sortParam = "alpha"
+        case .trending:   sortParam = "trending"
+        case .popular:    sortParam = "popularity"
+        case .newest:     sortParam = "date"
+        case .alpha:      sortParam = "alpha"
+        case .alphaDesc:  sortParam = "alpha"
         }
 
         guard let url = URL(string: "\(Self.baseURL)?key=\(Self.apiKey)&sort=\(sortParam)") else {
@@ -101,7 +102,7 @@ final class GoogleFontsService: ObservableObject {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let decoded = try JSONDecoder().decode(GoogleFontsResponse.self, from: data)
-            allFonts = decoded.items.map { item in
+            var loaded = decoded.items.map { item in
                 GoogleFont(
                     id: item.family,
                     family: item.family,
@@ -112,7 +113,11 @@ final class GoogleFontsService: ObservableObject {
                     previewText: nil
                 )
             }
-            fonts = allFonts
+            if sortBy == .alphaDesc {
+                loaded.reverse()
+            }
+            allFonts = loaded
+            fonts = loaded
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -158,10 +163,11 @@ struct GoogleFontItem: Decodable {
 // MARK: - Sort Option
 
 enum SortOption: String, CaseIterable {
-    case trending = "Trending"
-    case popular  = "Most Popular"
-    case newest   = "Newest"
-    case alpha    = "A–Z"
+    case trending  = "Trending"
+    case popular   = "Most Popular"
+    case newest    = "Newest"
+    case alpha     = "A–Z"
+    case alphaDesc = "Z–A"
 }
 
 // MARK: - Writing Systems
@@ -233,7 +239,7 @@ struct FontDownloadView: View {
 
             // Right Inspector
             rightInspector
-                .frame(width: 220)
+                .frame(width: 260)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
@@ -684,7 +690,7 @@ private struct FontDetailModal: View {
                             .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .stroke(Color.primary.opacity(0.1), lineWidth: 0.5))
                     )
-                    .frame(width: 220)
+                    .frame(width: 260)
 
                     // Font size slider
                     HStack(spacing: 6) {
