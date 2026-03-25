@@ -14,6 +14,7 @@
 		94E67E89A161288155BB6D18 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A0EE17DE5E26880FA3638198 /* libbz2.tbd */; };
 		CA7BBB6C6D783CFA4D89AA62 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */; };
 		FF001A2B3C4D5E6F7A8B9C0D /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */; };
+		FF002A2B3C4D5E6F7A8B9C0D /* ffprobe in Resources */ = {isa = PBXBuildFile; fileRef = FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		F96E19BF2F58C27F005B69FE /* Comet Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comet Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffmpeg; path = "third_party/ffmpeg/universal/ffmpeg"; sourceTree = "<group>"; };
+		FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffprobe; path = "third_party/ffmpeg/universal/ffprobe"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -74,6 +76,7 @@
 				309BDE0CA2938F0A4A06AAD5 /* cometeditor-Bridging-Header.h */,
 				0F64DA2CB5A5B9AB3A4B9D3B /* Frameworks */,
 				FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */,
+				FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF001A2B3C4D5E6F7A8B9C0D /* ffmpeg in Resources */,
+				FF002A2B3C4D5E6F7A8B9C0D /* ffprobe in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

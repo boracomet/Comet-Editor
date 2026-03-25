@@ -43,7 +43,7 @@ public struct CodecQuality {
 
 // MARK: - MagickWand Bridge
 
-private let logger = Logger(subsystem: "com.cometeditor", category: "CometImageCodec")
+nonisolated(unsafe) private let logger = Logger(subsystem: "com.cometeditor", category: "CometImageCodec")
 
 public class CometImageCodec {
     public static let shared = CometImageCodec()

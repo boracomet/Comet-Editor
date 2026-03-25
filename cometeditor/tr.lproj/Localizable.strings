@@ -90,6 +90,13 @@
 "pdf.estimatedSize" = "Tahmini Optimize Boyutu";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF Optimize Et";
+"pdf.tools.quality" = "KALİTE";
+"pdf.tools.quality.label" = "Görüntü Kalitesi";
+"pdf.tools.quality.small" = "Küçük dosya";
+"pdf.tools.quality.large" = "Yüksek kalite";
+"pdf.color.title" = "RGB/CMYK DÖNÜŞTÜRÜCÜ";
+"pdf.color.enable" = "Renk Uzayı Dönüştür";
+"pdf.color.convert" = "Dönüştür & Kaydet";
 "pdf.tools.save" = "PDF Kaydet";
 "pdf.reorder.title" = "Sayfa Sırası";
 "pdf.reorder.hint" = "Ctrl basılı tutarak çoklu seçim yapın, sürükleyerek sıralayın.";

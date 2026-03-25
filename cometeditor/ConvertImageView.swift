@@ -71,7 +71,23 @@ struct ConvertImageView: View {
                 defer { url.stopAccessingSecurityScopedResource() }
                 let ext = url.pathExtension.lowercased()
                 let fullImage: NSImage?
-                if ext == "svg" || ext == "ai" || ext == "pdf" {
+                if ext == "svg" || ext == "ai" {
+                    // macOS NSImage natively renders SVG and AI (PDF-based)
+                    fullImage = NSImage(contentsOf: url)
+                } else if ext == "psd" {
+                    // PSD: try NSImage first (macOS may handle it), else QuickLook
+                    if let nsImg = NSImage(contentsOf: url) {
+                        fullImage = nsImg
+                    } else {
+                        let request = QLThumbnailGenerator.Request(
+                            fileAt: url,
+                            size: CGSize(width: 4096, height: 4096),
+                            scale: 2.0,
+                            representationTypes: .all
+                        )
+                        fullImage = (try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request))?.nsImage
+                    }
+                } else if ext == "pdf" {
                     let request = QLThumbnailGenerator.Request(
                         fileAt: url,
                         size: CGSize(width: 4096, height: 4096),
@@ -654,8 +670,29 @@ struct ConvertImageView: View {
             // CGImage yükle
             var cgImage: CGImage? = nil
 
-            if ext == "svg" || ext == "ai" || ext == "pdf" {
-                // Vektör/PDF formatları: QuickLook ile rasterize et
+            if ext == "svg" || ext == "ai" {
+                // macOS NSImage natively renders SVG and AI (PDF-based)
+                if let nsImg = NSImage(contentsOf: url) {
+                    var rect = CGRect(origin: .zero, size: nsImg.size)
+                    cgImage = nsImg.cgImage(forProposedRect: &rect, context: nil, hints: nil)
+                }
+            } else if ext == "psd" {
+                // PSD: try NSImage first (macOS may handle it), else QuickLook
+                if let nsImg = NSImage(contentsOf: url) {
+                    var rect = CGRect(origin: .zero, size: nsImg.size)
+                    cgImage = nsImg.cgImage(forProposedRect: &rect, context: nil, hints: nil)
+                } else {
+                    let request = QLThumbnailGenerator.Request(
+                        fileAt: url,
+                        size: CGSize(width: 4096, height: 4096),
+                        scale: 1.0,
+                        representationTypes: .all
+                    )
+                    if let thumb = try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request) {
+                        cgImage = thumb.nsImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
+                    }
+                }
+            } else if ext == "pdf" {
                 let request = QLThumbnailGenerator.Request(
                     fileAt: url,
                     size: CGSize(width: 4096, height: 4096),
@@ -827,8 +864,33 @@ struct ConvertImageView: View {
                 var nsImage: NSImage? = nil
                 let ext0 = url.pathExtension.lowercased()
 
-                if ext0 == "svg" || ext0 == "ai" || ext0 == "pdf" {
-                    // Use QuickLook for vector formats — same quality as Finder previews
+                if ext0 == "svg" || ext0 == "ai" {
+                    // macOS NSImage natively renders SVG and AI (PDF-based)
+                    if let img = NSImage(contentsOf: url) {
+                        nsImage = img
+                        let sz = img.size
+                        dimStr = sz.width > 0 ? "\(Int(sz.width))×\(Int(sz.height))" : ""
+                    }
+                } else if ext0 == "psd" {
+                    // PSD: try NSImage first, else QuickLook
+                    if let img = NSImage(contentsOf: url) {
+                        nsImage = img
+                        let sz = img.size
+                        dimStr = sz.width > 0 ? "\(Int(sz.width))×\(Int(sz.height))" : ""
+                    } else {
+                        let request = QLThumbnailGenerator.Request(
+                            fileAt: url,
+                            size: CGSize(width: 720, height: 720),
+                            scale: 2.0,
+                            representationTypes: .all
+                        )
+                        if let thumb = try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request) {
+                            nsImage = thumb.nsImage
+                            let sz = thumb.nsImage.size
+                            dimStr = sz.width > 0 ? "\(Int(sz.width))×\(Int(sz.height))" : ""
+                        }
+                    }
+                } else if ext0 == "pdf" {
                     let request = QLThumbnailGenerator.Request(
                         fileAt: url,
                         size: CGSize(width: 720, height: 720),

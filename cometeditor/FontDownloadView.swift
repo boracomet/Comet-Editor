@@ -436,6 +436,7 @@ struct FontDownloadView: View {
                     }
                     .pickerStyle(.menu)
                     .frame(maxWidth: .infinity)
+                    .padding(.horizontal, -16)
                 }
 
             }

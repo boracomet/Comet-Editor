@@ -23,6 +23,17 @@ struct PDFEditView: View {
     // Compression state
     @State private var isCompressing = false
     @State private var compressionProgress: Double = 0
+    /// 10–90: JPEG quality (lower = smaller file)
+    @State private var compressionQuality: Double = 40
+
+    // Color conversion state
+    enum ColorTarget: String, CaseIterable {
+        case rgb = "RGB", cmyk = "CMYK"
+    }
+    @State private var colorConversionEnabled: Bool = false
+    @State private var colorTarget: ColorTarget = .rgb
+    @State private var isConvertingColor = false
+    @State private var colorConversionProgress: Double = 0
 
     // Reorder state (lifted so inspector can access)
     @State private var reorderSelectedPositions: Set<Int> = []
@@ -145,10 +156,10 @@ struct PDFEditView: View {
                         Text("•")
                         Text(pdf.fileSizeString)
                         if pdf.fileSizeBytes > 0 {
-                            // WebP tabanlı optimize: tipik kazanım %40-60
-                            // 150 DPI render + WebP q82 → ortalama %50 küçülme
+                            // Tahmini boyut: quality oranına göre 5%-50% küçülme
+                            let ratio = max(0.05, min(0.50, compressionQuality / 100.0 * 0.55))
                             let optimized = ByteCountFormatter.string(
-                                fromByteCount: Int64(Double(pdf.fileSizeBytes) * 0.50),
+                                fromByteCount: Int64(Double(pdf.fileSizeBytes) * ratio),
                                 countStyle: .file
                             )
                             Text("→").foregroundStyle(Color.secondary.opacity(0.5))
@@ -489,6 +500,64 @@ struct PDFEditView: View {
 
                     Divider()
 
+                    // Renk Uzayı Dönüşümü
+                    inspectorSection("pdf.color.title") {
+                        VStack(alignment: .leading, spacing: 10) {
+                            // Toggle satırı
+                            HStack {
+                                Text(LocalizedStringKey("pdf.color.enable"))
+                                    .font(.system(size: 12))
+                                Spacer()
+                                Toggle("", isOn: $colorConversionEnabled)
+                                    .toggleStyle(.switch)
+                                    .controlSize(.small)
+                                    .disabled(isConvertingColor)
+                            }
+
+                            // Hedef seçici — sadece toggle açıksa
+                            if colorConversionEnabled {
+                                Picker("", selection: $colorTarget) {
+                                    ForEach(ColorTarget.allCases, id: \.self) { t in
+                                        Text(t.rawValue).tag(t)
+                                    }
+                                }
+                                .pickerStyle(.segmented)
+                                .frame(maxWidth: .infinity)
+                                .disabled(isConvertingColor || isCompressing)
+                            }
+                        }
+                    }
+
+                    Divider()
+
+                    // Kalite Ayarı
+                    inspectorSection("pdf.tools.quality") {
+                        VStack(alignment: .leading, spacing: 6) {
+                            HStack {
+                                Text(LocalizedStringKey("pdf.tools.quality.label"))
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(Color.secondary)
+                                Spacer()
+                                Text("\(Int(compressionQuality))%")
+                                    .font(.system(size: 11, weight: .semibold, design: .monospaced))
+                                    .foregroundStyle(Color.accentColor)
+                            }
+                            Slider(value: $compressionQuality, in: 10...90, step: 5)
+                                .disabled(isCompressing)
+                            HStack {
+                                Text(LocalizedStringKey("pdf.tools.quality.small"))
+                                    .font(.system(size: 10))
+                                    .foregroundStyle(Color.secondary.opacity(0.7))
+                                Spacer()
+                                Text(LocalizedStringKey("pdf.tools.quality.large"))
+                                    .font(.system(size: 10))
+                                    .foregroundStyle(Color.secondary.opacity(0.7))
+                            }
+                        }
+                    }
+
+                    Divider()
+
                     // Hedef Klasör
                     inspectorSection("pdf.tools.targetFolder") {
                         VStack(alignment: .leading, spacing: 10) {
@@ -523,11 +592,12 @@ struct PDFEditView: View {
                                 .controlSize(.small)
                             }
 
-                            if isCompressing {
+                            if isCompressing || isConvertingColor {
+                                let prog = isConvertingColor ? colorConversionProgress : compressionProgress
                                 VStack(alignment: .leading, spacing: 4) {
-                                    ProgressView(value: compressionProgress, total: 1.0)
+                                    ProgressView(value: prog, total: 1.0)
                                         .progressViewStyle(.linear)
-                                    Text("%\(Int(compressionProgress * 100))")
+                                    Text("%\(Int(prog * 100))")
                                         .font(.system(size: 10, weight: .medium, design: .monospaced))
                                         .foregroundStyle(Color.secondary)
                                 }
@@ -540,22 +610,30 @@ struct PDFEditView: View {
                     // Optimize + Save
                     VStack(spacing: 10) {
                         Button {
-                            if let pdf = pdf { Task { await compressPDF(pdf) } }
+                            if let pdf = pdf {
+                                Task {
+                                    if colorConversionEnabled {
+                                        await convertColorSpace(pdf, target: colorTarget)
+                                    } else {
+                                        await compressPDF(pdf, quality: Int(compressionQuality))
+                                    }
+                                }
+                            }
                         } label: {
                             HStack(spacing: 8) {
-                                if isCompressing {
+                                if isCompressing || isConvertingColor {
                                     ProgressView().controlSize(.small)
                                     Text(LocalizedStringKey("video.processing"))
                                 } else {
-                                    Image(systemName: "arrow.down.circle.fill")
-                                    Text(LocalizedStringKey("pdf.tools.optimize"))
+                                    Image(systemName: colorConversionEnabled ? "arrow.triangle.2.circlepath" : "arrow.down.circle.fill")
+                                    Text(LocalizedStringKey(colorConversionEnabled ? "pdf.color.convert" : "pdf.tools.optimize"))
                                 }
                             }
                             .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
-                        .disabled(appState.pdfCompressionTargetFolder == nil || isCompressing || pdf == nil)
+                        .disabled(appState.pdfCompressionTargetFolder == nil || isCompressing || isConvertingColor || pdf == nil)
 
                         Button {
                             if let pdf = pdf { savePDF(pdf) }
@@ -686,10 +764,10 @@ struct PDFEditView: View {
     }
 
 
-    /// Her sayfayı WebP'ye çevirip yeni bir PDF oluşturur.
-    /// WebP, JPEG'den daha iyi sıkıştırma sunar ve PDF içinde PNG/JPEG yerine kullanılabilir.
+    /// Her sayfayı JPEG'e çevirip yeni bir PDF oluşturur.
+    /// quality: 10–90 arası JPEG kalitesi (düşük = küçük dosya, yüksek = kaliteli)
     @MainActor
-    private func compressPDF(_ pdf: PDFItem) async {
+    private func compressPDF(_ pdf: PDFItem, quality: Int = 40) async {
         guard let document = pdf.document,
               let targetFolder = appState.pdfCompressionTargetFolder else { return }
 
@@ -705,12 +783,13 @@ struct PDFEditView: View {
             counter += 1
         }
 
-        // 150 DPI: kalite/boyut dengesi için iyi nokta
-        let dpi: CGFloat = 150.0
-        var mediaBox = CGRect.zero
-        guard let ctx = CGContext(outputURL as CFURL, mediaBox: &mediaBox, nil) else { return }
+        // DPI: quality 10-30 → 96, 31-60 → 120, 61-90 → 150
+        let dpi: CGFloat = quality <= 30 ? 96.0 : (quality <= 60 ? 120.0 : 150.0)
+        // JPEG compression factor: quality 10→0.05, 90→0.90
+        let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
 
         let pageCount = document.pageCount
+        let outDoc = PDFDocument()
 
         for i in 0..<pageCount {
             guard !Task.isCancelled else { break }
@@ -740,54 +819,114 @@ struct PDFEditView: View {
 
             guard let cgImage else { continue }
 
-            // 2. WebP olarak encode et (ImageMagick via CometImageCodec)
-            //    Geçici bir URL'e yaz, sonra oku, PDF'e ekle
-            let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory())
-                .appendingPathComponent("pdf_page_\(i)_\(UUID().uuidString).webp")
-
-            var finalImage: CGImage = cgImage
-            do {
-                let quality = CodecQuality(value: 82)
-                _ = try await CometImageCodec.shared.convert(
-                    cgImage: cgImage,
-                    outputURL: tmpURL,
-                    format: .webp,
-                    quality: quality
-                )
-                // WebP'yi geri oku ve CGImage'a çevir
-                if let webpData = try? Data(contentsOf: tmpURL),
-                   let src = CGImageSourceCreateWithData(webpData as CFData, nil),
-                   let decoded = CGImageSourceCreateImageAtIndex(src, 0, nil) {
-                    finalImage = decoded
+            // 2. JPEG olarak sıkıştır → NSImage → PDFPage
+            //    PDFPage(image:) sayfa içeriğini JPEG olarak PDF'e gömer — raw bitmap yazmaz
+            let nsImage = NSImage(cgImage: cgImage, size: NSSize(width: pxW, height: pxH))
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let jpegData = bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: jpegFactor as NSNumber]) {
+                // JPEG'den NSImage oluştur — PDF sayfasına bu sıkıştırılmış veriyi göm
+                let jpegImage = NSImage(data: jpegData) ?? nsImage
+                if let newPage = PDFPage(image: jpegImage) {
+                    // Orijinal sayfa boyutunu koru
+                    newPage.setBounds(bounds, for: .mediaBox)
+                    outDoc.insert(newPage, at: i)
                 }
-                try? FileManager.default.removeItem(at: tmpURL)
-            } catch {
-                // WebP başarısız olursa JPEG fallback
-                let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-                if let jpegData = bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: 0.55 as NSNumber]),
-                   let provider = CGDataProvider(data: jpegData as CFData),
-                   let decoded = CGImage(jpegDataProviderSource: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) {
-                    finalImage = decoded
-                }
+            } else if let newPage = PDFPage(image: nsImage) {
+                newPage.setBounds(bounds, for: .mediaBox)
+                outDoc.insert(newPage, at: i)
             }
-
-            // 3. Sayfayı orijinal boyutlarında PDF'e ekle
-            var pageBox = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
-            ctx.beginPDFPage([
-                kCGPDFContextMediaBox: NSData(bytes: &pageBox, length: MemoryLayout<CGRect>.size)
-            ] as CFDictionary)
-            ctx.draw(finalImage, in: pageBox)
-            ctx.endPDFPage()
 
             compressionProgress = Double(i + 1) / Double(pageCount)
         }
 
-        ctx.closePDF()
+        // PDF'i diske yaz
+        outDoc.write(to: outputURL)
         compressionProgress = 1.0
         CometAnalytics.shared.trackEvent(
             page: "pdfEdit",
             eventType: .pdfEdited,
-            metadata: ["action": "compress", "pages": pageCount]
+            metadata: ["action": "compress", "pages": pageCount, "quality": quality]
+        )
+    }
+
+    /// Her sayfayı hedef renk uzayında re-render ederek yeni PDF oluşturur.
+    @MainActor
+    private func convertColorSpace(_ pdf: PDFItem, target: ColorTarget) async {
+        guard let document = pdf.document,
+              let targetFolder = appState.pdfCompressionTargetFolder else { return }
+
+        isConvertingColor = true
+        colorConversionProgress = 0
+        defer { isConvertingColor = false }
+
+        let suffix = target == .rgb ? "_rgb" : "_cmyk"
+        let baseName = pdf.url.deletingPathExtension().lastPathComponent
+        var outputURL = targetFolder.appendingPathComponent("\(baseName)\(suffix).pdf")
+        var counter = 1
+        while FileManager.default.fileExists(atPath: outputURL.path) {
+            outputURL = targetFolder.appendingPathComponent("\(baseName)\(suffix)_\(counter).pdf")
+            counter += 1
+        }
+
+        var mediaBox = CGRect.zero
+        guard let ctx = CGContext(outputURL as CFURL, mediaBox: &mediaBox, nil) else { return }
+
+        let pageCount = document.pageCount
+        let dpi: CGFloat = 150.0
+
+        let colorSpace: CGColorSpace = target == .rgb
+            ? CGColorSpaceCreateDeviceRGB()
+            : (CGColorSpace(name: CGColorSpace.genericCMYK) ?? CGColorSpaceCreateDeviceCMYK())
+        let bitmapInfo: UInt32 = target == .rgb
+            ? (CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
+            : CGImageAlphaInfo.none.rawValue  // CMYK has no alpha
+        let bgComponents: [CGFloat] = target == .rgb ? [1, 1, 1, 1] : [0, 0, 0, 0, 1]
+
+        for i in 0..<pageCount {
+            guard !Task.isCancelled else { break }
+            guard let page = document.page(at: i) else { continue }
+
+            let bounds = page.bounds(for: .mediaBox)
+            let scale = dpi / 72.0
+            let pxW = Int(bounds.width * scale)
+            let pxH = Int(bounds.height * scale)
+            let pageRef = page.pageRef
+
+            let cgImage = await Task.detached(priority: .userInitiated) { () -> CGImage? in
+                guard let pageRef,
+                      let bCtx = CGContext(
+                          data: nil, width: pxW, height: pxH,
+                          bitsPerComponent: 8, bytesPerRow: 0,
+                          space: colorSpace,
+                          bitmapInfo: bitmapInfo
+                      ),
+                      let bgColor = CGColor(colorSpace: colorSpace, components: bgComponents)
+                else { return nil }
+                bCtx.setFillColor(bgColor)
+                bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
+                bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
+                bCtx.drawPDFPage(pageRef)
+                return bCtx.makeImage()
+            }.value
+
+            guard let cgImage else { continue }
+
+            var pageBox = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+            ctx.beginPDFPage([
+                kCGPDFContextMediaBox: NSData(bytes: &pageBox, length: MemoryLayout<CGRect>.size)
+            ] as CFDictionary)
+            ctx.draw(cgImage, in: pageBox)
+            ctx.endPDFPage()
+
+            colorConversionProgress = Double(i + 1) / Double(pageCount)
+        }
+
+        ctx.closePDF()
+        colorConversionProgress = 1.0
+        CometAnalytics.shared.trackEvent(
+            page: "pdfEdit",
+            eventType: .pdfEdited,
+            metadata: ["action": "colorConvert", "target": target.rawValue, "pages": pageCount]
         )
     }
 

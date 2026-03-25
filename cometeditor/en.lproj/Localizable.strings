@@ -84,6 +84,13 @@
 "pdf.estimatedSize" = "Estimated Optimized Size";
 "pdf.deleting" = "Deleting...";
 "pdf.tools.optimize" = "Optimize PDF";
+"pdf.tools.quality" = "QUALITY";
+"pdf.tools.quality.label" = "Image Quality";
+"pdf.tools.quality.small" = "Smaller file";
+"pdf.tools.quality.large" = "Better quality";
+"pdf.color.title" = "RGB/CMYK CONVERTER";
+"pdf.color.enable" = "Convert Color Space";
+"pdf.color.convert" = "Convert & Save";
 "pdf.tools.save" = "Save PDF";
 "pdf.reorder.title" = "Page Order";
 "pdf.reorder.hint" = "Hold Ctrl to multi-select, then drag to reorder.";
@@ -208,7 +215,8 @@
 "video.error.decoder" = "Video could not be decoded.";
 "video.saved.gain" = "saved";
 "video.saved.increased" = "larger";
-"video.settings.fps.desc" = "Disable to keep the original FPS";"pdf.addContent.typePDF" = "PDF";
+"video.settings.fps.desc" = "Disable to keep the original FPS";
+"pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Image";
 "pdf.tools.pageManagement" = "PAGE MANAGEMENT";
 "pdf.tools.addContent" = "Add Content";

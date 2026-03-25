@@ -868,11 +868,12 @@ struct VideoConvertView: View {
         let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("thumb_\(UUID().uuidString).png")
 
-        return await Task.detached(priority: .utility) {
+        // Data döndür, NSImage'ı Task dışında oluştur (Sendable uyarısını önler)
+        let data: Data? = await Task.detached(priority: .utility) { () -> Data? in
             let process = Process()
             process.executableURL = ffmpegURL
             process.arguments = [
-                "-y", "-ss", "1",
+                "-y",
                 "-i", url.path,
                 "-vframes", "1",
                 "-vf", "scale=400:-1",
@@ -885,11 +886,10 @@ struct VideoConvertView: View {
             process.waitUntilExit()
 
             defer { try? FileManager.default.removeItem(at: tmpURL) }
-            guard process.terminationStatus == 0,
-                  let data = try? Data(contentsOf: tmpURL),
-                  let img = NSImage(data: data) else { return nil }
-            return img
+            guard process.terminationStatus == 0 else { return nil }
+            return try? Data(contentsOf: tmpURL)
         }.value
+        return data.flatMap { NSImage(data: $0) }
     }
 
     private func makePreviewMP4WithFFmpeg(url: URL) async -> URL? {
