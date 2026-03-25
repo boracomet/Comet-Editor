@@ -830,6 +830,8 @@ struct PDFEditView: View {
         // Belge değiştirilmediyse (version == 0) orijinal dosyayı kopyala.
         // PDFKit'in write(to:) metodu yeniden serialize ederek boyutu şişiriyor.
         if appState.pdfDocumentVersion == 0 {
+            // Hedef dosya varsa önce sil (NSSavePanel overwrite onayı zaten aldı)
+            try? FileManager.default.removeItem(at: url)
             try? FileManager.default.copyItem(at: pdf.url, to: url)
         } else if let data = document.dataRepresentation() {
             try? data.write(to: url, options: .atomic)
