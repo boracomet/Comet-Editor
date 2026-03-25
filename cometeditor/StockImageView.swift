@@ -622,6 +622,14 @@ struct StockImageView: View {
                     CGImageDestinationFinalize(dest)
                 }
             }
+        case .heic:
+            guard let cg = finalImage.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return }
+            let heicQuality = CodecQuality(value: Int(qualityFactor * 100))
+            _ = try await CometImageCodec.shared.convert(cgImage: cg, outputURL: url, quality: heicQuality, magickFormat: "HEIC")
+        case .jp2:
+            guard let cg = finalImage.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return }
+            let jp2Quality = CodecQuality(value: Int(qualityFactor * 100))
+            _ = try await CometImageCodec.shared.convert(cgImage: cg, outputURL: url, quality: jp2Quality, magickFormat: "JP2")
         }
     }
 }

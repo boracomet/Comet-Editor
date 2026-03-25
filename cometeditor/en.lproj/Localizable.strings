@@ -45,6 +45,7 @@
 "alert.openFolder" = "Open Folder";
 "alert.success.message.image" = "Images successfully saved to %@.";
 "alert.success.message.video" = "Videos successfully saved to %@.";
+"alert.error.conversion" = "Some images could not be converted.";
 "home.welcome" = "Welcome to Comet Editor";
 "home.welcome.subtitle" = "Everything you need in one app.";
 "home.visitWebsite" = "Visit our website";

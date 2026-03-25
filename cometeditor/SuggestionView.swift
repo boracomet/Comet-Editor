@@ -55,7 +55,7 @@ struct SuggestionView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
 
                 // MARK: - Hero Header
                 headerSection
@@ -81,9 +81,8 @@ struct SuggestionView: View {
                 .padding(.horizontal, 32)
                 .padding(.top, 24)
                 .padding(.bottom, 32)
-                .frame(maxWidth: 620)
             }
-            .frame(maxWidth: .infinity)
+            .padding(.leading, 0)
         }
         .alert(LocalizedStringKey("suggestion.sent.title"), isPresented: $showSuccess) {
             Button("OK", role: .cancel) {}
@@ -123,7 +122,6 @@ struct SuggestionView: View {
                     .foregroundStyle(Color.secondary)
             }
 
-            Spacer()
         }
         .padding(.horizontal, 32)
         .padding(.vertical, 20)

@@ -48,6 +48,7 @@
 "alert.openFolder" = "Klasörü Aç";
 "alert.success.message.image" = "Resimler başarıyla %@ konumuna kaydedildi.";
 "alert.success.message.video" = "Videolar başarıyla %@ konumuna kaydedildi.";
+"alert.error.conversion" = "Bazı görseller dönüştürülemedi.";
 
 "home.welcome" = "Comet Editor'a Hoş Geldiniz";
 "home.welcome.subtitle" = "Tüm ihtiyaçlarınız tek bir uygulamada.";
