@@ -81,7 +81,9 @@ struct VideoConvertView: View {
         .onChange(of: previewItem) { item in
             previewPlayer?.pause()
             if let item {
-                previewPlayer = AVPlayer(url: item.url)
+                // AVFoundation desteklemiyorsa geçici playbackURL kullan
+                let playURL = item.playbackURL ?? item.url
+                previewPlayer = AVPlayer(url: playURL)
                 previewPlayer?.play()
             } else {
                 previewPlayer = nil
@@ -731,13 +733,10 @@ struct VideoConvertView: View {
             if appState.selectedVideos.contains(where: { $0.url == url }) { continue }
             if Self.imageExtensions.contains(url.pathExtension.lowercased()) { continue }
 
-            let asset = AVURLAsset(url: url)
+            let ext = url.pathExtension.lowercased()
+            let needsFFmpeg = VideoItem.avUnsupportedExtensions.contains(ext)
 
             Task {
-                let duration = try? await asset.load(.duration)
-                let durationSecs = CMTimeGetSeconds(duration ?? .zero)
-                let durationStr = String(format: "%02d:%02d", Int(durationSecs) / 60, Int(durationSecs) % 60)
-
                 var fileSizeStr = "0 KB"
                 if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path),
                    let size = attrs[.size] as? Int64 {
@@ -747,43 +746,175 @@ struct VideoConvertView: View {
                     fileSizeStr = formatter.string(fromByteCount: size)
                 }
 
+                var durationStr = "00:00"
                 var resStr: String? = nil
                 var fpsStr: String? = nil
+                var thumbnail: NSImage? = nil
+                var playbackURL: URL? = nil
 
-                if let videoTrack = try? await asset.loadTracks(withMediaType: .video).first {
-                    async let size = videoTrack.load(.naturalSize)
-                    async let fps = videoTrack.load(.nominalFrameRate)
-
-                    if let s = try? await size {
-                        resStr = "\(Int(s.width))x\(Int(s.height))"
+                if needsFFmpeg {
+                    // ffprobe ile metadata al
+                    if let meta = await probeVideoWithFFmpeg(url: url) {
+                        durationStr = meta.durationStr
+                        resStr = meta.resolution
+                        fpsStr = meta.fps
                     }
-                    if let f = try? await fps {
-                        fpsStr = "\(Int(f)) FPS"
+                    // ffmpeg ile thumbnail çek (1. frame PNG)
+                    thumbnail = await extractThumbnailWithFFmpeg(url: url)
+                    // Geçici MP4 oluştur (preview için)
+                    playbackURL = await makePreviewMP4WithFFmpeg(url: url)
+                } else {
+                    let asset = AVURLAsset(url: url)
+                    let duration = try? await asset.load(.duration)
+                    let durationSecs = CMTimeGetSeconds(duration ?? .zero)
+                    durationStr = String(format: "%02d:%02d", Int(durationSecs) / 60, Int(durationSecs) % 60)
+
+                    if let videoTrack = try? await asset.loadTracks(withMediaType: .video).first {
+                        if let s = try? await videoTrack.load(.naturalSize) {
+                            resStr = "\(Int(s.width))x\(Int(s.height))"
+                        }
+                        if let f = try? await videoTrack.load(.nominalFrameRate) {
+                            fpsStr = "\(Int(f)) FPS"
+                        }
+                    }
+
+                    // AVFoundation thumbnail
+                    let imageGenerator = AVAssetImageGenerator(asset: asset)
+                    imageGenerator.appliesPreferredTrackTransform = true
+                    imageGenerator.maximumSize = CGSize(width: 400, height: 400)
+                    let time = CMTime(seconds: 1.0, preferredTimescale: 600)
+                    if let cgImage = try? imageGenerator.copyCGImage(at: time, actualTime: nil) {
+                        thumbnail = NSImage(cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height))
                     }
                 }
 
-                let item = VideoItem(url: url, fileSizeString: fileSizeStr, durationString: durationStr, resolutionString: resStr, fpsString: fpsStr)
+                var item = VideoItem(url: url, fileSizeString: fileSizeStr, durationString: durationStr, resolutionString: resStr, fpsString: fpsStr)
+                item.thumbnail = thumbnail
+                item.playbackURL = playbackURL
 
                 await MainActor.run {
                     appState.selectedVideos.append(item)
                 }
+            }
+        }
+    }
 
-                // Fetch thumbnail asynchronously
-                let imageGenerator = AVAssetImageGenerator(asset: asset)
-                imageGenerator.appliesPreferredTrackTransform = true
-                imageGenerator.maximumSize = CGSize(width: 400, height: 400)
-                let time = CMTime(seconds: 0.0, preferredTimescale: 600)
+    // MARK: - FFmpeg Helpers
 
-                if let cgImage = try? imageGenerator.copyCGImage(at: time, actualTime: nil) {
-                    let nsImage = NSImage(cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height))
-                    await MainActor.run {
-                        if let index = appState.selectedVideos.firstIndex(where: { $0.id == item.id }) {
-                            appState.selectedVideos[index].thumbnail = nsImage
+    private struct FFprobeResult {
+        let durationStr: String
+        let resolution: String?
+        let fps: String?
+    }
+
+    private func probeVideoWithFFmpeg(url: URL) async -> FFprobeResult? {
+        guard let ffmpegURL = FFmpegBridge.ffmpegURL() else { return nil }
+        let ffprobeURL = ffmpegURL.deletingLastPathComponent().appendingPathComponent("ffprobe")
+        guard FileManager.default.fileExists(atPath: ffprobeURL.path) else { return nil }
+
+        return await Task.detached(priority: .utility) {
+            let process = Process()
+            process.executableURL = ffprobeURL
+            process.arguments = [
+                "-v", "quiet",
+                "-print_format", "json",
+                "-show_streams", "-show_format",
+                url.path
+            ]
+            let pipe = Pipe()
+            process.standardOutput = pipe
+            process.standardError = FileHandle.nullDevice
+            try? process.run()
+            process.waitUntilExit()
+
+            guard let data = try? pipe.fileHandleForReading.readToEnd(),
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                return nil
+            }
+
+            var durationSecs: Double = 0
+            if let format = json["format"] as? [String: Any],
+               let durStr = format["duration"] as? String,
+               let dur = Double(durStr) {
+                durationSecs = dur
+            }
+            let durationStr = String(format: "%02d:%02d", Int(durationSecs) / 60, Int(durationSecs) % 60)
+
+            var resolution: String? = nil
+            var fps: String? = nil
+            if let streams = json["streams"] as? [[String: Any]] {
+                for stream in streams {
+                    if let codecType = stream["codec_type"] as? String, codecType == "video" {
+                        if let w = stream["width"] as? Int, let h = stream["height"] as? Int {
+                            resolution = "\(w)x\(h)"
                         }
+                        if let rFrameRate = stream["r_frame_rate"] as? String {
+                            let parts = rFrameRate.split(separator: "/")
+                            if parts.count == 2, let num = Double(parts[0]), let den = Double(parts[1]), den > 0 {
+                                let fpsVal = num / den
+                                fps = "\(Int(fpsVal.rounded())) FPS"
+                            }
+                        }
+                        break
                     }
                 }
             }
-        }
+            return FFprobeResult(durationStr: durationStr, resolution: resolution, fps: fps)
+        }.value
+    }
+
+    private func extractThumbnailWithFFmpeg(url: URL) async -> NSImage? {
+        guard let ffmpegURL = FFmpegBridge.ffmpegURL() else { return nil }
+        let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("thumb_\(UUID().uuidString).png")
+
+        return await Task.detached(priority: .utility) {
+            let process = Process()
+            process.executableURL = ffmpegURL
+            process.arguments = [
+                "-y", "-ss", "1",
+                "-i", url.path,
+                "-vframes", "1",
+                "-vf", "scale=400:-1",
+                "-f", "image2",
+                tmpURL.path
+            ]
+            process.standardError = FileHandle.nullDevice
+            process.standardOutput = FileHandle.nullDevice
+            try? process.run()
+            process.waitUntilExit()
+
+            defer { try? FileManager.default.removeItem(at: tmpURL) }
+            guard process.terminationStatus == 0,
+                  let data = try? Data(contentsOf: tmpURL),
+                  let img = NSImage(data: data) else { return nil }
+            return img
+        }.value
+    }
+
+    private func makePreviewMP4WithFFmpeg(url: URL) async -> URL? {
+        guard let ffmpegURL = FFmpegBridge.ffmpegURL() else { return nil }
+        let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("preview_\(UUID().uuidString).mp4")
+
+        return await Task.detached(priority: .utility) {
+            let process = Process()
+            process.executableURL = ffmpegURL
+            process.arguments = [
+                "-y", "-i", url.path,
+                "-c:v", "libx264", "-preset", "ultrafast", "-crf", "28",
+                "-c:a", "aac", "-b:a", "96k",
+                "-movflags", "+faststart",
+                tmpURL.path
+            ]
+            process.standardError = FileHandle.nullDevice
+            process.standardOutput = FileHandle.nullDevice
+            try? process.run()
+            process.waitUntilExit()
+
+            guard process.terminationStatus == 0 else { return nil }
+            return tmpURL
+        }.value
     }
 }
 

@@ -23,12 +23,18 @@ struct VideoItem: Identifiable, Equatable {
     var resolutionString: String?
     var fpsString: String?
     var thumbnail: NSImage?
-    
+    /// AVFoundation'ın desteklemediği formatlar (AVI, WMV vb.) için ffmpeg ile
+    /// oluşturulan geçici MP4 dosyası. Preview bu URL üzerinden oynatılır.
+    var playbackURL: URL?
+
     var isCompleted: Bool = false
     var savedSizeString: String? = nil
     var convertedSizeString: String? = nil
-    
+
     var fileName: String { url.lastPathComponent }
+
+    /// AVFoundation'ın doğrudan desteklemediği formatlar
+    static let avUnsupportedExtensions: Set<String> = ["avi", "wmv", "flv", "mkv", "webm", "mpeg", "mpg", "3gp"]
 }
 
 struct PDFItem: Identifiable, Equatable {
