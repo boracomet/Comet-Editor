@@ -17,6 +17,16 @@ third_party/libwebp/
 third_party/libvpx/
 third_party/x264/
 
+# FFmpeg per-arch build artifacts (only universal/ is committed)
+third_party/ffmpeg/src/
+third_party/ffmpeg/arm64/
+third_party/ffmpeg/x86_64/
+
+# ImageMagick per-arch build artifacts (only universal/ is committed)
+third_party/imagemagick/src/
+third_party/imagemagick/arm64/
+third_party/imagemagick/x86_64/
+
 # Keep compiled libraries for Xcode Cloud
 # third_party/install/
 # third_party/ffmpeg_install/
