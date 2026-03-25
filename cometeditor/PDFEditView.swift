@@ -156,8 +156,8 @@ struct PDFEditView: View {
                         Text("•")
                         Text(pdf.fileSizeString)
                         if pdf.fileSizeBytes > 0 {
-                            // Tahmini boyut: quality oranına göre 5%-50% küçülme
-                            let ratio = max(0.05, min(0.50, compressionQuality / 100.0 * 0.55))
+                            // Tahmini boyut: JPEG re-render. q=10→~4%, q=40→~10%, q=90→~35%
+                            let ratio = max(0.03, min(0.40, pow(compressionQuality / 90.0, 1.8) * 0.40))
                             let optimized = ByteCountFormatter.string(
                                 fromByteCount: Int64(Double(pdf.fileSizeBytes) * ratio),
                                 countStyle: .file
@@ -764,7 +764,7 @@ struct PDFEditView: View {
     }
 
 
-    /// Her sayfayı JPEG'e çevirip yeni bir PDF oluşturur.
+    /// Her sayfayı JPEG'e sıkıştırıp CGContext PDF stream'ine gömer.
     /// quality: 10–90 arası JPEG kalitesi (düşük = küçük dosya, yüksek = kaliteli)
     @MainActor
     private func compressPDF(_ pdf: PDFItem, quality: Int = 40) async {
@@ -789,58 +789,73 @@ struct PDFEditView: View {
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
 
         let pageCount = document.pageCount
-        let outDoc = PDFDocument()
 
-        for i in 0..<pageCount {
-            guard !Task.isCancelled else { break }
-            guard let page = document.page(at: i) else { continue }
+        // Tüm sayfaları arka planda JPEG'e çevir
+        let pageData: [(Data, CGRect)] = await Task.detached(priority: .userInitiated) {
+            var results: [(Data, CGRect)] = []
+            for i in 0..<pageCount {
+                guard let page = document.page(at: i) else { continue }
+                let bounds = page.bounds(for: .mediaBox)
+                let scale = dpi / 72.0
+                let pxW = max(1, Int(bounds.width * scale))
+                let pxH = max(1, Int(bounds.height * scale))
+                guard let pageRef = page.pageRef else { continue }
 
-            let bounds = page.bounds(for: .mediaBox)
-            let scale = dpi / 72.0
-            let pxW = Int(bounds.width * scale)
-            let pxH = Int(bounds.height * scale)
-            let pageRef = page.pageRef
-
-            // 1. Sayfayı CGImage'a render et
-            let cgImage = await Task.detached(priority: .userInitiated) { () -> CGImage? in
-                guard let pageRef else { return nil }
+                // Sayfayı bitmap'e render et
                 let cs = CGColorSpaceCreateDeviceRGB()
                 guard let bCtx = CGContext(
                     data: nil, width: pxW, height: pxH,
                     bitsPerComponent: 8, bytesPerRow: 0, space: cs,
-                    bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
-                ) else { return nil }
+                    bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue
+                ) else { continue }
                 bCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
                 bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
                 bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
                 bCtx.drawPDFPage(pageRef)
-                return bCtx.makeImage()
-            }.value
+                guard let cgImage = bCtx.makeImage() else { continue }
 
-            guard let cgImage else { continue }
+                // JPEG olarak sıkıştır
+                let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+                guard let jpegData = bitmapRep.representation(
+                    using: .jpeg,
+                    properties: [.compressionFactor: jpegFactor as NSNumber]
+                ) else { continue }
 
-            // 2. JPEG olarak sıkıştır → NSImage → PDFPage
-            //    PDFPage(image:) sayfa içeriğini JPEG olarak PDF'e gömer — raw bitmap yazmaz
-            let nsImage = NSImage(cgImage: cgImage, size: NSSize(width: pxW, height: pxH))
-            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-            if let jpegData = bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: jpegFactor as NSNumber]) {
-                // JPEG'den NSImage oluştur — PDF sayfasına bu sıkıştırılmış veriyi göm
-                let jpegImage = NSImage(data: jpegData) ?? nsImage
-                if let newPage = PDFPage(image: jpegImage) {
-                    // Orijinal sayfa boyutunu koru
-                    newPage.setBounds(bounds, for: .mediaBox)
-                    outDoc.insert(newPage, at: i)
-                }
-            } else if let newPage = PDFPage(image: nsImage) {
-                newPage.setBounds(bounds, for: .mediaBox)
-                outDoc.insert(newPage, at: i)
+                results.append((jpegData, bounds))
             }
+            return results
+        }.value
 
-            compressionProgress = Double(i + 1) / Double(pageCount)
+        compressionProgress = 0.5
+
+        // CGContext ile PDF oluştur — JPEG verisi stream'e doğrudan girer
+        let mutableData = NSMutableData()
+        guard let consumer = CGDataConsumer(data: mutableData),
+              let pdfCtx = CGContext(consumer: consumer, mediaBox: nil, nil) else {
+            return
         }
 
-        // PDF'i diske yaz
-        outDoc.write(to: outputURL)
+        for (i, (jpegData, bounds)) in pageData.enumerated() {
+            var mediaBox = CGRect(origin: .zero, size: bounds.size)
+            pdfCtx.beginPage(mediaBox: &mediaBox)
+
+            // JPEG verisinden CGImage oluştur ve sayfaya çiz
+            if let src = CGImageSourceCreateWithData(jpegData as CFData, nil),
+               let jpegCGImage = CGImageSourceCreateImageAtIndex(src, 0, nil) {
+                pdfCtx.draw(jpegCGImage, in: mediaBox)
+            }
+
+            pdfCtx.endPage()
+            compressionProgress = 0.5 + 0.5 * Double(i + 1) / Double(pageData.count)
+        }
+        pdfCtx.closePDF()
+
+        do {
+            try (mutableData as Data).write(to: outputURL, options: .atomic)
+        } catch {
+            return
+        }
+
         compressionProgress = 1.0
         CometAnalytics.shared.trackEvent(
             page: "pdfEdit",
