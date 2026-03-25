@@ -83,7 +83,7 @@ class VideoProcessor: ObservableObject {
         // Cancellation için Task kontrol noktası
         try Task.checkCancellation()
 
-        let progressCapture = { [weak self] (value: Double) in
+        let progressCapture: @Sendable (Double) -> Void = { [weak self] value in
             Task { @MainActor [weak self] in
                 self?.progress = value
             }
