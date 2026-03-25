@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "САПА";
 "pdf.tools.quality.label" = "Сурет сапасы";
 "pdf.tools.quality.large" = "Жақсырақ сапа";
+"pdf.tools.resolution" = "АЖЫРАТЫМДЫЛЫҚ МАСШТАБЫ";
+"pdf.tools.resolution.enable" = "Ажыратымдылықты азайт";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Кішірек файл";

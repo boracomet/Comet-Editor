@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "سۈپەت";
 "pdf.tools.quality.label" = "سۈرەت سۈپىتى";
 "pdf.tools.quality.large" = "ياخشىراق سۈپەت";
+"pdf.tools.resolution" = "ئېنىقلىق كۆلىمى";
+"pdf.tools.resolution.enable" = "ئېنىقلىقنى ئازايت";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "كىچىكرەك ھۆججەت";

@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "КАЧЕСТВО";
 "pdf.tools.quality.label" = "Качество изображения";
 "pdf.tools.quality.large" = "Лучшее качество";
+"pdf.tools.resolution" = "ЧЕЧИМ ÖLÇEĞI";
+"pdf.tools.resolution.enable" = "Чечимди кичирейт";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Меньший файл";

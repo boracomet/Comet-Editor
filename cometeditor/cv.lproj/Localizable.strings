@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "КАЧЕСТВО";
 "pdf.tools.quality.label" = "Ÿкерчĕк качестви";
 "pdf.tools.quality.large" = "Лайăхрах качество";
+"pdf.tools.resolution" = "ТИНЕСЛЕВ МАСШТАБĔ";
+"pdf.tools.resolution.enable" = "Тинеслевне пĕчĕклет";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Çÿçĕмрех файл";

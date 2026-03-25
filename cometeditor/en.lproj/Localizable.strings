@@ -88,6 +88,11 @@
 "pdf.tools.quality.label" = "Image Quality";
 "pdf.tools.quality.small" = "Smaller file";
 "pdf.tools.quality.large" = "Better quality";
+"pdf.tools.resolution" = "RESOLUTION SCALE";
+"pdf.tools.resolution.enable" = "Reduce resolution";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.color.title" = "RGB/CMYK CONVERTER";
 "pdf.color.enable" = "Convert Color Space";
 "pdf.color.convert" = "Convert & Save";

@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "KUALITAS";
 "pdf.tools.quality.label" = "Kualitas gambar";
 "pdf.tools.quality.large" = "Kualitas lebih baik";
+"pdf.tools.resolution" = "SKALA RESOLUSI";
+"pdf.tools.resolution.enable" = "Kurangi resolusi";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "File lebih kecil";

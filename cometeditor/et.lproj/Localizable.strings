@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "KVALITEET";
 "pdf.tools.quality.label" = "Pildi kvaliteet";
 "pdf.tools.quality.large" = "Parem kvaliteet";
+"pdf.tools.resolution" = "ERALDUSVÕIME SKAALA";
+"pdf.tools.resolution.enable" = "Vähenda eraldusvõimet";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Väiksem fail";

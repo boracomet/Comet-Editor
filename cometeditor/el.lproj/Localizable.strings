@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "ΠΟΙΟΤΗΤΑ";
 "pdf.tools.quality.label" = "Ποιότητα εικόνας";
 "pdf.tools.quality.large" = "Καλύτερη ποιότητα";
+"pdf.tools.resolution" = "ΚΛΙΜΑΚΑ ΑΝΑΛΥΣΗΣ";
+"pdf.tools.resolution.enable" = "Μείωση ανάλυσης";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Μικρότερο αρχείο";

@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "SIFAT";
 "pdf.tools.quality.label" = "Rasm sifati";
 "pdf.tools.quality.large" = "Yaxshiroq sifat";
+"pdf.tools.resolution" = "RUXSAT MASSHTABI";
+"pdf.tools.resolution.enable" = "Ruxsatni kamaytirish";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Kichikroq fayl";

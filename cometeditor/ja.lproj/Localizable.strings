@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "品質";
 "pdf.tools.quality.label" = "画像品質";
 "pdf.tools.quality.large" = "高品質";
+"pdf.tools.resolution" = "解像度スケール";
+"pdf.tools.resolution.enable" = "解像度を下げる";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "小さいファイル";

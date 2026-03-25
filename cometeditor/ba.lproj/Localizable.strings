@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "СИФАТ";
 "pdf.tools.quality.label" = "Рәсем сифаты";
 "pdf.tools.quality.large" = "Яҡшыраҡ сифат";
+"pdf.tools.resolution" = "СИФАТ МАСШТАБЫ";
+"pdf.tools.resolution.enable" = "Сифатты кесерергә";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Бәләкәйерәк файл";

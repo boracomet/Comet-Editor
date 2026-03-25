@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "معیار";
 "pdf.tools.quality.label" = "تصویر کا معیار";
 "pdf.tools.quality.large" = "بہتر معیار";
+"pdf.tools.resolution" = "ریزولیوشن اسکیل";
+"pdf.tools.resolution.enable" = "ریزولیوشن کم کریں";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "چھوٹی فائل";

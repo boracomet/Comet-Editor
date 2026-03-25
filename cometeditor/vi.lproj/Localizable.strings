@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "CHẤT LƯỢNG";
 "pdf.tools.quality.label" = "Chất lượng hình ảnh";
 "pdf.tools.quality.large" = "Chất lượng tốt hơn";
+"pdf.tools.resolution" = "TỶ LỆ ĐỘ PHÂN GIẢI";
+"pdf.tools.resolution.enable" = "Giảm độ phân giải";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Tệp nhỏ hơn";

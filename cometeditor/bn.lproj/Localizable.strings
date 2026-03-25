@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "গুণমান";
 "pdf.tools.quality.label" = "চিত্রের গুণমান";
 "pdf.tools.quality.large" = "ভালো গুণমান";
+"pdf.tools.resolution" = "রেজোলিউশন স্কেল";
+"pdf.tools.resolution.enable" = "রেজোলিউশন কমান";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "ছোট ফাইল";

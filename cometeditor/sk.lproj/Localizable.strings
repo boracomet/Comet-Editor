@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "KVALITA";
 "pdf.tools.quality.label" = "Kvalita obrazu";
 "pdf.tools.quality.large" = "Lepšia kvalita";
+"pdf.tools.resolution" = "ŠKÁLA ROZLÍŠENIA";
+"pdf.tools.resolution.enable" = "Znížiť rozlíšenie";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Menší súbor";

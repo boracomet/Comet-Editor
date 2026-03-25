@@ -221,4 +221,9 @@
 "pdf.tools.quality" = "KVALITET";
 "pdf.tools.quality.label" = "Billedkvalitet";
 "pdf.tools.quality.large" = "Bedre kvalitet";
+"pdf.tools.resolution" = "OPLØSNINGSSKALA";
+"pdf.tools.resolution.enable" = "Reducer opløsning";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Mindre fil";

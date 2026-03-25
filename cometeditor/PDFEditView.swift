@@ -25,6 +25,9 @@ struct PDFEditView: View {
     @State private var compressionProgress: Double = 0
     /// 10–90: JPEG quality (lower = smaller file)
     @State private var compressionQuality: Double = 40
+    /// Çözünürlük küçültme: nil = orijinal, 0.75/0.50/0.25
+    @State private var resolutionScaleEnabled: Bool = false
+    @State private var resolutionScale: Double = 0.75
 
     // Color conversion state
     enum ColorTarget: String, CaseIterable {
@@ -156,8 +159,10 @@ struct PDFEditView: View {
                         Text("•")
                         Text(pdf.fileSizeString)
                         if pdf.fileSizeBytes > 0 {
-                            // Tahmini boyut: JPEG re-render. q=10→~4%, q=40→~10%, q=90→~35%
-                            let ratio = max(0.03, min(0.40, pow(compressionQuality / 90.0, 1.8) * 0.40))
+                            // Tahmini boyut: JPEG re-render + çözünürlük scale
+                            let jpegRatio = max(0.03, min(0.40, pow(compressionQuality / 90.0, 1.8) * 0.40))
+                            let scaleRatio = resolutionScaleEnabled ? resolutionScale * resolutionScale : 1.0
+                            let ratio = jpegRatio * scaleRatio
                             let optimized = ByteCountFormatter.string(
                                 fromByteCount: Int64(Double(pdf.fileSizeBytes) * ratio),
                                 countStyle: .file
@@ -558,6 +563,30 @@ struct PDFEditView: View {
 
                     Divider()
 
+                    // Çözünürlük Küçültme
+                    inspectorSection("pdf.tools.resolution") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Toggle(isOn: $resolutionScaleEnabled) {
+                                Text(LocalizedStringKey("pdf.tools.resolution.enable"))
+                                    .font(.system(size: 12))
+                            }
+                            .toggleStyle(.switch)
+                            .disabled(isCompressing)
+
+                            if resolutionScaleEnabled {
+                                Picker("", selection: $resolutionScale) {
+                                    Text(LocalizedStringKey("pdf.tools.resolution.75")).tag(0.75)
+                                    Text(LocalizedStringKey("pdf.tools.resolution.50")).tag(0.50)
+                                    Text(LocalizedStringKey("pdf.tools.resolution.25")).tag(0.25)
+                                }
+                                .pickerStyle(.segmented)
+                                .disabled(isCompressing)
+                            }
+                        }
+                    }
+
+                    Divider()
+
                     // Hedef Klasör
                     inspectorSection("pdf.tools.targetFolder") {
                         VStack(alignment: .leading, spacing: 10) {
@@ -783,8 +812,9 @@ struct PDFEditView: View {
             counter += 1
         }
 
-        // DPI: quality 10-30 → 96, 31-60 → 120, 61-90 → 150
-        let dpi: CGFloat = quality <= 30 ? 96.0 : (quality <= 60 ? 120.0 : 150.0)
+        // DPI: quality 10-30 → 96, 31-60 → 120, 61-90 → 150; çözünürlük scale uygulanır
+        let baseDpi: CGFloat = quality <= 30 ? 96.0 : (quality <= 60 ? 120.0 : 150.0)
+        let dpi = baseDpi * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
         // JPEG compression factor: quality 10→0.05, 90→0.90
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
 
