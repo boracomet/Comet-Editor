@@ -368,7 +368,7 @@ struct VideoConvertView: View {
                 inspectorSection("video.settings.format") {
                     Picker("", selection: $selectedFormat) {
                         ForEach(VideoFormat.allCases) { format in
-                            Text(format.rawValue.uppercased()).tag(format)
+                            Text(format.displayName).tag(format)
                         }
                     }
                     .pickerStyle(.menu)
@@ -788,8 +788,44 @@ struct VideoConvertView: View {
 }
 
 enum VideoFormat: String, CaseIterable, Identifiable {
-    case mp4, mov, mkv, avi
+    case mp4
+    case mov
+    case mkv
+    case avi
+    case webm
+    case m4v
+    case mpeg
+    case threeGP = "3gp"
+    case flv
+    case wmv
+
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .threeGP: return "3GP"
+        default: return rawValue.uppercased()
+        }
+    }
+
+    /// ffmpeg muxer adı
+    var ffmpegMuxer: String {
+        switch self {
+        case .mp4: return "mp4"
+        case .mov: return "mov"
+        case .mkv: return "matroska"
+        case .avi: return "avi"
+        case .webm: return "webm"
+        case .m4v: return "mp4"
+        case .mpeg: return "mpeg"
+        case .threeGP: return "3gp"
+        case .flv: return "flv"
+        case .wmv: return "asf"
+        }
+    }
+
+    /// Çıktı dosya uzantısı
+    var fileExtension: String { rawValue }
 }
 
 enum FPSLimit: String, CaseIterable, Identifiable {

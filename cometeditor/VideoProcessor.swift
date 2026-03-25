@@ -2,11 +2,12 @@
 //  VideoProcessor.swift
 //  cometeditor
 //
-//  Stub: UI only until a new conversion backend is wired (no FFmpeg / CVC).
+//  FFmpeg tabanlı video dönüştürme motoru.
 //
 
 import Foundation
 import Combine
+import AVFoundation
 
 enum VideoConversionError: Error, LocalizedError {
     case invalidSource
@@ -15,6 +16,7 @@ enum VideoConversionError: Error, LocalizedError {
     case decoderError
     case writerFailure
     case converterUnavailable
+    case ffmpegNotFound
 
     var errorDescription: String? {
         switch self {
@@ -24,6 +26,7 @@ enum VideoConversionError: Error, LocalizedError {
         case .decoderError: return NSLocalizedString("video.error.decoder", comment: "")
         case .writerFailure: return NSLocalizedString("video.error.writerFailure", comment: "")
         case .converterUnavailable: return NSLocalizedString("app.comingSoon.message", comment: "")
+        case .ffmpegNotFound: return "FFmpeg binary not found in app bundle."
         }
     }
 }
@@ -52,7 +55,69 @@ class VideoProcessor: ObservableObject {
                 isProcessing = false
             }
         }
-        _ = (inputURL, outputURL, format, quality, settings)
-        throw VideoConversionError.converterUnavailable
+
+        // FFmpeg binary kontrolü
+        guard FFmpegBridge.ffmpegURL() != nil else {
+            throw VideoConversionError.ffmpegNotFound
+        }
+
+        // Video süresini al (progress hesabı için)
+        let duration = await loadDuration(from: inputURL)
+
+        let convSettings = settings ?? VideoConversionSettings(
+            fpsLimit: .original,
+            resolutionScale: .original,
+            removeAudio: false,
+            keepMetadata: true
+        )
+
+        let argBuilder = FFmpegArgBuilder(
+            inputURL: inputURL,
+            outputURL: outputURL,
+            format: format,
+            quality: quality,
+            settings: convSettings
+        )
+        let arguments = argBuilder.build()
+
+        // Cancellation için Task kontrol noktası
+        try Task.checkCancellation()
+
+        let progressCapture = { [weak self] (value: Double) in
+            Task { @MainActor [weak self] in
+                self?.progress = value
+            }
+        }
+
+        do {
+            try await FFmpegBridge.shared.run(
+                arguments: arguments,
+                totalDurationSeconds: duration,
+                onProgress: progressCapture
+            )
+        } catch is CancellationError {
+            await FFmpegBridge.shared.cancel()
+            throw CancellationError()
+        } catch let ffErr as FFmpegError {
+            switch ffErr {
+            case .binaryNotFound:
+                throw VideoConversionError.ffmpegNotFound
+            case .cancelled:
+                throw CancellationError()
+            case .conversionFailed:
+                throw VideoConversionError.writerFailure
+            }
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func loadDuration(from url: URL) async -> Double {
+        let asset = AVURLAsset(url: url)
+        if let duration = try? await asset.load(.duration) {
+            let secs = CMTimeGetSeconds(duration)
+            if secs.isFinite && secs > 0 { return secs }
+        }
+        return 0
     }
 }
