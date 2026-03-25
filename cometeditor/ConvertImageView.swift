@@ -12,7 +12,7 @@ import QuickLookThumbnailing
 struct ConvertImageView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var selectedFormat: ImageFormat = .png
-    @State private var quality: Double = 8
+    @State private var quality: Double = 80
     @State private var resizeEnabled = false
     @State private var scaleEnabled = false
     @State private var scaleSelection: String = "convert.scale.original"
@@ -27,7 +27,7 @@ struct ConvertImageView: View {
     @EnvironmentObject var windowState: WindowStateObserver
     @State private var isProcessing = false
     @State private var showSuccessAlert = false
-    @State private var showConversionStubAlert = false
+    @State private var showConversionError = false
     @State private var isDropTargeted = false
     @State private var isWrongTypeDrop = false
     @State private var wrongTypeTask: Task<Void, Never>? = nil
@@ -108,10 +108,13 @@ struct ConvertImageView: View {
                 Text(String(format: NSLocalizedString("alert.success.message.image", comment: ""), path))
             }
         }
-        .alert(LocalizedStringKey("app.comingSoon.title"), isPresented: $showConversionStubAlert) {
+        .alert(LocalizedStringKey("alert.error.title"), isPresented: $showConversionError) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
         } message: {
-            Text(LocalizedStringKey("app.comingSoon.message"))
+            Text(LocalizedStringKey("alert.error.conversion"))
+        }
+        .onDisappear {
+            wrongTypeTask?.cancel()
         }
     }
 
@@ -128,7 +131,7 @@ struct ConvertImageView: View {
                         Text(item.fileName)
                             .font(.system(size: 13, weight: .semibold))
                             .lineLimit(1)
-                        Text(item.fileSizeString + " " + item.dimensionsString)
+                        Text(item.dimensionsString.isEmpty ? item.fileSizeString : "\(item.fileSizeString) · \(item.dimensionsString)")
                             .font(.system(size: 11))
                             .foregroundStyle(Color.secondary)
                     }
@@ -334,15 +337,22 @@ struct ConvertImageView: View {
 
     private func imageGridItem(_ item: ImageItem) -> some View {
         GeometryReader { geo in
-            Group {
-                if let nsImage = item.image {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Color.secondary.opacity(0.2)
-                }
+            imageGridItemContent(item: item, geo: geo)
+        }
+        .frame(height: 180)
+    }
+
+    @ViewBuilder
+    private func imageGridItemContent(item: ImageItem, geo: GeometryProxy) -> some View {
+        Group {
+            if let nsImage = item.image {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Color.secondary.opacity(0.2)
             }
+        }
             .contentShape(Rectangle())
             .onTapGesture {
                 withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
@@ -362,7 +372,7 @@ struct ConvertImageView: View {
                         .foregroundStyle(.white)
                         .lineLimit(1)
                         .truncationMode(.middle)
-                    Text("\(item.fileSizeString) · \(item.dimensionsString)")
+                    Text(item.dimensionsString.isEmpty ? item.fileSizeString : "\(item.fileSizeString) · \(item.dimensionsString)")
                         .font(.system(size: 9))
                         .foregroundStyle(.white.opacity(0.75))
                 }
@@ -393,8 +403,6 @@ struct ConvertImageView: View {
                 .handCursor()
                 .padding(6)
             }
-        }
-        .frame(height: 180)
     }
 
     // MARK: - Inspector Panel
@@ -429,11 +437,11 @@ struct ConvertImageView: View {
                 // Quality Section
                 inspectorSection("convert.settings.quality") {
                     HStack(spacing: 8) {
-                        Slider(value: $quality, in: 0...10, step: 1)
-                        Text("\(Int(quality))")
+                        Slider(value: $quality, in: 1...100, step: 1)
+                        Text("\(Int(quality))%")
                             .font(.system(size: 11, weight: .medium, design: .monospaced))
                             .foregroundStyle(Color.secondary)
-                            .frame(width: 24, alignment: .trailing)
+                            .frame(width: 36, alignment: .trailing)
                     }
                 }
 
@@ -617,17 +625,119 @@ struct ConvertImageView: View {
         )
     }
 
-    // MARK: - Conversion Logic (UI only — backend TBD)
+    // MARK: - Conversion Logic
     private func performConversion() async {
-        guard appState.targetFolder != nil else { return }
+        guard let targetFolder = appState.targetFolder else { return }
         appState.processingMenuItem = .convertImage
         defer {
             isProcessing = false
             appState.processingMenuItem = nil
         }
-        try? await Task.sleep(for: .milliseconds(120))
+
+        let images = appState.selectedImages
+        let format = selectedFormat
+        let qualityValue = Int(quality) // 1-100
+        let scaleEnabledCopy = scaleEnabled
+        let scaleSelectionCopy = scaleSelection
+        let resizeEnabledCopy = resizeEnabled
+        let customWidthCopy = customWidth
+        let customHeightCopy = customHeight
+
+        var successCount = 0
+
+        for item in images {
+            let url = item.url
+            let accessed = url.startAccessingSecurityScopedResource()
+
+            let ext = url.pathExtension.lowercased()
+
+            // CGImage yükle
+            var cgImage: CGImage? = nil
+
+            if ext == "svg" || ext == "ai" || ext == "pdf" {
+                // Vektör/PDF formatları: QuickLook ile rasterize et
+                let request = QLThumbnailGenerator.Request(
+                    fileAt: url,
+                    size: CGSize(width: 4096, height: 4096),
+                    scale: 1.0,
+                    representationTypes: .all
+                )
+                if let thumb = try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request),
+                   let cg = thumb.nsImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                    cgImage = cg
+                }
+            } else {
+                var srcOpts: [CFString: Any] = [:]
+                if ext == "jfif" || ext == "jpe" {
+                    srcOpts[kCGImageSourceTypeIdentifierHint] = "public.jpeg" as CFString
+                }
+                if let src = CGImageSourceCreateWithURL(url as CFURL, srcOpts as CFDictionary) {
+                    cgImage = CGImageSourceCreateImageAtIndex(src, 0, nil)
+                }
+            }
+
+            if accessed { url.stopAccessingSecurityScopedResource() }
+            guard var cg = cgImage else { continue }
+
+            // Ölçek / Boyutlandırma
+            if scaleEnabledCopy && scaleSelectionCopy != "convert.scale.original" {
+                let factor: CGFloat
+                switch scaleSelectionCopy {
+                case "%75": factor = 0.75
+                case "%50": factor = 0.50
+                case "%25": factor = 0.25
+                default:    factor = 1.0
+                }
+                let newW = max(1, Int(CGFloat(cg.width) * factor))
+                let newH = max(1, Int(CGFloat(cg.height) * factor))
+                if let ctx = CGContext(data: nil, width: newW, height: newH,
+                                       bitsPerComponent: 8, bytesPerRow: newW * 4,
+                                       space: CGColorSpaceCreateDeviceRGB(),
+                                       bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue) {
+                    ctx.draw(cg, in: CGRect(x: 0, y: 0, width: newW, height: newH))
+                    if let scaled = ctx.makeImage() { cg = scaled }
+                }
+            } else if resizeEnabledCopy,
+                      let tw = Int(customWidthCopy), tw > 0,
+                      let th = Int(customHeightCopy), th > 0 {
+                if let ctx = CGContext(data: nil, width: tw, height: th,
+                                       bitsPerComponent: 8, bytesPerRow: tw * 4,
+                                       space: CGColorSpaceCreateDeviceRGB(),
+                                       bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue) {
+                    ctx.draw(cg, in: CGRect(x: 0, y: 0, width: tw, height: th))
+                    if let resized = ctx.makeImage() { cg = resized }
+                }
+            }
+
+            // Çıktı dosya adı — çakışmayı önle
+            let baseName = url.deletingPathExtension().lastPathComponent
+            let outputExt = format.fileExtension
+            var outputURL = targetFolder.appendingPathComponent("\(baseName).\(outputExt)")
+            if FileManager.default.fileExists(atPath: outputURL.path) {
+                outputURL = targetFolder.appendingPathComponent("\(baseName)_converted.\(outputExt)")
+            }
+
+            let magickFmt = format.magickFormat
+            let q = CodecQuality(value: qualityValue)
+            do {
+                _ = try await CometImageCodec.shared.convert(
+                    cgImage: cg,
+                    outputURL: outputURL,
+                    quality: q,
+                    magickFormat: magickFmt
+                )
+                successCount += 1
+            } catch {
+                // Bu görseli atla, diğerlerine devam et
+            }
+        }
+
         await MainActor.run {
-            showConversionStubAlert = true
+            if successCount > 0 {
+                showSuccessAlert = true
+            } else {
+                showConversionError = true
+            }
         }
     }
 
@@ -728,19 +838,18 @@ struct ConvertImageView: View {
                     if let thumb = try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request) {
                         nsImage = thumb.nsImage
                         let sz = thumb.nsImage.size
-                        dimStr = sz.width > 0 ? "- \(Int(sz.width))x\(Int(sz.height))" : ""
+                        dimStr = sz.width > 0 ? "\(Int(sz.width))×\(Int(sz.height))" : ""
                     }
                 } else {
-                    let ext2 = url.pathExtension.lowercased()
                     var srcOpts: [CFString: Any] = [:]
-                    if ext2 == "jfif" || ext2 == "jpe" {
+                    if ext0 == "jfif" || ext0 == "jpe" {
                         srcOpts[kCGImageSourceTypeIdentifierHint] = "public.jpeg" as CFString
                     }
                     if let src = CGImageSourceCreateWithURL(url as CFURL, srcOpts as CFDictionary) {
                         if let props = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
                            let w = props[kCGImagePropertyPixelWidth] as? Int,
                            let h = props[kCGImagePropertyPixelHeight] as? Int {
-                            dimStr = "- \(w)x\(h)"
+                            dimStr = "\(w)×\(h)"
                         }
                         let thumbOpts: [CFString: Any] = [
                             kCGImageSourceCreateThumbnailFromImageAlways: true,
@@ -766,23 +875,49 @@ struct ConvertImageView: View {
 
 // MARK: - Image Format
 enum ImageFormat: String, CaseIterable, Identifiable {
-    case png, jpeg, webp, avif, bmp, heif, tiff, gif
+    case png, jpeg, webp, avif, heic, jp2, bmp, heif, tiff, gif
 
     var id: String { rawValue }
 
-    // Çıkış formatı olarak kullanıcıya gösterilen formatlar (BMP, HEIF, TIFF hariç)
-    static var exportCases: [ImageFormat] { [.png, .jpeg, .webp, .avif, .gif] }
+    static var exportCases: [ImageFormat] { [.png, .jpeg, .webp, .avif, .heic, .jp2, .tiff, .gif] }
 
     var label: String {
         switch self {
-        case .png: return "PNG"
+        case .png:  return "PNG"
         case .jpeg: return "JPEG"
         case .webp: return "WebP"
         case .avif: return "AVIF"
-        case .bmp: return "BMP"
+        case .heic: return "HEIC"
+        case .jp2:  return "JP2"
+        case .bmp:  return "BMP"
         case .heif: return "HEIF"
         case .tiff: return "TIFF"
-        case .gif: return "GIF"
+        case .gif:  return "GIF"
+        }
+    }
+
+    var fileExtension: String {
+        switch self {
+        case .jpeg: return "jpg"
+        case .heic: return "heic"
+        case .jp2:  return "jp2"
+        case .tiff: return "tiff"
+        default:    return rawValue
+        }
+    }
+
+    var magickFormat: String {
+        switch self {
+        case .png:  return "PNG"
+        case .jpeg: return "JPEG"
+        case .webp: return "WEBP"
+        case .avif: return "AVIF"
+        case .heic: return "HEIC"
+        case .jp2:  return "JP2"
+        case .bmp:  return "BMP"
+        case .heif: return "HEIF"
+        case .tiff: return "TIFF"
+        case .gif:  return "GIF"
         }
     }
 }

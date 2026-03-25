@@ -37,7 +37,7 @@
 
 /* Directory where architecture-dependent configuration files live. */
 #ifndef MAGICKCORE_CONFIGURE_PATH
-#define MAGICKCORE_CONFIGURE_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/etc/ImageMagick-7/"
+#define MAGICKCORE_CONFIGURE_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/etc/ImageMagick-7/"
 #endif
 
 /* Subdirectory of lib where architecture-dependent configuration files live.
@@ -54,7 +54,7 @@
 
 /* Directory where ImageMagick documents live. */
 #ifndef MAGICKCORE_DOCUMENTATION_PATH
-#define MAGICKCORE_DOCUMENTATION_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/share/doc/ImageMagick-7/"
+#define MAGICKCORE_DOCUMENTATION_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/share/doc/ImageMagick-7/"
 #endif
 
 /* Define to 1 to enable distributed pixel cache support. */
@@ -70,7 +70,7 @@
 
 /* Directory where executables are installed. */
 #ifndef MAGICKCORE_EXECUTABLE_PATH
-#define MAGICKCORE_EXECUTABLE_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/bin/"
+#define MAGICKCORE_EXECUTABLE_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/bin/"
 #endif
 
 /* Define if you have FFTW library */
@@ -105,7 +105,9 @@
 #endif
 
 /* Define to 1 if you have the 'aligned_malloc' function. */
-/* #undef HAVE_ALIGNED_MALLOC */
+#ifndef MAGICKCORE_HAVE_ALIGNED_MALLOC
+#define MAGICKCORE_HAVE_ALIGNED_MALLOC 1
+#endif
 
 /* Define to 1 if you have the <arm/limits.h> header file. */
 #ifndef MAGICKCORE_HAVE_ARM_LIMITS_H
@@ -1089,16 +1091,18 @@
 #endif
 
 /* Define if you have libheif library */
-/* #undef HEIC_DELEGATE */
+#ifndef MAGICKCORE_HEIC_DELEGATE
+#define MAGICKCORE_HEIC_DELEGATE 1
+#endif
 
 /* Directory where ImageMagick architecture headers live. */
 #ifndef MAGICKCORE_INCLUDEARCH_PATH
-#define MAGICKCORE_INCLUDEARCH_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/include/ImageMagick-7/"
+#define MAGICKCORE_INCLUDEARCH_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/include/ImageMagick-7/"
 #endif
 
 /* Directory where ImageMagick headers live. */
 #ifndef MAGICKCORE_INCLUDE_PATH
-#define MAGICKCORE_INCLUDE_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/include/ImageMagick-7/"
+#define MAGICKCORE_INCLUDE_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/include/ImageMagick-7/"
 #endif
 
 /* ImageMagick is formally installed under prefix */
@@ -1123,11 +1127,13 @@
 #endif
 
 /* Define if you have OPENJP2 library */
-/* #undef LIBOPENJP2_DELEGATE */
+#ifndef MAGICKCORE_LIBOPENJP2_DELEGATE
+#define MAGICKCORE_LIBOPENJP2_DELEGATE 1
+#endif
 
 /* Directory where architecture-dependent files live. */
 #ifndef MAGICKCORE_LIBRARY_ABSOLUTE_PATH
-#define MAGICKCORE_LIBRARY_ABSOLUTE_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/lib/ImageMagick-7.1.1/"
+#define MAGICKCORE_LIBRARY_ABSOLUTE_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/lib/ImageMagick-7.1.1/"
 #endif
 
 /* Subdirectory of lib where ImageMagick architecture dependent files are
@@ -1275,7 +1281,7 @@
 
 /* Directory where architecture-independent configuration files live. */
 #ifndef MAGICKCORE_SHARE_PATH
-#define MAGICKCORE_SHARE_PATH "/Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/share/ImageMagick-7/"
+#define MAGICKCORE_SHARE_PATH "/Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/share/ImageMagick-7/"
 #endif
 
 /* Subdirectory of lib where architecture-independent configuration files
@@ -1446,9 +1452,7 @@
 
 
 /* Define if you have WEBPMUX library */
-#ifndef MAGICKCORE_WEBPMUX_DELEGATE
-#define MAGICKCORE_WEBPMUX_DELEGATE 1
-#endif
+/* #undef WEBPMUX_DELEGATE */
 
 /* Define if you have WEBP library */
 #ifndef MAGICKCORE_WEBP_DELEGATE

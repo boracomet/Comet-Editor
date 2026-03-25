@@ -387,6 +387,7 @@
 				MARKETING_VERSION = 1.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-Wl,-w",
 					"-lMagickWand-7.Q16HDRI",
 					"-lMagickCore-7.Q16HDRI",
 					"-ljpeg",
@@ -398,8 +399,15 @@
 					"-lwebpdemux",
 					"-lsharpyuv",
 					"-llcms2",
-					"-liconv",
-					"/opt/homebrew/lib/liblzma.a",
+					"-lheif",
+					"-lde265",
+					"-lx265",
+					"-lopenjp2",
+					"-laom",
+					"-lvmaf",
+					"-lzstd",
+					"-llzma",
+					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cometeditor.app;
 				PRODUCT_NAME = "Comet Editor";
@@ -456,6 +464,7 @@
 				MARKETING_VERSION = 1.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-Wl,-w",
 					"-lMagickWand-7.Q16HDRI",
 					"-lMagickCore-7.Q16HDRI",
 					"-ljpeg",
@@ -467,8 +476,15 @@
 					"-lwebpdemux",
 					"-lsharpyuv",
 					"-llcms2",
-					"-liconv",
-					"/opt/homebrew/lib/liblzma.a",
+					"-lheif",
+					"-lde265",
+					"-lx265",
+					"-lopenjp2",
+					"-laom",
+					"-lvmaf",
+					"-lzstd",
+					"-llzma",
+					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cometeditor.app;
 				PRODUCT_NAME = "Comet Editor";

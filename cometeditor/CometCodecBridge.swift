@@ -43,7 +43,7 @@ public struct CodecQuality {
 
 // MARK: - MagickWand Bridge
 
-nonisolated(unsafe) private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "CometImageCodec")
+private let logger = Logger(subsystem: "com.cometeditor", category: "CometImageCodec")
 
 public class CometImageCodec {
     public static let shared = CometImageCodec()
@@ -57,7 +57,7 @@ public class CometImageCodec {
     }
 
     /// CGImage'ı ImageMagick MagickWand ile istenilen formata çevirir.
-    /// magickFormat: "PNG", "JPEG", "WEBP", "AVIF", "BMP", "HEIC", "TIFF", "GIF"
+    /// magickFormat: "PNG", "JPEG", "WEBP", "AVIF", "HEIC", "JP2", "BMP", "TIFF", "GIF"
     public func convert(
         cgImage: CGImage,
         outputURL: URL,
@@ -73,24 +73,25 @@ public class CometImageCodec {
         let bytesPerRow = width * 4
         let bufferSize = bytesPerRow * height
 
-        // byteOrder32Little + premultipliedFirst = BGRA (native macOS format)
-        guard let ctx = CGContext(
-            data: nil,
-            width: width, height: height,
-            bitsPerComponent: 8, bytesPerRow: bytesPerRow,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
-        ) else {
-            throw CodecError.decodeFailed
-        }
-        ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
-        guard let dataPtr = ctx.data else { throw CodecError.decodeFailed }
+        // CGContext ve piksel kopyalaması Task içinde yapılıyor;
+        // böylece ctx'in ömrü pixelData'nın ömrüyle garantili örtüşüyor.
+        return try await Task.detached(priority: .userInitiated) {
+            // byteOrder32Little + premultipliedFirst = BGRA (native macOS format)
+            guard let ctx = CGContext(
+                data: nil,
+                width: width, height: height,
+                bitsPerComponent: 8, bytesPerRow: bytesPerRow,
+                space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
+            ) else {
+                throw CodecError.decodeFailed
+            }
+            ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
+            guard let dataPtr = ctx.data else { throw CodecError.decodeFailed }
 
-        // bytesNoCopy avoids copying the full pixel buffer; ctx is captured to keep the backing alive.
-        let pixelData = Data(bytesNoCopy: dataPtr, count: bufferSize, deallocator: .none)
+            // ctx bu scope'ta hayatta; Data kopyası güvenli.
+            let pixelData = Data(bytes: dataPtr, count: bufferSize)
 
-        return try await Task.detached(priority: .userInitiated) { [ctx] in
-            _ = ctx  // keep CGContext alive until MagickConstituteImage completes
             let wand = NewMagickWand()
             defer { DestroyMagickWand(wand) }
 

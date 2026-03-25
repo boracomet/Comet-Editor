@@ -44,7 +44,7 @@ extern "C" {
 #define MagickAuthoritativeLicense  \
   "https://imagemagick.org/script/license.php"
 #define MagickAuthoritativeURL  "https://imagemagick.org"
-#define MagickHomeURL  "file:///Users/boradev/Desktop/comet-guncel/third_party/imagemagick/arm64/share/doc/ImageMagick-7/index.html"
+#define MagickHomeURL  "file:///Users/boradev/Desktop/comet-clear/third_party/imagemagick/arm64/share/doc/ImageMagick-7/index.html"
 #if (MAGICKCORE_QUANTUM_DEPTH == 8)
 #define MagickQuantumDepth  "Q8"
 #define MagickQuantumRange  "255"
