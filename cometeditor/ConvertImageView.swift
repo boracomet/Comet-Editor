@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import os
+import QuickLookThumbnailing
 
 struct ConvertImageView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
@@ -27,7 +27,10 @@ struct ConvertImageView: View {
     @EnvironmentObject var windowState: WindowStateObserver
     @State private var isProcessing = false
     @State private var showSuccessAlert = false
+    @State private var showConversionStubAlert = false
     @State private var isDropTargeted = false
+    @State private var isWrongTypeDrop = false
+    @State private var wrongTypeTask: Task<Void, Never>? = nil
     @Environment(\.colorScheme) private var colorScheme
 
     // Preview Image Modal
@@ -66,12 +69,29 @@ struct ConvertImageView: View {
                 let url = item.url
                 _ = url.startAccessingSecurityScopedResource()
                 defer { url.stopAccessingSecurityScopedResource() }
-                guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
-                      let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return }
-                let fullImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+                let ext = url.pathExtension.lowercased()
+                let fullImage: NSImage?
+                if ext == "svg" || ext == "ai" || ext == "pdf" {
+                    let request = QLThumbnailGenerator.Request(
+                        fileAt: url,
+                        size: CGSize(width: 4096, height: 4096),
+                        scale: 2.0,
+                        representationTypes: .all
+                    )
+                    fullImage = (try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request))?.nsImage
+                } else {
+                    var srcOpts: [CFString: Any] = [:]
+                    if ext == "jfif" || ext == "jpe" {
+                        srcOpts[kCGImageSourceTypeIdentifierHint] = "public.jpeg" as CFString
+                    }
+                    guard let src = CGImageSourceCreateWithURL(url as CFURL, srcOpts as CFDictionary),
+                          let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return }
+                    fullImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+                }
+                guard let img = fullImage else { return }
                 await MainActor.run {
                     withAnimation(.easeInOut(duration: 0.15)) {
-                        previewFullImage = fullImage
+                        previewFullImage = img
                     }
                 }
             }
@@ -87,6 +107,11 @@ struct ConvertImageView: View {
             if let path = appState.targetFolder?.path {
                 Text(String(format: NSLocalizedString("alert.success.message.image", comment: ""), path))
             }
+        }
+        .alert(LocalizedStringKey("app.comingSoon.title"), isPresented: $showConversionStubAlert) {
+            Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
+        } message: {
+            Text(LocalizedStringKey("app.comingSoon.message"))
         }
     }
 
@@ -149,6 +174,10 @@ struct ConvertImageView: View {
                         )
                         .scaleEffect(previewZoom)
                         .offset(previewOffset)
+                        .allowsHitTesting(false)
+                    // Gesture capture layer — separate from image so buttons above remain clickable
+                    Color.clear
+                        .contentShape(Rectangle())
                         .gesture(DragGesture().onChanged { v in
                             if previewZoom > 1.0 { previewOffset = clampedOffset(v.translation) }
                         })
@@ -199,17 +228,27 @@ struct ConvertImageView: View {
     private var emptyDropZone: some View {
         Button(action: selectFilesFromFinder) {
             VStack(spacing: 16) {
-                Image(systemName: "photo.badge.plus")
+                Image(systemName: isWrongTypeDrop ? "exclamationmark.triangle" : "photo.badge.plus")
                     .font(.system(size: 48, weight: .ultraLight))
-                    .foregroundStyle(Color.secondary.opacity(0.6))
+                    .foregroundStyle(isWrongTypeDrop ? Color.red.opacity(0.7) : Color.secondary.opacity(0.6))
 
-                Text("convert.drop.title")
-                    .font(.system(size: 18, weight: .medium))
-                    .foregroundStyle(Color.primary)
+                VStack(spacing: 8) {
+                    Text(isWrongTypeDrop ? LocalizedStringKey("convert.wrongType.image") : LocalizedStringKey("convert.drop.title"))
+                        .font(.system(size: 18, weight: .medium))
+                        .foregroundStyle(isWrongTypeDrop ? Color.red.opacity(0.8) : Color.primary)
 
-                Text("convert.drop.subtitle")
-                    .font(.system(size: 13))
-                    .foregroundStyle(Color.secondary)
+                    Text("convert.drop.subtitle")
+                        .font(.system(size: 13))
+                        .foregroundStyle(Color.secondary)
+                        .opacity(isWrongTypeDrop ? 0 : 1)
+
+                    Text(LocalizedStringKey("convert.drop.formats"))
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color.secondary.opacity(0.88))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                        .opacity(isWrongTypeDrop ? 0 : 1)
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .contentShape(Rectangle())
@@ -220,9 +259,7 @@ struct ConvertImageView: View {
         .overlay(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .strokeBorder(
-                    isDropTargeted
-                        ? Color.accentColor.opacity(0.5)
-                        : Color.secondary.opacity(0.2),
+                    isWrongTypeDrop ? Color.red.opacity(0.5) : (isDropTargeted ? Color.accentColor.opacity(0.5) : Color.secondary.opacity(0.2)),
                     style: StrokeStyle(lineWidth: 1.5, dash: [8, 4])
                 )
                 .padding(24)
@@ -230,22 +267,33 @@ struct ConvertImageView: View {
         .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
             return handleDrop(providers)
         }
+        .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
     }
 
     private var imageGrid: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 180, maximum: 240), spacing: 16)], spacing: 20) {
-                    ForEach(appState.selectedImages) { item in
-                        imageGridItem(item)
+            GeometryReader { geo in
+                ScrollView {
+                    let columnCount = max(2, Int(geo.size.width / 240))
+                    let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: columnCount)
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(appState.selectedImages) { item in
+                            imageGridItem(item)
+                        }
                     }
+                    .padding(24)
                 }
-                .padding(24)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
                 return handleDrop(providers)
             }
+            .overlay {
+                if isWrongTypeDrop {
+                    wrongTypeOverlay(message: LocalizedStringKey("convert.wrongType.image"))
+                }
+            }
+            .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
 
             Divider()
 
@@ -346,7 +394,7 @@ struct ConvertImageView: View {
                 .padding(6)
             }
         }
-        .frame(height: 120)
+        .frame(height: 180)
     }
 
     // MARK: - Inspector Panel
@@ -368,7 +416,7 @@ struct ConvertImageView: View {
                 // Format Section
                 inspectorSection("convert.settings.format") {
                     Picker("", selection: $selectedFormat) {
-                        ForEach(ImageFormat.allCases) { format in
+                        ForEach(ImageFormat.exportCases) { format in
                             Text(format.label).tag(format)
                         }
                     }
@@ -521,12 +569,7 @@ struct ConvertImageView: View {
                         }
 
                         Button("convert.settings.chooseFolder") {
-                            let panel = NSOpenPanel()
-                            panel.canChooseFiles = false
-                            panel.canChooseDirectories = true
-                            if panel.runModal() == .OK, let url = panel.url {
-                                appState.targetFolder = url
-                            }
+                            pickFolder { appState.targetFolder = $0 }
                         }
                         .controlSize(.small)
                     }
@@ -574,94 +617,59 @@ struct ConvertImageView: View {
         )
     }
 
-    // MARK: - Conversion Logic
+    // MARK: - Conversion Logic (UI only — backend TBD)
     private func performConversion() async {
-        guard let folderURL = appState.targetFolder else { return }
+        guard appState.targetFolder != nil else { return }
         appState.processingMenuItem = .convertImage
         defer {
             isProcessing = false
             appState.processingMenuItem = nil
         }
-
-        // Parse scale selection
-        var mappedScaling: Double? = nil
-        if scaleEnabled {
-            switch scaleSelection {
-            case "%75": mappedScaling = 0.75
-            case "%50": mappedScaling = 0.50
-            case "%25": mappedScaling = 0.25
-            default: mappedScaling = 1.0 // Original
-            }
-        }
-
-        // Parse custom width/height
-        var mappedSize: CGSize? = nil
-        if resizeEnabled {
-            let w = Double(customWidth) ?? 0
-            let h = Double(customHeight) ?? 0
-            mappedSize = CGSize(width: w, height: h)
-        }
-
-        // PARALLEL PROCESSING - Process all images concurrently
-        await withTaskGroup(of: Result<URL, Error>.self) { group in
-            for item in appState.selectedImages {
-                group.addTask {
-                    do {
-                        let result = try await ImageProcessor.shared.processImage(
-                            sourceURL: item.url,
-                            destinationFolder: folderURL,
-                            format: selectedFormat,
-                            quality: quality,
-                            scaling: mappedScaling,
-                            customSize: mappedSize,
-                            preserveMetadata: metadataEnabled
-                        )
-                        return .success(result)
-                    } catch {
-                        return .failure(error)
-                    }
-                }
-            }
-
-            // Collect results
-            var hasError = false
-            for await result in group {
-                if case .failure(let error) = result {
-                    Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "ConvertImageView").error("Failed to convert image: \(error.localizedDescription)")
-                    hasError = true
-                }
-            }
-
-            if !hasError {
-                showSuccessAlert = true
-            }
+        try? await Task.sleep(for: .milliseconds(120))
+        await MainActor.run {
+            showConversionStubAlert = true
         }
     }
 
     // MARK: - Helper Methods
     private static let supportedImageTypes: [UTType] = {
         let optionalTypes: [UTType?] = [
-            .image, .rawImage,
+            .image, .rawImage, .svg, .pdf,
             UTType("com.adobe.photoshop-image"),
             UTType("com.adobe.illustrator.ai-image"),
-            UTType("com.adobe.encapsulated-postscript")
         ]
         return optionalTypes.compactMap { $0 }
     }()
 
+    private static let videoTypes: [UTType] = [.movie, .video, .quickTimeMovie, .mpeg4Movie, .mpeg, .avi]
+
     private func handleDrop(_ providers: [NSItemProvider]) -> Bool {
         var handled = false
         for provider in providers {
-            let isSupported = Self.supportedImageTypes.contains { type in
-                provider.hasItemConformingToTypeIdentifier(type.identifier)
+            let isVideo = Self.videoTypes.contains { provider.hasItemConformingToTypeIdentifier($0.identifier) }
+                       || provider.registeredTypeIdentifiers.contains { id in id.contains("mpeg") || id.contains("mp4") || id.contains("video") || id.contains("movie") }
+            let isSupported = Self.supportedImageTypes.contains { provider.hasItemConformingToTypeIdentifier($0.identifier) }
+
+            if isVideo {
+                wrongTypeTask?.cancel()
+                isWrongTypeDrop = true
+                wrongTypeTask = Task {
+                    try? await Task.sleep(for: .seconds(2))
+                    if !Task.isCancelled { isWrongTypeDrop = false }
+                }
+                handled = true
+                continue
             }
 
             if isSupported || provider.hasItemConformingToTypeIdentifier(UTType.fileURL.identifier) {
-                _ = provider.loadObject(ofClass: URL.self) { url, _ in
-                    if let url = url {
-                        DispatchQueue.main.async {
-                            self.loadImages(from: [url])
-                        }
+                provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, _ in
+                    let url: URL? = {
+                        if let u = item as? URL { return u }
+                        if let data = item as? Data { return URL(dataRepresentation: data, relativeTo: nil) }
+                        return nil
+                    }()
+                    if let url {
+                        self.loadImages(from: [url])
                     }
                 }
                 handled = true
@@ -676,47 +684,82 @@ struct ConvertImageView: View {
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
         panel.allowedContentTypes = Self.supportedImageTypes
+        panel.allowsOtherFileTypes = true
 
         if panel.runModal() == .OK {
             loadImages(from: panel.urls)
         }
     }
 
+    private static let videoExtensions: Set<String> = ["mp4", "mov", "m4v", "avi", "mkv", "wmv", "flv", "webm", "mpeg", "mpg", "3gp"]
+
     private func loadImages(from urls: [URL]) {
-        for url in urls {
-            if appState.selectedImages.contains(where: { $0.url == url }) { continue }
+        let existing = Set(appState.selectedImages.map(\.url))
+        let newURLs = urls.filter {
+            !existing.contains($0) &&
+            !Self.videoExtensions.contains($0.pathExtension.lowercased())
+        }
+        guard !newURLs.isEmpty else { return }
 
-            var fileSizeStr = "0 KB"
-            if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path),
-               let size = attrs[.size] as? Int64 {
-                let formatter = ByteCountFormatter()
-                formatter.allowedUnits = [.useAll]
-                formatter.countStyle = .file
-                fileSizeStr = formatter.string(fromByteCount: size)
+        Task.detached(priority: .userInitiated) {
+            var built: [ImageItem] = []
+            for url in newURLs {
+                _ = url.startAccessingSecurityScopedResource()
+                defer { url.stopAccessingSecurityScopedResource() }
+
+                var fileSizeStr = "0 KB"
+                if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path),
+                   let size = attrs[.size] as? Int64 {
+                    fileSizeStr = ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
+                }
+
+                var dimStr = ""
+                var nsImage: NSImage? = nil
+                let ext0 = url.pathExtension.lowercased()
+
+                if ext0 == "svg" || ext0 == "ai" || ext0 == "pdf" {
+                    // Use QuickLook for vector formats — same quality as Finder previews
+                    let request = QLThumbnailGenerator.Request(
+                        fileAt: url,
+                        size: CGSize(width: 720, height: 720),
+                        scale: 2.0,
+                        representationTypes: .all
+                    )
+                    if let thumb = try? await QLThumbnailGenerator.shared.generateBestRepresentation(for: request) {
+                        nsImage = thumb.nsImage
+                        let sz = thumb.nsImage.size
+                        dimStr = sz.width > 0 ? "- \(Int(sz.width))x\(Int(sz.height))" : ""
+                    }
+                } else {
+                    let ext2 = url.pathExtension.lowercased()
+                    var srcOpts: [CFString: Any] = [:]
+                    if ext2 == "jfif" || ext2 == "jpe" {
+                        srcOpts[kCGImageSourceTypeIdentifierHint] = "public.jpeg" as CFString
+                    }
+                    if let src = CGImageSourceCreateWithURL(url as CFURL, srcOpts as CFDictionary) {
+                        if let props = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
+                           let w = props[kCGImagePropertyPixelWidth] as? Int,
+                           let h = props[kCGImagePropertyPixelHeight] as? Int {
+                            dimStr = "- \(w)x\(h)"
+                        }
+                        let thumbOpts: [CFString: Any] = [
+                            kCGImageSourceCreateThumbnailFromImageAlways: true,
+                            kCGImageSourceThumbnailMaxPixelSize: 720,
+                            kCGImageSourceCreateThumbnailWithTransform: true
+                        ]
+                        if let cg = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOpts as CFDictionary) {
+                            nsImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+                        }
+                    }
+                }
+
+                built.append(ImageItem(url: url, image: nsImage, fileSizeString: fileSizeStr, dimensionsString: dimStr))
             }
 
-            var dimStr = ""
-            var nsImage: NSImage? = nil
-            if let src = CGImageSourceCreateWithURL(url as CFURL, nil) {
-                // Boyutları full-res'ten al
-                if let props = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
-                   let w = props[kCGImagePropertyPixelWidth] as? Int,
-                   let h = props[kCGImagePropertyPixelHeight] as? Int {
-                    dimStr = "- \(w)x\(h)"
-                }
-                // Thumbnail olarak 240px yükle (bellek tasarrufu)
-                let thumbOpts: [CFString: Any] = [
-                    kCGImageSourceCreateThumbnailFromImageAlways: true,
-                    kCGImageSourceThumbnailMaxPixelSize: 240,
-                    kCGImageSourceCreateThumbnailWithTransform: true
-                ]
-                if let cg = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOpts as CFDictionary) {
-                    nsImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
-                }
+            let items = built
+            await MainActor.run {
+                self.appState.selectedImages.append(contentsOf: items)
             }
-
-            let item = ImageItem(url: url, image: nsImage, fileSizeString: fileSizeStr, dimensionsString: dimStr)
-            appState.selectedImages.append(item)
         }
     }
 }
@@ -726,6 +769,9 @@ enum ImageFormat: String, CaseIterable, Identifiable {
     case png, jpeg, webp, avif, bmp, heif, tiff, gif
 
     var id: String { rawValue }
+
+    // Çıkış formatı olarak kullanıcıya gösterilen formatlar (BMP, HEIF, TIFF hariç)
+    static var exportCases: [ImageFormat] { [.png, .jpeg, .webp, .avif, .gif] }
 
     var label: String {
         switch self {

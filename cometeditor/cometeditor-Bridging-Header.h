@@ -1,12 +1,9 @@
 #ifndef COMETEDITOR_BRIDGING_HEADER_H
 #define COMETEDITOR_BRIDGING_HEADER_H
 
-#include "../CometImageCodec/Core/cic_avif.h"
-#include "../CometImageCodec/Core/cic_engine.h"
-#include "../CometImageCodec/Core/cic_error.h"
-#include "../CometImageCodec/Core/cic_types.h"
-#include "../CometImageCodec/Core/cic_webp.h"
-
-#include "../CometVideoCodec/Core/cvc_engine.h"
+// ImageMagick MagickWand — Q16HDRI build ayarlarını tanımla
+#define MAGICKCORE_HDRI_ENABLE 1
+#define MAGICKCORE_QUANTUM_DEPTH 16
+#include "MagickWand/MagickWand.h"
 
 #endif /* COMETEDITOR_BRIDGING_HEADER_H */

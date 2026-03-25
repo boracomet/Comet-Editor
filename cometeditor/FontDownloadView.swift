@@ -490,6 +490,11 @@ struct FontDownloadView: View {
                 try data.write(to: destURL)
                 downloadingFonts.remove(font.id)
                 downloadedFonts.insert(font.id)
+                CometAnalytics.shared.trackEvent(
+                    page: "fontDownload",
+                    eventType: .fontDownloaded,
+                    metadata: ["family": font.family]
+                )
             } catch {
                 downloadingFonts.remove(font.id)
             }

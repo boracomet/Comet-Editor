@@ -1,5 +1,6 @@
 "convert.drop.title" = "Drag & Drop Image";
 "convert.drop.subtitle" = "or click to browse files";
+"convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
 "convert.settings.title" = "Settings";
 "convert.settings.format" = "Format";
 "convert.settings.quality" = "Quality";
@@ -7,7 +8,6 @@
 "convert.settings.enable" = "Enable";
 "convert.settings.scale" = "Scale";
 "convert.settings.scale.amount" = "Scale Amount";
-"convert.scale.original" = "Original";
 "convert.settings.width" = "Width px";
 "convert.settings.height" = "Height px";
 "meta.info" = "Metadata Protection";
@@ -17,6 +17,7 @@
 "convert.settings.convertButton" = "Convert";
 "convert.clearAll" = "Clear All";
 "convert.addMore" = "Add";
+"convert.wrongType.image" = "Only images can be converted here";
 "menu.home" = "Home";
 "menu.convertImage" = "Convert Image";
 "menu.imageEdit" = "Image Editor";
@@ -24,19 +25,19 @@
 "menu.batchProcess" = "Batch Process";
 "menu.settings" = "Settings";
 "menu.tools" = "Tools";
-
+"menu.document" = "DOCUMENT";
+"menu.team" = "Our Team";
 "menu.team.title" = "Our Team";
 "menu.team.subtitle" = "Meet the talented people behind Comet Editor";
-"team.product_of" = "A product of Cometdevs.com";
-"team.thanks_grafix" = "We thank the Grafix community for their contributions.";
-
+"menu.stockImage" = "Stock Image";
+"menu.qrCode" = "QR Code";
+"menu.bgRemove" = "Background Remover";
+"menu.ocr" = "Image to Text";
+"menu.fontDownload" = "Font Download";
 "menu.videoConvert" = "Video Convert";
-"video.drop.title" = "Drag & Drop Video";
-"video.drop.subtitle" = "or click to browse video files";
-"video.settings.format" = "FORMAT";
-
-"home.visitWebsite" = "Visit our website";
-
+"menu.pdfEdit" = "PDF Edit";
+"menu.suggestion" = "Send Feedback";
+"team.thanks_grafix" = "We thank the Grafix community for their contributions.";
 "alert.success.title" = "Success";
 "alert.error.title" = "Error";
 "alert.ok" = "OK";
@@ -44,10 +45,9 @@
 "alert.openFolder" = "Open Folder";
 "alert.success.message.image" = "Images successfully saved to %@.";
 "alert.success.message.video" = "Videos successfully saved to %@.";
-"alert.error.generic" = "An error occurred during processing.";
-
 "home.welcome" = "Welcome to Comet Editor";
 "home.welcome.subtitle" = "Everything you need in one app.";
+"home.visitWebsite" = "Visit our website";
 "home.feature.convertImage.desc" = "Convert images to PNG, JPG, WebP, HEIF and more.";
 "home.feature.videoConvert.desc" = "Convert and compress your videos with ease.";
 "home.feature.stockImage.desc" = "Browse and download free high-quality stock photos.";
@@ -55,54 +55,43 @@
 "home.feature.qrCode.desc" = "Generate and customize QR codes instantly.";
 "home.feature.bgRemove.desc" = "Remove image backgrounds automatically with AI.";
 "home.feature.ocr.desc" = "Extract text from images using optical recognition.";
-
+"home.feature.fontDownload.desc" = "Browse and download Google Fonts directly to your Mac.";
+"video.drop.subtitle" = "or click to browse video files";
+"video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
 "video.settings.resize" = "RESIZE";
 "video.settings.audio" = "AUDIO";
 "video.settings.audio.remove" = "Remove audio";
 "video.settings.metadata" = "METADATA PROTECTION";
-"video.settings.fps.desc" = "Videos above the entered FPS will be slowed down/limited.";
 "video.processing" = "Processing...";
-"video.cancel" = "Cancel";
-"video.saved.gain" = "saved";
-"video.saved.increased" = "(got larger)";
-"video.optimized" = "Optimized";
-
-"menu.document" = "DOCUMENT";
-"menu.pdfEdit" = "PDF Edit";
+"video.error.invalidSource" = "Invalid video source format.";
+"video.error.assetWriter" = "Could not initialize the video writer (AVAssetWriter).";
+"video.error.pixelBufferPool" = "Could not allocate memory pool (PixelBufferPool).";
+"video.error.writerFailure" = "An error occurred while writing the video.";
+"video.fps.original" = "Original";
+"video.fps.60" = "60 FPS";
+"video.fps.30" = "30 FPS";
+"video.fps.24" = "24 FPS";
+"video.resolution.original" = "Original";
+"video.resolution.75" = "75% Size";
+"video.resolution.50" = "50% Size";
+"video.resolution.25" = "25% Size (Low Quality)";
 "pdf.drop.title" = "Drag & Drop PDF";
 "pdf.drop.subtitle" = "or click to browse PDF files";
-"pdf.settings.title" = "PDF Settings";
 "pdf.page.count" = "%lld Pages";
-
-"pdf.tools.currentPage" = "CURRENT PAGE";
-"pdf.tools.pageManagement" = "PAGE MANAGEMENT";
-"pdf.tools.deletePage" = "Delete Page";
-"pdf.tools.insertBefore" = "Insert Before";
-"pdf.tools.insertAfter" = "Insert After";
-"pdf.tools.actions" = "PDF ACTIONS";
-"pdf.tools.merge" = "Merge PDF";
+"pdf.page.info" = "Page %lld of %lld";
+"pdf.estimatedSize" = "Estimated Optimized Size";
+"pdf.deleting" = "Deleting...";
 "pdf.tools.optimize" = "Optimize PDF";
 "pdf.tools.save" = "Save PDF";
-"pdf.tools.reorder" = "Reorder Pages";
-"pdf.page.info" = "Page %lld of %lld";
 "pdf.reorder.title" = "Page Order";
 "pdf.reorder.hint" = "Hold Ctrl to multi-select, then drag to reorder.";
 "pdf.reorder.save" = "Save Order";
 "pdf.reorder.saving" = "Saving...";
 "pdf.reorder.selectToDelete" = "Select pages to delete";
-"pdf.deleting" = "Deleting...";
 "pdf.reorder.selectedCount" = "%d pages selected";
-"pdf.tools.compressSection" = "REDUCE FILE SIZE";
-"pdf.tools.compress" = "Compress with JPEG";
-"pdf.tools.targetFolder" = "TARGET FOLDER";
-"pdf.estimatedSize" = "Estimated Optimized Size";
-
-"pdf.tools.addContent" = "Add Content";
 "pdf.addContent.title" = "Add Content";
 "pdf.addContent.typeLabel" = "CONTENT TYPE";
-"pdf.addContent.typePDF" = "PDF File";
-"pdf.addContent.typeImage" = "Image";
 "pdf.addContent.positionLabel" = "INSERT POSITION";
 "pdf.addContent.currentPage" = "Use current page (Page %lld)";
 "pdf.addContent.pageNumber" = "Page number:";
@@ -110,42 +99,23 @@
 "pdf.addContent.after" = "Insert after this page";
 "pdf.addContent.atEnd" = "Append to end";
 "pdf.addContent.chooseFile" = "Choose File & Insert";
-
-"menu.team" = "Our Team";
-"menu.stockImage" = "Stock Image";
-"stock.search.placeholder" = "Search on Unsplash...";
-"stock.search.button" = "Search";
-"stock.random" = "Randomize";
-"stock.loading" = "Loading...";
-"stock.source" = "Source: Unsplash";
-"stock.selected" = "%d selected";
 "stock.deselectAll" = "Deselect All";
-"stock.loadMore" = "Load More";
 "stock.download" = "Download Selected";
 "stock.download.count" = "Download %d Photos";
-"stock.photo.by" = "Photo by %@";
-"stock.inspector.quality" = "DOWNLOAD QUALITY";
-"stock.quality.regular" = "Regular (1080px)";
-"stock.quality.full" = "Full Resolution";
-"menu.qrCode" = "QR Code";
-"qr.title" = "QR Code Generator";
 "qr.input.placeholder" = "Enter URL or text here...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Foreground Color";
 "qr.settings.bgColor" = "Background Color";
 "qr.settings.showBg" = "Show Background";
 "qr.settings.cornerRadius" = "Corner Radius";
-"qr.settings.format" = "EXPORT FORMAT";
 "qr.settings.resolution" = "RESOLUTION";
 "qr.settings.customSize" = "Custom Size (px)";
 "qr.download" = "Download QR Code";
-
-"menu.bgRemove" = "Background Remover";
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Background Remover uses Apple's Neural Engine technology.\nPlease update to macOS 14 Sonoma or later.";
-"bgremove.drop.title" = "Drag & Drop Images";
+"bgremove.drop.title" = "Drag & Drop Image";
 "bgremove.drop.subtitle" = "or click to browse files";
-"bgremove.processing" = "Processing...";
+"bgremove.processing" = "Removing background...";
 "bgremove.save.all" = "Save All";
 "bgremove.save.count" = "Save %d Images";
 "bgremove.preview.ready" = "Preview ready";
@@ -154,27 +124,9 @@
 "bgremove.settings.title" = "Settings";
 "bgremove.settings.format" = "FORMAT";
 "bgremove.settings.targetFolder" = "TARGET FOLDER";
-"bgremove.drop.title" = "Drag & Drop Image";
-"bgremove.drop.subtitle" = "or click to browse files";
-"bgremove.processing" = "Removing background...";
-"bgremove.download" = "Save Image";
-"bgremove.settings.outputFormat" = "OUTPUT FORMAT";
-"bgremove.settings.background" = "BACKGROUND";
-"bgremove.settings.bgColor" = "Background Color";
-"bgremove.settings.showBg" = "Add Background Color";
-"bgremove.settings.padding" = "PADDING";
-"bgremove.settings.paddingAmount" = "Padding (px)";
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Feather";
 "bgremove.settings.featherAmount" = "Feather Amount";
-
-"video.error.invalidSource" = "Invalid video source format.";
-"video.error.assetWriter" = "Could not initialize the video writer (AVAssetWriter).";
-"video.error.pixelBufferPool" = "Could not allocate memory pool (PixelBufferPool).";
-"video.error.decoder" = "Video stream could not be decoded.";
-"video.error.writerFailure" = "An error occurred while writing the video.";
-
-"menu.ocr" = "Image to Text";
 "ocr.drop.title" = "Drag & Drop Image";
 "ocr.drop.subtitle" = "or click to browse files";
 "ocr.processing" = "Recognizing text...";
@@ -184,32 +136,15 @@
 "ocr.clear" = "Clear";
 "ocr.newFile" = "New File";
 "ocr.copied" = "Copied!";
-
 "app.comingSoon.title" = "Coming Soon";
 "app.comingSoon.message" = "This feature will be available soon.";
 "app.version" = "v1.0.0-beta";
-
-"language.turkish" = "Türkçe";
-"language.english" = "English";
-
-"video.fps.original" = "Original";
-"video.fps.60" = "60 FPS";
-"video.fps.30" = "30 FPS";
-"video.fps.24" = "24 FPS";
-"video.resolution.original" = "Original";
-"video.resolution.75" = "75% Size";
-"video.resolution.50" = "50% Size";
-"video.resolution.25" = "25% Size (Low Quality)";
-
-"menu.fontDownload" = "Font Download";
-"home.feature.fontDownload.desc" = "Browse and download Google Fonts directly to your Mac.";
 "font.search.placeholder" = "Search fonts...";
 "font.preview.custom" = "Type something...";
 "font.inspector.preview" = "Preview";
 "font.inspector.fontSize" = "Font Size";
 "font.inspector.feeling" = "Feeling";
 "font.inspector.language" = "Language / Writing System";
-
 "font.feeling.business" = "Business";
 "font.feeling.calm" = "Calm";
 "font.feeling.cute" = "Cute";
@@ -224,7 +159,6 @@
 "font.feeling.futuristic" = "Futuristic";
 "font.feeling.stiff" = "Stiff";
 "font.feeling.happy" = "Happy";
-
 "font.writing.all" = "All";
 "font.writing.latin" = "Latin";
 "font.writing.cyrillic" = "Cyrillic";
@@ -238,3 +172,44 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
+"suggestion.title" = "Suggest a Feature";
+"suggestion.subtitle" = "Share your ideas and help us improve";
+"suggestion.placeholder.title" = "Title";
+"suggestion.placeholder.body" = "Describe your suggestion in detail...";
+"suggestion.category.bug" = "Bug";
+"suggestion.category.feature" = "Feature Request";
+"suggestion.category.ui" = "UI/UX";
+"suggestion.category.performance" = "Performance";
+"suggestion.category.other" = "Other";
+"suggestion.send" = "Send Suggestion";
+"suggestion.sending" = "Sending...";
+"suggestion.sent.title" = "Thank You!";
+"suggestion.sent.message" = "Your suggestion has been received. We'll review it soon.";
+"suggestion.error" = "Failed to send. Please try again.";
+"suggestion.validation.title" = "Missing Fields";
+"suggestion.validation.body" = "Please fill in the title and description.";
+
+"video.drop.title" = "Drop Video Here";
+"video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+"convert.wrongType.video" = "Only videos can be converted here";
+"app.maintenance.title" = "Maintenance Mode";
+"app.forceUpdate.title" = "Update Required";
+"app.forceUpdate.button" = "Update on App Store";
+"app.quit" = "Quit App";
+
+"stock.loading" = "Loading...";
+"stock.photo.by" = "Photo by %@";
+"stock.random" = "Random";
+"stock.search.button" = "Search";
+"stock.search.placeholder" = "Search photos...";
+"stock.selected" = "%d selected";
+"video.cancel" = "Cancel";
+"video.error.decoder" = "Video could not be decoded.";
+"video.saved.gain" = "saved";
+"video.saved.increased" = "larger";
+"video.settings.fps.desc" = "Disable to keep the original FPS";"pdf.addContent.typePDF" = "PDF";
+"pdf.addContent.typeImage" = "Image";
+"pdf.tools.pageManagement" = "PAGE MANAGEMENT";
+"pdf.tools.addContent" = "Add Content";
+"pdf.tools.reorder" = "Reorder";
+"pdf.tools.targetFolder" = "TARGET FOLDER";

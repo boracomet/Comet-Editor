@@ -1,5 +1,6 @@
 "convert.drop.title" = "Resmi Sürükle ve Bırak";
 "convert.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
 "convert.settings.title" = "Ayarlar";
 "convert.settings.format" = "Format";
 "convert.settings.quality" = "Kalite";
@@ -7,7 +8,6 @@
 "convert.settings.enable" = "Aktifleştir";
 "convert.settings.scale" = "Ölçek";
 "convert.settings.scale.amount" = "Ölçek";
-"convert.scale.original" = "Orijinal";
 "convert.settings.width" = "Genişlik px";
 "convert.settings.height" = "Yükseklik px";
 "meta.info" = "Metadata Koruma";
@@ -17,6 +17,8 @@
 "convert.settings.convertButton" = "Dönüştür";
 "convert.clearAll" = "Tümünü Temizle";
 "convert.addMore" = "Ekle";
+"convert.wrongType.image" = "Buraya yalnızca resim dönüştürebilirsiniz";
+
 "menu.home" = "Ana Sayfa";
 "menu.convertImage" = "Resim Dönüştür";
 "menu.imageEdit" = "Resim Düzenle";
@@ -24,18 +26,20 @@
 "menu.batchProcess" = "Toplu İşlem";
 "menu.settings" = "Ayarlar";
 "menu.tools" = "Araçlar";
-
+"menu.document" = "DOKÜMAN";
+"menu.team" = "Ekibimiz";
 "menu.team.title" = "Ekibimiz";
 "menu.team.subtitle" = "Uygulamanın arkasındaki yetenekli isimlerle tanışın";
-"team.product_of" = "Cometdevs.com ürünüdür";
-"team.thanks_grafix" = "Grafix topluluğuna değerli katkılarından dolayı teşekkür ederiz.";
-
+"menu.stockImage" = "Stok Görsel";
+"menu.qrCode" = "QR Kod";
+"menu.bgRemove" = "Arka Plan Sil";
+"menu.ocr" = "Resmi Yazıya Çevir";
+"menu.fontDownload" = "Font İndir";
 "menu.videoConvert" = "Video Dönüştür";
-"video.drop.title" = "Videoyu Sürükle ve Bırak";
-"video.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
-"video.settings.format" = "FORMAT";
+"menu.pdfEdit" = "PDF Düzenle";
+"menu.suggestion" = "Öneride Bulun";
 
-"home.visitWebsite" = "Web sitemize git";
+"team.thanks_grafix" = "Grafix topluluğuna değerli katkılarından dolayı teşekkür ederiz.";
 
 "alert.success.title" = "Başarılı";
 "alert.error.title" = "Hata";
@@ -44,10 +48,10 @@
 "alert.openFolder" = "Klasörü Aç";
 "alert.success.message.image" = "Resimler başarıyla %@ konumuna kaydedildi.";
 "alert.success.message.video" = "Videolar başarıyla %@ konumuna kaydedildi.";
-"alert.error.generic" = "İşlem sırasında bir hata oluştu.";
 
 "home.welcome" = "Comet Editor'a Hoş Geldiniz";
 "home.welcome.subtitle" = "Tüm ihtiyaçlarınız tek bir uygulamada.";
+"home.visitWebsite" = "Web sitemize git";
 "home.feature.convertImage.desc" = "Resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
 "home.feature.videoConvert.desc" = "Videolarınızı kolayca dönüştürün ve sıkıştırın.";
 "home.feature.stockImage.desc" = "Ücretsiz yüksek kaliteli stok fotoğraflara göz atın ve indirin.";
@@ -55,54 +59,45 @@
 "home.feature.qrCode.desc" = "Anında QR kod oluşturun ve özelleştirin.";
 "home.feature.bgRemove.desc" = "Yapay zeka ile resim arka planlarını otomatik kaldırın.";
 "home.feature.ocr.desc" = "Optik tanıma ile resimlerden metin çıkarın.";
+"home.feature.fontDownload.desc" = "Google Fonts'tan fontları doğrudan Mac'inize göz atın ve indirin.";
 
+"video.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
+"video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LİMİTİ";
 "video.settings.resize" = "YENİDEN BOYUTLANDIR";
 "video.settings.audio" = "SES";
 "video.settings.audio.remove" = "Sesi kaldır";
 "video.settings.metadata" = "METADATA KORUMA";
-"video.settings.fps.desc" = "Girilen FPS üzerinde olan videolar yavaşlatılır/limitlenir.";
 "video.processing" = "İşleniyor...";
-"video.cancel" = "İptal Et";
-"video.saved.gain" = "kazanç";
-"video.saved.increased" = "(Büyüdü)";
-"video.optimized" = "Optimize Edildi";
+"video.error.invalidSource" = "Geçersiz kaynak video biçimi.";
+"video.error.assetWriter" = "Video yazıcısı başlatılamadı.";
+"video.error.pixelBufferPool" = "Bellek havuzu oluşturulamadı.";
+"video.error.writerFailure" = "Video yazma işlemi sırasında hata oluştu.";
+"video.fps.original" = "Orijinal";
+"video.fps.60" = "60 FPS";
+"video.fps.30" = "30 FPS";
+"video.fps.24" = "24 FPS";
+"video.resolution.original" = "Orijinal";
+"video.resolution.75" = "%75 Boyut";
+"video.resolution.50" = "%50 Boyut";
+"video.resolution.25" = "%25 Boyut (Düşük Kalite)";
 
-"menu.document" = "DOKÜMAN";
-"menu.pdfEdit" = "PDF Düzenle";
 "pdf.drop.title" = "PDF Sürükle ve Bırak";
 "pdf.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
-"pdf.settings.title" = "PDF Ayarları";
 "pdf.page.count" = "%lld Sayfa";
-
-"pdf.tools.currentPage" = "MEVCUT SAYFA";
-"pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
-"pdf.tools.deletePage" = "Sayfayı Sil";
-"pdf.tools.insertBefore" = "Önüne Ekle";
-"pdf.tools.insertAfter" = "Arkasına Ekle";
-"pdf.tools.actions" = "PDF İŞLEMLERİ";
-"pdf.tools.merge" = "PDF Birleştir";
+"pdf.page.info" = "%lld. Sayfa / %lld";
+"pdf.estimatedSize" = "Tahmini Optimize Boyutu";
+"pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF Optimize Et";
 "pdf.tools.save" = "PDF Kaydet";
-"pdf.tools.reorder" = "Sayfaları Sırala";
-"pdf.page.info" = "%lld. Sayfa / %lld";
 "pdf.reorder.title" = "Sayfa Sırası";
 "pdf.reorder.hint" = "Ctrl basılı tutarak çoklu seçim yapın, sürükleyerek sıralayın.";
 "pdf.reorder.save" = "Sıralamayı Kaydet";
 "pdf.reorder.saving" = "Kaydediliyor...";
-"pdf.deleting" = "Siliniyor...";
 "pdf.reorder.selectToDelete" = "Silinecek sayfaları seçin";
 "pdf.reorder.selectedCount" = "%d sayfa seçili";
-"pdf.tools.compressSection" = "BOYUT KÜÇÜLT";
-"pdf.tools.compress" = "JPEG ile Sıkıştır";
-"pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"pdf.estimatedSize" = "Tahmini Optimize Boyutu";
-
-"pdf.tools.addContent" = "Ek İçerik Ekle";
 "pdf.addContent.title" = "Ek İçerik Ekle";
 "pdf.addContent.typeLabel" = "İÇERİK TÜRÜ";
-"pdf.addContent.typePDF" = "PDF Dosyası";
-"pdf.addContent.typeImage" = "Resim";
 "pdf.addContent.positionLabel" = "EKLEME KONUMU";
 "pdf.addContent.currentPage" = "Mevcut sayfayı kullan (Sayfa %lld)";
 "pdf.addContent.pageNumber" = "Sayfa numarası:";
@@ -110,42 +105,32 @@
 "pdf.addContent.after" = "Bu sayfanın arkasına ekle";
 "pdf.addContent.atEnd" = "Sona ekle";
 "pdf.addContent.chooseFile" = "Dosya Seç & Ekle";
+"pdf.addContent.typePDF" = "PDF";
+"pdf.addContent.typeImage" = "Görsel";
+"pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
+"pdf.tools.addContent" = "İçerik Ekle";
+"pdf.tools.reorder" = "Yeniden Sırala";
+"pdf.tools.targetFolder" = "HEDEF KLASÖR";
 
-"menu.team" = "Ekibimiz";
-"menu.stockImage" = "Stok Görsel";
-"stock.search.placeholder" = "Unsplash'ta ara...";
-"stock.search.button" = "Ara";
-"stock.random" = "Rastgele Yenile";
-"stock.loading" = "Yükleniyor...";
-"stock.source" = "Kaynak: Unsplash";
-"stock.selected" = "%d seçili";
 "stock.deselectAll" = "Seçimi Kaldır";
-"stock.loadMore" = "Daha Fazla Yükle";
 "stock.download" = "Seçilenleri İndir";
 "stock.download.count" = "%d Fotoğraf İndir";
-"stock.photo.by" = "Fotoğraf: %@";
-"stock.inspector.quality" = "İNDİRME KALİTESİ";
-"stock.quality.regular" = "Normal (1080px)";
-"stock.quality.full" = "Tam Çözünürlük";
-"menu.qrCode" = "QR Kod";
-"qr.title" = "QR Kod Oluşturucu";
+
 "qr.input.placeholder" = "URL veya metin giriniz...";
 "qr.settings.colors" = "RENKLER";
 "qr.settings.fgColor" = "QR Rengi";
 "qr.settings.bgColor" = "Arka Plan Rengi";
 "qr.settings.showBg" = "Arka Planı Göster";
 "qr.settings.cornerRadius" = "Köşe Yumuşatma";
-"qr.settings.format" = "DIŞA AKTAR";
 "qr.settings.resolution" = "ÇÖZÜNÜRLÜK";
 "qr.settings.customSize" = "Özel Çözünürlük (px)";
 "qr.download" = "QR Kodu İndir";
 
-"menu.bgRemove" = "Arka Plan Sil";
 "bgremove.unavailable.title" = "macOS 14 Gerekli";
 "bgremove.unavailable.subtitle" = "Arka Plan Silme özelliği Apple'ın Neural Engine teknolojisini kullanır.\nLütfen macOS 14 Sonoma veya daha üst bir sürüme güncelleyin.";
 "bgremove.drop.title" = "Resimleri Sürükle ve Bırak";
 "bgremove.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
-"bgremove.processing" = "İşleniyor...";
+"bgremove.processing" = "Arka plan siliniyor...";
 "bgremove.save.all" = "Tümünü Kaydet";
 "bgremove.save.count" = "%d Resim Kaydet";
 "bgremove.preview.ready" = "Önizleme hazır";
@@ -154,27 +139,10 @@
 "bgremove.settings.title" = "Ayarlar";
 "bgremove.settings.format" = "FORMAT";
 "bgremove.settings.targetFolder" = "HEDEF KLASÖR";
-"bgremove.drop.title" = "Resmi Sürükle ve Bırak";
-"bgremove.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
-"bgremove.processing" = "Arka plan siliniyor...";
-"bgremove.download" = "Resmi Kaydet";
-"bgremove.settings.outputFormat" = "ÇIKTI FORMATI";
-"bgremove.settings.background" = "ARKA PLAN";
-"bgremove.settings.bgColor" = "Arka Plan Rengi";
-"bgremove.settings.showBg" = "Arka Plan Rengi Ekle";
-"bgremove.settings.padding" = "DOLGU";
-"bgremove.settings.paddingAmount" = "Dolgu (px)";
 "bgremove.settings.refine" = "KENAR İYİLEŞTİR";
 "bgremove.settings.feather" = "Yumuşatma";
 "bgremove.settings.featherAmount" = "Yumuşatma Miktarı";
 
-"video.error.invalidSource" = "Geçersiz kaynak video biçimi.";
-"video.error.assetWriter" = "Video yazıcısı başlatılamadı.";
-"video.error.pixelBufferPool" = "Bellek havuzu oluşturulamadı.";
-"video.error.decoder" = "Video akışı çözümlenemedi.";
-"video.error.writerFailure" = "Video yazma işlemi sırasında hata oluştu.";
-
-"menu.ocr" = "Resmi Yazıya Çevir";
 "ocr.drop.title" = "Resmi Sürükle ve Bırak";
 "ocr.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
 "ocr.processing" = "Metin tanınıyor...";
@@ -189,27 +157,12 @@
 "app.comingSoon.message" = "Bu özellik yakında kullanıma sunulacak.";
 "app.version" = "v1.0.0-beta";
 
-"language.turkish" = "Türkçe";
-"language.english" = "English";
-
-"video.fps.original" = "Orijinal";
-"video.fps.60" = "60 FPS";
-"video.fps.30" = "30 FPS";
-"video.fps.24" = "24 FPS";
-"video.resolution.original" = "Orijinal";
-"video.resolution.75" = "%75 Boyut";
-"video.resolution.50" = "%50 Boyut";
-"video.resolution.25" = "%25 Boyut (Düşük Kalite)";
-
-"menu.fontDownload" = "Font İndir";
-"home.feature.fontDownload.desc" = "Google Fonts'tan fontları doğrudan Mac'inize göz atın ve indirin.";
 "font.search.placeholder" = "Font ara...";
 "font.preview.custom" = "Bir şeyler yazın...";
 "font.inspector.preview" = "Önizleme";
 "font.inspector.fontSize" = "Yazı Boyutu";
 "font.inspector.feeling" = "Duygu";
 "font.inspector.language" = "Dil / Yazı Sistemi";
-
 "font.feeling.business" = "İş";
 "font.feeling.calm" = "Sakin";
 "font.feeling.cute" = "Sevimli";
@@ -224,7 +177,6 @@
 "font.feeling.futuristic" = "Fütüristik";
 "font.feeling.stiff" = "Sert";
 "font.feeling.happy" = "Mutlu";
-
 "font.writing.all" = "Tümü";
 "font.writing.latin" = "Latin";
 "font.writing.cyrillic" = "Kiril";
@@ -238,3 +190,40 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"suggestion.title" = "Öneri Gönder";
+"suggestion.subtitle" = "Fikirlerinizi paylaşın, uygulamayı birlikte geliştirelim";
+"suggestion.placeholder.title" = "Başlık";
+"suggestion.placeholder.body" = "Önerinizi detaylı açıklayın...";
+"suggestion.category.bug" = "Hata";
+"suggestion.category.feature" = "Özellik İsteği";
+"suggestion.category.ui" = "Arayüz";
+"suggestion.category.performance" = "Performans";
+"suggestion.category.other" = "Diğer";
+"suggestion.send" = "Öneriyi Gönder";
+"suggestion.sending" = "Gönderiliyor...";
+"suggestion.sent.title" = "Teşekkürler!";
+"suggestion.sent.message" = "Öneriniz alındı, en kısa sürede inceleyeceğiz.";
+"suggestion.error" = "Gönderilemedi. Lütfen tekrar deneyin.";
+"suggestion.validation.title" = "Eksik Alan";
+"suggestion.validation.body" = "Lütfen başlık ve açıklama girin.";
+
+"video.drop.title" = "Videoyu Sürükle ve Bırak";
+"video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+"convert.wrongType.video" = "Buraya yalnızca video dönüştürebilirsiniz";
+"app.maintenance.title" = "Bakım Modu";
+"app.forceUpdate.title" = "Güncelleme Gerekli";
+"app.forceUpdate.button" = "App Store'dan Güncelle";
+"app.quit" = "Uygulamayı Kapat";
+
+"stock.loading" = "Yükleniyor...";
+"stock.photo.by" = "Fotoğraf: %@";
+"stock.random" = "Rastgele";
+"stock.search.button" = "Ara";
+"stock.search.placeholder" = "Fotoğraf ara...";
+"stock.selected" = "%d seçildi";
+"video.cancel" = "İptal";
+"video.error.decoder" = "Video kodu çözülemedi.";
+"video.saved.gain" = "tasarruf edildi";
+"video.saved.increased" = "daha büyük";
+"video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";

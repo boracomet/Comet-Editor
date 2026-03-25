@@ -2,7 +2,6 @@
 //  OCRView.swift
 //  cometeditor
 //
-//  Vision VNRecognizeTextRequest — sıfır dışa bağımlılık
 //
 
 import SwiftUI
@@ -21,13 +20,11 @@ struct OCRView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            // Sol: Resim
             leftPanel
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             Divider()
 
-            // Sağ: Metin çıktısı
             rightPanel
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -38,7 +35,6 @@ struct OCRView: View {
 
     private var leftPanel: some View {
         VStack(spacing: 0) {
-            // Toolbar
             HStack(spacing: 10) {
                 if appState.ocrImage != nil {
                     Button {
@@ -107,7 +103,6 @@ struct OCRView: View {
 
     private var rightPanel: some View {
         VStack(spacing: 0) {
-            // Sağ toolbar
             HStack(spacing: 8) {
                 Spacer()
 
@@ -129,7 +124,10 @@ struct OCRView: View {
                         NSPasteboard.general.clearContents()
                         NSPasteboard.general.setString(appState.ocrRecognizedText, forType: .string)
                         isCopied = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { isCopied = false }
+                        Task {
+                            try? await Task.sleep(for: .seconds(1.5))
+                            isCopied = false
+                        }
                     } label: {
                         HStack(spacing: 5) {
                             Image(systemName: isCopied ? "checkmark" : "doc.on.doc")
@@ -282,6 +280,7 @@ struct OCRView: View {
         switch result {
         case .success(let lines):
             appState.ocrRecognizedText = lines.joined(separator: "\n")
+            CometAnalytics.shared.trackEvent(page: "ocr", eventType: .ocrUsed)
         case .failure(let error):
             appState.ocrRecognizedText = error.localizedDescription
         }

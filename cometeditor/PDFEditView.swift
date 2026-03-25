@@ -516,10 +516,7 @@ struct PDFEditView: View {
                                 }
 
                                 Button("convert.settings.chooseFolder") {
-                                    let panel = NSOpenPanel()
-                                    panel.canChooseFiles = false
-                                    panel.canChooseDirectories = true
-                                    if panel.runModal() == .OK { appState.pdfCompressionTargetFolder = panel.url }
+                                    pickFolder { appState.pdfCompressionTargetFolder = $0 }
                                 }
                                 .controlSize(.small)
                             }
@@ -766,6 +763,11 @@ struct PDFEditView: View {
 
         ctx.closePDF()
         compressionProgress = 1.0
+        CometAnalytics.shared.trackEvent(
+            page: "pdfEdit",
+            eventType: .pdfEdited,
+            metadata: ["action": "compress", "pages": pageCount]
+        )
     }
 
     private func applyReorder(_ newOrder: [Int], for pdf: PDFItem) async {
@@ -804,6 +806,7 @@ struct PDFEditView: View {
         panel.nameFieldStringValue = pdf.fileName
         guard panel.runModal() == .OK, let url = panel.url else { return }
         document.write(to: url)
+        CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
     }
 
     // MARK: - Load Helpers

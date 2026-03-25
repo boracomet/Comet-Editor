@@ -11,25 +11,20 @@ echo "=========================================="
 
 cd "$CI_PRIMARY_REPOSITORY_PATH"
 
-# Verify pre-built libraries exist
-echo "Verifying pre-built libraries..."
+echo "Verifying ImageMagick (universal) static libs..."
 
-if [ ! -d "third_party/install/include" ]; then
-    echo "ERROR: third_party/install/include not found!"
+if [ ! -d "third_party/imagemagick/universal/include/ImageMagick-7" ]; then
+    echo "ERROR: third_party/imagemagick/universal/include/ImageMagick-7 not found!"
     exit 1
 fi
 
-if [ ! -d "third_party/ffmpeg_install/universal/include" ]; then
-    echo "ERROR: third_party/ffmpeg_install/universal/include not found!"
+if [ ! -d "third_party/imagemagick/universal/lib" ]; then
+    echo "ERROR: third_party/imagemagick/universal/lib not found!"
     exit 1
 fi
 
-echo "✓ Image codec headers found:"
-ls -la third_party/install/include/
-
-echo ""
-echo "✓ Video codec headers found:"
-ls -la third_party/ffmpeg_install/universal/include/
+echo "✓ ImageMagick headers and libs:"
+ls -la third_party/imagemagick/universal/lib/*.a 2>/dev/null | head -5 || true
 
 echo ""
 echo "=========================================="

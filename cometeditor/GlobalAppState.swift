@@ -4,8 +4,6 @@ import Combine
 import os
 @preconcurrency import PDFKit
 
-// Hangi sekmede batch işlem devam ediyor (sidebar'da loader göstermek için)
-// Tab değişince işlem durmaz — Task view'dan bağımsız çalışır
 
 // MARK: - Models
 struct ImageItem: Identifiable, Equatable {
@@ -75,8 +73,6 @@ class GlobalAppState: ObservableObject {
     @Published var processingMenuItem: MenuItem? = nil
     /// Video dönüşüm task'ı — iptal için (VideoConvertView dışından da erişilebilir)
     var videoConversionTask: Task<Void, Never>? = nil
-    /// Video dönüşümü iptal isteği — Task.detached içinden okunur (miras almaz)
-    var videoConversionCancelled: Bool = false
 
     // Shared File Lists
     @Published var selectedImages: [ImageItem] = []
@@ -100,9 +96,12 @@ class GlobalAppState: ObservableObject {
     var canUndo: Bool { !pdfUndoStack.isEmpty }
     var canRedo: Bool { !pdfRedoStack.isEmpty }
 
+    private let maxUndoStackSize = 10
+
     // Push a full-document snapshot (used for reorder, compress, add-content)
     func pushPDFUndo(data: Data) {
         pdfUndoStack.append(.fullSnapshot(PDFSnapshot(documentData: data)))
+        if pdfUndoStack.count > maxUndoStackSize { pdfUndoStack.removeFirst() }
         pdfRedoStack = []
         objectWillChange.send()
     }
@@ -110,6 +109,7 @@ class GlobalAppState: ObservableObject {
     // Push a fast page-deletion undo entry (stores only deleted page(s), not the full doc)
     func pushPageDeletionUndo(_ records: [PDFDeletedPage]) {
         pdfUndoStack.append(.pageInsertion(records))
+        if pdfUndoStack.count > maxUndoStackSize { pdfUndoStack.removeFirst() }
         pdfRedoStack = []
         objectWillChange.send()
     }
@@ -193,7 +193,6 @@ class GlobalAppState: ObservableObject {
 
     private func restoreSnapshot(_ snapshot: PDFSnapshot, into document: PDFDocument) {
         guard let restored = PDFDocument(data: snapshot.documentData) else { return }
-        // Replace all pages in-place
         for i in stride(from: document.pageCount - 1, through: 0, by: -1) {
             document.removePage(at: i)
         }
@@ -205,7 +204,6 @@ class GlobalAppState: ObservableObject {
         pdfPageIndex = min(pdfPageIndex, document.pageCount - 1)
         pdfDocumentVersion += 1
         pdfReorderPageOrder = nil
-        // Update estimated file size from restored snapshot
         let newBytes = Int64(snapshot.documentData.count)
         if let pdf = selectedPDF, newBytes > 0 {
             let formatter = ByteCountFormatter()
@@ -254,8 +252,10 @@ class GlobalAppState: ObservableObject {
     // Stock Image State
     @Published var stockSearchQuery: String = ""
 
-    private let bookmarkKey = "LastSelectedFolderBookmark"
-    private let pdfFolderBookmarkKey = "LastPDFFolderBookmark"
+    private enum Keys {
+        static let folderBookmark = "LastSelectedFolderBookmark"
+        static let pdfFolderBookmark = "LastPDFFolderBookmark"
+    }
 
     init() {
         loadFolderBookmark()
@@ -263,65 +263,49 @@ class GlobalAppState: ObservableObject {
     }
 
     // MARK: - Bookmark Persistence
+
     private func saveFolderBookmark() {
-        guard let url = targetFolder else {
-            UserDefaults.standard.removeObject(forKey: bookmarkKey)
-            return
-        }
-        do {
-            let bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
-            UserDefaults.standard.set(bookmarkData, forKey: bookmarkKey)
-        } catch {
-            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to save folder bookmark: \(error.localizedDescription)")
-        }
+        saveBookmark(url: targetFolder, forKey: Keys.folderBookmark)
     }
 
     private func loadFolderBookmark() {
-        guard let bookmarkData = UserDefaults.standard.data(forKey: bookmarkKey) else { return }
-        var isStale = false
-        do {
-            let url = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            if isStale {
-                if let freshData = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil) {
-                    UserDefaults.standard.set(freshData, forKey: bookmarkKey)
-                }
-            }
-            if url.startAccessingSecurityScopedResource() {
-                DispatchQueue.main.async { self.targetFolder = url }
-            }
-        } catch {
-            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to resolve folder bookmark: \(error.localizedDescription)")
-        }
+        loadBookmark(forKey: Keys.folderBookmark) { self.targetFolder = $0 }
     }
 
     private func savePDFFolderBookmark() {
-        guard let url = pdfCompressionTargetFolder else {
-            UserDefaults.standard.removeObject(forKey: pdfFolderBookmarkKey)
-            return
-        }
-        do {
-            let bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
-            UserDefaults.standard.set(bookmarkData, forKey: pdfFolderBookmarkKey)
-        } catch {
-            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to save PDF folder bookmark: \(error.localizedDescription)")
-        }
+        saveBookmark(url: pdfCompressionTargetFolder, forKey: Keys.pdfFolderBookmark)
     }
 
     private func loadPDFFolderBookmark() {
-        guard let bookmarkData = UserDefaults.standard.data(forKey: pdfFolderBookmarkKey) else { return }
+        loadBookmark(forKey: Keys.pdfFolderBookmark) { self.pdfCompressionTargetFolder = $0 }
+    }
+
+    private func saveBookmark(url: URL?, forKey key: String) {
+        guard let url else {
+            UserDefaults.standard.removeObject(forKey: key)
+            return
+        }
+        do {
+            let data = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+            UserDefaults.standard.set(data, forKey: key)
+        } catch {
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to save bookmark (\(key)): \(error.localizedDescription)")
+        }
+    }
+
+    private func loadBookmark(forKey key: String, assign: @escaping (URL) -> Void) {
+        guard let data = UserDefaults.standard.data(forKey: key) else { return }
         var isStale = false
         do {
-            let url = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            if isStale {
-                if let freshData = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil) {
-                    UserDefaults.standard.set(freshData, forKey: pdfFolderBookmarkKey)
-                }
+            let url = try URL(resolvingBookmarkData: data, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+            if isStale, let fresh = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil) {
+                UserDefaults.standard.set(fresh, forKey: key)
             }
             if url.startAccessingSecurityScopedResource() {
-                DispatchQueue.main.async { self.pdfCompressionTargetFolder = url }
+                DispatchQueue.main.async { assign(url) }
             }
         } catch {
-            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to resolve PDF folder bookmark: \(error.localizedDescription)")
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.cometeditor", category: "GlobalAppState").error("Failed to resolve bookmark (\(key)): \(error.localizedDescription)")
         }
     }
 }

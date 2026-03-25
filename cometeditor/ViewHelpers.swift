@@ -86,6 +86,25 @@ func inspectorSection<Content: View>(
     .padding(.horizontal, 16)
 }
 
+// MARK: - Wrong Drop Type Overlay
+@ViewBuilder
+func wrongTypeOverlay(message: LocalizedStringKey) -> some View {
+    ZStack {
+        Color.red.opacity(0.08)
+        VStack(spacing: 8) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.system(size: 28))
+                .foregroundStyle(Color.red.opacity(0.8))
+            Text(message)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(Color.red.opacity(0.9))
+                .multilineTextAlignment(.center)
+        }
+        .padding(24)
+    }
+    .allowsHitTesting(false)
+}
+
 // MARK: - Shared Path Truncation
 func truncatedPath(_ path: String) -> String {
     let components = path.components(separatedBy: "/")
@@ -138,6 +157,17 @@ final class _ScrollWheelNSView: NSView {
     }
     override func rightMouseDown(with event: NSEvent) {
         nextResponder?.rightMouseDown(with: event)
+    }
+}
+
+// MARK: - Folder Picker
+/// Opens a directory-only NSOpenPanel and calls `onSelect` with the chosen URL.
+func pickFolder(onSelect: (URL) -> Void) {
+    let panel = NSOpenPanel()
+    panel.canChooseFiles = false
+    panel.canChooseDirectories = true
+    if panel.runModal() == .OK, let url = panel.url {
+        onSelect(url)
     }
 }
 

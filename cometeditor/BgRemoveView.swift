@@ -76,7 +76,6 @@ private struct BgRemoveMainView: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
-                // Animated content area (ConvertImageView gibi — toolbar altta)
                 Group {
                     if let id = appState.bgRemovePreviewItemID,
                        let item = appState.bgRemoveItems.first(where: { $0.id == id }) {
@@ -372,12 +371,7 @@ private struct BgRemoveMainView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.red.opacity(0.2), lineWidth: 1))
                         }
                         Button("convert.settings.chooseFolder") {
-                            let panel = NSOpenPanel()
-                            panel.canChooseFiles = false
-                            panel.canChooseDirectories = true
-                            if panel.runModal() == .OK, let url = panel.url {
-                                appState.targetFolder = url
-                            }
+                            pickFolder { appState.targetFolder = $0 }
                         }
                         .controlSize(.small)
                     }
@@ -555,6 +549,11 @@ private struct BgRemoveMainView: View {
         }
 
         if savedCount > 0 {
+            CometAnalytics.shared.trackEvent(
+                page: "bgRemove",
+                eventType: .bgRemoved,
+                metadata: ["count": savedCount]
+            )
             alertMessage = String(format: NSLocalizedString("alert.success.message.image", comment: ""), folder.path)
             showSuccessAlert = true
         }

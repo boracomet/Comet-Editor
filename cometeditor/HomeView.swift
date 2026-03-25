@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var onNavigate: ((MenuItem) -> Void)? = nil
     @Environment(\.colorScheme) private var colorScheme
+    @ObservedObject private var adManager = AdManager.shared
 
     private let toolCards: [(MenuItem, Color)] = [
         (.convertImage,  .blue),
@@ -71,6 +72,16 @@ struct HomeView: View {
                                 lineWidth: 0.5
                             )
                     )
+
+                // MARK: - Inline Ad (banner image ile kartlar arasında)
+                if let ad = adManager.inlineAds(for: "home").first {
+                    InlineAdBanner(ad: ad)
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .strokeBorder(Color.primary.opacity(0.08), lineWidth: 0.5)
+                        )
+                }
 
                 // MARK: - Tool Cards Grid
                 LazyVGrid(

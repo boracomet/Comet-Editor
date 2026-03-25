@@ -384,12 +384,7 @@ struct StockImageView: View {
                         }
 
                         Button("convert.settings.chooseFolder") {
-                            let panel = NSOpenPanel()
-                            panel.canChooseFiles = false
-                            panel.canChooseDirectories = true
-                            if panel.runModal() == .OK, let url = panel.url {
-                                appState.targetFolder = url
-                            }
+                            pickFolder { appState.targetFolder = $0 }
                         }
                         .controlSize(.small)
                     }
@@ -560,6 +555,11 @@ struct StockImageView: View {
         }
 
         for i in photos.indices { photos[i].isSelected = false }
+        CometAnalytics.shared.trackEvent(
+            page: "stockImage",
+            eventType: .stockDownloaded,
+            metadata: ["count": toDownload.count, "format": selectedFormat.rawValue]
+        )
         alertMessage = String(format: NSLocalizedString("alert.success.message.image", comment: ""), folder.path)
         showSuccessAlert = true
     }

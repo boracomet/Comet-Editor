@@ -28,6 +28,8 @@ struct VideoConvertView: View {
     @State private var previewItem: VideoItem? = nil
     @State private var previewPlayer: AVPlayer? = nil
     @State private var isDropTargeted = false
+    @State private var isWrongTypeDrop = false
+    @State private var wrongTypeTask: Task<Void, Never>? = nil
     @State private var showSuccessAlert = false
     @State private var showErrorAlert = false
     @State private var currentError: Error? = nil
@@ -147,17 +149,25 @@ struct VideoConvertView: View {
     private var emptyDropZone: some View {
         Button(action: selectFilesFromFinder) {
             VStack(spacing: 12) {
-                Image(systemName: "video.badge.plus")
+                Image(systemName: isWrongTypeDrop ? "exclamationmark.triangle" : "video.badge.plus")
                     .font(.system(size: 40, weight: .ultraLight))
-                    .foregroundStyle(Color.secondary.opacity(0.6))
+                    .foregroundStyle(isWrongTypeDrop ? Color.red.opacity(0.7) : Color.secondary.opacity(0.6))
 
-                Text("video.drop.title")
+                Text(isWrongTypeDrop ? LocalizedStringKey("convert.wrongType.video") : LocalizedStringKey("video.drop.title"))
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundStyle(Color.primary)
+                    .foregroundStyle(isWrongTypeDrop ? Color.red.opacity(0.8) : Color.primary)
 
                 Text("video.drop.subtitle")
                     .font(.system(size: 12))
                     .foregroundStyle(Color.secondary)
+                    .opacity(isWrongTypeDrop ? 0 : 1)
+
+                Text(LocalizedStringKey("video.drop.formats"))
+                    .font(.system(size: 11))
+                    .foregroundStyle(Color.secondary.opacity(0.88))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+                    .opacity(isWrongTypeDrop ? 0 : 1)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .contentShape(Rectangle())
@@ -168,9 +178,7 @@ struct VideoConvertView: View {
         .overlay(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .strokeBorder(
-                    isDropTargeted
-                        ? Color.accentColor.opacity(0.5)
-                        : Color.secondary.opacity(0.2),
+                    isWrongTypeDrop ? Color.red.opacity(0.5) : (isDropTargeted ? Color.accentColor.opacity(0.5) : Color.secondary.opacity(0.2)),
                     style: StrokeStyle(lineWidth: 1.5, dash: [8, 4])
                 )
                 .padding(24)
@@ -178,22 +186,33 @@ struct VideoConvertView: View {
         .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
             return handleDrop(providers)
         }
+        .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
     }
 
     private var videoGrid: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 180, maximum: 240), spacing: 16)], spacing: 20) {
-                    ForEach(appState.selectedVideos) { item in
-                        videoGridItem(item)
+            GeometryReader { geo in
+                ScrollView {
+                    let columnCount = max(2, Int(geo.size.width / 200))
+                    let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: columnCount)
+                    LazyVGrid(columns: columns, spacing: 12) {
+                        ForEach(appState.selectedVideos) { item in
+                            videoGridItem(item)
+                        }
                     }
+                    .padding(20)
                 }
-                .padding(24)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
                 return handleDrop(providers)
             }
+            .overlay {
+                if isWrongTypeDrop {
+                    wrongTypeOverlay(message: LocalizedStringKey("convert.wrongType.video"))
+                }
+            }
+            .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
 
             Divider()
 
@@ -232,109 +251,101 @@ struct VideoConvertView: View {
     }
 
     private func videoGridItem(_ item: VideoItem) -> some View {
-        GeometryReader { geo in
-            Group {
-                if let nsImage = item.thumbnail {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Rectangle()
-                        .fill(Color.secondary.opacity(0.1))
-                        .overlay(
-                            Image(systemName: "play.fill")
-                                .font(.system(size: 24))
-                                .foregroundStyle(Color.secondary)
-                        )
-                }
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    previewItem = item
-                }
-            }
-            .handCursor()
-            .frame(width: geo.size.width, height: geo.size.height)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            // Süre — kapak sol üst köşede
-            .overlay(alignment: .topLeading) {
-                Text(item.durationString)
-                    .font(.system(size: 9, weight: .semibold, design: .monospaced))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 3)
-                    .background(Color.black.opacity(0.55))
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
-                    .padding(6)
-            }
-            // Bottom info bar
-            .overlay(alignment: .bottom) {
-                VStack(alignment: .leading, spacing: 2) {
-                    if item.isCompleted, let savedStr = item.savedSizeString {
-                        Text(savedStr)
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundStyle(Color.green)
-                    }
-                    if item.isCompleted, let newSize = item.convertedSizeString {
-                        Text("\(NSLocalizedString("video.optimized", comment: "")): \(newSize)")
-                            .font(.system(size: 9, weight: .semibold))
-                            .foregroundStyle(Color.green)
-                    }
-                    Text(item.fileName)
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(item.isCompleted ? Color.green : .white)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                    HStack(spacing: 4) {
-                        Text(item.fileSizeString)
-                            .font(.system(size: 9))
-                            .foregroundStyle(.white.opacity(0.75))
-                        if let res = item.resolutionString {
-                            Text("· \(res)\(item.fpsString.map { " · \($0)" } ?? "")")
-                                .font(.system(size: 9, design: .monospaced))
-                                .foregroundStyle(.white.opacity(0.65))
-                        } else if let fps = item.fpsString {
-                            Text("· \(fps)")
-                                .font(.system(size: 9, design: .monospaced))
-                                .foregroundStyle(.white.opacity(0.65))
-                        }
+        VStack(spacing: 0) {
+            // Thumbnail — 16:9
+            GeometryReader { geo in
+                Group {
+                    if let nsImage = item.thumbnail {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .scaledToFill()
+                    } else {
+                        Rectangle()
+                            .fill(Color.secondary.opacity(0.12))
+                            .overlay(
+                                Image(systemName: "play.fill")
+                                    .font(.system(size: 22))
+                                    .foregroundStyle(Color.secondary.opacity(0.6))
+                            )
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 6)
-                .background(
-                    LinearGradient(
-                        colors: [.clear, .black.opacity(0.75)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                )
-            }
-            // Delete button — top-right corner
-            .overlay(alignment: .topTrailing) {
-                Button {
-                    appState.selectedVideos.removeAll(where: { $0.id == item.id })
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 8, weight: .bold))
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+                // Duration badge
+                .overlay(alignment: .topLeading) {
+                    Text(item.durationString)
+                        .font(.system(size: 10, weight: .semibold, design: .monospaced))
                         .foregroundStyle(.white)
-                        .padding(5)
-                        .background(Color.black.opacity(0.55))
-                        .clipShape(Circle())
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 3)
+                        .background(.black.opacity(0.55))
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .padding(6)
                 }
-                .buttonStyle(.plain)
-                .handCursor()
-                .padding(6)
+                // Delete button
+                .overlay(alignment: .topTrailing) {
+                    Button {
+                        appState.selectedVideos.removeAll(where: { $0.id == item.id })
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 8, weight: .bold))
+                            .foregroundStyle(.white)
+                            .padding(5)
+                            .background(.black.opacity(0.55))
+                            .clipShape(Circle())
+                    }
+                    .buttonStyle(.plain)
+                    .handCursor()
+                    .padding(6)
+                }
             }
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-            )
+            .aspectRatio(16 / 9, contentMode: .fit)
+
+            // Info bar
+            VStack(alignment: .leading, spacing: 3) {
+                Text(item.fileName)
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(item.isCompleted ? Color.green : Color.primary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+
+                HStack(spacing: 0) {
+                    Text(item.fileSizeString)
+                        .foregroundStyle(Color.secondary)
+                    if let res = item.resolutionString {
+                        Text(" · \(res)")
+                            .foregroundStyle(Color.secondary)
+                    }
+                    if let fps = item.fpsString {
+                        Text(" · \(fps)")
+                            .foregroundStyle(Color.secondary)
+                    }
+                }
+                .font(.system(size: 10, design: .monospaced))
+                .lineLimit(1)
+
+                if item.isCompleted, let saved = item.savedSizeString {
+                    Text(saved)
+                        .font(.system(size: 10, weight: .medium))
+                        .foregroundStyle(Color.green)
+                        .lineLimit(1)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 7)
+            .background(Color.primary.opacity(0.04))
         }
-        .frame(height: 120)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
+        )
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
+        }
+        .handCursor()
     }
 
     // MARK: - Inspector Panel
@@ -507,12 +518,7 @@ struct VideoConvertView: View {
                         }
 
                         Button("convert.settings.chooseFolder") {
-                            let panel = NSOpenPanel()
-                            panel.canChooseFiles = false
-                            panel.canChooseDirectories = true
-                            if panel.runModal() == .OK, let url = panel.url {
-                                appState.targetFolder = url
-                            }
+                            pickFolder { appState.targetFolder = $0 }
                         }
                         .controlSize(.small)
                     }
@@ -553,7 +559,6 @@ struct VideoConvertView: View {
 
                         if processor.isProcessing {
                             Button {
-                                appState.videoConversionCancelled = true
                                 appState.videoConversionTask?.cancel()
                             } label: {
                                 Text(LocalizedStringKey("video.cancel"))
@@ -587,7 +592,6 @@ struct VideoConvertView: View {
         currentProcessingIndex = 0
 
         appState.processingMenuItem = .videoConvert
-        appState.videoConversionCancelled = false
         appState.videoConversionTask = Task {
             do {
                 for (index, video) in appState.selectedVideos.enumerated() {
@@ -623,8 +627,7 @@ struct VideoConvertView: View {
                         format: selectedFormat,
                         quality: quality,
                         settings: settings,
-                        manageProcessingState: false,
-                        cancellationCheck: { appState.videoConversionCancelled }
+                        manageProcessingState: false
                     )
 
                     let newSize = (try? FileManager.default.attributesOfItem(atPath: outputURL.path)[.size] as? Int64) ?? 0
@@ -653,6 +656,11 @@ struct VideoConvertView: View {
                     }
                 }
                 if !Task.isCancelled {
+                    CometAnalytics.shared.trackEvent(
+                        page: "videoConvert",
+                        eventType: .videoConverted,
+                        metadata: ["count": appState.selectedVideos.count, "format": selectedFormat.rawValue]
+                    )
                     showSuccessAlert = true
                 }
             } catch {
@@ -664,20 +672,38 @@ struct VideoConvertView: View {
             processor.isProcessing = false
             appState.processingMenuItem = nil
             appState.videoConversionTask = nil
-            appState.videoConversionCancelled = false
         }
     }
 
     // MARK: - Helper Methods
+    private static let imageTypes: [UTType] = [.image, .png, .jpeg, .webP, .heic, .bmp, .tiff, .gif, .svg, .rawImage]
+
     private func handleDrop(_ providers: [NSItemProvider]) -> Bool {
         var handled = false
         for provider in providers {
+            let isImage = Self.imageTypes.contains { provider.hasItemConformingToTypeIdentifier($0.identifier) }
+                       || provider.registeredTypeIdentifiers.contains { id in id.contains("image") || id.contains("png") || id.contains("jpeg") || id.contains("webp") || id.contains("heic") || id.contains("tiff") || id.contains("gif") }
+
+            if isImage {
+                wrongTypeTask?.cancel()
+                isWrongTypeDrop = true
+                wrongTypeTask = Task {
+                    try? await Task.sleep(for: .seconds(2))
+                    if !Task.isCancelled { isWrongTypeDrop = false }
+                }
+                handled = true
+                continue
+            }
+
             if provider.hasItemConformingToTypeIdentifier(UTType.fileURL.identifier) {
-                _ = provider.loadObject(ofClass: URL.self) { url, _ in
-                    if let url = url {
-                        DispatchQueue.main.async {
-                            self.loadVideos(from: [url])
-                        }
+                provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, _ in
+                    let url: URL? = {
+                        if let u = item as? URL { return u }
+                        if let data = item as? Data { return URL(dataRepresentation: data, relativeTo: nil) }
+                        return nil
+                    }()
+                    if let url {
+                        self.loadVideos(from: [url])
                     }
                 }
                 handled = true
@@ -698,11 +724,14 @@ struct VideoConvertView: View {
         }
     }
 
+    private static let imageExtensions: Set<String> = ["png", "jpg", "jpeg", "webp", "heic", "heif", "bmp", "tiff", "tif", "gif", "svg", "avif", "raw", "cr2", "nef"]
+
     private func loadVideos(from urls: [URL]) {
         for url in urls {
             if appState.selectedVideos.contains(where: { $0.url == url }) { continue }
+            if Self.imageExtensions.contains(url.pathExtension.lowercased()) { continue }
 
-            let asset = AVAsset(url: url)
+            let asset = AVURLAsset(url: url)
 
             Task {
                 let duration = try? await asset.load(.duration)
@@ -718,19 +747,18 @@ struct VideoConvertView: View {
                     fileSizeStr = formatter.string(fromByteCount: size)
                 }
 
-                // Fetch Resolution and FPS metadata
                 var resStr: String? = nil
                 var fpsStr: String? = nil
 
                 if let videoTrack = try? await asset.loadTracks(withMediaType: .video).first {
-                    let size = try? await videoTrack.load(.naturalSize)
-                    let fps = try? await videoTrack.load(.nominalFrameRate)
+                    async let size = videoTrack.load(.naturalSize)
+                    async let fps = videoTrack.load(.nominalFrameRate)
 
-                    if let size = size {
-                        resStr = "\(Int(size.width))x\(Int(size.height))"
+                    if let s = try? await size {
+                        resStr = "\(Int(s.width))x\(Int(s.height))"
                     }
-                    if let fps = fps {
-                        fpsStr = "\(Int(fps)) FPS"
+                    if let f = try? await fps {
+                        fpsStr = "\(Int(f)) FPS"
                     }
                 }
 

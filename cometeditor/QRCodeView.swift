@@ -29,12 +29,12 @@ struct QRCodeView: View {
     @State private var showBackground: Bool = true
     @State private var selectedFormat: QRExportFormat = .png
 
-    // Resolution Settings
     @State private var selectedSize: CGFloat = 1024
     @State private var customSize: String = "1024"
     private let sizeOptions: [CGFloat] = [256, 512, 1024, 2048]
+    // Reference size used to normalise cornerRadius slider (slider max = 60 at 280px)
+    private let cornerRadiusRefSize: Double = 280.0
 
-    // Cached QR image — updated via onChange instead of recomputing on every render
     @State private var cachedQRImage: NSImage? = nil
 
     @Environment(\.colorScheme) private var colorScheme
@@ -46,13 +46,11 @@ struct QRCodeView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            // MARK: - Main Area
             mainContentArea
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             Divider()
 
-            // MARK: - Right Inspector Panel
             inspectorPanel
                 .frame(width: 260)
         }
@@ -76,7 +74,9 @@ struct QRCodeView: View {
     }
 
     private func updateQRImage() {
-        cachedQRImage = generateQRCode(from: qrText)
+        DispatchQueue.main.async {
+            self.cachedQRImage = self.generateQRCode(from: self.qrText)
+        }
     }
 
     private func centerColorPanel() {
@@ -95,7 +95,6 @@ struct QRCodeView: View {
             Spacer()
 
             VStack(spacing: 24) {
-                // Input Field
                 TextField("qr.input.placeholder", text: $qrText)
                     .textFieldStyle(.plain)
                     .font(.system(size: 16))
@@ -109,7 +108,6 @@ struct QRCodeView: View {
                             .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                     )
 
-                // QR Code — same width as field (fills container)
                 if let qrImage = cachedQRImage {
                     ZStack {
                         if showBackground {
@@ -128,7 +126,6 @@ struct QRCodeView: View {
                     .transition(.scale.combined(with: .opacity))
                 }
 
-                // Format buttons — full width, equal split
                 HStack(spacing: 8) {
                     ForEach(QRExportFormat.allCases) { format in
                         Button {
@@ -149,7 +146,6 @@ struct QRCodeView: View {
                     }
                 }
 
-                // Download button — full width
                 Button(action: downloadQRCode) {
                     HStack {
                         Image(systemName: "square.and.arrow.down")
@@ -176,7 +172,6 @@ struct QRCodeView: View {
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                // Header
                 HStack {
                     Text(LanguageManager.shared.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
@@ -188,10 +183,8 @@ struct QRCodeView: View {
 
                 Divider()
 
-                // Resolution Section
                 inspectorSection("qr.settings.resolution") {
                     VStack(alignment: .leading, spacing: 12) {
-                        // Preset Sizes — active only when selected and custom field not manually edited
                         HStack(spacing: 8) {
                             ForEach(sizeOptions, id: \.self) { size in
                                 Button {
@@ -210,7 +203,6 @@ struct QRCodeView: View {
                             }
                         }
 
-                        // Custom Size — when edited, presets deselect and this value is used
                         VStack(alignment: .leading, spacing: 4) {
                             Text("qr.settings.customSize")
                                 .font(.system(size: 11, weight: .medium))
@@ -218,8 +210,10 @@ struct QRCodeView: View {
                             TextField("px", text: $customSize)
                                 .textFieldStyle(.roundedBorder)
                                 .controlSize(.small)
-                                .onChange(of: customSize) { _ in
-                                    selectedSize = 0
+                                .onChange(of: customSize) { newValue in
+                                    if !sizeOptions.contains(where: { "\(Int($0))" == newValue }) {
+                                        selectedSize = 0
+                                    }
                                 }
                         }
                     }
@@ -292,23 +286,6 @@ struct QRCodeView: View {
         }
     }
 
-    // MARK: - Inspector Section (QR-specific styling)
-    private func inspectorSection<Content: View>(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(title)
-                .font(.system(size: 11, weight: .bold))
-                .foregroundStyle(Color.secondary)
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
-
-            VStack(spacing: 0) {
-                content()
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-        }
-    }
-
     // MARK: - QR Code Generation
     func generateQRCode(from string: String) -> NSImage? {
         filter.message = Data(string.utf8)
@@ -333,26 +310,33 @@ struct QRCodeView: View {
                 let scaledImage = coloredImage.transformed(by: transform)
 
                 if showBackground {
-                    let backgroundNSColor = NSColor(bgColor)
-                    let qrFinalImage = NSImage(size: NSSize(width: currentSize, height: currentSize))
-                    qrFinalImage.lockFocus()
+                    guard let cgBitmap = CGContext(
+                        data: nil,
+                        width: Int(currentSize), height: Int(currentSize),
+                        bitsPerComponent: 8, bytesPerRow: 0,
+                        space: CGColorSpaceCreateDeviceRGB(),
+                        bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+                    ) else { return nil }
 
-                    let rx = CGFloat(cornerRadius * (Double(currentSize) / 280.0))
-                    let path = NSBezierPath(roundedRect: NSRect(x: 0, y: 0, width: currentSize, height: currentSize),
-                                          xRadius: rx, yRadius: rx)
-                    backgroundNSColor.setFill()
-                    path.fill()
+                    let rx = CGFloat(cornerRadius * (Double(currentSize) / cornerRadiusRefSize))
+                    let bgCGColor = NSColor(bgColor).cgColor
+                    let fullRect = CGRect(x: 0, y: 0, width: currentSize, height: currentSize)
+                    let roundedPath = CGPath(roundedRect: fullRect, cornerWidth: rx, cornerHeight: rx, transform: nil)
+                    cgBitmap.addPath(roundedPath)
+                    cgBitmap.setFillColor(bgCGColor)
+                    cgBitmap.fillPath()
 
-                    if let cgImage = context.createCGImage(scaledImage, from: scaledImage.extent) {
+                    if let qrCGImage = context.createCGImage(scaledImage, from: scaledImage.extent) {
                         let paddingRatio: CGFloat = 0.05
                         let padding = currentSize * paddingRatio
                         let qrSize = currentSize - (padding * 2)
-                        let qrRect = NSRect(x: padding, y: padding, width: qrSize, height: qrSize)
-                        NSImage(cgImage: cgImage, size: NSSize(width: currentSize, height: currentSize)).draw(in: qrRect)
+                        cgBitmap.draw(qrCGImage, in: CGRect(x: padding, y: padding, width: qrSize, height: qrSize))
                     }
 
-                    qrFinalImage.unlockFocus()
-                    return qrFinalImage
+                    if let finalCG = cgBitmap.makeImage() {
+                        return NSImage(cgImage: finalCG, size: NSSize(width: currentSize, height: currentSize))
+                    }
+                    return nil
                 } else {
                     if let cgImage = context.createCGImage(scaledImage, from: scaledImage.extent) {
                         return NSImage(cgImage: cgImage, size: NSSize(width: currentSize, height: currentSize))
@@ -395,7 +379,7 @@ struct QRCodeView: View {
 
         if showBackground {
             let bgHex = NSColor(bgColor).toSVGHex()
-            let rx = String(format: "%.2f", cornerRadius * Double(total) / 280.0)
+            let rx = String(format: "%.2f", cornerRadius * Double(total) / cornerRadiusRefSize)
             svg += #"\n<rect width="\#(total)" height="\#(total)" fill="\#(bgHex)" rx="\#(rx)"/>"#
         }
 
@@ -419,6 +403,12 @@ struct QRCodeView: View {
         savePanel.nameFieldStringValue = "qr_code_\(Int(Date().timeIntervalSince1970))"
 
         guard savePanel.runModal() == .OK, let url = savePanel.url else { return }
+
+        CometAnalytics.shared.trackEvent(
+            page: "qrCode",
+            eventType: .qrGenerated,
+            metadata: ["format": selectedFormat.rawValue]
+        )
 
         switch selectedFormat {
         case .svg:

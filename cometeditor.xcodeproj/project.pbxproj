@@ -7,62 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03ADEFD1BAC871FA26905214 /* cvc_decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 090EB415BB583E8320051C8F /* cvc_decoder.c */; };
-		0642A11863EFB021109EE90F /* cvc_system.c in Sources */ = {isa = PBXBuildFile; fileRef = 17786268FA76EEFFE75D6192 /* cvc_system.c */; };
-		0806073DC4FDD1F5A4F5E76A /* cic_simd.c in Sources */ = {isa = PBXBuildFile; fileRef = A469D6AC47B3DCC0CA36582B /* cic_simd.c */; };
-		187830E963C74305CC72DAF1 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CBFF6430313CC7B12DFAEF /* libavutil.a */; };
 		333399C1F2D1D4E254605F90 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA37375DF933AF5C53A964D /* CoreMedia.framework */; };
-		5B198143703655839714C850 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5AC9C72A6987BEBE4FF1B88 /* libswscale.a */; };
 		5C02502A80A20AF1D5F9A1E4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2561A291041B12C3BF5DB623 /* libz.tbd */; };
-		6A785D29F5B206D6FDC83B88 /* cic_threadpool.c in Sources */ = {isa = PBXBuildFile; fileRef = 041FF4FF66EBBDBBD24D17E7 /* cic_threadpool.c */; };
-		6C7E962EB7B7B702F35DD88F /* cic_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = DDBEFB2CF79AFE6CBC1C5A02 /* cic_engine.c */; };
-		6D809F9ECAAE7B6AB52634FD /* cic_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 424DE8DC2C55306DFCE6D03D /* cic_memory.c */; };
 		747F04AF0D67742DAEDB93C3 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AB31E5439AA2FF0A6E378C /* libiconv.tbd */; };
 		7C25FC7041E21D639FC2EA87 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */; };
 		94E67E89A161288155BB6D18 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A0EE17DE5E26880FA3638198 /* libbz2.tbd */; };
-		A1D1C7CADEA1BE1C227C3908 /* cic_avif.c in Sources */ = {isa = PBXBuildFile; fileRef = D75B722A3F6CFF4ACD22B2EA /* cic_avif.c */; };
-		BE669349C2902B9851931DF4 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B922CEE5A48B4F62A0BF2680 /* libavcodec.a */; };
-		C494B494D22FE5864D26171A /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F95DEE02492F13315862E85 /* libswresample.a */; };
 		CA7BBB6C6D783CFA4D89AA62 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */; };
-		D6D80CBF1C2DE916674B5D54 /* cic_format.c in Sources */ = {isa = PBXBuildFile; fileRef = FEE78AA3EDD7F2E4E3E29456 /* cic_format.c */; };
-		E8EEC375E8AE1058FF014516 /* cic_webp.c in Sources */ = {isa = PBXBuildFile; fileRef = B25E61051A03BF95E198F1CB /* cic_webp.c */; };
-		FA40E9FFB6843492A3BEE861 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F179759F804D551DD7E45888 /* libavformat.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		041FF4FF66EBBDBBD24D17E7 /* cic_threadpool.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_threadpool.c; sourceTree = "<group>"; };
-		08584471E848DE80B816B56E /* cic_format.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_format.h; sourceTree = "<group>"; };
-		090EB415BB583E8320051C8F /* cvc_decoder.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cvc_decoder.c; sourceTree = "<group>"; };
-		17786268FA76EEFFE75D6192 /* cvc_system.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cvc_system.c; sourceTree = "<group>"; };
-		1F95DEE02492F13315862E85 /* libswresample.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libswresample.a; path = third_party/ffmpeg_install/universal/lib/libswresample.a; sourceTree = "<group>"; };
 		2561A291041B12C3BF5DB623 /* libz.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2BA37375DF933AF5C53A964D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
 		309BDE0CA2938F0A4A06AAD5 /* cometeditor-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "cometeditor-Bridging-Header.h"; sourceTree = "<group>"; };
 		39AB31E5439AA2FF0A6E378C /* libiconv.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
-		424DE8DC2C55306DFCE6D03D /* cic_memory.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_memory.c; sourceTree = "<group>"; };
-		588151B6AA1AF707F14C97E5 /* CometCodecBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CometCodecBridge.swift; sourceTree = "<group>"; };
-		5A99C2569E5BFEA71B464352 /* cic_types.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_types.h; sourceTree = "<group>"; };
-		89982AC8A5C4F22BF46467ED /* cic_engine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_engine.h; sourceTree = "<group>"; };
 		8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		8EFC3E774D81328C38BE0F2F /* cic_webp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_webp.h; sourceTree = "<group>"; };
 		A0EE17DE5E26880FA3638198 /* libbz2.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
-		A469D6AC47B3DCC0CA36582B /* cic_simd.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_simd.c; sourceTree = "<group>"; };
 		ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		B25E61051A03BF95E198F1CB /* cic_webp.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_webp.c; sourceTree = "<group>"; };
-		B42E5539B57CED6868617ED6 /* cic_simd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_simd.h; sourceTree = "<group>"; };
-		B56B965350187B402AFB587E /* cic_avif.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_avif.h; sourceTree = "<group>"; };
-		B922CEE5A48B4F62A0BF2680 /* libavcodec.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libavcodec.a; path = third_party/ffmpeg_install/universal/lib/libavcodec.a; sourceTree = "<group>"; };
-		BE8CC968762559806F42B656 /* cvc_engine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cvc_engine.h; sourceTree = "<group>"; };
-		C0CBFF6430313CC7B12DFAEF /* libavutil.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libavutil.a; path = third_party/ffmpeg_install/universal/lib/libavutil.a; sourceTree = "<group>"; };
-		C5AC9C72A6987BEBE4FF1B88 /* libswscale.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libswscale.a; path = third_party/ffmpeg_install/universal/lib/libswscale.a; sourceTree = "<group>"; };
-		D45887CB84121A4F7090277C /* cic_error.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_error.h; sourceTree = "<group>"; };
-		D75B722A3F6CFF4ACD22B2EA /* cic_avif.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_avif.c; sourceTree = "<group>"; };
-		DDBEFB2CF79AFE6CBC1C5A02 /* cic_engine.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_engine.c; sourceTree = "<group>"; };
-		EE994A34558A5C46C746E9A3 /* cic_memory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_memory.h; sourceTree = "<group>"; };
-		F179759F804D551DD7E45888 /* libavformat.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libavformat.a; path = third_party/ffmpeg_install/universal/lib/libavformat.a; sourceTree = "<group>"; };
-		F87CBB725EEE34E5CBBA2E31 /* cic_threadpool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cic_threadpool.h; sourceTree = "<group>"; };
 		F96E19BF2F58C27F005B69FE /* Comet Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comet Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FEE78AA3EDD7F2E4E3E29456 /* cic_format.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = cic_format.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -84,11 +45,6 @@
 				5C02502A80A20AF1D5F9A1E4 /* libz.tbd in Frameworks */,
 				94E67E89A161288155BB6D18 /* libbz2.tbd in Frameworks */,
 				747F04AF0D67742DAEDB93C3 /* libiconv.tbd in Frameworks */,
-				BE669349C2902B9851931DF4 /* libavcodec.a in Frameworks */,
-				FA40E9FFB6843492A3BEE861 /* libavformat.a in Frameworks */,
-				187830E963C74305CC72DAF1 /* libavutil.a in Frameworks */,
-				C494B494D22FE5864D26171A /* libswresample.a in Frameworks */,
-				5B198143703655839714C850 /* libswscale.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,63 +60,8 @@
 				2561A291041B12C3BF5DB623 /* libz.tbd */,
 				A0EE17DE5E26880FA3638198 /* libbz2.tbd */,
 				39AB31E5439AA2FF0A6E378C /* libiconv.tbd */,
-				B922CEE5A48B4F62A0BF2680 /* libavcodec.a */,
-				F179759F804D551DD7E45888 /* libavformat.a */,
-				C0CBFF6430313CC7B12DFAEF /* libavutil.a */,
-				1F95DEE02492F13315862E85 /* libswresample.a */,
-				C5AC9C72A6987BEBE4FF1B88 /* libswscale.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		54B2E23BCF47241D45347D29 /* CometVideoCodec */ = {
-			isa = PBXGroup;
-			children = (
-				D11D70693C85FE9D28571F81 /* Core */,
-			);
-			name = CometVideoCodec;
-			sourceTree = "<group>";
-		};
-		93C0FD426D88AE060BEFA502 /* CometImageCodec */ = {
-			isa = PBXGroup;
-			children = (
-				AAF7A5CAE9FC78776FB59FA4 /* Core */,
-			);
-			path = CometImageCodec;
-			sourceTree = "<group>";
-		};
-		AAF7A5CAE9FC78776FB59FA4 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				041FF4FF66EBBDBBD24D17E7 /* cic_threadpool.c */,
-				FEE78AA3EDD7F2E4E3E29456 /* cic_format.c */,
-				B25E61051A03BF95E198F1CB /* cic_webp.c */,
-				424DE8DC2C55306DFCE6D03D /* cic_memory.c */,
-				D75B722A3F6CFF4ACD22B2EA /* cic_avif.c */,
-				DDBEFB2CF79AFE6CBC1C5A02 /* cic_engine.c */,
-				A469D6AC47B3DCC0CA36582B /* cic_simd.c */,
-				5A99C2569E5BFEA71B464352 /* cic_types.h */,
-				D45887CB84121A4F7090277C /* cic_error.h */,
-				B56B965350187B402AFB587E /* cic_avif.h */,
-				B42E5539B57CED6868617ED6 /* cic_simd.h */,
-				89982AC8A5C4F22BF46467ED /* cic_engine.h */,
-				08584471E848DE80B816B56E /* cic_format.h */,
-				F87CBB725EEE34E5CBBA2E31 /* cic_threadpool.h */,
-				EE994A34558A5C46C746E9A3 /* cic_memory.h */,
-				8EFC3E774D81328C38BE0F2F /* cic_webp.h */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		D11D70693C85FE9D28571F81 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				BE8CC968762559806F42B656 /* cvc_engine.h */,
-				17786268FA76EEFFE75D6192 /* cvc_system.c */,
-				090EB415BB583E8320051C8F /* cvc_decoder.c */,
-			);
-			name = Core;
-			path = CometVideoCodec/Core;
 			sourceTree = "<group>";
 		};
 		F96E19B62F58C27F005B69FE = {
@@ -169,10 +70,7 @@
 				F96E19C12F58C27F005B69FE /* cometeditor */,
 				F96E19C02F58C27F005B69FE /* Products */,
 				309BDE0CA2938F0A4A06AAD5 /* cometeditor-Bridging-Header.h */,
-				588151B6AA1AF707F14C97E5 /* CometCodecBridge.swift */,
-				93C0FD426D88AE060BEFA502 /* CometImageCodec */,
 				0F64DA2CB5A5B9AB3A4B9D3B /* Frameworks */,
-				54B2E23BCF47241D45347D29 /* CometVideoCodec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -321,15 +219,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A785D29F5B206D6FDC83B88 /* cic_threadpool.c in Sources */,
-				D6D80CBF1C2DE916674B5D54 /* cic_format.c in Sources */,
-				E8EEC375E8AE1058FF014516 /* cic_webp.c in Sources */,
-				6D809F9ECAAE7B6AB52634FD /* cic_memory.c in Sources */,
-				A1D1C7CADEA1BE1C227C3908 /* cic_avif.c in Sources */,
-				6C7E962EB7B7B702F35DD88F /* cic_engine.c in Sources */,
-				0806073DC4FDD1F5A4F5E76A /* cic_simd.c in Sources */,
-				0642A11863EFB021109EE90F /* cvc_system.c in Sources */,
-				03ADEFD1BAC871FA26905214 /* cvc_decoder.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,18 +366,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/CometImageCodec/Core",
-					"$(PROJECT_DIR)/CometVideoCodec/Core",
-					"$(PROJECT_DIR)/third_party/install/include",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/universal/include",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/arm64/include",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/x86_64/include",
-					"$(SRCROOT)/CometImageCodec/Core",
-					"$(SRCROOT)/CometVideoCodec/Core",
-					"$(SRCROOT)/third_party/install/include",
-					"$(SRCROOT)/third_party/ffmpeg_install/universal/include",
-					"$(SRCROOT)/third_party/ffmpeg_install/arm64/include",
-					"$(SRCROOT)/third_party/ffmpeg_install/x86_64/include",
+					"$(PROJECT_DIR)/third_party/imagemagick/universal/include/ImageMagick-7",
+					"$(SRCROOT)/third_party/imagemagick/universal/include/ImageMagick-7",
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Comet Editor";
 				INFOPLIST_KEY_CFBundleName = "Comet Editor";
@@ -500,24 +379,27 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/third_party/install/lib",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/universal/lib",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/arm64/lib",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/x86_64/lib",
-					"$(SRCROOT)/third_party/install/lib",
-					"$(SRCROOT)/third_party/ffmpeg_install/universal/lib",
-					"$(SRCROOT)/third_party/ffmpeg_install/arm64/lib",
-					"$(SRCROOT)/third_party/ffmpeg_install/x86_64/lib",
+					"$(PROJECT_DIR)/third_party/imagemagick/universal/lib",
+					"$(SRCROOT)/third_party/imagemagick/universal/lib",
+					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-lavif",
+					"-lMagickWand-7.Q16HDRI",
+					"-lMagickCore-7.Q16HDRI",
+					"-ljpeg",
+					"-lpng16",
+					"-ltiff",
+					"-lgif",
 					"-lwebp",
 					"-lwebpmux",
 					"-lwebpdemux",
 					"-lsharpyuv",
+					"-llcms2",
+					"-liconv",
+					"/opt/homebrew/lib/liblzma.a",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cometeditor.app;
 				PRODUCT_NAME = "Comet Editor";
@@ -553,18 +435,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/CometImageCodec/Core",
-					"$(PROJECT_DIR)/CometVideoCodec/Core",
-					"$(PROJECT_DIR)/third_party/install/include",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/universal/include",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/arm64/include",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/x86_64/include",
-					"$(SRCROOT)/CometImageCodec/Core",
-					"$(SRCROOT)/CometVideoCodec/Core",
-					"$(SRCROOT)/third_party/install/include",
-					"$(SRCROOT)/third_party/ffmpeg_install/universal/include",
-					"$(SRCROOT)/third_party/ffmpeg_install/arm64/include",
-					"$(SRCROOT)/third_party/ffmpeg_install/x86_64/include",
+					"$(PROJECT_DIR)/third_party/imagemagick/universal/include/ImageMagick-7",
+					"$(SRCROOT)/third_party/imagemagick/universal/include/ImageMagick-7",
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Comet Editor";
 				INFOPLIST_KEY_CFBundleName = "Comet Editor";
@@ -576,24 +448,27 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/third_party/install/lib",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/universal/lib",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/arm64/lib",
-					"$(PROJECT_DIR)/third_party/ffmpeg_install/x86_64/lib",
-					"$(SRCROOT)/third_party/install/lib",
-					"$(SRCROOT)/third_party/ffmpeg_install/universal/lib",
-					"$(SRCROOT)/third_party/ffmpeg_install/arm64/lib",
-					"$(SRCROOT)/third_party/ffmpeg_install/x86_64/lib",
+					"$(PROJECT_DIR)/third_party/imagemagick/universal/lib",
+					"$(SRCROOT)/third_party/imagemagick/universal/lib",
+					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-lavif",
+					"-lMagickWand-7.Q16HDRI",
+					"-lMagickCore-7.Q16HDRI",
+					"-ljpeg",
+					"-lpng16",
+					"-ltiff",
+					"-lgif",
 					"-lwebp",
 					"-lwebpmux",
 					"-lwebpdemux",
 					"-lsharpyuv",
+					"-llcms2",
+					"-liconv",
+					"/opt/homebrew/lib/liblzma.a",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cometeditor.app;
 				PRODUCT_NAME = "Comet Editor";

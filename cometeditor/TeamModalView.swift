@@ -4,10 +4,10 @@ struct TeamModalView: View {
     @EnvironmentObject var appState: GlobalAppState
 
     let teamMembers = [
-        TeamMember(initials: "BAT", name: "Bora Ata Türkoğlu", role: "Founder & Lead Developer", linkedin: "https://www.linkedin.com/in/boracomet/?skipRedirect=true", github: "https://github.com/boracomet", website: "https://boraturkoglu.com", behance: nil, imageName: "bora_profile"),
-        TeamMember(initials: "MA", name: "Mehmet Atademir", role: "DevOps Engineer", linkedin: "https://www.linkedin.com/in/mehmet-atademir-148656234/", github: "https://github.com/atademirmehmet", website: nil, behance: nil, imageName: "mehmet_profile"),
-        TeamMember(initials: "YK", name: "Yılmaz Kavakçıoğlu", role: "Advertising Management", linkedin: "https://www.linkedin.com/in/yilmazkavakcioglu/", github: nil, website: nil, behance: "https://www.behance.net/yilmazkavakcioglu", imageName: "yilmaz_profile"),
-        TeamMember(initials: "BNK", name: "Beyza Nur Keçeli", role: "Visual Designer", linkedin: "https://www.linkedin.com/in/beyzanurkeceli/", github: nil, website: nil, behance: "https://www.behance.net/beyzanurkeceli", imageName: "beyza_profile")
+        TeamMember(initials: "BAT", name: "Bora Ata Türkoğlu", role: "Founder & Lead Developer", linkedin: "https://www.linkedin.com/in/boracomet/?skipRedirect=true", github: "https://github.com/boracomet", website: "https://boraturkoglu.com", behance: nil, instagram: nil, imageName: "bora_profile"),
+        TeamMember(initials: "MA", name: "Mehmet Atademir", role: "DevOps Engineer", linkedin: "https://www.linkedin.com/in/mehmet-atademir-148656234/", github: "https://github.com/atademirmehmet", website: nil, behance: nil, instagram: nil, imageName: "mehmet_profile"),
+        TeamMember(initials: "YK", name: "Yılmaz Kavakçıoğlu", role: "Advertising Management", linkedin: "https://www.linkedin.com/in/yilmazkavakcioglu/", github: nil, website: nil, behance: "https://www.behance.net/yilmazkavakcioglu", instagram: "https://instagram.com/yilmaz.creative", imageName: "yilmaz_profile"),
+        TeamMember(initials: "BNK", name: "Beyza Nur Keçeli", role: "Visual Designer", linkedin: "https://www.linkedin.com/in/beyzanurkeceli/", github: nil, website: nil, behance: "https://www.behance.net/beyzanurkeceli", instagram: "https://instagram.com/morphiadesign", imageName: "beyza_profile")
     ]
 
     var body: some View {
@@ -142,6 +142,9 @@ private struct TeamMemberCard: View {
                 if let behance = member.behance {
                     socialLink(url: behance, image: "behance")
                 }
+                if let instagram = member.instagram {
+                    socialLink(url: instagram, image: "instagram")
+                }
             }
             .padding(.top, 4)
         }
@@ -186,6 +189,7 @@ struct TeamMember {
     let github: String?
     let website: String?
     let behance: String?
+    let instagram: String?
     let imageName: String
 }
 
