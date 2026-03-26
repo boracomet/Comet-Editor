@@ -79,8 +79,30 @@
 ### [GEREKMİYOR] PrivacyInfo.xcprivacy sysctlbyname
 - sysctlbyname Apple'ın Required Reason API listesinde değil, tanımlama gerekmez
 
+### [YAPILDI] FontDownloadView hardcoded İngilizce string'ler lokalize edildi
+- "Loading fonts..." → stock.loading key'i kullanıldı
+- "No fonts found" → font.noResults key'i
+- "%d families", "%d styles · %@" → font.families.count, font.styles.count key'leri
+- "Type here to preview text" → mevcut font.preview.custom key'i kullanıldı
+- 3 yeni key (font.families.count, font.styles.count, font.noResults) tüm 64 dile eklendi
+
+### [YAPILDI] StockImageView URL güvenliği
+- performSearch'teki `URL(string:...)!` force unwrap → `guard let` ile güvenli yapıldı
+
+### [YAPILDI] HomeView + TeamModalView static URL force unwrap'lar
+- 3 adet URL(string:...)! → `?? URL(fileURLWithPath: "/")` ile güvenli hale getirildi
+
 ---
 
-## Sonraki Kontrol
-- [ ] Unsplash API key — Production'da environment variable veya backend proxy kullanılmalı
-- [ ] magick binary code signing — notarization için (ayrı süreç)
+## Commit Özeti
+- Commit 1 (3e7ee62): App Store critical fixes — DYLD_LIBRARY_PATH, #file paths, API keys, SuggestionView/AdManager i18n, URL safety
+- Commit 2 (720d398): FontDownloadView i18n — hardcoded strings lokalize, 3 new keys in 64 languages
+
+---
+
+## Kalan Sorunlar (Push yapılmadı — kullanıcı onayı gerekiyor)
+- **Unsplash API key** (StockImageView.swift:437): Client-ID açık kaynak koda gömülü. Production'da backend proxy veya build-time env variable kullanılmalı. Apple direkt reddetmez ama güvenlik açığı.
+- **magick binary code signing**: Notarization için third_party/imagemagick/arm64/bin/magick imzalı olmalı. Bu Xcode Build Phase ile yapılır.
+- **analytics baseURL ve apiKey**: cometeditorApp.swift'te boş bırakıldı. Production deploy öncesi gerçek değerler girilmeli.
+
+## Durum: TAMAMLANDI — Saat 09:25
