@@ -1094,18 +1094,43 @@ struct PDFEditView: View {
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.pdf]
         panel.nameFieldStringValue = pdf.fileName
-        guard panel.runModal() == .OK, let url = panel.url else { return }
+        guard panel.runModal() == .OK, let saveURL = panel.url else { return }
+
+        // ResolutionScale açıksa → compressPDF ile kayıpsız kalite + scale uygula
+        if resolutionScaleEnabled {
+            Task {
+                // outputURL yerine kullanıcının seçtiği URL'e doğrudan yaz
+                // compressPDF targetFolder bazlı çalıştığı için geçici klasör trick'i:
+                let tmpFolder = FileManager.default.temporaryDirectory
+                    .appendingPathComponent("pdf_save_\(UUID().uuidString)")
+                try? FileManager.default.createDirectory(at: tmpFolder, withIntermediateDirectories: true)
+                defer { try? FileManager.default.removeItem(at: tmpFolder) }
+
+                // pdfCompressionTargetFolder'ı geçici olarak değiştir
+                let prevFolder = appState.pdfCompressionTargetFolder
+                appState.pdfCompressionTargetFolder = tmpFolder
+                await compressPDF(pdf, quality: 100)
+                appState.pdfCompressionTargetFolder = prevFolder
+
+                // Çıktıyı kullanıcının seçtiği URL'e taşı
+                let tmpOut = tmpFolder.appendingPathComponent(
+                    "\(pdf.url.deletingPathExtension().lastPathComponent)_optimized.pdf"
+                )
+                try? FileManager.default.removeItem(at: saveURL)
+                try? FileManager.default.moveItem(at: tmpOut, to: saveURL)
+            }
+            return
+        }
 
         // Belge değiştirilmediyse (version == 0) orijinal dosyayı kopyala.
         // PDFKit'in write(to:) metodu yeniden serialize ederek boyutu şişiriyor.
         if appState.pdfDocumentVersion == 0 {
-            // Hedef dosya varsa önce sil (NSSavePanel overwrite onayı zaten aldı)
-            try? FileManager.default.removeItem(at: url)
-            try? FileManager.default.copyItem(at: pdf.url, to: url)
+            try? FileManager.default.removeItem(at: saveURL)
+            try? FileManager.default.copyItem(at: pdf.url, to: saveURL)
         } else if let data = document.dataRepresentation() {
-            try? data.write(to: url, options: .atomic)
+            try? data.write(to: saveURL, options: .atomic)
         } else {
-            document.write(to: url)
+            document.write(to: saveURL)
         }
         CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
     }
