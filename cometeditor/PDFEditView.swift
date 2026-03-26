@@ -819,11 +819,29 @@ struct PDFEditView: View {
         }
 
         let isLossless = quality >= 100
-        // q=100 lossless: orijinal çözünürlük korunur (scale sadece resolutionScale'den gelir)
+        let pageCount = document.pageCount
+
+        // q=100 ve resolutionScale kapalı → PDF'i olduğu gibi kopyala (bitmap render yok)
+        if isLossless && !resolutionScaleEnabled {
+            let destURL = outputURL
+            let ok = await Task.detached(priority: .userInitiated) { () -> Bool in
+                do {
+                    try FileManager.default.copyItem(at: pdf.url, to: destURL)
+                    return true
+                } catch { return false }
+            }.value
+            compressionProgress = 1.0
+            if ok {
+                log.info("lossless copy → \(destURL.path)")
+                CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
+                    metadata: ["action": "lossless_copy", "pages": pageCount])
+            }
+            return
+        }
+
         let baseMaxEdge: CGFloat = isLossless ? 4096.0 : (quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0))
         let maxLongEdge = baseMaxEdge * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
-        let pageCount = document.pageCount
 
         // pageRef + bounds'ları MainActor'da topla
         var pageRefs: [(CGPDFPage, CGRect)] = []
@@ -853,11 +871,11 @@ struct PDFEditView: View {
         try? FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: tmpDir) }
 
-        // Arka planda render + encode (lossless → PNG, lossy → JPEG)
+        // Arka planda render + JPEG encode
+        // (q=100 + scale açık → yüksek kalite JPEG, sadece çözünürlük küçülür)
         let renderMaxEdge = maxLongEdge
         let renderFactor = jpegFactor
         let renderLossless = isLossless
-        // (ext, data, bounds) — magick için dosya uzantısı önemli
         let imageResults: [(String, Data, CGRect)] = await Task.detached(priority: .userInitiated) {
             var results: [(String, Data, CGRect)] = []
             for (pageRef, bounds) in pageRefs {
@@ -877,16 +895,12 @@ struct PDFEditView: View {
                 bCtx.drawPDFPage(pageRef)
                 guard let cgImage = bCtx.makeImage() else { continue }
                 let rep = NSBitmapImageRep(cgImage: cgImage)
-                if renderLossless {
-                    // PNG — kayıpsız
-                    guard let data = rep.representation(using: .png, properties: [:]) else { continue }
-                    results.append(("png", data, bounds))
-                } else {
-                    guard let data = rep.representation(
-                        using: .jpeg, properties: [.compressionFactor: renderFactor as NSNumber]
-                    ) else { continue }
-                    results.append(("jpg", data, bounds))
-                }
+                // q=100 + scale açık: yüksek kalite JPEG (sadece çözünürlük küçülür)
+                let factor = renderLossless ? 0.92 : renderFactor
+                guard let data = rep.representation(
+                    using: .jpeg, properties: [.compressionFactor: factor as NSNumber]
+                ) else { continue }
+                results.append(("jpg", data, bounds))
             }
             return results
         }.value
