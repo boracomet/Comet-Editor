@@ -162,12 +162,15 @@ final class _ScrollWheelNSView: NSView {
 
 // MARK: - Folder Picker
 /// Opens a directory-only NSOpenPanel and calls `onSelect` with the chosen URL.
-func pickFolder(onSelect: (URL) -> Void) {
-    let panel = NSOpenPanel()
-    panel.canChooseFiles = false
-    panel.canChooseDirectories = true
-    if panel.runModal() == .OK, let url = panel.url {
-        onSelect(url)
+func pickFolder(onSelect: @escaping (URL) -> Void) {
+    DispatchQueue.main.async {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.allowsMultipleSelection = false
+        if panel.runModal() == .OK, let url = panel.url {
+            onSelect(url)
+        }
     }
 }
 

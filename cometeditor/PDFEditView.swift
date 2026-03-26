@@ -9,6 +9,7 @@ import SwiftUI
 @preconcurrency import PDFKit
 import UniformTypeIdentifiers
 import CoreGraphics
+import os
 
 // NSImage is safe to pass across concurrency boundaries for display-only use.
 // macOS 14+ marks it Sendable; this wrapper silences the warning on older targets.
@@ -793,8 +794,9 @@ struct PDFEditView: View {
     }
 
 
-    /// Her sayfayı JPEG'e render edip ImageMagick ile PDF olarak birleştirir.
-    /// quality: 10–90 arası JPEG kalitesi
+    /// Her sayfayı JPEG olarak render edip PDF'e yazar.
+    /// magick varsa JPEG'leri birleştirir (gerçek sıkıştırma),
+    /// yoksa CGContext PDF stream fallback kullanır.
     @MainActor
     private func compressPDF(_ pdf: PDFItem, quality: Int = 40) async {
         guard let document = pdf.document,
@@ -804,6 +806,8 @@ struct PDFEditView: View {
         compressionProgress = 0
         defer { isCompressing = false }
 
+        let log = Logger(subsystem: "com.cometeditor", category: "PDFCompress")
+
         let baseName = pdf.url.deletingPathExtension().lastPathComponent
         var outputURL = targetFolder.appendingPathComponent("\(baseName)_optimized.pdf")
         var counter = 1
@@ -812,56 +816,49 @@ struct PDFEditView: View {
             counter += 1
         }
 
-        // maxLongEdge: quality 10-30 → 800px, 31-60 → 1200px, 61-90 → 1920px
-        // resolutionScale ek olarak bunu daha da küçültür
         let baseMaxEdge: CGFloat = quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0)
         let maxLongEdge = baseMaxEdge * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
-
         let pageCount = document.pageCount
 
-        // Bundle veya dev fallback'ten magick binary'sini bul
+        // pageRef + bounds'ları MainActor'da topla
+        var pageRefs: [(CGPDFPage, CGRect)] = []
+        for i in 0..<pageCount {
+            guard let page = document.page(at: i), let ref = page.pageRef else { continue }
+            pageRefs.append((ref, page.bounds(for: .mediaBox)))
+        }
+        guard !pageRefs.isEmpty else { log.error("pageRefs empty"); return }
+
+        // magick binary bul
         let magickURL: URL? = {
-            if let url = Bundle.main.url(forResource: "magick", withExtension: nil) {
-                return url
-            }
-            let devPath = URL(fileURLWithPath: #file)
-                .deletingLastPathComponent()
-                .deletingLastPathComponent()
+            if let url = Bundle.main.url(forResource: "magick", withExtension: nil) { return url }
+            let dev = URL(fileURLWithPath: #file)
+                .deletingLastPathComponent().deletingLastPathComponent()
                 .appendingPathComponent("third_party/imagemagick/arm64/bin/magick")
-            return FileManager.default.fileExists(atPath: devPath.path) ? devPath : nil
+            return FileManager.default.fileExists(atPath: dev.path) ? dev : nil
         }()
+        if let m = magickURL {
+            try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: m.path)
+            log.info("magick found: \(m.path)")
+        } else {
+            log.warning("magick not found, using CGContext fallback")
+        }
 
-        guard let magickURL else { return }
-        try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: magickURL.path)
-
-        // Geçici klasör oluştur
         let tmpDir = FileManager.default.temporaryDirectory
             .appendingPathComponent("pdf_compress_\(UUID().uuidString)")
         try? FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: tmpDir) }
 
-        // Her sayfanın pageRef + bounds'unu MainActor'da topla
-        var pageRefs: [(CGPDFPage, CGRect)] = []
-        for i in 0..<pageCount {
-            guard let page = document.page(at: i),
-                  let pageRef = page.pageRef else { continue }
-            pageRefs.append((pageRef, page.bounds(for: .mediaBox)))
-        }
-
-        guard !pageRefs.isEmpty else { return }
-
-        // Render + JPEG encode'u arka planda yap (main thread bloklanmasın)
+        // Arka planda render + JPEG encode
         let renderMaxEdge = maxLongEdge
         let renderFactor = jpegFactor
-        let jpegPaths: [String] = await Task.detached(priority: .userInitiated) {
-            var paths: [String] = []
-            for (i, (pageRef, bounds)) in pageRefs.enumerated() {
+        let jpegResults: [(Data, CGRect)] = await Task.detached(priority: .userInitiated) {
+            var results: [(Data, CGRect)] = []
+            for (pageRef, bounds) in pageRefs {
                 let longEdge = max(bounds.width, bounds.height)
                 let scale = min(1.0, renderMaxEdge / longEdge)
                 let pxW = max(1, Int(bounds.width * scale))
                 let pxH = max(1, Int(bounds.height * scale))
-
                 let cs = CGColorSpaceCreateDeviceRGB()
                 guard let bCtx = CGContext(
                     data: nil, width: pxW, height: pxH,
@@ -873,57 +870,87 @@ struct PDFEditView: View {
                 bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
                 bCtx.drawPDFPage(pageRef)
                 guard let cgImage = bCtx.makeImage() else { continue }
-
-                let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-                guard let jpegData = bitmapRep.representation(
-                    using: .jpeg,
-                    properties: [.compressionFactor: renderFactor as NSNumber]
+                let rep = NSBitmapImageRep(cgImage: cgImage)
+                guard let jpegData = rep.representation(
+                    using: .jpeg, properties: [.compressionFactor: renderFactor as NSNumber]
                 ) else { continue }
-
-                let jpegURL = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).jpg")
-                try? jpegData.write(to: jpegURL)
-                paths.append(jpegURL.path)
+                results.append((jpegData, bounds))
             }
-            return paths
+            return results
         }.value
 
         compressionProgress = 0.7
-        guard !jpegPaths.isEmpty else { return }
+        guard !jpegResults.isEmpty else { log.error("no JPEG results"); return }
 
-        // magick ile JPEG'leri PDF'e birleştir
-        let magickDir = magickURL.deletingLastPathComponent()         // .../bin
-        let magickHome = magickDir.deletingLastPathComponent()        // .../arm64 veya bundle root
-        let libPath = magickHome.appendingPathComponent("lib").path
         let outputPath = outputURL.path
-        let success = await Task.detached(priority: .userInitiated) { () -> Bool in
-            let process = Process()
-            process.executableURL = magickURL
-            process.arguments = jpegPaths + [outputPath]
-            process.standardOutput = FileHandle.nullDevice
-            process.standardError = FileHandle.nullDevice
-            // magick dylib'leri için environment set et
-            var env = ProcessInfo.processInfo.environment
-            env["MAGICK_HOME"] = magickHome.path
-            env["DYLD_LIBRARY_PATH"] = libPath + (env["DYLD_LIBRARY_PATH"].map { ":" + $0 } ?? "")
-            env["MAGICK_CONFIGURE_PATH"] = magickHome.appendingPathComponent("etc/ImageMagick-7").path
-            process.environment = env
-            do {
-                try process.run()
-            } catch {
-                return false
+
+        // --- magick varsa: JPEG dosyalarını diske yaz, magick ile PDF'e birleştir ---
+        if let magickURL {
+            var jpegPaths: [String] = []
+            for (i, (data, _)) in jpegResults.enumerated() {
+                let url = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).jpg")
+                try? data.write(to: url)
+                jpegPaths.append(url.path)
             }
-            process.waitUntilExit()
-            return process.terminationStatus == 0 && FileManager.default.fileExists(atPath: outputPath)
+
+            let magickHome = magickURL.deletingLastPathComponent().deletingLastPathComponent()
+            let libPath = magickHome.appendingPathComponent("lib").path
+
+            let ok = await Task.detached(priority: .userInitiated) { () -> Bool in
+                let p = Process()
+                p.executableURL = magickURL
+                p.arguments = jpegPaths + [outputPath]
+                p.standardOutput = FileHandle.nullDevice
+                p.standardError = FileHandle.nullDevice
+                var env = ProcessInfo.processInfo.environment
+                env["MAGICK_HOME"] = magickHome.path
+                env["DYLD_LIBRARY_PATH"] = libPath + (env["DYLD_LIBRARY_PATH"].map { ":" + $0 } ?? "")
+                env["MAGICK_CONFIGURE_PATH"] = magickHome.appendingPathComponent("etc/ImageMagick-7").path
+                p.environment = env
+                do { try p.run() } catch { return false }
+                p.waitUntilExit()
+                return p.terminationStatus == 0 && FileManager.default.fileExists(atPath: outputPath)
+            }.value
+
+            if ok {
+                log.info("magick merge succeeded → \(outputPath)")
+                compressionProgress = 1.0
+                CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
+                    metadata: ["action": "compress", "pages": pageCount, "quality": quality])
+                return
+            }
+            log.warning("magick merge failed, falling back to CGContext")
+        }
+
+        // --- Fallback: CGContext PDF stream (JPEG tam sıkıştırılmaz ama çalışır) ---
+        let written = await Task.detached(priority: .userInitiated) { () -> Bool in
+            let mutableData = NSMutableData()
+            guard let consumer = CGDataConsumer(data: mutableData),
+                  let ctx = CGContext(consumer: consumer, mediaBox: nil, nil) else { return false }
+            for (jpegData, bounds) in jpegResults {
+                var box = CGRect(origin: .zero, size: bounds.size)
+                ctx.beginPage(mediaBox: &box)
+                if let src = CGImageSourceCreateWithData(jpegData as CFData, nil),
+                   let img = CGImageSourceCreateImageAtIndex(src, 0, nil) {
+                    ctx.draw(img, in: box)
+                }
+                ctx.endPage()
+            }
+            ctx.closePDF()
+            do {
+                try (mutableData as Data).write(to: URL(fileURLWithPath: outputPath), options: .atomic)
+                return true
+            } catch { return false }
         }.value
 
         compressionProgress = 1.0
-        guard success else { return }
-
-        CometAnalytics.shared.trackEvent(
-            page: "pdfEdit",
-            eventType: .pdfEdited,
-            metadata: ["action": "compress", "pages": pageCount, "quality": quality]
-        )
+        if written {
+            log.info("CGContext fallback succeeded → \(outputPath)")
+            CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
+                metadata: ["action": "compress_fallback", "pages": pageCount, "quality": quality])
+        } else {
+            log.error("both magick and CGContext fallback failed")
+        }
     }
 
     /// Her sayfayı hedef renk uzayında re-render ederek yeni PDF oluşturur.
