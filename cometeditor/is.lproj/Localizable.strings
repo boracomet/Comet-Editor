@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Vantar reiti";
 "suggestion.validation.body" = "Vinsamlegast fylltu út titil og lýsingu.";
 
+"suggestion.label.category" = "Flokkur";
+"suggestion.label.title" = "Titill";
+"suggestion.label.description" = "Lýsing";
+
 "video.drop.title" = "Slepptu myndbandi hér";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Hér er aðeins hægt að breyta myndböndum";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Minni skrá";
+
+"ad.sponsored" = "Styrkt";
+"ad.visit" = "Fara";

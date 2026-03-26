@@ -40,7 +40,7 @@ struct HomeView: View {
 
                     Spacer()
 
-                    Link(destination: URL(string: "https://cometeditor.com")!) {
+                    Link(destination: URL(string: "https://cometeditor.com") ?? URL(fileURLWithPath: "/")) {
                         HStack(spacing: 6) {
                             Text(LocalizedStringKey("home.visitWebsite"))
                                 .font(.system(size: 14, weight: .medium))

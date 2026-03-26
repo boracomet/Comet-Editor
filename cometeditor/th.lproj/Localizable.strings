@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "ข้อมูลไม่ครบ";
 "suggestion.validation.body" = "กรุณากรอกหัวข้อและคำอธิบาย";
 
+"suggestion.label.category" = "หมวดหมู่";
+"suggestion.label.title" = "หัวข้อ";
+"suggestion.label.description" = "คำอธิบาย";
+
 "video.drop.title" = "ลากวางวิดีโอที่นี่";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "ที่นี่แปลงได้เฉพาะวิดีโอเท่านั้น";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "ไฟล์เล็กกว่า";
+
+"ad.sponsored" = "สนับสนุน";
+"ad.visit" = "เยี่ยมชม";

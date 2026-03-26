@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Незаповнені поля";
 "suggestion.validation.body" = "Заповніть заголовок і опис.";
 
+"suggestion.label.category" = "Категорія";
+"suggestion.label.title" = "Заголовок";
+"suggestion.label.description" = "Опис";
+
 "video.drop.title" = "Перетягніть відео сюди";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Тут можна конвертувати лише відео";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Менший файл";
+
+"ad.sponsored" = "Реклама";
+"ad.visit" = "Перейти";

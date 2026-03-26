@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "필수 항목";
 "suggestion.validation.body" = "제목과 설명을 입력해주세요.";
 
+"suggestion.label.category" = "카테고리";
+"suggestion.label.title" = "제목";
+"suggestion.label.description" = "설명";
+
 "video.drop.title" = "여기에 비디오 드롭";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "여기서는 동영상만 변환할 수 있습니다";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "더 작은 파일";
+
+"ad.sponsored" = "광고";
+"ad.visit" = "방문";

@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "入力エラー";
 "suggestion.validation.body" = "タイトルと説明を入力してください。";
 
+"suggestion.label.category" = "カテゴリ";
+"suggestion.label.title" = "タイトル";
+"suggestion.label.description" = "説明";
+
 "video.drop.title" = "ここにビデオをドロップ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "ここでは動画のみ変換できます";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "小さいファイル";
+
+"ad.sponsored" = "広告";
+"ad.visit" = "アクセス";

@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Դատարկ դաշտեր";
 "suggestion.validation.body" = "Խնդրում ենք լրացնել վերնագիրը և նկարագրությունը:";
 
+"suggestion.label.category" = "Կատեգoriyа";
+"suggestion.label.title" = "Վերնагир";
+"suggestion.label.description" = "Нкарагрутюн";
+
 "video.drop.title" = "Տեղափոխեք տեսանյութ այստեղ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Այստեղ կարող եք փոխակերպել միայն տեսանյութեր";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Փոքր ֆայլ";
+
+"ad.sponsored" = "Գovазнvор";
+"ad.visit" = "Aнцнvел";

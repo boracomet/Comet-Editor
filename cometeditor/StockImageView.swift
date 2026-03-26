@@ -492,8 +492,9 @@ struct StockImageView: View {
         errorMessage = nil
         defer { isLoading = false }
 
-        let query = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? searchQuery
-        var request = URLRequest(url: URL(string: "https://api.unsplash.com/search/photos?query=\(query)&per_page=30&page=\(currentPage)")!)
+        let query = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        guard let searchURL = URL(string: "https://api.unsplash.com/search/photos?query=\(query)&per_page=30&page=\(currentPage)") else { return }
+        var request = URLRequest(url: searchURL)
         headers.forEach { request.setValue($1, forHTTPHeaderField: $0) }
 
         do {

@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "缺少欄位";
 "suggestion.validation.body" = "請填寫標題和描述。";
 
+"suggestion.label.category" = "分類";
+"suggestion.label.title" = "標題";
+"suggestion.label.description" = "描述";
+
 "video.drop.title" = "將影片拖放至此";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "此處只能轉換影片";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "更小的檔案";
+
+"ad.sponsored" = "贊助";
+"ad.visit" = "前往";

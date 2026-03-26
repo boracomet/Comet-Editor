@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Manglende felter";
 "suggestion.validation.body" = "Udfyld titel og beskrivelse.";
 
+"suggestion.label.category" = "Kategori";
+"suggestion.label.title" = "Titel";
+"suggestion.label.description" = "Beskrivelse";
+
 "video.drop.title" = "Slip video her";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Her kan kun videoer konverteres";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Mindre fil";
+
+"ad.sponsored" = "Sponsoreret";
+"ad.visit" = "Besøg";

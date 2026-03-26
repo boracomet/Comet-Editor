@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "अनुपलब्ध फ़ील्ड";
 "suggestion.validation.body" = "कृपया शीर्षक और विवरण भरें।";
 
+"suggestion.label.category" = "श्रेणी";
+"suggestion.label.title" = "शीर्षक";
+"suggestion.label.description" = "विवरण";
+
 "video.drop.title" = "यहाँ वीडियो ड्रॉप करें";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "यहाँ केवल वीडियो परिवर्तित किए जा सकते हैं";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "छोटी फ़ाइल";
+
+"ad.sponsored" = "प्रायोजित";
+"ad.visit" = "जाएं";

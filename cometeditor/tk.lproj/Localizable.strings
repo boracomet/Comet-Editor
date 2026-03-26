@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Boş meýdanlar";
 "suggestion.validation.body" = "Başlygy we beýany dolduryň.";
 
+"suggestion.label.category" = "Kategoriýa";
+"suggestion.label.title" = "Başlyk";
+"suggestion.label.description" = "Düşündiriş";
+
 "video.drop.title" = "Wideony bu ýere süýräň";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Bu ýerde diňe wideolary öwrüp bolýar";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Kiçi faýl";
+
+"ad.sponsored" = "Mahabat";
+"ad.visit" = "Baryp gör";

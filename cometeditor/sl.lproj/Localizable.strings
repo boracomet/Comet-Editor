@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Manjkajoča polja";
 "suggestion.validation.body" = "Izpolnite naslov in opis.";
 
+"suggestion.label.category" = "Kategorija";
+"suggestion.label.title" = "Naslov";
+"suggestion.label.description" = "Opis";
+
 "video.drop.title" = "Spustite video sem";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Tukaj je mogoče pretvoriti samo videoposnetke";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Manjša datoteka";
+
+"ad.sponsored" = "Sponzorirano";
+"ad.visit" = "Obiščite";

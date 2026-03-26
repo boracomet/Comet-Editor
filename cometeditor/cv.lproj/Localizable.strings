@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Туллинмен уйăрăмсем";
 "suggestion.validation.body" = "Ят та çырса кăтартни тултар.";
 
+"suggestion.label.category" = "Категори";
+"suggestion.label.title" = "Ят";
+"suggestion.label.description" = "Суйлав";
+
 "video.drop.title" = "Кунта видеое çавăт";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Кунта çеç видеосене куçаримасть";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Çÿçĕмрех файл";
+
+"ad.sponsored" = "Реклама";
+"ad.visit" = "Кĕрсе пăх";

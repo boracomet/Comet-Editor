@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Ελλείποντα πεδία";
 "suggestion.validation.body" = "Παρακαλώ συμπληρώστε τον τίτλο και την περιγραφή.";
 
+"suggestion.label.category" = "Κατηγορία";
+"suggestion.label.title" = "Τίτλος";
+"suggestion.label.description" = "Περιγραφή";
+
 "video.drop.title" = "Σύρετε βίντεο εδώ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Εδώ μπορείτε να μετατρέψετε μόνο βίντεο";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Μικρότερο αρχείο";
+
+"ad.sponsored" = "Χορηγούμενο";
+"ad.visit" = "Επίσκεψη";

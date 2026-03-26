@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "שדות חסרים";
 "suggestion.validation.body" = "אנא מלא כותרת ותיאור.";
 
+"suggestion.label.category" = "קטגוריה";
+"suggestion.label.title" = "כותרת";
+"suggestion.label.description" = "תיאור";
+
 "video.drop.title" = "גרור סרטון לכאן";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "כאן ניתן להמיר סרטוני וידאו בלבד";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "קובץ קטן יותר";
+
+"ad.sponsored" = "ממומן";
+"ad.visit" = "בקר";

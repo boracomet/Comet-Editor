@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Missing Fields";
 "suggestion.validation.body" = "Please fill in the title and description.";
 
+"suggestion.label.category" = "Category";
+"suggestion.label.title" = "Title";
+"suggestion.label.description" = "Description";
+
 "video.drop.title" = "Drop Video Here";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Only videos can be converted here";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Smaller file";
+
+"ad.sponsored" = "Sponsored";
+"ad.visit" = "Visit";

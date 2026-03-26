@@ -131,7 +131,7 @@ struct SuggestionView: View {
 
     private var categorySection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Kategori")
+            Text(LocalizedStringKey("suggestion.label.category"))
                 .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(Color.secondary)
 
@@ -154,7 +154,7 @@ struct SuggestionView: View {
 
     private var titleSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Başlık")
+            Text(LocalizedStringKey("suggestion.label.title"))
                 .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(Color.secondary)
 
@@ -191,7 +191,7 @@ struct SuggestionView: View {
 
     private var bodySection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Açıklama")
+            Text(LocalizedStringKey("suggestion.label.description"))
                 .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(Color.secondary)
 

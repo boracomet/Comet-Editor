@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Nedostajuća polja";
 "suggestion.validation.body" = "Molimo ispunite naslov i opis.";
 
+"suggestion.label.category" = "Kategorija";
+"suggestion.label.title" = "Naslov";
+"suggestion.label.description" = "Opis";
+
 "video.drop.title" = "Povucite video ovdje";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Ovdje se mogu konvertirati samo videozapisi";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Manji file";
+
+"ad.sponsored" = "Sponzorirano";
+"ad.visit" = "Posjetite";

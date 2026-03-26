@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "缺少字段";
 "suggestion.validation.body" = "请填写标题和描述。";
 
+"suggestion.label.category" = "分类";
+"suggestion.label.title" = "标题";
+"suggestion.label.description" = "描述";
+
 "video.drop.title" = "将视频拖放到此处";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "此处只能转换视频";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "更小的文件";
+
+"ad.sponsored" = "广告";
+"ad.visit" = "访问";

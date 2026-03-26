@@ -214,6 +214,9 @@
 "suggestion.category.ui" = "Arayüz";
 "suggestion.category.performance" = "Performans";
 "suggestion.category.other" = "Diğer";
+"suggestion.label.category" = "Kategori";
+"suggestion.label.title" = "Başlık";
+"suggestion.label.description" = "Açıklama";
 "suggestion.send" = "Öneriyi Gönder";
 "suggestion.sending" = "Gönderiliyor...";
 "suggestion.sent.title" = "Teşekkürler!";
@@ -241,3 +244,6 @@
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
+"ad.sponsored" = "Sponsorlu";
+"ad.visit" = "Ziyaret Et";

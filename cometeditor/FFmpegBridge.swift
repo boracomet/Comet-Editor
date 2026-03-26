@@ -32,19 +32,7 @@ actor FFmpegBridge {
 
     // Bundle içindeki ffmpeg binary yolunu döndürür
     static func ffmpegURL() -> URL? {
-        // App bundle'a eklenen binary: Resources/ffmpeg
-        if let url = Bundle.main.url(forResource: "ffmpeg", withExtension: nil) {
-            return url
-        }
-        // Development fallback: third_party/ffmpeg/universal/ffmpeg
-        let devPath = URL(fileURLWithPath: #file)
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .appendingPathComponent("third_party/ffmpeg/universal/ffmpeg")
-        if FileManager.default.fileExists(atPath: devPath.path) {
-            return devPath
-        }
-        return nil
+        Bundle.main.url(forResource: "ffmpeg", withExtension: nil)
     }
 
     /// FFmpeg'i verilen argümanlarla çalıştırır.

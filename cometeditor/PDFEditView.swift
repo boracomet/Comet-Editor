@@ -863,14 +863,8 @@ struct PDFEditView: View {
         }
         guard !pageRefs.isEmpty else { log.error("pageRefs empty"); return }
 
-        // magick binary bul
-        let magickURL: URL? = {
-            if let url = Bundle.main.url(forResource: "magick", withExtension: nil) { return url }
-            let dev = URL(fileURLWithPath: #file)
-                .deletingLastPathComponent().deletingLastPathComponent()
-                .appendingPathComponent("third_party/imagemagick/arm64/bin/magick")
-            return FileManager.default.fileExists(atPath: dev.path) ? dev : nil
-        }()
+        // magick binary bul (Bundle.main — production ve dev simulator her ikisinde çalışır)
+        let magickURL: URL? = Bundle.main.url(forResource: "magick", withExtension: nil)
         if let m = magickURL {
             try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: m.path)
             log.info("magick found: \(m.path)")
@@ -939,7 +933,6 @@ struct PDFEditView: View {
             }
 
             let magickHome = magickURL.deletingLastPathComponent().deletingLastPathComponent()
-            let libPath = magickHome.appendingPathComponent("lib").path
 
             let ok = await Task.detached(priority: .userInitiated) { () -> Bool in
                 let p = Process()
@@ -949,7 +942,6 @@ struct PDFEditView: View {
                 p.standardError = FileHandle.nullDevice
                 var env = ProcessInfo.processInfo.environment
                 env["MAGICK_HOME"] = magickHome.path
-                env["DYLD_LIBRARY_PATH"] = libPath + (env["DYLD_LIBRARY_PATH"].map { ":" + $0 } ?? "")
                 env["MAGICK_CONFIGURE_PATH"] = magickHome.appendingPathComponent("etc/ImageMagick-7").path
                 p.environment = env
                 do { try p.run() } catch { return false }

@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Fusha mungojnë";
 "suggestion.validation.body" = "Ju lutemi plotësoni titullin dhe përshkrimin.";
 
+"suggestion.label.category" = "Kategori";
+"suggestion.label.title" = "Titull";
+"suggestion.label.description" = "Përshkrim";
+
 "video.drop.title" = "Tërhiq videon këtu";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Këtu mund të konvertohen vetëm video";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Skedar më i vogël";
+
+"ad.sponsored" = "Sponsorizuar";
+"ad.visit" = "Vizito";

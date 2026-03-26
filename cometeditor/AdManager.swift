@@ -58,7 +58,7 @@ struct AdModalView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                Text("Sponsorlu")
+                Text(LocalizedStringKey("ad.sponsored"))
                     .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.secondary)
                 Spacer()
@@ -106,7 +106,7 @@ struct AdModalView: View {
                         .lineLimit(1)
                 }
                 Spacer()
-                Button("Ziyaret Et") {
+                Button(LocalizedStringKey("ad.visit")) {
                     if let url = URL(string: ad.linkUrl) {
                         NSWorkspace.shared.open(url)
                     }
@@ -182,7 +182,7 @@ struct InlineAdBanner: View {
                 .padding(6)
 
                 // Sponsorlu etiketi
-                Text("Sponsorlu")
+                Text(LocalizedStringKey("ad.sponsored"))
                     .font(.system(size: 9, weight: .medium))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 6)

@@ -195,6 +195,9 @@
 "suggestion.category.ui" = "UI/UX";
 "suggestion.category.performance" = "Performance";
 "suggestion.category.other" = "Other";
+"suggestion.label.category" = "Category";
+"suggestion.label.title" = "Title";
+"suggestion.label.description" = "Description";
 "suggestion.send" = "Send Suggestion";
 "suggestion.sending" = "Sending...";
 "suggestion.sent.title" = "Thank You!";
@@ -228,3 +231,6 @@
 "pdf.tools.addContent" = "Add Content";
 "pdf.tools.reorder" = "Reorder";
 "pdf.tools.targetFolder" = "TARGET FOLDER";
+
+"ad.sponsored" = "Sponsored";
+"ad.visit" = "Visit";

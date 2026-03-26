@@ -15,7 +15,7 @@ struct TeamModalView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
                     // Branding
-                    Link(destination: URL(string: "https://cometdevs.com")!) {
+                    Link(destination: URL(string: "https://cometdevs.com") ?? URL(fileURLWithPath: "/")) {
                         Image("cometdev_logo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -68,7 +68,7 @@ struct TeamModalView: View {
 
                     // Grafix footer
                     VStack(spacing: 10) {
-                        Link(destination: URL(string: "https://heygrafix.com")!) {
+                        Link(destination: URL(string: "https://heygrafix.com") ?? URL(fileURLWithPath: "/")) {
                             Image("grafix_logo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)

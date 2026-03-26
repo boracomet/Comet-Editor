@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Бижилбеген шөлдер";
 "suggestion.validation.body" = "Атты болгаш тайылбырны бижиңер.";
 
+"suggestion.label.category" = "Категория";
+"suggestion.label.title" = "Ат";
+"suggestion.label.description" = "Тайылбыр";
+
 "video.drop.title" = "Видеону мында чоруттур";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Мында видеоларны чогуур болур";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Биче файл";
+
+"ad.sponsored" = "Реклама";
+"ad.visit" = "Баруу";

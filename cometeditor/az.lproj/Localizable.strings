@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Boş sahələr";
 "suggestion.validation.body" = "Başlıq və təsviri doldurun.";
 
+"suggestion.label.category" = "Kateqoriya";
+"suggestion.label.title" = "Başlıq";
+"suggestion.label.description" = "Təsvir";
+
 "video.drop.title" = "Videonu bura sürükləyin";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Buraya yalnız videolar çevrilə bilər";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Daha kiçik fayl";
+
+"ad.sponsored" = "Reklam";
+"ad.visit" = "Ziyarət et";

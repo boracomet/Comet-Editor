@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Недостасуваат полиња";
 "suggestion.validation.body" = "Внесете наслов и опис.";
 
+"suggestion.label.category" = "Категорија";
+"suggestion.label.title" = "Наслов";
+"suggestion.label.description" = "Опис";
+
 "video.drop.title" = "Повлечете видео тука";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Тука може да се конвертираат само видеа";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Помала датотека";
+
+"ad.sponsored" = "Спонзорирано";
+"ad.visit" = "Посети";

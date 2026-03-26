@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "ফিল্ড অনুপস্থিত";
 "suggestion.validation.body" = "শিরোনাম এবং বিবরণ পূরণ করুন।";
 
+"suggestion.label.category" = "বিভাগ";
+"suggestion.label.title" = "শিরোনাম";
+"suggestion.label.description" = "বিবরণ";
+
 "video.drop.title" = "এখানে ভিডিও ড্রপ করুন";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "এখানে শুধুমাত্র ভিডিও রূপান্তর করা যাবে";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "ছোট ফাইল";
+
+"ad.sponsored" = "স্পনসর";
+"ad.visit" = "পরিদর্শন";

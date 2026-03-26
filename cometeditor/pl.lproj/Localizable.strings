@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Brakujące pola";
 "suggestion.validation.body" = "Wypełnij tytuł i opis.";
 
+"suggestion.label.category" = "Kategoria";
+"suggestion.label.title" = "Tytuł";
+"suggestion.label.description" = "Opis";
+
 "video.drop.title" = "Przeciągnij wideo tutaj";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Tutaj możesz konwertować tylko wideo";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Mniejszy plik";
+
+"ad.sponsored" = "Sponsorowane";
+"ad.visit" = "Odwiedź";

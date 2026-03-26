@@ -20,8 +20,8 @@ struct cometeditorApp: App {
     init() {
         // configure sync olarak çalışır — ContentView.task başlamadan baseURL set olur
         CometAnalytics.shared.configure(
-            apiKey: "changeme_sdk_key_at_least_32_chars_here",
-            baseURL: "http://localhost:3001"
+            apiKey: "",
+            baseURL: ""
         )
     }
 

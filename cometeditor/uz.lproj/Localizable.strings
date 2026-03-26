@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Bo'sh maydonlar";
 "suggestion.validation.body" = "Sarlavha va tavsifni to'ldiring.";
 
+"suggestion.label.category" = "Kategoriya";
+"suggestion.label.title" = "Sarlavha";
+"suggestion.label.description" = "Tavsif";
+
 "video.drop.title" = "Videoni bu yerga tashlang";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Bu yerda faqat videolar konvertatsiya qilinishi mumkin";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Kichikroq fayl";
+
+"ad.sponsored" = "Reklama";
+"ad.visit" = "Tashrif";

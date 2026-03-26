@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Ontbrekende velden";
 "suggestion.validation.body" = "Vul de titel en beschrijving in.";
 
+"suggestion.label.category" = "Categorie";
+"suggestion.label.title" = "Titel";
+"suggestion.label.description" = "Beschrijving";
+
 "video.drop.title" = "Sleep video hier naartoe";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Hier kunnen alleen video's worden geconverteerd";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Kleiner bestand";
+
+"ad.sponsored" = "Gesponsord";
+"ad.visit" = "Bezoeken";

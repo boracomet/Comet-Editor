@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Куруу уйэлэр";
 "suggestion.validation.body" = "Аат уонна быһаарыыны толор.";
 
+"suggestion.label.category" = "Категория";
+"suggestion.label.title" = "Аат";
+"suggestion.label.description" = "Быhаарыы";
+
 "video.drop.title" = "Видеону манна таһаар";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Манна видеолары гына кустаран сатыт";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Кыра файл";
+
+"ad.sponsored" = "Реклама";
+"ad.visit" = "Киирии";

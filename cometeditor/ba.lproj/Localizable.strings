@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Буш ырҙар";
 "suggestion.validation.body" = "Исемде һәм тасуирлауҙы тултырығыҙ.";
 
+"suggestion.label.category" = "Категория";
+"suggestion.label.title" = "Исем";
+"suggestion.label.description" = "Тасуирлама";
+
 "video.drop.title" = "Видеоны бында ташлағыҙ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Бында тик видеоны конвертациялаш мөмкин";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Бәләкәйерәк файл";
+
+"ad.sponsored" = "Реклама";
+"ad.visit" = "Барырға";

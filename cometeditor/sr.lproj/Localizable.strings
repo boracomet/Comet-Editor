@@ -189,6 +189,10 @@
 "suggestion.validation.title" = "Недостајућа поља";
 "suggestion.validation.body" = "Молимо попуните наслов и опис.";
 
+"suggestion.label.category" = "Категорија";
+"suggestion.label.title" = "Наслов";
+"suggestion.label.description" = "Опис";
+
 "video.drop.title" = "Превуците видео овде";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
 "convert.wrongType.video" = "Овде се могу конвертовати само видео записи";
@@ -228,3 +232,6 @@
 "pdf.tools.resolution.50" = "50%";
 "pdf.tools.resolution.25" = "25%";
 "pdf.tools.quality.small" = "Мањи фајл";
+
+"ad.sponsored" = "Спонзорисано";
+"ad.visit" = "Посетите";
