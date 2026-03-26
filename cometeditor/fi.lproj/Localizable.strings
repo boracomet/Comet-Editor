@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korealainen";
 "font.writing.thai" = "Thaimaalainen";
 "font.writing.vietnamese" = "Vietnamilainen";
+
+"font.families.count" = "%d perhettä";
+"font.styles.count" = "%d tyyliä · %@";
+"font.noResults" = "Fontteja ei löydetty";
 "suggestion.title" = "Lähetä ehdotus";
 "suggestion.subtitle" = "Jaa ideasi ja auta meitä parantamaan";
 "suggestion.placeholder.title" = "Otsikko";

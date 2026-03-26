@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
+
+"font.families.count" = "%d дьиэ кэргэн";
+"font.styles.count" = "%d стиль · %@";
+"font.noResults" = "Шрифтар булуллубат";
 "suggestion.title" = "Этиэт ыытыы";
 "suggestion.subtitle" = "Санааларгытын үллэстиҥ уонна бэйэбитин сайдыытыгар көмөлөс";
 "suggestion.placeholder.title" = "Аат";

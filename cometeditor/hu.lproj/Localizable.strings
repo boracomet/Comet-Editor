@@ -172,6 +172,10 @@
 "font.writing.korean" = "Koreai";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnami";
+
+"font.families.count" = "%d család";
+"font.styles.count" = "%d stílus · %@";
+"font.noResults" = "Nincs találat";
 "suggestion.title" = "Javaslat küldése";
 "suggestion.subtitle" = "Ossza meg ötleteit és segítsen fejleszteni";
 "suggestion.placeholder.title" = "Cím";

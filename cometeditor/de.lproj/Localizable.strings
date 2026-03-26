@@ -172,6 +172,10 @@
 "font.writing.korean" = "Koreanisch";
 "font.writing.thai" = "Thailändisch";
 "font.writing.vietnamese" = "Vietnamesisch";
+
+"font.families.count" = "%d Familien";
+"font.styles.count" = "%d Stile · %@";
+"font.noResults" = "Keine Schriften gefunden";
 "suggestion.title" = "Vorschlag einreichen";
 "suggestion.subtitle" = "Teilen Sie Ihre Ideen und helfen Sie uns zu verbessern";
 "suggestion.placeholder.title" = "Titel";

@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d perekondi";
+"font.styles.count" = "%d stiili · %@";
+"font.noResults" = "Fonte ei leitud";
 "suggestion.title" = "Saada ettepanek";
 "suggestion.subtitle" = "Jaga oma ideid ja aita meil areneda";
 "suggestion.placeholder.title" = "Pealkiri";

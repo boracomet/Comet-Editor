@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d ընտanիք";
+"font.styles.count" = "%d ոnճ · %@";
+"font.noResults" = "Տatanатvaranner chi goradzntvel";
 "suggestion.title" = "Ուղարկել առաջարկ";
 "suggestion.subtitle" = "Կիսվեք ձեր գաղափարներով և օգնեք մեզ բարելավվել";
 "suggestion.placeholder.title" = "Վերնագիր";

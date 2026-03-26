@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d šeimų";
+"font.styles.count" = "%d stilių · %@";
+"font.noResults" = "Šriftų nerasta";
 "suggestion.title" = "Siųsti pasiūlymą";
 "suggestion.subtitle" = "Pasidalykite idėjomis ir padėkite mums tobulėti";
 "suggestion.placeholder.title" = "Pavadinimas";

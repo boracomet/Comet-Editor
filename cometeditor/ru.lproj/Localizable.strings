@@ -172,6 +172,10 @@
 "font.writing.korean" = "Корейский";
 "font.writing.thai" = "Тайский";
 "font.writing.vietnamese" = "Вьетнамский";
+
+"font.families.count" = "%d семей";
+"font.styles.count" = "%d стилей · %@";
+"font.noResults" = "Шрифты не найдены";
 "suggestion.title" = "Отправить предложение";
 "suggestion.subtitle" = "Поделитесь идеями и помогите нам улучшить приложение";
 "suggestion.placeholder.title" = "Заголовок";

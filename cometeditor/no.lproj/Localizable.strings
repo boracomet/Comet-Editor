@@ -172,6 +172,10 @@
 "font.writing.korean" = "Koreansk";
 "font.writing.thai" = "Thailandsk";
 "font.writing.vietnamese" = "Vietnamesisk";
+
+"font.families.count" = "%d familier";
+"font.styles.count" = "%d stiler · %@";
+"font.noResults" = "Ingen skrifter funnet";
 "suggestion.title" = "Send forslag";
 "suggestion.subtitle" = "Del ideene dine og hjelp oss å forbedre oss";
 "suggestion.placeholder.title" = "Tittel";

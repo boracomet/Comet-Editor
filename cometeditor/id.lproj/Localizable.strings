@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d keluarga";
+"font.styles.count" = "%d gaya · %@";
+"font.noResults" = "Tidak ada font ditemukan";
 "suggestion.title" = "Kirim saran";
 "suggestion.subtitle" = "Bagikan ide Anda dan bantu kami berkembang";
 "suggestion.placeholder.title" = "Judul";

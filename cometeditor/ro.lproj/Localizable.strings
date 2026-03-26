@@ -172,6 +172,10 @@
 "font.writing.korean" = "Coreeană";
 "font.writing.thai" = "Thailandeză";
 "font.writing.vietnamese" = "Vietnameză";
+
+"font.families.count" = "%d familii";
+"font.styles.count" = "%d stiluri · %@";
+"font.noResults" = "Nu s-au găsit fonturi";
 "suggestion.title" = "Trimite o sugestie";
 "suggestion.subtitle" = "Împărtășește ideile tale și ajută-ne să ne îmbunătățim";
 "suggestion.placeholder.title" = "Titlu";

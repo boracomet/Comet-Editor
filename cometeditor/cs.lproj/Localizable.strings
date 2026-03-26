@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korejské";
 "font.writing.thai" = "Thajské";
 "font.writing.vietnamese" = "Vietnamské";
+
+"font.families.count" = "%d rodin";
+"font.styles.count" = "%d stylů · %@";
+"font.noResults" = "Žádná písma nenalezena";
 "suggestion.title" = "Odeslat návrh";
 "suggestion.subtitle" = "Sdílejte své nápady a pomozte nám se zlepšit";
 "suggestion.placeholder.title" = "Název";

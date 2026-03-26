@@ -205,6 +205,10 @@
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
 
+"font.families.count" = "%d aile";
+"font.styles.count" = "%d stil · %@";
+"font.noResults" = "Font bulunamadı";
+
 "suggestion.title" = "Öneri Gönder";
 "suggestion.subtitle" = "Fikirlerinizi paylaşın, uygulamayı birlikte geliştirelim";
 "suggestion.placeholder.title" = "Başlık";

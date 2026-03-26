@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
+
+"font.families.count" = "%d ئائىلە";
+"font.styles.count" = "%d ئۇسلۇب · %@";
+"font.noResults" = "خەت نۇسخىسى تېپىلمىدى";
 "suggestion.title" = "تەكلىپ يوللاش";
 "suggestion.subtitle" = "ئىدىيەڭىزنى ئورتاقلاشتۇرۇڭ ھەمدە بىزنىڭ ياخشىلىنىشىمىزغا ياردەم بېرىڭ";
 "suggestion.placeholder.title" = "تېما";

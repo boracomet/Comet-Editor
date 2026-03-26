@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d পরিবার";
+"font.styles.count" = "%d শৈলী · %@";
+"font.noResults" = "কোনো ফন্ট পাওয়া যায়নি";
 "suggestion.title" = "পরামর্শ পাঠান";
 "suggestion.subtitle" = "আপনার ধারণা শেয়ার করুন এবং আমাদের উন্নত করতে সাহায্য করুন";
 "suggestion.placeholder.title" = "শিরোনাম";

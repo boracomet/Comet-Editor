@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d porodica";
+"font.styles.count" = "%d stilova · %@";
+"font.noResults" = "Nije pronađen nijedan font";
 "suggestion.title" = "Pošalji prijedlog";
 "suggestion.subtitle" = "Podijelite ideje i pomozite nam da se poboljšamo";
 "suggestion.placeholder.title" = "Naslov";

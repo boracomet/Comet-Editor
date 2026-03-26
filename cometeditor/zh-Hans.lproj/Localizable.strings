@@ -172,6 +172,10 @@
 "font.writing.korean" = "韩文";
 "font.writing.thai" = "泰文";
 "font.writing.vietnamese" = "越南文";
+
+"font.families.count" = "%d 个字体家族";
+"font.styles.count" = "%d 种样式 · %@";
+"font.noResults" = "未找到字体";
 "suggestion.title" = "发送建议";
 "suggestion.subtitle" = "分享您的想法，帮助我们改进";
 "suggestion.placeholder.title" = "标题";

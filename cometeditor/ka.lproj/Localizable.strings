@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d ოჯახი";
+"font.styles.count" = "%d სტილი · %@";
+"font.noResults" = "შრიფტები ვერ მოიძებნა";
 "suggestion.title" = "წინადადების გაგზავნა";
 "suggestion.subtitle" = "გაუზიარეთ თქვენი იდეები და დაგვეხმარეთ გაუმჯობესებაში";
 "suggestion.placeholder.title" = "სათაური";

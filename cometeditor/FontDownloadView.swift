@@ -302,7 +302,7 @@ struct FontDownloadView: View {
 
             // Font count
             if !service.isLoading {
-                Text("\(service.fonts.count) families")
+                Text(String(format: LanguageManager.shared.string("font.families.count"), service.fonts.count))
                     .font(.system(size: 12))
                     .foregroundStyle(Color.secondary)
                     .fixedSize()
@@ -317,7 +317,7 @@ struct FontDownloadView: View {
             if service.isLoading {
                 VStack(spacing: 16) {
                     ProgressView()
-                    Text("Loading fonts...")
+                    Text(LocalizedStringKey("stock.loading"))
                         .font(.system(size: 14))
                         .foregroundStyle(Color.secondary)
                 }
@@ -339,7 +339,7 @@ struct FontDownloadView: View {
                     Image(systemName: "textformat")
                         .font(.system(size: 36))
                         .foregroundStyle(Color.secondary)
-                    Text("No fonts found")
+                    Text(LocalizedStringKey("font.noResults"))
                         .font(.system(size: 14))
                         .foregroundStyle(Color.secondary)
                 }
@@ -670,7 +670,7 @@ private struct FontDetailModal: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(font.family)
                             .font(.system(size: 15, weight: .semibold))
-                        Text("\(font.variants.count) styles · \(font.category)")
+                        Text(String(format: LanguageManager.shared.string("font.styles.count"), font.variants.count, font.category))
                             .font(.system(size: 12))
                             .foregroundStyle(Color.secondary)
                     }
@@ -679,7 +679,7 @@ private struct FontDetailModal: View {
 
                     // Preview input
                     HStack(spacing: 8) {
-                        TextField("Type here to preview text", text: $previewText)
+                        TextField(LocalizedStringKey("font.preview.custom"), text: $previewText)
                             .textFieldStyle(.plain)
                             .font(.system(size: 13))
                         if !previewText.isEmpty {

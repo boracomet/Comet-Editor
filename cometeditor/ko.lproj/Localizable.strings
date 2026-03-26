@@ -172,6 +172,10 @@
 "font.writing.korean" = "한국어";
 "font.writing.thai" = "태국어";
 "font.writing.vietnamese" = "베트남어";
+
+"font.families.count" = "%d 패밀리";
+"font.styles.count" = "%d 스타일 · %@";
+"font.noResults" = "폰트를 찾을 수 없습니다";
 "suggestion.title" = "제안 보내기";
 "suggestion.subtitle" = "아이디어를 공유하고 개선에 도움을 주세요";
 "suggestion.placeholder.title" = "제목";

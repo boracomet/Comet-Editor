@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d οικογένειες";
+"font.styles.count" = "%d στυλ · %@";
+"font.noResults" = "Δεν βρέθηκαν γραμματοσειρές";
 "suggestion.title" = "Υποβολή πρότασης";
 "suggestion.subtitle" = "Μοιραστείτε τις ιδέες σας και βοηθήστε μας να βελτιωθούμε";
 "suggestion.placeholder.title" = "Τίτλος";

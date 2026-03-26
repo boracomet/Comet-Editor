@@ -172,6 +172,10 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
+
+"font.families.count" = "%d семейства";
+"font.styles.count" = "%d стила · %@";
+"font.noResults" = "Не са намерени шрифтове";
 "suggestion.title" = "Изпрати предложение";
 "suggestion.subtitle" = "Споделете идеите си и ни помогнете да се подобрим";
 "suggestion.placeholder.title" = "Заглавие";

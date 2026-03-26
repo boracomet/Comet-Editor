@@ -172,6 +172,10 @@
 "font.writing.korean" = "Koreya";
 "font.writing.thai" = "Tailand";
 "font.writing.vietnamese" = "Vyetnam";
+
+"font.families.count" = "%d ailə";
+"font.styles.count" = "%d stil · %@";
+"font.noResults" = "Şrift tapılmadı";
 "suggestion.title" = "Təklif göndər";
 "suggestion.subtitle" = "İdeyalarınızı bölüşün və bizə inkişaf etməyə kömək edin";
 "suggestion.placeholder.title" = "Başlıq";

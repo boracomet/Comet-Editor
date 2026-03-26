@@ -172,6 +172,10 @@
 "font.writing.korean" = "韓国語";
 "font.writing.thai" = "タイ語";
 "font.writing.vietnamese" = "ベトナム語";
+
+"font.families.count" = "%d ファミリー";
+"font.styles.count" = "%d スタイル · %@";
+"font.noResults" = "フォントが見つかりません";
 "suggestion.title" = "提案を送る";
 "suggestion.subtitle" = "アイデアを共有して改善にご協力ください";
 "suggestion.placeholder.title" = "タイトル";
