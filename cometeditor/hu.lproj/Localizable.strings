@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "MINŐSÉG";
 "pdf.tools.quality.label" = "Képminőség";
 "pdf.tools.quality.large" = "Jobb minőség";
+"pdf.tools.quality.lossless" = "Veszteségmentes";
 "pdf.tools.resolution" = "FELBONTÁS SKÁLA";
 "pdf.tools.resolution.enable" = "Felbontás csökkentése";
 "pdf.tools.resolution.75" = "75%";

@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "LAATU";
 "pdf.tools.quality.label" = "Kuvanlaatu";
 "pdf.tools.quality.large" = "Parempi laatu";
+"pdf.tools.quality.lossless" = "Häviötön";
 "pdf.tools.resolution" = "RESOLUUTION SKAALA";
 "pdf.tools.resolution.enable" = "Pienennä resoluutiota";
 "pdf.tools.resolution.75" = "75%";

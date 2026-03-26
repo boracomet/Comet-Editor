@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "ՈՐԱԿ";
 "pdf.tools.quality.label" = "Պատկերի որակ";
 "pdf.tools.quality.large" = "Ավելի լավ որակ";
+"pdf.tools.quality.lossless" = "Անկորուստ";
 "pdf.tools.resolution" = "ԲԱՆԱՁԵՎԻ ՍԱՆԴՂԱԿ";
 "pdf.tools.resolution.enable" = "Նվազեցնել բանաձևը";
 "pdf.tools.resolution.75" = "75%";

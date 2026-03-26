@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "سۈپەت";
 "pdf.tools.quality.label" = "سۈرەت سۈپىتى";
 "pdf.tools.quality.large" = "ياخشىراق سۈپەت";
+"pdf.tools.quality.lossless" = "يوقاتماستىن";
 "pdf.tools.resolution" = "ئېنىقلىق كۆلىمى";
 "pdf.tools.resolution.enable" = "ئېنىقلىقنى ئازايت";
 "pdf.tools.resolution.75" = "75%";

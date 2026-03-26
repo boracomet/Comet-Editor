@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KVALITET";
 "pdf.tools.quality.label" = "Kvalitet slike";
 "pdf.tools.quality.large" = "Bolji kvalitet";
+"pdf.tools.quality.lossless" = "Bez gubitka";
 "pdf.tools.resolution" = "SKALA REZOLUCIJE";
 "pdf.tools.resolution.enable" = "Smanji rezoluciju";
 "pdf.tools.resolution.75" = "75%";

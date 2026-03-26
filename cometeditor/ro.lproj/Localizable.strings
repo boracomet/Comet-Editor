@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "CALITATE";
 "pdf.tools.quality.label" = "Calitate imagine";
 "pdf.tools.quality.large" = "Calitate mai bună";
+"pdf.tools.quality.lossless" = "Fără pierderi";
 "pdf.tools.resolution" = "SCARA REZOLUȚIEI";
 "pdf.tools.resolution.enable" = "Reduce rezoluția";
 "pdf.tools.resolution.75" = "75%";

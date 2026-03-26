@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "गुणवत्ता";
 "pdf.tools.quality.label" = "छवि गुणवत्ता";
 "pdf.tools.quality.large" = "बेहतर गुणवत्ता";
+"pdf.tools.quality.lossless" = "दोषरहित";
 "pdf.tools.resolution" = "रिज़ॉल्यूशन स्केल";
 "pdf.tools.resolution.enable" = "रिज़ॉल्यूशन कम करें";
 "pdf.tools.resolution.75" = "75%";

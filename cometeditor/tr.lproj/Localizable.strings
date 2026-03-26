@@ -94,6 +94,7 @@
 "pdf.tools.quality.label" = "Görüntü Kalitesi";
 "pdf.tools.quality.small" = "Küçük dosya";
 "pdf.tools.quality.large" = "Yüksek kalite";
+"pdf.tools.quality.lossless" = "Kayıpsız";
 "pdf.tools.resolution" = "ÇÖZÜNÜRLÜK ÖLÇEĞİ";
 "pdf.tools.resolution.enable" = "Çözünürlüğü küçült";
 "pdf.tools.resolution.75" = "75%";

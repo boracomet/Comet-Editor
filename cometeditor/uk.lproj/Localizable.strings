@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "ЯКІСТЬ";
 "pdf.tools.quality.label" = "Якість зображення";
 "pdf.tools.quality.large" = "Краща якість";
+"pdf.tools.quality.lossless" = "Без втрат";
 "pdf.tools.resolution" = "МАСШТАБ РОЗДІЛЬНОЇ ЗДАТНОСТІ";
 "pdf.tools.resolution.enable" = "Зменшити роздільну здатність";
 "pdf.tools.resolution.75" = "75%";

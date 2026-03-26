@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "HILI";
 "pdf.tools.quality.label" = "Surat hili";
 "pdf.tools.quality.large" = "Gowy hil";
+"pdf.tools.quality.lossless" = "Ýitgisiz";
 "pdf.tools.resolution" = "ÇÖZGÜNLIK ÖLÇEGI";
 "pdf.tools.resolution.enable" = "Çözgünligi kiçelt";
 "pdf.tools.resolution.75" = "75%";

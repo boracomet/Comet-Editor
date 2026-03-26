@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "КАЧЕСТВО";
 "pdf.tools.quality.label" = "Ойуу качествота";
 "pdf.tools.quality.large" = "Үчүгэй качество";
+"pdf.tools.quality.lossless" = "Сүтүллэрдэр суох";
 "pdf.tools.resolution" = "ТУПСАРЫЫ МАСШТАБА";
 "pdf.tools.resolution.enable" = "Тупсарыыны кыччат";
 "pdf.tools.resolution.75" = "75%";

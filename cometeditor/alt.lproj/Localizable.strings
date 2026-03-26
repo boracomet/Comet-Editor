@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "КАЧЕСТВО";
 "pdf.tools.quality.label" = "Качество изображения";
 "pdf.tools.quality.large" = "Лучшее качество";
+"pdf.tools.quality.lossless" = "Жоготуусуз";
 "pdf.tools.resolution" = "ЧЕЧИМ ÖLÇEĞI";
 "pdf.tools.resolution.enable" = "Чечимди кичирейт";
 "pdf.tools.resolution.75" = "75%";

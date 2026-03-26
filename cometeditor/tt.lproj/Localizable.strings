@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "СЫЙФАТ";
 "pdf.tools.quality.label" = "Рәсем сыйфаты";
 "pdf.tools.quality.large" = "Яхшырак сыйфат";
+"pdf.tools.quality.lossless" = "Югалтусыз";
 "pdf.tools.resolution" = "АЧЫКЛЫК МАСШТАБЫ";
 "pdf.tools.resolution.enable" = "Ачыклыкны кечерәйт";
 "pdf.tools.resolution.75" = "75%";

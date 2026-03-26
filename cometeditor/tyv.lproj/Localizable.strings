@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "ШЫНАРЛЫГ";
 "pdf.tools.quality.label" = "Чурук шынары";
 "pdf.tools.quality.large" = "Дээре шынар";
+"pdf.tools.quality.lossless" = "Чидириишкин чок";
 "pdf.tools.resolution" = "ШЫЙЫГ МАСШТАБЫ";
 "pdf.tools.resolution.enable" = "Шыйыгны эвээжет";
 "pdf.tools.resolution.75" = "75%";

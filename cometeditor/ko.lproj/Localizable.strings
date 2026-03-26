@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "품질";
 "pdf.tools.quality.label" = "이미지 품질";
 "pdf.tools.quality.large" = "더 나은 품질";
+"pdf.tools.quality.lossless" = "무손실";
 "pdf.tools.resolution" = "해상도 배율";
 "pdf.tools.resolution.enable" = "해상도 줄이기";
 "pdf.tools.resolution.75" = "75%";

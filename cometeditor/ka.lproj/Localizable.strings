@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "ხარისხი";
 "pdf.tools.quality.label" = "სურათის ხარისხი";
 "pdf.tools.quality.large" = "უკეთესი ხარისხი";
+"pdf.tools.quality.lossless" = "უდანაკარგო";
 "pdf.tools.resolution" = "გარჩევადობის მასშტაბი";
 "pdf.tools.resolution.enable" = "გარჩევადობის შემცირება";
 "pdf.tools.resolution.75" = "75%";

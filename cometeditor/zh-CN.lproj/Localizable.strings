@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "质量";
 "pdf.tools.quality.label" = "图像质量";
 "pdf.tools.quality.large" = "更好的质量";
+"pdf.tools.quality.lossless" = "无损";
 "pdf.tools.resolution" = "分辨率缩放";
 "pdf.tools.resolution.enable" = "降低分辨率";
 "pdf.tools.resolution.75" = "75%";

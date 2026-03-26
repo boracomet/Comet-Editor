@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "איכות";
 "pdf.tools.quality.label" = "איכות תמונה";
 "pdf.tools.quality.large" = "איכות טובה יותר";
+"pdf.tools.quality.lossless" = "ללא אובדן";
 "pdf.tools.resolution" = "סקאלת הרזולוציה";
 "pdf.tools.resolution.enable" = "הקטן רזולוציה";
 "pdf.tools.resolution.75" = "75%";

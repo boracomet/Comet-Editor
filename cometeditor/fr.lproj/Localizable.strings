@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "QUALITÉ";
 "pdf.tools.quality.label" = "Qualité d'image";
 "pdf.tools.quality.large" = "Meilleure qualité";
+"pdf.tools.quality.lossless" = "Sans perte";
 "pdf.tools.resolution" = "ÉCHELLE DE RÉSOLUTION";
 "pdf.tools.resolution.enable" = "Réduire la résolution";
 "pdf.tools.resolution.75" = "75%";

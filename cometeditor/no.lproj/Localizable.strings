@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KVALITET";
 "pdf.tools.quality.label" = "Bildekvalitet";
 "pdf.tools.quality.large" = "Bedre kvalitet";
+"pdf.tools.quality.lossless" = "Tapsfri";
 "pdf.tools.resolution" = "OPPLØSNINGSSKALA";
 "pdf.tools.resolution.enable" = "Reduser oppløsning";
 "pdf.tools.resolution.75" = "75%";

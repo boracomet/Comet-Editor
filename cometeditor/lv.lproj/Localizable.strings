@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KVALITĀTE";
 "pdf.tools.quality.label" = "Attēla kvalitāte";
 "pdf.tools.quality.large" = "Labāka kvalitāte";
+"pdf.tools.quality.lossless" = "Bez zudumiem";
 "pdf.tools.resolution" = "IZŠĶIRTSPĒJAS SKALA";
 "pdf.tools.resolution.enable" = "Samazināt izšķirtspēju";
 "pdf.tools.resolution.75" = "75%";

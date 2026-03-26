@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KEYFİYYƏT";
 "pdf.tools.quality.label" = "Şəkil keyfiyyəti";
 "pdf.tools.quality.large" = "Daha yaxşı keyfiyyət";
+"pdf.tools.quality.lossless" = "İtkilsiz";
 "pdf.tools.resolution" = "QƏTNAMƏ MİQYASI";
 "pdf.tools.resolution.enable" = "Qətnaməni azalt";
 "pdf.tools.resolution.75" = "75%";

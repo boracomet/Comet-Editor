@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "คุณภาพ";
 "pdf.tools.quality.label" = "คุณภาพภาพ";
 "pdf.tools.quality.large" = "คุณภาพดีกว่า";
+"pdf.tools.quality.lossless" = "ไม่สูญเสีย";
 "pdf.tools.resolution" = "สเกลความละเอียด";
 "pdf.tools.resolution.enable" = "ลดความละเอียด";
 "pdf.tools.resolution.75" = "75%";

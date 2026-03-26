@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "GÆÐI";
 "pdf.tools.quality.label" = "Myndgæði";
 "pdf.tools.quality.large" = "Betri gæði";
+"pdf.tools.quality.lossless" = "Án taps";
 "pdf.tools.resolution" = "UPPLAUSNARSKALI";
 "pdf.tools.resolution.enable" = "Minnka upplausn";
 "pdf.tools.resolution.75" = "75%";

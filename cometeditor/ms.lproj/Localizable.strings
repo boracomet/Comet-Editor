@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KUALITI";
 "pdf.tools.quality.label" = "Kualiti imej";
 "pdf.tools.quality.large" = "Kualiti lebih baik";
+"pdf.tools.quality.lossless" = "Tanpa kehilangan";
 "pdf.tools.resolution" = "SKALA RESOLUSI";
 "pdf.tools.resolution.enable" = "Kurangkan resolusi";
 "pdf.tools.resolution.75" = "75%";

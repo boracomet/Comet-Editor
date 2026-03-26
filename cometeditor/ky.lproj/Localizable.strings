@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "САПАТ";
 "pdf.tools.quality.label" = "Сүрөт сапаты";
 "pdf.tools.quality.large" = "Жакшыраак сапат";
+"pdf.tools.quality.lossless" = "Жоготуусуз";
 "pdf.tools.resolution" = "ЧЕЧИЛИШ МАСШТАБЫ";
 "pdf.tools.resolution.enable" = "Чечилишти кичирейт";
 "pdf.tools.resolution.75" = "75%";

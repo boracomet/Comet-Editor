@@ -160,8 +160,10 @@ struct PDFEditView: View {
                         Text("•")
                         Text(pdf.fileSizeString)
                         if pdf.fileSizeBytes > 0 {
-                            // Tahmini boyut: q=10→6.6%, q=40→10%, q=80→41% (gerçek test verileri)
-                            let jpegRatio = max(0.06, min(0.45, pow(compressionQuality / 90.0, 2.2) * 0.45 + 0.06))
+                            // q=100 → lossless PNG, tahmini %80; q=10→6.6%, q=40→10%, q=80→41%
+                            let jpegRatio: Double = compressionQuality >= 100
+                                ? 0.80
+                                : max(0.06, min(0.45, pow(compressionQuality / 90.0, 2.2) * 0.45 + 0.06))
                             let scaleRatio = resolutionScaleEnabled ? resolutionScale * resolutionScale : 1.0
                             let ratio = jpegRatio * scaleRatio
                             let optimized = ByteCountFormatter.string(
@@ -548,16 +550,16 @@ struct PDFEditView: View {
                                     .font(.system(size: 11, weight: .semibold, design: .monospaced))
                                     .foregroundStyle(Color.accentColor)
                             }
-                            Slider(value: $compressionQuality, in: 10...90, step: 5)
+                            Slider(value: $compressionQuality, in: 10...100, step: 5)
                                 .disabled(isCompressing)
                             HStack {
                                 Text(LocalizedStringKey("pdf.tools.quality.small"))
                                     .font(.system(size: 10))
                                     .foregroundStyle(Color.secondary.opacity(0.7))
                                 Spacer()
-                                Text(LocalizedStringKey("pdf.tools.quality.large"))
+                                Text(LocalizedStringKey("pdf.tools.quality.lossless"))
                                     .font(.system(size: 10))
-                                    .foregroundStyle(Color.secondary.opacity(0.7))
+                                    .foregroundStyle(compressionQuality >= 100 ? Color.accentColor : Color.secondary.opacity(0.7))
                             }
                         }
                     }
@@ -816,7 +818,9 @@ struct PDFEditView: View {
             counter += 1
         }
 
-        let baseMaxEdge: CGFloat = quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0)
+        let isLossless = quality >= 100
+        // q=100 lossless: orijinal çözünürlük korunur (scale sadece resolutionScale'den gelir)
+        let baseMaxEdge: CGFloat = isLossless ? 4096.0 : (quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0))
         let maxLongEdge = baseMaxEdge * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
         let pageCount = document.pageCount
@@ -849,11 +853,13 @@ struct PDFEditView: View {
         try? FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: tmpDir) }
 
-        // Arka planda render + JPEG encode
+        // Arka planda render + encode (lossless → PNG, lossy → JPEG)
         let renderMaxEdge = maxLongEdge
         let renderFactor = jpegFactor
-        let jpegResults: [(Data, CGRect)] = await Task.detached(priority: .userInitiated) {
-            var results: [(Data, CGRect)] = []
+        let renderLossless = isLossless
+        // (ext, data, bounds) — magick için dosya uzantısı önemli
+        let imageResults: [(String, Data, CGRect)] = await Task.detached(priority: .userInitiated) {
+            var results: [(String, Data, CGRect)] = []
             for (pageRef, bounds) in pageRefs {
                 let longEdge = max(bounds.width, bounds.height)
                 let scale = min(1.0, renderMaxEdge / longEdge)
@@ -871,26 +877,32 @@ struct PDFEditView: View {
                 bCtx.drawPDFPage(pageRef)
                 guard let cgImage = bCtx.makeImage() else { continue }
                 let rep = NSBitmapImageRep(cgImage: cgImage)
-                guard let jpegData = rep.representation(
-                    using: .jpeg, properties: [.compressionFactor: renderFactor as NSNumber]
-                ) else { continue }
-                results.append((jpegData, bounds))
+                if renderLossless {
+                    // PNG — kayıpsız
+                    guard let data = rep.representation(using: .png, properties: [:]) else { continue }
+                    results.append(("png", data, bounds))
+                } else {
+                    guard let data = rep.representation(
+                        using: .jpeg, properties: [.compressionFactor: renderFactor as NSNumber]
+                    ) else { continue }
+                    results.append(("jpg", data, bounds))
+                }
             }
             return results
         }.value
 
         compressionProgress = 0.7
-        guard !jpegResults.isEmpty else { log.error("no JPEG results"); return }
+        guard !imageResults.isEmpty else { log.error("no image results"); return }
 
         let outputPath = outputURL.path
 
-        // --- magick varsa: JPEG dosyalarını diske yaz, magick ile PDF'e birleştir ---
+        // --- magick varsa: dosyaları diske yaz, magick ile PDF'e birleştir ---
         if let magickURL {
-            var jpegPaths: [String] = []
-            for (i, (data, _)) in jpegResults.enumerated() {
-                let url = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).jpg")
+            var imagePaths: [String] = []
+            for (i, (ext, data, _)) in imageResults.enumerated() {
+                let url = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).\(ext)")
                 try? data.write(to: url)
-                jpegPaths.append(url.path)
+                imagePaths.append(url.path)
             }
 
             let magickHome = magickURL.deletingLastPathComponent().deletingLastPathComponent()
@@ -899,7 +911,7 @@ struct PDFEditView: View {
             let ok = await Task.detached(priority: .userInitiated) { () -> Bool in
                 let p = Process()
                 p.executableURL = magickURL
-                p.arguments = jpegPaths + [outputPath]
+                p.arguments = imagePaths + [outputPath]
                 p.standardOutput = FileHandle.nullDevice
                 p.standardError = FileHandle.nullDevice
                 var env = ProcessInfo.processInfo.environment
@@ -922,15 +934,15 @@ struct PDFEditView: View {
             log.warning("magick merge failed, falling back to CGContext")
         }
 
-        // --- Fallback: CGContext PDF stream (JPEG tam sıkıştırılmaz ama çalışır) ---
+        // --- Fallback: CGContext PDF stream ---
         let written = await Task.detached(priority: .userInitiated) { () -> Bool in
             let mutableData = NSMutableData()
             guard let consumer = CGDataConsumer(data: mutableData),
                   let ctx = CGContext(consumer: consumer, mediaBox: nil, nil) else { return false }
-            for (jpegData, bounds) in jpegResults {
+            for (_, imgData, bounds) in imageResults {
                 var box = CGRect(origin: .zero, size: bounds.size)
                 ctx.beginPage(mediaBox: &box)
-                if let src = CGImageSourceCreateWithData(jpegData as CFData, nil),
+                if let src = CGImageSourceCreateWithData(imgData as CFData, nil),
                    let img = CGImageSourceCreateImageAtIndex(src, 0, nil) {
                     ctx.draw(img, in: box)
                 }

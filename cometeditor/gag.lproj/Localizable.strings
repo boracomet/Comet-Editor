@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KALİTE";
 "pdf.tools.quality.label" = "Resim kalitesi";
 "pdf.tools.quality.large" = "Daha iyi kalite";
+"pdf.tools.quality.lossless" = "Yitirişsiz";
 "pdf.tools.resolution" = "ÇÖZÜNÜRLÜK MİKTARI";
 "pdf.tools.resolution.enable" = "Çözünürlüüyü küçült";
 "pdf.tools.resolution.75" = "75%";

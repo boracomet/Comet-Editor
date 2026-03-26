@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "CILËSI";
 "pdf.tools.quality.label" = "Cilësia e imazhit";
 "pdf.tools.quality.large" = "Cilësi më e mirë";
+"pdf.tools.quality.lossless" = "Pa humbje";
 "pdf.tools.resolution" = "SHKALLA E REZOLUCIONIT";
 "pdf.tools.resolution.enable" = "Ul rezolucionin";
 "pdf.tools.resolution.75" = "75%";

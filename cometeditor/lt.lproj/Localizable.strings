@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KOKYBĖ";
 "pdf.tools.quality.label" = "Vaizdo kokybė";
 "pdf.tools.quality.large" = "Geresnė kokybė";
+"pdf.tools.quality.lossless" = "Be nuostolių";
 "pdf.tools.resolution" = "REZOLIUCIJOS SKALĖ";
 "pdf.tools.resolution.enable" = "Sumažinti rezoliuciją";
 "pdf.tools.resolution.75" = "75%";

@@ -88,6 +88,7 @@
 "pdf.tools.quality.label" = "Image Quality";
 "pdf.tools.quality.small" = "Smaller file";
 "pdf.tools.quality.large" = "Better quality";
+"pdf.tools.quality.lossless" = "Lossless";
 "pdf.tools.resolution" = "RESOLUTION SCALE";
 "pdf.tools.resolution.enable" = "Reduce resolution";
 "pdf.tools.resolution.75" = "75%";

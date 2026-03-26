@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "КАЧЕСТВО";
 "pdf.tools.quality.label" = "Качество на изображението";
 "pdf.tools.quality.large" = "По-добро качество";
+"pdf.tools.quality.lossless" = "Без загуба";
 "pdf.tools.resolution" = "МАЩАБ НА РЕЗОЛЮЦИЯТА";
 "pdf.tools.resolution.enable" = "Намали резолюцията";
 "pdf.tools.resolution.75" = "75%";

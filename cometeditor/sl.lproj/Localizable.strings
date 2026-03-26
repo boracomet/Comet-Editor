@@ -221,6 +221,7 @@
 "pdf.tools.quality" = "KAKOVOST";
 "pdf.tools.quality.label" = "Kakovost slike";
 "pdf.tools.quality.large" = "Boljša kakovost";
+"pdf.tools.quality.lossless" = "Brez izgube";
 "pdf.tools.resolution" = "LESTVICA LOČLJIVOSTI";
 "pdf.tools.resolution.enable" = "Zmanjšaj ločljivost";
 "pdf.tools.resolution.75" = "75%";
