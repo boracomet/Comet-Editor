@@ -841,43 +841,53 @@ struct PDFEditView: View {
         try? FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: tmpDir) }
 
-        // Her sayfayı JPEG dosyasına render et
-        var jpegPaths: [String] = []
+        // Her sayfanın pageRef + bounds'unu MainActor'da topla
+        var pageRefs: [(CGPDFPage, CGRect)] = []
         for i in 0..<pageCount {
-            guard let page = document.page(at: i) else { continue }
-            let bounds = page.bounds(for: .mediaBox)
-            // Long edge'i maxLongEdge'e sığdır, orijinalden büyütme
-            let longEdge = max(bounds.width, bounds.height)
-            let scale = min(1.0, maxLongEdge / longEdge)
-            let pxW = max(1, Int(bounds.width * scale))
-            let pxH = max(1, Int(bounds.height * scale))
-            guard let pageRef = page.pageRef else { continue }
-
-            let cs = CGColorSpaceCreateDeviceRGB()
-            guard let bCtx = CGContext(
-                data: nil, width: pxW, height: pxH,
-                bitsPerComponent: 8, bytesPerRow: 0, space: cs,
-                bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue
-            ) else { continue }
-            bCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
-            bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
-            bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
-            bCtx.drawPDFPage(pageRef)
-            guard let cgImage = bCtx.makeImage() else { continue }
-
-            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-            guard let jpegData = bitmapRep.representation(
-                using: .jpeg,
-                properties: [.compressionFactor: jpegFactor as NSNumber]
-            ) else { continue }
-
-            let jpegURL = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).jpg")
-            try? jpegData.write(to: jpegURL)
-            jpegPaths.append(jpegURL.path)
-
-            compressionProgress = 0.7 * Double(i + 1) / Double(pageCount)
+            guard let page = document.page(at: i),
+                  let pageRef = page.pageRef else { continue }
+            pageRefs.append((pageRef, page.bounds(for: .mediaBox)))
         }
 
+        guard !pageRefs.isEmpty else { return }
+
+        // Render + JPEG encode'u arka planda yap (main thread bloklanmasın)
+        let renderMaxEdge = maxLongEdge
+        let renderFactor = jpegFactor
+        let jpegPaths: [String] = await Task.detached(priority: .userInitiated) {
+            var paths: [String] = []
+            for (i, (pageRef, bounds)) in pageRefs.enumerated() {
+                let longEdge = max(bounds.width, bounds.height)
+                let scale = min(1.0, renderMaxEdge / longEdge)
+                let pxW = max(1, Int(bounds.width * scale))
+                let pxH = max(1, Int(bounds.height * scale))
+
+                let cs = CGColorSpaceCreateDeviceRGB()
+                guard let bCtx = CGContext(
+                    data: nil, width: pxW, height: pxH,
+                    bitsPerComponent: 8, bytesPerRow: 0, space: cs,
+                    bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue
+                ) else { continue }
+                bCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
+                bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
+                bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
+                bCtx.drawPDFPage(pageRef)
+                guard let cgImage = bCtx.makeImage() else { continue }
+
+                let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+                guard let jpegData = bitmapRep.representation(
+                    using: .jpeg,
+                    properties: [.compressionFactor: renderFactor as NSNumber]
+                ) else { continue }
+
+                let jpegURL = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).jpg")
+                try? jpegData.write(to: jpegURL)
+                paths.append(jpegURL.path)
+            }
+            return paths
+        }.value
+
+        compressionProgress = 0.7
         guard !jpegPaths.isEmpty else { return }
 
         // magick ile JPEG'leri PDF'e birleştir
