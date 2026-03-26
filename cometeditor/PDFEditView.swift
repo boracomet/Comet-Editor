@@ -979,16 +979,44 @@ struct PDFEditView: View {
         panel.nameFieldStringValue = pdf.fileName
         guard panel.runModal() == .OK, let saveURL = panel.url else { return }
 
-        // Belge değiştirilmediyse (version == 0) orijinal dosyayı kopyala.
-        // PDFKit'in write(to:) metodu yeniden serialize ederek boyutu şişiriyor.
+        // Belge değiştirilmediyse (version == 0) orijinal dosyayı byte-for-byte kopyala.
         if appState.pdfDocumentVersion == 0 {
             try? FileManager.default.removeItem(at: saveURL)
             try? FileManager.default.copyItem(at: pdf.url, to: saveURL)
-        } else if let data = document.dataRepresentation() {
-            try? data.write(to: saveURL, options: .atomic)
-        } else {
-            document.write(to: saveURL)
+            CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
+            return
         }
+
+        // Belge değiştirilmişse (sayfa silme/sıralama): CGContext + drawPDFPage ile yaz.
+        // PDFKit dataRepresentation() metadata şişirerek boyutu artırır (~%30-50).
+        // CoreGraphics stream-copy ile sadece mevcut sayfalar yazılır, orijinal boyutun altında kalır.
+        let pageCount = document.pageCount
+        var pageRefs: [(CGPDFPage, CGRect)] = []
+        for i in 0..<pageCount {
+            guard let page = document.page(at: i), let ref = page.pageRef else { continue }
+            pageRefs.append((ref, page.bounds(for: .mediaBox)))
+        }
+
+        guard !pageRefs.isEmpty else { return }
+
+        var defaultBox = pageRefs[0].1
+        guard let ctx = CGContext(saveURL as CFURL, mediaBox: &defaultBox, nil) else {
+            // CGContext başarısız olursa PDFKit fallback
+            if let data = document.dataRepresentation() {
+                try? data.write(to: saveURL, options: .atomic)
+            }
+            CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
+            return
+        }
+
+        for (pageRef, bounds) in pageRefs {
+            var box = bounds
+            ctx.beginPage(mediaBox: &box)
+            ctx.drawPDFPage(pageRef)
+            ctx.endPage()
+        }
+        ctx.closePDF()
+
         CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
     }
 
