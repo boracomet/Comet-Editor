@@ -9,6 +9,7 @@ import SwiftUI
 @preconcurrency import PDFKit
 import UniformTypeIdentifiers
 import CoreGraphics
+import Quartz
 import os
 
 // NSImage is safe to pass across concurrency boundaries for display-only use.
@@ -24,11 +25,6 @@ struct PDFEditView: View {
     // Compression state
     @State private var isCompressing = false
     @State private var compressionProgress: Double = 0
-    /// 10–90: JPEG quality (lower = smaller file)
-    @State private var compressionQuality: Double = 100
-    /// Çözünürlük küçültme: nil = orijinal, 0.75/0.50/0.25
-    @State private var resolutionScaleEnabled: Bool = false
-    @State private var resolutionScale: Double = 0.75
 
     // Color conversion state
     enum ColorTarget: String, CaseIterable {
@@ -159,25 +155,6 @@ struct PDFEditView: View {
                     if !pdf.fileSizeString.isEmpty {
                         Text("•")
                         Text(pdf.fileSizeString)
-                        if pdf.fileSizeBytes > 0 {
-                            // q=100 → lossless PNG, tahmini %80; q=10→6.6%, q=40→10%, q=80→41%
-                            let jpegRatio: Double = compressionQuality >= 100
-                                ? 0.80
-                                : max(0.06, min(0.45, pow(compressionQuality / 90.0, 2.2) * 0.45 + 0.06))
-                            let scaleRatio = resolutionScaleEnabled ? resolutionScale * resolutionScale : 1.0
-                            let ratio = jpegRatio * scaleRatio
-                            let optimized = ByteCountFormatter.string(
-                                fromByteCount: Int64(Double(pdf.fileSizeBytes) * ratio),
-                                countStyle: .file
-                            )
-                            Text("→").foregroundStyle(Color.secondary.opacity(0.5))
-                            HStack(spacing: 4) {
-                                Text(LocalizedStringKey("pdf.estimatedSize"))
-                                Text("~\(optimized)")
-                                    .fontWeight(.semibold)
-                            }
-                            .foregroundStyle(Color.green.opacity(0.85))
-                        }
                     }
                 }
                 .font(.system(size: 11))
@@ -538,58 +515,6 @@ struct PDFEditView: View {
 
                     Divider()
 
-                    // Kalite Ayarı
-                    inspectorSection("pdf.tools.quality") {
-                        VStack(alignment: .leading, spacing: 6) {
-                            HStack {
-                                Text(LocalizedStringKey("pdf.tools.quality.label"))
-                                    .font(.system(size: 11))
-                                    .foregroundStyle(Color.secondary)
-                                Spacer()
-                                Text("\(Int(compressionQuality))%")
-                                    .font(.system(size: 11, weight: .semibold, design: .monospaced))
-                                    .foregroundStyle(Color.accentColor)
-                            }
-                            Slider(value: $compressionQuality, in: 10...100, step: 5)
-                                .disabled(isCompressing)
-                            HStack {
-                                Text(LocalizedStringKey("pdf.tools.quality.small"))
-                                    .font(.system(size: 10))
-                                    .foregroundStyle(Color.secondary.opacity(0.7))
-                                Spacer()
-                                Text(LocalizedStringKey("pdf.tools.quality.lossless"))
-                                    .font(.system(size: 10))
-                                    .foregroundStyle(compressionQuality >= 100 ? Color.accentColor : Color.secondary.opacity(0.7))
-                            }
-                        }
-                    }
-
-                    Divider()
-
-                    // Çözünürlük Küçültme
-                    inspectorSection("pdf.tools.resolution") {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Toggle(isOn: $resolutionScaleEnabled) {
-                                Text(LocalizedStringKey("pdf.tools.resolution.enable"))
-                                    .font(.system(size: 12))
-                            }
-                            .toggleStyle(.switch)
-                            .disabled(isCompressing)
-
-                            if resolutionScaleEnabled {
-                                Picker("", selection: $resolutionScale) {
-                                    Text(LocalizedStringKey("pdf.tools.resolution.75")).tag(0.75)
-                                    Text(LocalizedStringKey("pdf.tools.resolution.50")).tag(0.50)
-                                    Text(LocalizedStringKey("pdf.tools.resolution.25")).tag(0.25)
-                                }
-                                .pickerStyle(.segmented)
-                                .disabled(isCompressing)
-                            }
-                        }
-                    }
-
-                    Divider()
-
                     // Hedef Klasör
                     inspectorSection("pdf.tools.targetFolder") {
                         VStack(alignment: .leading, spacing: 10) {
@@ -647,7 +572,7 @@ struct PDFEditView: View {
                                     if colorConversionEnabled {
                                         await convertColorSpace(pdf, target: colorTarget)
                                     } else {
-                                        await compressPDF(pdf, quality: Int(compressionQuality))
+                                        await compressPDF(pdf)
                                     }
                                 }
                             }
@@ -801,7 +726,9 @@ struct PDFEditView: View {
     /// yoksa CGContext PDF stream fallback kullanır.
     /// outputURL: nil ise targetFolder'a _optimized.pdf olarak yazar.
     @MainActor
-    private func compressPDF(_ pdf: PDFItem, quality: Int = 40, outputURL explicitURL: URL? = nil) async {
+    /// PDF içindeki raster imajları sıkıştırır; vektörel içerik ve yazılar bitmap'e dönüştürülmez.
+    /// QuartzFilter ile CGPDFContext'e sayfalar draw edilir — filter sadece raster XObject'lere uygulanır.
+    private func compressPDF(_ pdf: PDFItem, outputURL explicitURL: URL? = nil) async {
         guard let document = pdf.document else { return }
 
         // outputURL verilmediyse targetFolder'dan türet
@@ -825,37 +752,9 @@ struct PDFEditView: View {
         defer { isCompressing = false }
 
         let log = Logger(subsystem: "com.cometeditor", category: "PDFCompress")
-
-        let isLossless = quality >= 100
         let pageCount = document.pageCount
 
-        // q=100 ve resolutionScale kapalı → PDF'i olduğu gibi kopyala (bitmap render yok)
-        if isLossless && !resolutionScaleEnabled {
-            let destURL = outputURL
-            let ok = await Task.detached(priority: .userInitiated) { () -> Bool in
-                do {
-                    try FileManager.default.copyItem(at: pdf.url, to: destURL)
-                    return true
-                } catch { return false }
-            }.value
-            compressionProgress = 1.0
-            if ok {
-                log.info("lossless copy → \(destURL.path)")
-                CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
-                    metadata: ["action": "lossless_copy", "pages": pageCount])
-            }
-            return
-        }
-
-        // Scale açıkken: tam olarak resolutionScale kadar küçült (maxLongEdge limiti yok)
-        // Scale kapalıyken: kalite slider'ı render boyutunu belirler
-        let resScale: CGFloat = resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0
-        let maxLongEdge: CGFloat = resolutionScaleEnabled
-            ? .greatestFiniteMagnitude  // sınır yok, resScale direkt uygulanır
-            : (isLossless ? .greatestFiniteMagnitude : (quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0)))
-        let jpegFactor = max(0.05, min(0.92, Double(quality) / 100.0))
-
-        // pageRef + bounds'ları MainActor'da topla
+        // pageRef + bounds MainActor'da topla
         var pageRefs: [(CGPDFPage, CGRect)] = []
         for i in 0..<pageCount {
             guard let page = document.page(at: i), let ref = page.pageRef else { continue }
@@ -863,130 +762,72 @@ struct PDFEditView: View {
         }
         guard !pageRefs.isEmpty else { log.error("pageRefs empty"); return }
 
-        // magick binary bul (Bundle.main — production ve dev simulator her ikisinde çalışır)
-        let magickURL: URL? = Bundle.main.url(forResource: "magick", withExtension: nil)
-        if let m = magickURL {
-            try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: m.path)
-            log.info("magick found: \(m.path)")
-        } else {
-            log.warning("magick not found, using CGContext fallback")
-        }
+        compressionProgress = 0.1
 
-        let tmpDir = FileManager.default.temporaryDirectory
-            .appendingPathComponent("pdf_compress_\(UUID().uuidString)")
-        try? FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
-        defer { try? FileManager.default.removeItem(at: tmpDir) }
+        // QuartzFilter: JPEG %50, max 144 DPI, max 1920px
+        // Vektörler ve yazılar bitmap'e dönüştürülmez — sadece gömülü raster imajlar sıkıştırılır.
+        let filterProperties: [String: Any] = [
+            "FilterData": [
+                "ColorSettings": [
+                    "ImageSettings": [
+                        "Compression Quality": 0.50,
+                        "ImageCompression": "ImageJPEGCompress",
+                        "ImageScaleSettings": [
+                            "ImageResolution": 144,
+                            "ImageScaleInterpolate": true,
+                            "ImageSizeMax": 1920,
+                            "ImageSizeMin": 0
+                        ] as [String: Any]
+                    ] as [String: Any]
+                ] as [String: Any]
+            ] as [String: Any]
+        ]
 
-        // Arka planda render + JPEG encode
-        let renderMaxEdge = maxLongEdge
-        let renderFactor = jpegFactor
-        let renderLossless = isLossless
-        let renderResScale = resScale
-        let imageResults: [(String, Data, CGRect)] = await Task.detached(priority: .userInitiated) {
-            var results: [(String, Data, CGRect)] = []
-            for (pageRef, bounds) in pageRefs {
-                let longEdge = max(bounds.width, bounds.height)
-                // Scale açık: doğrudan resScale (örn. 0.5 → yarı çözünürlük)
-                // Scale kapalı: maxLongEdge'e göre sınırla, orijinalden büyütme
-                let scale: CGFloat
-                if renderResScale < 1.0 {
-                    scale = renderResScale
-                } else {
-                    scale = min(1.0, renderMaxEdge / longEdge)
-                }
-                let pxW = max(1, Int(bounds.width * scale))
-                let pxH = max(1, Int(bounds.height * scale))
-                let cs = CGColorSpaceCreateDeviceRGB()
-                guard let bCtx = CGContext(
-                    data: nil, width: pxW, height: pxH,
-                    bitsPerComponent: 8, bytesPerRow: 0, space: cs,
-                    bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue
-                ) else { continue }
-                bCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
-                bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
-                bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
-                bCtx.drawPDFPage(pageRef)
-                guard let cgImage = bCtx.makeImage() else { continue }
-                let rep = NSBitmapImageRep(cgImage: cgImage)
-                // q=100 + scale açık: yüksek kalite JPEG (sadece çözünürlük küçülür)
-                let factor = renderLossless ? 0.92 : renderFactor
-                guard let data = rep.representation(
-                    using: .jpeg, properties: [.compressionFactor: factor as NSNumber]
-                ) else { continue }
-                results.append(("jpg", data, bounds))
-            }
-            return results
-        }.value
-
-        compressionProgress = 0.7
-        guard !imageResults.isEmpty else { log.error("no image results"); return }
-
-        let outputPath = outputURL.path
-
-        // --- magick varsa: dosyaları diske yaz, magick ile PDF'e birleştir ---
-        if let magickURL {
-            var imagePaths: [String] = []
-            for (i, (ext, data, _)) in imageResults.enumerated() {
-                let url = tmpDir.appendingPathComponent("page_\(String(format: "%04d", i)).\(ext)")
-                try? data.write(to: url)
-                imagePaths.append(url.path)
-            }
-
-            let magickHome = magickURL.deletingLastPathComponent().deletingLastPathComponent()
-
-            let ok = await Task.detached(priority: .userInitiated) { () -> Bool in
-                let p = Process()
-                p.executableURL = magickURL
-                p.arguments = imagePaths + [outputPath]
-                p.standardOutput = FileHandle.nullDevice
-                p.standardError = FileHandle.nullDevice
-                var env = ProcessInfo.processInfo.environment
-                env["MAGICK_HOME"] = magickHome.path
-                env["MAGICK_CONFIGURE_PATH"] = magickHome.appendingPathComponent("etc/ImageMagick-7").path
-                p.environment = env
-                do { try p.run() } catch { return false }
-                p.waitUntilExit()
-                return p.terminationStatus == 0 && FileManager.default.fileExists(atPath: outputPath)
-            }.value
-
-            if ok {
-                log.info("magick merge succeeded → \(outputPath)")
-                compressionProgress = 1.0
-                CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
-                    metadata: ["action": "compress", "pages": pageCount, "quality": quality])
-                return
-            }
-            log.warning("magick merge failed, falling back to CGContext")
-        }
-
-        // --- Fallback: CGContext PDF stream ---
+        let destURL = outputURL
         let written = await Task.detached(priority: .userInitiated) { () -> Bool in
+            // QuartzFilter oluştur — public API (Quartz.framework/QuartzFilters)
+            guard let filter = QuartzFilter(properties: filterProperties as NSDictionary as [AnyHashable: Any]) else {
+                log.error("QuartzFilter init failed")
+                return false
+            }
+
             let mutableData = NSMutableData()
-            guard let consumer = CGDataConsumer(data: mutableData),
-                  let ctx = CGContext(consumer: consumer, mediaBox: nil, nil) else { return false }
-            for (_, imgData, bounds) in imageResults {
-                var box = CGRect(origin: .zero, size: bounds.size)
+            guard let consumer = CGDataConsumer(data: mutableData) else { return false }
+
+            // İlk sayfanın media box'ını varsayılan olarak kullan
+            var defaultBox = pageRefs.first.map { $0.1 } ?? CGRect(x: 0, y: 0, width: 595, height: 842)
+            guard let ctx = CGContext(consumer: consumer, mediaBox: &defaultBox, nil) else { return false }
+
+            // Filter'ı context'e uygula — bu aşamadan sonra context'e çizilen
+            // raster imajlar otomatik olarak JPEG ile sıkıştırılır
+            filter.apply(to: ctx)
+
+            for (pageRef, bounds) in pageRefs {
+                var box = bounds
                 ctx.beginPage(mediaBox: &box)
-                if let src = CGImageSourceCreateWithData(imgData as CFData, nil),
-                   let img = CGImageSourceCreateImageAtIndex(src, 0, nil) {
-                    ctx.draw(img, in: box)
-                }
+                // drawPDFPage: vektörler, fontlar, yazılar AYNEN kopyalanır (stream copy)
+                // Raster XObject'ler filter tarafından sıkıştırılır
+                ctx.drawPDFPage(pageRef)
                 ctx.endPage()
             }
             ctx.closePDF()
+
             do {
-                try (mutableData as Data).write(to: URL(fileURLWithPath: outputPath), options: .atomic)
+                try (mutableData as Data).write(to: destURL, options: .atomic)
                 return true
-            } catch { return false }
+            } catch {
+                log.error("write failed: \(error)")
+                return false
+            }
         }.value
 
         compressionProgress = 1.0
         if written {
-            log.info("CGContext fallback succeeded → \(outputPath)")
+            log.info("QuartzFilter compress succeeded → \(destURL.path)")
             CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
-                metadata: ["action": "compress_fallback", "pages": pageCount, "quality": quality])
+                metadata: ["action": "compress_quartz", "pages": pageCount])
         } else {
-            log.error("both magick and CGContext fallback failed")
+            log.error("QuartzFilter compress failed")
         }
     }
 
@@ -1106,14 +947,6 @@ struct PDFEditView: View {
         panel.allowedContentTypes = [.pdf]
         panel.nameFieldStringValue = pdf.fileName
         guard panel.runModal() == .OK, let saveURL = panel.url else { return }
-
-        // ResolutionScale açıksa → compressPDF ile scale uygula, doğrudan saveURL'e yaz
-        if resolutionScaleEnabled {
-            Task {
-                await compressPDF(pdf, quality: 100, outputURL: saveURL)
-            }
-            return
-        }
 
         // Belge değiştirilmediyse (version == 0) orijinal dosyayı kopyala.
         // PDFKit'in write(to:) metodu yeniden serialize ederek boyutu şişiriyor.
