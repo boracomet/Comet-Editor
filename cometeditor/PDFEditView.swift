@@ -159,8 +159,8 @@ struct PDFEditView: View {
                         Text("•")
                         Text(pdf.fileSizeString)
                         if pdf.fileSizeBytes > 0 {
-                            // Tahmini boyut: JPEG re-render + çözünürlük scale
-                            let jpegRatio = max(0.03, min(0.40, pow(compressionQuality / 90.0, 1.8) * 0.40))
+                            // Tahmini boyut: q=10→~7%, q=40→~11%, q=80→~43% (test verileri)
+                            let jpegRatio = max(0.05, min(0.50, pow(compressionQuality / 90.0, 1.4) * 0.50))
                             let scaleRatio = resolutionScaleEnabled ? resolutionScale * resolutionScale : 1.0
                             let ratio = jpegRatio * scaleRatio
                             let optimized = ByteCountFormatter.string(
@@ -812,9 +812,10 @@ struct PDFEditView: View {
             counter += 1
         }
 
-        // DPI: quality 10-30 → 72, 31-60 → 96, 61-90 → 120
-        let baseDpi: CGFloat = quality <= 30 ? 72.0 : (quality <= 60 ? 96.0 : 120.0)
-        let dpi = baseDpi * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
+        // maxLongEdge: quality 10-30 → 800px, 31-60 → 1200px, 61-90 → 1920px
+        // resolutionScale ek olarak bunu daha da küçültür
+        let baseMaxEdge: CGFloat = quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0)
+        let maxLongEdge = baseMaxEdge * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
 
         let pageCount = document.pageCount
@@ -845,7 +846,9 @@ struct PDFEditView: View {
         for i in 0..<pageCount {
             guard let page = document.page(at: i) else { continue }
             let bounds = page.bounds(for: .mediaBox)
-            let scale = dpi / 72.0
+            // Long edge'i maxLongEdge'e sığdır, orijinalden büyütme
+            let longEdge = max(bounds.width, bounds.height)
+            let scale = min(1.0, maxLongEdge / longEdge)
             let pxW = max(1, Int(bounds.width * scale))
             let pxH = max(1, Int(bounds.height * scale))
             guard let pageRef = page.pageRef else { continue }
