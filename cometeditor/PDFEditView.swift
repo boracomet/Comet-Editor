@@ -566,6 +566,26 @@ struct PDFEditView: View {
 
                     // Optimize + Save
                     VStack(spacing: 10) {
+                        // Tahmini boyut — sadece optimize modunda göster
+                        if !colorConversionEnabled, let pdf = pdf, pdf.fileSizeBytes > 0 {
+                            let estimatedBytes = Int64(Double(pdf.fileSizeBytes) * 0.35)
+                            let estimatedStr = ByteCountFormatter.string(fromByteCount: estimatedBytes, countStyle: .file)
+                            HStack {
+                                Image(systemName: "arrow.down.circle")
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(Color.secondary)
+                                Text("~\(estimatedStr)")
+                                    .font(.system(size: 11, weight: .medium, design: .monospaced))
+                                    .foregroundStyle(Color.secondary)
+                                Spacer()
+                                Text(LocalizedStringKey("pdf.estimatedSize"))
+                                    .font(.system(size: 10))
+                                    .foregroundStyle(Color.secondary.opacity(0.7))
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.top, 4)
+                        }
+
                         Button {
                             if let pdf = pdf {
                                 Task {
@@ -764,30 +784,40 @@ struct PDFEditView: View {
 
         compressionProgress = 0.1
 
-        // QuartzFilter: JPEG %50, max 144 DPI, max 1920px
+        // QuartzFilter: macOS sistem filtresi ile raster imajları sıkıştır.
         // Vektörler ve yazılar bitmap'e dönüştürülmez — sadece gömülü raster imajlar sıkıştırılır.
         let destURL = outputURL
         let written = await Task.detached(priority: .userInitiated) { () -> Bool in
-            let scaleSettings: [AnyHashable: Any] = [
-                "ImageResolution": 144,
-                "ImageScaleInterpolate": true,
-                "ImageSizeMax": 1920,
-                "ImageSizeMin": 0
-            ]
-            let imageSettings: [AnyHashable: Any] = [
-                "Compression Quality": 0.50,
-                "ImageCompression": "ImageJPEGCompress",
-                "ImageScaleSettings": scaleSettings
-            ]
-            let filterProps: [AnyHashable: Any] = [
-                "FilterData": [
-                    "ColorSettings": [
-                        "ImageSettings": imageSettings
+            // Önce system filter dosyasından yükle — en güvenilir yol
+            let systemFilterURL = URL(fileURLWithPath: "/System/Library/Filters/Reduce File Size.qfilter")
+            let filter: QuartzFilter?
+            if FileManager.default.fileExists(atPath: systemFilterURL.path) {
+                filter = QuartzFilter(url: systemFilterURL)
+            } else {
+                // System filter yoksa (nadiren) manuel properties ile dene
+                let scaleSettings: [AnyHashable: Any] = [
+                    "ImageResolution": 144,
+                    "ImageScaleInterpolate": true,
+                    "ImageSizeMax": 1920,
+                    "ImageSizeMin": 0
+                ]
+                let imageSettings: [AnyHashable: Any] = [
+                    "Compression Quality": 0.50,
+                    "ImageCompression": "ImageJPEGCompress",
+                    "ImageScaleSettings": scaleSettings
+                ]
+                let filterProps: [AnyHashable: Any] = [
+                    "FilterType": 1,
+                    "Name": "Reduce File Size",
+                    "FilterData": [
+                        "ColorSettings": [
+                            "ImageSettings": imageSettings
+                        ] as [AnyHashable: Any]
                     ] as [AnyHashable: Any]
-                ] as [AnyHashable: Any]
-            ]
-            // QuartzFilter oluştur — public API (Quartz.framework/QuartzFilters)
-            guard let filter = QuartzFilter(properties: filterProps) else {
+                ]
+                filter = QuartzFilter(properties: filterProps)
+            }
+            guard let filter else {
                 log.error("QuartzFilter init failed")
                 return false
             }
