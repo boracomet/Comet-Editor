@@ -159,8 +159,8 @@ struct PDFEditView: View {
                         Text("•")
                         Text(pdf.fileSizeString)
                         if pdf.fileSizeBytes > 0 {
-                            // Tahmini boyut: q=10→~7%, q=40→~11%, q=80→~43% (test verileri)
-                            let jpegRatio = max(0.05, min(0.50, pow(compressionQuality / 90.0, 1.4) * 0.50))
+                            // Tahmini boyut: q=10→6.6%, q=40→10%, q=80→41% (gerçek test verileri)
+                            let jpegRatio = max(0.06, min(0.45, pow(compressionQuality / 90.0, 2.2) * 0.45 + 0.06))
                             let scaleRatio = resolutionScaleEnabled ? resolutionScale * resolutionScale : 1.0
                             let ratio = jpegRatio * scaleRatio
                             let optimized = ByteCountFormatter.string(
