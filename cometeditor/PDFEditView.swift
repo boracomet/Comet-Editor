@@ -799,24 +799,32 @@ struct PDFEditView: View {
     /// Her sayfayı JPEG olarak render edip PDF'e yazar.
     /// magick varsa JPEG'leri birleştirir (gerçek sıkıştırma),
     /// yoksa CGContext PDF stream fallback kullanır.
+    /// outputURL: nil ise targetFolder'a _optimized.pdf olarak yazar.
     @MainActor
-    private func compressPDF(_ pdf: PDFItem, quality: Int = 40) async {
-        guard let document = pdf.document,
-              let targetFolder = appState.pdfCompressionTargetFolder else { return }
+    private func compressPDF(_ pdf: PDFItem, quality: Int = 40, outputURL explicitURL: URL? = nil) async {
+        guard let document = pdf.document else { return }
+
+        // outputURL verilmediyse targetFolder'dan türet
+        let outputURL: URL
+        if let explicit = explicitURL {
+            outputURL = explicit
+        } else {
+            guard let targetFolder = appState.pdfCompressionTargetFolder else { return }
+            let baseName = pdf.url.deletingPathExtension().lastPathComponent
+            var url = targetFolder.appendingPathComponent("\(baseName)_optimized.pdf")
+            var counter = 1
+            while FileManager.default.fileExists(atPath: url.path) {
+                url = targetFolder.appendingPathComponent("\(baseName)_optimized_\(counter).pdf")
+                counter += 1
+            }
+            outputURL = url
+        }
 
         isCompressing = true
         compressionProgress = 0
         defer { isCompressing = false }
 
         let log = Logger(subsystem: "com.cometeditor", category: "PDFCompress")
-
-        let baseName = pdf.url.deletingPathExtension().lastPathComponent
-        var outputURL = targetFolder.appendingPathComponent("\(baseName)_optimized.pdf")
-        var counter = 1
-        while FileManager.default.fileExists(atPath: outputURL.path) {
-            outputURL = targetFolder.appendingPathComponent("\(baseName)_optimized_\(counter).pdf")
-            counter += 1
-        }
 
         let isLossless = quality >= 100
         let pageCount = document.pageCount
@@ -1096,28 +1104,10 @@ struct PDFEditView: View {
         panel.nameFieldStringValue = pdf.fileName
         guard panel.runModal() == .OK, let saveURL = panel.url else { return }
 
-        // ResolutionScale açıksa → compressPDF ile kayıpsız kalite + scale uygula
+        // ResolutionScale açıksa → compressPDF ile scale uygula, doğrudan saveURL'e yaz
         if resolutionScaleEnabled {
             Task {
-                // outputURL yerine kullanıcının seçtiği URL'e doğrudan yaz
-                // compressPDF targetFolder bazlı çalıştığı için geçici klasör trick'i:
-                let tmpFolder = FileManager.default.temporaryDirectory
-                    .appendingPathComponent("pdf_save_\(UUID().uuidString)")
-                try? FileManager.default.createDirectory(at: tmpFolder, withIntermediateDirectories: true)
-                defer { try? FileManager.default.removeItem(at: tmpFolder) }
-
-                // pdfCompressionTargetFolder'ı geçici olarak değiştir
-                let prevFolder = appState.pdfCompressionTargetFolder
-                appState.pdfCompressionTargetFolder = tmpFolder
-                await compressPDF(pdf, quality: 100)
-                appState.pdfCompressionTargetFolder = prevFolder
-
-                // Çıktıyı kullanıcının seçtiği URL'e taşı
-                let tmpOut = tmpFolder.appendingPathComponent(
-                    "\(pdf.url.deletingPathExtension().lastPathComponent)_optimized.pdf"
-                )
-                try? FileManager.default.removeItem(at: saveURL)
-                try? FileManager.default.moveItem(at: tmpOut, to: saveURL)
+                await compressPDF(pdf, quality: 100, outputURL: saveURL)
             }
             return
         }
