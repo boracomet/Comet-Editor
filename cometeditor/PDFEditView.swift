@@ -25,7 +25,7 @@ struct PDFEditView: View {
     @State private var isCompressing = false
     @State private var compressionProgress: Double = 0
     /// 10–90: JPEG quality (lower = smaller file)
-    @State private var compressionQuality: Double = 40
+    @State private var compressionQuality: Double = 100
     /// Çözünürlük küçültme: nil = orijinal, 0.75/0.50/0.25
     @State private var resolutionScaleEnabled: Bool = false
     @State private var resolutionScale: Double = 0.75
@@ -847,10 +847,13 @@ struct PDFEditView: View {
             return
         }
 
-        let baseMaxEdge: CGFloat = isLossless ? 4096.0 : (quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0))
-        let maxLongEdge = baseMaxEdge  // resolutionScale aşağıda ayrıca uygulanır
+        // Scale açıkken: tam olarak resolutionScale kadar küçült (maxLongEdge limiti yok)
+        // Scale kapalıyken: kalite slider'ı render boyutunu belirler
         let resScale: CGFloat = resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0
-        let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
+        let maxLongEdge: CGFloat = resolutionScaleEnabled
+            ? .greatestFiniteMagnitude  // sınır yok, resScale direkt uygulanır
+            : (isLossless ? .greatestFiniteMagnitude : (quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0)))
+        let jpegFactor = max(0.05, min(0.92, Double(quality) / 100.0))
 
         // pageRef + bounds'ları MainActor'da topla
         var pageRefs: [(CGPDFPage, CGRect)] = []
@@ -889,8 +892,14 @@ struct PDFEditView: View {
             var results: [(String, Data, CGRect)] = []
             for (pageRef, bounds) in pageRefs {
                 let longEdge = max(bounds.width, bounds.height)
-                // maxLongEdge limiti + resolutionScale çarpanı birlikte uygulanır
-                let scale = min(1.0, renderMaxEdge / longEdge) * renderResScale
+                // Scale açık: doğrudan resScale (örn. 0.5 → yarı çözünürlük)
+                // Scale kapalı: maxLongEdge'e göre sınırla, orijinalden büyütme
+                let scale: CGFloat
+                if renderResScale < 1.0 {
+                    scale = renderResScale
+                } else {
+                    scale = min(1.0, renderMaxEdge / longEdge)
+                }
                 let pxW = max(1, Int(bounds.width * scale))
                 let pxH = max(1, Int(bounds.height * scale))
                 let cs = CGColorSpaceCreateDeviceRGB()
