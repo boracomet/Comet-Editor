@@ -766,27 +766,28 @@ struct PDFEditView: View {
 
         // QuartzFilter: JPEG %50, max 144 DPI, max 1920px
         // Vektörler ve yazılar bitmap'e dönüştürülmez — sadece gömülü raster imajlar sıkıştırılır.
-        let filterProperties: [String: Any] = [
-            "FilterData": [
-                "ColorSettings": [
-                    "ImageSettings": [
-                        "Compression Quality": 0.50,
-                        "ImageCompression": "ImageJPEGCompress",
-                        "ImageScaleSettings": [
-                            "ImageResolution": 144,
-                            "ImageScaleInterpolate": true,
-                            "ImageSizeMax": 1920,
-                            "ImageSizeMin": 0
-                        ] as [String: Any]
-                    ] as [String: Any]
-                ] as [String: Any]
-            ] as [String: Any]
-        ]
-
         let destURL = outputURL
         let written = await Task.detached(priority: .userInitiated) { () -> Bool in
+            let scaleSettings: [AnyHashable: Any] = [
+                "ImageResolution": 144,
+                "ImageScaleInterpolate": true,
+                "ImageSizeMax": 1920,
+                "ImageSizeMin": 0
+            ]
+            let imageSettings: [AnyHashable: Any] = [
+                "Compression Quality": 0.50,
+                "ImageCompression": "ImageJPEGCompress",
+                "ImageScaleSettings": scaleSettings
+            ]
+            let filterProps: [AnyHashable: Any] = [
+                "FilterData": [
+                    "ColorSettings": [
+                        "ImageSettings": imageSettings
+                    ] as [AnyHashable: Any]
+                ] as [AnyHashable: Any]
+            ]
             // QuartzFilter oluştur — public API (Quartz.framework/QuartzFilters)
-            guard let filter = QuartzFilter(properties: filterProperties as NSDictionary as [AnyHashable: Any]) else {
+            guard let filter = QuartzFilter(properties: filterProps) else {
                 log.error("QuartzFilter init failed")
                 return false
             }
