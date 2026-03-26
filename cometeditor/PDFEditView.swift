@@ -881,6 +881,9 @@ struct PDFEditView: View {
         guard !jpegPaths.isEmpty else { return }
 
         // magick ile JPEG'leri PDF'e birleştir
+        let magickDir = magickURL.deletingLastPathComponent()         // .../bin
+        let magickHome = magickDir.deletingLastPathComponent()        // .../arm64 veya bundle root
+        let libPath = magickHome.appendingPathComponent("lib").path
         let outputPath = outputURL.path
         let success = await Task.detached(priority: .userInitiated) { () -> Bool in
             let process = Process()
@@ -888,7 +891,17 @@ struct PDFEditView: View {
             process.arguments = jpegPaths + [outputPath]
             process.standardOutput = FileHandle.nullDevice
             process.standardError = FileHandle.nullDevice
-            try? process.run()
+            // magick dylib'leri için environment set et
+            var env = ProcessInfo.processInfo.environment
+            env["MAGICK_HOME"] = magickHome.path
+            env["DYLD_LIBRARY_PATH"] = libPath + (env["DYLD_LIBRARY_PATH"].map { ":" + $0 } ?? "")
+            env["MAGICK_CONFIGURE_PATH"] = magickHome.appendingPathComponent("etc/ImageMagick-7").path
+            process.environment = env
+            do {
+                try process.run()
+            } catch {
+                return false
+            }
             process.waitUntilExit()
             return process.terminationStatus == 0 && FileManager.default.fileExists(atPath: outputPath)
         }.value
