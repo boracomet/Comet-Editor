@@ -42,6 +42,11 @@ struct PDFEditView: View {
     // Add Content modal
     @State private var showAddContentModal = false
 
+    // Success alerts
+    @State private var showCompressSuccess = false
+    @State private var showSaveSuccess = false
+    @State private var lastSavedPath = ""
+
     @EnvironmentObject var appState: GlobalAppState
     @EnvironmentObject var windowState: WindowStateObserver
     @Environment(\.colorScheme) private var colorScheme
@@ -57,6 +62,25 @@ struct PDFEditView: View {
                 .frame(width: 260)
         }
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .alert(LocalizedStringKey("alert.success.title"), isPresented: $showCompressSuccess) {
+            Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
+            Button(LocalizedStringKey("alert.openFolder")) {
+                if let folder = appState.pdfCompressionTargetFolder {
+                    NSWorkspace.shared.open(folder)
+                }
+            }
+        } message: {
+            Text(String(format: NSLocalizedString("alert.success.message.image", comment: ""), lastSavedPath))
+        }
+        .alert(LocalizedStringKey("alert.success.title"), isPresented: $showSaveSuccess) {
+            Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
+            Button(LocalizedStringKey("alert.openFolder")) {
+                let folder = URL(fileURLWithPath: lastSavedPath).deletingLastPathComponent()
+                NSWorkspace.shared.open(folder)
+            }
+        } message: {
+            Text(String(format: NSLocalizedString("alert.success.message.image", comment: ""), lastSavedPath))
+        }
         .sheet(isPresented: $showAddContentModal) {
             if let pdf = appState.selectedPDF {
                 AddContentModal(pdf: pdf, currentPageIndex: appState.pdfPageIndex,
@@ -155,6 +179,16 @@ struct PDFEditView: View {
                     if !pdf.fileSizeString.isEmpty {
                         Text("•")
                         Text(pdf.fileSizeString)
+                        // Tahmini optimize boyutu — yeşil yazı ile göster
+                        if pdf.fileSizeBytes > 0 {
+                            let estimated = ByteCountFormatter.string(
+                                fromByteCount: Int64(Double(pdf.fileSizeBytes) * 0.35),
+                                countStyle: .file
+                            )
+                            Text("→ ")
+                            Text("~\(estimated)")
+                                .foregroundColor(.green)
+                        }
                     }
                 }
                 .font(.system(size: 11))
@@ -741,17 +775,13 @@ struct PDFEditView: View {
     }
 
 
-    /// Her sayfayı JPEG olarak render edip PDF'e yazar.
-    /// magick varsa JPEG'leri birleştirir (gerçek sıkıştırma),
-    /// yoksa CGContext PDF stream fallback kullanır.
-    /// outputURL: nil ise targetFolder'a _optimized.pdf olarak yazar.
+    /// PDF içindeki raster image XObject'leri JPEG olarak recompress eder.
+    /// - Büyük raster imaj içeren sayfalar: 144 DPI bitmap render → JPEG %60 → PDF'e yaz
+    /// - Küçük/vektörel sayfalar: drawPDFPage ile olduğu gibi stream-copy (metin/vektör korunur)
     @MainActor
-    /// PDF içindeki raster imajları sıkıştırır; vektörel içerik ve yazılar bitmap'e dönüştürülmez.
-    /// QuartzFilter ile CGPDFContext'e sayfalar draw edilir — filter sadece raster XObject'lere uygulanır.
     private func compressPDF(_ pdf: PDFItem, outputURL explicitURL: URL? = nil) async {
         guard let document = pdf.document else { return }
 
-        // outputURL verilmediyse targetFolder'dan türet
         let outputURL: URL
         if let explicit = explicitURL {
             outputURL = explicit
@@ -780,85 +810,102 @@ struct PDFEditView: View {
             guard let page = document.page(at: i), let ref = page.pageRef else { continue }
             pageRefs.append((ref, page.bounds(for: .mediaBox)))
         }
-        guard !pageRefs.isEmpty else { log.error("pageRefs empty"); return }
+        guard !pageRefs.isEmpty else { return }
 
-        compressionProgress = 0.1
-
-        // QuartzFilter: macOS sistem filtresi ile raster imajları sıkıştır.
-        // Vektörler ve yazılar bitmap'e dönüştürülmez — sadece gömülü raster imajlar sıkıştırılır.
+        compressionProgress = 0.05
         let destURL = outputURL
+
         let written = await Task.detached(priority: .userInitiated) { () -> Bool in
-            // Önce system filter dosyasından yükle — en güvenilir yol
-            let systemFilterURL = URL(fileURLWithPath: "/System/Library/Filters/Reduce File Size.qfilter")
-            let filter: QuartzFilter?
-            if FileManager.default.fileExists(atPath: systemFilterURL.path) {
-                filter = QuartzFilter(url: systemFilterURL)
-            } else {
-                // System filter yoksa (nadiren) manuel properties ile dene
-                let scaleSettings: [AnyHashable: Any] = [
-                    "ImageResolution": 144,
-                    "ImageScaleInterpolate": true,
-                    "ImageSizeMax": 1920,
-                    "ImageSizeMin": 0
-                ]
-                let imageSettings: [AnyHashable: Any] = [
-                    "Compression Quality": 0.50,
-                    "ImageCompression": "ImageJPEGCompress",
-                    "ImageScaleSettings": scaleSettings
-                ]
-                let filterProps: [AnyHashable: Any] = [
-                    "FilterType": 1,
-                    "Name": "Reduce File Size",
-                    "FilterData": [
-                        "ColorSettings": [
-                            "ImageSettings": imageSettings
-                        ] as [AnyHashable: Any]
-                    ] as [AnyHashable: Any]
-                ]
-                filter = QuartzFilter(properties: filterProps)
-            }
-            guard let filter else {
-                log.error("QuartzFilter init failed")
-                return false
+            var firstBox = pageRefs[0].1
+            guard let outCtx = CGContext(destURL as CFURL, mediaBox: &firstBox, nil) else {
+                log.error("CGContext create failed"); return false
             }
 
-            let mutableData = NSMutableData()
-            guard let consumer = CGDataConsumer(data: mutableData) else { return false }
-
-            // İlk sayfanın media box'ını varsayılan olarak kullan
-            var defaultBox = pageRefs.first.map { $0.1 } ?? CGRect(x: 0, y: 0, width: 595, height: 842)
-            guard let ctx = CGContext(consumer: consumer, mediaBox: &defaultBox, nil) else { return false }
-
-            // Filter'ı context'e uygula — bu aşamadan sonra context'e çizilen
-            // raster imajlar otomatik olarak JPEG ile sıkıştırılır
-            filter.apply(to: ctx)
-
-            for (pageRef, bounds) in pageRefs {
+            let total = pageRefs.count
+            for (i, (pageRef, bounds)) in pageRefs.enumerated() {
                 var box = bounds
-                ctx.beginPage(mediaBox: &box)
-                // drawPDFPage: vektörler, fontlar, yazılar AYNEN kopyalanır (stream copy)
-                // Raster XObject'ler filter tarafından sıkıştırılır
-                ctx.drawPDFPage(pageRef)
-                ctx.endPage()
-            }
-            ctx.closePDF()
+                outCtx.beginPage(mediaBox: &box)
 
-            do {
-                try (mutableData as Data).write(to: destURL, options: .atomic)
-                return true
-            } catch {
-                log.error("write failed: \(error)")
-                return false
+                // Sayfadaki toplam raster piksel sayısını hesapla
+                var totalPixels: Int64 = 0
+                if let pageDict = pageRef.dictionary {
+                    var resDict: CGPDFDictionaryRef?
+                    if CGPDFDictionaryGetDictionary(pageDict, "Resources", &resDict),
+                       let rd = resDict {
+                        var xoDict: CGPDFDictionaryRef?
+                        if CGPDFDictionaryGetDictionary(rd, "XObject", &xoDict),
+                           let xo = xoDict {
+                            CGPDFDictionaryApplyBlock(xo, { _, obj, _ in
+                                var st: CGPDFStreamRef?
+                                guard CGPDFObjectGetValue(obj, .stream, &st), let s = st,
+                                      let d = CGPDFStreamGetDictionary(s) else { return true }
+                                var sub: UnsafePointer<CChar>?
+                                guard CGPDFDictionaryGetName(d, "Subtype", &sub),
+                                      let sn = sub, String(cString: sn) == "Image" else { return true }
+                                var w: CGPDFInteger = 0; var h: CGPDFInteger = 0
+                                CGPDFDictionaryGetInteger(d, "Width", &w)
+                                CGPDFDictionaryGetInteger(d, "Height", &h)
+                                totalPixels += Int64(w) * Int64(h)
+                                return true
+                            }, nil)
+                        }
+                    }
+                }
+
+                // Raster-heavy sayfa (>200K piksel): 144 DPI bitmap → JPEG %60 → PDF
+                // Vektörel/text sayfa: drawPDFPage ile olduğu gibi kopyala
+                if totalPixels > 200_000 {
+                    let scale: CGFloat = 144.0 / 72.0
+                    let pxW = max(1, Int(bounds.width * scale))
+                    let pxH = max(1, Int(bounds.height * scale))
+
+                    if let bmpCtx = CGContext(
+                        data: nil, width: pxW, height: pxH,
+                        bitsPerComponent: 8, bytesPerRow: 0,
+                        space: CGColorSpaceCreateDeviceRGB(),
+                        bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
+                    ) {
+                        bmpCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
+                        bmpCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
+                        bmpCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
+                        bmpCtx.drawPDFPage(pageRef)
+
+                        if let pageImage = bmpCtx.makeImage() {
+                            let imgData = NSMutableData()
+                            if let jpegDest = CGImageDestinationCreateWithData(imgData, "public.jpeg" as CFString, 1, nil) {
+                                CGImageDestinationAddImage(jpegDest, pageImage, [
+                                    kCGImageDestinationLossyCompressionQuality: 0.60
+                                ] as CFDictionary)
+                                if CGImageDestinationFinalize(jpegDest),
+                                   let jpegSrc = CGImageSourceCreateWithData(imgData as CFData, nil),
+                                   let jpegImg = CGImageSourceCreateImageAtIndex(jpegSrc, 0, nil) {
+                                    outCtx.draw(jpegImg, in: bounds)
+                                    outCtx.endPage()
+                                    continue
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Fallback: olduğu gibi kopyala
+                outCtx.drawPDFPage(pageRef)
+                outCtx.endPage()
             }
+
+            outCtx.closePDF()
+            return FileManager.default.fileExists(atPath: destURL.path)
         }.value
 
         compressionProgress = 1.0
         if written {
-            log.info("QuartzFilter compress succeeded → \(destURL.path)")
+            log.info("PDF compress succeeded → \(destURL.path)")
+            lastSavedPath = destURL.path
+            showCompressSuccess = true
             CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
-                metadata: ["action": "compress_quartz", "pages": pageCount])
+                metadata: ["action": "compress_cg", "pages": pageCount])
         } else {
-            log.error("QuartzFilter compress failed")
+            log.error("PDF compress failed")
         }
     }
 
@@ -984,6 +1031,8 @@ struct PDFEditView: View {
             try? FileManager.default.removeItem(at: saveURL)
             try? FileManager.default.copyItem(at: pdf.url, to: saveURL)
             CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
+            lastSavedPath = saveURL.path
+            showSaveSuccess = true
             return
         }
 
@@ -1006,6 +1055,8 @@ struct PDFEditView: View {
                 try? data.write(to: saveURL, options: .atomic)
             }
             CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
+            lastSavedPath = saveURL.path
+            showSaveSuccess = true
             return
         }
 
@@ -1018,6 +1069,8 @@ struct PDFEditView: View {
         ctx.closePDF()
 
         CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
+        lastSavedPath = saveURL.path
+        showSaveSuccess = true
     }
 
     // MARK: - Load Helpers
