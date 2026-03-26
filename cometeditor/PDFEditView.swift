@@ -848,7 +848,8 @@ struct PDFEditView: View {
         }
 
         let baseMaxEdge: CGFloat = isLossless ? 4096.0 : (quality <= 30 ? 800.0 : (quality <= 60 ? 1200.0 : 1920.0))
-        let maxLongEdge = baseMaxEdge * (resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0)
+        let maxLongEdge = baseMaxEdge  // resolutionScale aşağıda ayrıca uygulanır
+        let resScale: CGFloat = resolutionScaleEnabled ? CGFloat(resolutionScale) : 1.0
         let jpegFactor = max(0.05, min(0.90, Double(quality) / 100.0))
 
         // pageRef + bounds'ları MainActor'da topla
@@ -880,15 +881,16 @@ struct PDFEditView: View {
         defer { try? FileManager.default.removeItem(at: tmpDir) }
 
         // Arka planda render + JPEG encode
-        // (q=100 + scale açık → yüksek kalite JPEG, sadece çözünürlük küçülür)
         let renderMaxEdge = maxLongEdge
         let renderFactor = jpegFactor
         let renderLossless = isLossless
+        let renderResScale = resScale
         let imageResults: [(String, Data, CGRect)] = await Task.detached(priority: .userInitiated) {
             var results: [(String, Data, CGRect)] = []
             for (pageRef, bounds) in pageRefs {
                 let longEdge = max(bounds.width, bounds.height)
-                let scale = min(1.0, renderMaxEdge / longEdge)
+                // maxLongEdge limiti + resolutionScale çarpanı birlikte uygulanır
+                let scale = min(1.0, renderMaxEdge / longEdge) * renderResScale
                 let pxW = max(1, Int(bounds.width * scale))
                 let pxH = max(1, Int(bounds.height * scale))
                 let cs = CGColorSpaceCreateDeviceRGB()
