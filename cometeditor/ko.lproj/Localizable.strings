@@ -102,6 +102,8 @@
 "stock.deselectAll" = "모두 선택 해제";
 "stock.download" = "선택 항목 다운로드";
 "stock.download.count" = "사진 %d장 다운로드";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "여기에 URL 또는 텍스트 입력...";
 "qr.settings.colors" = "색상";
 "qr.settings.fgColor" = "전경색";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "광고";
 "ad.visit" = "방문";
+
+"pdf.quality.modal.title" = "최적화 수준 선택";
+"pdf.quality.modal.subtitle" = "파일 크기를 얼마나 줄일지 선택하세요. 압축률이 높을수록 파일이 작아지지만 품질이 저하됩니다.";
+"pdf.quality.modal.estimated" = "예상 크기";
+"pdf.quality.modal.confirm" = "최적화";
+"pdf.quality.modal.cancel" = "취소";
+"pdf.quality.low.title" = "최대 압축";
+"pdf.quality.low.desc" = "가장 작은 파일, 눈에 띄는 품질 저하";
+"pdf.quality.medium.title" = "균형";
+"pdf.quality.medium.desc" = "크기와 품질의 적절한 균형";
+"pdf.quality.high.title" = "고품질";
+"pdf.quality.high.desc" = "최소한의 품질 저하, 적당한 크기 감소";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "점검 중";
+"app.maintenance.body" = "앱이 일시적으로 사용할 수 없습니다. 곧 돌아오겠습니다.";
+"app.forceUpdate.title2" = "업데이트 필요";
+"app.forceUpdate.body" = "계속하려면 새 버전이 필요합니다. 최신 버전으로 업데이트하세요.";
+"app.forceUpdate.button2" = "App Store에서 업데이트";
+"app.quit2" = "앱 종료";
+
+"settings.subtitle" = "Comet Editor 경험을 맞춤 설정하세요";
+"settings.section.output" = "출력";
+"settings.defaultOutputFolder" = "기본 출력 폴더";
+"settings.noFolderSelected" = "선택하지 않음 — 매번 묻습니다";
+"settings.chooseFolder" = "폴더 선택";
+"settings.clearFolder" = "지우기";
+"settings.folderPicker.message" = "내보낸 파일의 기본 폴더를 선택하세요";
+"settings.folderPicker.button" = "폴더 선택";
+"menu.announcements" = "공지사항";
+"announcements.subtitle" = "팀의 최신 뉴스 및 업데이트";
+"announcements.empty" = "공지사항이 없습니다";
+
+"settings.pdfOutputFolder" = "PDF 출력 폴더";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

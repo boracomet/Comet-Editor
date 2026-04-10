@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Зняти виділення";
 "stock.download" = "Завантажити вибрані";
 "stock.download.count" = "Завантажити %d фото";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Введіть URL або текст тут...";
 "qr.settings.colors" = "КОЛЬОРИ";
 "qr.settings.fgColor" = "Колір переднього плану";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Реклама";
 "ad.visit" = "Перейти";
+
+"pdf.quality.modal.title" = "Вибір рівня оптимізації";
+"pdf.quality.modal.subtitle" = "Виберіть, наскільки зменшити розмір файлу. Вище стиснення означає менший файл із деякою втратою якості.";
+"pdf.quality.modal.estimated" = "Очікуваний розмір";
+"pdf.quality.modal.confirm" = "Оптимізувати";
+"pdf.quality.modal.cancel" = "Скасувати";
+"pdf.quality.low.title" = "Максимальне стиснення";
+"pdf.quality.low.desc" = "Найменший файл, помітна втрата якості";
+"pdf.quality.medium.title" = "Збалансований";
+"pdf.quality.medium.desc" = "Хороший баланс розміру та якості";
+"pdf.quality.high.title" = "Висока якість";
+"pdf.quality.high.desc" = "Мінімальна втрата якості, помірне зменшення";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Технічне обслуговування";
+"app.maintenance.body" = "Застосунок тимчасово недоступний. Незабаром повернемось.";
+"app.forceUpdate.title2" = "Потрібне оновлення";
+"app.forceUpdate.body" = "Для продовження потрібна нова версія. Будь ласка, оновіть застосунок.";
+"app.forceUpdate.button2" = "Оновити в App Store";
+"app.quit2" = "Закрити застосунок";
+
+"settings.subtitle" = "Налаштуйте Comet Editor під себе";
+"settings.section.output" = "ВИВІД";
+"settings.defaultOutputFolder" = "Тека виводу за замовчуванням";
+"settings.noFolderSelected" = "Не вибрана — запитуватиметься щоразу";
+"settings.chooseFolder" = "Вибрати теку";
+"settings.clearFolder" = "Очистити";
+"settings.folderPicker.message" = "Виберіть теку за замовчуванням для експортованих файлів";
+"settings.folderPicker.button" = "Вибрати теку";
+"menu.announcements" = "Оголошення";
+"announcements.subtitle" = "Останні новини та оновлення від команди";
+"announcements.empty" = "Оголошень поки немає";
+
+"settings.pdfOutputFolder" = "Тека виводу PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

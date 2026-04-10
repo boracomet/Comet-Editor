@@ -102,6 +102,8 @@
 "stock.deselectAll" = "ھەممىسىنى بىكار قىلىش";
 "stock.download" = "تاللانغانلارنى چۈشۈرۈش";
 "stock.download.count" = "%d سۈرەت چۈشۈرۈش";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL ياكى تېكىست كىرگۈزۈڭ...";
 "qr.settings.colors" = "رەڭلەر";
 "qr.settings.fgColor" = "ئالدى كۆرۈنۈش رەڭگى";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "ئىلان";
 "ad.visit" = "زىيارەت";
+
+"pdf.quality.modal.title" = "ئەڭ ياخشىلاش دەرىجىسىنى تاللاڭ";
+"pdf.quality.modal.subtitle" = "ھۆججەت چوڭلۇقىنى قانچە كىچىكلىتىشنى تاللاڭ. يۇقىرى سىقىش — كىچىكرەك ھۆججەت، ئەمما سۈپەت بىر ئاز پەسىيىدى.";
+"pdf.quality.modal.estimated" = "تەخمىنىي چوڭلۇق";
+"pdf.quality.modal.confirm" = "ئەڭ ياخشىلاشتۇرۇش";
+"pdf.quality.modal.cancel" = "ئەمەلدىن قالدۇرۇش";
+"pdf.quality.low.title" = "ئەڭ يۇقىرى سىقىش";
+"pdf.quality.low.desc" = "ئەڭ كىچىك ھۆججەت، كۆرۈنىدىغان سۈپەت يوقىلىشى";
+"pdf.quality.medium.title" = "تەڭپۇڭلۇق";
+"pdf.quality.medium.desc" = "چوڭلۇق بىلەن سۈپەتنىڭ ياخشى تەڭپۇڭلىقى";
+"pdf.quality.high.title" = "يۇقىرى سۈپەت";
+"pdf.quality.high.desc" = "ئەڭ ئاز سۈپەت يوقىلىشى، ئوتتۇرا كىچىكلىتىش";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "تېخنىكلىق بەت";
+"app.maintenance.body" = "ئەپ ۋاقتىنچە ئىشلىمەيدۇ. كۆپ ئۆتمەي قايتىمىز.";
+"app.forceUpdate.title2" = "يېڭىلاش زۆرۈر";
+"app.forceUpdate.body" = "داۋاملاشتۇرۇش ئۈچۈن يېڭى نۇسخا زۆرۈر. يېڭىلاڭ.";
+"app.forceUpdate.button2" = "App Store دا يېڭىلا";
+"app.quit2" = "ئەپنى تاقا";
+
+"settings.subtitle" = "Comet Editor تەجرىبىڭىزنى ماسلاشتۇرۇڭ";
+"settings.section.output" = "چىقىش";
+"settings.defaultOutputFolder" = "كۆڭۈلدىكى چىقىش ھۆججەت قىسقۇچى";
+"settings.noFolderSelected" = "تاللانمىدى — قېتىم-قېتىم سورايدۇ";
+"settings.chooseFolder" = "ھۆججەت قىسقۇچ تاللاڭ";
+"settings.clearFolder" = "تازىلاڭ";
+"settings.folderPicker.message" = "چىقىرىلغان ھۆججەتلەر ئۈچۈن كۆڭۈلدىكى ھۆججەت قىسقۇچ تاللاڭ";
+"settings.folderPicker.button" = "ھۆججەت قىسقۇچ تاللاڭ";
+"menu.announcements" = "ئېلانلار";
+"announcements.subtitle" = "تىزىمدىن يېڭى خەۋەر ۋە يېڭىلانمىلار";
+"announcements.empty" = "ھازىرچە ئېلان يوق";
+
+"settings.pdfOutputFolder" = "PDF چىقىش ھۆججەت قىسقۇچى";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

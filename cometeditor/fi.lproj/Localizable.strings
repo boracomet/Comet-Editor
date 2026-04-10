@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Poista kaikki valinnat";
 "stock.download" = "Lataa valitut";
 "stock.download.count" = "Lataa %d kuvaa";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Kirjoita URL tai teksti tähän...";
 "qr.settings.colors" = "VÄRIT";
 "qr.settings.fgColor" = "Etualanväri";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsoroitu";
 "ad.visit" = "Vieraile";
+
+"pdf.quality.modal.title" = "Valitse optimointitaso";
+"pdf.quality.modal.subtitle" = "Valitse kuinka paljon tiedostokokoa pienennetään. Suurempi pakkaus tarkoittaa pienempää tiedostoa jonkin verran laadun heikkenemisellä.";
+"pdf.quality.modal.estimated" = "Arvioitu koko";
+"pdf.quality.modal.confirm" = "Optimoi";
+"pdf.quality.modal.cancel" = "Peruuta";
+"pdf.quality.low.title" = "Maksimipakkaus";
+"pdf.quality.low.desc" = "Pienin tiedosto, näkyvä laadun heikkeneminen";
+"pdf.quality.medium.title" = "Tasapainoinen";
+"pdf.quality.medium.desc" = "Hyvä tasapaino koon ja laadun välillä";
+"pdf.quality.high.title" = "Korkea laatu";
+"pdf.quality.high.desc" = "Minimaalinen laadun heikkeneminen, kohtalainen pienennys";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Huoltotöitä käynnissä";
+"app.maintenance.body" = "Sovellus ei ole väliaikaisesti käytettävissä. Palaamme pian.";
+"app.forceUpdate.title2" = "Päivitys vaaditaan";
+"app.forceUpdate.body" = "Uusi versio vaaditaan jatkamiseen. Päivitä sovellus.";
+"app.forceUpdate.button2" = "Päivitä App Storessa";
+"app.quit2" = "Sulje sovellus";
+
+"settings.subtitle" = "Muokkaa Comet Editor -kokemustasi";
+"settings.section.output" = "TULOSTE";
+"settings.defaultOutputFolder" = "Oletus tulostemappa";
+"settings.noFolderSelected" = "Ei valittu — kysytään joka kerta";
+"settings.chooseFolder" = "Valitse kansio";
+"settings.clearFolder" = "Tyhjennä";
+"settings.folderPicker.message" = "Valitse oletuskansio viedyille tiedostoille";
+"settings.folderPicker.button" = "Valitse kansio";
+"menu.announcements" = "Ilmoitukset";
+"announcements.subtitle" = "Tiimin uusimmat uutiset ja päivitykset";
+"announcements.empty" = "Ei ilmoituksia vielä";
+
+"settings.pdfOutputFolder" = "PDF-tulostemappa";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

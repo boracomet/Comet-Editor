@@ -26,8 +26,8 @@
 		A0EE17DE5E26880FA3638198 /* libbz2.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
 		ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		F96E19BF2F58C27F005B69FE /* Comet Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comet Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffmpeg; path = "third_party/ffmpeg/universal/ffmpeg"; sourceTree = "<group>"; };
-		FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffprobe; path = "third_party/ffmpeg/universal/ffprobe"; sourceTree = "<group>"; };
+		FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffmpeg; path = third_party/ffmpeg/universal/ffmpeg; sourceTree = "<group>"; };
+		FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffprobe; path = third_party/ffmpeg/universal/ffprobe; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -98,6 +98,7 @@
 				F96E19BB2F58C27F005B69FE /* Sources */,
 				F96E19BC2F58C27F005B69FE /* Frameworks */,
 				F96E19BD2F58C27F005B69FE /* Resources */,
+				F9BC311D2F783F1A00C8054C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -221,6 +222,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F9BC311D2F783F1A00C8054C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FFMPEG_ENTITLEMENTS=\"${SRCROOT}/cometeditor/ffmpeg.entitlements\"    \n                                                                      \n  for BINARY in ffmpeg ffprobe; do                                    \n      # Önce CODESIGNING_FOLDER_PATH dene, sonra BUILT_PRODUCTS_DIR   \n      BINARY_PATH=\"${CODESIGNING_FOLDER_PATH}/Contents/Resources/${BIN\n  ARY}\"                                                               \n      if [ ! -f \"${BINARY_PATH}\" ]; then                              \n          BINARY_PATH=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/\n  Resources/${BINARY}\"                                            \n      fi                                                              \n                                                                  \n      if [ -f \"${BINARY_PATH}\" ]; then                                \n          echo \"Signing: ${BINARY_PATH}\"\n          codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \\  \n              --entitlements \"${FFMPEG_ENTITLEMENTS}\" \\               \n              --options runtime \\\n              \"${BINARY_PATH}\" || true                                \n      else                                                            \n          echo \"Skipping ${BINARY}: not found (normal for non-archive \n  builds)\"                                                            \n      fi                                                          \n  done                                                                \n                                                                  \n  exit 0\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F96E19BB2F58C27F005B69FE /* Sources */ = {
@@ -365,18 +387,20 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/third_party/imagemagick/universal/include/ImageMagick-7",
 					"$(SRCROOT)/third_party/imagemagick/universal/include/ImageMagick-7",
+					/opt/homebrew/include,
 				);
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Comet Editor";
 				INFOPLIST_KEY_CFBundleName = "Comet Editor";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
@@ -392,7 +416,7 @@
 					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-w",
@@ -442,18 +466,20 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/third_party/imagemagick/universal/include/ImageMagick-7",
 					"$(SRCROOT)/third_party/imagemagick/universal/include/ImageMagick-7",
+					/opt/homebrew/include,
 				);
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Comet Editor";
 				INFOPLIST_KEY_CFBundleName = "Comet Editor";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
@@ -469,7 +495,7 @@
 					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-w",

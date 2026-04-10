@@ -4,15 +4,24 @@ import Combine
 // MARK: - Event Types
 
 public enum CometEventType: String {
-    case pageView       = "pageView"
-    case imageConverted = "imageConverted"
-    case videoConverted = "videoConverted"
-    case ocrUsed        = "ocrUsed"
-    case bgRemoved      = "bgRemoved"
-    case qrGenerated    = "qrGenerated"
-    case pdfEdited      = "pdfEdited"
-    case fontDownloaded = "fontDownloaded"
+    case pageView        = "pageView"
+    case imageConverted  = "imageConverted"
+    case videoConverted  = "videoConverted"
+    case ocrUsed         = "ocrUsed"
+    case bgRemoved       = "bgRemoved"
+    case qrGenerated     = "qrGenerated"
+    case pdfEdited       = "pdfEdited"
+    case fontDownloaded  = "fontDownloaded"
     case stockDownloaded = "stockDownloaded"
+    // Sayfa görüntüleme — her feature ekranı açıldığında
+    case imagePageView   = "imagePageView"
+    case videoPageView   = "videoPageView"
+    case ocrPageView     = "ocrPageView"
+    case bgPageView      = "bgPageView"
+    case qrPageView      = "qrPageView"
+    case pdfPageView     = "pdfPageView"
+    case fontPageView    = "fontPageView"
+    case stockPageView   = "stockPageView"
 }
 
 // MARK: - Config Models
@@ -38,14 +47,24 @@ public struct AppConfig {
         public let targetPage: String?
         public let priority: Int
     }
+    public struct AnnouncementInfo: Identifiable {
+        public let id: Int
+        public let title: String
+        public let body: String
+        public let type: String      // "info" | "warning" | "critical"
+        public let target: String    // "all" | "ios" | "macos"
+        public let createdAt: Date
+    }
     public let maintenanceMode: MaintenanceInfo
     public let forceUpdate: ForceUpdateInfo
     public let ads: [AdInfo]
+    public let announcements: [AnnouncementInfo]
 
     static let safeDefault = AppConfig(
         maintenanceMode: MaintenanceInfo(isEnabled: false, message: "", endAt: nil),
         forceUpdate: ForceUpdateInfo(isEnabled: false, minVersion: "0.0.0", message: "", storeUrl: ""),
-        ads: []
+        ads: [],
+        announcements: []
     )
 }
 
@@ -70,8 +89,8 @@ public final class CometAnalytics: @unchecked Sendable {
     private var queue: [[String: Any]] = []
     private let queueLock = NSLock()
     private var flushTimer: Foundation.Timer?
-    private let maxQueueSize = 20
-    private let flushInterval: TimeInterval = 30
+    private let maxQueueSize = 1
+    private let flushInterval: TimeInterval = 5
 
     private lazy var appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     private lazy var osVersion: String = {
@@ -88,6 +107,8 @@ public final class CometAnalytics: @unchecked Sendable {
 
     // MARK: - Configuration
 
+    private var heartbeatTimer: Foundation.Timer?
+
     public func configure(apiKey: String, baseURL: String) {
         self.apiKey = apiKey
         self.baseURL = URL(string: baseURL)
@@ -96,6 +117,55 @@ public final class CometAnalytics: @unchecked Sendable {
         _ = osVersion
         _ = deviceModel
         startFlushTimer()
+        startHeartbeat()
+    }
+
+    // MARK: - Heartbeat (online tespiti için — her 2 dakikada bir)
+
+    private func startHeartbeat() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.heartbeatTimer?.invalidate()
+            self.heartbeatTimer = Foundation.Timer.scheduledTimer(
+                withTimeInterval: 120,
+                repeats: true
+            ) { [weak self] _ in
+                Task { await self?.sendHeartbeat() }
+            }
+        }
+    }
+
+    private func sendHeartbeat() async {
+        guard let base = baseURL else { return }
+        let payload: [String: Any] = ["sessionId": sessionId]
+        guard let body = try? JSONSerialization.data(withJSONObject: payload) else { return }
+        var req = URLRequest(url: base.appendingPathComponent("/api/sdk/heartbeat"))
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue(apiKey, forHTTPHeaderField: "X-App-Key")
+        req.httpBody = body
+        req.timeoutInterval = 10
+        _ = try? await URLSession.shared.data(for: req)
+    }
+
+    // MARK: - Session
+
+    /// Uygulama açılışında çağrılır — aktif kullanıcı + oturum sayacını panele bildirir
+    public func trackSession() async {
+        guard let base = baseURL else { return }
+        let payload: [String: Any] = [
+            "platform":   "macos",
+            "appVersion": appVersion,
+            "sessionId":  sessionId
+        ]
+        guard let body = try? JSONSerialization.data(withJSONObject: payload) else { return }
+        var req = URLRequest(url: base.appendingPathComponent("/api/sdk/session"))
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue(apiKey, forHTTPHeaderField: "X-App-Key")
+        req.httpBody = body
+        req.timeoutInterval = 10
+        _ = try? await URLSession.shared.data(for: req)
     }
 
     // MARK: - Track
@@ -127,7 +197,7 @@ public final class CometAnalytics: @unchecked Sendable {
 
     private let configCacheKey    = "comet_cached_config"
     private let configCacheTimeKey = "comet_cached_config_time"
-    private let cacheTTL: TimeInterval = 300 // 5 dakika
+    private let cacheTTL: TimeInterval = 0 // Her zaman sunucudan taze al
 
     /// Cache geçerliyse sunucuya gitmez (TTL: 1 saat).
     /// `forceRefresh: true` ile TTL'i atlayıp sunucudan taze veri çeker.
@@ -140,7 +210,10 @@ public final class CometAnalytics: @unchecked Sendable {
 
         // Sunucudan çek
         if let base = baseURL {
-            var req = URLRequest(url: base.appendingPathComponent("/api/sdk/config"))
+            var components = URLComponents(url: base.appendingPathComponent("/api/sdk/config"), resolvingAgainstBaseURL: false)
+            components?.queryItems = [URLQueryItem(name: "platform", value: "macos")]
+            let configURL = components?.url ?? base.appendingPathComponent("/api/sdk/config")
+            var req = URLRequest(url: configURL)
             req.setValue(apiKey, forHTTPHeaderField: "X-App-Key")
             req.timeoutInterval = 8
             if let (data, _) = try? await URLSession.shared.data(for: req),
@@ -151,9 +224,10 @@ public final class CometAnalytics: @unchecked Sendable {
             }
         }
 
-        // Sunucu yanıt vermedi — süresi dolmuş cache bile olsa kullan
+        // Sunucu yanıt vermedi — bakım/forceUpdate içermeyen cache'i kullan, yoksa safe default
         if let cached = UserDefaults.standard.data(forKey: configCacheKey),
-           let config = try? parseConfig(from: cached) {
+           let config = try? parseConfig(from: cached),
+           !config.maintenanceMode.isEnabled, !config.forceUpdate.isEnabled {
             return config
         }
 
@@ -247,7 +321,35 @@ public final class CometAnalytics: @unchecked Sendable {
             )
         }
 
-        return AppConfig(maintenanceMode: maintenance, forceUpdate: forceUpdate, ads: ads)
+        // ISO8601 with fractional seconds (MongoDB format: 2026-03-28T12:34:56.789Z)
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let isoFormatterNoMS = ISO8601DateFormatter()
+        isoFormatterNoMS.formatOptions = [.withInternetDateTime]
+
+        let announcementsJson = json["announcements"] as? [[String: Any]] ?? []
+        let announcements = announcementsJson.compactMap { a -> AppConfig.AnnouncementInfo? in
+            guard let id = a["id"] as? Int,
+                  let title = a["title"] as? String,
+                  let body = a["body"] as? String,
+                  let target = a["target"] as? String else { return nil }
+            let rawType = a["type"] as? String ?? "info"
+            // Map panel types to Swift display types
+            let type: String
+            switch rawType {
+            case "danger":  type = "critical"
+            case "warning": type = "warning"
+            case "success": type = "info"
+            default:        type = "info"
+            }
+            let createdAtStr = a["createdAt"] as? String ?? ""
+            let createdAt = isoFormatter.date(from: createdAtStr)
+                         ?? isoFormatterNoMS.date(from: createdAtStr)
+                         ?? Date()
+            return AppConfig.AnnouncementInfo(id: id, title: title, body: body, type: type, target: target, createdAt: createdAt)
+        }
+
+        return AppConfig(maintenanceMode: maintenance, forceUpdate: forceUpdate, ads: ads, announcements: announcements)
     }
 
     // MARK: - Semver Helper

@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Барытын ыл";
 "stock.download" = "Талыллыбыттары тиий";
 "stock.download.count" = "%d ойуур тиий";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL эбэтэр текст киллэр...";
 "qr.settings.colors" = "ДЬҮҺҮННЭР";
 "qr.settings.fgColor" = "Иннинэ дьүһүн";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Реклама";
 "ad.visit" = "Киирии";
+
+"pdf.quality.modal.title" = "Оптимизация таһымын талыҥ";
+"pdf.quality.modal.subtitle" = "Файл кэмин хас аҕыйатарга наада буолан талыҥ. Үрдүк хамсааһын — бытаан файл, ол эрэ дьоҕурдааҕы ыытааһын.";
+"pdf.quality.modal.estimated" = "Ааҕыллыбыт кэм";
+"pdf.quality.modal.confirm" = "Оптимизировать";
+"pdf.quality.modal.cancel" = "Сотуу";
+"pdf.quality.low.title" = "Бэртэ үрдүк хамсааһын";
+"pdf.quality.low.desc" = "Бэртэ бытаан файл, куруук дьоҕурдааҕы ыытааһын";
+"pdf.quality.medium.title" = "Тэҥнэммит";
+"pdf.quality.medium.desc" = "Кэм уонна дьоҕурдааҕы ыытааһын балаһыанньата";
+"pdf.quality.high.title" = "Үрдүк дьоҕурдааҕы";
+"pdf.quality.high.desc" = "Бэртэ аҕыйах дьоҕурдааҕы ыытааһын, иккис аҕыйатыы";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Техническэй үлэ";
+"app.maintenance.body" = "Приложение саҥата туттарылбат. Судургутук кэлиэхпит.";
+"app.forceUpdate.title2" = "Саҥардыы наада";
+"app.forceUpdate.body" = "Салгыы барарга саҥа версия наада. Саҥардыаҥ.";
+"app.forceUpdate.button2" = "App Store-га саҥар";
+"app.quit2" = "Бэрсэни сабаа";
+
+"settings.subtitle" = "Comet Editor туһунан бэйэтин туруулаа";
+"settings.section.output" = "ТАХСЫЫ";
+"settings.defaultOutputFolder" = "Сиэртибэ тахсыы папката";
+"settings.noFolderSelected" = "Талыллыбатах — хас да кэтэлэнэр";
+"settings.chooseFolder" = "Папка тал";
+"settings.clearFolder" = "Арааhын";
+"settings.folderPicker.message" = "Тахсыбыт файлларга сиэртибэ папка тал";
+"settings.folderPicker.button" = "Папка тал";
+"menu.announcements" = "Биллэрии";
+"announcements.subtitle" = "Команда саҥа сонуннара";
+"announcements.empty" = "Биллэрии суох";
+
+"settings.pdfOutputFolder" = "PDF тахсыы папката";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

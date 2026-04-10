@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Bỏ chọn tất cả";
 "stock.download" = "Tải xuống";
 "stock.download.count" = "Tải xuống %d ảnh";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Nhập URL hoặc văn bản...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Màu nền trước";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Tài trợ";
 "ad.visit" = "Truy cập";
+
+"pdf.quality.modal.title" = "Chọn mức tối ưu hóa";
+"pdf.quality.modal.subtitle" = "Chọn mức độ giảm kích thước tệp. Nén cao hơn có nghĩa là tệp nhỏ hơn với một số mất mát chất lượng.";
+"pdf.quality.modal.estimated" = "Kích thước ước tính";
+"pdf.quality.modal.confirm" = "Tối ưu hóa";
+"pdf.quality.modal.cancel" = "Hủy";
+"pdf.quality.low.title" = "Nén tối đa";
+"pdf.quality.low.desc" = "Tệp nhỏ nhất, mất chất lượng rõ ràng";
+"pdf.quality.medium.title" = "Cân bằng";
+"pdf.quality.medium.desc" = "Cân bằng tốt giữa kích thước và chất lượng";
+"pdf.quality.high.title" = "Chất lượng cao";
+"pdf.quality.high.desc" = "Mất chất lượng tối thiểu, giảm kích thước vừa phải";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Đang bảo trì";
+"app.maintenance.body" = "Ứng dụng tạm thời không khả dụng. Chúng tôi sẽ sớm trở lại.";
+"app.forceUpdate.title2" = "Yêu cầu cập nhật";
+"app.forceUpdate.body" = "Cần phiên bản mới để tiếp tục. Vui lòng cập nhật.";
+"app.forceUpdate.button2" = "Cập nhật trên App Store";
+"app.quit2" = "Thoát ứng dụng";
+
+"settings.subtitle" = "Tùy chỉnh trải nghiệm Comet Editor của bạn";
+"settings.section.output" = "ĐẦU RA";
+"settings.defaultOutputFolder" = "Thư mục xuất mặc định";
+"settings.noFolderSelected" = "Chưa chọn — sẽ hỏi mỗi lần";
+"settings.chooseFolder" = "Chọn thư mục";
+"settings.clearFolder" = "Xóa";
+"settings.folderPicker.message" = "Chọn thư mục mặc định cho các tệp xuất";
+"settings.folderPicker.button" = "Chọn thư mục";
+"menu.announcements" = "Thông báo";
+"announcements.subtitle" = "Tin tức và cập nhật mới nhất từ đội ngũ";
+"announcements.empty" = "Chưa có thông báo";
+
+"settings.pdfOutputFolder" = "Thư mục xuất PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

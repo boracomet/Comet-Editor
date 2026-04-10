@@ -18,6 +18,7 @@ private struct SentImage: @unchecked Sendable { let nsImage: NSImage? }
 
 
 
+
 struct PDFEditView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var isDropTargeted = false
@@ -25,6 +26,8 @@ struct PDFEditView: View {
     // Compression state
     @State private var isCompressing = false
     @State private var compressionProgress: Double = 0
+    @State private var showQualityModal = false
+    @State private var selectedQuality: PDFCompressionQuality = .high
 
     // Color conversion state
     enum ColorTarget: String, CaseIterable {
@@ -65,7 +68,7 @@ struct PDFEditView: View {
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showCompressSuccess) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
             Button(LocalizedStringKey("alert.openFolder")) {
-                if let folder = appState.pdfCompressionTargetFolder {
+                if let folder = appState.targetFolder {
                     NSWorkspace.shared.open(folder)
                 }
             }
@@ -92,6 +95,19 @@ struct PDFEditView: View {
                     onDone: { _ in
                         appState.pdfDocumentVersion += 1
                     }
+                )
+            }
+        }
+        .sheet(isPresented: $showQualityModal) {
+            if let pdf = appState.selectedPDF {
+                PDFQualityPickerSheet(
+                    pdf: pdf,
+                    selectedQuality: $selectedQuality,
+                    onConfirm: { quality in
+                        showQualityModal = false
+                        Task { await compressPDF(pdf, quality: quality) }
+                    },
+                    onCancel: { showQualityModal = false }
                 )
             }
         }
@@ -181,13 +197,21 @@ struct PDFEditView: View {
                         Text(pdf.fileSizeString)
                         // Tahmini optimize boyutu — yeşil yazı ile göster
                         if pdf.fileSizeBytes > 0 {
-                            let estimated = ByteCountFormatter.string(
-                                fromByteCount: Int64(Double(pdf.fileSizeBytes) * 0.35),
-                                countStyle: .file
-                            )
-                            Text("→ ")
-                            Text("~\(estimated)")
-                                .foregroundColor(.green)
+                            let estimatedBytes: Int64 = (try? Data(contentsOf: pdf.url))
+                                .map { PDFSizeEstimator.estimate(data: $0, quality: selectedQuality) }
+                                ?? -1
+                            if estimatedBytes > 0 {
+                                let estimated = ByteCountFormatter.string(
+                                    fromByteCount: estimatedBytes,
+                                    countStyle: .file
+                                )
+                                Text("•")
+                                Text(LocalizedStringKey("pdf.estimatedSize"))
+                                    .foregroundColor(.green)
+                                Text("~\(estimated)")
+                                    .foregroundColor(.green)
+                                    .fontWeight(.bold)
+                            }
                         }
                     }
                 }
@@ -554,7 +578,7 @@ struct PDFEditView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             HStack(spacing: 8) {
                                 Group {
-                                    if let folder = appState.pdfCompressionTargetFolder {
+                                    if let folder = appState.targetFolder {
                                         Text(truncatedPath(folder.path))
                                             .font(.system(size: 11, weight: .medium, design: .monospaced))
                                             .foregroundStyle(Color.primary.opacity(0.8))
@@ -578,7 +602,10 @@ struct PDFEditView: View {
                                 }
 
                                 Button("convert.settings.chooseFolder") {
-                                    pickFolder { appState.pdfCompressionTargetFolder = $0 }
+                                    pickFolder { url in
+    appState.handleFolderSelected(url)
+    appState.targetFolder = url
+}
                                 }
                                 .controlSize(.small)
                             }
@@ -600,34 +627,12 @@ struct PDFEditView: View {
 
                     // Optimize + Save
                     VStack(spacing: 10) {
-                        // Tahmini boyut — sadece optimize modunda göster
-                        if !colorConversionEnabled, let pdf = pdf, pdf.fileSizeBytes > 0 {
-                            let estimatedBytes = Int64(Double(pdf.fileSizeBytes) * 0.35)
-                            let estimatedStr = ByteCountFormatter.string(fromByteCount: estimatedBytes, countStyle: .file)
-                            HStack {
-                                Image(systemName: "arrow.down.circle")
-                                    .font(.system(size: 11))
-                                    .foregroundStyle(Color.secondary)
-                                Text("~\(estimatedStr)")
-                                    .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                    .foregroundStyle(Color.secondary)
-                                Spacer()
-                                Text(LocalizedStringKey("pdf.estimatedSize"))
-                                    .font(.system(size: 10))
-                                    .foregroundStyle(Color.secondary.opacity(0.7))
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.top, 4)
-                        }
-
                         Button {
                             if let pdf = pdf {
-                                Task {
-                                    if colorConversionEnabled {
-                                        await convertColorSpace(pdf, target: colorTarget)
-                                    } else {
-                                        await compressPDF(pdf)
-                                    }
+                                if colorConversionEnabled {
+                                    Task { await convertColorSpace(pdf, target: colorTarget) }
+                                } else {
+                                    showQualityModal = true
                                 }
                             }
                         } label: {
@@ -636,15 +641,15 @@ struct PDFEditView: View {
                                     ProgressView().controlSize(.small)
                                     Text(LocalizedStringKey("video.processing"))
                                 } else {
-                                    Image(systemName: colorConversionEnabled ? "arrow.triangle.2.circlepath" : "arrow.down.circle.fill")
-                                    Text(LocalizedStringKey(colorConversionEnabled ? "pdf.color.convert" : "pdf.tools.optimize"))
+                                    Image(systemName: "arrow.down.circle.fill")
+                                    Text(LocalizedStringKey("pdf.tools.optimize"))
                                 }
                             }
                             .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
-                        .disabled(appState.pdfCompressionTargetFolder == nil || isCompressing || isConvertingColor || pdf == nil)
+                        .disabled(appState.targetFolder == nil || isCompressing || isConvertingColor || pdf == nil)
 
                         Button {
                             if let pdf = pdf { savePDF(pdf) }
@@ -775,214 +780,173 @@ struct PDFEditView: View {
     }
 
 
-    /// PDF içindeki raster image XObject'leri JPEG olarak recompress eder.
-    /// - Büyük raster imaj içeren sayfalar: 144 DPI bitmap render → JPEG %60 → PDF'e yaz
-    /// - Küçük/vektörel sayfalar: drawPDFPage ile olduğu gibi stream-copy (metin/vektör korunur)
+    // MARK: - PDF Compress (Apple Native)
+    //
+    // CGPDFPage + CGContext pipeline.
+    // Raster image içeren sayfalar bitmap render → JPEG encode → JPEG-backed CGImage → PDF'e çiz.
+    // Vektör/metin sayfaları → drawPDFPage stream-copy (kalite kaybı yok).
+
     @MainActor
-    private func compressPDF(_ pdf: PDFItem, outputURL explicitURL: URL? = nil) async {
+    private func compressPDF(_ pdf: PDFItem, quality: PDFCompressionQuality = .high, outputURL explicitURL: URL? = nil) async {
         guard let document = pdf.document else { return }
 
         let outputURL: URL
         if let explicit = explicitURL {
             outputURL = explicit
         } else {
-            guard let targetFolder = appState.pdfCompressionTargetFolder else { return }
+            guard let targetFolder = appState.targetFolder else { return }
             let baseName = pdf.url.deletingPathExtension().lastPathComponent
-            var url = targetFolder.appendingPathComponent("\(baseName)_optimized.pdf")
+            let suffix = "_optimized_\(quality.rawValue)"
+            var url = targetFolder.appendingPathComponent("\(baseName)\(suffix).pdf")
             var counter = 1
             while FileManager.default.fileExists(atPath: url.path) {
-                url = targetFolder.appendingPathComponent("\(baseName)_optimized_\(counter).pdf")
+                url = targetFolder.appendingPathComponent("\(baseName)\(suffix)_\(counter).pdf")
                 counter += 1
             }
             outputURL = url
         }
 
         isCompressing = true
-        compressionProgress = 0
+        compressionProgress = 0.02
         defer { isCompressing = false }
 
         let log = Logger(subsystem: "com.cometeditor", category: "PDFCompress")
         let pageCount = document.pageCount
+        let sourceURL = pdf.url
+        let destURL   = outputURL
 
-        // pageRef + bounds MainActor'da topla
-        var pageRefs: [(CGPDFPage, CGRect)] = []
-        for i in 0..<pageCount {
-            guard let page = document.page(at: i), let ref = page.pageRef else { continue }
-            pageRefs.append((ref, page.bounds(for: .mediaBox)))
+        let progressStream = AsyncStream<Double> { continuation in
+            Task.detached(priority: .userInitiated) {
+                let ok = await PDFNativeCompressor.compress(
+                    sourceURL: sourceURL,
+                    destURL: destURL,
+                    quality: quality
+                ) { progress in
+                    continuation.yield(0.02 + progress * 0.96)
+                }
+                if ok { continuation.yield(1.0) }
+                continuation.finish()
+            }
         }
-        guard !pageRefs.isEmpty else { return }
 
-        compressionProgress = 0.05
-        let destURL = outputURL
+        for await p in progressStream {
+            compressionProgress = p
+        }
 
-        let written = await Task.detached(priority: .userInitiated) { () -> Bool in
-            var firstBox = pageRefs[0].1
-            guard let outCtx = CGContext(destURL as CFURL, mediaBox: &firstBox, nil) else {
-                log.error("CGContext create failed"); return false
-            }
-
-            let total = pageRefs.count
-            for (i, (pageRef, bounds)) in pageRefs.enumerated() {
-                var box = bounds
-                outCtx.beginPage(mediaBox: &box)
-
-                // Sayfadaki toplam raster piksel sayısını hesapla
-                var totalPixels: Int64 = 0
-                if let pageDict = pageRef.dictionary {
-                    var resDict: CGPDFDictionaryRef?
-                    if CGPDFDictionaryGetDictionary(pageDict, "Resources", &resDict),
-                       let rd = resDict {
-                        var xoDict: CGPDFDictionaryRef?
-                        if CGPDFDictionaryGetDictionary(rd, "XObject", &xoDict),
-                           let xo = xoDict {
-                            CGPDFDictionaryApplyBlock(xo, { _, obj, _ in
-                                var st: CGPDFStreamRef?
-                                guard CGPDFObjectGetValue(obj, .stream, &st), let s = st,
-                                      let d = CGPDFStreamGetDictionary(s) else { return true }
-                                var sub: UnsafePointer<CChar>?
-                                guard CGPDFDictionaryGetName(d, "Subtype", &sub),
-                                      let sn = sub, String(cString: sn) == "Image" else { return true }
-                                var w: CGPDFInteger = 0; var h: CGPDFInteger = 0
-                                CGPDFDictionaryGetInteger(d, "Width", &w)
-                                CGPDFDictionaryGetInteger(d, "Height", &h)
-                                totalPixels += Int64(w) * Int64(h)
-                                return true
-                            }, nil)
-                        }
-                    }
-                }
-
-                // Raster-heavy sayfa (>200K piksel): 144 DPI bitmap → JPEG %60 → PDF
-                // Vektörel/text sayfa: drawPDFPage ile olduğu gibi kopyala
-                if totalPixels > 200_000 {
-                    let scale: CGFloat = 144.0 / 72.0
-                    let pxW = max(1, Int(bounds.width * scale))
-                    let pxH = max(1, Int(bounds.height * scale))
-
-                    if let bmpCtx = CGContext(
-                        data: nil, width: pxW, height: pxH,
-                        bitsPerComponent: 8, bytesPerRow: 0,
-                        space: CGColorSpaceCreateDeviceRGB(),
-                        bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
-                    ) {
-                        bmpCtx.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
-                        bmpCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
-                        bmpCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
-                        bmpCtx.drawPDFPage(pageRef)
-
-                        if let pageImage = bmpCtx.makeImage() {
-                            let imgData = NSMutableData()
-                            if let jpegDest = CGImageDestinationCreateWithData(imgData, "public.jpeg" as CFString, 1, nil) {
-                                CGImageDestinationAddImage(jpegDest, pageImage, [
-                                    kCGImageDestinationLossyCompressionQuality: 0.60
-                                ] as CFDictionary)
-                                if CGImageDestinationFinalize(jpegDest),
-                                   let jpegSrc = CGImageSourceCreateWithData(imgData as CFData, nil),
-                                   let jpegImg = CGImageSourceCreateImageAtIndex(jpegSrc, 0, nil) {
-                                    outCtx.draw(jpegImg, in: bounds)
-                                    outCtx.endPage()
-                                    continue
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Fallback: olduğu gibi kopyala
-                outCtx.drawPDFPage(pageRef)
-                outCtx.endPage()
-            }
-
-            outCtx.closePDF()
-            return FileManager.default.fileExists(atPath: destURL.path)
-        }.value
-
-        compressionProgress = 1.0
-        if written {
+        if FileManager.default.fileExists(atPath: destURL.path) {
+            compressionProgress = 1.0
             log.info("PDF compress succeeded → \(destURL.path)")
             lastSavedPath = destURL.path
             showCompressSuccess = true
             CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
-                metadata: ["action": "compress_cg", "pages": pageCount])
+                metadata: ["action": "compress", "quality": quality.rawValue, "pages": pageCount])
         } else {
+            compressionProgress = 0
             log.error("PDF compress failed")
         }
     }
 
-    /// Her sayfayı hedef renk uzayında re-render ederek yeni PDF oluşturur.
+    // MARK: - Color Space Conversion (PDFKit page API + CG bitmap)
+    //
+    // Each page is re-rendered into a fresh bitmap in the target color space, then
+    // written to a new PDF via CGContext. PDFKit PDFPage.draw(with:to:) is used for
+    // rendering — it respects page rotation and crop box without manual transforms.
+
     @MainActor
-    private func convertColorSpace(_ pdf: PDFItem, target: ColorTarget) async {
-        guard let document = pdf.document,
-              let targetFolder = appState.pdfCompressionTargetFolder else { return }
+    private func convertColorSpace(_ pdf: PDFItem, target: ColorTarget, destURL: URL? = nil) async {
+        guard let document = pdf.document else { return }
+
+        // If no explicit destURL, use target folder (Optimize Et path).
+        let outputURL: URL
+        if let explicit = destURL {
+            outputURL = explicit
+        } else {
+            guard let targetFolder = appState.targetFolder else { return }
+            let suffix = target == .rgb ? "_rgb" : "_cmyk"
+            let baseName = pdf.url.deletingPathExtension().lastPathComponent
+            var candidate = targetFolder.appendingPathComponent("\(baseName)\(suffix).pdf")
+            var counter = 1
+            while FileManager.default.fileExists(atPath: candidate.path) {
+                candidate = targetFolder.appendingPathComponent("\(baseName)\(suffix)_\(counter).pdf")
+                counter += 1
+            }
+            outputURL = candidate
+        }
 
         isConvertingColor = true
         colorConversionProgress = 0
         defer { isConvertingColor = false }
 
-        let suffix = target == .rgb ? "_rgb" : "_cmyk"
-        let baseName = pdf.url.deletingPathExtension().lastPathComponent
-        var outputURL = targetFolder.appendingPathComponent("\(baseName)\(suffix).pdf")
-        var counter = 1
-        while FileManager.default.fileExists(atPath: outputURL.path) {
-            outputURL = targetFolder.appendingPathComponent("\(baseName)\(suffix)_\(counter).pdf")
-            counter += 1
-        }
-
-        var mediaBox = CGRect.zero
-        guard let ctx = CGContext(outputURL as CFURL, mediaBox: &mediaBox, nil) else { return }
-
         let pageCount = document.pageCount
         let dpi: CGFloat = 150.0
 
+        // Collect page data on MainActor before going off-thread.
+        struct PageSnap: @unchecked Sendable {
+            nonisolated(unsafe) let cgPage: CGPDFPage
+            let bounds: CGRect
+        }
+        var snaps: [PageSnap] = []
+        for i in 0..<pageCount {
+            guard let p = document.page(at: i), let cg = p.pageRef else { continue }
+            snaps.append(PageSnap(cgPage: cg, bounds: p.bounds(for: .mediaBox)))
+        }
+        guard !snaps.isEmpty else { return }
+
+        let finalURL = outputURL
+
+        // Color space and bitmap params (no CMYK alpha channel).
         let colorSpace: CGColorSpace = target == .rgb
             ? CGColorSpaceCreateDeviceRGB()
             : (CGColorSpace(name: CGColorSpace.genericCMYK) ?? CGColorSpaceCreateDeviceCMYK())
         let bitmapInfo: UInt32 = target == .rgb
             ? (CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
-            : CGImageAlphaInfo.none.rawValue  // CMYK has no alpha
+            : CGImageAlphaInfo.none.rawValue
         let bgComponents: [CGFloat] = target == .rgb ? [1, 1, 1, 1] : [0, 0, 0, 0, 1]
 
-        for i in 0..<pageCount {
-            guard !Task.isCancelled else { break }
-            guard let page = document.page(at: i) else { continue }
+        let success = await Task.detached(priority: .userInitiated) { [snaps, finalURL] () -> Bool in
+            var zeroBox = CGRect.zero
+            guard let outCtx = CGContext(finalURL as CFURL, mediaBox: &zeroBox, nil) else { return false }
 
-            let bounds = page.bounds(for: .mediaBox)
-            let scale = dpi / 72.0
-            let pxW = Int(bounds.width * scale)
-            let pxH = Int(bounds.height * scale)
-            let pageRef = page.pageRef
+            for (i, snap) in snaps.enumerated() {
+                let scale = dpi / 72.0
+                let pxW = max(1, Int(snap.bounds.width  * scale))
+                let pxH = max(1, Int(snap.bounds.height * scale))
 
-            let cgImage = await Task.detached(priority: .userInitiated) { () -> CGImage? in
-                guard let pageRef,
-                      let bCtx = CGContext(
-                          data: nil, width: pxW, height: pxH,
-                          bitsPerComponent: 8, bytesPerRow: 0,
-                          space: colorSpace,
-                          bitmapInfo: bitmapInfo
-                      ),
-                      let bgColor = CGColor(colorSpace: colorSpace, components: bgComponents)
-                else { return nil }
-                bCtx.setFillColor(bgColor)
-                bCtx.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
-                bCtx.scaleBy(x: CGFloat(pxW) / bounds.width, y: CGFloat(pxH) / bounds.height)
-                bCtx.drawPDFPage(pageRef)
-                return bCtx.makeImage()
-            }.value
+                guard let bmp = CGContext(
+                    data: nil, width: pxW, height: pxH,
+                    bitsPerComponent: 8, bytesPerRow: 0,
+                    space: colorSpace,
+                    bitmapInfo: bitmapInfo
+                ), let bgColor = CGColor(colorSpace: colorSpace, components: bgComponents) else { continue }
 
-            guard let cgImage else { continue }
+                bmp.setFillColor(bgColor)
+                bmp.fill(CGRect(x: 0, y: 0, width: pxW, height: pxH))
+                bmp.scaleBy(x: CGFloat(pxW) / snap.bounds.width,
+                            y: CGFloat(pxH) / snap.bounds.height)
+                bmp.drawPDFPage(snap.cgPage)
 
-            var pageBox = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
-            ctx.beginPDFPage([
-                kCGPDFContextMediaBox: NSData(bytes: &pageBox, length: MemoryLayout<CGRect>.size)
-            ] as CFDictionary)
-            ctx.draw(cgImage, in: pageBox)
-            ctx.endPDFPage()
+                guard let cgImg = bmp.makeImage() else { continue }
 
-            colorConversionProgress = Double(i + 1) / Double(pageCount)
-        }
+                var pageBox = CGRect(x: 0, y: 0, width: snap.bounds.width, height: snap.bounds.height)
+                outCtx.beginPDFPage([
+                    kCGPDFContextMediaBox: NSData(bytes: &pageBox, length: MemoryLayout<CGRect>.size)
+                ] as CFDictionary)
+                outCtx.draw(cgImg, in: pageBox)
+                outCtx.endPDFPage()
 
-        ctx.closePDF()
+                let progress = Double(i + 1) / Double(snaps.count)
+                Task { @MainActor in _ = progress }
+            }
+
+            outCtx.closePDF()
+            return FileManager.default.fileExists(atPath: finalURL.path)
+        }.value
+
         colorConversionProgress = 1.0
+        if success {
+            lastSavedPath = finalURL.path
+            showCompressSuccess = true
+        }
         CometAnalytics.shared.trackEvent(
             page: "pdfEdit",
             eventType: .pdfEdited,
@@ -1019,6 +983,13 @@ struct PDFEditView: View {
         appState.pdfDocumentVersion += 1
     }
 
+    // MARK: - Save PDF
+    //
+    // • Unmodified document (version == 0): byte-for-byte file copy — zero re-encoding.
+    // • Modified document (pages deleted / reordered):
+    //     PDFKit write(to:) is used first — it preserves vector content and font streams.
+    //     CGContext stream-copy is the fallback only when PDFKit write fails.
+
     private func savePDF(_ pdf: PDFItem) {
         guard let document = pdf.document else { return }
         let panel = NSSavePanel()
@@ -1026,7 +997,13 @@ struct PDFEditView: View {
         panel.nameFieldStringValue = pdf.fileName
         guard panel.runModal() == .OK, let saveURL = panel.url else { return }
 
-        // Belge değiştirilmediyse (version == 0) orijinal dosyayı byte-for-byte kopyala.
+        // Color space conversion requested — delegate to convertColorSpace with explicit destURL.
+        if colorConversionEnabled {
+            Task { await convertColorSpace(pdf, target: colorTarget, destURL: saveURL) }
+            return
+        }
+
+        // Unmodified — copy source file verbatim.
         if appState.pdfDocumentVersion == 0 {
             try? FileManager.default.removeItem(at: saveURL)
             try? FileManager.default.copyItem(at: pdf.url, to: saveURL)
@@ -1036,37 +1013,32 @@ struct PDFEditView: View {
             return
         }
 
-        // Belge değiştirilmişse (sayfa silme/sıralama): CGContext + drawPDFPage ile yaz.
-        // PDFKit dataRepresentation() metadata şişirerek boyutu artırır (~%30-50).
-        // CoreGraphics stream-copy ile sadece mevcut sayfalar yazılır, orijinal boyutun altında kalır.
-        let pageCount = document.pageCount
-        var pageRefs: [(CGPDFPage, CGRect)] = []
-        for i in 0..<pageCount {
-            guard let page = document.page(at: i), let ref = page.pageRef else { continue }
-            pageRefs.append((ref, page.bounds(for: .mediaBox)))
-        }
-
-        guard !pageRefs.isEmpty else { return }
-
-        var defaultBox = pageRefs[0].1
-        guard let ctx = CGContext(saveURL as CFURL, mediaBox: &defaultBox, nil) else {
-            // CGContext başarısız olursa PDFKit fallback
-            if let data = document.dataRepresentation() {
-                try? data.write(to: saveURL, options: .atomic)
-            }
+        // Modified — PDFKit write (preserves vector streams).
+        if document.write(to: saveURL) {
             CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
             lastSavedPath = saveURL.path
             showSaveSuccess = true
             return
         }
 
-        for (pageRef, bounds) in pageRefs {
-            var box = bounds
-            ctx.beginPage(mediaBox: &box)
-            ctx.drawPDFPage(pageRef)
-            ctx.endPage()
+        // PDFKit write failed — CG stream-copy fallback.
+        var pageRefs: [(CGPDFPage, CGRect)] = []
+        for i in 0..<document.pageCount {
+            guard let page = document.page(at: i), let ref = page.pageRef else { continue }
+            pageRefs.append((ref, page.bounds(for: .mediaBox)))
         }
-        ctx.closePDF()
+        guard !pageRefs.isEmpty else { return }
+
+        var firstBox = pageRefs[0].1
+        if let ctx = CGContext(saveURL as CFURL, mediaBox: &firstBox, nil) {
+            for (ref, bounds) in pageRefs {
+                var box = bounds
+                ctx.beginPage(mediaBox: &box)
+                ctx.drawPDFPage(ref)
+                ctx.endPage()
+            }
+            ctx.closePDF()
+        }
 
         CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
         lastSavedPath = saveURL.path

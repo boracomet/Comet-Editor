@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Fravælg alle";
 "stock.download" = "Download valgte";
 "stock.download.count" = "Download %d fotos";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Indtast URL eller tekst her...";
 "qr.settings.colors" = "FARVER";
 "qr.settings.fgColor" = "Forgrundsfarve";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsoreret";
 "ad.visit" = "Besøg";
+
+"pdf.quality.modal.title" = "Vælg optimeringsniveau";
+"pdf.quality.modal.subtitle" = "Vælg, hvor meget filstørrelsen skal reduceres. Højere komprimering giver en mindre fil med noget kvalitetstab.";
+"pdf.quality.modal.estimated" = "Anslået størrelse";
+"pdf.quality.modal.confirm" = "Optimer";
+"pdf.quality.modal.cancel" = "Annuller";
+"pdf.quality.low.title" = "Maksimal komprimering";
+"pdf.quality.low.desc" = "Mindste fil, synligt kvalitetstab";
+"pdf.quality.medium.title" = "Afbalanceret";
+"pdf.quality.medium.desc" = "God balance mellem størrelse og kvalitet";
+"pdf.quality.high.title" = "Høj kvalitet";
+"pdf.quality.high.desc" = "Minimalt kvalitetstab, moderat reduktion";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Vedligeholdelse";
+"app.maintenance.body" = "Appen er midlertidigt utilgængelig. Vi er snart tilbage.";
+"app.forceUpdate.title2" = "Opdatering påkrævet";
+"app.forceUpdate.body" = "En ny version er nødvendig for at fortsætte. Opdater venligst.";
+"app.forceUpdate.button2" = "Opdater i App Store";
+"app.quit2" = "Luk app";
+
+"settings.subtitle" = "Tilpas din Comet Editor-oplevelse";
+"settings.section.output" = "OUTPUT";
+"settings.defaultOutputFolder" = "Standard outputmappe";
+"settings.noFolderSelected" = "Ikke valgt — du bliver spurgt hver gang";
+"settings.chooseFolder" = "Vælg mappe";
+"settings.clearFolder" = "Ryd";
+"settings.folderPicker.message" = "Vælg en standardmappe til eksporterede filer";
+"settings.folderPicker.button" = "Vælg mappe";
+"menu.announcements" = "Meddelelser";
+"announcements.subtitle" = "Seneste nyheder og opdateringer fra teamet";
+"announcements.empty" = "Ingen meddelelser endnu";
+
+"settings.pdfOutputFolder" = "PDF outputmappe";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

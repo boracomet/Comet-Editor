@@ -6,4 +6,5 @@
 #define MAGICKCORE_QUANTUM_DEPTH 16
 #include "MagickWand/MagickWand.h"
 
+
 #endif /* COMETEDITOR_BRIDGING_HEADER_H */

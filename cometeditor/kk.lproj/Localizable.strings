@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Барлығын алып тастау";
 "stock.download" = "Таңдалғандарды жүктеу";
 "stock.download.count" = "%d фотосурет жүктеу";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL немесе мәтін енгізіңіз...";
 "qr.settings.colors" = "ТҮСТЕР";
 "qr.settings.fgColor" = "Алдыңғы жоспар түсі";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Жарнама";
 "ad.visit" = "Өту";
+
+"pdf.quality.modal.title" = "Оңтайландыру деңгейін таңдаңыз";
+"pdf.quality.modal.subtitle" = "Файл өлшемін қанша азайту керектігін таңдаңыз. Жоғары қысу — аз файл, бірақ сапа сәл төмендейді.";
+"pdf.quality.modal.estimated" = "Болжамды өлшем";
+"pdf.quality.modal.confirm" = "Оңтайландыру";
+"pdf.quality.modal.cancel" = "Болдырмау";
+"pdf.quality.low.title" = "Максималды қысу";
+"pdf.quality.low.desc" = "Ең кіші файл, байқалатын сапа жоғалуы";
+"pdf.quality.medium.title" = "Теңдестірілген";
+"pdf.quality.medium.desc" = "Өлшем мен сапаның жақсы теңгерімі";
+"pdf.quality.high.title" = "Жоғары сапа";
+"pdf.quality.high.desc" = "Минималды сапа жоғалуы, орташа азайту";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Техникалық жұмыстар";
+"app.maintenance.body" = "Қолданба уақытша қолжетімсіз. Жақында ораламыз.";
+"app.forceUpdate.title2" = "Жаңарту қажет";
+"app.forceUpdate.body" = "Жалғастыру үшін жаңа нұсқа қажет. Жаңартып алыңыз.";
+"app.forceUpdate.button2" = "App Store-да жаңарту";
+"app.quit2" = "Қолданбаны жабу";
+
+"settings.subtitle" = "Comet Editor тәжірибесін реттеңіз";
+"settings.section.output" = "ШЫҒЫС";
+"settings.defaultOutputFolder" = "Әдепкі шығыс қалтасы";
+"settings.noFolderSelected" = "Таңдалмаған — әр жолы сұралады";
+"settings.chooseFolder" = "Қалта таңдау";
+"settings.clearFolder" = "Тазалау";
+"settings.folderPicker.message" = "Экспортталған файлдар үшін әдепкі қалтаны таңдаңыз";
+"settings.folderPicker.button" = "Қалта таңдау";
+"menu.announcements" = "Хабарландырулар";
+"announcements.subtitle" = "Команданың соңғы жаңалықтары";
+"announcements.empty" = "Хабарландырулар жоқ";
+
+"settings.pdfOutputFolder" = "PDF шығыс қалтасы";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

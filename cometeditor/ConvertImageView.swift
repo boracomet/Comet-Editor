@@ -593,7 +593,10 @@ struct ConvertImageView: View {
                         }
 
                         Button("convert.settings.chooseFolder") {
-                            pickFolder { appState.targetFolder = $0 }
+                            pickFolder { url in
+    appState.handleFolderSelected(url)
+    appState.targetFolder = url
+}
                         }
                         .controlSize(.small)
                     }
@@ -772,6 +775,7 @@ struct ConvertImageView: View {
         await MainActor.run {
             if successCount > 0 {
                 showSuccessAlert = true
+                CometAnalytics.shared.trackEvent(page: "convertImage", eventType: .imageConverted, metadata: ["count": successCount])
             } else {
                 showConversionError = true
             }

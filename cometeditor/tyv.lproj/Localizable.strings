@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Бүгүдени кадыр";
 "stock.download" = "Шилиттингеннерни чүктеп";
 "stock.download.count" = "%d чурук чүктеп";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL азы текст киир...";
 "qr.settings.colors" = "ӨҢНЕР";
 "qr.settings.fgColor" = "Мурнунда өң";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Реклама";
 "ad.visit" = "Баруу";
+
+"pdf.quality.modal.title" = "Оптималчыдылганың деңнелин шилиңер";
+"pdf.quality.modal.subtitle" = "Файлдың хемчээлин каш кызырарын шилиңер. Бедик кызыдыы — биче файл, ынчалза-даа шынары бичиилеп кудулаар.";
+"pdf.quality.modal.estimated" = "Санаттынган хемчээл";
+"pdf.quality.modal.confirm" = "Оптималчыдылга";
+"pdf.quality.modal.cancel" = "Соруй";
+"pdf.quality.low.title" = "Эң бедик кызыдыы";
+"pdf.quality.low.desc" = "Эң биче файл, көскү шынар чидириг";
+"pdf.quality.medium.title" = "Деңнелчок";
+"pdf.quality.medium.desc" = "Хемчээл болгаш шынардың эки деңнелчоону";
+"pdf.quality.high.title" = "Бедик шынар";
+"pdf.quality.high.desc" = "Кудулааш эвээш шынар чидириг, ортумак кызырыы";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Техниктиг ажыл";
+"app.maintenance.body" = "Тускайланыышкын түр үеде ажылдавайн тур. Удавас эгиттивис.";
+"app.forceUpdate.title2" = "Чаартылга херек";
+"app.forceUpdate.body" = "Уламчылаарынга чаа версия херек. Чаарты.";
+"app.forceUpdate.button2" = "App Store-га чаарт";
+"app.quit2" = "Тускайланыышкынны хаа";
+
+"settings.subtitle" = "Comet Editor-ның дыңнаашкынын таарыштыр";
+"settings.section.output" = "ҮНДЕЗИН";
+"settings.defaultOutputFolder" = "Демдеглелдиг үндезин папка";
+"settings.noFolderSelected" = "Шилип алдынмаан — кезиинде айтырар";
+"settings.chooseFolder" = "Папка шилип алыр";
+"settings.clearFolder" = "Арыглаар";
+"settings.folderPicker.message" = "Экспорттаан файлдар дээш демдеглелдиг папка шил";
+"settings.folderPicker.button" = "Папка шилип алыр";
+"menu.announcements" = "Дыңнадыглар";
+"announcements.subtitle" = "Командадан чаа медерелдер";
+"announcements.empty" = "Дыңнадыг чок";
+
+"settings.pdfOutputFolder" = "PDF үндезин папка";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

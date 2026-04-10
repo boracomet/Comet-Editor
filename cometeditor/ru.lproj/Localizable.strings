@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Снять выделение";
 "stock.download" = "Скачать выбранные";
 "stock.download.count" = "Скачать %d фото";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Введите URL или текст здесь...";
 "qr.settings.colors" = "ЦВЕТА";
 "qr.settings.fgColor" = "Цвет переднего плана";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Реклама";
 "ad.visit" = "Перейти";
+
+"pdf.quality.modal.title" = "Выбор уровня оптимизации";
+"pdf.quality.modal.subtitle" = "Выберите степень уменьшения размера файла. Более высокое сжатие означает меньший файл с некоторой потерей качества.";
+"pdf.quality.modal.estimated" = "Ожидаемый размер";
+"pdf.quality.modal.confirm" = "Оптимизировать";
+"pdf.quality.modal.cancel" = "Отмена";
+"pdf.quality.low.title" = "Максимальное сжатие";
+"pdf.quality.low.desc" = "Наименьший файл, заметная потеря качества";
+"pdf.quality.medium.title" = "Сбалансированный";
+"pdf.quality.medium.desc" = "Хороший баланс размера и качества";
+"pdf.quality.high.title" = "Высокое качество";
+"pdf.quality.high.desc" = "Минимальная потеря качества, умеренное уменьшение";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Ведутся работы";
+"app.maintenance.body" = "Приложение временно недоступно. Мы скоро вернёмся.";
+"app.forceUpdate.title2" = "Требуется обновление";
+"app.forceUpdate.body" = "Для продолжения требуется новая версия. Пожалуйста, обновите приложение.";
+"app.forceUpdate.button2" = "Обновить в App Store";
+"app.quit2" = "Закрыть приложение";
+
+"settings.subtitle" = "Настройте Comet Editor под себя";
+"settings.section.output" = "ВЫВОД";
+"settings.defaultOutputFolder" = "Папка вывода по умолчанию";
+"settings.noFolderSelected" = "Не выбрана — будет запрашиваться каждый раз";
+"settings.chooseFolder" = "Выбрать папку";
+"settings.clearFolder" = "Очистить";
+"settings.folderPicker.message" = "Выберите папку по умолчанию для экспортируемых файлов";
+"settings.folderPicker.button" = "Выбрать папку";
+"menu.announcements" = "Объявления";
+"announcements.subtitle" = "Последние новости и обновления от команды";
+"announcements.empty" = "Объявлений пока нет";
+
+"settings.pdfOutputFolder" = "Папка вывода PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

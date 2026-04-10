@@ -102,6 +102,8 @@
 "stock.deselectAll" = "取消全选";
 "stock.download" = "下载所选";
 "stock.download.count" = "下载 %d 张照片";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "在此输入 URL 或文字...";
 "qr.settings.colors" = "颜色";
 "qr.settings.fgColor" = "前景色";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "广告";
 "ad.visit" = "访问";
+
+"pdf.quality.modal.title" = "选择优化级别";
+"pdf.quality.modal.subtitle" = "选择压缩文件大小的程度。压缩率越高，文件越小，但会有一定画质损失。";
+"pdf.quality.modal.estimated" = "预计大小";
+"pdf.quality.modal.confirm" = "优化";
+"pdf.quality.modal.cancel" = "取消";
+"pdf.quality.low.title" = "最大压缩";
+"pdf.quality.low.desc" = "文件最小，画质损失明显";
+"pdf.quality.medium.title" = "均衡";
+"pdf.quality.medium.desc" = "大小与画质的良好平衡";
+"pdf.quality.high.title" = "高画质";
+"pdf.quality.high.desc" = "画质损失最小，适度减小文件";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "维护中";
+"app.maintenance.body" = "应用程序暂时无法使用，我们将尽快恢复。";
+"app.forceUpdate.title2" = "需要更新";
+"app.forceUpdate.body" = "需要新版本才能继续使用，请更新到最新版本。";
+"app.forceUpdate.button2" = "在 App Store 更新";
+"app.quit2" = "退出应用";
+
+"settings.subtitle" = "自定义您的 Comet Editor 体验";
+"settings.section.output" = "输出";
+"settings.defaultOutputFolder" = "默认输出文件夹";
+"settings.noFolderSelected" = "未选择 — 每次都会询问";
+"settings.chooseFolder" = "选择文件夹";
+"settings.clearFolder" = "清除";
+"settings.folderPicker.message" = "选择导出文件的默认文件夹";
+"settings.folderPicker.button" = "选择文件夹";
+"menu.announcements" = "公告";
+"announcements.subtitle" = "来自团队的最新动态";
+"announcements.empty" = "暂无公告";
+
+"settings.pdfOutputFolder" = "PDF 输出文件夹";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Avmarkera alla";
 "stock.download" = "Ladda ner valda";
 "stock.download.count" = "Ladda ner %d foton";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Ange URL eller text här...";
 "qr.settings.colors" = "FÄRGER";
 "qr.settings.fgColor" = "Förgrundsfärg";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsrad";
 "ad.visit" = "Besök";
+
+"pdf.quality.modal.title" = "Välj optimeringsnivå";
+"pdf.quality.modal.subtitle" = "Välj hur mycket filstorleken ska minskas. Högre komprimering ger en mindre fil med viss kvalitetsförlust.";
+"pdf.quality.modal.estimated" = "Beräknad storlek";
+"pdf.quality.modal.confirm" = "Optimera";
+"pdf.quality.modal.cancel" = "Avbryt";
+"pdf.quality.low.title" = "Maximal komprimering";
+"pdf.quality.low.desc" = "Minsta fil, synlig kvalitetsförlust";
+"pdf.quality.medium.title" = "Balanserad";
+"pdf.quality.medium.desc" = "Bra balans mellan storlek och kvalitet";
+"pdf.quality.high.title" = "Hög kvalitet";
+"pdf.quality.high.desc" = "Minimal kvalitetsförlust, måttlig minskning";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Underhåll pågår";
+"app.maintenance.body" = "Appen är tillfälligt otillgänglig. Vi är snart tillbaka.";
+"app.forceUpdate.title2" = "Uppdatering krävs";
+"app.forceUpdate.body" = "En ny version krävs för att fortsätta. Uppdatera appen.";
+"app.forceUpdate.button2" = "Uppdatera i App Store";
+"app.quit2" = "Stäng appen";
+
+"settings.subtitle" = "Anpassa din Comet Editor-upplevelse";
+"settings.section.output" = "UTDATA";
+"settings.defaultOutputFolder" = "Standard utdatamapp";
+"settings.noFolderSelected" = "Ej vald — du tillfrågas varje gång";
+"settings.chooseFolder" = "Välj mapp";
+"settings.clearFolder" = "Rensa";
+"settings.folderPicker.message" = "Välj en standardmapp för exporterade filer";
+"settings.folderPicker.button" = "Välj mapp";
+"menu.announcements" = "Meddelanden";
+"announcements.subtitle" = "Senaste nyheter och uppdateringar från teamet";
+"announcements.empty" = "Inga meddelanden än";
+
+"settings.pdfOutputFolder" = "PDF-utdatamapp";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

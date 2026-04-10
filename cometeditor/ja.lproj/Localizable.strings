@@ -102,6 +102,8 @@
 "stock.deselectAll" = "すべての選択を解除";
 "stock.download" = "選択したものをダウンロード";
 "stock.download.count" = "%d 枚の写真をダウンロード";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URLまたはテキストを入力...";
 "qr.settings.colors" = "カラー";
 "qr.settings.fgColor" = "前景色";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "広告";
 "ad.visit" = "アクセス";
+
+"pdf.quality.modal.title" = "最適化レベルを選択";
+"pdf.quality.modal.subtitle" = "ファイルサイズをどの程度削減するか選択してください。圧縮率が高いほどファイルは小さくなりますが、画質が低下します。";
+"pdf.quality.modal.estimated" = "予測サイズ";
+"pdf.quality.modal.confirm" = "最適化";
+"pdf.quality.modal.cancel" = "キャンセル";
+"pdf.quality.low.title" = "最大圧縮";
+"pdf.quality.low.desc" = "最小ファイルサイズ、画質の低下あり";
+"pdf.quality.medium.title" = "バランス";
+"pdf.quality.medium.desc" = "サイズと画質のバランスが良好";
+"pdf.quality.high.title" = "高画質";
+"pdf.quality.high.desc" = "画質の低下が最小限、適度なサイズ削減";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "メンテナンス中";
+"app.maintenance.body" = "アプリは一時的にご利用いただけません。まもなく再開いたします。";
+"app.forceUpdate.title2" = "アップデートが必要です";
+"app.forceUpdate.body" = "続けるには新しいバージョンが必要です。最新版にアップデートしてください。";
+"app.forceUpdate.button2" = "App Storeで更新";
+"app.quit2" = "終了";
+
+"settings.subtitle" = "Comet Editorをカスタマイズ";
+"settings.section.output" = "出力";
+"settings.defaultOutputFolder" = "デフォルト出力フォルダ";
+"settings.noFolderSelected" = "未選択 — 毎回確認されます";
+"settings.chooseFolder" = "フォルダを選択";
+"settings.clearFolder" = "クリア";
+"settings.folderPicker.message" = "書き出したファイルのデフォルトフォルダを選択";
+"settings.folderPicker.button" = "フォルダを選択";
+"menu.announcements" = "お知らせ";
+"announcements.subtitle" = "チームからの最新ニュースと更新情報";
+"announcements.empty" = "お知らせはありません";
+
+"settings.pdfOutputFolder" = "PDF出力フォルダ";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

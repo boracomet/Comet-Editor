@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Poništi odabir";
 "stock.download" = "Preuzmi";
 "stock.download.count" = "Preuzmi %d fotografija";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Unesite URL ili tekst...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Boja prednjeg plana";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponzorisano";
 "ad.visit" = "Posjeti";
+
+"pdf.quality.modal.title" = "Odaberite nivo optimizacije";
+"pdf.quality.modal.subtitle" = "Odaberite koliko smanjiti veličinu datoteke. Veće komprimiranje znači manju datoteku s određenim gubitkom kvaliteta.";
+"pdf.quality.modal.estimated" = "Procijenjena veličina";
+"pdf.quality.modal.confirm" = "Optimiziraj";
+"pdf.quality.modal.cancel" = "Odustani";
+"pdf.quality.low.title" = "Maksimalna kompresija";
+"pdf.quality.low.desc" = "Najmanja datoteka, vidljiv gubitak kvaliteta";
+"pdf.quality.medium.title" = "Uravnoteženo";
+"pdf.quality.medium.desc" = "Dobar balans veličine i kvaliteta";
+"pdf.quality.high.title" = "Visok kvalitet";
+"pdf.quality.high.desc" = "Minimalan gubitak kvaliteta, umjereno smanjenje";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Održavanje u toku";
+"app.maintenance.body" = "Aplikacija je privremeno nedostupna. Uskoro se vraćamo.";
+"app.forceUpdate.title2" = "Potrebno ažuriranje";
+"app.forceUpdate.body" = "Za nastavak je potrebna nova verzija. Molimo ažurirajte aplikaciju.";
+"app.forceUpdate.button2" = "Ažuriraj u App Storeu";
+"app.quit2" = "Zatvori aplikaciju";
+
+"settings.subtitle" = "Prilagodite Comet Editor sebi";
+"settings.section.output" = "IZLAZ";
+"settings.defaultOutputFolder" = "Zadana izlazna mapa";
+"settings.noFolderSelected" = "Nije odabrana — svaki put će pitati";
+"settings.chooseFolder" = "Odaberi mapu";
+"settings.clearFolder" = "Obriši";
+"settings.folderPicker.message" = "Odaberite zadanu mapu za izvezene datoteke";
+"settings.folderPicker.button" = "Odaberi mapu";
+"menu.announcements" = "Obavijesti";
+"announcements.subtitle" = "Najnovije vijesti i ažuriranja tima";
+"announcements.empty" = "Nema obavijesti";
+
+"settings.pdfOutputFolder" = "Izlazna mapa za PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

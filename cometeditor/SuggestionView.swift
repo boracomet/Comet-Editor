@@ -43,6 +43,7 @@ private enum SuggestionCategory: String, CaseIterable {
 // MARK: - Main View
 
 struct SuggestionView: View {
+    @ObservedObject private var adManager = AdManager.shared
     @State private var titleText: String = ""
     @State private var messageText: String = ""
     @State private var selectedCategory: SuggestionCategory = .feature
@@ -52,6 +53,17 @@ struct SuggestionView: View {
     @State private var showValidation = false
     @FocusState private var titleFocused: Bool
     @FocusState private var bodyFocused: Bool
+
+    // Rate-limit CAPTCHA
+    @State private var showMathChallenge = false
+    @State private var mathA = 0
+    @State private var mathB = 0
+    @State private var mathAnswer = ""
+    @State private var mathWrong = false
+
+    private static let rateLimitKey = "suggestion_submit_timestamps"
+    private static let rateWindow: TimeInterval = 3600   // 60 dakika
+    private static let rateLimit = 3                     // pencere başına max gönderim
 
     var body: some View {
         ScrollView {
@@ -77,6 +89,7 @@ struct SuggestionView: View {
 
                     // Send
                     sendButton
+
                 }
                 .padding(.horizontal, 32)
                 .padding(.top, 24)
@@ -96,6 +109,30 @@ struct SuggestionView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(LocalizedStringKey("suggestion.validation.body"))
+        }
+        .alert(LocalizedStringKey("suggestion.captcha.title"), isPresented: $showMathChallenge) {
+            TextField(LocalizedStringKey("suggestion.captcha.placeholder"), text: $mathAnswer)
+            Button(LocalizedStringKey("suggestion.captcha.confirm")) {
+                if Int(mathAnswer) == mathA + mathB {
+                    mathAnswer = ""
+                    mathWrong = false
+                    Task { await sendSuggestion(skipRateCheck: true) }
+                } else {
+                    mathAnswer = ""
+                    mathWrong = true
+                    showMathChallenge = true
+                }
+            }
+            Button(LocalizedStringKey("suggestion.captcha.cancel"), role: .cancel) {
+                mathAnswer = ""
+                mathWrong = false
+            }
+        } message: {
+            if mathWrong {
+                Text(LocalizedStringKey("suggestion.captcha.wrong"))
+            } else {
+                Text(String(format: NSLocalizedString("suggestion.captcha.body", comment: ""), mathA, mathB))
+            }
         }
     }
 
@@ -242,7 +279,11 @@ struct SuggestionView: View {
 
         return Button {
             guard canSend else { showValidation = true; return }
-            Task { await sendSuggestion() }
+            if isRateLimited() {
+                presentMathChallenge()
+            } else {
+                Task { await sendSuggestion() }
+            }
         } label: {
             HStack(spacing: 7) {
                 if isSending {
@@ -276,9 +317,33 @@ struct SuggestionView: View {
         .animation(.spring(response: 0.2, dampingFraction: 0.8), value: isSending)
     }
 
+    // MARK: - Rate Limit
+
+    private func isRateLimited() -> Bool {
+        let now = Date().timeIntervalSince1970
+        let stored = UserDefaults.standard.array(forKey: Self.rateLimitKey) as? [Double] ?? []
+        let recent = stored.filter { now - $0 < Self.rateWindow }
+        return recent.count >= Self.rateLimit
+    }
+
+    private func recordSubmit() {
+        let now = Date().timeIntervalSince1970
+        let stored = UserDefaults.standard.array(forKey: Self.rateLimitKey) as? [Double] ?? []
+        let recent = stored.filter { now - $0 < Self.rateWindow }
+        UserDefaults.standard.set(recent + [now], forKey: Self.rateLimitKey)
+    }
+
+    private func presentMathChallenge() {
+        mathA = Int.random(in: 1...20)
+        mathB = Int.random(in: 1...20)
+        mathAnswer = ""
+        mathWrong = false
+        showMathChallenge = true
+    }
+
     // MARK: - Network
 
-    private func sendSuggestion() async {
+    private func sendSuggestion(skipRateCheck: Bool = false) async {
         isSending = true
         defer { isSending = false }
 
@@ -324,6 +389,7 @@ struct SuggestionView: View {
         do {
             let (_, resp) = try await URLSession.shared.data(for: req)
             if (resp as? HTTPURLResponse)?.statusCode == 200 {
+                recordSubmit()
                 titleText = ""
                 messageText = ""
                 selectedCategory = .feature

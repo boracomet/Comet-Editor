@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Пурне те кӑлар";
 "stock.download" = "Суйланисене вилет";
 "stock.download.count" = "%d фото вилет";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL е текст кӗрт...";
 "qr.settings.colors" = "ТӖССЕМ";
 "qr.settings.fgColor" = "Умӗнхи тӗс";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Реклама";
 "ad.visit" = "Кĕрсе пăх";
+
+"pdf.quality.modal.title" = "Оптималлаштарав шайне суйлăр";
+"pdf.quality.modal.subtitle" = "Файл пысăкăшне миçе пĕçĕклетмеллине суйлăр. Аслăрах хупăрлав — пĕçĕкрех файл, анчах качество аяккалать.";
+"pdf.quality.modal.estimated" = "Хаклă пысăкăш";
+"pdf.quality.modal.confirm" = "Оптималлаштар";
+"pdf.quality.modal.cancel" = "Пăрах";
+"pdf.quality.low.title" = "Пĕтĕм хупăрлав";
+"pdf.quality.low.desc" = "Иккĕмĕш пĕçĕк файл, курăнакан качество çухалăвĕ";
+"pdf.quality.medium.title" = "Тĕрĕс";
+"pdf.quality.medium.desc" = "Пысăкăш тата качество хушшинчи лайăх баланс";
+"pdf.quality.high.title" = "Çӳллĕ качество";
+"pdf.quality.high.desc" = "Иккĕмĕш качество çухалăвĕ, вăтам пĕçĕклетĕв";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Техника ĕçĕ";
+"app.maintenance.body" = "Хатĕр вăхăтлăха çук. Часрах таврăнăпăр.";
+"app.forceUpdate.title2" = "Çĕнетмелле";
+"app.forceUpdate.body" = "Малалла кайма çĕнĕ версия кирлĕ. Çĕнетĕр.";
+"app.forceUpdate.button2" = "App Store-ра çĕнет";
+"app.quit2" = "Хатĕра питĕр";
+
+"settings.subtitle" = "Comet Editor тēлне яраклаш";
+"settings.section.output" = "ТУХĂМ";
+"settings.defaultOutputFolder" = "Çирĕм тухăм папкă";
+"settings.noFolderSelected" = "Суйланман — хăйĕн чухне ыйтать";
+"settings.chooseFolder" = "Папка суй";
+"settings.clearFolder" = "Силлеле";
+"settings.folderPicker.message" = "Тухнă файлсем валли çирĕм папка суйла";
+"settings.folderPicker.button" = "Папка суй";
+"menu.announcements" = "Пĕлтерĕшсем";
+"announcements.subtitle" = "Командан çĕнĕ хыпарсем";
+"announcements.empty" = "Пĕлтерĕш çук";
+
+"settings.pdfOutputFolder" = "PDF тухăм папкă";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Deselectare totală";
 "stock.download" = "Descărcare selectate";
 "stock.download.count" = "Descărcați %d fotografii";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Introduceți URL sau text aici...";
 "qr.settings.colors" = "CULORI";
 "qr.settings.fgColor" = "Culoare prim-plan";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsorizat";
 "ad.visit" = "Vizitați";
+
+"pdf.quality.modal.title" = "Alegeți nivelul de optimizare";
+"pdf.quality.modal.subtitle" = "Selectați cât de mult să reduceți dimensiunea fișierului. O compresie mai mare înseamnă un fișier mai mic cu o ușoară pierdere de calitate.";
+"pdf.quality.modal.estimated" = "Dimensiune estimată";
+"pdf.quality.modal.confirm" = "Optimizează";
+"pdf.quality.modal.cancel" = "Anulează";
+"pdf.quality.low.title" = "Compresie maximă";
+"pdf.quality.low.desc" = "Fișier mai mic, pierdere de calitate vizibilă";
+"pdf.quality.medium.title" = "Echilibrat";
+"pdf.quality.medium.desc" = "Echilibru bun între dimensiune și calitate";
+"pdf.quality.high.title" = "Calitate înaltă";
+"pdf.quality.high.desc" = "Pierdere minimă de calitate, reducere moderată";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Mentenanță în curs";
+"app.maintenance.body" = "Aplicația este temporar indisponibilă. Ne vom întoarce în curând.";
+"app.forceUpdate.title2" = "Actualizare necesară";
+"app.forceUpdate.body" = "Este necesară o versiune nouă pentru a continua. Vă rugăm actualizați.";
+"app.forceUpdate.button2" = "Actualizează în App Store";
+"app.quit2" = "Închide aplicația";
+
+"settings.subtitle" = "Personalizați experiența Comet Editor";
+"settings.section.output" = "IEȘIRE";
+"settings.defaultOutputFolder" = "Dosar implicit de ieșire";
+"settings.noFolderSelected" = "Neselectat — vi se va cere de fiecare dată";
+"settings.chooseFolder" = "Alege dosar";
+"settings.clearFolder" = "Șterge";
+"settings.folderPicker.message" = "Alegeți un dosar implicit pentru fișierele exportate";
+"settings.folderPicker.button" = "Selectați dosarul";
+"menu.announcements" = "Anunțuri";
+"announcements.subtitle" = "Ultimele știri și actualizări de la echipă";
+"announcements.empty" = "Nu există anunțuri";
+
+"settings.pdfOutputFolder" = "Dosar de ieșire PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

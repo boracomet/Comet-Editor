@@ -233,6 +233,22 @@ class GlobalAppState: ObservableObject {
 
     @Published var showingTeamModal = false
 
+    // Default klasör prompt: kullanıcıya bir kez sorulur
+    @Published var showDefaultFolderPrompt: Bool = false
+    @Published var pendingDefaultFolderURL: URL? = nil
+
+    /// Bir view'da klasör seçilince çağrılır.
+    /// targetFolder henüz ayarlanmamışsa kullanıcıya "varsayılan yap?" diye sorar.
+    func handleFolderSelected(_ url: URL) {
+        if targetFolder == nil {
+            pendingDefaultFolderURL = url
+            showDefaultFolderPrompt = true
+        }
+    }
+
+    // Announcements
+    @Published var cachedAnnouncements: [AppConfig.AnnouncementInfo] = []
+
     // OCR State
     @Published var ocrImage: NSImage? = nil
     @Published var ocrImageURL: URL? = nil

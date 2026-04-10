@@ -83,7 +83,7 @@ struct TeamModalView: View {
                     .padding(.bottom, max(16, geo.size.height * 0.03))
 
                     // Version
-                    Text(LocalizedStringKey("app.version"))
+                    Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
                         .font(.system(size: 10, weight: .medium, design: .monospaced))
                         .foregroundStyle(Color.secondary.opacity(0.4))
                         .padding(.bottom, 20)

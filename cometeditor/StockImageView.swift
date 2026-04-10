@@ -292,12 +292,21 @@ struct StockImageView: View {
 
                 // Quality
                 inspectorSection("convert.settings.quality") {
-                    HStack(spacing: 8) {
-                        Slider(value: $quality, in: 0...10, step: 1)
-                        Text("\(Int(quality))")
-                            .font(.system(size: 11, weight: .medium, design: .monospaced))
-                            .foregroundStyle(Color.secondary)
-                            .frame(width: 24, alignment: .trailing)
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(spacing: 8) {
+                            Slider(value: $quality, in: 0...10, step: 1)
+                            Text("\(Int(quality))")
+                                .font(.system(size: 11, weight: .medium, design: .monospaced))
+                                .foregroundStyle(Color.secondary)
+                                .frame(width: 24, alignment: .trailing)
+                        }
+                        Text(quality == 10
+                             ? LocalizedStringKey("stock.quality.original")
+                             : LocalizedStringKey("stock.quality.low"))
+                            .font(.system(size: 10))
+                            .foregroundStyle(quality == 10 ? Color.green : Color.orange)
+                            .opacity(quality == 10 || quality <= 4 ? 1 : 0)
+                            .frame(height: 14)
                     }
                 }
 
@@ -384,7 +393,10 @@ struct StockImageView: View {
                         }
 
                         Button("convert.settings.chooseFolder") {
-                            pickFolder { appState.targetFolder = $0 }
+                            pickFolder { url in
+                                appState.handleFolderSelected(url)
+                                appState.targetFolder = url
+                            }
                         }
                         .controlSize(.small)
                     }
@@ -540,9 +552,18 @@ struct StockImageView: View {
             scaleFactor = 1.0
         }
         for (i, photo) in toDownload.enumerated() {
-            let url = photo.regularURL
+            let url = quality == 10 ? photo.fullURL : photo.regularURL
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
+
+                // quality == 10 + JPEG → dosyayı olduğu gibi kaydet, re-encode etme
+                if quality == 10 && selectedFormat == .jpeg && scaleFactor == 1.0 {
+                    let outputURL = folder.appendingPathComponent("\(photo.id)_unsplash.jpg")
+                    try data.write(to: outputURL)
+                    downloadProgress = Double(i + 1) / Double(toDownload.count)
+                    continue
+                }
+
                 guard let nsImage = NSImage(data: data) else { continue }
 
                 let ext = selectedFormat.rawValue == "jpeg" ? "jpg" : selectedFormat.rawValue

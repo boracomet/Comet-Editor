@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Hammasini bekor qilish";
 "stock.download" = "Tanlanganlarni yuklash";
 "stock.download.count" = "%d fotosurat yuklab olish";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL yoki matn kiriting...";
 "qr.settings.colors" = "RANGLAR";
 "qr.settings.fgColor" = "Old plan rangi";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Reklama";
 "ad.visit" = "Tashrif";
+
+"pdf.quality.modal.title" = "Optimallashtirish darajasini tanlang";
+"pdf.quality.modal.subtitle" = "Fayl hajmini qancha kamaytirish kerakligini tanlang. Yuqori siqish — kichikroq fayl, lekin sifat biroz pasayadi.";
+"pdf.quality.modal.estimated" = "Taxminiy hajm";
+"pdf.quality.modal.confirm" = "Optimallashtirish";
+"pdf.quality.modal.cancel" = "Bekor qilish";
+"pdf.quality.low.title" = "Maksimal siqish";
+"pdf.quality.low.desc" = "Eng kichik fayl, ko'rinadigan sifat yo'qolishi";
+"pdf.quality.medium.title" = "Muvozanatli";
+"pdf.quality.medium.desc" = "Hajm va sifat o'rtasida yaxshi balans";
+"pdf.quality.high.title" = "Yuqori sifat";
+"pdf.quality.high.desc" = "Minimal sifat yo'qolishi, o'rtacha kamaytirish";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Texnik xizmat";
+"app.maintenance.body" = "Ilova vaqtincha mavjud emas. Tez orada qaytamiz.";
+"app.forceUpdate.title2" = "Yangilash talab qilinadi";
+"app.forceUpdate.body" = "Davom etish uchun yangi versiya talab qilinadi. Iltimos yangilang.";
+"app.forceUpdate.button2" = "App Store'da yangilash";
+"app.quit2" = "Ilovani yopish";
+
+"settings.subtitle" = "Comet Editor tajribasini moslash";
+"settings.section.output" = "CHIQISH";
+"settings.defaultOutputFolder" = "Standart chiqish papkasi";
+"settings.noFolderSelected" = "Tanlanmagan — har safar so'raladi";
+"settings.chooseFolder" = "Papka tanlash";
+"settings.clearFolder" = "Tozalash";
+"settings.folderPicker.message" = "Eksport qilingan fayllar uchun standart papkani tanlang";
+"settings.folderPicker.button" = "Papka tanlash";
+"menu.announcements" = "E'lonlar";
+"announcements.subtitle" = "Jamoadan so'nggi yangiliklar";
+"announcements.empty" = "Hozircha e'lon yo'q";
+
+"settings.pdfOutputFolder" = "PDF chiqish papkasi";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

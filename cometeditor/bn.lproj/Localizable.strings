@@ -102,6 +102,8 @@
 "stock.deselectAll" = "সব অনির্বাচন করুন";
 "stock.download" = "ডাউনলোড করুন";
 "stock.download.count" = "%d ফটো ডাউনলোড করুন";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL বা টেক্সট লিখুন...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "অগ্রভূমির রঙ";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "স্পনসর";
 "ad.visit" = "পরিদর্শন";
+
+"pdf.quality.modal.title" = "অপ্টিমাইজেশন স্তর বেছে নিন";
+"pdf.quality.modal.subtitle" = "ফাইলের আকার কতটা কমাতে হবে তা বেছে নিন। বেশি কম্প্রেশন মানে ছোট ফাইল কিন্তু কিছুটা মান কমে যাবে।";
+"pdf.quality.modal.estimated" = "আনুমানিক আকার";
+"pdf.quality.modal.confirm" = "অপ্টিমাইজ করুন";
+"pdf.quality.modal.cancel" = "বাতিল করুন";
+"pdf.quality.low.title" = "সর্বোচ্চ কম্প্রেশন";
+"pdf.quality.low.desc" = "সবচেয়ে ছোট ফাইল, দৃশ্যমান মানের হ্রাস";
+"pdf.quality.medium.title" = "সুষম";
+"pdf.quality.medium.desc" = "আকার ও মানের ভালো ভারসাম্য";
+"pdf.quality.high.title" = "উচ্চ মান";
+"pdf.quality.high.desc" = "ন্যূনতম মানের হ্রাস, মাঝারি হ্রাস";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "রক্ষণাবেক্ষণ চলছে";
+"app.maintenance.body" = "অ্যাপটি সাময়িকভাবে অনুপলব্ধ। আমরা শীঘ্রই ফিরে আসব।";
+"app.forceUpdate.title2" = "আপডেট প্রয়োজন";
+"app.forceUpdate.body" = "চালিয়ে যেতে নতুন সংস্করণ প্রয়োজন। অনুগ্রহ করে আপডেট করুন।";
+"app.forceUpdate.button2" = "App Store-এ আপডেট করুন";
+"app.quit2" = "অ্যাপ বন্ধ করুন";
+
+"settings.subtitle" = "আপনার Comet Editor অভিজ্ঞতা কাস্টমাইজ করুন";
+"settings.section.output" = "আউটপুট";
+"settings.defaultOutputFolder" = "ডিফল্ট আউটপুট ফোল্ডার";
+"settings.noFolderSelected" = "নির্বাচিত নয় — প্রতিবার জিজ্ঞাসা করা হবে";
+"settings.chooseFolder" = "ফোল্ডার বেছে নিন";
+"settings.clearFolder" = "পরিষ্কার করুন";
+"settings.folderPicker.message" = "রপ্তানি করা ফাইলের জন্য ডিফল্ট ফোল্ডার বেছে নিন";
+"settings.folderPicker.button" = "ফোল্ডার নির্বাচন করুন";
+"menu.announcements" = "ঘোষণা";
+"announcements.subtitle" = "টিম থেকে সর্বশেষ খবর ও আপডেট";
+"announcements.empty" = "এখনো কোনো ঘোষণা নেই";
+
+"settings.pdfOutputFolder" = "PDF আউটপুট ফোল্ডার";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

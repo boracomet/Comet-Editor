@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Hepsini kaldır";
 "stock.download" = "Seçilenleri indir";
 "stock.download.count" = "%d Fotoğraf indir";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL veya metin girin...";
 "qr.settings.colors" = "RENKLER";
 "qr.settings.fgColor" = "Ön plan rengi";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Reklam";
 "ad.visit" = "Ziyaret Et";
+
+"pdf.quality.modal.title" = "Optimizasyon düzeyini seçin";
+"pdf.quality.modal.subtitle" = "Dosya büyüklüünü nekadar azaltmak istediinizi seçin. Daa yüksek sıkıştırma — daa küçük dosya, ama kalite biraz düşer.";
+"pdf.quality.modal.estimated" = "Tahmini büyüklük";
+"pdf.quality.modal.confirm" = "Optimize et";
+"pdf.quality.modal.cancel" = "Geri al";
+"pdf.quality.low.title" = "Maksimal sıkıştırma";
+"pdf.quality.low.desc" = "En küçük dosya, görünän kalite kaybı";
+"pdf.quality.medium.title" = "Dengeli";
+"pdf.quality.medium.desc" = "Büyüklük hem kalite arasında ii denge";
+"pdf.quality.high.title" = "Yüksek kalite";
+"pdf.quality.high.desc" = "Minimal kalite kaybı, orta azaltma";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Texnik işlär";
+"app.maintenance.body" = "Uygulama geçici olarak kullanılamıyor. Kısa sürede döneriz.";
+"app.forceUpdate.title2" = "Güncelleme gerekli";
+"app.forceUpdate.body" = "Devam etmek için yeni sürüm gerekli. Güncelle.";
+"app.forceUpdate.button2" = "App Store'da Güncelle";
+"app.quit2" = "Uygulamayı Kapat";
+
+"settings.subtitle" = "Comet Editor deneyiminizi özelleştirin";
+"settings.section.output" = "ÇIKTI";
+"settings.defaultOutputFolder" = "Varsayılan Çıktı Klasörü";
+"settings.noFolderSelected" = "Seçilmedi — her seferinde sorulacak";
+"settings.chooseFolder" = "Klasör Seç";
+"settings.clearFolder" = "Temizle";
+"settings.folderPicker.message" = "Dışa aktarılan dosyalar için varsayılan klasörü seçin";
+"settings.folderPicker.button" = "Klasörü Seç";
+"menu.announcements" = "Duyurular";
+"announcements.subtitle" = "Ekipten son haberler ve güncellemeler";
+"announcements.empty" = "Henüz duyuru yok";
+
+"settings.pdfOutputFolder" = "PDF Çıktı Klasörü";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

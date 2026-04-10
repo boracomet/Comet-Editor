@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Hamısının Seçimini Ləğv Et";
 "stock.download" = "Seçilənləri Yüklə";
 "stock.download.count" = "%d Foto Yüklə";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL və ya mətn daxil edin...";
 "qr.settings.colors" = "RƏNGLƏr";
 "qr.settings.fgColor" = "Ön Plan Rəngi";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Reklam";
 "ad.visit" = "Ziyarət et";
+
+"pdf.quality.modal.title" = "Optimallaşdırma səviyyəsini seçin";
+"pdf.quality.modal.subtitle" = "Fayl ölçüsünü nə qədər azaltmaq istədiyinizi seçin. Daha yüksək sıxışdırma daha kiçik fayl, lakin müəyyən keyfiyyət itkisi deməkdir.";
+"pdf.quality.modal.estimated" = "Təxmini ölçü";
+"pdf.quality.modal.confirm" = "Optimallaşdır";
+"pdf.quality.modal.cancel" = "Ləğv et";
+"pdf.quality.low.title" = "Maksimum sıxışdırma";
+"pdf.quality.low.desc" = "Ən kiçik fayl, görünən keyfiyyət itkisi";
+"pdf.quality.medium.title" = "Balanslaşdırılmış";
+"pdf.quality.medium.desc" = "Ölçü və keyfiyyət arasında yaxşı balans";
+"pdf.quality.high.title" = "Yüksək keyfiyyət";
+"pdf.quality.high.desc" = "Minimal keyfiyyət itkisi, orta azalma";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Texniki xidmət";
+"app.maintenance.body" = "Tətbiq müvəqqəti əlçatmazdır. Tezliklə geri qayıdacağıq.";
+"app.forceUpdate.title2" = "Yeniləmə tələb olunur";
+"app.forceUpdate.body" = "Davam etmək üçün yeni versiya tələb olunur. Xahiş edirik yeniləyin.";
+"app.forceUpdate.button2" = "App Store-da yenilə";
+"app.quit2" = "Tətbiqi bağla";
+
+"settings.subtitle" = "Comet Editor təcrübənizi fərdiləşdirin";
+"settings.section.output" = "ÇIXIŞ";
+"settings.defaultOutputFolder" = "Standart çıxış qovluğu";
+"settings.noFolderSelected" = "Seçilməyib — hər dəfə soruşulacaq";
+"settings.chooseFolder" = "Qovluq seçin";
+"settings.clearFolder" = "Sil";
+"settings.folderPicker.message" = "İxrac edilmiş fayllar üçün standart qovluq seçin";
+"settings.folderPicker.button" = "Qovluq seçin";
+"menu.announcements" = "Elanlar";
+"announcements.subtitle" = "Komandadan son xəbərlər və yeniləmələr";
+"announcements.empty" = "Hələ elan yoxdur";
+
+"settings.pdfOutputFolder" = "PDF çıxış qovluğu";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

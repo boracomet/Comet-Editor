@@ -10,18 +10,21 @@ import SwiftUI
 enum MenuSection: String, CaseIterable {
     case main
     case tools
+    case other
 
     var title: LocalizedStringKey? {
         switch self {
-        case .main: return nil
+        case .main:  return nil
         case .tools: return "menu.tools"
+        case .other: return nil
         }
     }
 
     var items: [MenuItem] {
         switch self {
-        case .main: return [.home, .suggestion]
+        case .main:  return [.home]
         case .tools: return [.convertImage, .videoConvert, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
+        case .other: return [.suggestion, .announcements, .settings]
         }
     }
 }
@@ -37,6 +40,8 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     case ocr
     case fontDownload
     case suggestion
+    case announcements
+    case settings
     case team
 
     var id: String { rawValue }
@@ -53,6 +58,8 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .ocr: return "menu.ocr"
         case .fontDownload: return "menu.fontDownload"
         case .suggestion: return "menu.suggestion"
+        case .announcements: return "menu.announcements"
+        case .settings: return "menu.settings"
         case .team: return "menu.team"
         }
     }
@@ -69,6 +76,8 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .ocr: return "text.viewfinder"
         case .fontDownload: return "character.textbox"
         case .suggestion: return "envelope.fill"
+        case .announcements: return "bell.fill"
+        case .settings: return "gearshape.fill"
         case .team: return "person.3.fill"
         }
     }

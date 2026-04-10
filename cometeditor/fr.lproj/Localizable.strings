@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Tout désélectionner";
 "stock.download" = "Télécharger la sélection";
 "stock.download.count" = "Télécharger %d photos";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Entrez une URL ou du texte ici...";
 "qr.settings.colors" = "COULEURS";
 "qr.settings.fgColor" = "Couleur de premier plan";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsorisé";
 "ad.visit" = "Visiter";
+
+"pdf.quality.modal.title" = "Choisir le niveau d'optimisation";
+"pdf.quality.modal.subtitle" = "Sélectionnez la réduction de taille souhaitée. Une compression plus élevée signifie un fichier plus petit avec une légère perte de qualité.";
+"pdf.quality.modal.estimated" = "Taille estimée";
+"pdf.quality.modal.confirm" = "Optimiser";
+"pdf.quality.modal.cancel" = "Annuler";
+"pdf.quality.low.title" = "Compression maximale";
+"pdf.quality.low.desc" = "Fichier le plus petit, perte de qualité visible";
+"pdf.quality.medium.title" = "Équilibré";
+"pdf.quality.medium.desc" = "Bon équilibre taille/qualité";
+"pdf.quality.high.title" = "Haute qualité";
+"pdf.quality.high.desc" = "Perte de qualité minimale, réduction modérée";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Maintenance en cours";
+"app.maintenance.body" = "L'application est temporairement indisponible. Nous serons de retour bientôt.";
+"app.forceUpdate.title2" = "Mise à jour requise";
+"app.forceUpdate.body" = "Une nouvelle version est nécessaire pour continuer. Veuillez mettre à jour.";
+"app.forceUpdate.button2" = "Mettre à jour sur l'App Store";
+"app.quit2" = "Quitter l'app";
+
+"settings.subtitle" = "Personnalisez votre expérience Comet Editor";
+"settings.section.output" = "SORTIE";
+"settings.defaultOutputFolder" = "Dossier de sortie par défaut";
+"settings.noFolderSelected" = "Non sélectionné — vous serez demandé à chaque fois";
+"settings.chooseFolder" = "Choisir un dossier";
+"settings.clearFolder" = "Effacer";
+"settings.folderPicker.message" = "Choisissez un dossier par défaut pour les fichiers exportés";
+"settings.folderPicker.button" = "Sélectionner le dossier";
+"menu.announcements" = "Annonces";
+"announcements.subtitle" = "Dernières nouvelles et mises à jour de l'équipe";
+"announcements.empty" = "Aucune annonce pour l'instant";
+
+"settings.pdfOutputFolder" = "Dossier de sortie PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

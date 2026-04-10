@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Поништи избор";
 "stock.download" = "Преузми";
 "stock.download.count" = "Преузми %d фотографија";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Унесите URL или текст...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Боја предњег плана";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Спонзорисано";
 "ad.visit" = "Посетите";
+
+"pdf.quality.modal.title" = "Изаберите ниво оптимизације";
+"pdf.quality.modal.subtitle" = "Изаберите колико смањити величину датотеке. Веће компримовање значи мању датотеку са одређеним губитком квалитета.";
+"pdf.quality.modal.estimated" = "Процењена величина";
+"pdf.quality.modal.confirm" = "Оптимизуј";
+"pdf.quality.modal.cancel" = "Откажи";
+"pdf.quality.low.title" = "Максимална компресија";
+"pdf.quality.low.desc" = "Најмања датотека, видљив губитак квалитета";
+"pdf.quality.medium.title" = "Уравнотежено";
+"pdf.quality.medium.desc" = "Добар баланс величине и квалитета";
+"pdf.quality.high.title" = "Висок квалитет";
+"pdf.quality.high.desc" = "Минималан губитак квалитета, умерено смањење";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Одржавање у току";
+"app.maintenance.body" = "Апликација је привремено недоступна. Ускоро се враћамо.";
+"app.forceUpdate.title2" = "Потребно ажурирање";
+"app.forceUpdate.body" = "За наставак је потребна нова верзија. Молимо ажурирајте апликацију.";
+"app.forceUpdate.button2" = "Ажурирај у App Store-у";
+"app.quit2" = "Затвори апликацију";
+
+"settings.subtitle" = "Прилагодите Comet Editor себи";
+"settings.section.output" = "ИЗЛАЗ";
+"settings.defaultOutputFolder" = "Подразумевана излазна фасцикла";
+"settings.noFolderSelected" = "Није одабрана — сваки пут ће питати";
+"settings.chooseFolder" = "Одаберите фасциклу";
+"settings.clearFolder" = "Обриши";
+"settings.folderPicker.message" = "Одаберите подразумевану фасциклу за извезене датотеке";
+"settings.folderPicker.button" = "Одаберите фасциклу";
+"menu.announcements" = "Обавештења";
+"announcements.subtitle" = "Најновије вести и ажурирања тима";
+"announcements.empty" = "Нема обавештења";
+
+"settings.pdfOutputFolder" = "Излазна фасцикла за PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

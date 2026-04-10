@@ -401,6 +401,8 @@ struct QRCodeView: View {
         let ext = selectedFormat.rawValue.lowercased()
         savePanel.allowedContentTypes = [UTType(filenameExtension: ext) ?? .png]
         savePanel.nameFieldStringValue = "qr_code_\(Int(Date().timeIntervalSince1970))"
+        savePanel.directoryURL = appState.targetFolder
+            ?? FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
 
         guard savePanel.runModal() == .OK, let url = savePanel.url else { return }
 

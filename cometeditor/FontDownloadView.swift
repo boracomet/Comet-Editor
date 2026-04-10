@@ -200,6 +200,7 @@ let writingSystems: [WritingSystem] = [
 
 struct FontDownloadView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
+    @EnvironmentObject var appState: GlobalAppState
     @EnvironmentObject var windowState: WindowStateObserver
     @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.colorScheme) private var colorScheme
@@ -470,7 +471,8 @@ struct FontDownloadView: View {
         panel.canChooseDirectories = true
         panel.canCreateDirectories = true
         panel.allowsMultipleSelection = false
-        panel.directoryURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
+        panel.directoryURL = appState.targetFolder
+            ?? FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
 
         guard panel.runModal() == .OK, let destFolder = panel.url else { return }
 

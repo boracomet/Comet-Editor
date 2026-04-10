@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Hapus Pilihan";
 "stock.download" = "Unduh";
 "stock.download.count" = "Unduh %d foto";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Masukkan URL atau teks...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Warna latar depan";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Disponsori";
 "ad.visit" = "Kunjungi";
+
+"pdf.quality.modal.title" = "Pilih Tingkat Optimasi";
+"pdf.quality.modal.subtitle" = "Pilih seberapa banyak ukuran file dikurangi. Kompresi lebih tinggi berarti file lebih kecil dengan sedikit penurunan kualitas.";
+"pdf.quality.modal.estimated" = "Ukuran perkiraan";
+"pdf.quality.modal.confirm" = "Optimalkan";
+"pdf.quality.modal.cancel" = "Batal";
+"pdf.quality.low.title" = "Kompresi Maksimum";
+"pdf.quality.low.desc" = "File terkecil, penurunan kualitas terlihat";
+"pdf.quality.medium.title" = "Seimbang";
+"pdf.quality.medium.desc" = "Keseimbangan ukuran dan kualitas yang baik";
+"pdf.quality.high.title" = "Kualitas Tinggi";
+"pdf.quality.high.desc" = "Penurunan kualitas minimal, pengurangan sedang";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Sedang Pemeliharaan";
+"app.maintenance.body" = "Aplikasi untuk sementara tidak tersedia. Kami akan segera kembali.";
+"app.forceUpdate.title2" = "Pembaruan Diperlukan";
+"app.forceUpdate.body" = "Versi baru diperlukan untuk melanjutkan. Silakan perbarui.";
+"app.forceUpdate.button2" = "Perbarui di App Store";
+"app.quit2" = "Tutup Aplikasi";
+
+"settings.subtitle" = "Sesuaikan pengalaman Comet Editor Anda";
+"settings.section.output" = "OUTPUT";
+"settings.defaultOutputFolder" = "Folder output default";
+"settings.noFolderSelected" = "Belum dipilih — akan ditanya setiap saat";
+"settings.chooseFolder" = "Pilih folder";
+"settings.clearFolder" = "Hapus";
+"settings.folderPicker.message" = "Pilih folder default untuk file yang diekspor";
+"settings.folderPicker.button" = "Pilih folder";
+"menu.announcements" = "Pengumuman";
+"announcements.subtitle" = "Berita dan pembaruan terbaru dari tim";
+"announcements.empty" = "Belum ada pengumuman";
+
+"settings.pdfOutputFolder" = "Folder output PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

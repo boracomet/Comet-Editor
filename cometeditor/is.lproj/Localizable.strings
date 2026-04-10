@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Afvelja allt";
 "stock.download" = "Sækja valið";
 "stock.download.count" = "Sækja %d myndir";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Sláðu inn URL eða texta hér...";
 "qr.settings.colors" = "LITIR";
 "qr.settings.fgColor" = "Forgrunnslitur";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Styrkt";
 "ad.visit" = "Fara";
+
+"pdf.quality.modal.title" = "Veldu bestunarstig";
+"pdf.quality.modal.subtitle" = "Veldu hversu mikið á að minnka stærð skráarinnar. Meiri þjöppun þýðir minni skrá með einhverja gæðamissi.";
+"pdf.quality.modal.estimated" = "Áætluð stærð";
+"pdf.quality.modal.confirm" = "Bestun";
+"pdf.quality.modal.cancel" = "Hætta við";
+"pdf.quality.low.title" = "Hámarks þjöppun";
+"pdf.quality.low.desc" = "Minnsta skrá, sýnileg gæðamissi";
+"pdf.quality.medium.title" = "Jafnvægt";
+"pdf.quality.medium.desc" = "Gott jafnvægi á milli stærðar og gæða";
+"pdf.quality.high.title" = "Há gæði";
+"pdf.quality.high.desc" = "Lágmarks gæðamissi, hóflæg minnkun";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Viðhald í gangi";
+"app.maintenance.body" = "Forritið er tímabundið óaðgengilegt. Við erum brátt til baka.";
+"app.forceUpdate.title2" = "Uppfærsla nauðsynleg";
+"app.forceUpdate.body" = "Ný útgáfa er nauðsynleg til að halda áfram. Uppfærðu forritið.";
+"app.forceUpdate.button2" = "Uppfæra í App Store";
+"app.quit2" = "Loka forriti";
+
+"settings.subtitle" = "Sérsniðið Comet Editor reynsluna þína";
+"settings.section.output" = "ÚTTAK";
+"settings.defaultOutputFolder" = "Sjálfgefin úttaksmappa";
+"settings.noFolderSelected" = "Ekki valin — spurt verður í hvert skipti";
+"settings.chooseFolder" = "Velja möppu";
+"settings.clearFolder" = "Hreinsa";
+"settings.folderPicker.message" = "Veldu sjálfgefna möppu fyrir útfluttar skrár";
+"settings.folderPicker.button" = "Velja möppu";
+"menu.announcements" = "Tilkynningar";
+"announcements.subtitle" = "Nýjustu fréttir og uppfærslur frá teyminu";
+"announcements.empty" = "Engar tilkynningar enn";
+
+"settings.pdfOutputFolder" = "PDF úttaksmappa";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

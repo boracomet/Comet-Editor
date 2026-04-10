@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Çzgjidh të gjitha";
 "stock.download" = "Shkarko";
 "stock.download.count" = "Shkarko %d foto";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Shkruani URL ose tekst...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Ngjyra e planit të parë";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsorizuar";
 "ad.visit" = "Vizito";
+
+"pdf.quality.modal.title" = "Zgjidhni nivelin e optimizimit";
+"pdf.quality.modal.subtitle" = "Zgjidhni sa të reduktoni madhësinë e skedarit. Kompresimi më i lartë do të thotë skedar më i vogël me pak humbje cilësie.";
+"pdf.quality.modal.estimated" = "Madhësia e vlerësuar";
+"pdf.quality.modal.confirm" = "Optimizo";
+"pdf.quality.modal.cancel" = "Anulo";
+"pdf.quality.low.title" = "Kompresim maksimal";
+"pdf.quality.low.desc" = "Skedari më i vogël, humbje cilësie e dukshme";
+"pdf.quality.medium.title" = "I balancuar";
+"pdf.quality.medium.desc" = "Balancë e mirë ndërmjet madhësisë dhe cilësisë";
+"pdf.quality.high.title" = "Cilësi e lartë";
+"pdf.quality.high.desc" = "Humbje minimale cilësie, reduktim i moderuar";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Mirëmbajtje në progres";
+"app.maintenance.body" = "Aplikacioni është përkohësisht i padisponueshëm. Kthehemi së shpejti.";
+"app.forceUpdate.title2" = "Kërkohet përditësim";
+"app.forceUpdate.body" = "Kërkohet një version i ri për të vazhduar. Ju lutemi përditësoni.";
+"app.forceUpdate.button2" = "Përditëso në App Store";
+"app.quit2" = "Mbyll aplikacionin";
+
+"settings.subtitle" = "Personalizoni eksperiencën tuaj në Comet Editor";
+"settings.section.output" = "OUTPUT";
+"settings.defaultOutputFolder" = "Dosja e parazgjedhur e daljes";
+"settings.noFolderSelected" = "Pa zgjedhur — do të pyeteni çdo herë";
+"settings.chooseFolder" = "Zgjidhni dosje";
+"settings.clearFolder" = "Pastro";
+"settings.folderPicker.message" = "Zgjidhni dosjen e parazgjedhur për skedarët e eksportuar";
+"settings.folderPicker.button" = "Zgjidhni dosjen";
+"menu.announcements" = "Njoftime";
+"announcements.subtitle" = "Lajmet dhe përditësimet e fundit nga ekipi";
+"announcements.empty" = "Nuk ka njoftime";
+
+"settings.pdfOutputFolder" = "Dosja e daljes PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

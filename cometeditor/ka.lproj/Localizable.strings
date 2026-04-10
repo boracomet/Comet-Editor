@@ -102,6 +102,8 @@
 "stock.deselectAll" = "ყველაფრის მოხსნა";
 "stock.download" = "გადმოტვირთვა";
 "stock.download.count" = "%d ფოტოს გადმოტვირთვა";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "შეიყვანეთ URL ან ტექსტი...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "წინა ფონის ფერი";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "სარეკლამო";
 "ad.visit" = "გადასვლა";
+
+"pdf.quality.modal.title" = "აირჩიეთ ოპტიმიზაციის დონე";
+"pdf.quality.modal.subtitle" = "აირჩიეთ რამდენად შემცირდეს ფაილის ზომა. უფრო მაღალი შეკუმშვა ნიშნავს მცირე ფაილს გარკვეული ხარისხის დაკარგვით.";
+"pdf.quality.modal.estimated" = "სავარაუდო ზომა";
+"pdf.quality.modal.confirm" = "ოპტიმიზაცია";
+"pdf.quality.modal.cancel" = "გაუქმება";
+"pdf.quality.low.title" = "მაქსიმალური შეკუმშვა";
+"pdf.quality.low.desc" = "ყველაზე მცირე ფაილი, ხარისხის შესამჩნევი დაკარგვა";
+"pdf.quality.medium.title" = "დაბალანსებული";
+"pdf.quality.medium.desc" = "კარგი ბალანსი ზომასა და ხარისხს შორის";
+"pdf.quality.high.title" = "მაღალი ხარისხი";
+"pdf.quality.high.desc" = "ხარისხის მინიმალური დაკარგვა, ზომიერი შემცირება";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "ტექნიკური სამუშაოები";
+"app.maintenance.body" = "აპლიკაცია დროებით მიუწვდომელია. მალე დავბრუნდებით.";
+"app.forceUpdate.title2" = "განახლება საჭიროა";
+"app.forceUpdate.body" = "გასაგრძელებლად საჭიروა ახალი ვერსია. გთხოვთ განაახლოთ.";
+"app.forceUpdate.button2" = "განახლება App Store-ში";
+"app.quit2" = "დახურვა";
+
+"settings.subtitle" = "მოარგეთ Comet Editor თქვენს გემოვნებას";
+"settings.section.output" = "გამოსავალი";
+"settings.defaultOutputFolder" = "ნაგულისხმევი გამოსახლების საქაღალდე";
+"settings.noFolderSelected" = "არ არის არჩეული — ყოველ ჯერ მოგთხოვთ";
+"settings.chooseFolder" = "საქაღალდის არჩევა";
+"settings.clearFolder" = "გასუფთავება";
+"settings.folderPicker.message" = "აირჩიეთ ნაგულისხმევი საქაღალდე ექსპორტირებული ფაილებისთვის";
+"settings.folderPicker.button" = "საქაღალდის არჩევა";
+"menu.announcements" = "განცხადებები";
+"announcements.subtitle" = "გუნდის უახლესი სიახლეები და განახლებები";
+"announcements.empty" = "განცხადებები არ არის";
+
+"settings.pdfOutputFolder" = "PDF-ის გამოსახლების საქაღალდე";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

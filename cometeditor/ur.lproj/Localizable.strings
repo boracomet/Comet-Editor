@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Sab untick karein";
 "stock.download" = "Download karein";
 "stock.download.count" = "%d tasveerein download karein";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL ya matn daakhil karein...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Agle plan ka rang";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "سپانسر";
 "ad.visit" = "ملاحظہ کریں";
+
+"pdf.quality.modal.title" = "آپٹیمائزیشن کی سطح منتخب کریں";
+"pdf.quality.modal.subtitle" = "منتخب کریں کہ فائل کا سائز کتنا کم کرنا ہے۔ زیادہ کمپریشن کا مطلب چھوٹی فائل لیکن کچھ معیار میں کمی۔";
+"pdf.quality.modal.estimated" = "تخمینی سائز";
+"pdf.quality.modal.confirm" = "آپٹیمائز کریں";
+"pdf.quality.modal.cancel" = "منسوخ کریں";
+"pdf.quality.low.title" = "زیادہ سے زیادہ کمپریشن";
+"pdf.quality.low.desc" = "سب سے چھوٹی فائل، معیار میں نمایاں کمی";
+"pdf.quality.medium.title" = "متوازن";
+"pdf.quality.medium.desc" = "سائز اور معیار کے درمیان اچھا توازن";
+"pdf.quality.high.title" = "اعلی معیار";
+"pdf.quality.high.desc" = "معیار میں کم سے کم کمی، اعتدال پسند کمی";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "دیکھ بھال جاری ہے";
+"app.maintenance.body" = "ایپ عارضی طور پر دستیاب نہیں ہے۔ ہم جلد واپس آئیں گے۔";
+"app.forceUpdate.title2" = "اپڈیٹ درکار ہے";
+"app.forceUpdate.body" = "جاری رکھنے کے لیے نیا ورژن ضروری ہے۔ براہ کرم اپڈیٹ کریں۔";
+"app.forceUpdate.button2" = "App Store پر اپڈیٹ کریں";
+"app.quit2" = "ایپ بند کریں";
+
+"settings.subtitle" = "Comet Editor کا تجربہ اپنی مرضی سے بنائیں";
+"settings.section.output" = "آؤٹ پٹ";
+"settings.defaultOutputFolder" = "پہلے سے طے شدہ آؤٹ پٹ فولڈر";
+"settings.noFolderSelected" = "منتخب نہیں — ہر بار پوچھا جائے گا";
+"settings.chooseFolder" = "فولڈر منتخب کریں";
+"settings.clearFolder" = "صاف کریں";
+"settings.folderPicker.message" = "برآمد کردہ فائلوں کے لیے پہلے سے طے شدہ فولڈر منتخب کریں";
+"settings.folderPicker.button" = "فولڈر منتخب کریں";
+"menu.announcements" = "اعلانات";
+"announcements.subtitle" = "ٹیم کی تازہ ترین خبریں اور اپڈیٹس";
+"announcements.empty" = "ابھی تک کوئی اعلان نہیں";
+
+"settings.pdfOutputFolder" = "PDF آؤٹ پٹ فولڈر";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

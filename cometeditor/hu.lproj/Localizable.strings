@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Összes kijelölés megszüntetése";
 "stock.download" = "Kijelöltek letöltése";
 "stock.download.count" = "%d fotó letöltése";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Írjon ide URL-t vagy szöveget...";
 "qr.settings.colors" = "SZÍNEK";
 "qr.settings.fgColor" = "Előtér színe";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Szponzorált";
 "ad.visit" = "Látogatás";
+
+"pdf.quality.modal.title" = "Optimalizálási szint kiválasztása";
+"pdf.quality.modal.subtitle" = "Válassza ki, mennyivel csökkentse a fájlméretet. A nagyobb tömörítés kisebb fájlt jelent némi minőségveszteséggel.";
+"pdf.quality.modal.estimated" = "Becsült méret";
+"pdf.quality.modal.confirm" = "Optimalizálás";
+"pdf.quality.modal.cancel" = "Mégse";
+"pdf.quality.low.title" = "Maximális tömörítés";
+"pdf.quality.low.desc" = "Legkisebb fájl, látható minőségveszteség";
+"pdf.quality.medium.title" = "Kiegyensúlyozott";
+"pdf.quality.medium.desc" = "Jó egyensúly méret és minőség között";
+"pdf.quality.high.title" = "Magas minőség";
+"pdf.quality.high.desc" = "Minimális minőségveszteség, mérsékelt méretcsökkentés";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Karbantartás folyamatban";
+"app.maintenance.body" = "Az alkalmazás ideiglenesen nem érhető el. Hamarosan visszatérünk.";
+"app.forceUpdate.title2" = "Frissítés szükséges";
+"app.forceUpdate.body" = "A folytatáshoz új verzió szükséges. Kérjük, frissítse az alkalmazást.";
+"app.forceUpdate.button2" = "Frissítés az App Store-ban";
+"app.quit2" = "Alkalmazás bezárása";
+
+"settings.subtitle" = "Testreszabhatja a Comet Editor élményt";
+"settings.section.output" = "KIMENET";
+"settings.defaultOutputFolder" = "Alapértelmezett kimeneti mappa";
+"settings.noFolderSelected" = "Nincs kiválasztva — minden alkalommal kérdez";
+"settings.chooseFolder" = "Mappa kiválasztása";
+"settings.clearFolder" = "Törlés";
+"settings.folderPicker.message" = "Válasszon alapértelmezett mappát az exportált fájlokhoz";
+"settings.folderPicker.button" = "Mappa kiválasztása";
+"menu.announcements" = "Közlemények";
+"announcements.subtitle" = "Legújabb hírek és frissítések a csapattól";
+"announcements.empty" = "Még nincsenek közlemények";
+
+"settings.pdfOutputFolder" = "PDF kimeneti mappa";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

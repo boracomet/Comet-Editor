@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Αποεπιλογή όλων";
 "stock.download" = "Λήψη";
 "stock.download.count" = "Λήψη %d φωτογραφιών";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Εισαγάγετε URL ή κείμενο...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Χρώμα προσκηνίου";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Χορηγούμενο";
 "ad.visit" = "Επίσκεψη";
+
+"pdf.quality.modal.title" = "Επιλογή επιπέδου βελτιστοποίησης";
+"pdf.quality.modal.subtitle" = "Επιλέξτε πόσο να μειωθεί το μέγεθος αρχείου. Υψηλότερη συμπίεση σημαίνει μικρότερο αρχείο με κάποια απώλεια ποιότητας.";
+"pdf.quality.modal.estimated" = "Εκτιμώμενο μέγεθος";
+"pdf.quality.modal.confirm" = "Βελτιστοποίηση";
+"pdf.quality.modal.cancel" = "Ακύρωση";
+"pdf.quality.low.title" = "Μέγιστη συμπίεση";
+"pdf.quality.low.desc" = "Μικρότερο αρχείο, ορατή απώλεια ποιότητας";
+"pdf.quality.medium.title" = "Ισορροπημένο";
+"pdf.quality.medium.desc" = "Καλή ισορροπία μεγέθους και ποιότητας";
+"pdf.quality.high.title" = "Υψηλή ποιότητα";
+"pdf.quality.high.desc" = "Ελάχιστη απώλεια ποιότητας, μέτρια μείωση";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Σε συντήρηση";
+"app.maintenance.body" = "Η εφαρμογή είναι προσωρινά μη διαθέσιμη. Θα επιστρέψουμε σύντομα.";
+"app.forceUpdate.title2" = "Απαιτείται ενημέρωση";
+"app.forceUpdate.body" = "Απαιτείται νέα έκδοση για να συνεχίσετε. Παρακαλώ ενημερώστε.";
+"app.forceUpdate.button2" = "Ενημέρωση στο App Store";
+"app.quit2" = "Κλείσιμο εφαρμογής";
+
+"settings.subtitle" = "Προσαρμόστε την εμπειρία σας στο Comet Editor";
+"settings.section.output" = "ΕΞΟΔΟΣ";
+"settings.defaultOutputFolder" = "Προεπιλεγμένος φάκελος εξόδου";
+"settings.noFolderSelected" = "Δεν έχει επιλεγεί — θα ερωτάται κάθε φορά";
+"settings.chooseFolder" = "Επιλογή φακέλου";
+"settings.clearFolder" = "Καθαρισμός";
+"settings.folderPicker.message" = "Επιλέξτε προεπιλεγμένο φάκελο για τα εξαγόμενα αρχεία";
+"settings.folderPicker.button" = "Επιλογή φακέλου";
+"menu.announcements" = "Ανακοινώσεις";
+"announcements.subtitle" = "Τελευταία νέα και ενημερώσεις από την ομάδα";
+"announcements.empty" = "Δεν υπάρχουν ανακοινώσεις";
+
+"settings.pdfOutputFolder" = "Φάκελος εξόδου PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

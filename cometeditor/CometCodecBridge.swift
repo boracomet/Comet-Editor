@@ -43,10 +43,10 @@ public struct CodecQuality {
 
 // MARK: - MagickWand Bridge
 
-nonisolated(unsafe) private let logger = Logger(subsystem: "com.cometeditor", category: "CometImageCodec")
-
 public class CometImageCodec {
     public static let shared = CometImageCodec()
+
+    private let logger = Logger(subsystem: "com.cometeditor", category: "CometImageCodec")
 
     private init() {
         MagickWandGenesis()
@@ -75,7 +75,7 @@ public class CometImageCodec {
 
         // CGContext ve piksel kopyalaması Task içinde yapılıyor;
         // böylece ctx'in ömrü pixelData'nın ömrüyle garantili örtüşüyor.
-        return try await Task.detached(priority: .userInitiated) {
+        return try await Task.detached(priority: .userInitiated) { [self] in
             // byteOrder32Little + premultipliedFirst = BGRA (native macOS format)
             guard let ctx = CGContext(
                 data: nil,

@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Tühista valik";
 "stock.download" = "Laadi alla";
 "stock.download.count" = "Laadi alla %d fotot";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Sisesta URL või tekst...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Esiplaanil olev värv";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsoreeritud";
 "ad.visit" = "Külasta";
+
+"pdf.quality.modal.title" = "Valige optimeerimise tase";
+"pdf.quality.modal.subtitle" = "Valige, kui palju faili suurust vähendada. Suurem tihendamine tähendab väiksemat faili mõningase kvaliteedi vähenemisega.";
+"pdf.quality.modal.estimated" = "Hinnanguline suurus";
+"pdf.quality.modal.confirm" = "Optimeeri";
+"pdf.quality.modal.cancel" = "Tühista";
+"pdf.quality.low.title" = "Maksimaalne tihendamine";
+"pdf.quality.low.desc" = "Väikseim fail, nähtav kvaliteedi vähenemine";
+"pdf.quality.medium.title" = "Tasakaalustatud";
+"pdf.quality.medium.desc" = "Hea tasakaal suuruse ja kvaliteedi vahel";
+"pdf.quality.high.title" = "Kõrge kvaliteet";
+"pdf.quality.high.desc" = "Minimaalne kvaliteedi vähenemine, mõõdukas vähendamine";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Hooldus käib";
+"app.maintenance.body" = "Rakendus pole ajutiselt saadaval. Tuleme varsti tagasi.";
+"app.forceUpdate.title2" = "Vajalik uuendus";
+"app.forceUpdate.body" = "Jätkamiseks on vajalik uus versioon. Palun uuendage rakendust.";
+"app.forceUpdate.button2" = "Uuenda App Store'is";
+"app.quit2" = "Sulge rakendus";
+
+"settings.subtitle" = "Kohandage oma Comet Editori kogemust";
+"settings.section.output" = "VÄLJUND";
+"settings.defaultOutputFolder" = "Vaikimisi väljundkaust";
+"settings.noFolderSelected" = "Pole valitud — küsitakse iga kord";
+"settings.chooseFolder" = "Vali kaust";
+"settings.clearFolder" = "Tühjenda";
+"settings.folderPicker.message" = "Valige eksporditud failide jaoks vaikekaust";
+"settings.folderPicker.button" = "Vali kaust";
+"menu.announcements" = "Teated";
+"announcements.subtitle" = "Meeskonna viimased uudised ja uuendused";
+"announcements.empty" = "Teateid pole veel";
+
+"settings.pdfOutputFolder" = "PDF väljundkaust";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

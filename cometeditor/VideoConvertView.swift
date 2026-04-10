@@ -80,13 +80,12 @@ struct VideoConvertView: View {
         }
         .onChange(of: previewItem) { item in
             previewPlayer?.pause()
+            previewPlayer = nil
             if let item {
-                // AVFoundation desteklemiyorsa geçici playbackURL kullan
                 let playURL = item.playbackURL ?? item.url
+                _ = playURL.startAccessingSecurityScopedResource()
                 previewPlayer = AVPlayer(url: playURL)
                 previewPlayer?.play()
-            } else {
-                previewPlayer = nil
             }
         }
     }
@@ -130,10 +129,11 @@ struct VideoConvertView: View {
 
             Divider()
 
-            // Video canvas
+            // Video canvas — NSViewRepresentable ile AVPlayerView
             if let player = previewPlayer {
-                VideoPlayer(player: player)
+                AVPlayerViewRepresentable(player: player)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .id(previewItem?.id)
             }
         }
     }
@@ -520,7 +520,10 @@ struct VideoConvertView: View {
                         }
 
                         Button("convert.settings.chooseFolder") {
-                            pickFolder { appState.targetFolder = $0 }
+                            pickFolder { url in
+    appState.handleFolderSelected(url)
+    appState.targetFolder = url
+}
                         }
                         .controlSize(.small)
                     }
@@ -735,6 +738,8 @@ struct VideoConvertView: View {
 
             let ext = url.pathExtension.lowercased()
             let needsFFmpeg = VideoItem.avUnsupportedExtensions.contains(ext)
+
+            _ = url.startAccessingSecurityScopedResource()
 
             Task {
                 var fileSizeStr = "0 KB"
@@ -1019,6 +1024,25 @@ struct VideoConversionSettings {
     let keepMetadata: Bool
 }
 
+
+// MARK: - AVPlayerView NSViewRepresentable (VideoPlayer SwiftUI yerine — macOS beta uyumlu)
+struct AVPlayerViewRepresentable: NSViewRepresentable {
+    let player: AVPlayer
+
+    func makeNSView(context: Context) -> AVPlayerView {
+        let view = AVPlayerView()
+        view.player = player
+        view.controlsStyle = .inline
+        view.showsFullScreenToggleButton = false
+        return view
+    }
+
+    func updateNSView(_ nsView: AVPlayerView, context: Context) {
+        if nsView.player !== player {
+            nsView.player = player
+        }
+    }
+}
 
 #Preview {
     VideoConvertView(columnVisibility: .constant(.all))

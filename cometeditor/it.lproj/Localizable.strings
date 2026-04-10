@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Deseleziona tutto";
 "stock.download" = "Scarica selezionati";
 "stock.download.count" = "Scarica %d foto";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Inserisci URL o testo qui...";
 "qr.settings.colors" = "COLORI";
 "qr.settings.fgColor" = "Colore in primo piano";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsorizzato";
 "ad.visit" = "Visita";
+
+"pdf.quality.modal.title" = "Scegli il livello di ottimizzazione";
+"pdf.quality.modal.subtitle" = "Seleziona quanto ridurre la dimensione del file. Una compressione maggiore significa un file più piccolo con una leggera perdita di qualità.";
+"pdf.quality.modal.estimated" = "Dimensione stimata";
+"pdf.quality.modal.confirm" = "Ottimizza";
+"pdf.quality.modal.cancel" = "Annulla";
+"pdf.quality.low.title" = "Compressione massima";
+"pdf.quality.low.desc" = "File più piccolo, perdita di qualità visibile";
+"pdf.quality.medium.title" = "Bilanciato";
+"pdf.quality.medium.desc" = "Buon equilibrio tra dimensione e qualità";
+"pdf.quality.high.title" = "Alta qualità";
+"pdf.quality.high.desc" = "Perdita di qualità minima, riduzione moderata";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "In manutenzione";
+"app.maintenance.body" = "L'app non è temporaneamente disponibile. Torneremo presto.";
+"app.forceUpdate.title2" = "Aggiornamento richiesto";
+"app.forceUpdate.body" = "È necessaria una nuova versione per continuare. Aggiorna all'ultima versione.";
+"app.forceUpdate.button2" = "Aggiorna sull'App Store";
+"app.quit2" = "Esci dall'app";
+
+"settings.subtitle" = "Personalizza la tua esperienza con Comet Editor";
+"settings.section.output" = "OUTPUT";
+"settings.defaultOutputFolder" = "Cartella di output predefinita";
+"settings.noFolderSelected" = "Non selezionata — verrà richiesto ogni volta";
+"settings.chooseFolder" = "Scegli cartella";
+"settings.clearFolder" = "Cancella";
+"settings.folderPicker.message" = "Scegli una cartella predefinita per i file esportati";
+"settings.folderPicker.button" = "Seleziona cartella";
+"menu.announcements" = "Annunci";
+"announcements.subtitle" = "Ultime notizie e aggiornamenti dal team";
+"announcements.empty" = "Nessun annuncio";
+
+"settings.pdfOutputFolder" = "Cartella di output PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

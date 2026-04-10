@@ -88,6 +88,17 @@
 "pdf.page.count" = "%lld Sayfa";
 "pdf.page.info" = "%lld. Sayfa / %lld";
 "pdf.estimatedSize" = "Tahmini Optimize Boyutu";
+"pdf.quality.modal.title" = "Optimizasyon Seviyesi Seç";
+"pdf.quality.modal.subtitle" = "Dosya boyutunu ne kadar küçülteceğini seç. Daha yüksek sıkıştırma, daha küçük dosya ama biraz kalite kaybı demektir.";
+"pdf.quality.modal.estimated" = "Tahmini boyut";
+"pdf.quality.modal.confirm" = "Optimize Et";
+"pdf.quality.modal.cancel" = "İptal";
+"pdf.quality.low.title" = "Maksimum Sıkıştırma";
+"pdf.quality.low.desc" = "En küçük dosya, görünür kalite kaybı";
+"pdf.quality.medium.title" = "Dengeli";
+"pdf.quality.medium.desc" = "Boyut ve kalite dengesi";
+"pdf.quality.high.title" = "Yüksek Kalite";
+"pdf.quality.high.desc" = "Minimum kalite kaybı, orta sıkıştırma";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF Optimize Et";
 "pdf.tools.quality" = "KALİTE";
@@ -129,6 +140,8 @@
 "stock.deselectAll" = "Seçimi Kaldır";
 "stock.download" = "Seçilenleri İndir";
 "stock.download.count" = "%d Fotoğraf İndir";
+"stock.quality.original" = "Orijinal boyut";
+"stock.quality.low" = "Düşük kalite";
 
 "qr.input.placeholder" = "URL veya metin giriniz...";
 "qr.settings.colors" = "RENKLER";
@@ -228,6 +241,12 @@
 "suggestion.error" = "Gönderilemedi. Lütfen tekrar deneyin.";
 "suggestion.validation.title" = "Eksik Alan";
 "suggestion.validation.body" = "Lütfen başlık ve açıklama girin.";
+"suggestion.captcha.title" = "Spam Koruması";
+"suggestion.captcha.body" = "Çok fazla gönderim. Lütfen çözün: %d + %d = ?";
+"suggestion.captcha.placeholder" = "Cevap";
+"suggestion.captcha.confirm" = "Onayla";
+"suggestion.captcha.cancel" = "İptal";
+"suggestion.captcha.wrong" = "Yanlış cevap. Lütfen tekrar deneyin.";
 
 "video.drop.title" = "Videoyu Sürükle ve Bırak";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
@@ -251,3 +270,31 @@
 
 "ad.sponsored" = "Sponsorlu";
 "ad.visit" = "Ziyaret Et";
+"announcement.understood" = "Anladım";
+
+"menu.announcements" = "Duyurular";
+"announcements.subtitle" = "Ekipten son haberler ve güncellemeler";
+"announcements.empty" = "Henüz duyuru yok";
+
+"settings.subtitle" = "Comet Editor deneyiminizi özelleştirin";
+"settings.section.output" = "ÇIKTI";
+"settings.defaultOutputFolder" = "Varsayılan Çıktı Klasörü";
+"settings.noFolderSelected" = "Seçilmedi — her seferinde sorulacak";
+"settings.chooseFolder" = "Klasör Seç";
+"settings.clearFolder" = "Temizle";
+"settings.folderPicker.message" = "Dışa aktarılan dosyalar için varsayılan klasörü seçin";
+"settings.folderPicker.button" = "Klasörü Seç";
+
+"app.maintenance.title2" = "Şu An Bakım Modundayız";
+"app.maintenance.body" = "Uygulama geçici olarak kullanılamıyor. Kısa süre içinde geri döneceğiz.";
+"app.forceUpdate.title2" = "Güncelleme Gerekli";
+"app.forceUpdate.body" = "Devam etmek için yeni bir sürüm gerekiyor. Lütfen en son sürüme geçin.";
+"app.forceUpdate.button2" = "App Store'dan Güncelle";
+"app.quit2" = "Uygulamayı Kapat";
+
+"settings.pdfOutputFolder" = "PDF Çıktı Klasörü";
+
+"folder.default.prompt.title" = "Varsayılan Klasör Olarak Ayarla?";
+"folder.default.prompt.body" = "Bu klasörü varsayılan çıktı klasörü olarak kaydetmek ister misiniz? Ayarlardan istediğiniz zaman değiştirebilirsiniz.";
+"folder.default.prompt.yes" = "Varsayılan Olarak Ayarla";
+"folder.default.prompt.no" = "Şimdi Değil";

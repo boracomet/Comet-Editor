@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Zrušit výběr všech";
 "stock.download" = "Stáhnout vybrané";
 "stock.download.count" = "Stáhnout %d fotek";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Zadejte URL nebo text zde...";
 "qr.settings.colors" = "BARVY";
 "qr.settings.fgColor" = "Barva popředí";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponzorováno";
 "ad.visit" = "Navštívit";
+
+"pdf.quality.modal.title" = "Vyberte úroveň optimalizace";
+"pdf.quality.modal.subtitle" = "Vyberte, o kolik chcete zmenšit soubor. Vyšší komprese znamená menší soubor s mírnou ztrátou kvality.";
+"pdf.quality.modal.estimated" = "Odhadovaná velikost";
+"pdf.quality.modal.confirm" = "Optimalizovat";
+"pdf.quality.modal.cancel" = "Zrušit";
+"pdf.quality.low.title" = "Maximální komprese";
+"pdf.quality.low.desc" = "Nejmenší soubor, viditelná ztráta kvality";
+"pdf.quality.medium.title" = "Vyvážený";
+"pdf.quality.medium.desc" = "Dobrá rovnováha velikosti a kvality";
+"pdf.quality.high.title" = "Vysoká kvalita";
+"pdf.quality.high.desc" = "Minimální ztráta kvality, mírné zmenšení";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Probíhá údržba";
+"app.maintenance.body" = "Aplikace je dočasně nedostupná. Brzy se vrátíme.";
+"app.forceUpdate.title2" = "Vyžaduje se aktualizace";
+"app.forceUpdate.body" = "K pokračování je nutná nová verze. Prosím aktualizujte aplikaci.";
+"app.forceUpdate.button2" = "Aktualizovat v App Store";
+"app.quit2" = "Zavřít aplikaci";
+
+"settings.subtitle" = "Přizpůsobte si Comet Editor";
+"settings.section.output" = "VÝSTUP";
+"settings.defaultOutputFolder" = "Výchozí výstupní složka";
+"settings.noFolderSelected" = "Nevybráno — bude dotazováno pokaždé";
+"settings.chooseFolder" = "Vybrat složku";
+"settings.clearFolder" = "Vymazat";
+"settings.folderPicker.message" = "Vyberte výchozí složku pro exportované soubory";
+"settings.folderPicker.button" = "Vybrat složku";
+"menu.announcements" = "Oznámení";
+"announcements.subtitle" = "Nejnovější zprávy a aktualizace od týmu";
+"announcements.empty" = "Žádná oznámení";
+
+"settings.pdfOutputFolder" = "Výstupní složka PDF";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

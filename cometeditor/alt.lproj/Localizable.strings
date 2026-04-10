@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Бÿдÿн кезер";
 "stock.download" = "Талданындарды jÿкте";
 "stock.download.count" = "%d сÿрÿк jÿкте";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL неме текст кийдир...";
 "qr.settings.colors" = "ÖÖДÖЛÖР";
 "qr.settings.fgColor" = "Мурнузынан ööдö";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Реклама";
 "ad.visit" = "Баруга";
+
+"pdf.quality.modal.title" = "Выбор уровня оптимизации";
+"pdf.quality.modal.subtitle" = "Выберите степень уменьшения размера файла. Более высокое сжатие означает меньший файл с некоторой потерей качества.";
+"pdf.quality.modal.estimated" = "Ожидаемый размер";
+"pdf.quality.modal.confirm" = "Оптимизировать";
+"pdf.quality.modal.cancel" = "Отмена";
+"pdf.quality.low.title" = "Максимальное сжатие";
+"pdf.quality.low.desc" = "Наименьший файл, заметная потеря качества";
+"pdf.quality.medium.title" = "Сбалансированный";
+"pdf.quality.medium.desc" = "Хороший баланс размера и качества";
+"pdf.quality.high.title" = "Высокое качество";
+"pdf.quality.high.desc" = "Минимальная потеря качества, умеренное уменьшение";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Техникалык иш";
+"app.maintenance.body" = "Колдонмо убактылуу жок. Тез эле кайтабыз.";
+"app.forceUpdate.title2" = "Жаңыртуу керек";
+"app.forceUpdate.body" = "Улантуу үчүн жаңы версия керек. Жаңырт.";
+"app.forceUpdate.button2" = "App Store'до жаңырт";
+"app.quit2" = "Колдонмону жап";
+
+"settings.subtitle" = "Comet Editor тажрыбаны аайлаштыр";
+"settings.section.output" = "ЧЫГЫШ";
+"settings.defaultOutputFolder" = "Белгиленген чыгыш папкасы";
+"settings.noFolderSelected" = "Талданбаган — ар катап сураар";
+"settings.chooseFolder" = "Папка тандоо";
+"settings.clearFolder" = "Тазалоо";
+"settings.folderPicker.message" = "Чыгарылган файлдар учун белгиленген папка тандаңар";
+"settings.folderPicker.button" = "Папка тандоо";
+"menu.announcements" = "Кепшеткичтер";
+"announcements.subtitle" = "Командадан акыркы чабалдыктар";
+"announcements.empty" = "Кепшеткич жок";
+
+"settings.pdfOutputFolder" = "PDF чыгыш папкасы";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

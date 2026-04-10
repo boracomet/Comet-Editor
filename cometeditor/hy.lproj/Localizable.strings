@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Handel ambogy";
 "stock.download" = "Berchat";
 "stock.download.count" = "Berchat %d nkerner";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Muts URL kam bnagrë...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Dzer gravi guyné";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Գovазнvор";
 "ad.visit" = "Aнцнvел";
+
+"pdf.quality.modal.title" = "Ընտրեք օպտիմիզացիայի մակարդակ";
+"pdf.quality.modal.subtitle" = "Ընտրեք, թե որքան կրճատել ֆայլի չափը: Ավելի բարձր սեղմումը նշանակում է փոքր ֆայլ՝ որոշ որակի կորստով:";
+"pdf.quality.modal.estimated" = "Գնահատված չափ";
+"pdf.quality.modal.confirm" = "Օպտիմիզացնել";
+"pdf.quality.modal.cancel" = "Չեղարկել";
+"pdf.quality.low.title" = "Առավելագույն սեղմում";
+"pdf.quality.low.desc" = "Ամենափոքր ֆայլ, տեսանելի որակի կորուստ";
+"pdf.quality.medium.title" = "Հավասարակշռված";
+"pdf.quality.medium.desc" = "Չափի և որակի լավ հավասարակշռություն";
+"pdf.quality.high.title" = "Բարձր որակ";
+"pdf.quality.high.desc" = "Նվազագույն որակի կորուստ, չափավոր կրճատում";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Տեխնիկական սպասարկում";
+"app.maintenance.body" = "Հավելվածն ժամանակավոր անհասանելի է: Շուտով կվերադառնանք:";
+"app.forceUpdate.title2" = "Անհրաժեշտ է թարմացում";
+"app.forceUpdate.body" = "Շարունակելու համար անհրաժեշտ է նոր տարբերակ: Խնդրում ենք թարմացնել:";
+"app.forceUpdate.button2" = "Թարմացնել App Store-ում";
+"app.quit2" = "Փակել հավելվածը";
+
+"settings.subtitle" = "Հարմարեցրեք Comet Editor-ի ձեր փորձը";
+"settings.section.output" = "ԵԼՔ";
+"settings.defaultOutputFolder" = "Ելքի լռելյայն թղթապանակ";
+"settings.noFolderSelected" = "Ընտրված չէ — ամեն անգամ կհարցնի";
+"settings.chooseFolder" = "Ընտրել թղթապանակ";
+"settings.clearFolder" = "Մաքրել";
+"settings.folderPicker.message" = "Ընտրեք լռելյայն թղթապանակ արտահանված ֆայլերի համար";
+"settings.folderPicker.button" = "Ընտրել թղթապանակ";
+"menu.announcements" = "Հայտարարություններ";
+"announcements.subtitle" = "Թիմի վերջին նորությունները և թարմացումները";
+"announcements.empty" = "Հայտարարություններ չկան";
+
+"settings.pdfOutputFolder" = "PDF ելքի թղթապանակ";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

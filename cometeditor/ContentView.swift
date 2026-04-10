@@ -18,6 +18,12 @@ struct ContentView: View {
     @State private var forceUpdateInfo: AppConfig.ForceUpdateInfo? = nil
     @State private var showMaintenance = false
     @State private var showForceUpdate = false
+    @State private var pendingAnnouncements: [AppConfig.AnnouncementInfo] = []
+    @State private var shownAnnouncementIds: Set<Int> = {
+        let arr = UserDefaults.standard.array(forKey: "comet_shown_announcement_ids") as? [Int] ?? []
+        return Set(arr)
+    }()
+    @State private var currentAnnouncement: AppConfig.AnnouncementInfo? = nil
 
     private var selectedItem: Binding<MenuItem> {
         Binding(
@@ -25,6 +31,21 @@ struct ContentView: View {
             set: {
                 selectedItemRaw = $0.rawValue
                 CometAnalytics.shared.trackEvent(page: $0.rawValue, eventType: .pageView)
+                // Feature bazlı sayfa görüntüleme
+                let featurePageViewEvent: CometEventType? = switch $0 {
+                case .convertImage:  .imagePageView
+                case .videoConvert:  .videoPageView
+                case .ocr:           .ocrPageView
+                case .bgRemove:      .bgPageView
+                case .qrCode:        .qrPageView
+                case .pdfEdit:       .pdfPageView
+                case .fontDownload:  .fontPageView
+                case .stockImage:    .stockPageView
+                default:             nil
+                }
+                if let event = featurePageViewEvent {
+                    CometAnalytics.shared.trackEvent(page: $0.rawValue, eventType: event)
+                }
             }
         )
     }
@@ -43,8 +64,7 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
             Task { await checkAppConfig(forceRefresh: true) }
         }
-        .onReceive(Timer.publish(every: 300, on: .main, in: .common).autoconnect()) { _ in
-            guard !showMaintenance, !showForceUpdate else { return }
+        .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { _ in
             Task { await checkAppConfig(forceRefresh: true) }
         }
         .overlay {
@@ -59,7 +79,26 @@ struct ContentView: View {
                     .zIndex(999)
             }
         }
+        .sheet(item: $currentAnnouncement) { ann in
+            AnnouncementSheetView(announcement: ann) {
+                currentAnnouncement = nil
+                showNextAnnouncementIfNeeded()
+            }
+        }
         .toolbar(showMaintenance || showForceUpdate ? .hidden : .automatic)
+        .alert(LocalizedStringKey("folder.default.prompt.title"), isPresented: $appState.showDefaultFolderPrompt) {
+            Button(LocalizedStringKey("folder.default.prompt.yes")) {
+                if let url = appState.pendingDefaultFolderURL {
+                    appState.targetFolder = url
+                }
+                appState.pendingDefaultFolderURL = nil
+            }
+            Button(LocalizedStringKey("folder.default.prompt.no"), role: .cancel) {
+                appState.pendingDefaultFolderURL = nil
+            }
+        } message: {
+            Text(LocalizedStringKey("folder.default.prompt.body"))
+        }
     }
 
     // MARK: - App Config Check
@@ -85,6 +124,33 @@ struct ContentView: View {
         } else {
             showForceUpdate = false
         }
+
+        // macOS hedefli duyuruları filtrele ve kaydet
+        let macAnnouncements = config.announcements.filter { $0.target == "all" || $0.target == "macos" }
+        appState.cachedAnnouncements = macAnnouncements
+
+        // Sunucuda artık olmayan id'leri temizle (silinmiş duyurular tekrar bloklamasın)
+        let activeIds = Set(macAnnouncements.map { $0.id })
+        let staleIds = shownAnnouncementIds.subtracting(activeIds)
+        if !staleIds.isEmpty {
+            shownAnnouncementIds.subtract(staleIds)
+            UserDefaults.standard.set(Array(shownAnnouncementIds), forKey: "comet_shown_announcement_ids")
+        }
+
+        // Daha önce gösterilmemiş duyuruları kuyruğa al
+        let unseen = macAnnouncements.filter { !shownAnnouncementIds.contains($0.id) }
+        if !unseen.isEmpty {
+            pendingAnnouncements = unseen
+            showNextAnnouncementIfNeeded()
+        }
+    }
+
+    private func showNextAnnouncementIfNeeded() {
+        guard currentAnnouncement == nil, let next = pendingAnnouncements.first else { return }
+        pendingAnnouncements.removeFirst()
+        shownAnnouncementIds.insert(next.id)
+        UserDefaults.standard.set(Array(shownAnnouncementIds), forKey: "comet_shown_announcement_ids")
+        currentAnnouncement = next
     }
 
     // MARK: - Maintenance Full Screen
@@ -98,15 +164,15 @@ struct ContentView: View {
                 Image(systemName: "wrench.and.screwdriver.fill")
                     .font(.system(size: 64, weight: .light))
                     .foregroundStyle(.secondary)
-                Text(LocalizedStringKey("app.maintenance.title"))
+                Text(LocalizedStringKey("app.maintenance.title2"))
                     .font(.system(size: 28, weight: .bold))
-                Text(maintenanceMessage ?? "")
+                Text(LocalizedStringKey("app.maintenance.body"))
                     .font(.body)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 400)
 
-                Button(LocalizedStringKey("app.quit")) {
+                Button(LocalizedStringKey("app.quit2")) {
                     NSApplication.shared.terminate(nil)
                 }
                 .buttonStyle(.borderedProminent)
@@ -130,29 +196,29 @@ struct ContentView: View {
                 Image(systemName: "arrow.down.circle.fill")
                     .font(.system(size: 64, weight: .light))
                     .foregroundStyle(.blue)
-                Text(LocalizedStringKey("app.forceUpdate.title"))
+                Text(LocalizedStringKey("app.forceUpdate.title2"))
                     .font(.system(size: 28, weight: .bold))
-                if let info = forceUpdateInfo {
-                    Text(info.message)
-                        .font(.body)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: 400)
-                }
+                Text(LocalizedStringKey("app.forceUpdate.body"))
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 400)
 
                 HStack(spacing: 12) {
-                    Button(LocalizedStringKey("app.quit")) {
-                        NSApplication.shared.terminate(nil)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.secondary)
-
-                    if let info = forceUpdateInfo, let url = URL(string: info.storeUrl) {
-                        Button(LocalizedStringKey("app.forceUpdate.button")) {
+                    if let info = forceUpdateInfo,
+                       !info.storeUrl.isEmpty,
+                       let url = URL(string: info.storeUrl) {
+                        Button(LocalizedStringKey("app.forceUpdate.button2")) {
                             NSWorkspace.shared.open(url)
                         }
                         .buttonStyle(.borderedProminent)
                     }
+
+                    Button(LocalizedStringKey("app.quit2")) {
+                        NSApplication.shared.terminate(nil)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.secondary)
                 }
                 .padding(.top, 8)
             }
@@ -186,6 +252,10 @@ struct ContentView: View {
             FontDownloadView(columnVisibility: $columnVisibility)
         case .suggestion:
             SuggestionView()
+        case .announcements:
+            AnnouncementsView()
+        case .settings:
+            AppSettingsView()
         case .team:
             TeamModalView()
         }

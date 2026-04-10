@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Alles deselecteren";
 "stock.download" = "Geselecteerde downloaden";
 "stock.download.count" = "%d foto's downloaden";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Voer URL of tekst in...";
 "qr.settings.colors" = "KLEUREN";
 "qr.settings.fgColor" = "Voorgrondkleur";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Gesponsord";
 "ad.visit" = "Bezoeken";
+
+"pdf.quality.modal.title" = "Optimalisatieniveau kiezen";
+"pdf.quality.modal.subtitle" = "Selecteer hoeveel de bestandsgrootte moet worden verkleind. Hogere compressie betekent een kleiner bestand met enig kwaliteitsverlies.";
+"pdf.quality.modal.estimated" = "Geschatte grootte";
+"pdf.quality.modal.confirm" = "Optimaliseren";
+"pdf.quality.modal.cancel" = "Annuleren";
+"pdf.quality.low.title" = "Maximale compressie";
+"pdf.quality.low.desc" = "Kleinste bestand, zichtbaar kwaliteitsverlies";
+"pdf.quality.medium.title" = "Uitgebalanceerd";
+"pdf.quality.medium.desc" = "Goede balans tussen grootte en kwaliteit";
+"pdf.quality.high.title" = "Hoge kwaliteit";
+"pdf.quality.high.desc" = "Minimaal kwaliteitsverlies, matige verkleining";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Onderhoud bezig";
+"app.maintenance.body" = "De app is tijdelijk niet beschikbaar. We zijn snel terug.";
+"app.forceUpdate.title2" = "Update vereist";
+"app.forceUpdate.body" = "Een nieuwe versie is vereist om door te gaan. Update de app.";
+"app.forceUpdate.button2" = "Bijwerken in App Store";
+"app.quit2" = "App afsluiten";
+
+"settings.subtitle" = "Pas Comet Editor aan uw wensen aan";
+"settings.section.output" = "UITVOER";
+"settings.defaultOutputFolder" = "Standaard uitvoermap";
+"settings.noFolderSelected" = "Niet geselecteerd — elke keer gevraagd";
+"settings.chooseFolder" = "Map kiezen";
+"settings.clearFolder" = "Wissen";
+"settings.folderPicker.message" = "Kies een standaardmap voor geëxporteerde bestanden";
+"settings.folderPicker.button" = "Map selecteren";
+"menu.announcements" = "Aankondigingen";
+"announcements.subtitle" = "Laatste nieuws en updates van het team";
+"announcements.empty" = "Nog geen aankondigingen";
+
+"settings.pdfOutputFolder" = "PDF uitvoermap";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

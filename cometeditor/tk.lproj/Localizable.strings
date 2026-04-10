@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Hemmesini aýyr";
 "stock.download" = "Saýlananlary ýükle";
 "stock.download.count" = "%d suraty ýükle";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "URL ýa-da tekst giriziň...";
 "qr.settings.colors" = "REŇKLER";
 "qr.settings.fgColor" = "Öň plan reňki";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Mahabat";
 "ad.visit" = "Baryp gör";
+
+"pdf.quality.modal.title" = "Optimizirleme derejesini saýlaň";
+"pdf.quality.modal.subtitle" = "Faýlyň ululygyny näçe azaltmalydygyny saýlaň. Ýokary gysyş has kiçi faýl, ýöne hil biraz peseler.";
+"pdf.quality.modal.estimated" = "Takmynan ululyk";
+"pdf.quality.modal.confirm" = "Optimizirle";
+"pdf.quality.modal.cancel" = "Ýatyr";
+"pdf.quality.low.title" = "Iň ýokary gysyş";
+"pdf.quality.low.desc" = "Iň kiçi faýl, görünýän hil ýitgisi";
+"pdf.quality.medium.title" = "Deňagramly";
+"pdf.quality.medium.desc" = "Ululyk we hiliň gowy deňagramlylygy";
+"pdf.quality.high.title" = "Ýokary hil";
+"pdf.quality.high.desc" = "Iň az hil ýitgisi, orta azalma";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Tehniki hyzmat";
+"app.maintenance.body" = "Goşundy wagtlaýyn elýeterli däl. Ýakyn wagtda gaýdyp geleris.";
+"app.forceUpdate.title2" = "Täzelenmek zerur";
+"app.forceUpdate.body" = "Dowam etmek üçin täze wersiýa zerur. Täzeläp beriň.";
+"app.forceUpdate.button2" = "App Store-da täzele";
+"app.quit2" = "Programmany ýap";
+
+"settings.subtitle" = "Comet Editor tejribäňizi düzeltmek";
+"settings.section.output" = "ÇYKYŞ";
+"settings.defaultOutputFolder" = "Girizilen yzygiderli bukja";
+"settings.noFolderSelected" = "Saýlanmadyk — her gezek soralýar";
+"settings.chooseFolder" = "Bukja saýlamak";
+"settings.clearFolder" = "Arassalamak";
+"settings.folderPicker.message" = "Eksport edilen faýllar üçin adaty bukja saýlaň";
+"settings.folderPicker.button" = "Bukja saýlamak";
+"menu.announcements" = "Yglanlar";
+"announcements.subtitle" = "Topardan soňky täzelikler";
+"announcements.empty" = "Yglan ýok";
+
+"settings.pdfOutputFolder" = "PDF çykyş bukjasy";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";

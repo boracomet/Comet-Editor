@@ -371,7 +371,10 @@ private struct BgRemoveMainView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.red.opacity(0.2), lineWidth: 1))
                         }
                         Button("convert.settings.chooseFolder") {
-                            pickFolder { appState.targetFolder = $0 }
+                            pickFolder { url in
+                                appState.handleFolderSelected(url)
+                                appState.targetFolder = url
+                            }
                         }
                         .controlSize(.small)
                     }

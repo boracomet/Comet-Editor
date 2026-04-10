@@ -102,6 +102,8 @@
 "stock.deselectAll" = "Noņemt atlasi";
 "stock.download" = "Lejupielādēt";
 "stock.download.count" = "Lejupielādēt %d fotogrāfijas";
+"stock.quality.original" = "Original size";
+"stock.quality.low" = "Low quality";
 "qr.input.placeholder" = "Ievadiet URL vai tekstu...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Priekšplāna krāsa";
@@ -239,3 +241,44 @@
 
 "ad.sponsored" = "Sponsorēts";
 "ad.visit" = "Apmeklēt";
+
+"pdf.quality.modal.title" = "Izvēlieties optimizācijas līmeni";
+"pdf.quality.modal.subtitle" = "Izvēlieties, cik daudz samazināt faila izmēru. Augstāka saspiešana nozīmē mazāku failu ar nelielu kvalitātes zudumu.";
+"pdf.quality.modal.estimated" = "Paredzamais izmērs";
+"pdf.quality.modal.confirm" = "Optimizēt";
+"pdf.quality.modal.cancel" = "Atcelt";
+"pdf.quality.low.title" = "Maksimālā saspiešana";
+"pdf.quality.low.desc" = "Mazākais fails, redzams kvalitātes zudums";
+"pdf.quality.medium.title" = "Sabalansēts";
+"pdf.quality.medium.desc" = "Labs izmēra un kvalitātes balanss";
+"pdf.quality.high.title" = "Augsta kvalitāte";
+"pdf.quality.high.desc" = "Minimāls kvalitātes zudums, mērena samazināšana";
+
+
+"announcement.understood" = "OK";
+
+"app.maintenance.title2" = "Notiek apkope";
+"app.maintenance.body" = "Lietotne īslaicīgi nav pieejama. Drīz atgriezīsimies.";
+"app.forceUpdate.title2" = "Nepieciešams atjauninājums";
+"app.forceUpdate.body" = "Turpināšanai nepieciešama jauna versija. Lūdzu atjauniniet.";
+"app.forceUpdate.button2" = "Atjaunināt App Store";
+"app.quit2" = "Aizvērt lietotni";
+
+"settings.subtitle" = "Pielāgojiet savu Comet Editor pieredzi";
+"settings.section.output" = "IZVADE";
+"settings.defaultOutputFolder" = "Noklusējuma izvades mape";
+"settings.noFolderSelected" = "Nav izvēlēta — katru reizi tiks jautāts";
+"settings.chooseFolder" = "Izvēlēties mapi";
+"settings.clearFolder" = "Notīrīt";
+"settings.folderPicker.message" = "Izvēlieties noklusējuma mapi eksportētajiem failiem";
+"settings.folderPicker.button" = "Izvēlēties mapi";
+"menu.announcements" = "Paziņojumi";
+"announcements.subtitle" = "Komandas jaunākās ziņas un atjauninājumi";
+"announcements.empty" = "Vēl nav paziņojumu";
+
+"settings.pdfOutputFolder" = "PDF izvades mape";
+
+"folder.default.prompt.title" = "Set as Default Folder?";
+"folder.default.prompt.body" = "Would you like to set this as your default output folder? You can change it anytime in Settings.";
+"folder.default.prompt.yes" = "Set as Default";
+"folder.default.prompt.no" = "Not Now";
