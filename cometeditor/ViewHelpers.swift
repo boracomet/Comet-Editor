@@ -70,20 +70,30 @@ extension View {
 }
 
 // MARK: - Shared Inspector Section (ConvertImageView / VideoConvertView style)
-// Single inspectorSection — always resolves through LanguageManager for runtime i18n
+/// Dil değişiminde yeniden çizim için `LanguageManager` ortam nesnesini kullanır.
+struct LabeledInspectorSection<Content: View>: View {
+    let titleKey: String
+    @ViewBuilder var content: () -> Content
+    @EnvironmentObject private var languageManager: LanguageManager
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(languageManager.string(titleKey))
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(Color.secondary)
+                .textCase(.uppercase)
+            content()
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
+    }
+}
+
 func inspectorSection<Content: View>(
     _ titleKey: String,
-    @ViewBuilder content: () -> Content
+    @ViewBuilder content: @escaping () -> Content
 ) -> some View {
-    VStack(alignment: .leading, spacing: 8) {
-        Text(LanguageManager.shared.string(titleKey))
-            .font(.system(size: 11, weight: .semibold))
-            .foregroundStyle(Color.secondary)
-            .textCase(.uppercase)
-        content()
-    }
-    .padding(.vertical, 12)
-    .padding(.horizontal, 16)
+    LabeledInspectorSection(titleKey: titleKey, content: content)
 }
 
 // MARK: - Wrong Drop Type Overlay

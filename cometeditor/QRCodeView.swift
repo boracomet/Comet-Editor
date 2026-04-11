@@ -49,11 +49,11 @@ enum WiFiEncryption: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var displayName: String {
+    var localizationKey: String {
         switch self {
-        case .wpa:  return "WPA/WPA2"
-        case .wep:  return "WEP"
-        case .none: return LanguageManager.shared.string("qr.wifi.noEncryption")
+        case .wpa:  return "qr.wifi.enc.wpa"
+        case .wep:  return "qr.wifi.enc.wep"
+        case .none: return "qr.wifi.noEncryption"
         }
     }
 }
@@ -107,6 +107,7 @@ struct QRCodeView: View {
 
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var windowState: WindowStateObserver
 
     private let context = CIContext()
@@ -275,7 +276,7 @@ struct QRCodeView: View {
                 Button(action: downloadQRCode) {
                     HStack {
                         Image(systemName: "square.and.arrow.down")
-                        Text("qr.download")
+                        Text(languageManager.string("qr.download"))
                             .fontWeight(.semibold)
                     }
                     .frame(maxWidth: .infinity)
@@ -310,7 +311,7 @@ struct QRCodeView: View {
                         Button {
                             wifiEncryption = enc
                         } label: {
-                            Text(enc.displayName)
+                            Text(languageManager.string(enc.localizationKey))
                                 .font(.system(size: 11, weight: .semibold))
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 7)
@@ -322,7 +323,7 @@ struct QRCodeView: View {
                     }
                 }
                 HStack {
-                    Text(LanguageManager.shared.string("qr.wifi.hidden"))
+                    Text(languageManager.string("qr.wifi.hidden"))
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                     Spacer()
@@ -375,16 +376,16 @@ struct QRCodeView: View {
                     .frame(width: 18)
             }
             if isSecure {
-                SecureField(LanguageManager.shared.string(placeholderKey), text: text)
+                SecureField(languageManager.string(placeholderKey), text: text)
                     .textFieldStyle(.plain)
                     .font(.system(size: 14))
             } else if lineLimit > 1 {
-                TextField(LanguageManager.shared.string(placeholderKey), text: text, axis: .vertical)
+                TextField(languageManager.string(placeholderKey), text: text, axis: .vertical)
                     .textFieldStyle(.plain)
                     .font(.system(size: 14))
                     .lineLimit(lineLimit...lineLimit + 2)
             } else {
-                TextField(LanguageManager.shared.string(placeholderKey), text: text)
+                TextField(languageManager.string(placeholderKey), text: text)
                     .textFieldStyle(.plain)
                     .font(.system(size: 14))
             }
@@ -405,7 +406,7 @@ struct QRCodeView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text(LanguageManager.shared.string("convert.settings.title"))
+                    Text(languageManager.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -427,7 +428,7 @@ struct QRCodeView: View {
                                     Image(systemName: type.icon)
                                         .font(.system(size: 12, weight: .medium))
                                         .frame(width: 18)
-                                    Text(LanguageManager.shared.string(type.localizationKey))
+                                    Text(languageManager.string(type.localizationKey))
                                         .font(.system(size: 12, weight: .medium))
                                     Spacer()
                                     if selectedType == type {
@@ -470,10 +471,10 @@ struct QRCodeView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("qr.settings.customSize")
+                            Text(languageManager.string("qr.settings.customSize"))
                                 .font(.system(size: 11, weight: .medium))
                                 .foregroundStyle(Color.secondary)
-                            TextField("px", text: $customSize)
+                            TextField(languageManager.string("qr.settings.sizeUnit"), text: $customSize)
                                 .textFieldStyle(.roundedBorder)
                                 .controlSize(.small)
                                 .onChange(of: customSize) { newValue in
@@ -490,7 +491,7 @@ struct QRCodeView: View {
                 inspectorSection("qr.settings.colors") {
                     VStack(spacing: 12) {
                         HStack {
-                            Text("qr.settings.showBg")
+                            Text(languageManager.string("qr.settings.showBg"))
                                 .font(.system(size: 13))
                             Spacer()
                             Toggle("", isOn: $showBackground)
@@ -504,7 +505,7 @@ struct QRCodeView: View {
                                 .opacity(0.5)
 
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("qr.settings.cornerRadius")
+                                Text(languageManager.string("qr.settings.cornerRadius"))
                                     .font(.system(size: 11, weight: .medium))
                                     .foregroundStyle(Color.secondary)
                                 Slider(value: $cornerRadius, in: 0...60)
@@ -515,7 +516,7 @@ struct QRCodeView: View {
                                 .opacity(0.5)
 
                             HStack {
-                                Text("qr.settings.fgColor")
+                                Text(languageManager.string("qr.settings.fgColor"))
                                     .font(.system(size: 13))
                                 Spacer()
                                 ColorPicker("", selection: $fgColor)
@@ -526,7 +527,7 @@ struct QRCodeView: View {
                                 .opacity(0.5)
 
                             HStack {
-                                Text("qr.settings.bgColor")
+                                Text(languageManager.string("qr.settings.bgColor"))
                                     .font(.system(size: 13))
                                 Spacer()
                                 ColorPicker("", selection: $bgColor)
@@ -537,7 +538,7 @@ struct QRCodeView: View {
                                 .opacity(0.5)
 
                             HStack {
-                                Text("qr.settings.fgColor")
+                                Text(languageManager.string("qr.settings.fgColor"))
                                     .font(.system(size: 13))
                                 Spacer()
                                 ColorPicker("", selection: $fgColor)

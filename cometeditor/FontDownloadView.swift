@@ -216,6 +216,7 @@ struct FontDownloadView: View {
     @State private var selectedFont: GoogleFont? = nil
     @State private var downloadingFonts: Set<String> = []
     @State private var downloadedFonts: Set<String> = []
+    @State private var installedFonts: Set<String> = []
 
     private let searchDebounce = 0.3
 
@@ -245,6 +246,8 @@ struct FontDownloadView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
         .task {
+            let systemFamilies = Set(NSFontManager.shared.availableFontFamilies)
+            installedFonts = systemFamilies
             await service.loadFonts(sortBy: sortOption)
         }
         .onChange(of: searchQuery) { _ in applyFilter() }
@@ -355,6 +358,7 @@ struct FontDownloadView: View {
                                 fontSize: fontSize,
                                 isDownloading: downloadingFonts.contains(font.id),
                                 isDownloaded: downloadedFonts.contains(font.id),
+                                isInstalled: installedFonts.contains(font.family),
                                 onDownload: { downloadFont(font) }
                             )
                             .onTapGesture { selectedFont = font }
@@ -386,7 +390,7 @@ struct FontDownloadView: View {
                 Divider()
 
                 // Preview settings
-                inspectorSection(languageManager.string("font.inspector.preview")) {
+                inspectorSection("font.inspector.preview") {
                     VStack(alignment: .leading, spacing: 10) {
                         TextField(languageManager.string("font.preview.custom"), text: $previewText)
                             .textFieldStyle(.roundedBorder)
@@ -411,7 +415,7 @@ struct FontDownloadView: View {
                 Divider()
 
                 // Feeling Filter
-                inspectorSection(languageManager.string("font.inspector.feeling")) {
+                inspectorSection("font.inspector.feeling") {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
                         ForEach(FontFeeling.allCases, id: \.self) { feeling in
                             FeelingChip(
@@ -429,7 +433,7 @@ struct FontDownloadView: View {
                 Divider()
 
                 // Language / Writing System
-                inspectorSection(languageManager.string("font.inspector.language")) {
+                inspectorSection("font.inspector.language") {
                     Picker("", selection: $selectedWritingSystem) {
                         ForEach(writingSystems) { ws in
                             Text(languageManager.string(ws.labelKey)).tag(ws)
@@ -513,15 +517,17 @@ struct FontRow: View {
     let fontSize: CGFloat
     let isDownloading: Bool
     let isDownloaded: Bool
+    let isInstalled: Bool
     let onDownload: () -> Void
 
     @State private var loadedFont: NSFont? = nil
     @State private var isHovered = false
 
+    private var alreadyHave: Bool { isInstalled || isDownloaded }
+
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading, spacing: 6) {
-                // Family name + meta
                 HStack(spacing: 8) {
                     Text(font.family)
                         .font(.system(size: 13, weight: .semibold))
@@ -538,9 +544,19 @@ struct FontRow: View {
                     Text(font.category)
                         .font(.system(size: 11))
                         .foregroundStyle(Color.secondary)
+
+                    if isInstalled {
+                        Text(LanguageManager.shared.string("font.installed"))
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundStyle(.green)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(
+                                Capsule().fill(Color.green.opacity(0.12))
+                            )
+                    }
                 }
 
-                // Preview text
                 if let nsFont = loadedFont {
                     Text(previewText)
                         .font(.init(nsFont.withSize(fontSize)))
@@ -559,14 +575,13 @@ struct FontRow: View {
             .padding(.vertical, 16)
             .padding(.horizontal, 24)
 
-            // Download button (always visible)
             Button(action: onDownload) {
                 Group {
                     if isDownloading {
                         ProgressView()
                             .controlSize(.small)
                             .frame(width: 20, height: 20)
-                    } else if isDownloaded {
+                    } else if alreadyHave {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 20))
                             .foregroundStyle(.green)
@@ -578,7 +593,7 @@ struct FontRow: View {
                 }
             }
             .buttonStyle(.plain)
-            .disabled(isDownloading || isDownloaded)
+            .disabled(isDownloading || alreadyHave)
             .padding(.trailing, 24)
         }
         .background(isHovered ? Color.primary.opacity(0.03) : Color.clear)
@@ -655,7 +670,7 @@ private struct FontDetailModal: View {
     @State private var fontSize: CGFloat = 48
     @State private var loadedFonts: [String: NSFont] = [:]
 
-    private let previewDefault = "Whereas recognition of the inherent dignity"
+    private var previewDefault: String { LanguageManager.shared.string("font.preview.pangram") }
 
     var body: some View {
         ZStack {
@@ -781,26 +796,34 @@ private struct FontDetailModal: View {
     }
 
     private func variantDisplayName(_ v: String) -> String {
+        let lm = LanguageManager.shared
         switch v {
-        case "regular": return "Regular 400"
-        case "italic":  return "Italic 400"
+        case "regular": return lm.string("font.variant.regular")
+        case "italic": return lm.string("font.variant.italic")
         default:
             let isItalic = v.hasSuffix("italic")
             let weightStr = isItalic ? String(v.dropLast("italic".count)) : v
             let weight = Int(weightStr) ?? 400
-            let name: String
-            switch weight {
-            case 100: name = "Thin"
-            case 200: name = "ExtraLight"
-            case 300: name = "Light"
-            case 500: name = "Medium"
-            case 600: name = "SemiBold"
-            case 700: name = "Bold"
-            case 800: name = "ExtraBold"
-            case 900: name = "Black"
-            default:  name = "\(weight)"
+            let name = localizedFontWeightName(weight)
+            if isItalic {
+                return String(format: lm.string("font.typography.weightPairItalic"), name, weight)
             }
-            return isItalic ? "\(name) \(weight) Italic" : "\(name) \(weight)"
+            return String(format: lm.string("font.typography.weightPair"), name, weight)
+        }
+    }
+
+    private func localizedFontWeightName(_ weight: Int) -> String {
+        let lm = LanguageManager.shared
+        switch weight {
+        case 100: return lm.string("font.weight.100")
+        case 200: return lm.string("font.weight.200")
+        case 300: return lm.string("font.weight.300")
+        case 500: return lm.string("font.weight.500")
+        case 600: return lm.string("font.weight.600")
+        case 700: return lm.string("font.weight.700")
+        case 800: return lm.string("font.weight.800")
+        case 900: return lm.string("font.weight.900")
+        default: return String(weight)
         }
     }
 
@@ -829,5 +852,8 @@ private struct FontDetailModal: View {
 
 #Preview {
     FontDownloadView(columnVisibility: .constant(NavigationSplitViewVisibility.all))
+        .environmentObject(GlobalAppState())
+        .environmentObject(WindowStateObserver())
+        .environmentObject(LanguageManager.shared)
         .frame(width: 900, height: 700)
 }

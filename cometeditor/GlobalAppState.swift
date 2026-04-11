@@ -31,6 +31,13 @@ enum HomePDFPreset: Equatable {
     case optimize     // Optimize modal'ı aç
 }
 
+/// Video düzenleyicide çözünürlük: yüzde çarpanı veya özel piksel boyutu
+enum VideoEditResizeKind: String, CaseIterable, Identifiable {
+    case percent
+    case custom
+    var id: String { rawValue }
+}
+
 enum HomeQuickVideoPreset: Equatable {
     /// MP4 (H.264), dengeli kalite — paylaşım için hızlı başlangıç.
     case quickMp4Balanced
@@ -338,6 +345,10 @@ class GlobalAppState: ObservableObject {
     @Published var videoEditSelectedFPS: FPSLimit = .original
     @Published var videoEditScaleEnabled: Bool = false
     @Published var videoEditSelectedScale: ResolutionScale = .original
+    @Published var videoEditResizeKind: VideoEditResizeKind = .percent
+    @Published var videoEditCustomWidthText: String = "1920"
+    @Published var videoEditCustomHeightText: String = "1080"
+    @Published var videoEditAutoFillCanvas: Bool = true
     @Published var videoEditRemoveAudio: Bool = false
     @Published var videoEditMetadataEnabled: Bool = true
     @Published var videoEditImageDuration: Double = 5.0

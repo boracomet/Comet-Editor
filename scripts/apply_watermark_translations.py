@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""
+watermark.* anahtarlarını tüm .lproj dosyalarına i18n/watermark_bundles.json + kurallardan yazar.
+tr için mevcut tr.lproj içeriği korunur (elle çeviri).
+"""
+from __future__ import annotations
+
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+COMET = ROOT / "cometeditor"
+BUNDLES_PATH = ROOT / "i18n" / "watermark_bundles.json"
+
+_LINE_RE = re.compile(r'^"(watermark\.[^"]+)"\s*=\s*"(.*)";\s*$')
+
+
+def unescape(raw: str) -> str:
+    return raw.replace("\\n", "\n").replace('\\"', '"').replace("\\\\", "\\")
+
+
+def escape(raw: str) -> str:
+    return raw.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
+
+
+def parse_watermarks(path: Path) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        m = _LINE_RE.match(line.strip())
+        if m:
+            out[m.group(1)] = unescape(m.group(2))
+    return out
+
+
+def patch_strings_file(path: Path, trans: dict[str, str]) -> int:
+    text = path.read_text(encoding="utf-8")
+    changed = 0
+    for key, val in trans.items():
+        pattern = re.compile(rf'^"{re.escape(key)}"\s*=\s*".*";$', re.MULTILINE)
+        new_line = f'"{key}" = "{escape(val)}";'
+        new_text, n = pattern.subn(new_line, text, count=1)
+        if n:
+            text = new_text
+            changed += n
+    path.write_text(text, encoding="utf-8")
+    return changed
+
+
+def resolve_bundle(lang: str, bundles: dict[str, dict[str, str]], tr_strings: dict[str, str]) -> dict[str, str]:
+    if lang == "tr":
+        return tr_strings
+    # Bölgesel → ana paket
+    if lang in ("zh-Hans", "zh-CN"):
+        return bundles["zh_Hans"]
+    if lang in ("zh-Hant-TW", "zh-Hant-HK"):
+        return bundles["zh_Hant"]
+    if lang.startswith("es-"):
+        return bundles["es"]
+    if lang.startswith("pt-"):
+        return bundles["pt"]
+    if lang == "en-CA":
+        return bundles["en"]
+    if lang in ("gag", "tk"):
+        return tr_strings
+    if lang in ("ky", "ba", "tt", "cv", "tyv", "alt", "sah", "mk", "ug"):
+        return bundles["ru"]
+    if lang in bundles:
+        return bundles[lang]
+    stem = lang.split("-")[0]
+    if stem in bundles:
+        return bundles[stem]
+    return bundles["en"]
+
+
+def main() -> int:
+    bundles: dict[str, dict[str, str]] = json.loads(BUNDLES_PATH.read_text(encoding="utf-8"))
+    tr_path = COMET / "tr.lproj" / "Localizable.strings"
+    tr_strings = parse_watermarks(tr_path)
+    if not tr_strings:
+        print("WARN: no watermark keys in tr.lproj", file=sys.stderr)
+
+    total = 0
+    for lproj in sorted(COMET.glob("*.lproj")):
+        lang = lproj.name.removesuffix(".lproj")
+        path = lproj / "Localizable.strings"
+        if not path.is_file():
+            continue
+        trans = resolve_bundle(lang, bundles, tr_strings)
+        # Sadece watermark anahtarlarını güncelle
+        n = patch_strings_file(path, trans)
+        if n:
+            print(f"{lang}: updated {n} watermark keys")
+        total += n
+    print(f"done, total line patches: {total}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

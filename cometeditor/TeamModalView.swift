@@ -4,44 +4,46 @@ struct TeamModalView: View {
     @EnvironmentObject var appState: GlobalAppState
 
     let teamMembers = [
-        TeamMember(initials: "BAT", name: "Bora Ata Türkoğlu", role: "Founder & Lead Developer", linkedin: "https://www.linkedin.com/in/boracomet/?skipRedirect=true", github: "https://github.com/boracomet", website: "https://boraturkoglu.com", behance: nil, instagram: nil, imageName: "bora_profile"),
-        TeamMember(initials: "MA", name: "Mehmet Atademir", role: "DevOps Engineer", linkedin: "https://www.linkedin.com/in/mehmet-atademir-148656234/", github: "https://github.com/atademirmehmet", website: "http://mehmetatademir.com.tr/", behance: nil, instagram: nil, imageName: "mehmet_profile"),
-        TeamMember(initials: "YK", name: "Yılmaz Kavakçıoğlu", role: "Advertising Management", linkedin: "https://www.linkedin.com/in/yilmazkavakcioglu/", github: nil, website: nil, behance: "https://www.behance.net/yilmazkavakcioglu", instagram: "https://instagram.com/yilmaz.creative", imageName: "yilmaz_profile"),
-        TeamMember(initials: "BNK", name: "Beyza Nur Keçeli", role: "Visual Designer", linkedin: "https://www.linkedin.com/in/beyzanurkeceli/", github: nil, website: nil, behance: "https://www.behance.net/beyzanurkeceli", instagram: "https://instagram.com/morphiadesign", imageName: "beyza_profile")
+        TeamMember(initials: "BAT", name: "Bora Ata Türkoğlu", role: "Founder & Lead Developer", linkedin: "https://www.linkedin.com/in/boracomet/?skipRedirect=true", github: "https://github.com/boracomet", website: "https://boraturkoglu.com", behance: nil, instagram: nil, imageName: "bora_profile", borderGradient: [.red, .orange]),
+        TeamMember(initials: "MA", name: "Mehmet Atademir", role: "DevOps Engineer", linkedin: "https://www.linkedin.com/in/mehmet-atademir-148656234/", github: "https://github.com/atademirmehmet", website: "http://mehmetatademir.com.tr/", behance: nil, instagram: nil, imageName: "mehmet_profile", borderGradient: [.blue, .cyan]),
+        TeamMember(initials: "YK", name: "Yılmaz Kavakçıoğlu", role: "Advertising Management", linkedin: "https://www.linkedin.com/in/yilmazkavakcioglu/", github: nil, website: nil, behance: "https://www.behance.net/yilmazkavakcioglu", instagram: "https://instagram.com/yilmaz.creative", imageName: "yilmaz_profile", borderGradient: [.green, .mint]),
+        TeamMember(initials: "BNK", name: "Beyza Nur Keçeli", role: "Visual Designer", linkedin: "https://www.linkedin.com/in/beyzanurkeceli/", github: nil, website: nil, behance: "https://www.behance.net/beyzanurkeceli", instagram: "https://instagram.com/morphiadesign", imageName: "beyza_profile", borderGradient: [.purple, .pink])
     ]
 
     var body: some View {
         GeometryReader { geo in
+            let w = Self.layoutLength(geo.size.width, fallback: 400)
+            let h = Self.layoutLength(geo.size.height, fallback: 600)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
                     // Title
                     VStack(spacing: 10) {
                         Text(LocalizedStringKey("menu.team.title"))
-                            .font(.system(size: min(30, max(26, geo.size.width * 0.034)), weight: .bold))
+                            .font(.system(size: min(30, max(26, w * 0.034)), weight: .bold))
                             .foregroundStyle(Color.primary)
                             .multilineTextAlignment(.center)
                             .tracking(-0.3)
 
                         Text(LocalizedStringKey("menu.team.subtitle"))
-                            .font(.system(size: min(16, max(14, geo.size.width * 0.019)), weight: .regular))
+                            .font(.system(size: min(16, max(14, w * 0.019)), weight: .regular))
                             .foregroundStyle(Color.secondary)
                             .multilineTextAlignment(.center)
                             .lineSpacing(3)
                             .fixedSize(horizontal: false, vertical: true)
                     }
-                    .frame(maxWidth: min(440, geo.size.width - 48))
+                    .frame(maxWidth: max(1, min(440, max(0, w - 48))))
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 24)
-                    .padding(.top, max(32, geo.size.height * 0.07))
-                    .padding(.bottom, max(28, geo.size.height * 0.045))
+                    .padding(.top, max(32, h * 0.07))
+                    .padding(.bottom, max(28, h * 0.045))
 
                     // Team Grid — always 4 in a single row, capped at max card width
                     let maxCardW: CGFloat = 180
                     let minSpacing: CGFloat = 24
                     let count = CGFloat(teamMembers.count)
                     let totalMax = maxCardW * count + minSpacing * (count - 1)
-                    let hPad: CGFloat = max(16, (geo.size.width - totalMax) / 2)
-                    let availW = max(0, geo.size.width - hPad * 2)
+                    let hPad: CGFloat = max(16, (w - totalMax) / 2)
+                    let availW = max(0, w - hPad * 2)
                     let spacing: CGFloat = minSpacing
                     let cardW = max(80, min(maxCardW, (availW - spacing * (count - 1)) / count))
 
@@ -52,11 +54,11 @@ struct TeamModalView: View {
                         }
                     }
                     .padding(.horizontal, hPad)
-                    .padding(.bottom, max(24, geo.size.height * 0.04))
+                    .padding(.bottom, max(24, h * 0.04))
 
                     Divider()
                         .padding(.horizontal, hPad)
-                        .padding(.vertical, max(20, geo.size.height * 0.03))
+                        .padding(.vertical, max(20, h * 0.03))
 
                     // Grafix footer
                     VStack(spacing: 10) {
@@ -64,15 +66,15 @@ struct TeamModalView: View {
                             Image("grafix_logo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(height: min(40, geo.size.height * 0.06))
+                                .frame(height: max(1, min(40, h * 0.06)))
                                 .handCursor()
                         }
                         Text(LocalizedStringKey("team.thanks_grafix"))
-                            .font(.system(size: min(12, geo.size.width * 0.018)))
+                            .font(.system(size: max(1, min(12, w * 0.018))))
                             .foregroundStyle(Color.secondary.opacity(0.8))
                             .multilineTextAlignment(.center)
                     }
-                    .padding(.bottom, max(16, geo.size.height * 0.03))
+                    .padding(.bottom, max(16, h * 0.03))
 
                     // Version
                     Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
@@ -84,6 +86,12 @@ struct TeamModalView: View {
             }
         }
         .background(Color.primary.opacity(0.02))
+    }
+
+    /// GeometryReader bazen 0 veya geçersiz boyut verir; frame / font için sonlu pozitif değer.
+    private static func layoutLength(_ value: CGFloat, fallback: CGFloat) -> CGFloat {
+        guard value.isFinite, value > 0 else { return fallback }
+        return min(max(value, 1), 16_384)
     }
 }
 
@@ -102,8 +110,17 @@ private struct TeamMemberCard: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: avatarSize, height: avatarSize)
                 .clipShape(Circle())
-                .overlay(Circle().stroke(Color.secondary.opacity(0.1), lineWidth: 1))
-                .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+                .overlay(
+                    Circle()
+                        .strokeBorder(
+                            AngularGradient(
+                                gradient: Gradient(colors: member.borderGradient + member.borderGradient.reversed()),
+                                center: .center
+                            ),
+                            lineWidth: 2.5
+                        )
+                )
+                .shadow(color: member.borderGradient.first?.opacity(0.25) ?? .clear, radius: 8, x: 0, y: 4)
 
             VStack(spacing: 6) {
                 Text(member.name)
@@ -183,6 +200,7 @@ struct TeamMember {
     let behance: String?
     let instagram: String?
     let imageName: String
+    var borderGradient: [Color] = [.secondary.opacity(0.15)]
 }
 
 #Preview {

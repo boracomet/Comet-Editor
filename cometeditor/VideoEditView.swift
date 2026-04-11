@@ -8,6 +8,7 @@ import UniformTypeIdentifiers
 struct VideoEditView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var windowState: WindowStateObserver
     @Environment(\.colorScheme) private var colorScheme
 
@@ -152,15 +153,15 @@ struct VideoEditView: View {
                     .font(.system(size: 40, weight: .ultraLight))
                     .foregroundStyle(isDropTargeted ? Color.accentColor : Color.secondary.opacity(0.6))
 
-                Text(LocalizedStringKey("videoedit.empty.title"))
+                Text(languageManager.string("videoedit.empty.title"))
                     .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(Color.primary)
 
-                Text(LocalizedStringKey("videoedit.empty.subtitle"))
+                Text(languageManager.string("videoedit.empty.subtitle"))
                     .font(.system(size: 12))
                     .foregroundStyle(Color.secondary)
 
-                Text("MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV")
+                Text(languageManager.string("videoedit.empty.formats"))
                     .font(.system(size: 11))
                     .foregroundStyle(Color.secondary.opacity(0.88))
                     .multilineTextAlignment(.center)
@@ -383,7 +384,7 @@ struct VideoEditView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text(LanguageManager.shared.string("videoedit.export.settings"))
+                    Text(languageManager.string("convert.settings.title"))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -392,7 +393,7 @@ struct VideoEditView: View {
                             HStack(spacing: 4) {
                                 Image(systemName: "plus")
                                     .font(.system(size: 10, weight: .bold))
-                                Text(LocalizedStringKey("videoedit.addMore"))
+                                Text(languageManager.string("videoedit.addMore"))
                                     .font(.system(size: 11, weight: .medium))
                             }
                             .padding(.horizontal, 10)
@@ -412,7 +413,7 @@ struct VideoEditView: View {
                 inspectorSection("videoedit.inspector.format") {
                     Picker("", selection: $appState.videoEditOutputFormat) {
                         ForEach(VideoEditOutputFormat.allCases) { f in
-                            Text(f.displayName).tag(f)
+                            Text(languageManager.string(f.localizationKey)).tag(f)
                         }
                     }
                     .pickerStyle(.menu)
@@ -436,7 +437,7 @@ struct VideoEditView: View {
                 inspectorSection("video.settings.fps") {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Text("convert.settings.enable")
+                            Text(languageManager.string("convert.settings.enable"))
                                 .font(.system(size: 13))
                             Spacer()
                             Toggle("", isOn: $appState.videoEditFpsEnabled)
@@ -447,7 +448,7 @@ struct VideoEditView: View {
                         if appState.videoEditFpsEnabled {
                             Picker("", selection: $appState.videoEditSelectedFPS) {
                                 ForEach(FPSLimit.allCases) { fps in
-                                    Text(fps.title).tag(fps)
+                                    Text(languageManager.string(fps.localizationKey)).tag(fps)
                                 }
                             }
                             .pickerStyle(.menu)
@@ -462,7 +463,7 @@ struct VideoEditView: View {
                 inspectorSection("video.settings.resize") {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Text("convert.settings.enable")
+                            Text(languageManager.string("convert.settings.enable"))
                                 .font(.system(size: 13))
                             Spacer()
                             Toggle("", isOn: $appState.videoEditScaleEnabled)
@@ -471,14 +472,54 @@ struct VideoEditView: View {
                                 .labelsHidden()
                         }
                         if appState.videoEditScaleEnabled {
-                            Picker("", selection: $appState.videoEditSelectedScale) {
-                                ForEach(ResolutionScale.allCases) { scale in
-                                    Text(scale.title).tag(scale)
-                                }
+                            Picker("", selection: $appState.videoEditResizeKind) {
+                                Text(languageManager.string("videoedit.resize.modePercent")).tag(VideoEditResizeKind.percent)
+                                Text(languageManager.string("videoedit.resize.modeCustom")).tag(VideoEditResizeKind.custom)
                             }
                             .pickerStyle(.menu)
                             .labelsHidden()
                             .padding(.top, 4)
+
+                            if appState.videoEditResizeKind == .percent {
+                                Picker("", selection: $appState.videoEditSelectedScale) {
+                                    ForEach(ResolutionScale.allCases) { scale in
+                                        Text(languageManager.string(scale.localizationKey)).tag(scale)
+                                    }
+                                }
+                                .pickerStyle(.menu)
+                                .labelsHidden()
+                                .padding(.top, 2)
+                            } else {
+                                HStack(spacing: 6) {
+                                    TextField("1920", text: $appState.videoEditCustomWidthText)
+                                        .textFieldStyle(.roundedBorder)
+                                        .frame(width: 72)
+                                        .font(.system(size: 12, design: .monospaced))
+                                    Text("×")
+                                        .font(.system(size: 12))
+                                        .foregroundStyle(.secondary)
+                                    TextField("1080", text: $appState.videoEditCustomHeightText)
+                                        .textFieldStyle(.roundedBorder)
+                                        .frame(width: 72)
+                                        .font(.system(size: 12, design: .monospaced))
+                                }
+                                .padding(.top, 4)
+                                HStack {
+                                    Text(languageManager.string("videoedit.resize.autoFill"))
+                                        .font(.system(size: 12))
+                                    Spacer()
+                                    Toggle("", isOn: $appState.videoEditAutoFillCanvas)
+                                        .toggleStyle(.switch)
+                                        .controlSize(.small)
+                                        .labelsHidden()
+                                }
+                                .padding(.top, 2)
+                                Text(languageManager.string("videoedit.resize.autoFillHint"))
+                                    .font(.system(size: 10))
+                                    .foregroundStyle(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.top, 2)
+                            }
                         }
                     }
                 }
@@ -487,7 +528,7 @@ struct VideoEditView: View {
 
                 inspectorSection("video.settings.audio") {
                     HStack {
-                        Text("video.settings.audio.remove")
+                        Text(languageManager.string("video.settings.audio.remove"))
                             .font(.system(size: 13))
                         Spacer()
                         Toggle("", isOn: $appState.videoEditRemoveAudio)
@@ -501,7 +542,7 @@ struct VideoEditView: View {
 
                 inspectorSection("video.settings.metadata") {
                     HStack {
-                        Text("convert.settings.enable")
+                        Text(languageManager.string("convert.settings.enable"))
                             .font(.system(size: 13))
                         Spacer()
                         Toggle("", isOn: $appState.videoEditMetadataEnabled)
@@ -542,7 +583,7 @@ struct VideoEditView: View {
                                     .frame(width: 36, alignment: .trailing)
                             }
                         } else {
-                            Text(LanguageManager.shared.string("videoedit.imageDuration.default"))
+                            Text(languageManager.string("videoedit.imageDuration.default"))
                                 .font(.system(size: 10, weight: .medium))
                                 .foregroundStyle(.secondary)
                             HStack(spacing: 8) {
@@ -559,7 +600,7 @@ struct VideoEditView: View {
                             HStack(spacing: 5) {
                                 Image(systemName: "photo.badge.plus")
                                     .font(.system(size: 11, weight: .medium))
-                                Text(LanguageManager.shared.string("videoedit.addImage"))
+                                Text(languageManager.string("videoedit.addImage"))
                                     .font(.system(size: 11, weight: .medium))
                             }
                             .frame(maxWidth: .infinity)
@@ -593,7 +634,7 @@ struct VideoEditView: View {
                                         .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
                                 )
                         } else {
-                            Text("convert.settings.noFolder")
+                            Text(languageManager.string("convert.settings.noFolder"))
                                 .font(.system(size: 11, weight: .medium))
                                 .foregroundStyle(Color.red.opacity(0.8))
                                 .padding(.horizontal, 8)
@@ -609,11 +650,13 @@ struct VideoEditView: View {
                                 )
                         }
 
-                        Button("convert.settings.chooseFolder") {
+                        Button {
                             pickFolder { url in
                                 appState.handleFolderSelected(url)
                                 appState.targetFolder = url
                             }
+                        } label: {
+                            Text(languageManager.string("convert.settings.chooseFolder"))
                         }
                         .controlSize(.small)
                     }
@@ -638,12 +681,12 @@ struct VideoEditView: View {
                         HStack {
                             if isExporting {
                                 ProgressView().controlSize(.small)
-                                Text(LocalizedStringKey("videoedit.exporting"))
+                                Text(languageManager.string("videoedit.exporting"))
                             } else {
                                 Image(systemName: clips.count > 1 ? "film.stack.fill" : "scissors")
                                 Text(clips.count > 1
-                                     ? LocalizedStringKey("videoedit.export.merge")
-                                     : LocalizedStringKey("videoedit.export.trim"))
+                                     ? languageManager.string("videoedit.export.merge")
+                                     : languageManager.string("videoedit.export.trim"))
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -682,7 +725,7 @@ struct VideoEditView: View {
         }
 
         _ = clip.url.startAccessingSecurityScopedResource()
-        let p = AVPlayer(url: clip.url)
+        let p = AVPlayer(url: clip.playbackURL)
         player = p
         let iv = CMTime(seconds: 0.05, preferredTimescale: 600)
         timeObserverToken = p.addPeriodicTimeObserver(forInterval: iv, queue: .main) { [self] t in
@@ -846,6 +889,9 @@ struct VideoEditView: View {
     // MARK: - Clip ops
 
     private func removeClip(_ clip: VideoEditClip) {
+        if let prev = clip.previewURL {
+            try? FileManager.default.removeItem(at: prev)
+        }
         clips.removeAll { $0.id == clip.id }
         if selectedClipID == clip.id { selectedClipID = clips.first?.id }
         if trimmingClipID == clip.id { trimmingClipID = nil }
@@ -990,7 +1036,7 @@ struct VideoEditView: View {
         if clip.isImageClip {
             args = ["-y", "-loop", "1", "-i", clip.url.path,
                     "-t", String(format: "%.3f", clip.imageDuration)]
-            args += buildVideoFilterArgs()
+            args += buildVideoFilterArgs(for: clip)
             args += ["-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt", "yuv420p"]
             args.append("-an")
         } else {
@@ -998,7 +1044,7 @@ struct VideoEditView: View {
                     "-i", clip.url.path,
                     "-ss", String(format: "%.3f", clip.startTime),
                     "-t", String(format: "%.3f", clip.trimmedDuration)]
-            args += buildVideoFilterArgs()
+            args += buildVideoFilterArgs(for: clip)
             args += outputFormat.codecArgs(quality: outputQuality)
             if removeAudio { args.append("-an") }
         }
@@ -1017,9 +1063,9 @@ struct VideoEditView: View {
         let tmp = FileManager.default.temporaryDirectory.appendingPathComponent("comet_\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: tmp, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: tmp) }
-        let mergeVF = buildMergeVideoFilter()
         var parts: [URL] = []
         for (i, clip) in clips.enumerated() {
+            let clipVF = buildMergeVideoFilter(for: clip)
             let p = tmp.appendingPathComponent("p\(i).mp4")
             var args: [String]
             let clipDur: Double
@@ -1027,7 +1073,7 @@ struct VideoEditView: View {
                 clipDur = clip.imageDuration
                 args = ["-y", "-loop", "1", "-i", clip.url.path,
                         "-t", String(format: "%.3f", clipDur),
-                        "-vf", mergeVF,
+                        "-vf", clipVF,
                         "-c:v", "libx264", "-crf", "18", "-preset", "fast",
                         "-pix_fmt", "yuv420p", "-an"]
             } else {
@@ -1036,7 +1082,7 @@ struct VideoEditView: View {
                         "-i", clip.url.path,
                         "-ss", String(format: "%.3f", clip.startTime),
                         "-t", String(format: "%.3f", clipDur),
-                        "-vf", mergeVF,
+                        "-vf", clipVF,
                         "-c:v", "libx264", "-crf", "18", "-preset", "fast",
                         "-pix_fmt", "yuv420p"]
                 if removeAudio {
@@ -1063,23 +1109,71 @@ struct VideoEditView: View {
         }
     }
 
-    private func buildVideoFilterArgs() -> [String] {
-        var vf: [String] = []
-        if scaleEnabled, selectedScale != .original {
+    private func parsedCustomExportSize() -> (Int, Int)? {
+        let twRaw = Int(appState.videoEditCustomWidthText.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+        let thRaw = Int(appState.videoEditCustomHeightText.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+        let tw = twRaw & ~1
+        let th = thRaw & ~1
+        guard tw >= 32, th >= 32, tw <= 8192, th <= 8192 else { return nil }
+        return (tw, th)
+    }
+
+    /// Özel çözünürlük + otomatik kapla: kaynak büyükse sığdır (letterbox), küçükse doldur (zoom + merkez kırpma).
+    private static func customCanvasVideoFilter(
+        targetW: Int, targetH: Int,
+        autoFill: Bool,
+        srcW: Int, srcH: Int
+    ) -> String {
+        let tW = targetW
+        let tH = targetH
+        let containPad = "scale=\(tW):\(tH):force_original_aspect_ratio=decrease,pad=\(tW):\(tH):(ow-iw)/2:(oh-ih)/2:black"
+        guard srcW >= 2, srcH >= 2 else { return containPad }
+        if autoFill {
+            if srcW >= tW || srcH >= tH {
+                return containPad
+            }
+            return "scale=\(tW):\(tH):force_original_aspect_ratio=increase,crop=\(tW):\(tH):(iw-ow)/2:(ih-oh)/2"
+        }
+        return containPad
+    }
+
+    private func scaleFilterVideoString(for clip: VideoEditClip) -> String? {
+        guard scaleEnabled else { return nil }
+        switch appState.videoEditResizeKind {
+        case .percent:
+            guard selectedScale != .original else { return nil }
             let m = selectedScale.multiplier
-            vf.append("scale=trunc(iw*\(m)/2)*2:trunc(ih*\(m)/2)*2")
+            return "scale=trunc(iw*\(m)/2)*2:trunc(ih*\(m)/2)*2"
+        case .custom:
+            guard let (tw, th) = parsedCustomExportSize() else { return nil }
+            return Self.customCanvasVideoFilter(
+                targetW: tw, targetH: th,
+                autoFill: appState.videoEditAutoFillCanvas,
+                srcW: clip.sourceWidth, srcH: clip.sourceHeight
+            )
+        }
+    }
+
+    private func buildVideoFilterComponents(for clip: VideoEditClip) -> [String] {
+        var vf: [String] = []
+        if let s = scaleFilterVideoString(for: clip) {
+            vf.append(s)
         }
         if fpsEnabled, let fpsVal = selectedFPS.value {
             vf.append("fps=\(Int(fpsVal))")
         }
-        return vf.isEmpty ? [] : ["-vf", vf.joined(separator: ",")]
+        return vf
     }
 
-    private func buildMergeVideoFilter() -> String {
+    private func buildVideoFilterArgs(for clip: VideoEditClip) -> [String] {
+        let parts = buildVideoFilterComponents(for: clip)
+        return parts.isEmpty ? [] : ["-vf", parts.joined(separator: ",")]
+    }
+
+    private func buildMergeVideoFilter(for clip: VideoEditClip) -> String {
         var vf: [String] = []
-        if scaleEnabled, selectedScale != .original {
-            let m = selectedScale.multiplier
-            vf.append("scale=trunc(iw*\(m)/2)*2:trunc(ih*\(m)/2)*2")
+        if let s = scaleFilterVideoString(for: clip) {
+            vf.append(s)
         } else {
             vf.append("scale=trunc(iw/2)*2:trunc(ih/2)*2")
         }
@@ -1126,6 +1220,7 @@ struct ClipStripView: View {
     @State private var isHovered = false
     @State private var activeHandle: HandleSide = .none
     @Environment(\.colorScheme) private var colorScheme
+    @EnvironmentObject var languageManager: LanguageManager
 
     private enum HandleSide { case start, end, none }
 
@@ -1159,11 +1254,11 @@ struct ClipStripView: View {
         .padding(.horizontal, 4)
         .contextMenu {
             Button { onInsertAfter() } label: {
-                Label(LocalizedStringKey("videoedit.insert.after"), systemImage: "arrow.right.to.line")
+                Label(languageManager.string("videoedit.insert.after"), systemImage: "arrow.right.to.line")
             }
             Divider()
             Button(role: .destructive) { onDelete() } label: {
-                Label(LocalizedStringKey("videoedit.clip.remove"), systemImage: "trash")
+                Label(languageManager.string("videoedit.clip.remove"), systemImage: "trash")
             }
         }
     }
@@ -1279,7 +1374,7 @@ struct ClipStripView: View {
             }
             .buttonStyle(.plain)
             .handCursor()
-            .help(Text(LocalizedStringKey("videoedit.trim.confirm")))
+            .help(languageManager.string("videoedit.trim.confirm"))
 
             Button(action: onInsertAfter) {
                 Image(systemName: "plus.circle.fill")
@@ -1288,7 +1383,7 @@ struct ClipStripView: View {
             }
             .buttonStyle(.plain)
             .handCursor()
-            .help(Text(LocalizedStringKey("videoedit.insert.after")))
+            .help(languageManager.string("videoedit.insert.after"))
         }
         .transition(.opacity.combined(with: .scale(scale: 0.8)))
     }
@@ -1475,12 +1570,12 @@ enum VideoEditOutputFormat: String, CaseIterable, Identifiable {
     case mp4, mov, mkv, avi
     var id: String { rawValue }
     var fileExtension: String { rawValue }
-    var displayName: String {
+    var localizationKey: String {
         switch self {
-        case .mp4: return "MP4 (H.264)"
-        case .mov: return "MOV (H.264)"
-        case .mkv: return "MKV (H.265)"
-        case .avi: return "AVI"
+        case .mp4: return "videoedit.output.mp4"
+        case .mov: return "videoedit.output.mov"
+        case .mkv: return "videoedit.output.mkv"
+        case .avi: return "videoedit.output.avi"
         }
     }
     func codecArgs(quality: Double) -> [String] {

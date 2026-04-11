@@ -22,7 +22,7 @@ struct CompressionConfig: Sendable {
     var deduplicateStreams: Bool
     var subsetFonts: Bool
 
-    init(
+    nonisolated init(
         imageQuality: CGFloat = 0.65,
         maxImageDPI: CGFloat = 150,
         preferHEIC: Bool = false,
@@ -77,11 +77,11 @@ final class VectorPreservingCompressor: @unchecked Sendable {
 
     private let config: CompressionConfig
 
-    init(config: CompressionConfig) {
+    nonisolated init(config: CompressionConfig) {
         self.config = config
     }
 
-    func compress(inputURL: URL, outputURL: URL) throws -> CompressionResult {
+    nonisolated func compress(inputURL: URL, outputURL: URL) throws -> CompressionResult {
         let start = Date()
 
         let originalSize = fileSizeBytes(inputURL)
@@ -97,7 +97,8 @@ final class VectorPreservingCompressor: @unchecked Sendable {
         }
 
         let optimizer = ImageStreamOptimizer(config: config)
-        let optimizedData = optimizer.optimizeImageStreams(pdfData: pdfData)
+        let optimized = optimizer.optimizeImageStreams(pdfData: pdfData)
+        let optimizedData = optimized.data
 
         let finalData: Data
         if config.stripMetadata {
@@ -120,12 +121,12 @@ final class VectorPreservingCompressor: @unchecked Sendable {
             compressedSize: compressedSize,
             outputURL: outputURL,
             pageCount: pageCount,
-            imagesProcessed: optimizer.imagesProcessed,
+            imagesProcessed: optimized.imagesProcessed,
             duration: duration
         )
     }
 
-    private func stripPDFMetadata(from data: Data) -> Data {
+    private nonisolated func stripPDFMetadata(from data: Data) -> Data {
         guard var str = String(data: data, encoding: .isoLatin1) else { return data }
 
         let infoPattern = try? NSRegularExpression(
@@ -143,7 +144,7 @@ final class VectorPreservingCompressor: @unchecked Sendable {
         return str.data(using: .isoLatin1) ?? data
     }
 
-    private func fileSizeBytes(_ url: URL) -> Int64 {
+    private nonisolated func fileSizeBytes(_ url: URL) -> Int64 {
         (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int64) ?? 0
     }
 }
@@ -163,17 +164,15 @@ struct ExtractedImage {
 final class ImageStreamOptimizer: @unchecked Sendable {
 
     private let config: CompressionConfig
-    private(set) var imagesProcessed = 0
-    private(set) var totalBytesSaved = 0
 
-    init(config: CompressionConfig) {
+    nonisolated init(config: CompressionConfig) {
         self.config = config
     }
 
-    func optimizeImageStreams(pdfData: Data) -> Data {
+    nonisolated func optimizeImageStreams(pdfData: Data) -> (data: Data, imagesProcessed: Int, totalBytesSaved: Int) {
         guard let provider = CGDataProvider(data: pdfData as CFData),
               let srcDoc = CGPDFDocument(provider) else {
-            return pdfData
+            return (pdfData, 0, 0)
         }
 
         var imageReplacements: [(originalLength: Int, jpegData: Data, width: Int, height: Int)] = []
@@ -193,8 +192,10 @@ final class ImageStreamOptimizer: @unchecked Sendable {
             }
         }
 
-        if imageReplacements.isEmpty { return pdfData }
+        if imageReplacements.isEmpty { return (pdfData, 0, 0) }
 
+        var imagesProcessed = 0
+        var totalBytesSaved = 0
         var result = pdfData
         var searchStart = result.startIndex
 
@@ -287,10 +288,10 @@ final class ImageStreamOptimizer: @unchecked Sendable {
             searchStart = streamRange.upperBound
         }
 
-        return result
+        return (result, imagesProcessed, totalBytesSaved)
     }
 
-    private func extractImagesFromPage(_ page: CGPDFPage) -> [ExtractedImage] {
+    private nonisolated func extractImagesFromPage(_ page: CGPDFPage) -> [ExtractedImage] {
         class Accumulator {
             var images = [ExtractedImage]()
         }
@@ -358,7 +359,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return acc.images
     }
 
-    private func recompressExtractedImage(_ img: ExtractedImage) -> Data? {
+    private nonisolated func recompressExtractedImage(_ img: ExtractedImage) -> Data? {
         let cgImage: CGImage?
 
         switch img.format {
@@ -396,7 +397,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return encodeAsJPEG(finalImage, quality: config.imageQuality)
     }
 
-    private func createCGImageFromRawPixels(
+    private nonisolated func createCGImageFromRawPixels(
         data: Data,
         width: Int,
         height: Int,
@@ -432,7 +433,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         )
     }
 
-    private func downsampleCGImage(_ image: CGImage, targetWidth: Int, targetHeight: Int) -> CGImage? {
+    private nonisolated func downsampleCGImage(_ image: CGImage, targetWidth: Int, targetHeight: Int) -> CGImage? {
         guard targetWidth > 0 && targetHeight > 0 else { return nil }
         let colorSpace = image.colorSpace ?? CGColorSpaceCreateDeviceRGB()
         guard let ctx = CGContext(
@@ -449,7 +450,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return ctx.makeImage()
     }
 
-    private func encodeAsJPEG(_ image: CGImage, quality: CGFloat) -> Data? {
+    private nonisolated func encodeAsJPEG(_ image: CGImage, quality: CGFloat) -> Data? {
         let mutableData = NSMutableData()
         guard let dest = CGImageDestinationCreateWithData(
             mutableData,
@@ -466,16 +467,16 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return mutableData as Data
     }
 
-    private func findData(_ needle: Data, in haystack: Data, from: Data.Index) -> Range<Data.Index>? {
+    private nonisolated func findData(_ needle: Data, in haystack: Data, from: Data.Index) -> Range<Data.Index>? {
         guard from < haystack.endIndex else { return nil }
         return haystack.range(of: needle, options: [], in: from..<haystack.endIndex)
     }
 
-    private func containsData(_ needle: Data, in slice: Data.SubSequence) -> Bool {
+    private nonisolated func containsData(_ needle: Data, in slice: Data.SubSequence) -> Bool {
         Data(slice).range(of: needle) != nil
     }
 
-    private func extractIntValue(from str: String, key: String) -> Int? {
+    private nonisolated func extractIntValue(from str: String, key: String) -> Int? {
         guard let keyRange = str.range(of: key) else { return nil }
         let afterKey = str[keyRange.upperBound...]
         let trimmed = afterKey.drop(while: { $0 == " " || $0 == "\n" || $0 == "\r" })
@@ -483,7 +484,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return Int(numStr)
     }
 
-    private func findObjStart(in data: Data, before: Data.Index) -> Data.Index {
+    private nonisolated func findObjStart(in data: Data, before: Data.Index) -> Data.Index {
         let lookback = min(200, data.distance(from: data.startIndex, to: before))
         let start = data.index(before, offsetBy: -lookback)
         let region = data[start..<before]
@@ -503,7 +504,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return start
     }
 
-    private func rebuildImageObject(originalObject: Data, newStreamData: Data, newLength: Int) -> Data? {
+    private nonisolated func rebuildImageObject(originalObject: Data, newStreamData: Data, newLength: Int) -> Data? {
         let streamMarker = Data("stream".utf8)
         guard let streamRange = findData(streamMarker, in: originalObject, from: originalObject.startIndex) else {
             return nil
@@ -531,7 +532,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return result
     }
 
-    private func replaceOrInsertDictKey(in dict: String, key: String, value: String) -> String {
+    private nonisolated func replaceOrInsertDictKey(in dict: String, key: String, value: String) -> String {
         var result = dict
 
         if let keyRange = result.range(of: key) {
@@ -554,7 +555,7 @@ final class ImageStreamOptimizer: @unchecked Sendable {
         return result
     }
 
-    private func removeDictKey(in dict: String, key: String) -> String {
+    private nonisolated func removeDictKey(in dict: String, key: String) -> String {
         var result = dict
         guard let keyRange = result.range(of: key) else { return result }
 

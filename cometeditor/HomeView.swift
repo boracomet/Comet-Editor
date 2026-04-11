@@ -43,13 +43,6 @@ struct HomeView: View {
                 action: { onQuickImage?(.pngToWebp) }
             ),
             QuickCard(
-                icon: "video.fill",
-                titleKey: "home.quick.video.title",
-                subtitleKey: "home.quick.video.subtitle",
-                colors: [.indigo, .purple],
-                action: { onQuickVideo?(.quickMp4Balanced) }
-            ),
-            QuickCard(
                 icon: "doc.text.fill",
                 titleKey: "home.quick.pdf.title",
                 subtitleKey: "home.quick.pdf.subtitle",
@@ -116,7 +109,6 @@ struct HomeView: View {
                 ],
                 tipKey: "home.guide.video.tip",
                 presets: [
-                    FeaturePreset(labelKey: "home.quick.video.title",      icon: "video.fill",               action: { onQuickVideo?(.quickMp4Balanced) }),
                     FeaturePreset(labelKey: "home.preset.videoShrink.title", icon: "arrow.down.right.and.arrow.up.left", action: { onQuickVideo?(.shrinkVideo) }),
                     FeaturePreset(labelKey: "home.preset.mp4ToGif.title",  icon: "photo.on.rectangle.angled", action: { onQuickVideo?(.mp4ToGif) }),
                     FeaturePreset(labelKey: "home.preset.aviToMp4.title",  icon: "video.fill",               action: { onQuickVideo?(.aviToMp4) }),
@@ -457,44 +449,8 @@ private struct FeatureGuideCard: View {
                             .buttonStyle(.plain)
                             .handCursor()
 
-                            // Preset butonları
                             ForEach(guide.presets) { preset in
-                                Button(action: preset.action) {
-                                    HStack(spacing: 6) {
-                                        Image(systemName: preset.icon)
-                                            .font(.system(size: 11, weight: .semibold))
-                                        Text(preset.labelKey)
-                                            .font(.system(size: 12, weight: .medium))
-                                    }
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 7)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                            .fill(
-                                                LinearGradient(
-                                                    colors: guide.gradient.map { $0.opacity(0.18) },
-                                                    startPoint: .topLeading,
-                                                    endPoint: .bottomTrailing
-                                                )
-                                            )
-                                    )
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                            .strokeBorder(
-                                                LinearGradient(
-                                                    colors: guide.gradient.map { $0.opacity(0.35) },
-                                                    startPoint: .topLeading,
-                                                    endPoint: .bottomTrailing
-                                                ),
-                                                lineWidth: 1
-                                            )
-                                    )
-                                    .foregroundStyle(
-                                        LinearGradient(colors: guide.gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
-                                    )
-                                }
-                                .buttonStyle(.plain)
-                                .handCursor()
+                                PresetChip(preset: preset, gradient: guide.gradient)
                             }
                         }
                     }
@@ -606,6 +562,56 @@ private struct QuickActionTile: View {
     }
 }
 
+// MARK: - Preset Chip (hoverable)
+
+private struct PresetChip: View {
+    let preset: HomeView.FeaturePreset
+    let gradient: [Color]
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: preset.action) {
+            HStack(spacing: 6) {
+                Image(systemName: preset.icon)
+                    .font(.system(size: 11, weight: .semibold))
+                Text(preset.labelKey)
+                    .font(.system(size: 12, weight: .medium))
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 7)
+            .background(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: gradient.map { $0.opacity(isHovered ? 0.32 : 0.18) },
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .strokeBorder(
+                        LinearGradient(
+                            colors: gradient.map { $0.opacity(isHovered ? 0.55 : 0.35) },
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
+            )
+            .foregroundStyle(
+                LinearGradient(colors: gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
+            )
+            .scaleEffect(isHovered ? 1.04 : 1.0)
+        }
+        .buttonStyle(.plain)
+        .handCursor()
+        .onHover { isHovered = $0 }
+        .animation(.easeOut(duration: 0.15), value: isHovered)
+    }
+}
+
 #Preview {
     HomeView(
         onQuickImage: { _ in },
@@ -613,4 +619,5 @@ private struct QuickActionTile: View {
         onQuickPdf: { _ in },
         onNavigate: { _ in }
     )
+    .environmentObject(LanguageManager.shared)
 }

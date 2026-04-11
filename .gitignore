@@ -39,3 +39,6 @@ third_party/imagemagick/x86_64/
 
 # Ruby/Scripts temp files
 /tmp/
+
+# MyMemory çeviri önbelleği (scripts/gen_home_bundles_mt.py)
+i18n/.home_mt_cache.json

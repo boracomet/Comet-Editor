@@ -40,6 +40,7 @@ struct VideoConvertView: View {
 
     @EnvironmentObject var processor: VideoProcessor
     @EnvironmentObject var windowState: WindowStateObserver
+    @EnvironmentObject var languageManager: LanguageManager
 
     var body: some View {
         HStack(spacing: 0) {
@@ -453,7 +454,7 @@ struct VideoConvertView: View {
                 inspectorSection("video.settings.fps") {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Text("convert.settings.enable")
+                            Text(languageManager.string("convert.settings.enable"))
                                 .font(.system(size: 13))
                             Spacer()
                             Toggle("", isOn: $fpsEnabled)
@@ -466,13 +467,13 @@ struct VideoConvertView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Picker("", selection: $selectedFPS) {
                                     ForEach(FPSLimit.allCases) { fps in
-                                        Text(fps.title).tag(fps)
+                                        Text(languageManager.string(fps.localizationKey)).tag(fps)
                                     }
                                 }
                                 .pickerStyle(.menu)
                                 .labelsHidden()
 
-                                Text(LocalizedStringKey("video.settings.fps.desc"))
+                                Text(languageManager.string("video.settings.fps.desc"))
                                     .font(.system(size: 9))
                                     .foregroundStyle(Color.secondary)
                                     .lineLimit(2)
@@ -487,7 +488,7 @@ struct VideoConvertView: View {
                 inspectorSection("video.settings.resize") {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Text("convert.settings.enable")
+                            Text(languageManager.string("convert.settings.enable"))
                                 .font(.system(size: 13))
                             Spacer()
                             Toggle("", isOn: $scaleEnabled)
@@ -499,7 +500,7 @@ struct VideoConvertView: View {
                         if scaleEnabled {
                             Picker("", selection: $selectedScale) {
                                 ForEach(ResolutionScale.allCases) { scale in
-                                    Text(scale.title).tag(scale)
+                                    Text(languageManager.string(scale.localizationKey)).tag(scale)
                                 }
                             }
                             .pickerStyle(.menu)
@@ -1033,7 +1034,7 @@ enum FPSLimit: String, CaseIterable, Identifiable {
     case fps24 = "fps24"
 
     var id: String { rawValue }
-    var title: LocalizedStringKey {
+    var localizationKey: String {
         switch self {
         case .original: return "video.fps.original"
         case .fps60: return "video.fps.60"
@@ -1060,7 +1061,7 @@ enum ResolutionScale: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var title: LocalizedStringKey {
+    var localizationKey: String {
         switch self {
         case .original: return "video.resolution.original"
         case .scale75: return "video.resolution.75"
@@ -1111,5 +1112,6 @@ struct AVPlayerViewRepresentable: NSViewRepresentable {
         .environmentObject(GlobalAppState())
         .environmentObject(VideoProcessor())
         .environmentObject(WindowStateObserver())
+        .environmentObject(LanguageManager.shared)
         .frame(width: 800, height: 500)
 }
