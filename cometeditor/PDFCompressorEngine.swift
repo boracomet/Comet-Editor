@@ -14,7 +14,7 @@ import UniformTypeIdentifiers
 
 // MARK: - Compression Configuration
 
-struct CompressionConfig {
+struct CompressionConfig: Sendable {
     var imageQuality: CGFloat
     var maxImageDPI: CGFloat
     var preferHEIC: Bool
@@ -73,7 +73,7 @@ enum PDFCompressorError: LocalizedError {
 // MARK: - Vector-Preserving Compressor
 
 /// PDF içindeki raster resim stream'lerini optimize eder; metin/vektör içeriğine dokunmaz.
-final class VectorPreservingCompressor {
+final class VectorPreservingCompressor: @unchecked Sendable {
 
     private let config: CompressionConfig
 
@@ -160,7 +160,7 @@ struct ExtractedImage {
     let originalStreamLength: Int
 }
 
-final class ImageStreamOptimizer {
+final class ImageStreamOptimizer: @unchecked Sendable {
 
     private let config: CompressionConfig
     private(set) var imagesProcessed = 0

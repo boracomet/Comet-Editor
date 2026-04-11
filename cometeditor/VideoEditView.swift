@@ -1005,8 +1005,8 @@ struct VideoEditView: View {
         if !metadataEnabled { args += ["-map_metadata", "-1"] }
         args.append(out.path)
         let dur = clip.isImageClip ? clip.imageDuration : clip.trimmedDuration
-        try await FFmpegBridge.shared.run(arguments: args, totalDurationSeconds: dur) {
-            self.exportProgress = $0 * 0.95
+        try await FFmpegBridge.shared.run(arguments: args, totalDurationSeconds: dur) { p in
+            Task { @MainActor in self.exportProgress = p * 0.95 }
         }
     }
 
@@ -1048,8 +1048,8 @@ struct VideoEditView: View {
             if !metadataEnabled { args += ["-map_metadata", "-1"] }
             args += ["-avoid_negative_ts", "make_zero", p.path]
             let s = Double(i) / Double(clips.count), e = Double(i+1) / Double(clips.count)
-            try await FFmpegBridge.shared.run(arguments: args, totalDurationSeconds: clipDur) {
-                self.exportProgress = (s + $0 * (e - s)) * 0.85
+            try await FFmpegBridge.shared.run(arguments: args, totalDurationSeconds: clipDur) { p in
+                Task { @MainActor in self.exportProgress = (s + p * (e - s)) * 0.85 }
             }
             parts.append(p)
         }
@@ -1058,8 +1058,8 @@ struct VideoEditView: View {
             .write(to: list, atomically: true, encoding: .utf8)
         var concat: [String] = ["-y", "-f", "concat", "-safe", "0", "-i", list.path]
         concat += outputFormat.codecArgs(quality: outputQuality); concat.append(out.path)
-        try await FFmpegBridge.shared.run(arguments: concat, totalDurationSeconds: total) {
-            self.exportProgress = 0.85 + $0 * 0.15
+        try await FFmpegBridge.shared.run(arguments: concat, totalDurationSeconds: total) { p in
+            Task { @MainActor in self.exportProgress = 0.85 + p * 0.15 }
         }
     }
 
@@ -1300,7 +1300,6 @@ struct ClipStripView: View {
         let w = stripW
         let startFrac = clip.duration > 0 ? trimStart / clip.duration : 0
         let endFrac   = clip.duration > 0 ? trimEnd   / clip.duration : 1
-        let playFrac  = clip.duration > 0 ? max(0, min(1, currentTime / clip.duration)) : 0
 
         ZStack(alignment: .leading) {
             filmstrip(width: w, height: stripH)
