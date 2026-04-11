@@ -20,9 +20,78 @@ enum QRExportFormat: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
+enum QRContentType: String, CaseIterable, Identifiable {
+    case website  = "website"
+    case wifi     = "wifi"
+    case vcard    = "vcard"
+    case email    = "email"
+    case phone    = "phone"
+
+    var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .website: return "globe"
+        case .wifi:    return "wifi"
+        case .vcard:   return "person.crop.rectangle"
+        case .email:   return "envelope"
+        case .phone:   return "phone"
+        }
+    }
+
+    var localizationKey: String { "qr.type.\(rawValue)" }
+}
+
+enum WiFiEncryption: String, CaseIterable, Identifiable {
+    case wpa  = "WPA"
+    case wep  = "WEP"
+    case none = "nopass"
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .wpa:  return "WPA/WPA2"
+        case .wep:  return "WEP"
+        case .none: return LanguageManager.shared.string("qr.wifi.noEncryption")
+        }
+    }
+}
+
 struct QRCodeView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
+
+    // MARK: - QR Type
+    @State private var selectedType: QRContentType = .website
+
+    // MARK: - Website
     @State private var qrText: String = "https://cometeditor.com"
+
+    // MARK: - Wi-Fi
+    @State private var wifiSSID: String = ""
+    @State private var wifiPassword: String = ""
+    @State private var wifiEncryption: WiFiEncryption = .wpa
+    @State private var wifiHidden: Bool = false
+
+    // MARK: - vCard
+    @State private var vcardFirstName: String = ""
+    @State private var vcardLastName: String = ""
+    @State private var vcardPhone: String = ""
+    @State private var vcardEmail: String = ""
+    @State private var vcardCompany: String = ""
+    @State private var vcardTitle: String = ""
+    @State private var vcardAddress: String = ""
+    @State private var vcardWebsite: String = ""
+
+    // MARK: - Email
+    @State private var emailAddress: String = ""
+    @State private var emailSubject: String = ""
+    @State private var emailBody: String = ""
+
+    // MARK: - Phone
+    @State private var phoneNumber: String = ""
+
+    // MARK: - Appearance
     @State private var fgColor: Color = .black
     @State private var bgColor: Color = .white
     @State private var cornerRadius: Double = 16.0
@@ -32,7 +101,6 @@ struct QRCodeView: View {
     @State private var selectedSize: CGFloat = 1024
     @State private var customSize: String = "1024"
     private let sizeOptions: [CGFloat] = [256, 512, 1024, 2048]
-    // Reference size used to normalise cornerRadius slider (slider max = 60 at 280px)
     private let cornerRadiusRefSize: Double = 280.0
 
     @State private var cachedQRImage: NSImage? = nil
@@ -71,11 +139,79 @@ struct QRCodeView: View {
         .onChange(of: cornerRadius) { _ in updateQRImage() }
         .onChange(of: customSize) { _ in updateQRImage() }
         .onChange(of: selectedSize) { _ in updateQRImage() }
+        .onChange(of: selectedType) { _ in updateQRImage() }
+        .onChange(of: wifiSSID) { _ in updateQRImage() }
+        .onChange(of: wifiPassword) { _ in updateQRImage() }
+        .onChange(of: wifiEncryption) { _ in updateQRImage() }
+        .onChange(of: wifiHidden) { _ in updateQRImage() }
+        .onChange(of: vcardFirstName) { _ in updateQRImage() }
+        .onChange(of: vcardLastName) { _ in updateQRImage() }
+        .onChange(of: vcardPhone) { _ in updateQRImage() }
+        .onChange(of: vcardEmail) { _ in updateQRImage() }
+        .onChange(of: vcardCompany) { _ in updateQRImage() }
+        .onChange(of: vcardTitle) { _ in updateQRImage() }
+        .onChange(of: vcardAddress) { _ in updateQRImage() }
+        .onChange(of: vcardWebsite) { _ in updateQRImage() }
+        .onChange(of: emailAddress) { _ in updateQRImage() }
+        .onChange(of: emailSubject) { _ in updateQRImage() }
+        .onChange(of: emailBody) { _ in updateQRImage() }
+        .onChange(of: phoneNumber) { _ in updateQRImage() }
+    }
+
+    private var qrPayload: String {
+        switch selectedType {
+        case .website:
+            return qrText
+
+        case .wifi:
+            let t = wifiEncryption.rawValue
+            let escaped = wifiSSID
+                .replacingOccurrences(of: "\\", with: "\\\\")
+                .replacingOccurrences(of: ";", with: "\\;")
+                .replacingOccurrences(of: ":", with: "\\:")
+            let pEscaped = wifiPassword
+                .replacingOccurrences(of: "\\", with: "\\\\")
+                .replacingOccurrences(of: ";", with: "\\;")
+                .replacingOccurrences(of: ":", with: "\\:")
+            let hidden = wifiHidden ? "H:true;" : ""
+            return "WIFI:T:\(t);S:\(escaped);P:\(pEscaped);\(hidden);"
+
+        case .vcard:
+            var lines = ["BEGIN:VCARD", "VERSION:3.0"]
+            let fn = "\(vcardFirstName) \(vcardLastName)".trimmingCharacters(in: .whitespaces)
+            if !fn.isEmpty {
+                lines.append("N:\(vcardLastName);\(vcardFirstName);;;")
+                lines.append("FN:\(fn)")
+            }
+            if !vcardCompany.isEmpty { lines.append("ORG:\(vcardCompany)") }
+            if !vcardTitle.isEmpty   { lines.append("TITLE:\(vcardTitle)") }
+            if !vcardPhone.isEmpty   { lines.append("TEL:\(vcardPhone)") }
+            if !vcardEmail.isEmpty   { lines.append("EMAIL:\(vcardEmail)") }
+            if !vcardAddress.isEmpty { lines.append("ADR:;;\(vcardAddress);;;;") }
+            if !vcardWebsite.isEmpty { lines.append("URL:\(vcardWebsite)") }
+            lines.append("END:VCARD")
+            return lines.joined(separator: "\n")
+
+        case .email:
+            var mailto = "mailto:\(emailAddress)"
+            var params: [String] = []
+            if !emailSubject.isEmpty {
+                params.append("subject=\(emailSubject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? emailSubject)")
+            }
+            if !emailBody.isEmpty {
+                params.append("body=\(emailBody.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? emailBody)")
+            }
+            if !params.isEmpty { mailto += "?" + params.joined(separator: "&") }
+            return mailto
+
+        case .phone:
+            return "tel:\(phoneNumber)"
+        }
     }
 
     private func updateQRImage() {
         DispatchQueue.main.async {
-            self.cachedQRImage = self.generateQRCode(from: self.qrText)
+            self.cachedQRImage = self.generateQRCode(from: self.qrPayload)
         }
     }
 
@@ -95,18 +231,8 @@ struct QRCodeView: View {
             Spacer()
 
             VStack(spacing: 24) {
-                TextField("qr.input.placeholder", text: $qrText)
-                    .textFieldStyle(.plain)
-                    .font(.system(size: 16))
-                    .padding(16)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                            .fill(Color.primary.opacity(0.04))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                    )
+                inputFieldsForType
+                    .animation(.easeInOut(duration: 0.2), value: selectedType)
 
                 if let qrImage = cachedQRImage {
                     ZStack {
@@ -161,11 +287,117 @@ struct QRCodeView: View {
                 .buttonStyle(.plain)
                 .handCursor()
             }
-            .frame(maxWidth: 400)
+            .frame(maxWidth: 440)
             .padding(40)
 
             Spacer()
         }
+    }
+
+    // MARK: - Dynamic Input Fields
+    @ViewBuilder
+    private var inputFieldsForType: some View {
+        switch selectedType {
+        case .website:
+            qrInputField("qr.input.placeholder", text: $qrText)
+
+        case .wifi:
+            VStack(spacing: 10) {
+                qrInputField("qr.wifi.ssid", text: $wifiSSID, icon: "wifi")
+                qrInputField("qr.wifi.password", text: $wifiPassword, icon: "lock", isSecure: true)
+                HStack(spacing: 8) {
+                    ForEach(WiFiEncryption.allCases) { enc in
+                        Button {
+                            wifiEncryption = enc
+                        } label: {
+                            Text(enc.displayName)
+                                .font(.system(size: 11, weight: .semibold))
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 7)
+                                .background(wifiEncryption == enc ? Color.accentColor : Color.primary.opacity(0.05))
+                                .foregroundStyle(wifiEncryption == enc ? .white : .primary)
+                                .clipShape(RoundedRectangle(cornerRadius: 7))
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                HStack {
+                    Text(LanguageManager.shared.string("qr.wifi.hidden"))
+                        .font(.system(size: 13))
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Toggle("", isOn: $wifiHidden)
+                        .toggleStyle(.switch)
+                        .controlSize(.small)
+                        .labelsHidden()
+                }
+                .padding(.horizontal, 4)
+            }
+
+        case .vcard:
+            VStack(spacing: 10) {
+                HStack(spacing: 10) {
+                    qrInputField("qr.vcard.firstName", text: $vcardFirstName, icon: "person")
+                    qrInputField("qr.vcard.lastName", text: $vcardLastName, icon: "person")
+                }
+                qrInputField("qr.vcard.phone", text: $vcardPhone, icon: "phone")
+                qrInputField("qr.vcard.email", text: $vcardEmail, icon: "envelope")
+                qrInputField("qr.vcard.company", text: $vcardCompany, icon: "building.2")
+                qrInputField("qr.vcard.jobTitle", text: $vcardTitle, icon: "briefcase")
+                qrInputField("qr.vcard.address", text: $vcardAddress, icon: "mappin.and.ellipse")
+                qrInputField("qr.vcard.website", text: $vcardWebsite, icon: "globe")
+            }
+
+        case .email:
+            VStack(spacing: 10) {
+                qrInputField("qr.email.address", text: $emailAddress, icon: "envelope")
+                qrInputField("qr.email.subject", text: $emailSubject, icon: "text.alignleft")
+                qrInputField("qr.email.body", text: $emailBody, icon: "doc.text", lineLimit: 3)
+            }
+
+        case .phone:
+            qrInputField("qr.phone.number", text: $phoneNumber, icon: "phone")
+        }
+    }
+
+    private func qrInputField(
+        _ placeholderKey: String,
+        text: Binding<String>,
+        icon: String? = nil,
+        isSecure: Bool = false,
+        lineLimit: Int = 1
+    ) -> some View {
+        HStack(spacing: 10) {
+            if let icon {
+                Image(systemName: icon)
+                    .font(.system(size: 13))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 18)
+            }
+            if isSecure {
+                SecureField(LanguageManager.shared.string(placeholderKey), text: text)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 14))
+            } else if lineLimit > 1 {
+                TextField(LanguageManager.shared.string(placeholderKey), text: text, axis: .vertical)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 14))
+                    .lineLimit(lineLimit...lineLimit + 2)
+            } else {
+                TextField(LanguageManager.shared.string(placeholderKey), text: text)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 14))
+            }
+        }
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color.primary.opacity(0.04))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+        )
     }
 
     // MARK: - Inspector Panel
@@ -180,6 +412,40 @@ struct QRCodeView: View {
                 }
                 .padding(.horizontal, 16)
                 .frame(height: 52)
+
+                Divider()
+
+                inspectorSection("qr.settings.type") {
+                    VStack(spacing: 6) {
+                        ForEach(QRContentType.allCases) { type in
+                            Button {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                    selectedType = type
+                                }
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Image(systemName: type.icon)
+                                        .font(.system(size: 12, weight: .medium))
+                                        .frame(width: 18)
+                                    Text(LanguageManager.shared.string(type.localizationKey))
+                                        .font(.system(size: 12, weight: .medium))
+                                    Spacer()
+                                    if selectedType == type {
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: 10, weight: .bold))
+                                            .foregroundStyle(Color.white)
+                                    }
+                                }
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 7)
+                                .background(selectedType == type ? Color.accentColor : Color.primary.opacity(0.04))
+                                .foregroundStyle(selectedType == type ? .white : .primary)
+                                .clipShape(RoundedRectangle(cornerRadius: 7))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
 
                 Divider()
 
@@ -414,7 +680,7 @@ struct QRCodeView: View {
 
         switch selectedFormat {
         case .svg:
-            if let svgData = generateSVG(from: qrText) {
+            if let svgData = generateSVG(from: qrPayload) {
                 try? svgData.write(to: url)
             }
 

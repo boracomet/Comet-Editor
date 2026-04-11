@@ -233,11 +233,29 @@ struct ContentView: View {
     private var contentView: some View {
         switch selectedItem.wrappedValue {
         case .home:
-            HomeView(onNavigate: { item in selectedItemRaw = item.rawValue })
+            HomeView(
+                onQuickImage: { preset in
+                    appState.pendingHomeQuickImagePreset = preset
+                    selectedItem.wrappedValue = .convertImage
+                },
+                onQuickVideo: { preset in
+                    appState.pendingHomeQuickVideoPreset = preset
+                    selectedItem.wrappedValue = .videoConvert
+                },
+                onQuickPdf: { preset in
+                    if let preset { appState.pendingHomePDFPreset = preset }
+                    selectedItem.wrappedValue = .pdfEdit
+                },
+                onNavigate: { item in
+                    selectedItem.wrappedValue = item
+                }
+            )
         case .convertImage:
             ConvertImageView(columnVisibility: $columnVisibility)
         case .videoConvert:
             VideoConvertView(columnVisibility: $columnVisibility)
+        case .videoEdit:
+            VideoEditView(columnVisibility: $columnVisibility)
         case .stockImage:
             StockImageView(columnVisibility: $columnVisibility)
         case .pdfEdit:

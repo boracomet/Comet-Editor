@@ -14,34 +14,26 @@ struct TeamModalView: View {
         GeometryReader { geo in
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
-                    // Branding
-                    Link(destination: URL(string: "https://cometdevs.com") ?? URL(fileURLWithPath: "/")) {
-                        Image("cometdev_logo")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: min(64, geo.size.height * 0.1))
-                            .handCursor()
-                    }
-                    .padding(.top, max(32, geo.size.height * 0.07))
-                    .padding(.bottom, max(16, geo.size.height * 0.03))
-
-                    Divider()
-                        .padding(.horizontal, max(16, (geo.size.width - 400) / 2))
-                        .padding(.bottom, max(16, geo.size.height * 0.03))
-
                     // Title
-                    VStack(spacing: 8) {
+                    VStack(spacing: 10) {
                         Text(LocalizedStringKey("menu.team.title"))
-                            .font(.system(size: min(28, geo.size.width * 0.04), weight: .bold))
+                            .font(.system(size: min(30, max(26, geo.size.width * 0.034)), weight: .bold))
                             .foregroundStyle(Color.primary)
                             .multilineTextAlignment(.center)
+                            .tracking(-0.3)
 
                         Text(LocalizedStringKey("menu.team.subtitle"))
-                            .font(.system(size: min(14, geo.size.width * 0.02)))
+                            .font(.system(size: min(16, max(14, geo.size.width * 0.019)), weight: .regular))
                             .foregroundStyle(Color.secondary)
                             .multilineTextAlignment(.center)
+                            .lineSpacing(3)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                    .padding(.bottom, max(24, geo.size.height * 0.04))
+                    .frame(maxWidth: min(440, geo.size.width - 48))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 24)
+                    .padding(.top, max(32, geo.size.height * 0.07))
+                    .padding(.bottom, max(28, geo.size.height * 0.045))
 
                     // Team Grid — always 4 in a single row, capped at max card width
                     let maxCardW: CGFloat = 180

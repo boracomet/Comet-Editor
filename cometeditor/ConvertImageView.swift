@@ -24,6 +24,7 @@ struct ConvertImageView: View {
     @State private var metadataEnabled = true
 
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var windowState: WindowStateObserver
     @State private var isProcessing = false
     @State private var showSuccessAlert = false
@@ -60,6 +61,11 @@ struct ConvertImageView: View {
                 .frame(width: 260)
         }
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .onAppear { applyPendingHomeQuickImagePresetIfNeeded() }
+        .onChange(of: appState.pendingHomeQuickImagePreset) { newValue in
+            guard newValue != nil else { return }
+            applyPendingHomeQuickImagePresetIfNeeded()
+        }
         .onChange(of: previewItem) { item in
             guard let item else {
                 previewFullImage = nil
@@ -131,6 +137,44 @@ struct ConvertImageView: View {
         }
         .onDisappear {
             wrongTypeTask?.cancel()
+        }
+    }
+
+    /// Ana sayfadan gelen hazır ayar (bir kez tüketilir).
+    private func applyPendingHomeQuickImagePresetIfNeeded() {
+        guard let preset = appState.consumePendingHomeQuickImagePreset() else { return }
+        switch preset {
+        case .shrinkPng:
+            resizeEnabled = false
+            customWidth = ""
+            customHeight = ""
+            scaleEnabled = true
+            scaleSelection = "%50"
+            quality = 90
+        case .pngToWebp:
+            selectedFormat = .webp
+            resizeEnabled = false
+            customWidth = ""
+            customHeight = ""
+            scaleEnabled = false
+            scaleSelection = "convert.scale.original"
+            quality = 85
+        case .pngToAvif:
+            selectedFormat = .avif
+            resizeEnabled = false
+            customWidth = ""
+            customHeight = ""
+            scaleEnabled = false
+            scaleSelection = "convert.scale.original"
+            quality = 80
+        case .jpgToWebp:
+            selectedFormat = .webp
+            resizeEnabled = false
+            customWidth = ""
+            customHeight = ""
+            scaleEnabled = false
+            scaleSelection = "convert.scale.original"
+            quality = 85
         }
     }
 
@@ -486,7 +530,8 @@ struct ConvertImageView: View {
                             Spacer()
                             Picker("", selection: $scaleSelection) {
                                 ForEach(scaleOptions, id: \.self) { option in
-                                    Text(LocalizedStringKey(option)).tag(option as String)
+                                    Text(option.hasPrefix("convert.") ? languageManager.string(option) : option)
+                                        .tag(option as String)
                                 }
                             }
                             .pickerStyle(.menu)
@@ -991,5 +1036,7 @@ enum ImageFormat: String, CaseIterable, Identifiable {
 #Preview {
     ConvertImageView(columnVisibility: .constant(.all))
         .environmentObject(GlobalAppState())
+        .environmentObject(LanguageManager.shared)
+        .environmentObject(WindowStateObserver())
         .frame(width: 800, height: 500)
 }

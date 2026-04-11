@@ -69,8 +69,21 @@ struct SidebarView: View {
     private func sectionItems(_ section: MenuSection) -> some View {
         ForEach(section.items) { item in
             HStack(spacing: 8) {
-                Label(item.title, systemImage: item.icon)
-                    .badge(item.badge.map { Text(LocalizedStringKey($0)) })
+                Label {
+                    Text(item.title)
+                } icon: {
+                    Image(systemName: item.icon)
+                        .foregroundStyle(
+                            selectedItem == item
+                            ? AnyShapeStyle(.white)
+                            : AnyShapeStyle(LinearGradient(
+                                colors: item.iconGradient,
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ))
+                        )
+                }
+                .badge(item.badge.map { Text(LocalizedStringKey($0)) })
                 if appState.processingMenuItem == item {
                     ProgressView()
                         .controlSize(.small)

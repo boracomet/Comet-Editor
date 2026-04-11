@@ -2,82 +2,111 @@
 //  PDFQualityPickerSheet.swift
 //  cometeditor
 //
+//  Metinler LanguageManager üzerinden — in-app dil seçici ile SwiftUI locale uyumu sağlanır.
+//
 
 import SwiftUI
 
 struct PDFQualityPickerSheet: View {
+    @EnvironmentObject private var languageManager: LanguageManager
+
     let pdf: PDFItem
     @Binding var selectedQuality: PDFCompressionQuality
     let onConfirm: (PDFCompressionQuality) -> Void
     let onCancel: () -> Void
 
-    // Tahminler arka planda bir kez hesaplanır, hazır string olarak saklanır
     @State private var estimates: [PDFCompressionQuality: (size: String, saving: String)] = [:]
 
     var body: some View {
         VStack(spacing: 0) {
-            // Başlık
-            VStack(spacing: 6) {
-                Image(systemName: "arrow.down.circle.fill")
-                    .font(.system(size: 32))
-                    .foregroundStyle(Color.accentColor)
-                    .padding(.top, 28)
-                Text(LocalizedStringKey("pdf.quality.modal.title"))
-                    .font(.system(size: 17, weight: .bold))
-                Text(LocalizedStringKey("pdf.quality.modal.subtitle"))
-                    .font(.system(size: 12))
-                    .foregroundStyle(Color.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(languageManager.string("pdf.quality.modal.title"))
+                    .font(.system(size: 15, weight: .semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(languageManager.string("pdf.quality.modal.subtitle"))
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(.bottom, 24)
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            .padding(.bottom, 16)
 
-            // Kalite seçenekleri
-            VStack(spacing: 10) {
+            VStack(spacing: 8) {
                 ForEach(PDFCompressionQuality.allCases) { quality in
-                    QualityOptionRow(
-                        quality: quality,
+                    MinimalQualityButton(
+                        title: qualityTitle(quality),
+                        description: qualityDescription(quality),
                         isSelected: selectedQuality == quality,
+                        percentLabel: quality.label,
                         estimatedSize: estimates[quality]?.size ?? "—",
                         savingPercent: estimates[quality]?.saving ?? ""
                     ) {
-                        selectedQuality = quality
+                        withAnimation(.easeInOut(duration: 0.15)) {
+                            selectedQuality = quality
+                        }
                     }
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 16)
 
-            Spacer(minLength: 20)
-
-            // Butonlar
-            HStack(spacing: 12) {
-                Button(LocalizedStringKey("pdf.quality.modal.cancel")) {
-                    onCancel()
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
-                .frame(maxWidth: .infinity)
-
+            VStack(spacing: 10) {
                 Button {
                     onConfirm(selectedQuality)
                 } label: {
-                    HStack(spacing: 6) {
+                    HStack(spacing: 8) {
                         Image(systemName: "arrow.down.circle.fill")
-                        Text(LocalizedStringKey("pdf.quality.modal.confirm"))
+                        Text(languageManager.string("pdf.quality.modal.confirm"))
                     }
+                    .font(.system(size: 13, weight: .semibold))
+                    .frame(maxWidth: .infinity, minHeight: 22)
+                    .multilineTextAlignment(.center)
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .frame(maxWidth: .infinity)
+                .keyboardShortcut(.defaultAction)
+
+                Button {
+                    onCancel()
+                } label: {
+                    Text(languageManager.string("pdf.quality.modal.cancel"))
+                        .font(.system(size: 13, weight: .medium))
+                        .frame(maxWidth: .infinity, minHeight: 22)
+                        .multilineTextAlignment(.center)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+                .frame(maxWidth: .infinity)
+                .keyboardShortcut(.cancelAction)
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 24)
+            .padding(.horizontal, 16)
+            .padding(.top, 20)
+            .padding(.bottom, 18)
         }
-        .frame(width: 380)
+        .frame(width: 320)
         .background(Color(NSColor.windowBackgroundColor))
         .task {
-            // Arka planda — main thread'i bloke etmez
             await computeEstimates()
+        }
+    }
+
+    private func qualityTitle(_ quality: PDFCompressionQuality) -> String {
+        switch quality {
+        case .low:    return languageManager.string("pdf.quality.low.title")
+        case .medium: return languageManager.string("pdf.quality.medium.title")
+        case .high:   return languageManager.string("pdf.quality.high.title")
+        }
+    }
+
+    private func qualityDescription(_ quality: PDFCompressionQuality) -> String {
+        switch quality {
+        case .low:    return languageManager.string("pdf.quality.low.desc")
+        case .medium: return languageManager.string("pdf.quality.medium.desc")
+        case .high:   return languageManager.string("pdf.quality.high.desc")
         }
     }
 
@@ -85,10 +114,8 @@ struct PDFQualityPickerSheet: View {
         let url = pdf.url
         let originalSize = pdf.fileSizeBytes
 
-        // Dosya okuma + hesaplama background'da
         let result: [PDFCompressionQuality: (String, String)] = await Task.detached(priority: .userInitiated) {
             guard let data = try? Data(contentsOf: url) else {
-                // Dosya okunamazsa orijinal boyuttan basit oran
                 return PDFCompressionQuality.allCases.reduce(into: [:]) { dict, q in
                     let ratio: Double = switch q {
                     case .low: 0.20; case .medium: 0.35; case .high: 0.55
@@ -100,7 +127,6 @@ struct PDFQualityPickerSheet: View {
                 }
             }
 
-            // Her kalite için tek seferde parse et
             return PDFCompressionQuality.allCases.reduce(into: [:]) { dict, q in
                 let est = PDFSizeEstimator.estimate(data: data, quality: q)
                 let sizeStr: String
@@ -121,109 +147,69 @@ struct PDFQualityPickerSheet: View {
     }
 }
 
-// MARK: - Kalite seçenek satırı
+// MARK: - Tam genişlik kalite satırı
 
-private struct QualityOptionRow: View {
-    let quality: PDFCompressionQuality
+private struct MinimalQualityButton: View {
+    let title: String
+    let description: String
     let isSelected: Bool
+    let percentLabel: String
     let estimatedSize: String
     let savingPercent: String
     let onTap: () -> Void
 
-    private var titleKey: LocalizedStringKey {
-        switch quality {
-        case .low:    return "pdf.quality.low.title"
-        case .medium: return "pdf.quality.medium.title"
-        case .high:   return "pdf.quality.high.title"
-        }
-    }
-
-    private var descKey: LocalizedStringKey {
-        switch quality {
-        case .low:    return "pdf.quality.low.desc"
-        case .medium: return "pdf.quality.medium.desc"
-        case .high:   return "pdf.quality.high.desc"
-        }
-    }
-
-    private var icon: String {
-        switch quality {
-        case .low:    return "doc.zipper"
-        case .medium: return "doc.badge.arrow.up"
-        case .high:   return "doc.richtext"
-        }
-    }
-
-    private var accentColor: Color {
-        switch quality {
-        case .low:    return .orange
-        case .medium: return .blue
-        case .high:   return .green
-        }
-    }
-
     var body: some View {
         Button(action: onTap) {
-            HStack(spacing: 14) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(accentColor.opacity(isSelected ? 0.15 : 0.07))
-                        .frame(width: 42, height: 42)
-                    Image(systemName: icon)
-                        .font(.system(size: 17, weight: .medium))
-                        .foregroundStyle(accentColor)
-                }
+            HStack(alignment: .center, spacing: 12) {
+                RoundedRectangle(cornerRadius: 2, style: .continuous)
+                    .fill(isSelected ? Color.accentColor : Color.secondary.opacity(0.22))
+                    .frame(width: 3, height: 40)
 
-                VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 6) {
-                        Text(titleKey)
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Text(title)
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(Color.primary)
-                        Text(quality.label)
-                            .font(.system(size: 11, weight: .bold, design: .monospaced))
-                            .foregroundStyle(accentColor)
-                            .padding(.horizontal, 5)
-                            .padding(.vertical, 1)
-                            .background(Capsule().fill(accentColor.opacity(0.12)))
+                        Text(percentLabel)
+                            .font(.system(size: 11, weight: .medium, design: .rounded))
+                            .foregroundStyle(Color.secondary)
+                        Spacer(minLength: 4)
+                        HStack(spacing: 6) {
+                            Text(estimatedSize)
+                                .font(.system(size: 12, weight: .medium, design: .monospaced))
+                                .foregroundStyle(Color.primary)
+                                .contentTransition(.numericText())
+                            if !savingPercent.isEmpty {
+                                Text(savingPercent)
+                                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                                    .foregroundStyle(Color.secondary)
+                            }
+                        }
                     }
-                    Text(descKey)
+
+                    Text(description)
                         .font(.system(size: 11))
                         .foregroundStyle(Color.secondary)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-
-                Spacer()
-
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text(estimatedSize)
-                        .font(.system(size: 12, weight: .semibold, design: .monospaced))
-                        .foregroundStyle(isSelected ? accentColor : Color.primary)
-                        .contentTransition(.numericText())
-                    if !savingPercent.isEmpty {
-                        Text(savingPercent)
-                            .font(.system(size: 10, weight: .medium))
-                            .foregroundStyle(accentColor.opacity(0.8))
-                    }
-                }
-
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 18))
-                    .foregroundStyle(isSelected ? accentColor : Color.secondary.opacity(0.3))
-                    .animation(.easeInOut(duration: 0.15), value: isSelected)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? accentColor.opacity(0.05) : Color.primary.opacity(0.03))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .strokeBorder(
-                                isSelected ? accentColor.opacity(0.4) : Color.primary.opacity(0.08),
-                                lineWidth: isSelected ? 1.5 : 1
-                            )
-                    )
-                    .animation(.easeInOut(duration: 0.15), value: isSelected)
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(isSelected ? Color.accentColor.opacity(0.1) : Color.primary.opacity(0.035))
             )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .strokeBorder(
+                        isSelected ? Color.accentColor.opacity(0.45) : Color.primary.opacity(0.1),
+                        lineWidth: isSelected ? 1.5 : 1
+                    )
+            )
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }

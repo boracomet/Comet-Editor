@@ -61,6 +61,11 @@ struct VideoConvertView: View {
                 .frame(width: 260)
         }
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .onAppear { applyPendingHomeQuickVideoPresetIfNeeded() }
+        .onChange(of: appState.pendingHomeQuickVideoPreset) { newValue in
+            guard newValue != nil else { return }
+            applyPendingHomeQuickVideoPresetIfNeeded()
+        }
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showSuccessAlert) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
             if let folderURL = appState.targetFolder {
@@ -87,6 +92,58 @@ struct VideoConvertView: View {
                 previewPlayer = AVPlayer(url: playURL)
                 previewPlayer?.play()
             }
+        }
+    }
+
+    /// Ana sayfadan gelen video hazır ayarı (bir kez tüketilir).
+    private func applyPendingHomeQuickVideoPresetIfNeeded() {
+        guard let preset = appState.consumePendingHomeQuickVideoPreset() else { return }
+        switch preset {
+        case .quickMp4Balanced:
+            selectedFormat = .mp4
+            quality = 7
+            fpsEnabled = false
+            scaleEnabled = false
+            selectedFPS = .original
+            selectedScale = .original
+            removeAudio = false
+            metadataEnabled = true
+        case .shrinkVideo:
+            selectedFormat = .mp4
+            quality = 6
+            fpsEnabled = true
+            scaleEnabled = true
+            selectedFPS = .fps30
+            selectedScale = .scale50
+            removeAudio = false
+            metadataEnabled = true
+        case .mp4ToGif:
+            selectedFormat = .gif
+            quality = 7
+            fpsEnabled = true
+            scaleEnabled = false
+            selectedFPS = .fps24
+            selectedScale = .original
+            removeAudio = true
+            metadataEnabled = false
+        case .aviToMp4:
+            selectedFormat = .mp4
+            quality = 7
+            fpsEnabled = false
+            scaleEnabled = false
+            selectedFPS = .original
+            selectedScale = .original
+            removeAudio = false
+            metadataEnabled = true
+        case .movToMp4:
+            selectedFormat = .mp4
+            quality = 7
+            fpsEnabled = false
+            scaleEnabled = false
+            selectedFPS = .original
+            selectedScale = .original
+            removeAudio = false
+            metadataEnabled = true
         }
     }
 
@@ -464,6 +521,8 @@ struct VideoConvertView: View {
                             .controlSize(.small)
                             .labelsHidden()
                     }
+                    .opacity(selectedFormat == .gif ? 0.45 : 1)
+                    .disabled(selectedFormat == .gif)
                 }
 
                 Divider()
@@ -929,6 +988,7 @@ enum VideoFormat: String, CaseIterable, Identifiable {
     case mkv
     case avi
     case webm
+    case gif
     case m4v
     case mpeg
     case threeGP = "3gp"
@@ -940,6 +1000,7 @@ enum VideoFormat: String, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .threeGP: return "3GP"
+        case .gif: return "GIF"
         default: return rawValue.uppercased()
         }
     }
@@ -952,6 +1013,7 @@ enum VideoFormat: String, CaseIterable, Identifiable {
         case .mkv: return "matroska"
         case .avi: return "avi"
         case .webm: return "webm"
+        case .gif: return "gif"
         case .m4v: return "mp4"
         case .mpeg: return "mpeg"
         case .threeGP: return "3gp"
@@ -1047,5 +1109,7 @@ struct AVPlayerViewRepresentable: NSViewRepresentable {
 #Preview {
     VideoConvertView(columnVisibility: .constant(.all))
         .environmentObject(GlobalAppState())
+        .environmentObject(VideoProcessor())
+        .environmentObject(WindowStateObserver())
         .frame(width: 800, height: 500)
 }

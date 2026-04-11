@@ -8,6 +8,7 @@
 "convert.settings.enable" = "Aktifleştir";
 "convert.settings.scale" = "Ölçek";
 "convert.settings.scale.amount" = "Ölçek";
+"convert.scale.original" = "Orijinal";
 "convert.settings.width" = "Genişlik px";
 "convert.settings.height" = "Yükseklik px";
 "meta.info" = "Metadata Koruma";
@@ -52,7 +53,22 @@
 
 "home.welcome" = "Comet Editor'a Hoş Geldiniz";
 "home.welcome.subtitle" = "Tüm ihtiyaçlarınız tek bir uygulamada.";
-"home.visitWebsite" = "Web sitemize git";
+"home.hero.eyebrow" = "Tüm araçlar, tek yer";
+"home.hero.title" = "Comet Editor'a Hoş Geldiniz";
+"home.hero.subtitle" = "Tüm ihtiyaçlarınız tek bir uygulamada.";
+"home.visitWebsite" ="Web sitemize git";
+"home.quick.section" = "Hızlı işlemler";
+"home.quick.title" = "Ne yapmak istiyorsun?";
+"home.quick.subtitle" = "Bunları uygulamamızla yapabilirsiniz; bir karta tıklayınca sağ panelde hazır ayarlar yüklenir.";
+"home.quick.tutorialLine" = "İpucu: Dosyaları seçtikten sonra yine de format, kalite veya ölçeği dönüştürmeden önce değiştirebilirsiniz.";
+"home.quick.shrink.title" = "Resim boyutunu düşür";
+"home.quick.shrink.subtitle" = "Aşağıda seçtiğiniz çıktı formatı aynı kalır — daha küçük boyut (ör. %%50 ölçek) için.";
+"home.quick.pngWebp.title" = "PNG → WebP";
+"home.quick.pngWebp.subtitle" = "Web çıktısı için uygun kalitede WebP — paylaşım ve site için ideal.";
+"home.quick.video.title" = "Video — hızlı paylaşım";
+"home.quick.video.subtitle" = "Dengeli kalitede MP4 — tek akışta dönüştürün veya sıkıştırın.";
+"home.quick.pdf.title" = "PDF düzenle";
+"home.quick.pdf.subtitle" = "PDF düzenleyiciyi açın — sayfaları yeniden sıralayın, sıkıştırın veya düzenleyin.";
 "home.feature.convertImage.desc" = "Resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
 "home.feature.videoConvert.desc" = "Videolarınızı kolayca dönüştürün ve sıkıştırın.";
 "home.feature.stockImage.desc" = "Ücretsiz yüksek kaliteli stok fotoğraflara göz atın ve indirin.";
@@ -61,6 +77,77 @@
 "home.feature.bgRemove.desc" = "Yapay zeka ile resim arka planlarını otomatik kaldırın.";
 "home.feature.ocr.desc" = "Optik tanıma ile resimlerden metin çıkarın.";
 "home.feature.fontDownload.desc" = "Google Fonts'tan fontları doğrudan Mac'inize göz atın ve indirin.";
+
+"home.preset.pdf.deletePage" = "Sayfa Sil";
+"home.preset.pdf.reorder" = "Sayfa Sırala";
+"home.preset.pdf.optimize" = "PDF Optimize Et";
+"home.preset.pngAvif.title" = "PNG → AVIF";
+"home.preset.jpgWebp.title" = "JPG → WebP";
+"home.preset.videoShrink.title" = "Boyut Düşür";
+"home.preset.mp4ToGif.title" = "MP4 → GIF";
+"home.preset.aviToMp4.title" = "AVI → MP4";
+"home.preset.movToMp4.title" = "MOV → MP4";
+// Home Guide Section
+"home.guide.section" = "Özellik Rehberi";
+"home.guide.title" = "Her araç nasıl çalışır?";
+"home.guide.subtitle" = "Adım adım talimatları görmek ve hazır ayarları yüklemek için aşağıdaki bir özelliğe tıklayın.";
+"home.guide.howto" = "Nasıl kullanılır";
+"home.guide.open" = "Aracı Aç";
+"home.guide.step.drop" = "Dosyalarınızı araç üzerine sürükleyip bırakın ya da gözatmak için tıklayın.";
+"home.guide.step.convert" = "Dönüştür butonuna tıklayın ve sonucu bekleyin.";
+
+// Convert Image Guide
+"home.guide.convertImage.desc" = "15'ten fazla format arasında kalite ve boyut ayarıyla görüntü dönüştürün.";
+"home.guide.convertImage.step2" = "Sağ panelden çıktı formatını seçin (PNG, JPG, WebP, HEIC vb.).";
+"home.guide.convertImage.step3" = "Kalite, ölçek veya boyutları ayarlayın — ardından dönüştürün.";
+"home.guide.convertImage.tip" = "Aynı anda birden fazla görüntü ekleyebilirsiniz. Her dosya aynı ayarlarla ayrı ayrı dönüştürülür.";
+
+// Video Guide
+"home.guide.video.desc" = "Videoları MP4, MOV, AVI ve daha fazlasına dönüştürün ve sıkıştırın.";
+"home.guide.video.step2" = "Çıktı formatını (MP4, MOV…) seçin; FPS veya çözünürlüğü ayarlayın.";
+"home.guide.video.step3" = "Sesi etkinleştirin veya devre dışı bırakın, ardından Dönüştür'e tıklayın.";
+"home.guide.video.tip" = "En küçük dosya boyutu için %50 çözünürlük ve 30 FPS seçin — sosyal medya paylaşımı için idealdir.";
+
+// PDF Guide
+"home.guide.pdf.desc" = "PDF dosyalarınızı düzenleyin, yeniden sıralayın, sıkıştırın ve yönetin.";
+"home.guide.pdf.step1" = "Düzenleyiciye bir PDF dosyası sürükleyip bırakın.";
+"home.guide.pdf.step2" = "Sayfaları sürükleyerek yeniden sıralamak veya silmek için Sıralama moduna geçin.";
+"home.guide.pdf.step3" = "Dosyayı sıkıştırmak için PDF'i Optimize Et seçeneğini kullanın — bir kalite seviyesi seçin.";
+"home.guide.pdf.step4" = "Değişikliklerinizi dışa aktarmak için PDF'i Kaydet'e tıklayın.";
+"home.guide.pdf.tip" = "Herhangi bir sayfa silme veya yeniden sıralama işlemini geri almak için Ctrl+Z kullanın.";
+
+// Background Remover Guide
+"home.guide.bgRemove.desc" = "Apple'ın Sinir Motoru kullanılarak resim arka planlarını otomatik kaldırın.";
+"home.guide.bgRemove.step2" = "Arka plan, cihaz üzerindeki yapay zeka ile anında kaldırılır.";
+"home.guide.bgRemove.step3" = "PNG veya WebP çıktı formatını seçin ve kaydedin.";
+"home.guide.bgRemove.tip" = "Net bir özneye sahip fotoğraflarda en iyi sonucu verir. macOS 14 Sonoma veya üstü gerektirir.";
+
+// OCR Guide
+"home.guide.ocr.desc" = "Optik karakter tanıma kullanarak herhangi bir resimden metin çıkarın ve kopyalayın.";
+"home.guide.ocr.step2" = "Araç tüm metni otomatik olarak algılar ve çıkarır.";
+"home.guide.ocr.step3" = "Tanınan metni kopyalayın veya dosya olarak kaydedin.";
+"home.guide.ocr.tip" = "Basılı metin, ekran görüntüleri ve taranmış belgelerle çalışır.";
+
+// QR Code Guide
+"home.guide.qr.desc" = "URL'ler, metin veya herhangi bir veri için özel QR kodları oluşturun.";
+"home.guide.qr.step1" = "Giriş alanına bir URL veya herhangi bir metin yazın ya da yapıştırın.";
+"home.guide.qr.step2" = "Ön plan/arka plan renklerini ve köşe yarıçapını özelleştirin.";
+"home.guide.qr.step3" = "QR kodunu seçtiğiniz çözünürlükte PNG veya SVG olarak indirin.";
+"home.guide.qr.tip" = "Daha yüksek çözünürlüklü dışa aktarmalar, fiziksel materyallere basıldığında daha iyi görünür.";
+
+// Stock Image Guide
+"home.guide.stock.desc" = "Pexels'ten ücretsiz yüksek kaliteli stok fotoğrafları arayın ve indirin.";
+"home.guide.stock.step1" = "Arama çubuğuna bir anahtar kelime yazın (ör. 'dağ', 'ofis').";
+"home.guide.stock.step2" = "Sonuçlara göz atın ve istediğiniz fotoğrafları seçin.";
+"home.guide.stock.step3" = "Seçili fotoğrafları orijinal veya düşük kalitede kaydetmek için İndir'e tıklayın.";
+"home.guide.stock.tip" = "Tüm fotoğraflar Pexels lisansı kapsamında ücretsiz kullanılabilir.";
+
+// Font Download Guide
+"home.guide.font.desc" = "Google Fontlarına göz atın ve doğrudan Mac'inize yükleyin.";
+"home.guide.font.step1" = "Ada göre font arayın veya kataloğa göz atın.";
+"home.guide.font.step2" = "Fontu önizleyin ve istediğiniz stilleri seçin.";
+"home.guide.font.step3" = "Fontu Mac'inize yüklemek için İndir'e tıklayın.";
+"home.guide.font.tip" = "İndirilen fontlar sistem genelinde yüklenir ve tüm uygulamalarda hemen kullanılabilir.";
 
 "video.drop.subtitle" = "veya dosyalara gözatmak için tıklayınız";
 "video.settings.format" = "FORMAT";
@@ -152,6 +239,38 @@
 "qr.settings.resolution" = "ÇÖZÜNÜRLÜK";
 "qr.settings.customSize" = "Özel Çözünürlük (px)";
 "qr.download" = "QR Kodu İndir";
+
+// QR Tür Seçimi
+"qr.settings.type" = "QR TÜRÜ";
+"qr.type.website" = "Web Sitesi";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kişi (vCard)";
+"qr.type.email" = "E-posta";
+"qr.type.phone" = "Telefon";
+
+// QR Wi-Fi
+"qr.wifi.ssid" = "Ağ adı (SSID)";
+"qr.wifi.password" = "Şifre";
+"qr.wifi.hidden" = "Gizli ağ";
+"qr.wifi.noEncryption" = "Yok";
+
+// QR vCard
+"qr.vcard.firstName" = "Ad";
+"qr.vcard.lastName" = "Soyad";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-posta";
+"qr.vcard.company" = "Şirket";
+"qr.vcard.jobTitle" = "Ünvan";
+"qr.vcard.address" = "Adres";
+"qr.vcard.website" = "Web sitesi";
+
+// QR E-posta
+"qr.email.address" = "E-posta adresi";
+"qr.email.subject" = "Konu";
+"qr.email.body" = "Mesaj";
+
+// QR Telefon
+"qr.phone.number" = "Telefon numarası";
 
 "bgremove.unavailable.title" = "macOS 14 Gerekli";
 "bgremove.unavailable.subtitle" = "Arka Plan Silme özelliği Apple'ın Neural Engine teknolojisini kullanır.\nLütfen macOS 14 Sonoma veya daha üst bir sürüme güncelleyin.";
@@ -298,3 +417,54 @@
 "folder.default.prompt.body" = "Bu klasörü varsayılan çıktı klasörü olarak kaydetmek ister misiniz? Ayarlardan istediğiniz zaman değiştirebilirsiniz.";
 "folder.default.prompt.yes" = "Varsayılan Olarak Ayarla";
 "folder.default.prompt.no" = "Şimdi Değil";
+
+"menu.videoEdit" = "Video Düzenle";
+
+// Video Editor Guide (Home)
+"home.guide.videoedit.desc" = "Klipleri kırpın, istenmeyen kısımları çıkarın ve birden fazla videoyu birleştirin.";
+"home.guide.videoedit.step1" = "+ butonu veya sürükle bırak ile bir ya da birden fazla video ekleyin.";
+"home.guide.videoedit.step2" = "Bir klip seçin, başlangıç ve bitiş noktasını ayarlamak için timeline'daki kırpma kollarını sürükleyin.";
+"home.guide.videoedit.step3" = "Son sıralamayı belirlemek için listedeki klipleri sürükleyerek yeniden sıralayın.";
+"home.guide.videoedit.step4" = "Çıktı formatını ve klasörü seçin, ardından Dışa Aktar'a tıklayın.";
+"home.guide.videoedit.tip" = "Kırpma kolları milisaniye hassasiyetiyle çalışır — tam kesim noktasını önizlemek için oynatma çubuğunu kullanın.";
+"home.guide.videoedit.preset.trim" = "Video Kırp";
+"home.guide.videoedit.preset.concat" = "Videoları Birleştir";
+
+// Video Editor
+"videoedit.clips" = "Klipler";
+"videoedit.insert.prepend" = "Başa ekle";
+"videoedit.insert.append" = "Sona ekle";
+"videoedit.insert.before" = "Önüne ekle";
+"videoedit.insert.after" = "Arkasına ekle";
+"videoedit.clips.total" = "toplam";
+"videoedit.drop.title" = "Video Dosyası Ekle";
+"videoedit.drop.subtitle" = "Buraya sürükleyin veya + tuşuna basın";
+"videoedit.noClip" = "Önizlemek için klip seçin";
+"videoedit.noClip.hint" = "Başlamak için sol panelden video ekleyin.";
+"videoedit.clip.trimmed" = "kırpılmış";
+"videoedit.timeline.title" = "Kırp";
+"videoedit.inspector.trim" = "KIRP";
+"videoedit.trim.start" = "Başlangıç";
+"videoedit.trim.end" = "Bitiş";
+"videoedit.trim.duration" = "Süre";
+"videoedit.trim.reset" = "Sıfırla";
+"videoedit.inspector.output" = "ÇIKTI FORMATI";
+"videoedit.inspector.format" = "Format";
+"videoedit.inspector.quality" = "Kalite";
+"videoedit.inspector.folder" = "KAYIT YERİ";
+"videoedit.folder.change" = "Klasörü Değiştir";
+"videoedit.export.trim" = "Klibi Dışa Aktar";
+"videoedit.export.merge" = "Birleştir ve Dışa Aktar";
+"videoedit.imageDuration" = "FOTOĞRAF SÜRESİ";
+"videoedit.imageDuration.default" = "Yeni fotoğraflar için varsayılan";
+"videoedit.addImage" = "Fotoğraf Ekle";
+"videoedit.export.noFolder" = "Önce kayıt klasörü seçin";
+"videoedit.exporting" = "Dışa aktarılıyor...";
+"videoedit.cancel" = "İptal";
+"videoedit.empty.title" = "Düzenlemek İçin Video Ekle";
+"videoedit.empty.subtitle" = "Video dosyalarını buraya sürükleyin veya aşağıdaki butona tıklayın";
+"videoedit.empty.button" = "Video Ekle";
+"videoedit.addMore" = "Ekle";
+"videoedit.export.settings" = "Ayarlar";
+"videoedit.clip.remove" = "Klibi Kaldır";
+"videoedit.trim.confirm" = "Kırpmayı onayla";

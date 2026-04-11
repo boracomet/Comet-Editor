@@ -162,25 +162,53 @@ struct FFmpegArgBuilder {
             args += ["-map_metadata", "-1"]
         }
 
-        // Audio
-        if settings.removeAudio {
+        let isGif = (format == .gif)
+
+        // Audio (GIF çıktısında ses yok)
+        if isGif {
+            args += ["-an"]
+        } else if settings.removeAudio {
             args += ["-an"]
         }
 
-        // FPS limit
-        if let fps = settings.fpsLimit.value {
+        // FPS limit (GIF’te kare hızı filtrede verilir; burada -r kullanılmaz)
+        if !isGif, let fps = settings.fpsLimit.value {
             args += ["-r", String(Int(fps))]
         }
 
-        // Resolution scale
-        if settings.resolutionScale != .original {
+        // Resolution scale — GIF hariç (GIF’te ölçek aşağıdaki palette zincirine gömülür)
+        if !isGif && settings.resolutionScale != .original {
             let m = settings.resolutionScale.multiplier
-            // width/height must be divisible by 2 for most codecs
             args += ["-vf", "scale=iw*\(m):ih*\(m),scale=trunc(iw/2)*2:trunc(ih/2)*2"]
         }
 
         // Codec + quality per format
         switch format {
+        case .gif:
+            // palettegen / paletteuse — kalite: fps + genişlik (slider 0…10)
+            let fpsGif: Int = {
+                if let v = settings.fpsLimit.value {
+                    return max(3, min(24, Int(v)))
+                }
+                return max(5, min(20, Int(6 + quality * 1.4)))
+            }()
+            var targetW = Int(280 + (quality / 10.0) * 420)
+            targetW = max(160, min(960, targetW))
+            targetW -= targetW % 2
+
+            var vfParts: [String] = []
+            if settings.resolutionScale != .original {
+                let m = settings.resolutionScale.multiplier
+                vfParts.append("scale=iw*\(m):ih*\(m)")
+                vfParts.append("scale=trunc(iw/2)*2:trunc(ih/2)*2")
+            }
+            vfParts.append("fps=\(fpsGif)")
+            vfParts.append("scale=\(targetW):-1:flags=lanczos")
+            vfParts.append("split[s0][s1];[s0]palettegen=max_colors=256:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3")
+            let vf = vfParts.joined(separator: ",")
+            args += ["-vf", vf]
+            args += ["-f", "gif"]
+
         case .mp4, .m4v:
             // H.264 via libx264
             let crf = crfH264(quality: quality)

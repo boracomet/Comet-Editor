@@ -15,6 +15,35 @@ struct ImageItem: Identifiable, Equatable {
     var fileName: String { url.lastPathComponent }
 }
 
+// MARK: - Ana sayfa hızlı başlangıç (hazır ayarlar)
+
+enum HomeQuickImagePreset: Equatable {
+    /// Çıktı formatı paneldeki seçim (değiştirilmez), %50 ölçek — daha küçük dosya.
+    case shrinkPng
+    case pngToWebp
+    case pngToAvif
+    case jpgToWebp
+}
+
+enum HomePDFPreset: Equatable {
+    case deletePage   // Reorder moduna geç (sayfa silme)
+    case reorderPages // Reorder moduna geç (sıralama)
+    case optimize     // Optimize modal'ı aç
+}
+
+enum HomeQuickVideoPreset: Equatable {
+    /// MP4 (H.264), dengeli kalite — paylaşım için hızlı başlangıç.
+    case quickMp4Balanced
+    /// %50 çözünürlük, 30FPS — boyut düşürme
+    case shrinkVideo
+    /// MP4 → GIF
+    case mp4ToGif
+    /// AVI → MP4
+    case aviToMp4
+    /// MOV → MP4
+    case movToMp4
+}
+
 struct VideoItem: Identifiable, Equatable {
     let id = UUID()
     let url: URL
@@ -83,6 +112,35 @@ class GlobalAppState: ObservableObject {
     // Shared File Lists
     @Published var selectedImages: [ImageItem] = []
     @Published var selectedVideos: [VideoItem] = []
+
+    /// Ana sayfa kartından gelen PDF hazır ayarı (bir kez tüketilir).
+    @Published var pendingHomePDFPreset: HomePDFPreset?
+
+    @MainActor
+    func consumePendingHomePDFPreset() -> HomePDFPreset? {
+        let v = pendingHomePDFPreset
+        pendingHomePDFPreset = nil
+        return v
+    }
+
+    /// Ana sayfa kartından gelen resim hazır ayarı (bir kez tüketilir).
+    @Published var pendingHomeQuickImagePreset: HomeQuickImagePreset?
+    /// Ana sayfa kartından gelen video hazır ayarı (bir kez tüketilir).
+    @Published var pendingHomeQuickVideoPreset: HomeQuickVideoPreset?
+
+    @MainActor
+    func consumePendingHomeQuickImagePreset() -> HomeQuickImagePreset? {
+        let v = pendingHomeQuickImagePreset
+        pendingHomeQuickImagePreset = nil
+        return v
+    }
+
+    @MainActor
+    func consumePendingHomeQuickVideoPreset() -> HomeQuickVideoPreset? {
+        let v = pendingHomeQuickVideoPreset
+        pendingHomeQuickVideoPreset = nil
+        return v
+    }
 
     // PDF Editor State
     @Published var selectedPDF: PDFItem? = nil
@@ -270,6 +328,19 @@ class GlobalAppState: ObservableObject {
     @Published var qrSelectedFormat: QRExportFormat = .png
     @Published var qrSelectedSize: CGFloat = 1024
     @Published var qrCustomSize: String = "1024"
+
+    // Video Edit State
+    @Published var videoEditClips: [VideoEditClip] = []
+    @Published var videoEditSelectedClipID: UUID? = nil
+    @Published var videoEditOutputFormat: VideoEditOutputFormat = .mp4
+    @Published var videoEditOutputQuality: Double = 8
+    @Published var videoEditFpsEnabled: Bool = false
+    @Published var videoEditSelectedFPS: FPSLimit = .original
+    @Published var videoEditScaleEnabled: Bool = false
+    @Published var videoEditSelectedScale: ResolutionScale = .original
+    @Published var videoEditRemoveAudio: Bool = false
+    @Published var videoEditMetadataEnabled: Bool = true
+    @Published var videoEditImageDuration: Double = 5.0
 
     // Stock Image State
     @Published var stockSearchQuery: String = ""

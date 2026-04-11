@@ -63,8 +63,20 @@ struct BgRemoveItem: Identifiable {
 private struct BgRemoveMainView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var windowState: WindowStateObserver
     @Environment(\.colorScheme) private var colorScheme
+
+    /// Piksel boyutu — çok geniş görsellerde doğru oran için `cgImage` tercih edilir.
+    private func pixelImageSize(_ image: NSImage) -> CGSize {
+        if let cg = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            return CGSize(width: CGFloat(cg.width), height: CGFloat(cg.height))
+        }
+        return image.size
+    }
+
+    /// Bu ve üzeri yatay oran → önizleme üst/alt (tam genişlik) bölünür; ince şerit + boşluk sorunu giderilir.
+    private let wideImageAspectThreshold: CGFloat = 2.25
 
     @State private var isDropTargeted = false
     @State private var showSuccessAlert = false
@@ -147,65 +159,89 @@ private struct BgRemoveMainView: View {
 
             Divider()
 
-            // Before / After canvases
-            HStack(spacing: 0) {
-                // Before — original image fills the pane
-                ZStack {
-                    Color(NSColor.underPageBackgroundColor)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    Image(nsImage: item.original)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .clipped()
-                .overlay(alignment: .topLeading) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "photo")
-                            .font(.system(size: 9, weight: .medium))
-                        Text(LocalizedStringKey("bgremove.before"))
-                            .font(.system(size: 10, weight: .bold))
+            // Before / After — çok geniş görsellerde yan yana yerine üst/alt bölünür
+            GeometryReader { geo in
+                let s = pixelImageSize(item.original)
+                let ratio = s.width / max(s.height, 1)
+                if ratio >= wideImageAspectThreshold {
+                    VStack(spacing: 0) {
+                        inlineBeforePane(item: item, size: CGSize(width: geo.size.width, height: geo.size.height / 2))
+                        Divider()
+                        inlineAfterPane(item: item, size: CGSize(width: geo.size.width, height: geo.size.height / 2))
                     }
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 6).padding(.vertical, 3)
-                    .background(Color.black.opacity(0.55))
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
-                    .padding(10)
-                }
-
-                Divider()
-
-                // After — checkerboard fills the pane, result on top
-                ZStack {
-                    CheckerboardView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    if let result = item.result {
-                        Image(nsImage: result)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    } else if item.isProcessing {
-                        ProgressView().controlSize(.large)
+                } else {
+                    HStack(spacing: 0) {
+                        inlineBeforePane(item: item, size: CGSize(width: geo.size.width / 2, height: geo.size.height))
+                        Divider()
+                        inlineAfterPane(item: item, size: CGSize(width: geo.size.width / 2, height: geo.size.height))
                     }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .clipped()
-                .overlay(alignment: .topLeading) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "sparkles")
-                            .font(.system(size: 9, weight: .medium))
-                        Text(LocalizedStringKey("bgremove.after"))
-                            .font(.system(size: 10, weight: .bold))
-                    }
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 6).padding(.vertical, 3)
-                    .background(Color.black.opacity(0.55))
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
-                    .padding(10)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
+    @ViewBuilder
+    private func inlineBeforePane(item: BgRemoveItem, size: CGSize) -> some View {
+        let ar = pixelImageSize(item.original)
+        ZStack {
+            Color(NSColor.underPageBackgroundColor)
+            Image(nsImage: item.original)
+                .resizable()
+                .interpolation(.high)
+                .aspectRatio(ar, contentMode: .fit)
+                .frame(width: size.width, height: size.height)
+        }
+        .frame(width: size.width, height: size.height)
+        .clipped()
+        .overlay(alignment: .topLeading) {
+            HStack(spacing: 4) {
+                Image(systemName: "photo")
+                    .font(.system(size: 9, weight: .medium))
+                Text(LocalizedStringKey("bgremove.before"))
+                    .font(.system(size: 10, weight: .bold))
+            }
+            .foregroundStyle(.white)
+            .padding(.horizontal, 6).padding(.vertical, 3)
+            .background(Color.black.opacity(0.55))
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .padding(10)
+        }
+    }
+
+    @ViewBuilder
+    private func inlineAfterPane(item: BgRemoveItem, size: CGSize) -> some View {
+        let arResult: CGSize = {
+            if let r = item.result { return pixelImageSize(r) }
+            return pixelImageSize(item.original)
+        }()
+        ZStack {
+            CheckerboardView()
+                .frame(width: size.width, height: size.height)
+            if let result = item.result {
+                Image(nsImage: result)
+                    .resizable()
+                    .interpolation(.high)
+                    .aspectRatio(arResult, contentMode: .fit)
+                    .frame(width: size.width, height: size.height)
+            } else if item.isProcessing {
+                ProgressView().controlSize(.large)
+            }
+        }
+        .frame(width: size.width, height: size.height)
+        .clipped()
+        .overlay(alignment: .topLeading) {
+            HStack(spacing: 4) {
+                Image(systemName: "sparkles")
+                    .font(.system(size: 9, weight: .medium))
+                Text(LocalizedStringKey("bgremove.after"))
+                    .font(.system(size: 10, weight: .bold))
+            }
+            .foregroundStyle(.white)
+            .padding(.horizontal, 6).padding(.vertical, 3)
+            .background(Color.black.opacity(0.55))
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .padding(10)
         }
     }
 
@@ -417,8 +453,8 @@ private struct BgRemoveMainView: View {
                         HStack {
                             Image(systemName: "square.and.arrow.down")
                             Text(readyCount > 0
-                                 ? String(format: NSLocalizedString("bgremove.save.count", comment: ""), readyCount)
-                                 : NSLocalizedString("bgremove.save.all", comment: ""))
+                                 ? String(format: languageManager.string("bgremove.save.count"), readyCount)
+                                 : languageManager.string("bgremove.save.all"))
                         }
                         .frame(maxWidth: .infinity)
                     }
@@ -572,18 +608,27 @@ private struct BgRemoveCard: View {
     let onTap: () -> Void
     @Environment(\.colorScheme) private var colorScheme
 
+    private func pixelImageSize(_ image: NSImage) -> CGSize {
+        if let cg = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            return CGSize(width: CGFloat(cg.width), height: CGFloat(cg.height))
+        }
+        return image.size
+    }
+
+    private let previewStripHeight: CGFloat = 220
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Before / After panels
             HStack(spacing: 2) {
                 // Before
                 ZStack(alignment: .topLeading) {
+                    Color(NSColor.underPageBackgroundColor)
                     Image(nsImage: item.original)
                         .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 180)
-                        .clipped()
+                        .interpolation(.high)
+                        .aspectRatio(pixelImageSize(item.original), contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                     Text(LocalizedStringKey("bgremove.before"))
                         .font(.system(size: 10, weight: .bold))
@@ -603,10 +648,9 @@ private struct BgRemoveCard: View {
                             CheckerboardView()
                             Image(nsImage: result)
                                 .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 180)
-                                .clipped()
+                                .interpolation(.high)
+                                .aspectRatio(pixelImageSize(result), contentMode: .fit)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                         .contentShape(Rectangle())
                         .onTapGesture { onTap() }
@@ -616,12 +660,12 @@ private struct BgRemoveCard: View {
                             .fill(Color.primary.opacity(0.06))
                             .overlay(ProgressView().controlSize(.regular))
                             .frame(maxWidth: .infinity)
-                            .frame(height: 180)
+                            .frame(height: previewStripHeight)
                     } else {
                         Rectangle()
                             .fill(Color.primary.opacity(0.06))
                             .frame(maxWidth: .infinity)
-                            .frame(height: 180)
+                            .frame(height: previewStripHeight)
                     }
 
                     Text(LocalizedStringKey("bgremove.after"))
@@ -654,7 +698,7 @@ private struct BgRemoveCard: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .frame(height: 180)
+            .frame(height: previewStripHeight)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.primary.opacity(0.08), lineWidth: 1))
 

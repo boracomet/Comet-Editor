@@ -1,52 +1,8 @@
 import SwiftUI
 
-// MARK: - Category Model
-
-private enum SuggestionCategory: String, CaseIterable {
-    case bug         = "bug"
-    case feature     = "feature"
-    case ui          = "ui"
-    case performance = "performance"
-    case other       = "other"
-
-    var localizedKey: LocalizedStringKey {
-        switch self {
-        case .bug:         return "suggestion.category.bug"
-        case .feature:     return "suggestion.category.feature"
-        case .ui:          return "suggestion.category.ui"
-        case .performance: return "suggestion.category.performance"
-        case .other:       return "suggestion.category.other"
-        }
-    }
-
-    var icon: String {
-        switch self {
-        case .bug:         return "ladybug.fill"
-        case .feature:     return "star.fill"
-        case .ui:          return "paintbrush.fill"
-        case .performance: return "bolt.fill"
-        case .other:       return "ellipsis.circle.fill"
-        }
-    }
-
-    var color: Color {
-        switch self {
-        case .bug:         return .red
-        case .feature:     return .blue
-        case .ui:          return .purple
-        case .performance: return .orange
-        case .other:       return .gray
-        }
-    }
-}
-
-// MARK: - Main View
-
 struct SuggestionView: View {
-    @ObservedObject private var adManager = AdManager.shared
     @State private var titleText: String = ""
     @State private var messageText: String = ""
-    @State private var selectedCategory: SuggestionCategory = .feature
     @State private var isSending = false
     @State private var showSuccess = false
     @State private var showError = false
@@ -54,48 +10,32 @@ struct SuggestionView: View {
     @FocusState private var titleFocused: Bool
     @FocusState private var bodyFocused: Bool
 
-    // Rate-limit CAPTCHA
     @State private var showMathChallenge = false
     @State private var mathA = 0
     @State private var mathB = 0
     @State private var mathAnswer = ""
     @State private var mathWrong = false
 
+    @Environment(\.colorScheme) private var colorScheme
+
     private static let rateLimitKey = "suggestion_submit_timestamps"
-    private static let rateWindow: TimeInterval = 3600   // 60 dakika
-    private static let rateLimit = 3                     // pencere başına max gönderim
+    private static let rateWindow: TimeInterval = 3600
+    private static let rateLimit = 3
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(spacing: 0) {
+                // Hero
+                heroSection
+                    .padding(.horizontal, 40)
+                    .padding(.top, 40)
+                    .padding(.bottom, 32)
 
-                // MARK: - Hero Header
-                headerSection
-
-                Divider()
-                    .padding(.horizontal, 32)
-
-                // MARK: - Form
-                VStack(alignment: .leading, spacing: 22) {
-
-                    // Category
-                    categorySection
-
-                    // Title
-                    titleSection
-
-                    // Body
-                    bodySection
-
-                    // Send
-                    sendButton
-
-                }
-                .padding(.horizontal, 32)
-                .padding(.top, 24)
-                .padding(.bottom, 32)
+                // Form card
+                formCard
+                    .padding(.horizontal, 40)
+                    .padding(.bottom, 40)
             }
-            .padding(.leading, 0)
         }
         .alert(LocalizedStringKey("suggestion.sent.title"), isPresented: $showSuccess) {
             Button("OK", role: .cancel) {}
@@ -136,139 +76,141 @@ struct SuggestionView: View {
         }
     }
 
-    // MARK: - Header
+    // MARK: - Hero
 
-    private var headerSection: some View {
-        HStack(spacing: 16) {
+    private var heroSection: some View {
+        HStack(alignment: .center, spacing: 20) {
             ZStack {
-                Circle()
-                    .fill(Color.accentColor.opacity(0.12))
-                    .frame(width: 48, height: 48)
-                Image(systemName: "lightbulb.fill")
-                    .font(.system(size: 20, weight: .medium))
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.accentColor.opacity(0.25), Color.accentColor.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 56, height: 56)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .strokeBorder(Color.accentColor.opacity(0.3), lineWidth: 1)
+                    )
+                Image(systemName: "paperplane.fill")
+                    .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(Color.accentColor)
             }
 
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(LocalizedStringKey("suggestion.title"))
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundStyle(Color.primary)
-
                 Text(LocalizedStringKey("suggestion.subtitle"))
-                    .font(.system(size: 12))
+                    .font(.system(size: 13))
                     .foregroundStyle(Color.secondary)
             }
 
+            Spacer()
         }
-        .padding(.horizontal, 32)
-        .padding(.vertical, 20)
     }
 
-    // MARK: - Category Section
+    // MARK: - Form Card
 
-    private var categorySection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(LocalizedStringKey("suggestion.label.category"))
-                .font(.system(size: 11, weight: .medium))
-                .foregroundStyle(Color.secondary)
+    private var formCard: some View {
+        VStack(alignment: .leading, spacing: 24) {
 
-            HStack(spacing: 6) {
-                ForEach(SuggestionCategory.allCases, id: \.self) { cat in
-                    CategoryChip(
-                        category: cat,
-                        isSelected: selectedCategory == cat
-                    ) {
-                        withAnimation(.spring(response: 0.22, dampingFraction: 0.75)) {
-                            selectedCategory = cat
-                        }
+            // Title field
+            fieldGroup(label: LocalizedStringKey("suggestion.label.title")) {
+                ZStack(alignment: .leading) {
+                    if titleText.isEmpty {
+                        Text(LocalizedStringKey("suggestion.placeholder.title"))
+                            .font(.system(size: 13))
+                            .foregroundStyle(Color.secondary.opacity(0.45))
+                            .padding(.leading, 2)
                     }
+                    TextField("", text: $titleText)
+                        .textFieldStyle(.plain)
+                        .font(.system(size: 13))
+                        .focused($titleFocused)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 11)
+                .background(fieldBackground(focused: titleFocused))
+                .overlay(fieldBorder(focused: titleFocused))
+                .animation(.easeInOut(duration: 0.15), value: titleFocused)
+            }
+
+            // Body field
+            fieldGroup(label: LocalizedStringKey("suggestion.label.description")) {
+                VStack(alignment: .trailing, spacing: 6) {
+                    ZStack(alignment: .topLeading) {
+                        if messageText.isEmpty {
+                            Text(LocalizedStringKey("suggestion.placeholder.body"))
+                                .font(.system(size: 13))
+                                .foregroundStyle(Color.secondary.opacity(0.45))
+                                .padding(.top, 11)
+                                .padding(.leading, 15)
+                                .allowsHitTesting(false)
+                        }
+                        TextEditor(text: $messageText)
+                            .font(.system(size: 13))
+                            .focused($bodyFocused)
+                            .scrollContentBackground(.hidden)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 8)
+                            .frame(minHeight: 140)
+                            .onChange(of: messageText) { v in
+                                if v.count > 2000 { messageText = String(v.prefix(2000)) }
+                            }
+                    }
+                    .background(fieldBackground(focused: bodyFocused))
+                    .overlay(fieldBorder(focused: bodyFocused))
+                    .animation(.easeInOut(duration: 0.15), value: bodyFocused)
+
+                    Text("\(messageText.count) / 2000")
+                        .font(.system(size: 10, design: .monospaced))
+                        .foregroundStyle(messageText.count > 1800 ? .orange : Color.secondary.opacity(0.35))
                 }
             }
+
+            // Send button
+            sendButton
+        }
+        .padding(28)
+        .background(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(colorScheme == .dark ? Color.white.opacity(0.04) : Color.black.opacity(0.025))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .strokeBorder(
+                    colorScheme == .dark ? Color.white.opacity(0.08) : Color.black.opacity(0.07),
+                    lineWidth: 1
+                )
+        )
+    }
+
+    // MARK: - Field helpers
+
+    @ViewBuilder
+    private func fieldGroup<Content: View>(label: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(label)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(Color.secondary)
+            content()
         }
     }
 
-    // MARK: - Title Section
-
-    private var titleSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(LocalizedStringKey("suggestion.label.title"))
-                .font(.system(size: 11, weight: .medium))
-                .foregroundStyle(Color.secondary)
-
-            ZStack(alignment: .leading) {
-                if titleText.isEmpty {
-                    Text(LocalizedStringKey("suggestion.placeholder.title"))
-                        .font(.system(size: 13))
-                        .foregroundStyle(Color.secondary.opacity(0.4))
-                        .padding(.leading, 2)
-                }
-                TextField("", text: $titleText)
-                    .textFieldStyle(.plain)
-                    .font(.system(size: 13))
-                    .focused($titleFocused)
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(Color.primary.opacity(titleFocused ? 0.055 : 0.035))
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(
-                        titleFocused ? Color.accentColor.opacity(0.55) : Color.primary.opacity(0.07),
-                        lineWidth: titleFocused ? 1.5 : 1
-                    )
-            )
-            .animation(.easeInOut(duration: 0.15), value: titleFocused)
-        }
+    private func fieldBackground(focused: Bool) -> some View {
+        RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .fill(Color.primary.opacity(focused ? 0.055 : 0.035))
     }
 
-    // MARK: - Body Section
-
-    private var bodySection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(LocalizedStringKey("suggestion.label.description"))
-                .font(.system(size: 11, weight: .medium))
-                .foregroundStyle(Color.secondary)
-
-            ZStack(alignment: .topLeading) {
-                if messageText.isEmpty {
-                    Text(LocalizedStringKey("suggestion.placeholder.body"))
-                        .font(.system(size: 13))
-                        .foregroundStyle(Color.secondary.opacity(0.4))
-                        .padding(.top, 10)
-                        .padding(.leading, 13)
-                        .allowsHitTesting(false)
-                }
-                TextEditor(text: $messageText)
-                    .font(.system(size: 13))
-                    .focused($bodyFocused)
-                    .scrollContentBackground(.hidden)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 8)
-                    .frame(minHeight: 120)
-            }
-            .background(
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(Color.primary.opacity(bodyFocused ? 0.055 : 0.035))
+    private func fieldBorder(focused: Bool) -> some View {
+        RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .strokeBorder(
+                focused ? Color.accentColor.opacity(0.55) : Color.primary.opacity(0.08),
+                lineWidth: focused ? 1.5 : 1
             )
-            .overlay(
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(
-                        bodyFocused ? Color.accentColor.opacity(0.55) : Color.primary.opacity(0.07),
-                        lineWidth: bodyFocused ? 1.5 : 1
-                    )
-            )
-            .animation(.easeInOut(duration: 0.15), value: bodyFocused)
-
-            HStack {
-                Spacer()
-                Text("\(messageText.count) / 2000")
-                    .font(.system(size: 10, design: .monospaced))
-                    .foregroundStyle(messageText.count > 1800 ? .orange : Color.secondary.opacity(0.35))
-            }
-        }
     }
 
     // MARK: - Send Button
@@ -285,29 +227,27 @@ struct SuggestionView: View {
                 Task { await sendSuggestion() }
             }
         } label: {
-            HStack(spacing: 7) {
+            HStack(spacing: 8) {
                 if isSending {
                     ProgressView()
                         .controlSize(.small)
                         .tint(.white)
                 } else {
                     Image(systemName: "paperplane.fill")
-                        .font(.system(size: 12, weight: .medium))
+                        .font(.system(size: 13, weight: .semibold))
                 }
                 Text(isSending
                      ? LocalizedStringKey("suggestion.sending")
                      : LocalizedStringKey("suggestion.send"))
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: 14, weight: .semibold))
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 38)
+            .frame(height: 44)
             .background(
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(
-                        isSending || !canSend
-                            ? Color.accentColor.opacity(0.45)
-                            : Color.accentColor
-                    )
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(isSending || !canSend
+                          ? Color.accentColor.opacity(0.45)
+                          : Color.accentColor)
             )
             .foregroundStyle(.white)
         }
@@ -322,8 +262,7 @@ struct SuggestionView: View {
     private func isRateLimited() -> Bool {
         let now = Date().timeIntervalSince1970
         let stored = UserDefaults.standard.array(forKey: Self.rateLimitKey) as? [Double] ?? []
-        let recent = stored.filter { now - $0 < Self.rateWindow }
-        return recent.count >= Self.rateLimit
+        return stored.filter { now - $0 < Self.rateWindow }.count >= Self.rateLimit
     }
 
     private func recordSubmit() {
@@ -359,7 +298,6 @@ struct SuggestionView: View {
             return String(cString: model)
         }()
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-
         let sessionId = UserDefaults.standard.string(forKey: "comet_analytics_session_id") ?? UUID().uuidString
         let sdk = CometAnalytics.shared
 
@@ -367,7 +305,7 @@ struct SuggestionView: View {
             "sessionId":   sessionId,
             "title":       titleText.trimmingCharacters(in: .whitespaces),
             "body":        messageText.trimmingCharacters(in: .whitespaces),
-            "category":    selectedCategory.rawValue,
+            "category":    "bug",
             "appVersion":  appVersion,
             "osVersion":   osVersion,
             "deviceModel": deviceModel,
@@ -388,11 +326,11 @@ struct SuggestionView: View {
 
         do {
             let (_, resp) = try await URLSession.shared.data(for: req)
-            if (resp as? HTTPURLResponse)?.statusCode == 200 {
+            let statusCode = (resp as? HTTPURLResponse)?.statusCode ?? 0
+            if statusCode >= 200 && statusCode < 300 {
                 recordSubmit()
                 titleText = ""
                 messageText = ""
-                selectedCategory = .feature
                 showSuccess = true
             } else {
                 showError = true
@@ -400,43 +338,5 @@ struct SuggestionView: View {
         } catch {
             showError = true
         }
-    }
-}
-
-// MARK: - Category Chip
-
-private struct CategoryChip: View {
-    let category: SuggestionCategory
-    let isSelected: Bool
-    let action: () -> Void
-    @State private var isHovered = false
-
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: 4) {
-                Image(systemName: category.icon)
-                    .font(.system(size: 9, weight: .semibold))
-                Text(category.localizedKey)
-                    .font(.system(size: 11, weight: .medium))
-            }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 5)
-            .background(
-                Capsule()
-                    .fill(isSelected
-                          ? category.color.opacity(0.15)
-                          : Color.primary.opacity(isHovered ? 0.07 : 0.04))
-            )
-            .overlay(
-                Capsule()
-                    .stroke(
-                        isSelected ? category.color.opacity(0.45) : Color.primary.opacity(0.07),
-                        lineWidth: isSelected ? 1.5 : 1
-                    )
-            )
-            .foregroundStyle(isSelected ? category.color : Color.secondary)
-        }
-        .buttonStyle(.plain)
-        .onHover { isHovered = $0 }
     }
 }

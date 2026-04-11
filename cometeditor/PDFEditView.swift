@@ -21,6 +21,7 @@ private struct SentImage: @unchecked Sendable { let nsImage: NSImage? }
 
 struct PDFEditView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
+    @EnvironmentObject private var languageManager: LanguageManager
     @State private var isDropTargeted = false
 
     // Compression state
@@ -65,6 +66,11 @@ struct PDFEditView: View {
                 .frame(width: 260)
         }
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .onAppear { applyPendingHomePDFPresetIfNeeded() }
+        .onChange(of: appState.pendingHomePDFPreset) { v in
+            guard v != nil else { return }
+            applyPendingHomePDFPresetIfNeeded()
+        }
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showCompressSuccess) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
             Button(LocalizedStringKey("alert.openFolder")) {
@@ -109,6 +115,7 @@ struct PDFEditView: View {
                     },
                     onCancel: { showQualityModal = false }
                 )
+                .environmentObject(languageManager)
             }
         }
     }
@@ -195,10 +202,10 @@ struct PDFEditView: View {
                     if !pdf.fileSizeString.isEmpty {
                         Text("•")
                         Text(pdf.fileSizeString)
-                        // Tahmini optimize boyutu — yeşil yazı ile göster
+                        // Tahmini optimize boyutu — her zaman %25 (en düşük) kalite tahmini
                         if pdf.fileSizeBytes > 0 {
                             let estimatedBytes: Int64 = (try? Data(contentsOf: pdf.url))
-                                .map { PDFSizeEstimator.estimate(data: $0, quality: selectedQuality) }
+                                .map { PDFSizeEstimator.estimate(data: $0, quality: .low) }
                                 ?? -1
                             if estimatedBytes > 0 {
                                 let estimated = ByteCountFormatter.string(
@@ -780,11 +787,10 @@ struct PDFEditView: View {
     }
 
 
-    // MARK: - PDF Compress (Apple Native)
+    // MARK: - PDF Compress
     //
-    // CGPDFPage + CGContext pipeline.
-    // Raster image içeren sayfalar bitmap render → JPEG encode → JPEG-backed CGImage → PDF'e çiz.
-    // Vektör/metin sayfaları → drawPDFPage stream-copy (kalite kaybı yok).
+    // PDFCompressor (VectorPreservingCompressor): raster görsel stream'leri JPEG + DPI ile
+    // yeniden sıkıştırır; metin ve vektör içerik korunur.
 
     @MainActor
     private func compressPDF(_ pdf: PDFItem, quality: PDFCompressionQuality = .high, outputURL explicitURL: URL? = nil) async {
@@ -1046,6 +1052,18 @@ struct PDFEditView: View {
     }
 
     // MARK: - Load Helpers
+    private func applyPendingHomePDFPresetIfNeeded() {
+        guard let preset = appState.consumePendingHomePDFPreset() else { return }
+        switch preset {
+        case .deletePage:
+            appState.pdfViewMode = .reorder
+        case .reorderPages:
+            appState.pdfViewMode = .reorder
+        case .optimize:
+            showQualityModal = true
+        }
+    }
+
     private func selectFileFromFinder() {
         let panel = NSOpenPanel()
         panel.allowsMultipleSelection = false
@@ -1097,7 +1115,7 @@ private struct AddContentModal: View {
         VStack(alignment: .leading, spacing: 0) {
             // Title
             HStack {
-                Text(LocalizedStringKey("pdf.addContent.title"))
+                Text(LanguageManager.shared.string("pdf.addContent.title"))
                     .font(.system(size: 16, weight: .bold))
                 Spacer()
                 Button { dismiss() } label: {
@@ -1117,15 +1135,15 @@ private struct AddContentModal: View {
                 VStack(alignment: .leading, spacing: 20) {
                     // Content type picker
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(LocalizedStringKey("pdf.addContent.typeLabel"))
+                        Text(LanguageManager.shared.string("pdf.addContent.typeLabel"))
                             .font(.system(size: 11, weight: .bold))
                             .foregroundStyle(.secondary)
 
                         HStack(spacing: 10) {
-                            typeButton(label: "pdf.addContent.typePDF", icon: "doc.fill", selected: contentType == .pdf) {
+                            typeButton(label: LanguageManager.shared.string("pdf.addContent.typePDF"), icon: "doc.fill", selected: contentType == .pdf) {
                                 contentType = .pdf
                             }
-                            typeButton(label: "pdf.addContent.typeImage", icon: "photo.fill", selected: contentType == .image) {
+                            typeButton(label: LanguageManager.shared.string("pdf.addContent.typeImage"), icon: "photo.fill", selected: contentType == .image) {
                                 contentType = .image
                             }
                         }
@@ -1135,20 +1153,20 @@ private struct AddContentModal: View {
 
                     // Insert position
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(LocalizedStringKey("pdf.addContent.positionLabel"))
+                        Text(LanguageManager.shared.string("pdf.addContent.positionLabel"))
                             .font(.system(size: 11, weight: .bold))
                             .foregroundStyle(.secondary)
 
                         // Use current page or custom
                         Toggle(isOn: $useCurrentPage) {
-                            Text(String(format: NSLocalizedString("pdf.addContent.currentPage", comment: ""), currentPageIndex + 1))
+                            Text(String(format: LanguageManager.shared.string("pdf.addContent.currentPage"), currentPageIndex + 1))
                                 .font(.system(size: 13))
                         }
                         .toggleStyle(.checkbox)
 
                         if !useCurrentPage {
                             HStack(spacing: 8) {
-                                Text(LocalizedStringKey("pdf.addContent.pageNumber"))
+                                Text(LanguageManager.shared.string("pdf.addContent.pageNumber"))
                                     .font(.system(size: 13))
                                 TextField("", value: $customPageNumber, formatter: {
                                     let f = NumberFormatter()
@@ -1162,9 +1180,9 @@ private struct AddContentModal: View {
                         }
 
                         Picker("", selection: $insertPosition) {
-                            Text(LocalizedStringKey("pdf.addContent.before")).tag(InsertPosition.before)
-                            Text(LocalizedStringKey("pdf.addContent.after")).tag(InsertPosition.after)
-                            Text(LocalizedStringKey("pdf.addContent.atEnd")).tag(InsertPosition.atEnd)
+                            Text(LanguageManager.shared.string("pdf.addContent.before")).tag(InsertPosition.before)
+                            Text(LanguageManager.shared.string("pdf.addContent.after")).tag(InsertPosition.after)
+                            Text(LanguageManager.shared.string("pdf.addContent.atEnd")).tag(InsertPosition.atEnd)
                         }
                         .pickerStyle(.radioGroup)
                         .labelsHidden()
@@ -1184,7 +1202,7 @@ private struct AddContentModal: View {
                 } label: {
                     HStack(spacing: 6) {
                         Image(systemName: "plus.circle.fill")
-                        Text(LocalizedStringKey("pdf.addContent.chooseFile"))
+                        Text(LanguageManager.shared.string("pdf.addContent.chooseFile"))
                     }
                     .padding(.horizontal, 16)
                 }
@@ -1198,7 +1216,7 @@ private struct AddContentModal: View {
     }
 
     @ViewBuilder
-    private func typeButton(label: LocalizedStringKey, icon: String, selected: Bool, action: @escaping () -> Void) -> some View {
+    private func typeButton(label: String, icon: String, selected: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             HStack(spacing: 8) {
                 Image(systemName: icon)

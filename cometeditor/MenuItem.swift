@@ -23,7 +23,7 @@ enum MenuSection: String, CaseIterable {
     var items: [MenuItem] {
         switch self {
         case .main:  return [.home]
-        case .tools: return [.convertImage, .videoConvert, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
+        case .tools: return [.convertImage, .videoConvert, .videoEdit, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
         case .other: return [.suggestion, .announcements, .settings]
         }
     }
@@ -33,6 +33,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     case home
     case convertImage
     case videoConvert
+    case videoEdit
     case stockImage
     case pdfEdit
     case qrCode
@@ -51,6 +52,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .home: return "menu.home"
         case .convertImage: return "menu.convertImage"
         case .videoConvert: return "menu.videoConvert"
+        case .videoEdit: return "menu.videoEdit"
         case .stockImage: return "menu.stockImage"
         case .pdfEdit: return "menu.pdfEdit"
         case .qrCode: return "menu.qrCode"
@@ -69,6 +71,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .home: return "house.fill"
         case .convertImage: return "photo.on.rectangle.angled"
         case .videoConvert: return "video.fill"
+        case .videoEdit: return "scissors"
         case .stockImage: return "photo.stack.fill"
         case .pdfEdit: return "doc.text.fill"
         case .qrCode: return "qrcode"
@@ -83,4 +86,23 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     }
 
     var badge: String? { nil }
+
+    var iconGradient: [Color] {
+        switch self {
+        case .home:          return [.blue, .cyan]
+        case .convertImage:  return [.blue, .cyan]
+        case .videoConvert:  return [.indigo, .purple]
+        case .videoEdit:     return [.purple, .pink]
+        case .stockImage:    return [.cyan, .blue]
+        case .pdfEdit:       return [.orange, .pink]
+        case .qrCode:        return [.yellow, .orange]
+        case .bgRemove:      return [.pink, .red]
+        case .ocr:           return [.green, .teal]
+        case .fontDownload:  return [.purple, .indigo]
+        case .suggestion:    return [.green, .mint]
+        case .announcements: return [.yellow, .orange]
+        case .settings:      return [.gray, .gray]
+        case .team:          return [.blue, .purple]
+        }
+    }
 }
