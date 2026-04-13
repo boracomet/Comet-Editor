@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "بۇ يەردە پەقەت رەسىملەرنىلا ئايلاندۇرغىلى بولىدۇ";
 "menu.home" = "باش بەت";
 "menu.convertImage" = "رەسىمنى ئايلاندۇرۇش";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Resim Düzenle";
 "menu.badge.soon" = "يېقىندا";
 "menu.batchProcess" = "Toplu İşlem";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor تەجرىبىڭىزنى ماسلاشتۇرۇڭ";
 "settings.section.output" = "چىقىش";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "كۆڭۈلدىكى چىقىش ھۆججەت قىسقۇچى";
 "settings.noFolderSelected" = "تاللانمىدى — قېتىم-قېتىم سورايدۇ";
 "settings.chooseFolder" = "ھۆججەت قىسقۇچ تاللاڭ";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "تەڭشەكلەر";
+"upscale.settings.model" = "تىزىلما";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — سۈنئىي ئەقلى تەپسىلات ياخشىلاش";
+"upscale.settings.scale" = "ئۆلچەم";
+"upscale.scale.multiPassHint" = "8× ۋە 16× بىر نەچچە AI قېتىم ئىجرا قىلىدۇ — ۋاقىت ئۇزىرەك.";
+"upscale.settings.outputFormat" = "چىقىش فورماتى";
+"upscale.drop.title" = "رەسىملەرنى سۆرەپ قويۇڭ";
+"upscale.drop.subtitle" = "ياكى ھۆججەتلەرنى كۆرۈش ئۈچۈن چېكىڭ";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "بۇ يەردە پەقەت قوللىنىدىغان راستر رەسىملەرنى چوڭايتقىلى بولىدۇ";
+"upscale.runButton" = "چوڭايتىش";
+"upscale.preview.run" = "ئالدىن كۆرۈش";
+"upscale.preview.hint" = "ئۆلچەم تاللاپ سېلىشتۇرۇش ئۈچۈن ئالدىن كۆرۈشنى بېسىڭ";
+"upscale.preview.processing" = "ئالدىن كۆرۈش ھاسىللىنىۋاتىدۇ…";
+"upscale.preview.before" = "ئىلگىرى";
+"upscale.preview.after" = "كېيىن";
+"upscale.preview.save" = "ساقلاش";
+"upscale.preview.saveSettings" = "ئالدىن كۆرۈشنى ساقلاش";
+"upscale.preview.autoSave" = "ئالدىن كۆرۈشتىن كېيىن ساقلاش";
+"upscale.preview.autoSaveHint" = "ئالدىن كۆرۈش تاماملانغاندا نىشان قىسقۇچقا يازىدۇ.";
+"upscale.preview.saveNeedFolder" = "ئاۋۋال نىشان قىسقۇچنى تاللاڭ.";
+"upscale.preview.saveFailed" = "ئالدىن كۆرۈش رەسىمىنى كودلىيالمىدى.";
+"upscale.preview.loadFailed" = "ئالدىن كۆرۈش رەسىمىنى يۈكلىيەلمىدى.";
+"upscale.backend.missing.hint" = "قوللانما بوغچىسىدا cometscaly ماتور ياكى تىزىلما ھۆججەتلىرى يوق. قايتا قۇرۇڭ.";
+"upscale.error.bundle" = "قوللانمىدا Upscale بوغچا قىسقۇچى يوق.";
+"upscale.error.binary" = "قوللانما بوغچىسىدا cometscaly تېپىلمىدى.";
+"upscale.error.model" = "تىزىلما ھۆججەتلىرى upscayl-standard-4x.param/.bin يوق.";
+"upscale.error.process" = "چوڭايتىش مەغلۇپ (exit %d): %@";
+"upscale.error.none" = "ھېچقانداق رەسىم چوڭايتىلمىدى.";
+"videoedit.resize.modePercent" = "ئۆلچەم (%)";
+"videoedit.resize.modeCustom" = "ئىختىيارىي چوڭلۇق";
+"videoedit.resize.autoFill" = "خەتلىك تاختىنى ئاپتوماتىك تولدۇرۇش";
+"videoedit.resize.autoFillHint" = "ئوچۇق: كەڭ ماتېرىيال letterbox بىلەن ماس كېلىدۇ؛ كىچىكىرەك چوڭايتىلىپ ئوتتۇرىدىن كېسىلىدۇ.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

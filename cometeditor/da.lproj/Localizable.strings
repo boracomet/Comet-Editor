@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Her kan kun billeder konverteres";
 "menu.home" = "Hjem";
 "menu.convertImage" = "Konvertér billede";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Redigér billede";
 "menu.badge.soon" = "Kommer snart";
 "menu.batchProcess" = "Batchbehandling";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Tilpas din Comet Editor-oplevelse";
 "settings.section.output" = "OUTPUT";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Standard outputmappe";
 "settings.noFolderSelected" = "Ikke valgt — du bliver spurgt hver gang";
 "settings.chooseFolder" = "Vælg mappe";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Indstillinger";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-detaljeforbedring";
+"upscale.settings.scale" = "Skala";
+"upscale.scale.multiPassHint" = "8× og 16× kører flere AI-passeringer — tager længere tid.";
+"upscale.settings.outputFormat" = "Output format";
+"upscale.drop.title" = "Træk billeder hertil";
+"upscale.drop.subtitle" = "eller klik for at gennemse filer";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Kun understøttede rasterbilleder kan opskaleres her";
+"upscale.runButton" = "Fornemme";
+"upscale.preview.run" = "Forhåndsvisning";
+"upscale.preview.hint" = "Vælg en skala, og tryk på Forhåndsvisning for at sammenligne";
+"upscale.preview.processing" = "Forhåndsvisning af opskalering...";
+"upscale.preview.before" = "FØR";
+"upscale.preview.after" = "EFTER";
+"upscale.preview.save" = "Gem";
+"upscale.preview.saveSettings" = "Forhåndsvisning gem";
+"upscale.preview.autoSave" = "Gem efter forhåndsvisning";
+"upscale.preview.autoSaveHint" = "Skriver til målmappen, når forhåndsvisningen er færdig.";
+"upscale.preview.saveNeedFolder" = "Vælg først en målmappe.";
+"upscale.preview.saveFailed" = "Kunne ikke indkode forhåndsvisningsbilledet.";
+"upscale.preview.loadFailed" = "Billedet til forhåndsvisning kunne ikke indlæses.";
+"upscale.backend.missing.hint" = "Cometscaly-motoren eller modelfilerne mangler i app-pakken. Genopbyg projektet.";
+"upscale.error.bundle" = "Opskaleret bundtmappe mangler i appen.";
+"upscale.error.binary" = "cometscaly-motoren blev ikke fundet i app-pakken.";
+"upscale.error.model" = "Modelfiler upscayl-standard-4x.param/.bin mangler.";
+"upscale.error.process" = "Opskalering mislykkedes (afslut %d): %@";
+"upscale.error.none" = "Ingen billeder blev opskaleret.";
+"videoedit.resize.modePercent" = "Skala";
+"videoedit.resize.modeCustom" = "Brugertilpasset størrelse";
+"videoedit.resize.autoFill" = "Automatisk udfyldning af lærred";
+"videoedit.resize.autoFillHint" = "Når den er tændt: store optagelser passer indvendigt med brevkasse; mindre optagelser zoomes og beskæres i midten for at udfylde.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

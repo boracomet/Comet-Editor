@@ -6,6 +6,7 @@ import Combine
 public enum CometEventType: String {
     case pageView        = "pageView"
     case imageConverted  = "imageConverted"
+    case imageUpscaled   = "imageUpscaled"
     case videoConverted  = "videoConverted"
     case ocrUsed         = "ocrUsed"
     case bgRemoved       = "bgRemoved"
@@ -15,6 +16,7 @@ public enum CometEventType: String {
     case stockDownloaded = "stockDownloaded"
     // Sayfa görüntüleme — her feature ekranı açıldığında
     case imagePageView   = "imagePageView"
+    case upscalePageView = "upscalePageView"
     case videoPageView   = "videoPageView"
     case ocrPageView     = "ocrPageView"
     case bgPageView      = "bgPageView"

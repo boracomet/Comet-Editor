@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Овде се могу конвертовати само слике";
 "menu.home" = "Почетна";
 "menu.convertImage" = "Конвертовање слика";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Уреди слику";
 "menu.badge.soon" = "УСКОРО";
 "menu.batchProcess" = "Групна обрада";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Прилагодите Comet Editor себи";
 "settings.section.output" = "ИЗЛАЗ";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Подразумевана излазна фасцикла";
 "settings.noFolderSelected" = "Није одабрана — сваки пут ће питати";
 "settings.chooseFolder" = "Одаберите фасциклу";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Podešavanja";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — poboljšanje detalja veštačkom inteligencijom";
+"upscale.settings.scale" = "Razmera";
+"upscale.scale.multiPassHint" = "8× i 16× pokreću više AI prolaza — traje duže.";
+"upscale.settings.outputFormat" = "Izlazni format";
+"upscale.drop.title" = "Prevucite i otpustite slike";
+"upscale.drop.subtitle" = "ili kliknite da pregledate fajlove";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Ovde se mogu uvećati samo podržane raster slike";
+"upscale.runButton" = "Uvećaj";
+"upscale.preview.run" = "Pregled";
+"upscale.preview.hint" = "Izaberite razmeru i dodirnite Pregled da uporedite";
+"upscale.preview.processing" = "Kreiranje pregleda…";
+"upscale.preview.before" = "PRE";
+"upscale.preview.after" = "POSLE";
+"upscale.preview.save" = "Sačuvaj";
+"upscale.preview.saveSettings" = "Sačuvaj pregled";
+"upscale.preview.autoSave" = "Sačuvaj posle pregleda";
+"upscale.preview.autoSaveHint" = "Upisuje u ciljni folder kada se pregled završi.";
+"upscale.preview.saveNeedFolder" = "Prvo izaberite ciljni folder.";
+"upscale.preview.saveFailed" = "Nije moguće kodirati sliku pregleda.";
+"upscale.preview.loadFailed" = "Nije moguće učitati sliku pregleda.";
+"upscale.backend.missing.hint" = "cometscaly ili fajlovi modela nedostaju u paketu aplikacije. Ponovo izgradite projekat.";
+"upscale.error.bundle" = "Nedostaje fascikla Upscale bundle u aplikaciji.";
+"upscale.error.binary" = "cometscaly nije pronađen u paketu aplikacije.";
+"upscale.error.model" = "Nedostaju fajlovi modela upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Uvećavanje nije uspelo (exit %d): %@";
+"upscale.error.none" = "Nijedna slika nije uvećana.";
+"videoedit.resize.modePercent" = "Razmera (%)";
+"videoedit.resize.modeCustom" = "Prilagođena veličina";
+"videoedit.resize.autoFill" = "Automatski popuni platno";
+"videoedit.resize.autoFillHint" = "Uključeno: širok snimak staje sa letterbox-om; manji se zumira i seče u centru da ispuni.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

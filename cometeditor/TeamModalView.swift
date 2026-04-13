@@ -14,9 +14,20 @@ struct TeamModalView: View {
         GeometryReader { geo in
             let w = Self.layoutLength(geo.size.width, fallback: 400)
             let h = Self.layoutLength(geo.size.height, fallback: 600)
-            ScrollView(.vertical, showsIndicators: false) {
+
+            let maxCardW: CGFloat = 180
+            let minSpacing: CGFloat = 24
+            let count = CGFloat(teamMembers.count)
+            let totalMax = maxCardW * count + minSpacing * (count - 1)
+            let hPad: CGFloat = max(16, (w - totalMax) / 2)
+            let availW = max(0, w - hPad * 2)
+            let cardW = max(80, min(maxCardW, (availW - minSpacing * (count - 1)) / count))
+
+            VStack(spacing: 0) {
+                // Kişiler — dikey ortada
+                Spacer()
+
                 VStack(spacing: 0) {
-                    // Title
                     VStack(spacing: 10) {
                         Text(LocalizedStringKey("menu.team.title"))
                             .font(.system(size: min(30, max(26, w * 0.034)), weight: .bold))
@@ -34,56 +45,50 @@ struct TeamModalView: View {
                     .frame(maxWidth: max(1, min(440, max(0, w - 48))))
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 24)
-                    .padding(.top, max(32, h * 0.07))
-                    .padding(.bottom, max(28, h * 0.045))
+                    .padding(.bottom, max(40, h * 0.06))
 
-                    // Team Grid — always 4 in a single row, capped at max card width
-                    let maxCardW: CGFloat = 180
-                    let minSpacing: CGFloat = 24
-                    let count = CGFloat(teamMembers.count)
-                    let totalMax = maxCardW * count + minSpacing * (count - 1)
-                    let hPad: CGFloat = max(16, (w - totalMax) / 2)
-                    let availW = max(0, w - hPad * 2)
-                    let spacing: CGFloat = minSpacing
-                    let cardW = max(80, min(maxCardW, (availW - spacing * (count - 1)) / count))
-
-                    HStack(alignment: .top, spacing: spacing) {
+                    HStack(alignment: .top, spacing: minSpacing) {
                         ForEach(teamMembers, id: \.name) { member in
                             TeamMemberCard(member: member, cardWidth: cardW)
                                 .frame(width: cardW)
                         }
                     }
                     .padding(.horizontal, hPad)
-                    .padding(.bottom, max(24, h * 0.04))
 
-                    Divider()
-                        .padding(.horizontal, hPad)
-                        .padding(.vertical, max(20, h * 0.03))
+                    // Gradient divider
+                    Rectangle()
+                        .fill(
+                            LinearGradient(
+                                colors: [.clear, Color.secondary.opacity(0.25), Color.secondary.opacity(0.25), .clear],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(height: 0.5)
+                        .padding(.horizontal, hPad + 60)
+                        .padding(.top, max(40, h * 0.06))
 
-                    // Grafix footer
-                    VStack(spacing: 10) {
+                    // Grafix footer — çizginin hemen altında
+                    VStack(spacing: 5) {
                         Link(destination: URL(string: "https://heygrafix.com") ?? URL(fileURLWithPath: "/")) {
                             Image("grafix_logo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(height: max(1, min(40, h * 0.06)))
+                                .frame(height: max(1, min(20, h * 0.027)))
+                                .opacity(0.4)
                                 .handCursor()
                         }
                         Text(LocalizedStringKey("team.thanks_grafix"))
-                            .font(.system(size: max(1, min(12, w * 0.018))))
-                            .foregroundStyle(Color.secondary.opacity(0.8))
+                            .font(.system(size: max(1, min(10, w * 0.014))))
+                            .foregroundStyle(Color.secondary.opacity(0.4))
                             .multilineTextAlignment(.center)
                     }
-                    .padding(.bottom, max(16, h * 0.03))
-
-                    // Version
-                    Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
-                        .font(.system(size: 10, weight: .medium, design: .monospaced))
-                        .foregroundStyle(Color.secondary.opacity(0.4))
-                        .padding(.bottom, 20)
+                    .padding(.top, 20)
                 }
-                .frame(maxWidth: .infinity)
+
+                Spacer()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .background(Color.primary.opacity(0.02))
     }

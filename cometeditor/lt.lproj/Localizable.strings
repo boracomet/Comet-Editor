@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Čia galima konvertuoti tik vaizdus";
 "menu.home" = "Pradžia";
 "menu.convertImage" = "Vaizdų konvertavimas";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Redaguoti vaizdą";
 "menu.badge.soon" = "NETRUKUS";
 "menu.batchProcess" = "Paketinis apdorojimas";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Tinkinkite savo Comet Editor patirtį";
 "settings.section.output" = "IŠVESTIS";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Numatytasis išvesties aplankas";
 "settings.noFolderSelected" = "Nepasirinkta — bus klausiama kiekvieną kartą";
 "settings.chooseFolder" = "Pasirinkti aplanką";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Nustatymai";
+"upscale.settings.model" = "Modelis";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — detalių gerinimas DI";
+"upscale.settings.scale" = "Mastelis";
+"upscale.scale.multiPassHint" = "8× ir 16× vykdo kelis DI praejimus — užtrunka ilgiau.";
+"upscale.settings.outputFormat" = "Išvesties formatas";
+"upscale.drop.title" = "Vilkite ir numeskite paveikslėlius";
+"upscale.drop.subtitle" = "arba spustelėkite, norėdami naršyti failus";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Čia galima padidinti tik palaikomus rastrinius paveikslėlius";
+"upscale.runButton" = "Padidinti";
+"upscale.preview.run" = "Peržiūra";
+"upscale.preview.hint" = "Pasirinkite mastelį ir palieskite Peržiūra palyginimui";
+"upscale.preview.processing" = "Kuriama peržiūra…";
+"upscale.preview.before" = "PRIEŠ";
+"upscale.preview.after" = "PO";
+"upscale.preview.save" = "Išsaugoti";
+"upscale.preview.saveSettings" = "Išsaugoti peržiūrą";
+"upscale.preview.autoSave" = "Išsaugoti po peržiūros";
+"upscale.preview.autoSaveHint" = "Baigus peržiūrą įrašo į paskirties aplanką.";
+"upscale.preview.saveNeedFolder" = "Pirmiausia pasirinkite paskirties aplanką.";
+"upscale.preview.saveFailed" = "Nepavyko užkoduoti peržiūros paveikslėlio.";
+"upscale.preview.loadFailed" = "Nepavyko įkelti peržiūros paveikslėlio.";
+"upscale.backend.missing.hint" = "Programėlės pakete trūksta cometscaly variklio ar modelio failų. Perkurkite projektą.";
+"upscale.error.bundle" = "Programėlėje trūksta Upscale paketo aplanko.";
+"upscale.error.binary" = "cometscaly nerasta programėlės pakete.";
+"upscale.error.model" = "Trūksta modelio failų upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Padidinimas nepavyko (exit %d): %@";
+"upscale.error.none" = "Ne vienas paveikslėlis nepadidintas.";
+"videoedit.resize.modePercent" = "Mastelis (%)";
+"videoedit.resize.modeCustom" = "Pasirinktinis dydis";
+"videoedit.resize.autoFill" = "Automatiškai užpildyti drobę";
+"videoedit.resize.autoFillHint" = "Įjungta: platus vaizdas telpa su letterbox; mažesnis priartinamas ir apkarpomas centre.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

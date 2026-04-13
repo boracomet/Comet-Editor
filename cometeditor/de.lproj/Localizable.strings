@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Hier können nur Bilder konvertiert werden";
 "menu.home" = "Startseite";
 "menu.convertImage" = "Bild konvertieren";
+"menu.upscaleImage" = "Bild hochskalieren";
 "menu.imageEdit" = "Bild bearbeiten";
 "menu.badge.soon" = "Demnächst";
 "menu.batchProcess" = "Stapelverarbeitung";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor nach Ihren Wünschen anpassen";
 "settings.section.output" = "AUSGABE";
+"settings.section.about" = "ÜBER DIE APP";
 "settings.defaultOutputFolder" = "Standard-Ausgabeordner";
 "settings.noFolderSelected" = "Nicht ausgewählt — Sie werden jedes Mal gefragt";
 "settings.chooseFolder" = "Ordner wählen";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Einstellungen";
+"upscale.settings.model" = "Modell";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — KI-Detailverbesserung";
+"upscale.settings.scale" = "Skalierung";
+"upscale.scale.multiPassHint" = "8× und 16× führen mehrere KI-Durchläufe aus — dauert länger.";
+"upscale.settings.outputFormat" = "Ausgabeformat";
+"upscale.drop.title" = "Bilder per Drag & Drop hinzufügen";
+"upscale.drop.subtitle" = "oder klicken, um Dateien auszuwählen";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Hier können nur unterstützte Rasterbilder hochskaliert werden";
+"upscale.runButton" = "Hochskalieren";
+"upscale.preview.run" = "Vorschau";
+"upscale.preview.hint" = "Skalierung wählen und auf Vorschau tippen, um zu vergleichen";
+"upscale.preview.processing" = "Vorschau wird hochskaliert…";
+"upscale.preview.before" = "VORHER";
+"upscale.preview.after" = "NACHHER";
+"upscale.preview.save" = "Speichern";
+"upscale.preview.saveSettings" = "Vorschau speichern";
+"upscale.preview.autoSave" = "Nach Vorschau speichern";
+"upscale.preview.autoSaveHint" = "Speichert nach Abschluss der Vorschau im Zielordner.";
+"upscale.preview.saveNeedFolder" = "Bitte zuerst einen Zielordner wählen.";
+"upscale.preview.saveFailed" = "Vorschaubild konnte nicht erzeugt werden.";
+"upscale.preview.loadFailed" = "Vorschaubild konnte nicht geladen werden.";
+"upscale.backend.missing.hint" = "Die cometscaly-Engine oder Modelldateien fehlen im App-Bundle. Projekt neu bauen.";
+"upscale.error.bundle" = "Upscale-Bundle-Ordner fehlt in der App.";
+"upscale.error.binary" = "cometscaly wurde im App-Bundle nicht gefunden.";
+"upscale.error.model" = "Modelldateien upscayl-standard-4x.param/.bin fehlen.";
+"upscale.error.process" = "Hochskalierung fehlgeschlagen (Exit %d): %@";
+"upscale.error.none" = "Kein Bild wurde hochskaliert.";
+"videoedit.resize.modePercent" = "Skalierung (%)";
+"videoedit.resize.modeCustom" = "Eigene Größe";
+"videoedit.resize.autoFill" = "Leinwand automatisch füllen";
+"videoedit.resize.autoFillHint" = "Wenn aktiv: großes Material wird mit Letterboxing eingepasst; kleineres Material wird gezoomt und mittig beschnitten, um die Fläche zu füllen.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

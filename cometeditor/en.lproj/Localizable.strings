@@ -19,8 +19,41 @@
 "convert.clearAll" = "Clear All";
 "convert.addMore" = "Add";
 "convert.wrongType.image" = "Only images can be converted here";
+
+"upscale.settings.title" = "Settings";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI detail enhancement";
+"upscale.settings.scale" = "Scale";
+"upscale.scale.multiPassHint" = "8× and 16× run multiple AI passes — takes longer.";
+"upscale.settings.outputFormat" = "Output format";
+"upscale.drop.title" = "Drag & drop images";
+"upscale.drop.subtitle" = "or click to browse files";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Only supported raster images can be upscaled here";
+"upscale.runButton" = "Upscale";
+"upscale.preview.run" = "Preview";
+"upscale.preview.hint" = "Select a scale and tap Preview to compare";
+"upscale.preview.processing" = "Upscaling preview…";
+"upscale.preview.before" = "BEFORE";
+"upscale.preview.after" = "AFTER";
+"upscale.preview.save" = "Save";
+"upscale.preview.saveSettings" = "Preview save";
+"upscale.preview.autoSave" = "Save after preview";
+"upscale.preview.autoSaveHint" = "Writes to the target folder when preview finishes.";
+"upscale.preview.saveNeedFolder" = "Choose a target folder first.";
+"upscale.preview.saveFailed" = "Could not encode the preview image.";
+"upscale.preview.loadFailed" = "Could not load the preview image.";
+"upscale.backend.missing.hint" = "The cometscaly engine or model files are missing from the app bundle. Rebuild the project.";
+"upscale.error.bundle" = "Upscale bundle folder is missing from the app.";
+"upscale.error.binary" = "cometscaly engine was not found in the app bundle.";
+"upscale.error.model" = "Model files upscayl-standard-4x.param/.bin are missing.";
+"upscale.error.process" = "Upscaling failed (exit %d): %@";
+"upscale.error.none" = "No images were upscaled.";
+
 "menu.home" = "Home";
 "menu.convertImage" = "Convert Image";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Image Editor";
 "menu.badge.soon" = "Coming Soon";
 "menu.batchProcess" = "Batch Process";
@@ -99,6 +132,13 @@
 "home.guide.convertImage.step2" = "Choose the output format (PNG, JPG, WebP, HEIC, etc.) from the right panel.";
 "home.guide.convertImage.step3" = "Adjust quality, scale, or dimensions — then convert.";
 "home.guide.convertImage.tip" = "You can add multiple images at once. Each file is converted independently with the same settings.";
+
+// Image Upscale Guide
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 
 // Video Guide
 "home.guide.video.desc" = "Convert and compress videos to MP4, MOV, AVI and more.";
@@ -391,6 +431,7 @@
 
 "settings.subtitle" = "Customize your Comet Editor experience";
 "settings.section.output" = "OUTPUT";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Default Output Folder";
 "settings.noFolderSelected" = "Not selected — you'll be asked each time";
 "settings.chooseFolder" = "Choose Folder";

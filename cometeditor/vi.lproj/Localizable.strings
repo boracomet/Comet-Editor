@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Ở đây chỉ có thể chuyển đổi hình ảnh";
 "menu.home" = "Trang chủ";
 "menu.convertImage" = "Chuyển đổi ảnh";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Chỉnh sửa ảnh";
 "menu.badge.soon" = "SẮP CÓ";
 "menu.batchProcess" = "Xử lý hàng loạt";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Tùy chỉnh trải nghiệm Comet Editor của bạn";
 "settings.section.output" = "ĐẦU RA";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Thư mục xuất mặc định";
 "settings.noFolderSelected" = "Chưa chọn — sẽ hỏi mỗi lần";
 "settings.chooseFolder" = "Chọn thư mục";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Cài đặt";
+"upscale.settings.model" = "Mô hình";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — tăng cường chi tiết bằng AI";
+"upscale.settings.scale" = "Tỷ lệ";
+"upscale.scale.multiPassHint" = "8× và 16× chạy nhiều vòng AI — lâu hơn.";
+"upscale.settings.outputFormat" = "Định dạng đầu ra";
+"upscale.drop.title" = "Kéo và thả ảnh";
+"upscale.drop.subtitle" = "hoặc nhấp để duyệt tệp";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Chỉ có thể phóng to ảnh raster được hỗ trợ tại đây";
+"upscale.runButton" = "Phóng to";
+"upscale.preview.run" = "Xem trước";
+"upscale.preview.hint" = "Chọn tỷ lệ và chạm Xem trước để so sánh";
+"upscale.preview.processing" = "Đang tạo xem trước…";
+"upscale.preview.before" = "TRƯỚC";
+"upscale.preview.after" = "SAU";
+"upscale.preview.save" = "Lưu";
+"upscale.preview.saveSettings" = "Lưu xem trước";
+"upscale.preview.autoSave" = "Lưu sau khi xem trước";
+"upscale.preview.autoSaveHint" = "Ghi vào thư mục đích khi xem trước xong.";
+"upscale.preview.saveNeedFolder" = "Hãy chọn thư mục đích trước.";
+"upscale.preview.saveFailed" = "Không thể mã hóa ảnh xem trước.";
+"upscale.preview.loadFailed" = "Không thể tải ảnh xem trước.";
+"upscale.backend.missing.hint" = "Gói ứng dụng thiếu engine cometscaly hoặc tệp mô hình. Hãy build lại dự án.";
+"upscale.error.bundle" = "Thiếu thư mục bundle Upscale trong ứng dụng.";
+"upscale.error.binary" = "Không tìm thấy cometscaly trong gói ứng dụng.";
+"upscale.error.model" = "Thiếu tệp mô hình upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Phóng to thất bại (exit %d): %@";
+"upscale.error.none" = "Không có ảnh nào được phóng to.";
+"videoedit.resize.modePercent" = "Tỷ lệ (%)";
+"videoedit.resize.modeCustom" = "Kích thước tùy chỉnh";
+"videoedit.resize.autoFill" = "Tự động lấp đầy canvas";
+"videoedit.resize.autoFillHint" = "Bật: cảnh rộng vừa khung với letterbox; cảnh nhỏ được phóng to và cắt giữa để lấp đầy.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

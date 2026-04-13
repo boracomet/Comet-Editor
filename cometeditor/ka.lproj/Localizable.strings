@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "აქ შეიძლება გამოიყოს მხოლოდ სურათები";
 "menu.home" = "მთავარი";
 "menu.convertImage" = "სურათების კონვერტაცია";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "სურათის რედაქტირება";
 "menu.badge.soon" = "მალე";
 "menu.batchProcess" = "ჯგუფური დამუშავება";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "მოარგეთ Comet Editor თქვენს გემოვნებას";
 "settings.section.output" = "გამოსავალი";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "ნაგულისხმევი გამოსახლების საქაღალდე";
 "settings.noFolderSelected" = "არ არის არჩეული — ყოველ ჯერ მოგთხოვთ";
 "settings.chooseFolder" = "საქაღალდის არჩევა";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "პარამეტრები";
+"upscale.settings.model" = "მოდელი";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — დეტალების გაუმჯობესება AI-ით";
+"upscale.settings.scale" = "მასშტაბი";
+"upscale.scale.multiPassHint" = "8× და 16× ასრულებს რამდენიმე AI გასვლას — უფრო ხანგრძლივია.";
+"upscale.settings.outputFormat" = "გამოტანის ფორმატი";
+"upscale.drop.title" = "გადაიტანეთ სურათები";
+"upscale.drop.subtitle" = "ან დააჭირეთ ფაილების დასათვალიერებლად";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "აქ მხოლოდ მხარდაჭერილი რასტრული სურათები შეიძლება გაიზარდოს";
+"upscale.runButton" = "გადიდება";
+"upscale.preview.run" = "წინასწარი ხილვა";
+"upscale.preview.hint" = "აირჩიეთ მასშტაბი და შეეხეთ წინასწარ ხილვას შესადარებლად";
+"upscale.preview.processing" = "იქმნება წინასწარი ხილვა…";
+"upscale.preview.before" = "ადრე";
+"upscale.preview.after" = "შემდეგ";
+"upscale.preview.save" = "შენახვა";
+"upscale.preview.saveSettings" = "წინასწარი ხილვის შენახვა";
+"upscale.preview.autoSave" = "შენახვა წინასწარი ხილვის შემდეგ";
+"upscale.preview.autoSaveHint" = "წერს სამიზნე საქაღალდეში წინასწარი ხილვის დასრულებისას.";
+"upscale.preview.saveNeedFolder" = "ჯერ აირჩიეთ სამიზნე საქაღალდე.";
+"upscale.preview.saveFailed" = "წინასწარი ხილვის სურათის კოდირება ვერ მოხერხდა.";
+"upscale.preview.loadFailed" = "წინასწარი ხილვის სურათის ჩატვირთვა ვერ მოხერხდა.";
+"upscale.backend.missing.hint" = "აპის პაკეტში cometscaly ძრავა ან მოდელის ფაილები აკლია. ხელახლა ააგეთ პროექტი.";
+"upscale.error.bundle" = "აპში Upscale bundle საქაღალდე აკლია.";
+"upscale.error.binary" = "cometscaly ვერ მოიძებნა აპის პაკეტში.";
+"upscale.error.model" = "მოდელის ფაილები upscayl-standard-4x.param/.bin აკლია.";
+"upscale.error.process" = "გადიდება ვერ მოხერხდა (exit %d): %@";
+"upscale.error.none" = "არცერთი სურათი არ გადიდებულა.";
+"videoedit.resize.modePercent" = "მასშტაბი (%)";
+"videoedit.resize.modeCustom" = "მორგებული ზომა";
+"videoedit.resize.autoFill" = "კანვასის ავტოშევსება";
+"videoedit.resize.autoFillHint" = "ჩართული: ფართო მასალა ჯდება letterbox-ით; უფრო პატარა იზუმება და იჭრება ცენტრში.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

@@ -88,9 +88,12 @@ struct VideoConvertView: View {
             previewPlayer?.pause()
             previewPlayer = nil
             if let item {
-                let playURL = item.playbackURL ?? item.url
-                _ = playURL.startAccessingSecurityScopedResource()
-                previewPlayer = AVPlayer(url: playURL)
+                if let pbURL = item.playbackURL {
+                    previewPlayer = AVPlayer(url: pbURL)
+                } else {
+                    let (resolvedURL, _) = item.securityScopedURL()
+                    previewPlayer = AVPlayer(url: resolvedURL)
+                }
                 previewPlayer?.play()
             }
         }
@@ -666,10 +669,12 @@ struct VideoConvertView: View {
                         currentProcessingIndex = index + 1
                     }
 
-                    let fileName = video.url.deletingPathExtension().lastPathComponent
+                    let (videoURL, videoAccessed) = video.securityScopedURL()
+                    defer { if videoAccessed { videoURL.stopAccessingSecurityScopedResource() } }
+
+                    let fileName = videoURL.deletingPathExtension().lastPathComponent
                     let ext = selectedFormat.rawValue
 
-                    // Use counter to avoid overwriting existing files
                     var outputURL = folder.appendingPathComponent("\(fileName).\(ext)")
                     var counter = 1
                     while FileManager.default.fileExists(atPath: outputURL.path) {
@@ -684,10 +689,10 @@ struct VideoConvertView: View {
                         keepMetadata: metadataEnabled
                     )
 
-                    let originalSize = (try? FileManager.default.attributesOfItem(atPath: video.url.path)[.size] as? Int64) ?? 0
+                    let originalSize = (try? FileManager.default.attributesOfItem(atPath: videoURL.path)[.size] as? Int64) ?? 0
 
                     try await processor.convert(
-                        inputURL: video.url,
+                        inputURL: videoURL,
                         outputURL: outputURL,
                         format: selectedFormat,
                         quality: quality,
@@ -799,7 +804,8 @@ struct VideoConvertView: View {
             let ext = url.pathExtension.lowercased()
             let needsFFmpeg = VideoItem.avUnsupportedExtensions.contains(ext)
 
-            _ = url.startAccessingSecurityScopedResource()
+            let accessed = url.startAccessingSecurityScopedResource()
+            let bookmark = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
 
             Task {
                 var fileSizeStr = "0 KB"
@@ -818,15 +824,12 @@ struct VideoConvertView: View {
                 var playbackURL: URL? = nil
 
                 if needsFFmpeg {
-                    // ffprobe ile metadata al
                     if let meta = await probeVideoWithFFmpeg(url: url) {
                         durationStr = meta.durationStr
                         resStr = meta.resolution
                         fpsStr = meta.fps
                     }
-                    // ffmpeg ile thumbnail çek (1. frame PNG)
                     thumbnail = await extractThumbnailWithFFmpeg(url: url)
-                    // Geçici MP4 oluştur (preview için)
                     playbackURL = await makePreviewMP4WithFFmpeg(url: url)
                 } else {
                     let asset = AVURLAsset(url: url)
@@ -843,7 +846,6 @@ struct VideoConvertView: View {
                         }
                     }
 
-                    // AVFoundation thumbnail
                     let imageGenerator = AVAssetImageGenerator(asset: asset)
                     imageGenerator.appliesPreferredTrackTransform = true
                     imageGenerator.maximumSize = CGSize(width: 400, height: 400)
@@ -853,7 +855,9 @@ struct VideoConvertView: View {
                     }
                 }
 
-                var item = VideoItem(url: url, fileSizeString: fileSizeStr, durationString: durationStr, resolutionString: resStr, fpsString: fpsStr)
+                if accessed { url.stopAccessingSecurityScopedResource() }
+
+                var item = VideoItem(url: url, fileSizeString: fileSizeStr, durationString: durationStr, resolutionString: resStr, fpsString: fpsStr, bookmarkData: bookmark)
                 item.thumbnail = thumbnail
                 item.playbackURL = playbackURL
 

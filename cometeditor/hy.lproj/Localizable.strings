@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Այստեղ կարող եք փոխակերպել միայն պատկերներ";
 "menu.home" = "Գլխավոր";
 "menu.convertImage" = "Նկարների փոխակերպում";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Լուսանկարի խմբագրում";
 "menu.badge.soon" = "ՇՈՒՏՈՎ";
 "menu.batchProcess" = "Խմբաքանակ մշակում";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Հարմարեցրեք Comet Editor-ի ձեր փորձը";
 "settings.section.output" = "ԵԼՔ";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Ելքի լռելյայն թղթապանակ";
 "settings.noFolderSelected" = "Ընտրված չէ — ամեն անգամ կհարցնի";
 "settings.chooseFolder" = "Ընտրել թղթապանակ";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Կարգավորումներ";
+"upscale.settings.model" = "Մոդել";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — մանրամասների բարելավում AI-ով";
+"upscale.settings.scale" = "Մասշտաբ";
+"upscale.scale.multiPassHint" = "8× և 16×-ը կատարում են մի քանի AI անցումներ — ավելի երկար է տևում:";
+"upscale.settings.outputFormat" = "Ելքի ձևաչափ";
+"upscale.drop.title" = "Քաշեք և գցեք պատկերներ";
+"upscale.drop.subtitle" = "կամ սեղմեք ֆայլերը դիտելու համար";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Այստեղ կարելի է մեծացնել միայն աջակցվող ռաստեր պատկերները";
+"upscale.runButton" = "Մեծացնել";
+"upscale.preview.run" = "Նախադիտում";
+"upscale.preview.hint" = "Ընտրեք մասշտաբը և հպեք Նախադիտում համեմատելու համար";
+"upscale.preview.processing" = "Ստեղծվում է նախադիտում…";
+"upscale.preview.before" = "ՆԱԽՈՐԴ";
+"upscale.preview.after" = "ՀԵՏՈ";
+"upscale.preview.save" = "Պահել";
+"upscale.preview.saveSettings" = "Պահել նախադիտումը";
+"upscale.preview.autoSave" = "Պահել նախադիտումից հետո";
+"upscale.preview.autoSaveHint" = "Գրում է նպատակային թղթապանակում, երբ նախադիտումն ավարտվում է:";
+"upscale.preview.saveNeedFolder" = "Նախ ընտրեք նպատակային թղթապանակ:";
+"upscale.preview.saveFailed" = "Չհաջողվեց կոդավորել նախադիտման պատկերը:";
+"upscale.preview.loadFailed" = "Չհաջողվեց բեռնել նախադիտման պատկերը:";
+"upscale.backend.missing.hint" = "Դիմումի փաթեթում բացակայում է cometscaly շարժիչը կամ մոդելի ֆայլերը: Վերակառուցեք նախագիծը:";
+"upscale.error.bundle" = "Դիմումում բացակայում է Upscale bundle թղթապանակը:";
+"upscale.error.binary" = "cometscaly-ը չի գտնվել դիմումի փաթեթում:";
+"upscale.error.model" = "Բացակայում են upscayl-standard-4x.param/.bin մոդելի ֆայլերը:";
+"upscale.error.process" = "Մեծացումը ձախողվեց (exit %d): %@";
+"upscale.error.none" = "Ոչ մի պատկեր չի մեծացվել:";
+"videoedit.resize.modePercent" = "Մասշտաբ (%)";
+"videoedit.resize.modeCustom" = "Պատվերով չափ";
+"videoedit.resize.autoFill" = "Ինքնալրացնել կտավը";
+"videoedit.resize.autoFillHint" = "Միացված՝ լայն նյութը տեղավորվում է letterbox-ով. ավելի փոքրը մեծացվում և կտրվում է կենտրոնում:";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

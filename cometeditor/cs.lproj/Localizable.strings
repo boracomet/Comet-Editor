@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Zde lze převádět pouze obrázky";
 "menu.home" = "Domů";
 "menu.convertImage" = "Převést obrázek";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Upravit obrázek";
 "menu.badge.soon" = "Brzy";
 "menu.batchProcess" = "Hromadné zpracování";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Přizpůsobte si Comet Editor";
 "settings.section.output" = "VÝSTUP";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Výchozí výstupní složka";
 "settings.noFolderSelected" = "Nevybráno — bude dotazováno pokaždé";
 "settings.chooseFolder" = "Vybrat složku";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Nastavení";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — vylepšení detailů pomocí AI";
+"upscale.settings.scale" = "Měřítko";
+"upscale.scale.multiPassHint" = "8× a 16× spouštějí více průchodů AI — trvá to déle.";
+"upscale.settings.outputFormat" = "Výstupní formát";
+"upscale.drop.title" = "Přetáhněte obrázky";
+"upscale.drop.subtitle" = "nebo klikněte pro procházení souborů";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Zde lze zvětšit pouze podporované rastrové obrázky";
+"upscale.runButton" = "Zvětšit";
+"upscale.preview.run" = "Náhled";
+"upscale.preview.hint" = "Vyberte měřítko a klepněte na Náhled pro porovnání";
+"upscale.preview.processing" = "Vytváření náhledu…";
+"upscale.preview.before" = "PŘED";
+"upscale.preview.after" = "PO";
+"upscale.preview.save" = "Uložit";
+"upscale.preview.saveSettings" = "Uložit náhled";
+"upscale.preview.autoSave" = "Uložit po náhledu";
+"upscale.preview.autoSaveHint" = "Po dokončení náhledu zapíše do cílové složky.";
+"upscale.preview.saveNeedFolder" = "Nejprve vyberte cílovou složku.";
+"upscale.preview.saveFailed" = "Nelze zakódovat obrázek náhledu.";
+"upscale.preview.loadFailed" = "Nelze načíst obrázek náhledu.";
+"upscale.backend.missing.hint" = "V balíčku aplikace chybí engine cometscaly nebo soubory modelu. Znovu sestavte projekt.";
+"upscale.error.bundle" = "Ve aplikaci chybí složka balíčku Upscale.";
+"upscale.error.binary" = "cometscaly nebyl v balíčku aplikace nalezen.";
+"upscale.error.model" = "Chybí soubory modelu upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Zvětšení selhalo (exit %d): %@";
+"upscale.error.none" = "Nebyl zvětšen žádný obrázek.";
+"videoedit.resize.modePercent" = "Měřítko (%)";
+"videoedit.resize.modeCustom" = "Vlastní velikost";
+"videoedit.resize.autoFill" = "Automaticky vyplnit plátno";
+"videoedit.resize.autoFillHint" = "Zapnuto: široký záběr se vejde s letterboxem; menší se přiblíží a ořízne uprostřed.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

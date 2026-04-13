@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "ที่นี่แปลงได้เฉพาะรูปภาพเท่านั้น";
 "menu.home" = "หน้าหลัก";
 "menu.convertImage" = "แปลงรูปภาพ";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "แก้ไขรูปภาพ";
 "menu.badge.soon" = "เร็วๆ นี้";
 "menu.batchProcess" = "ประมวลผลเป็นชุด";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "ปรับแต่งประสบการณ์ Comet Editor ของคุณ";
 "settings.section.output" = "ส่งออก";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "โฟลเดอร์ส่งออกเริ่มต้น";
 "settings.noFolderSelected" = "ยังไม่ได้เลือก — จะถามทุกครั้ง";
 "settings.chooseFolder" = "เลือกโฟลเดอร์";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "การตั้งค่า";
+"upscale.settings.model" = "โมเดล";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — เพิ่มรายละเอียดด้วย AI";
+"upscale.settings.scale" = "สเกล";
+"upscale.scale.multiPassHint" = "8× และ 16× รันหลายรอบ AI — ใช้เวลานานขึ้น";
+"upscale.settings.outputFormat" = "รูปแบบเอาต์พุต";
+"upscale.drop.title" = "ลากและวางรูปภาพ";
+"upscale.drop.subtitle" = "หรือคลิกเพื่อเรียกดูไฟล์";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "รองรับเฉพาะรูปแรสเตอร์ที่สามารถอัปสเกลที่นี่";
+"upscale.runButton" = "อัปสเกล";
+"upscale.preview.run" = "แสดงตัวอย่าง";
+"upscale.preview.hint" = "เลือกสเกลแล้วแตะแสดงตัวอย่างเพื่อเปรียบเทียบ";
+"upscale.preview.processing" = "กำลังสร้างตัวอย่าง…";
+"upscale.preview.before" = "ก่อน";
+"upscale.preview.after" = "หลัง";
+"upscale.preview.save" = "บันทึก";
+"upscale.preview.saveSettings" = "บันทึกตัวอย่าง";
+"upscale.preview.autoSave" = "บันทึกหลังแสดงตัวอย่าง";
+"upscale.preview.autoSaveHint" = "เขียนไปยังโฟลเดอร์ปลายทางเมื่อแสดงตัวอย่างเสร็จ";
+"upscale.preview.saveNeedFolder" = "เลือกโฟลเดอร์ปลายทางก่อน";
+"upscale.preview.saveFailed" = "เข้ารหัสรูปตัวอย่างไม่ได้";
+"upscale.preview.loadFailed" = "โหลดรูปตัวอย่างไม่ได้";
+"upscale.backend.missing.hint" = "แพ็กแอปไม่มีเอนจิน cometscaly หรือไฟล์โมเดล โปรดสร้างโปรเจ็กต์ใหม่";
+"upscale.error.bundle" = "โฟลเดอร์บันเดิล Upscale หายจากแอป";
+"upscale.error.binary" = "ไม่พบ cometscaly ในแพ็กแอป";
+"upscale.error.model" = "ไฟล์โมเดล upscayl-standard-4x.param/.bin หายไป";
+"upscale.error.process" = "อัปสเกลล้มเหลว (exit %d): %@";
+"upscale.error.none" = "ไม่มีรูปที่ถูกอัปสเกล";
+"videoedit.resize.modePercent" = "สเกล (%)";
+"videoedit.resize.modeCustom" = "ขนาดกำหนดเอง";
+"videoedit.resize.autoFill" = "เติมแคนวาสอัตโนมัติ";
+"videoedit.resize.autoFillHint" = "เปิด: ฟุตเทจกว้างพอดีกรอบแบบ letterbox; ฟุตเทจเล็กซูมและครอปกลางเพื่อเติมเต็ม";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

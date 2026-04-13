@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Itt csak képeket lehet konvertálni";
 "menu.home" = "Kezdőlap";
 "menu.convertImage" = "Kép konvertálása";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Képszerkesztő";
 "menu.badge.soon" = "Hamarosan";
 "menu.batchProcess" = "Kötegelt feldolgozás";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Testreszabhatja a Comet Editor élményt";
 "settings.section.output" = "KIMENET";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Alapértelmezett kimeneti mappa";
 "settings.noFolderSelected" = "Nincs kiválasztva — minden alkalommal kérdez";
 "settings.chooseFolder" = "Mappa kiválasztása";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Beállítások";
+"upscale.settings.model" = "Modell";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — részletjavítás MI-vel";
+"upscale.settings.scale" = "Skála";
+"upscale.scale.multiPassHint" = "A 8× és 16× több MI-fordulót futtat — tovább tart.";
+"upscale.settings.outputFormat" = "Kimeneti formátum";
+"upscale.drop.title" = "Húzza ide a képeket";
+"upscale.drop.subtitle" = "vagy kattintson a fájlok tallózásához";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Csak támogatott raszterképek nagyíthatók itt";
+"upscale.runButton" = "Nagyítás";
+"upscale.preview.run" = "Előnézet";
+"upscale.preview.hint" = "Válasszon skálát, és koppintson az Előnézetre az összehasonlításhoz";
+"upscale.preview.processing" = "Előnézet készítése…";
+"upscale.preview.before" = "ELŐTTE";
+"upscale.preview.after" = "UTÁNA";
+"upscale.preview.save" = "Mentés";
+"upscale.preview.saveSettings" = "Előnézet mentése";
+"upscale.preview.autoSave" = "Mentés előnézet után";
+"upscale.preview.autoSaveHint" = "Az előnézet végén a célmappába ír.";
+"upscale.preview.saveNeedFolder" = "Először válasszon célmappát.";
+"upscale.preview.saveFailed" = "Nem sikerült kódolni az előnézeti képet.";
+"upscale.preview.loadFailed" = "Nem sikerült betölteni az előnézeti képet.";
+"upscale.backend.missing.hint" = "A cometscaly motor vagy a modellfájlok hiányoznak az alkalmazás csomagjában. Építse újra a projektet.";
+"upscale.error.bundle" = "Hiányzik az Upscale bundle mappa az alkalmazásból.";
+"upscale.error.binary" = "A cometscaly nem található az alkalmazás csomagjában.";
+"upscale.error.model" = "Hiányoznak a upscayl-standard-4x.param/.bin modellfájlok.";
+"upscale.error.process" = "A nagyítás sikertelen (exit %d): %@";
+"upscale.error.none" = "Egy kép sem lett nagyítva.";
+"videoedit.resize.modePercent" = "Skála (%)";
+"videoedit.resize.modeCustom" = "Egyéni méret";
+"videoedit.resize.autoFill" = "Vászon automatikus kitöltése";
+"videoedit.resize.autoFillHint" = "Bekapcsolva: a széles felvétel letterbox-szal fér be; a kisebb nagyítva és középen vágva tölt ki.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

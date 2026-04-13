@@ -23,7 +23,7 @@ enum MenuSection: String, CaseIterable {
     var items: [MenuItem] {
         switch self {
         case .main:  return [.home]
-        case .tools: return [.convertImage, .videoConvert, .videoEdit, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
+        case .tools: return [.convertImage, .upscaleImage, .videoConvert, .videoEdit, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
         case .other: return [.suggestion, .announcements, .settings]
         }
     }
@@ -32,6 +32,7 @@ enum MenuSection: String, CaseIterable {
 enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     case home
     case convertImage
+    case upscaleImage
     case videoConvert
     case videoEdit
     case stockImage
@@ -51,6 +52,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .home: return "menu.home"
         case .convertImage: return "menu.convertImage"
+        case .upscaleImage: return "menu.upscaleImage"
         case .videoConvert: return "menu.videoConvert"
         case .videoEdit: return "menu.videoEdit"
         case .stockImage: return "menu.stockImage"
@@ -70,6 +72,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .home: return "house.fill"
         case .convertImage: return "photo.on.rectangle.angled"
+        case .upscaleImage: return "arrow.up.left.and.arrow.down.right"
         case .videoConvert: return "video.fill"
         case .videoEdit: return "scissors"
         case .stockImage: return "photo.stack.fill"
@@ -91,6 +94,7 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .home:          return [.blue, .cyan]
         case .convertImage:  return [.blue, .cyan]
+        case .upscaleImage:  return [.cyan, .mint]
         case .videoConvert:  return [.indigo, .purple]
         case .videoEdit:     return [.purple, .pink]
         case .stockImage:    return [.cyan, .blue]

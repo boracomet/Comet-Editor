@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "כאן ניתן להמיר תמונות בלבד";
 "menu.home" = "Bayit";
 "menu.convertImage" = "Hamarot tmunot";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "עריכת תמונה";
 "menu.badge.soon" = "BEKAROV";
 "menu.batchProcess" = "עיבוד קבוצתי";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "התאם אישית את חוויית Comet Editor שלך";
 "settings.section.output" = "פלט";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "תיקיית פלט ברירת מחדל";
 "settings.noFolderSelected" = "לא נבחר — יישאל בכל פעם";
 "settings.chooseFolder" = "בחר תיקיה";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "הגדרות";
+"upscale.settings.model" = "מודל";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — שיפור פרטים באמצעות בינה מלאכותית";
+"upscale.settings.scale" = "קנה מידה";
+"upscale.scale.multiPassHint" = "8× ו־16× מריצים מספר מעברי בינה מלאכותית — לוקח יותר זמן.";
+"upscale.settings.outputFormat" = "פורמט פלט";
+"upscale.drop.title" = "גרור ושחרר תמונות";
+"upscale.drop.subtitle" = "או לחץ כדי לעיין בקבצים";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "ניתן להגדיל כאן רק תמונות רסטר נתמכות";
+"upscale.runButton" = "הגדל";
+"upscale.preview.run" = "תצוגה מקדימה";
+"upscale.preview.hint" = "בחר קנה מידה והקש על תצוגה מקדימה להשוואה";
+"upscale.preview.processing" = "יוצר תצוגה מקדימה…";
+"upscale.preview.before" = "לפני";
+"upscale.preview.after" = "אחרי";
+"upscale.preview.save" = "שמור";
+"upscale.preview.saveSettings" = "שמירת תצוגה מקדימה";
+"upscale.preview.autoSave" = "שמור אחרי תצוגה מקדימה";
+"upscale.preview.autoSaveHint" = "כותב לתיקיית היעד כשהתצוגה המקדימה מסתיימת.";
+"upscale.preview.saveNeedFolder" = "בחר תיקיית יעד תחילה.";
+"upscale.preview.saveFailed" = "לא ניתן לקודד את תמונת התצוגה המקדימה.";
+"upscale.preview.loadFailed" = "לא ניתן לטעון את תמונת התצוגה המקדימה.";
+"upscale.backend.missing.hint" = "מנוע cometscaly או קבצי המודל חסרים בחבילת האפליקציה. בנה מחדש את הפרויקט.";
+"upscale.error.bundle" = "תיקיית ה־bundle של Upscale חסרה באפליקציה.";
+"upscale.error.binary" = "cometscaly לא נמצא בחבילת האפליקציה.";
+"upscale.error.model" = "חסרים קבצי המודל upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "ההגדלה נכשלה (exit %d): %@";
+"upscale.error.none" = "לא הוגדלו תמונות.";
+"videoedit.resize.modePercent" = "קנה מידה (%)";
+"videoedit.resize.modeCustom" = "גודל מותאם";
+"videoedit.resize.autoFill" = "מילוי בד אוטומטי";
+"videoedit.resize.autoFillHint" = "כשמופעל: צילום רחב מתאים עם letterbox; צילום קטן יותר מוגדל וחתוך במרכז למילוי.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

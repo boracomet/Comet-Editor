@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Täällä voidaan muuntaa vain kuvia";
 "menu.home" = "Etusivu";
 "menu.convertImage" = "Muunna kuva";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Muokkaa kuvaa";
 "menu.badge.soon" = "Tulossa pian";
 "menu.batchProcess" = "Eräkäsittely";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Muokkaa Comet Editor -kokemustasi";
 "settings.section.output" = "TULOSTE";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Oletus tulostemappa";
 "settings.noFolderSelected" = "Ei valittu — kysytään joka kerta";
 "settings.chooseFolder" = "Valitse kansio";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Asetukset";
+"upscale.settings.model" = "Malli";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — tekoälyparannus yksityiskohtiin";
+"upscale.settings.scale" = "Skaala";
+"upscale.scale.multiPassHint" = "8× ja 16× suorittavat useita tekoälykierroksia — kestää kauemmin.";
+"upscale.settings.outputFormat" = "Tulostemuoto";
+"upscale.drop.title" = "Vedä ja pudota kuvia";
+"upscale.drop.subtitle" = "tai napsauta selataksesi tiedostoja";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Vain tuetut bittikarttakuvat voidaan suurentaa täällä";
+"upscale.runButton" = "Suurenna";
+"upscale.preview.run" = "Esikatsele";
+"upscale.preview.hint" = "Valitse skaala ja napauta Esikatsele vertaillaksesi";
+"upscale.preview.processing" = "Luodaan esikatselua…";
+"upscale.preview.before" = "ENNEN";
+"upscale.preview.after" = "JÄLKEEN";
+"upscale.preview.save" = "Tallenna";
+"upscale.preview.saveSettings" = "Tallenna esikatselu";
+"upscale.preview.autoSave" = "Tallenna esikatselun jälkeen";
+"upscale.preview.autoSaveHint" = "Kirjoittaa kohdekansioon, kun esikatselu valmistuu.";
+"upscale.preview.saveNeedFolder" = "Valitse ensin kohdekansio.";
+"upscale.preview.saveFailed" = "Esikatselukuvaa ei voitu koodata.";
+"upscale.preview.loadFailed" = "Esikatselukuvaa ei voitu ladata.";
+"upscale.backend.missing.hint" = "cometscaly-moottori tai mallitiedostot puuttuvat sovelluspaketista. Rakenna projekti uudelleen.";
+"upscale.error.bundle" = "Upscale-bundle-kansio puuttuu sovelluksesta.";
+"upscale.error.binary" = "cometscalya ei löytynyt sovelluspaketista.";
+"upscale.error.model" = "Mallitiedostot upscayl-standard-4x.param/.bin puuttuvat.";
+"upscale.error.process" = "Suurennus epäonnistui (exit %d): %@";
+"upscale.error.none" = "Yhtään kuvaa ei suurennettu.";
+"videoedit.resize.modePercent" = "Skaala (%)";
+"videoedit.resize.modeCustom" = "Mukautettu koko";
+"videoedit.resize.autoFill" = "Täytä kangas automaattisesti";
+"videoedit.resize.autoFillHint" = "Päällä: leveä materiaali sopii letterboxilla; pienempää zoomataan ja rajataan keskeltä.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

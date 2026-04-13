@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Hier kunnen alleen afbeeldingen worden geconverteerd";
 "menu.home" = "Home";
 "menu.convertImage" = "Afbeelding converteren";
+"menu.upscaleImage" = "Afbeelding vergroten";
 "menu.imageEdit" = "Afbeelding bewerken";
 "menu.badge.soon" = "Binnenkort";
 "menu.batchProcess" = "Batchverwerking";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Pas Comet Editor aan uw wensen aan";
 "settings.section.output" = "UITVOER";
+"settings.section.about" = "OVER";
 "settings.defaultOutputFolder" = "Standaard uitvoermap";
 "settings.noFolderSelected" = "Niet geselecteerd — elke keer gevraagd";
 "settings.chooseFolder" = "Map kiezen";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Instellingen";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-detailverbetering";
+"upscale.settings.scale" = "Schaal";
+"upscale.scale.multiPassHint" = "8× en 16× voeren meerdere AI-rondes uit — duurt langer.";
+"upscale.settings.outputFormat" = "Uitvoerformaat";
+"upscale.drop.title" = "Sleep afbeeldingen hierheen";
+"upscale.drop.subtitle" = "of klik om bestanden te kiezen";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Alleen ondersteunde rasterafbeeldingen kunnen hier worden vergroot";
+"upscale.runButton" = "Vergroten";
+"upscale.preview.run" = "Voorbeeld";
+"upscale.preview.hint" = "Kies een schaal en tik op Voorbeeld om te vergelijken";
+"upscale.preview.processing" = "Voorbeeld vergroten…";
+"upscale.preview.before" = "VOOR";
+"upscale.preview.after" = "NA";
+"upscale.preview.save" = "Opslaan";
+"upscale.preview.saveSettings" = "Voorbeeld opslaan";
+"upscale.preview.autoSave" = "Opslaan na voorbeeld";
+"upscale.preview.autoSaveHint" = "Schrijft naar de doelmap wanneer het voorbeeld klaar is.";
+"upscale.preview.saveNeedFolder" = "Kies eerst een doelmap.";
+"upscale.preview.saveFailed" = "Kan voorbeeldafbeelding niet coderen.";
+"upscale.preview.loadFailed" = "Kan voorbeeldafbeelding niet laden.";
+"upscale.backend.missing.hint" = "De cometscaly-engine of modelbestanden ontbreken in de app-bundle. Bouw het project opnieuw.";
+"upscale.error.bundle" = "De Upscale-bundlemap ontbreekt in de app.";
+"upscale.error.binary" = "cometscaly is niet gevonden in de app-bundle.";
+"upscale.error.model" = "Modelbestanden upscayl-standard-4x.param/.bin ontbreken.";
+"upscale.error.process" = "Vergroten mislukt (exit %d): %@";
+"upscale.error.none" = "Er is geen afbeelding vergroot.";
+"videoedit.resize.modePercent" = "Schaal (%)";
+"videoedit.resize.modeCustom" = "Aangepaste grootte";
+"videoedit.resize.autoFill" = "Canvas automatisch vullen";
+"videoedit.resize.autoFillHint" = "Aan: breed materiaal past met letterbox; smaller materiaal wordt ingezoomd en midden bijgesneden om te vullen.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

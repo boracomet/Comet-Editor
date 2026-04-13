@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Burda sade resimlär çevrilabilir";
 "menu.home" = "Ev";
 "menu.convertImage" = "Resimi dönüştür";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Resim Düzenle";
 "menu.badge.soon" = "Yakında";
 "menu.batchProcess" = "Toplu İşlem";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor deneyiminizi özelleştirin";
 "settings.section.output" = "ÇIKTI";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Varsayılan Çıktı Klasörü";
 "settings.noFolderSelected" = "Seçilmedi — her seferinde sorulacak";
 "settings.chooseFolder" = "Klasör Seç";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Ayarlar";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — yapay zekâ ile detay iyileştirme";
+"upscale.settings.scale" = "Ölçek";
+"upscale.scale.multiPassHint" = "8× ve 16× birden fazla yapay zekâ geçişi kullanır — daha uzun sürer.";
+"upscale.settings.outputFormat" = "Çıkış biçimi";
+"upscale.drop.title" = "Resimleri sürükle-bırak";
+"upscale.drop.subtitle" = "ya da dosyaları göz atmak için tıkla";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Burada yalnız desteklenen raster resimler büyütülebilir";
+"upscale.runButton" = "Büyüt";
+"upscale.preview.run" = "Önizle";
+"upscale.preview.hint" = "Ölçek seç ve karşılaştırmak için Önizle'ye dokun";
+"upscale.preview.processing" = "Önizleme oluşturuluyor…";
+"upscale.preview.before" = "ÖNCE";
+"upscale.preview.after" = "SONRA";
+"upscale.preview.save" = "Kaydet";
+"upscale.preview.saveSettings" = "Önizlemeyi kaydet";
+"upscale.preview.autoSave" = "Önizlemeden sonra kaydet";
+"upscale.preview.autoSaveHint" = "Önizleme bitince hedef klasöre yazar.";
+"upscale.preview.saveNeedFolder" = "Önce hedef klasörü seç.";
+"upscale.preview.saveFailed" = "Önizleme resmi kodlanamadı.";
+"upscale.preview.loadFailed" = "Önizleme resmi yüklenemedi.";
+"upscale.backend.missing.hint" = "cometscaly motoru ya da model dosyaları uygulama paketinde yok. Projeyi yeniden derle.";
+"upscale.error.bundle" = "Uygulamada Upscale bundle klasörü eksik.";
+"upscale.error.binary" = "cometscaly uygulama paketinde bulunamadı.";
+"upscale.error.model" = "upscayl-standard-4x.param/.bin model dosyaları eksik.";
+"upscale.error.process" = "Büyütme başarısız (exit %d): %@";
+"upscale.error.none" = "Hiçbir resim büyütülmedi.";
+"videoedit.resize.modePercent" = "Ölçek (%)";
+"videoedit.resize.modeCustom" = "Özel boyut";
+"videoedit.resize.autoFill" = "Tuvali otomatik doldur";
+"videoedit.resize.autoFillHint" = "Açık: geniş malzeme letterbox ile sığar; daha küçük yakınlaştırılıp ortadan kırpılarak doldurulur.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

@@ -26,7 +26,7 @@ struct VideoEditClip: Identifiable, Equatable {
 
     var playbackURL: URL { previewURL ?? url }
 
-    static func == (lhs: VideoEditClip, rhs: VideoEditClip) { lhs.id == rhs.id }
+    static func == (lhs: VideoEditClip, rhs: VideoEditClip) -> Bool { lhs.id == rhs.id }
 
     init(
         url: URL,

@@ -12,6 +12,7 @@
 		747F04AF0D67742DAEDB93C3 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AB31E5439AA2FF0A6E378C /* libiconv.tbd */; };
 		7C25FC7041E21D639FC2EA87 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */; };
 		94E67E89A161288155BB6D18 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A0EE17DE5E26880FA3638198 /* libbz2.tbd */; };
+		B0E1A1C22F900001005B69FE /* upscale in Resources */ = {isa = PBXBuildFile; fileRef = B0E1A1C12F900001005B69FE /* upscale */; };
 		CA7BBB6C6D783CFA4D89AA62 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */; };
 		FF001A2B3C4D5E6F7A8B9C0D /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */; };
 		FF002A2B3C4D5E6F7A8B9C0D /* ffprobe in Resources */ = {isa = PBXBuildFile; fileRef = FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */; };
@@ -25,6 +26,7 @@
 		8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		A0EE17DE5E26880FA3638198 /* libbz2.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
 		ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		B0E1A1C12F900001005B69FE /* upscale */ = {isa = PBXFileReference; lastKnownFileType = folder; name = upscale; path = third_party/upscale; sourceTree = "<group>"; };
 		F96E19BF2F58C27F005B69FE /* Comet Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comet Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffmpeg; path = third_party/ffmpeg/universal/ffmpeg; sourceTree = "<group>"; };
 		FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffprobe; path = third_party/ffmpeg/universal/ffprobe; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				0F64DA2CB5A5B9AB3A4B9D3B /* Frameworks */,
 				FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */,
 				FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */,
+				B0E1A1C12F900001005B69FE /* upscale */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +221,7 @@
 			files = (
 				FF001A2B3C4D5E6F7A8B9C0D /* ffmpeg in Resources */,
 				FF002A2B3C4D5E6F7A8B9C0D /* ffprobe in Resources */,
+				B0E1A1C22F900001005B69FE /* upscale in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FFMPEG_ENTITLEMENTS=\"${SRCROOT}/cometeditor/ffmpeg.entitlements\"    \n                                                                      \n  for BINARY in ffmpeg ffprobe; do                                    \n      # Önce CODESIGNING_FOLDER_PATH dene, sonra BUILT_PRODUCTS_DIR   \n      BINARY_PATH=\"${CODESIGNING_FOLDER_PATH}/Contents/Resources/${BIN\n  ARY}\"                                                               \n      if [ ! -f \"${BINARY_PATH}\" ]; then                              \n          BINARY_PATH=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/\n  Resources/${BINARY}\"                                            \n      fi                                                              \n                                                                  \n      if [ -f \"${BINARY_PATH}\" ]; then                                \n          echo \"Signing: ${BINARY_PATH}\"\n          codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \\  \n              --entitlements \"${FFMPEG_ENTITLEMENTS}\" \\               \n              --options runtime \\\n              \"${BINARY_PATH}\" || true                                \n      else                                                            \n          echo \"Skipping ${BINARY}: not found (normal for non-archive \n  builds)\"                                                            \n      fi                                                          \n  done                                                                \n                                                                  \n  exit 0\n";
+			shellScript = "FFMPEG_ENTITLEMENTS=\"${SRCROOT}/cometeditor/ffmpeg.entitlements\"\nfor BINARY in ffmpeg ffprobe upscale/cometscaly; do\n  BINARY_PATH=\"${CODESIGNING_FOLDER_PATH}/Contents/Resources/${BINARY}\"\n  if [ ! -f \"${BINARY_PATH}\" ]; then\n    BINARY_PATH=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/Resources/${BINARY}\"\n  fi\n  if [ -f \"${BINARY_PATH}\" ]; then\n    echo \"Signing: ${BINARY_PATH}\"\n    codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \\\n      --entitlements \"${FFMPEG_ENTITLEMENTS}\" \\\n      --options runtime \\\n      \"${BINARY_PATH}\" || true\n  else\n    echo \"Skipping ${BINARY}: not found\"\n  fi\ndone\nexit 0\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -387,7 +391,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -417,7 +421,7 @@
 					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-w",
@@ -467,7 +471,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -496,7 +500,7 @@
 					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-w",

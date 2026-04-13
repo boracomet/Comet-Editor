@@ -33,6 +33,31 @@ struct AppSettingsView: View {
                     )
 
                     Divider().padding(.leading, 32)
+
+                    // MARK: - About Section
+                    sectionHeader("settings.section.about")
+
+                    HStack(spacing: 12) {
+                        Image(systemName: "info.circle.fill")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Comet Editor")
+                                .font(.system(size: 13, weight: .medium))
+                            Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
+                                .font(.system(size: 12, weight: .medium, design: .monospaced))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+                    }
+                    .padding(.horizontal, 32)
+                    .padding(.vertical, 14)
+                    .background(Color.primary.opacity(0.02))
+
+                    Divider().padding(.leading, 32)
                 }
                 .padding(.vertical, 8)
             }

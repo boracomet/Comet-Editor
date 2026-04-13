@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "यहाँ केवल छवियाँ परिवर्तित की जा सकती हैं";
 "menu.home" = "होम";
 "menu.convertImage" = "छवि रूपांतरण";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "फ़ोटो संपादन";
 "menu.badge.soon" = "जल्द आएगा";
 "menu.batchProcess" = "बैच प्रोसेसिंग";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor का अनुभव अनुकूलित करें";
 "settings.section.output" = "आउटपुट";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "डिफ़ॉल्ट आउटपुट फ़ोल्डर";
 "settings.noFolderSelected" = "चयनित नहीं — हर बार पूछा जाएगा";
 "settings.chooseFolder" = "फ़ोल्डर चुनें";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "सेटिंग्स";
+"upscale.settings.model" = "मॉडल";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI विवरण सुधार";
+"upscale.settings.scale" = "स्केल";
+"upscale.scale.multiPassHint" = "8× और 16× कई AI पास चलाते हैं — अधिक समय लगता है।";
+"upscale.settings.outputFormat" = "आउटपुट प्रारूप";
+"upscale.drop.title" = "छवियाँ खींचें और छोड़ें";
+"upscale.drop.subtitle" = "या फ़ाइलें चुनने के लिए क्लिक करें";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "यहाँ केवल समर्थित रास्टर छवियाँ बड़ी की जा सकती हैं";
+"upscale.runButton" = "बड़ा करें";
+"upscale.preview.run" = "पूर्वावलोकन";
+"upscale.preview.hint" = "स्केल चुनें और तुलना के लिए पूर्वावलोकन पर टैप करें";
+"upscale.preview.processing" = "पूर्वावलोकन बना रहा है…";
+"upscale.preview.before" = "पहले";
+"upscale.preview.after" = "बाद";
+"upscale.preview.save" = "सहेजें";
+"upscale.preview.saveSettings" = "पूर्वावलोकन सहेजें";
+"upscale.preview.autoSave" = "पूर्वावलोकन के बाद सहेजें";
+"upscale.preview.autoSaveHint" = "पूर्वावलोकन समाप्त होने पर लक्ष्य फ़ोल्डर में लिखता है।";
+"upscale.preview.saveNeedFolder" = "पहले लक्ष्य फ़ोल्डर चुनें।";
+"upscale.preview.saveFailed" = "पूर्वावलोकन छवि एन्कोड नहीं हो सकी।";
+"upscale.preview.loadFailed" = "पूर्वावलोकन छवि लोड नहीं हो सकी।";
+"upscale.backend.missing.hint" = "ऐप बंडल में cometscaly इंजन या मॉडल फ़ाइलें नहीं हैं। प्रोजेक्ट दोबारा बनाएँ।";
+"upscale.error.bundle" = "ऐप में Upscale बंडल फ़ोल्डर गायब है।";
+"upscale.error.binary" = "ऐप बंडल में cometscaly नहीं मिला।";
+"upscale.error.model" = "मॉडल फ़ाइलें upscayl-standard-4x.param/.bin गायब हैं।";
+"upscale.error.process" = "अपस्केल विफल (exit %d): %@";
+"upscale.error.none" = "कोई छवि बड़ी नहीं की गई।";
+"videoedit.resize.modePercent" = "स्केल (%)";
+"videoedit.resize.modeCustom" = "कस्टम आकार";
+"videoedit.resize.autoFill" = "कैनवास स्वतः भरें";
+"videoedit.resize.autoFillHint" = "चालू: चौड़ा फुटेज लेटरबॉक्स के साथ फिट; छोटा ज़ूम और केंद्र क्रॉप से भरता है।";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

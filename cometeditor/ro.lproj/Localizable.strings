@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Aici pot fi convertite doar imagini";
 "menu.home" = "Acasă";
 "menu.convertImage" = "Convertire imagine";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Editare imagine";
 "menu.badge.soon" = "În curând";
 "menu.batchProcess" = "Procesare în lot";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Personalizați experiența Comet Editor";
 "settings.section.output" = "IEȘIRE";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Dosar implicit de ieșire";
 "settings.noFolderSelected" = "Neselectat — vi se va cere de fiecare dată";
 "settings.chooseFolder" = "Alege dosar";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Setări";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — îmbunătățire detalii cu IA";
+"upscale.settings.scale" = "Scară";
+"upscale.scale.multiPassHint" = "8× și 16× rulează mai multe treceri IA — durează mai mult.";
+"upscale.settings.outputFormat" = "Format ieșire";
+"upscale.drop.title" = "Trageți și plasați imagini";
+"upscale.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Aici pot fi mărite doar imagini raster acceptate";
+"upscale.runButton" = "Mărește";
+"upscale.preview.run" = "Previzualizare";
+"upscale.preview.hint" = "Alegeți o scală și atingeți Previzualizare pentru a compara";
+"upscale.preview.processing" = "Se generează previzualizarea…";
+"upscale.preview.before" = "ÎNAINTE";
+"upscale.preview.after" = "DUPĂ";
+"upscale.preview.save" = "Salvează";
+"upscale.preview.saveSettings" = "Salvare previzualizare";
+"upscale.preview.autoSave" = "Salvează după previzualizare";
+"upscale.preview.autoSaveHint" = "Scrie în folderul țintă când previzualizarea se termină.";
+"upscale.preview.saveNeedFolder" = "Alegeți mai întâi un folder țintă.";
+"upscale.preview.saveFailed" = "Nu s-a putut codifica imaginea de previzualizare.";
+"upscale.preview.loadFailed" = "Nu s-a putut încărca imaginea de previzualizare.";
+"upscale.backend.missing.hint" = "Motorul cometscaly sau fișierele modelului lipsesc din bundle-ul aplicației. Reconstruiți proiectul.";
+"upscale.error.bundle" = "Lipsește folderul bundle Upscale din aplicație.";
+"upscale.error.binary" = "cometscaly nu a fost găsit în bundle-ul aplicației.";
+"upscale.error.model" = "Lipsesc fișierele modelului upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Mărirea a eșuat (exit %d): %@";
+"upscale.error.none" = "Nicio imagine nu a fost mărită.";
+"videoedit.resize.modePercent" = "Scară (%)";
+"videoedit.resize.modeCustom" = "Dimensiune personalizată";
+"videoedit.resize.autoFill" = "Umple automat pânza";
+"videoedit.resize.autoFillHint" = "Activ: materialele late încadrează cu letterbox; cele mai mici sunt mărite și decupate pe centru.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

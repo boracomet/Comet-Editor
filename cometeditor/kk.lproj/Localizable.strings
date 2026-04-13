@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Мұнда тек суреттерді түрлендіруге болады";
 "menu.home" = "Басты бет";
 "menu.convertImage" = "Суретті түрлендіру";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Суретті өңдеу";
 "menu.badge.soon" = "Жақында";
 "menu.batchProcess" = "Топтық өңдеу";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor тәжірибесін реттеңіз";
 "settings.section.output" = "ШЫҒЫС";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Әдепкі шығыс қалтасы";
 "settings.noFolderSelected" = "Таңдалмаған — әр жолы сұралады";
 "settings.chooseFolder" = "Қалта таңдау";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Баптаулар";
+"upscale.settings.model" = "Модель";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — ЖИ арқылы детальдарды жақсарту";
+"upscale.settings.scale" = "Масштаб";
+"upscale.scale.multiPassHint" = "8× және 16× бірнеше ЖИ өткізеді — ұзақырақ.";
+"upscale.settings.outputFormat" = "Шығыс форматы";
+"upscale.drop.title" = "Суреттерді сүйреп апарыңыз";
+"upscale.drop.subtitle" = "немесе файлдарды шолу үшін басыңыз";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Мұнда тек қолдау көрсетілетін растр суреттерін үлкейтуге болады";
+"upscale.runButton" = "Үлкейту";
+"upscale.preview.run" = "Алдын ала қарау";
+"upscale.preview.hint" = "Масштабты таңдаңыз және салыстыру үшін Алдын ала қарауды басыңыз";
+"upscale.preview.processing" = "Алдын ала қарау жасалуда…";
+"upscale.preview.before" = "БҰРЫН";
+"upscale.preview.after" = "КЕЙІН";
+"upscale.preview.save" = "Сақтау";
+"upscale.preview.saveSettings" = "Алдын ала қарауды сақтау";
+"upscale.preview.autoSave" = "Алдын ала қараудан кейін сақтау";
+"upscale.preview.autoSaveHint" = "Алдын ала қарау аяқталғанда мақсатты қалтаға жазады.";
+"upscale.preview.saveNeedFolder" = "Алдымен мақсатты қалтаны таңдаңыз.";
+"upscale.preview.saveFailed" = "Алдын ала қарау суретін кодтау мүмкін болмады.";
+"upscale.preview.loadFailed" = "Алдын ала қарау суретін жүктеу мүмкін болмады.";
+"upscale.backend.missing.hint" = "Қолданба пакетінде cometscaly қозғалтқышы немесе модель файлдары жоқ. Жобаны қайта құраңыз.";
+"upscale.error.bundle" = "Қолданбада Upscale bundle қалтасы жоқ.";
+"upscale.error.binary" = "Қолданба пакетінде cometscaly табылмады.";
+"upscale.error.model" = "upscayl-standard-4x.param/.bin модель файлдары жоқ.";
+"upscale.error.process" = "Үлкейту сәтсіз аяқталды (exit %d): %@";
+"upscale.error.none" = "Ешбір сурет үлкейтілмеді.";
+"videoedit.resize.modePercent" = "Масштаб (%)";
+"videoedit.resize.modeCustom" = "Теңшелетін өлшем";
+"videoedit.resize.autoFill" = "Кеністікті автоматты толтыру";
+"videoedit.resize.autoFillHint" = "Қосулы: кең материал letterbox-пен сыйады; кішірек үлкейтіліп ортасынан қиылады.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

@@ -20,8 +20,40 @@
 "convert.addMore" = "Ekle";
 "convert.wrongType.image" = "Buraya yalnızca resim dönüştürebilirsiniz";
 
+"upscale.settings.title" = "Ayarlar";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standart";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — yapay zekâ ile detay iyileştirme";
+"upscale.settings.scale" = "Ölçek";
+"upscale.scale.multiPassHint" = "8× ve 16× birden fazla yapay zekâ geçişi kullanır — daha uzun sürer.";
+"upscale.settings.outputFormat" = "Çıktı formatı";
+"upscale.drop.title" = "Görüntüleri sürükleyip bırakın";
+"upscale.drop.subtitle" = "veya dosya seçmek için tıklayın";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Buraya yalnızca desteklenen raster görseller eklenebilir";
+"upscale.runButton" = "Büyüt";
+"upscale.preview.run" = "Önizle";
+"upscale.preview.hint" = "Ölçek seçip Önizle'ye tıklayarak karşılaştırın";
+"upscale.preview.processing" = "Önizleme büyütülüyor…";
+"upscale.preview.before" = "ÖNCE";
+"upscale.preview.after" = "SONRA";
+"upscale.preview.save" = "Kaydet";
+"upscale.preview.saveSettings" = "Önizleme kaydı";
+"upscale.preview.autoSave" = "Önizlemeden sonra kaydet";
+"upscale.preview.autoSaveHint" = "Önizleme bitince hedef klasöre yazar.";
+"upscale.preview.saveNeedFolder" = "Önce hedef klasör seçin.";
+"upscale.preview.saveFailed" = "Önizleme görüntüsü kaydedilemedi.";
+"upscale.preview.loadFailed" = "Önizleme görüntüsü yüklenemedi.";
+"upscale.backend.missing.hint" = "cometscaly motoru veya model dosyaları uygulama paketinde eksik. Projeyi yeniden derleyin.";
+"upscale.error.bundle" = "Uygulama paketinde upscale klasörü yok.";
+"upscale.error.binary" = "cometscaly motoru uygulama paketinde bulunamadı.";
+"upscale.error.model" = "upscayl-standard-4x.param / .bin model dosyaları eksik.";
+"upscale.error.process" = "Büyütme başarısız (çıkış %d): %@";
+"upscale.error.none" = "Hiç görüntü büyütülemedi.";
+
 "menu.home" = "Ana Sayfa";
 "menu.convertImage" = "Resim Dönüştür";
+"menu.upscaleImage" = "Görüntü Büyütme";
 "menu.imageEdit" = "Resim Düzenle";
 "menu.badge.soon" = "Çok Yakında";
 "menu.batchProcess" = "Toplu İşlem";
@@ -101,6 +133,13 @@
 "home.guide.convertImage.step2" = "Sağ panelden çıktı formatını seçin (PNG, JPG, WebP, HEIC vb.).";
 "home.guide.convertImage.step3" = "Kalite, ölçek veya boyutları ayarlayın — ardından dönüştürün.";
 "home.guide.convertImage.tip" = "Aynı anda birden fazla görüntü ekleyebilirsiniz. Her dosya aynı ayarlarla ayrı ayrı dönüştürülür.";
+
+// Görüntü Büyütme rehberi
+"home.guide.upscale.desc" = "Cihaz üzerinde çalışan yapay zekâ ile fotoğrafları keskinleştirip büyütün (2×–16×).";
+"home.guide.upscale.step2" = "Sağ panelden ölçek ve çıktı formatını (PNG, JPEG, WebP…) seçin.";
+"home.guide.upscale.step3" = "İsterseniz Önizleme ile önce/sonra karşılaştırmasını kaydırıcıyla görün.";
+"home.guide.upscale.step4" = "Hedef klasörü seçin, ardından tüm görüntüleri kaydetmek için Büyüt'e basın.";
+"home.guide.upscale.tip" = "8× ve 16× birden fazla yapay zekâ geçişi kullanır ve daha uzun sürer. Yalnızca desteklenen raster formatları.";
 
 // Video Guide
 "home.guide.video.desc" = "Videoları MP4, MOV, AVI ve daha fazlasına dönüştürün ve sıkıştırın.";
@@ -401,6 +440,7 @@
 
 "settings.subtitle" = "Comet Editor deneyiminizi özelleştirin";
 "settings.section.output" = "ÇIKTI";
+"settings.section.about" = "HAKKINDA";
 "settings.defaultOutputFolder" = "Varsayılan Çıktı Klasörü";
 "settings.noFolderSelected" = "Seçilmedi — her seferinde sorulacak";
 "settings.chooseFolder" = "Klasör Seç";

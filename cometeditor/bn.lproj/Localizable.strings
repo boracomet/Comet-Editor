@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "এখানে শুধুমাত্র ছবি রূপান্তর করা যাবে";
 "menu.home" = "হোম";
 "menu.convertImage" = "ছবি রূপান্তর";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "ছবি সম্পাদনা";
 "menu.badge.soon" = "শীঘ্রই আসছে";
 "menu.batchProcess" = "ব্যাচ প্রক্রিয়াকরণ";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "আপনার Comet Editor অভিজ্ঞতা কাস্টমাইজ করুন";
 "settings.section.output" = "আউটপুট";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "ডিফল্ট আউটপুট ফোল্ডার";
 "settings.noFolderSelected" = "নির্বাচিত নয় — প্রতিবার জিজ্ঞাসা করা হবে";
 "settings.chooseFolder" = "ফোল্ডার বেছে নিন";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "সেটিংস";
+"upscale.settings.model" = "মডেল";
+"upscale.model.cometStandard" = "ধূমকেতুর মান";
+"upscale.model.scaleHint" = "Upscayl স্ট্যান্ডার্ড (4×) — AI বিস্তারিত বর্ধন";
+"upscale.settings.scale" = "স্কেল:";
+"upscale.scale.multiPassHint" = "8× এবং 16× রান একাধিক AI পাস — বেশি সময় নেয় ।";
+"upscale.settings.outputFormat" = "আউটপুট ফরমেট";
+"upscale.drop.title" = "ছবিগুলি টেনে আনুন এবং ড্রপ করুন";
+"upscale.drop.subtitle" = "অথবা ফাইল ব্রাউজ করতে ক্লিক করুন";
+"upscale.drop.formats" = "পিএনজি, জেপিইজি, ওয়েবপি, টিআইএফএফ, জিআইএফ, এইচইআইসি, বিএমপি";
+"upscale.wrongType" = "শুধুমাত্র সমর্থিত রাস্টার চিত্রগুলি এখানে আপস্কেল করা যেতে পারে";
+"upscale.runButton" = "আপস্কেল";
+"upscale.preview.run" = "পূর্বরুপ";
+"upscale.preview.hint" = "একটি স্কেল নির্বাচন করুন এবং তুলনা করতে প্রিভিউতে ট্যাপ করুন";
+"upscale.preview.processing" = "আপস্কেলিং প্রিভিউ...";
+"upscale.preview.before" = "আগে";
+"upscale.preview.after" = "উপস্থিতি";
+"upscale.preview.save" = "সংরক্ষণ করুন";
+"upscale.preview.saveSettings" = "প্রিভিউ সেভ করুন";
+"upscale.preview.autoSave" = "প্রিভিউ এর পরে সেভ করুন";
+"upscale.preview.autoSaveHint" = "প্রিভিউ শেষ হলে টার্গেট ফোল্ডারে লিখুন ।";
+"upscale.preview.saveNeedFolder" = "প্রথমে একটি টার্গেট ফোল্ডার বেছে নিন ।";
+"upscale.preview.saveFailed" = "পূর্বরূপ চিত্র এনকোড করা যায়নি ।";
+"upscale.preview.loadFailed" = "পূর্বরূপ চিত্র লোড করা যায়নি ।";
+"upscale.backend.missing.hint" = "অ্যাপ বান্ডেল থেকে ধূমকেতু ইঞ্জিন বা মডেল ফাইলগুলি অনুপস্থিত । প্রকল্পটি পুনর্নির্মাণ করুন ।";
+"upscale.error.bundle" = "অ্যাপ থেকে আপস্কেল বান্ডেল ফোল্ডারটি অনুপস্থিত ।";
+"upscale.error.binary" = "অ্যাপ বান্ডেলে ধূমকেতু ইঞ্জিন পাওয়া যায়নি ।";
+"upscale.error.model" = "মডেল ফাইল upscayl-standard-4x.param/.bin অনুপস্থিত ।";
+"upscale.error.process" = "আপস্কেলিং ব্যর্থ হয়েছে (%d থেকে প্রস্থান করুন): %@";
+"upscale.error.none" = "কোনও ছবি আপলোড করা হয়নি ।";
+"videoedit.resize.modePercent" = "স্কেল:";
+"videoedit.resize.modeCustom" = "কাস্টম আকার";
+"videoedit.resize.autoFill" = "অটো ফিল ক্যানভাস";
+"videoedit.resize.autoFillHint" = "কখন: বড় ফুটেজ লেটারবক্সিংয়ের সাথে ভিতরে ফিট করে; ছোট ফুটেজ জুম করা হয় এবং ভরাট করার জন্য কেন্দ্র-ক্রপ করা হয় ।";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

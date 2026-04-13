@@ -84,16 +84,13 @@ struct ConvertImageView: View {
                 return
             }
             Task.detached(priority: .userInitiated) {
-                let url = item.url
-                _ = url.startAccessingSecurityScopedResource()
-                defer { url.stopAccessingSecurityScopedResource() }
+                let (url, accessed) = item.securityScopedURL()
+                defer { if accessed { url.stopAccessingSecurityScopedResource() } }
                 let ext = url.pathExtension.lowercased()
                 let fullImage: NSImage?
                 if ext == "svg" || ext == "ai" {
-                    // macOS NSImage natively renders SVG and AI (PDF-based)
                     fullImage = NSImage(contentsOf: url)
                 } else if ext == "psd" {
-                    // PSD: try NSImage first (macOS may handle it), else QuickLook
                     if let nsImg = NSImage(contentsOf: url) {
                         fullImage = nsImg
                     } else {
@@ -430,42 +427,42 @@ struct ConvertImageView: View {
 
     @ViewBuilder
     private func imageGridItemContent(item: ImageItem, geo: GeometryProxy) -> some View {
-        ZStack {
-            Group {
-                if let nsImage = item.image {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Color.secondary.opacity(0.2)
+        ZStack(alignment: .topTrailing) {
+            ZStack {
+                Group {
+                    if let nsImage = item.image {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .scaledToFill()
+                    } else {
+                        Color.secondary.opacity(0.2)
+                    }
+                }
+
+                if watermarkEnabled, let wm = watermarkImage {
+                    WatermarkOverlayView(
+                        watermarkImage: wm,
+                        containerSize: geo.size,
+                        scale: watermarkScale,
+                        opacity: watermarkOpacity,
+                        position: watermarkPosition,
+                        colorOverlay: watermarkColorOverlay,
+                        tileMode: watermarkTileMode
+                    )
+                    .allowsHitTesting(false)
                 }
             }
-
-            if watermarkEnabled, let wm = watermarkImage {
-                WatermarkOverlayView(
-                    watermarkImage: wm,
-                    containerSize: geo.size,
-                    scale: watermarkScale,
-                    opacity: watermarkOpacity,
-                    position: watermarkPosition,
-                    colorOverlay: watermarkColorOverlay,
-                    tileMode: watermarkTileMode
-                )
-                .allowsHitTesting(false)
-            }
-        }
+            .frame(width: geo.size.width, height: geo.size.height)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
             .contentShape(Rectangle())
             .onTapGesture {
                 withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
             }
             .handCursor()
-            .frame(width: geo.size.width, height: geo.size.height)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
             )
-            // Bottom info bar
             .overlay(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.fileName)
@@ -487,23 +484,23 @@ struct ConvertImageView: View {
                     )
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 )
+                .allowsHitTesting(false)
             }
-            // Delete button — top-right corner
-            .overlay(alignment: .topTrailing) {
-                Button {
-                    appState.selectedImages.removeAll(where: { $0.id == item.id })
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 8, weight: .bold))
-                        .foregroundStyle(.white)
-                        .padding(5)
-                        .background(Color.black.opacity(0.55))
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
-                .handCursor()
-                .padding(6)
+
+            Button {
+                appState.selectedImages.removeAll(where: { $0.id == item.id })
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundStyle(.white)
+                    .padding(5)
+                    .background(Color.black.opacity(0.55))
+                    .clipShape(Circle())
             }
+            .buttonStyle(.plain)
+            .handCursor()
+            .padding(6)
+        }
     }
 
     // MARK: - Inspector Panel
@@ -809,8 +806,7 @@ struct ConvertImageView: View {
 
         for (index, item) in images.enumerated() {
             conversionProgress = "\(index + 1)/\(total)"
-            let url = item.url
-            let accessed = url.startAccessingSecurityScopedResource()
+            let (url, accessed) = item.securityScopedURL()
 
             let ext = url.pathExtension.lowercased()
 
@@ -1016,8 +1012,8 @@ struct ConvertImageView: View {
         Task.detached(priority: .userInitiated) {
             var built: [ImageItem] = []
             for url in newURLs {
-                _ = url.startAccessingSecurityScopedResource()
-                defer { url.stopAccessingSecurityScopedResource() }
+                let accessed = url.startAccessingSecurityScopedResource()
+                let bookmark = ImageItem.makeBookmark(for: url)
 
                 var fileSizeStr = "0 KB"
                 if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path),
@@ -1030,14 +1026,12 @@ struct ConvertImageView: View {
                 let ext0 = url.pathExtension.lowercased()
 
                 if ext0 == "svg" || ext0 == "ai" {
-                    // macOS NSImage natively renders SVG and AI (PDF-based)
                     if let img = NSImage(contentsOf: url) {
                         nsImage = img
                         let sz = img.size
                         dimStr = sz.width > 0 ? "\(Int(sz.width))×\(Int(sz.height))" : ""
                     }
                 } else if ext0 == "psd" {
-                    // PSD: try NSImage first, else QuickLook
                     if let img = NSImage(contentsOf: url) {
                         nsImage = img
                         let sz = img.size
@@ -1089,7 +1083,8 @@ struct ConvertImageView: View {
                     }
                 }
 
-                built.append(ImageItem(url: url, image: nsImage, fileSizeString: fileSizeStr, dimensionsString: dimStr))
+                if accessed { url.stopAccessingSecurityScopedResource() }
+                built.append(ImageItem(url: url, image: nsImage, fileSizeString: fileSizeStr, dimensionsString: dimStr, bookmarkData: bookmark))
             }
 
             let items = built

@@ -34,6 +34,7 @@ struct ContentView: View {
                 // Feature bazlı sayfa görüntüleme
                 let featurePageViewEvent: CometEventType? = switch $0 {
                 case .convertImage:  .imagePageView
+                case .upscaleImage:  .upscalePageView
                 case .videoConvert:  .videoPageView
                 case .ocr:           .ocrPageView
                 case .bgRemove:      .bgPageView
@@ -252,6 +253,8 @@ struct ContentView: View {
             )
         case .convertImage:
             ConvertImageView(columnVisibility: $columnVisibility)
+        case .upscaleImage:
+            UpscaleView(columnVisibility: $columnVisibility)
         case .videoConvert:
             VideoConvertView(columnVisibility: $columnVisibility)
         case .videoEdit:

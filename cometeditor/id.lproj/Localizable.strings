@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Di sini hanya gambar yang bisa dikonversi";
 "menu.home" = "Beranda";
 "menu.convertImage" = "Konversi Gambar";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Edit Gambar";
 "menu.badge.soon" = "SEGERA";
 "menu.batchProcess" = "Proses Batch";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Sesuaikan pengalaman Comet Editor Anda";
 "settings.section.output" = "OUTPUT";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Folder output default";
 "settings.noFolderSelected" = "Belum dipilih — akan ditanya setiap saat";
 "settings.chooseFolder" = "Pilih folder";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Pengaturan";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — peningkatan detail AI";
+"upscale.settings.scale" = "Skala";
+"upscale.scale.multiPassHint" = "8× dan 16× menjalankan beberapa lintasan AI — lebih lama.";
+"upscale.settings.outputFormat" = "Format keluaran";
+"upscale.drop.title" = "Seret dan lepas gambar";
+"upscale.drop.subtitle" = "atau klik untuk menelusuri berkas";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Hanya gambar raster yang didukung yang dapat diperbesar di sini";
+"upscale.runButton" = "Perbesar";
+"upscale.preview.run" = "Pratinjau";
+"upscale.preview.hint" = "Pilih skala dan ketuk Pratinjau untuk membandingkan";
+"upscale.preview.processing" = "Membuat pratinjau…";
+"upscale.preview.before" = "SEBELUM";
+"upscale.preview.after" = "SESUDAH";
+"upscale.preview.save" = "Simpan";
+"upscale.preview.saveSettings" = "Simpan pratinjau";
+"upscale.preview.autoSave" = "Simpan setelah pratinjau";
+"upscale.preview.autoSaveHint" = "Menulis ke folder tujuan saat pratinjau selesai.";
+"upscale.preview.saveNeedFolder" = "Pilih folder tujuan terlebih dahulu.";
+"upscale.preview.saveFailed" = "Tidak dapat mengode gambar pratinjau.";
+"upscale.preview.loadFailed" = "Tidak dapat memuat gambar pratinjau.";
+"upscale.backend.missing.hint" = "Mesin cometscaly atau berkas model tidak ada di bundle aplikasi. Bangun ulang proyek.";
+"upscale.error.bundle" = "Folder bundle Upscale tidak ada di aplikasi.";
+"upscale.error.binary" = "cometscaly tidak ditemukan di bundle aplikasi.";
+"upscale.error.model" = "Berkas model upscayl-standard-4x.param/.bin tidak ada.";
+"upscale.error.process" = "Pembesaran gagal (exit %d): %@";
+"upscale.error.none" = "Tidak ada gambar yang diperbesar.";
+"videoedit.resize.modePercent" = "Skala (%)";
+"videoedit.resize.modeCustom" = "Ukuran khusus";
+"videoedit.resize.autoFill" = "Isi kanvas otomatis";
+"videoedit.resize.autoFillHint" = "Aktif: rekaman lebar muat dengan letterbox; rekaman lebih kecil diperbesar dan dipotong tengah untuk mengisi.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

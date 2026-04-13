@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Hér er aðeins hægt að breyta myndum";
 "menu.home" = "Heim";
 "menu.convertImage" = "Umbreyta mynd";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Breyta mynd";
 "menu.badge.soon" = "Kemur fljótlega";
 "menu.batchProcess" = "Runuvinnsla";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Sérsniðið Comet Editor reynsluna þína";
 "settings.section.output" = "ÚTTAK";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Sjálfgefin úttaksmappa";
 "settings.noFolderSelected" = "Ekki valin — spurt verður í hvert skipti";
 "settings.chooseFolder" = "Velja möppu";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Stillingar";
+"upscale.settings.model" = "Líkan";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — gervigreindar endurbæting á smáatriðum";
+"upscale.settings.scale" = "Kvarði";
+"upscale.scale.multiPassHint" = "8× og 16× keyra margar gervigreindar umferðir — tekur lengri tíma.";
+"upscale.settings.outputFormat" = "Úttakssnið";
+"upscale.drop.title" = "Dragðu og slepptu myndum";
+"upscale.drop.subtitle" = "eða smelltu til að skoða skrár";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Aðeins studdar raster-myndir má stækka hér";
+"upscale.runButton" = "Stækka";
+"upscale.preview.run" = "Forskoðun";
+"upscale.preview.hint" = "Veldu kvarða og pikkaðu á Forskoðun til að bera saman";
+"upscale.preview.processing" = "Býr til forskoðun…";
+"upscale.preview.before" = "ÁÐUR";
+"upscale.preview.after" = "EFTIR";
+"upscale.preview.save" = "Vista";
+"upscale.preview.saveSettings" = "Vista forskoðun";
+"upscale.preview.autoSave" = "Vista eftir forskoðun";
+"upscale.preview.autoSaveHint" = "Skrifar í markmöppu þegar forskoðun lýkur.";
+"upscale.preview.saveNeedFolder" = "Veldu markmöppu fyrst.";
+"upscale.preview.saveFailed" = "Ekki tókst að kóða forskoðunarmynd.";
+"upscale.preview.loadFailed" = "Ekki tókst að hlaða forskoðunarmynd.";
+"upscale.backend.missing.hint" = "cometscaly-vélinn eða líkanskrár vantar í forritspakkann. Endurbyggðu verkefnið.";
+"upscale.error.bundle" = "Upscale bundle möppan vantar í forritinu.";
+"upscale.error.binary" = "cometscaly fannst ekki í forritspakkanum.";
+"upscale.error.model" = "Líkanskrár upscayl-standard-4x.param/.bin vantar.";
+"upscale.error.process" = "Uppskalun mistókst (exit %d): %@";
+"upscale.error.none" = "Engar myndir voru stækkaðar.";
+"videoedit.resize.modePercent" = "Kvarði (%)";
+"videoedit.resize.modeCustom" = "Sérsniðin stærð";
+"videoedit.resize.autoFill" = "Fylla striga sjálfkrafa";
+"videoedit.resize.autoFillHint" = "Kveikt: breitt efni passar með letterbox; minna er zoomað og skorið í miðju til að fylla.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

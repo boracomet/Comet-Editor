@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "여기서는 이미지만 변환할 수 있습니다";
 "menu.home" = "홈";
 "menu.convertImage" = "이미지 변환";
+"menu.upscaleImage" = "이미지 확대";
 "menu.imageEdit" = "이미지 편집";
 "menu.badge.soon" = "곧 출시";
 "menu.batchProcess" = "일괄 처리";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor 경험을 맞춤 설정하세요";
 "settings.section.output" = "출력";
+"settings.section.about" = "정보";
 "settings.defaultOutputFolder" = "기본 출력 폴더";
 "settings.noFolderSelected" = "선택하지 않음 — 매번 묻습니다";
 "settings.chooseFolder" = "폴더 선택";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "설정";
+"upscale.settings.model" = "모델";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 디테일 향상";
+"upscale.settings.scale" = "배율";
+"upscale.scale.multiPassHint" = "8× 및 16×는 여러 번의 AI 처리를 수행하므로 더 오래 걸립니다.";
+"upscale.settings.outputFormat" = "출력 형식";
+"upscale.drop.title" = "이미지를 끌어다 놓기";
+"upscale.drop.subtitle" = "또는 클릭하여 파일 찾기";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "지원되는 래스터 이미지만 여기서 확대할 수 있습니다";
+"upscale.runButton" = "확대";
+"upscale.preview.run" = "미리보기";
+"upscale.preview.hint" = "배율을 선택하고 미리보기를 눌러 비교";
+"upscale.preview.processing" = "미리보기 생성 중…";
+"upscale.preview.before" = "전";
+"upscale.preview.after" = "후";
+"upscale.preview.save" = "저장";
+"upscale.preview.saveSettings" = "미리보기 저장";
+"upscale.preview.autoSave" = "미리보기 후 저장";
+"upscale.preview.autoSaveHint" = "미리보기가 끝나면 대상 폴더에 저장합니다.";
+"upscale.preview.saveNeedFolder" = "먼저 대상 폴더를 선택하세요.";
+"upscale.preview.saveFailed" = "미리보기 이미지를 인코딩할 수 없습니다.";
+"upscale.preview.loadFailed" = "미리보기 이미지를 불러올 수 없습니다.";
+"upscale.backend.missing.hint" = "앱 번들에 cometscaly 엔진 또는 모델 파일이 없습니다. 프로젝트를 다시 빌드하세요.";
+"upscale.error.bundle" = "앱에 Upscale 번들 폴더가 없습니다.";
+"upscale.error.binary" = "앱 번들에서 cometscaly를 찾을 수 없습니다.";
+"upscale.error.model" = "모델 파일 upscayl-standard-4x.param/.bin이 없습니다.";
+"upscale.error.process" = "확대 실패 (exit %d): %@";
+"upscale.error.none" = "확대된 이미지가 없습니다.";
+"videoedit.resize.modePercent" = "배율 (%)";
+"videoedit.resize.modeCustom" = "사용자 지정 크기";
+"videoedit.resize.autoFill" = "캔버스 자동 채우기";
+"videoedit.resize.autoFillHint" = "켜면: 넓은 영상은 레터박스로 맞추고, 더 작은 영상은 확대 후 중앙 크롭으로 채웁니다.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

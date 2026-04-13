@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "此處只能轉換圖片";
 "menu.home" = "主頁";
 "menu.convertImage" = "圖片轉換";
+"menu.upscaleImage" = "影像放大";
 "menu.imageEdit" = "圖片編輯";
 "menu.badge.soon" = "即將推出";
 "menu.batchProcess" = "批次處理";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "自訂您的 Comet Editor 體驗";
 "settings.section.output" = "輸出";
+"settings.section.about" = "關於";
 "settings.defaultOutputFolder" = "預設輸出資料夾";
 "settings.noFolderSelected" = "未選擇 — 每次都會詢問";
 "settings.chooseFolder" = "選擇資料夾";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "設定";
+"upscale.settings.model" = "模型";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 細節增強";
+"upscale.settings.scale" = "縮放";
+"upscale.scale.multiPassHint" = "8× 與 16× 會執行多輪 AI，耗時更久。";
+"upscale.settings.outputFormat" = "輸出格式";
+"upscale.drop.title" = "拖放圖像";
+"upscale.drop.subtitle" = "或按一下瀏覽檔案";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "此處僅可放大支援的點陣影像";
+"upscale.runButton" = "放大";
+"upscale.preview.run" = "預覽";
+"upscale.preview.hint" = "選擇縮放比例並點一下「預覽」以比較";
+"upscale.preview.processing" = "正在產生預覽…";
+"upscale.preview.before" = "前";
+"upscale.preview.after" = "後";
+"upscale.preview.save" = "儲存";
+"upscale.preview.saveSettings" = "儲存預覽";
+"upscale.preview.autoSave" = "預覽後儲存";
+"upscale.preview.autoSaveHint" = "預覽完成後寫入目標資料夾。";
+"upscale.preview.saveNeedFolder" = "請先選擇目標資料夾。";
+"upscale.preview.saveFailed" = "無法編碼預覽圖像。";
+"upscale.preview.loadFailed" = "無法載入預覽圖像。";
+"upscale.backend.missing.hint" = "應用程式套件缺少 cometscaly 引擎或模型檔案。請重新建置專案。";
+"upscale.error.bundle" = "應用程式缺少 Upscale 套件資料夾。";
+"upscale.error.binary" = "在應用程式套件中找不到 cometscaly。";
+"upscale.error.model" = "缺少模型檔案 upscayl-standard-4x.param/.bin。";
+"upscale.error.process" = "放大失敗 (exit %d): %@";
+"upscale.error.none" = "沒有放大任何圖像。";
+"videoedit.resize.modePercent" = "縮放 (%)";
+"videoedit.resize.modeCustom" = "自訂大小";
+"videoedit.resize.autoFill" = "自動填滿畫布";
+"videoedit.resize.autoFillHint" = "開啟：較寬素材以黑邊適配；較小素材放大並置中裁切以填滿。";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

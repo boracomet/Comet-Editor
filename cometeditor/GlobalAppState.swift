@@ -12,7 +12,36 @@ struct ImageItem: Identifiable, Equatable {
     let image: NSImage?
     let fileSizeString: String
     let dimensionsString: String
+    /// Sandbox'tan gelen dosyaları daha sonra yeniden açabilmek için
+    /// security-scoped bookmark verisi. Drop/Open-panel sırasında oluşturulur.
+    let bookmarkData: Data?
     var fileName: String { url.lastPathComponent }
+
+    /// Bookmark'tan security-scoped URL elde eder; yoksa orijinal URL'i döndürür.
+    nonisolated func securityScopedURL() -> (url: URL, accessed: Bool) {
+        if let data = bookmarkData {
+            var isStale = false
+            if let resolved = try? URL(
+                resolvingBookmarkData: data,
+                options: .withSecurityScope,
+                relativeTo: nil,
+                bookmarkDataIsStale: &isStale
+            ) {
+                let ok = resolved.startAccessingSecurityScopedResource()
+                return (resolved, ok)
+            }
+        }
+        let ok = url.startAccessingSecurityScopedResource()
+        return (url, ok)
+    }
+
+    nonisolated static func makeBookmark(for url: URL) -> Data? {
+        try? url.bookmarkData(
+            options: .withSecurityScope,
+            includingResourceValuesForKeys: nil,
+            relativeTo: nil
+        )
+    }
 }
 
 // MARK: - Ana sayfa hızlı başlangıç (hazır ayarlar)
@@ -62,12 +91,30 @@ struct VideoItem: Identifiable, Equatable {
     /// AVFoundation'ın desteklemediği formatlar (AVI, WMV vb.) için ffmpeg ile
     /// oluşturulan geçici MP4 dosyası. Preview bu URL üzerinden oynatılır.
     var playbackURL: URL?
+    let bookmarkData: Data?
 
     var isCompleted: Bool = false
     var savedSizeString: String? = nil
     var convertedSizeString: String? = nil
 
     var fileName: String { url.lastPathComponent }
+
+    nonisolated func securityScopedURL() -> (url: URL, accessed: Bool) {
+        if let data = bookmarkData {
+            var isStale = false
+            if let resolved = try? URL(
+                resolvingBookmarkData: data,
+                options: .withSecurityScope,
+                relativeTo: nil,
+                bookmarkDataIsStale: &isStale
+            ) {
+                let ok = resolved.startAccessingSecurityScopedResource()
+                return (resolved, ok)
+            }
+        }
+        let ok = url.startAccessingSecurityScopedResource()
+        return (url, ok)
+    }
 
     /// AVFoundation'ın doğrudan desteklemediği formatlar
     static let avUnsupportedExtensions: Set<String> = ["avi", "wmv", "flv", "mkv", "webm", "mpeg", "mpg", "3gp"]
@@ -118,6 +165,8 @@ class GlobalAppState: ObservableObject {
 
     // Shared File Lists
     @Published var selectedImages: [ImageItem] = []
+    /// Görüntü büyütme sayfası kuyruğu (Resim Dönüştür listesinden ayrı).
+    @Published var upscaleImages: [ImageItem] = []
     @Published var selectedVideos: [VideoItem] = []
 
     /// Ana sayfa kartından gelen PDF hazır ayarı (bir kez tüketilir).

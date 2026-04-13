@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Кунта çеç ÿкерчÿксене куçаримасть";
 "menu.home" = "Пуҫлӑх";
 "menu.convertImage" = "Сӑнӳкере куч";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Resim Düzenle";
 "menu.badge.soon" = "Вӑхӑтрах";
 "menu.batchProcess" = "Toplu İşlem";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Comet Editor тēлне яраклаш";
 "settings.section.output" = "ТУХĂМ";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Çирĕм тухăм папкă";
 "settings.noFolderSelected" = "Суйланман — хăйĕн чухне ыйтать";
 "settings.chooseFolder" = "Папка суй";
@@ -478,3 +480,45 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Настройки";
+"upscale.settings.model" = "Модель";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Стандарт Upscayl (4×) — повышение детализации AI";
+"upscale.settings.scale" = "Масштабный ...";
+"upscale.scale.multiPassHint" = "8× и 16× запускают несколько проходов AI — занимает больше времени.";
+"upscale.settings.outputFormat" = "Формат вывода";
+"upscale.drop.title" = "Przeciągnij i upuść obrazy tutaj";
+"upscale.drop.subtitle" = "или нажмите, чтобы просмотреть файлы";
+"upscale.drop.formats" = "PNG, JPEG, WebP, tiff, GIF, HEIC, BMP";
+"upscale.wrongType" = "Здесь можно масштабировать только поддерживаемые растровые изображения";
+"upscale.runButton" = "Высококлассный сайт";
+"upscale.preview.run" = "Предпросмотр";
+"upscale.preview.hint" = "Выберите масштаб и нажмите Предварительный просмотр для сравнения";
+"upscale.preview.processing" = "Предварительный просмотр масштабирования...";
+"upscale.preview.before" = "ДО";
+"upscale.preview.after" = "ПОСЛЕ";
+"upscale.preview.save" = "Сохранить";
+"upscale.preview.saveSettings" = "Предварительный просмотр сохранения";
+"upscale.preview.autoSave" = "Сохранить после предварительного просмотра";
+"upscale.preview.autoSaveHint" = "Запись в целевую папку после завершения предварительного просмотра.";
+"upscale.preview.saveNeedFolder" = "Сначала выберите целевую папку.";
+"upscale.preview.saveFailed" = "Не удалось закодировать изображение предварительного просмотра.";
+"upscale.preview.loadFailed" = "Не удалось загрузить изображение";
+"upscale.backend.missing.hint" = "В пакете приложений отсутствует движок cometscaly или файлы модели. Перестройте проект.";
+"upscale.error.bundle" = "В приложении отсутствует папка с высококлассными пакетами.";
+"upscale.error.binary" = "движок cometscaly не найден в пакете приложений.";
+"upscale.error.model" = "Отсутствуют файлы модели upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Ошибка масштабирования (выход %d): %@";
+"upscale.error.none" = "Изображения не были масштабированы.";
+"videoedit.resize.modePercent" = "Весы";
+"videoedit.resize.modeCustom" = "Другой";
+"videoedit.resize.autoFill" = "Автозаполнение холста";
+"videoedit.resize.autoFillHint" = "Когда включено: большие кадры помещаются внутрь с почтовым ящиком; меньшие кадры масштабируются и обрезаются по центру для заполнения.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";

@@ -96,6 +96,24 @@ struct HomeView: View {
                 ]
             ),
             FeatureGuide(
+                menuItem: .upscaleImage,
+                icon: "arrow.up.left.and.arrow.down.right",
+                gradient: [.cyan, .mint],
+                titleKey: "menu.upscaleImage",
+                descKey: "home.guide.upscale.desc",
+                steps: [
+                    "home.guide.step.drop",
+                    "home.guide.upscale.step2",
+                    "home.guide.upscale.step3",
+                    "home.guide.upscale.step4"
+                ],
+                tipKey: "home.guide.upscale.tip",
+                presets: [
+                    FeaturePreset(labelKey: "upscale.preview.run", icon: "eye", action: { onNavigate?(.upscaleImage) }),
+                    FeaturePreset(labelKey: "upscale.runButton", icon: "arrow.up.left.and.arrow.down.right", action: { onNavigate?(.upscaleImage) })
+                ]
+            ),
+            FeatureGuide(
                 menuItem: .videoConvert,
                 icon: "video.fill",
                 gradient: [.indigo, .purple],

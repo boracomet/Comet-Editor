@@ -21,6 +21,7 @@
 "convert.wrongType.image" = "Šeit var konvertēt tikai attēlus";
 "menu.home" = "Sākums";
 "menu.convertImage" = "Attēlu konvertēšana";
+"menu.upscaleImage" = "Image Upscale";
 "menu.imageEdit" = "Rediģēt attēlu";
 "menu.badge.soon" = "DRĪZUMĀ";
 "menu.batchProcess" = "Pakešu apstrāde";
@@ -335,6 +336,7 @@
 
 "settings.subtitle" = "Pielāgojiet savu Comet Editor pieredzi";
 "settings.section.output" = "IZVADE";
+"settings.section.about" = "ABOUT";
 "settings.defaultOutputFolder" = "Noklusējuma izvades mape";
 "settings.noFolderSelected" = "Nav izvēlēta — katru reizi tiks jautāts";
 "settings.chooseFolder" = "Izvēlēties mapi";
@@ -478,3 +480,46 @@
 "videoedit.output.mov" = "MOV (H.264)";
 "videoedit.output.mkv" = "MKV (H.265)";
 "videoedit.output.avi" = "AVI";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+
+// MARK: - Upscale & video resize (localized)
+"upscale.settings.title" = "Iestatījumi";
+"upscale.settings.model" = "Modelis";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — detaļu uzlabošana ar MI";
+"upscale.settings.scale" = "Mērogs";
+"upscale.scale.multiPassHint" = "8× un 16× veic vairākus MI caurlaidus — ilgāk.";
+"upscale.settings.outputFormat" = "Izvades formāts";
+"upscale.drop.title" = "Velciet un nometiet attēlus";
+"upscale.drop.subtitle" = "vai noklikšķiniet, lai pārlūkotu failus";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Šeit var palielināt tikai atbalstītus rastra attēlus";
+"upscale.runButton" = "Palielināt";
+"upscale.preview.run" = "Priekšskatījums";
+"upscale.preview.hint" = "Izvēlieties mērogu un pieskarieties Priekšskatījums salīdzināšanai";
+"upscale.preview.processing" = "Veido priekšskatījumu…";
+"upscale.preview.before" = "PIRMS";
+"upscale.preview.after" = "PĒC";
+"upscale.preview.save" = "Saglabāt";
+"upscale.preview.saveSettings" = "Saglabāt priekšskatījumu";
+"upscale.preview.autoSave" = "Saglabāt pēc priekšskatījuma";
+"upscale.preview.autoSaveHint" = "Pēc priekšskatījuma pabeigšanas ieraksta mērķa mapē.";
+"upscale.preview.saveNeedFolder" = "Vispirms izvēlieties mērķa mapi.";
+"upscale.preview.saveFailed" = "Nevarēja kodēt priekšskatījuma attēlu.";
+"upscale.preview.loadFailed" = "Nevarēja ielādēt priekšskatījuma attēlu.";
+"upscale.backend.missing.hint" = "Lietotnes pakotnē trūkst cometscaly dzinēja vai modeļa failu. Atkārtoti uzbūvējiet projektu.";
+"upscale.error.bundle" = "Lietotnē trūkst Upscale pakotnes mapes.";
+"upscale.error.binary" = "cometscaly nav atrasts lietotnes pakotnē.";
+"upscale.error.model" = "Trūkst modeļa failu upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Palielināšana neizdevās (exit %d): %@";
+"upscale.error.none" = "Neviens attēls netika palielināts.";
+"videoedit.resize.modePercent" = "Mērogs (%)";
+"videoedit.resize.modeCustom" = "Pielāgots izmērs";
+"videoedit.resize.autoFill" = "Automātiski aizpildīt audeklu";
+"videoedit.resize.autoFillHint" = "Ieslēgts: plats materiāls ietilpst ar letterbox; mazāks tiek tuvināts un apgriezts centrā.";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
