@@ -1,82 +1,102 @@
 # Comet Editor
 
-macOS için yerel bir medya aracı. Görüntü dönüştürme, AI ile büyütme, video dönüştürme, PDF düzenleme, arka plan kaldırma, OCR, QR kod, stok fotoğraf ve font indirme tek uygulamada toplanır.
+**English** | [Türkçe](README.tr.md)
 
-İşlemler cihazda yürür; görüntüler ve videolar bir sunucuya yüklenmez. Sandbox’lı bir Mac uygulamasıdır (`com.cometeditor.app`).
+A native macOS media toolkit. Image conversion, AI upscaling, video conversion, PDF editing, background removal, OCR, QR codes, stock photos, and font download — in one app.
 
-**Sürüm:** 2.0 · **Minimum:** macOS 13.0 · **Site:** [cometeditor.com](https://cometeditor.com)
+Processing runs on device. Images and videos are not uploaded to a server. The app is sandboxed (`com.cometeditor.app`).
+
+**Version:** 2.0 · **Minimum:** macOS 13.0 · **Website:** [cometeditor.com](https://cometeditor.com)
 
 <p align="center">
   <img src="comet-logo.svg" alt="Comet Editor" width="120">
 </p>
 
 <p align="center">
-  <img src="readmess/1.png" alt="Görüntü dönüştürme">
+  <a href="https://apps.apple.com/tr/app/comet-editor/id6760206823?mt=12">
+    <img src="readmess/mac-app-store-en.svg" alt="Download on the Mac App Store" height="40">
+  </a>
 </p>
 
-## Özellikler
+<p align="center">
+  <a href="https://apps.apple.com/tr/app/comet-editor/id6760206823?mt=12">Mac App Store — Comet Editor</a>
+</p>
 
-| Araç | Ne işe yarar |
+<p align="center">
+  <img src="readmess/1.png" alt="Convert Image">
+</p>
+
+## Features
+
+| Tool | What it does |
 | --- | --- |
-| **Görüntü dönüştürme** | PNG, JPEG, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, SVG, PSD, RAW ve diğer formatlar. Kalite, ölçek, boyut, metadata koruması, toplu işlem ve filigran (metin veya logo). |
-| **Görüntü büyütme** | Cihaz içi AI upscaler (`cometscaly`, Upscayl Standard 4×). 2×–16×; 8× ve 16× birden fazla geçiş yapar. Önizleme kaydırıcısı ile önce/sonra karşılaştırması. |
-| **Video dönüştürme** | MP4, MOV, MKV, AVI, WebM, GIF, M4V, MPEG, 3GP, FLV, WMV. FPS, çözünürlük, sesi kaldırma. FFmpeg ile yerel encode. |
-| **Stok fotoğraf** | [Unsplash](https://unsplash.com) üzerinden arama ve indirme. |
-| **PDF düzenleme** | Sayfa silme, yeniden sıralama, sıkıştırma, PDF veya görüntü ekleme. |
-| **QR kod** | Web sitesi, Wi-Fi, vCard, e-posta ve telefon. PNG, SVG, JPG, WebP, AVIF dışa aktarma. |
-| **Arka plan kaldırma** | Apple Neural Engine ile yerelde maskeleme. En iyi sonuç için macOS 14 Sonoma veya üzeri. |
-| **Görüntüden metin (OCR)** | Vision ile metin çıkarma; kopyalama veya dosya olarak kaydetme. |
-| **Font indirme** | Google Fonts kataloğu; seçilen stilleri Mac’e kurma. |
+| **Convert Image** | PNG, JPEG, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, SVG, PSD, RAW, and more. Quality, scale, dimensions, metadata protection, batch processing, and watermarks (text or logo). |
+| **Image Upscale** | On-device AI upscaler (`cometscaly`, Upscayl Standard 4×). 2×–16×; 8× and 16× run multiple passes. Before/after preview slider. |
+| **Video Convert** | MP4, MOV, MKV, AVI, WebM, GIF, M4V, MPEG, 3GP, FLV, WMV. FPS, resolution, strip audio. Local FFmpeg encode. |
+| **Stock Image** | Search and download from [Unsplash](https://unsplash.com). |
+| **PDF Edit** | Delete, reorder, and compress pages; insert PDF or images. |
+| **QR Code** | Website, Wi-Fi, vCard, email, and phone. Export PNG, SVG, JPG, WebP, AVIF. |
+| **Background Remover** | On-device masking with Apple’s Neural Engine. macOS 14 Sonoma or later recommended. |
+| **Image to Text (OCR)** | Extract text with Vision; copy or save as a file. |
+| **Font Download** | Browse the Google Fonts catalog and install selected styles on your Mac. |
 
-### Görüntü büyütme
-
-<p align="center">
-  <img src="readmess/2.png" alt="Görüntü büyütme — önce / sonra">
-</p>
-
-### Stok fotoğraf
+### Image Upscale
 
 <p align="center">
-  <img src="readmess/3.png" alt="Unsplash stok fotoğraf arama">
+  <img src="readmess/2.png" alt="Image upscale — before / after">
 </p>
 
-### PDF düzenleme
+### Stock Image
 
 <p align="center">
-  <img src="readmess/4.png" alt="PDF düzenleme ve sıkıştırma">
+  <img src="readmess/3.png" alt="Unsplash stock photo search">
 </p>
 
-### QR kod
+### PDF Edit
 
 <p align="center">
-  <img src="readmess/5.png" alt="QR kod oluşturma">
+  <img src="readmess/4.png" alt="PDF edit and compress">
 </p>
 
-### Arka plan kaldırma
+### QR Code
 
 <p align="center">
-  <img src="readmess/6.png" alt="Arka plan kaldırma">
+  <img src="readmess/5.png" alt="QR code generator">
 </p>
 
-### Font indirme
+### Background Remover
 
 <p align="center">
-  <img src="readmess/7.png" alt="Google Fonts indirme">
+  <img src="readmess/6.png" alt="Background remover">
 </p>
 
-Ana sayfada sık kullanılan işler için hazır ayarlar vardır (ör. görüntüyü küçült, PNG → WebP, PDF aç).
+### Font Download
 
-Uygulama içi dil seçici onlarca dili kapsar (Türkçe, İngilizce, Almanca, Japonca, Arapça ve diğerleri).
+<p align="center">
+  <img src="readmess/7.png" alt="Google Fonts download">
+</p>
 
-## Gereksinimler
+The home screen includes ready-made presets for common jobs (shrink an image, PNG → WebP, open a PDF).
 
-- macOS 13.0 veya üzeri (arka plan kaldırma için 14.0 önerilir)
-- Xcode 16 veya üzeri (Swift 5, SwiftUI)
-- Apple Development imzalama (sandbox ve hardened runtime)
+The in-app language picker covers dozens of locales (English, Turkish, German, Japanese, Arabic, and more).
 
-Projede ImageMagick, FFmpeg ve upscale modelleri `third_party/` altında hazır gelir; ayrı Homebrew kurulumu gerekmez.
+## Contributing
 
-## Geliştirme
+Pull requests are welcome.
+
+If your contribution is accepted, it will ship in the [Mac App Store](https://apps.apple.com/tr/app/comet-editor/id6760206823?mt=12) release of Comet Editor, and **your name will be added to the in-app credits**.
+
+Open an issue or a PR describing the change. Keep the scope focused; match the existing SwiftUI style and localization flow (`i18n/master.json`).
+
+## Requirements
+
+- macOS 13.0 or later (14.0 recommended for background removal)
+- Xcode 16 or later (Swift 5, SwiftUI)
+- Apple Development signing (sandbox and hardened runtime)
+
+ImageMagick, FFmpeg, and upscale models ship under `third_party/`. No separate Homebrew install is required.
+
+## Development
 
 ```bash
 git clone https://github.com/boracomet/Comet-Editor.git
@@ -84,35 +104,35 @@ cd Comet-Editor
 open cometeditor.xcodeproj
 ```
 
-Xcode’da **Comet Editor** scheme’ini seçip çalıştırın.
+Select the **Comet Editor** scheme in Xcode and run.
 
-### Google Fonts anahtarı
+### Google Fonts API key
 
-Font indirme aracı Google Fonts Webfonts API kullanır. Anahtar kaynak kodda yoktur.
+Font Download uses the Google Fonts Webfonts API. The key is not in source control.
 
-1. `cometeditor/Secrets.example.plist` dosyasını `cometeditor/Secrets.plist` olarak kopyalayın.
-2. `GoogleFontsAPIKey` değerini kendi anahtarınızla değiştirin.
-3. `Secrets.plist` git’e eklenmez.
+1. Copy `cometeditor/Secrets.example.plist` to `cometeditor/Secrets.plist`.
+2. Set `GoogleFontsAPIKey` to your own key.
+3. `Secrets.plist` is gitignored.
 
-Dosya yoksa uygulama derlenir; font listesi yüklenmez.
+Without that file the app still builds; the font catalog will not load.
 
-Unsplash erişimi public Client-ID ile çalışır; ek ayar gerekmez.
+Unsplash uses a public Client-ID; no extra setup is required.
 
-## Mimari (kısa)
+## Architecture
 
-| Katman | Teknoloji |
+| Layer | Stack |
 | --- | --- |
-| Arayüz | SwiftUI, macOS NavigationSplitView |
-| Görüntü codec | ImageMagick 7 (`CometCodecBridge`) |
+| UI | SwiftUI, macOS NavigationSplitView |
+| Image codecs | ImageMagick 7 (`CometCodecBridge`) |
 | Video | FFmpeg (`FFmpegBridge`, `VideoProcessor`) |
-| Büyütme | `cometscaly` + NCNN modelleri (`UpscaleEngine`) |
-| Arka plan / OCR | Vision / Neural Engine |
-| Yerelleştirme | `i18n/master.json` → `*.lproj/Localizable.strings` |
+| Upscale | `cometscaly` + NCNN models (`UpscaleEngine`) |
+| Background / OCR | Vision / Neural Engine |
+| Localization | `i18n/master.json` → `*.lproj/Localizable.strings` |
 
-Yerelleştirme anahtarları `i18n/` altındadır. String ekledikten sonra ilgili senkron script’leri kullanın; `Localizable.strings` dosyalarını elle karıştırmayın.
+Localization keys live under `i18n/`. After adding strings, use the sync scripts — do not hand-edit `Localizable.strings` files.
 
-## Lisans
+## License
 
 [MIT](LICENSE) © 2026 Bora Ata Türkoğlu
 
-Geliştirme: [Bora Ata Türkoğlu](https://boraturkoglu.com) · Görsel katkı: [Beyza Nur Keçeli](https://www.linkedin.com/in/beyzanurkeceli/)
+Development: [Bora Ata Türkoğlu](https://boraturkoglu.com) · Visual contribution: [Beyza Nur Keçeli](https://www.linkedin.com/in/beyzanurkeceli/)
