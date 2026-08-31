@@ -361,62 +361,21 @@ private struct BgRemoveMainView: View {
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text(LanguageManager.shared.string("bgremove.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                    Spacer()
+                inspectorSection("inspector.output") {
+                    InspectorMenuChip(title: appState.bgRemoveFormat.label, selection: $appState.bgRemoveFormat, options: Array(BgRemoveFormat.allCases)) { $0.label }
                 }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
-                inspectorSection("bgremove.settings.format") {
-                    Picker("", selection: $appState.bgRemoveFormat) {
-                        ForEach(BgRemoveFormat.allCases) { f in
-                            Text(f.label).tag(f)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .labelsHidden()
-                }
-
-                Divider()
 
                 inspectorSection("bgremove.settings.targetFolder") {
-                    HStack(spacing: 8) {
-                        if let folderURL = appState.targetFolder {
-                            Text(truncatedPath(folderURL.path))
-                                .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                .foregroundStyle(Color.primary.opacity(0.8))
-                                .lineLimit(1)
-                                .truncationMode(.middle)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(0.05)))
-                                .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Color.primary.opacity(0.1), lineWidth: 1))
-                        } else {
-                            Text("convert.settings.noFolder")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.red.opacity(0.8))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(RoundedRectangle(cornerRadius: 6).fill(Color.red.opacity(0.05)))
-                                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.red.opacity(0.2), lineWidth: 1))
+                    FolderPickerRow(
+                        folder: appState.targetFolder,
+                        isStale: appState.targetFolderStale
+                    ) {
+                        pickFolder { url in
+                            appState.handleFolderSelected(url)
+                            appState.targetFolder = url
                         }
-                        Button("convert.settings.chooseFolder") {
-                            pickFolder { url in
-                                appState.handleFolderSelected(url)
-                                appState.targetFolder = url
-                            }
-                        }
-                        .controlSize(.small)
                     }
                 }
-
-                Divider()
 
                 inspectorSection("bgremove.settings.refine") {
                     VStack(alignment: .leading, spacing: 8) {
@@ -444,8 +403,6 @@ private struct BgRemoveMainView: View {
                     }
                 }
 
-                Divider()
-
                 VStack(spacing: 10) {
                     Button {
                         Task { await saveAll() }
@@ -463,10 +420,12 @@ private struct BgRemoveMainView: View {
                     .disabled(readyCount == 0 || appState.targetFolder == nil)
 
                 }
-                .padding(16)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
             }
+            .padding(.top, 16)
         }
-        .background(Material.bar)
+        .inspectorPanelChrome()
     }
 
     // MARK: - Actions
@@ -560,7 +519,7 @@ private struct BgRemoveMainView: View {
 
     @MainActor
     private func saveAll() async {
-        guard let folder = appState.targetFolder else { return }
+        guard let folder = await appState.resolveOutputFolder() else { return }
         var savedCount = 0
         for item in appState.bgRemoveItems where item.result != nil {
             guard let result = item.result,
@@ -588,11 +547,6 @@ private struct BgRemoveMainView: View {
         }
 
         if savedCount > 0 {
-            CometAnalytics.shared.trackEvent(
-                page: "bgRemove",
-                eventType: .bgRemoved,
-                metadata: ["count": savedCount]
-            )
             alertMessage = String(format: NSLocalizedString("alert.success.message.image", comment: ""), folder.path)
             showSuccessAlert = true
         }

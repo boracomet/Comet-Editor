@@ -1,9 +1,8 @@
 import Foundation
-import os
 
 // MARK: - FFmpegBridge
 // Bundled ffmpeg binary'yi Process API üzerinden çalıştırır.
-// Tüm ffmpeg binary'leri app bundle'ına Resources/ffmpeg olarak eklenir.
+// Nested helpers live in Contents/MacOS — never Resources (App Store 90296).
 
 enum FFmpegError: Error, LocalizedError {
     case binaryNotFound
@@ -22,17 +21,103 @@ enum FFmpegError: Error, LocalizedError {
     }
 }
 
+/// FFmpeg stderr'ini readabilityHandler callback'inden güvenle toplamak için
+/// kilitli buffer. Callback kendi seri queue'sinde çağrılır; actor'a taşımak
+/// yerine küçük bir NSLock ile senkronize ediyoruz.
+///
+/// `nonisolated`: SWIFT_DEFAULT_ACTOR_ISOLATION=MainActor altında bile
+/// Process readabilityHandler (nonisolated) içinden çağrılabilsin.
+nonisolated final class StderrBuffer: @unchecked Sendable {
+    private var storage = ""
+    private let lock = NSLock()
+
+    /// Yeni chunk ekler ve `\r` ile ayrılmış tamamlanmış satırları döndürür;
+    /// son parça buffer'da kalır.
+    func append(_ chunk: String) -> [String] {
+        lock.lock()
+        defer { lock.unlock() }
+        storage += chunk
+        let lines = storage.components(separatedBy: "\r")
+        storage = lines.last ?? ""
+        return lines.dropLast().map { String($0) }
+    }
+
+    func snapshot() -> String {
+        lock.lock()
+        defer { lock.unlock() }
+        return storage
+    }
+}
+
+/// Continuation'ı yalnızca bir kez resume eder (run hatası + terminationHandler yarışı).
+nonisolated private final class FFmpegOnceResume: @unchecked Sendable {
+    private var continuation: CheckedContinuation<Void, Error>?
+    private let lock = NSLock()
+
+    init(_ continuation: CheckedContinuation<Void, Error>) {
+        self.continuation = continuation
+    }
+
+    func resume() {
+        lock.lock()
+        let c = continuation
+        continuation = nil
+        lock.unlock()
+        c?.resume(returning: ())
+    }
+
+    func resume(throwing error: Error) {
+        lock.lock()
+        let c = continuation
+        continuation = nil
+        lock.unlock()
+        c?.resume(throwing: error)
+    }
+}
+
+nonisolated private final class FFmpegKillFlag: @unchecked Sendable {
+    private let lock = NSLock()
+    private var value = false
+
+    func mark() {
+        lock.lock()
+        value = true
+        lock.unlock()
+    }
+
+    var isSet: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return value
+    }
+}
+
 actor FFmpegBridge {
     static let shared = FFmpegBridge()
 
-    private let logger = Logger(subsystem: "com.cometeditor", category: "FFmpegBridge")
     private var activeProcess: Process?
+    private var cancelRequested = false
 
     private init() {}
 
-    // Bundle içindeki ffmpeg binary yolunu döndürür
+    /// Nested helper in Contents/MacOS (or Contents/Helpers). Not Resources —
+    /// Organizer re-signs Resource Mach-Os without entitlements (App Store 90296).
+    static func bundledHelperURL(named name: String) -> URL? {
+        let fm = FileManager.default
+        let bundle = Bundle.main.bundleURL
+        let candidates: [URL] = [
+            bundle.appendingPathComponent("Contents/MacOS/\(name)"),
+            bundle.appendingPathComponent("Contents/Helpers/\(name)")
+        ]
+        return candidates.first { fm.isExecutableFile(atPath: $0.path) }
+    }
+
     static func ffmpegURL() -> URL? {
-        Bundle.main.url(forResource: "ffmpeg", withExtension: nil)
+        bundledHelperURL(named: "ffmpeg")
+    }
+
+    static func ffprobeURL() -> URL? {
+        bundledHelperURL(named: "ffprobe")
     }
 
     /// FFmpeg'i verilen argümanlarla çalıştırır.
@@ -47,12 +132,6 @@ actor FFmpegBridge {
             throw FFmpegError.binaryNotFound
         }
 
-        // Execute permission'ı garanti et
-        try? FileManager.default.setAttributes(
-            [.posixPermissions: 0o755],
-            ofItemAtPath: ffmpegURL.path
-        )
-
         let process = Process()
         process.executableURL = ffmpegURL
         process.arguments = arguments
@@ -63,51 +142,65 @@ actor FFmpegBridge {
         process.standardOutput = FileHandle.nullDevice
 
         let outputHandle = outputPipe.fileHandleForReading
-        // stderrBuffer: readabilityHandler'dan güvenli erişim için actor-isolated değil,
-        // sadece readabilityHandler serial queue'sinde mutate ediliyor.
-        // Swift 6 için nonisolated(unsafe) kullanıyoruz.
-        nonisolated(unsafe) var stderrBuffer = ""
+
+        // readabilityHandler kendi seri queue'sunda çalışır; buffer'a erişimi
+        // NSLock ile serialize ediyoruz ve class-wrapper üzerinden Sendable yapıyoruz.
+        let bufferBox = StderrBuffer()
 
         outputHandle.readabilityHandler = { handle in
             let data = handle.availableData
             if data.isEmpty { return }
-            if let str = String(data: data, encoding: .utf8) {
-                stderrBuffer += str
-                let lines = stderrBuffer.components(separatedBy: "\r")
-                for line in lines {
-                    if let progress = FFmpegBridge.parseProgress(from: line, totalDuration: totalDurationSeconds) {
-                        Task { @MainActor in
-                            onProgress(progress)
-                        }
+            guard let str = String(data: data, encoding: .utf8) else { return }
+            let lines = bufferBox.append(str)
+            for line in lines {
+                if let progress = FFmpegBridge.parseProgress(from: line, totalDuration: totalDurationSeconds) {
+                    Task { @MainActor in
+                        onProgress(progress)
                     }
                 }
-                stderrBuffer = lines.last ?? ""
             }
         }
 
+        cancelRequested = false
         activeProcess = process
 
+        let killed = FFmpegKillFlag()
+
         do {
-            try process.run()
+            try await withTaskCancellationHandler {
+                try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                    let once = FFmpegOnceResume(continuation)
+                    process.terminationHandler = { _ in
+                        once.resume()
+                    }
+                    do {
+                        try process.run()
+                    } catch {
+                        once.resume(throwing: error)
+                    }
+                }
+            } onCancel: {
+                killed.mark()
+                process.terminate()
+            }
         } catch {
             outputHandle.readabilityHandler = nil
+            try? outputHandle.close()
             activeProcess = nil
             throw error
         }
 
-        // Process bitene kadar bekle (async-safe)
-        await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
-            process.terminationHandler = { _ in
-                continuation.resume()
-            }
-        }
-
         outputHandle.readabilityHandler = nil
+        try? outputHandle.close()
         activeProcess = nil
+
+        if Task.isCancelled || cancelRequested || killed.isSet || process.terminationReason == .uncaughtSignal {
+            throw FFmpegError.cancelled
+        }
 
         let exitCode = process.terminationStatus
         if exitCode != 0 {
-            throw FFmpegError.conversionFailed(exitCode, stderrBuffer)
+            throw FFmpegError.conversionFailed(exitCode, bufferBox.snapshot())
         }
 
         // %100 bildir
@@ -117,6 +210,7 @@ actor FFmpegBridge {
     }
 
     func cancel() {
+        cancelRequested = true
         activeProcess?.terminate()
         activeProcess = nil
     }

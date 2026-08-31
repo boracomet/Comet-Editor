@@ -90,19 +90,24 @@ class VideoProcessor: ObservableObject {
         }
 
         do {
-            try await FFmpegBridge.shared.run(
-                arguments: arguments,
-                totalDurationSeconds: duration,
-                onProgress: progressCapture
-            )
+            try await withTaskCancellationHandler {
+                try await FFmpegBridge.shared.run(
+                    arguments: arguments,
+                    totalDurationSeconds: duration,
+                    onProgress: progressCapture
+                )
+            } onCancel: {
+                Task { await FFmpegBridge.shared.cancel() }
+            }
         } catch is CancellationError {
-            await FFmpegBridge.shared.cancel()
+            try? FileManager.default.removeItem(at: outputURL)
             throw CancellationError()
         } catch let ffErr as FFmpegError {
             switch ffErr {
             case .binaryNotFound:
                 throw VideoConversionError.ffmpegNotFound
             case .cancelled:
+                try? FileManager.default.removeItem(at: outputURL)
                 throw CancellationError()
             case .conversionFailed:
                 throw VideoConversionError.writerFailure

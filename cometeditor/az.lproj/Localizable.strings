@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Şəkli Sürükləyin və Buraxın";
 "convert.drop.subtitle" = "və ya faylları axtarmaq üçün klikləyin";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "En px";
 "convert.settings.height" = "Hündürlük px";
+
 "meta.info" = "Metadata Qoruması";
+
 "convert.settings.targetFolder" = "Hədəf Qovluq";
 "convert.settings.noFolder" = "Seçilməyib";
 "convert.settings.chooseFolder" = "Finder-dən seçin";
+
+"folder.missing.title" = "Qovluq tapılmadı";
+"folder.missing.subtitle" = "Saxlanılan qovluq yolu artıq mövcud deyil. Zəhmət olmasa yenisini seçin.";
+"folder.missing.pick" = "Yeni Qovluq Seç";
+"folder.missing.panel.message" = "Çıxış qovluğu tapılmadı. Zəhmət olmasa yeni qovluq seçin.";
+
+"bgremove.error.noMaskFound" = "Ön plan maskası tapılmadı.";
+"bgremove.error.maskConversionFailed" = "Maska çevrilməsi uğursuz oldu.";
+"bgremove.error.compositeFailed" = "Şəkil birləşdirmə uğursuz oldu.";
+
 "convert.settings.convertButton" = "Çevir";
 "convert.clearAll" = "Hamısını Sil";
 "convert.addMore" = "Əlavə et";
 "convert.wrongType.image" = "Buraya yalnız şəkillər çevrilə bilər";
+
+"upscale.settings.title" = "Parametrlər";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Komet Standartı";
+"upscale.model.scaleHint" = "Upscayl Standartı (4×) — AI detallarının genişləndirilməsi";
+"upscale.settings.scale" = "Miqyas";
+"upscale.scale.multiPassHint" = "8× və 16× run birdən çox AI keçir — daha uzun çəkir.";
+"upscale.settings.outputFormat" = "Çıxış formatı";
+"upscale.drop.title" = "Təsvirləri dartıb buraxın";
+"upscale.drop.subtitle" = "və ya faylları axtarmaq üçün klikləyin";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Burada yalnız dəstəklənən raster təsvirləri əks oluna bilər";
+"upscale.runButton" = "Upskale";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Ön-baxış";
+"upscale.preview.hint" = "Tərəzi seçin və müqayisə etmək üçün Önbaxış üzərinə basın";
+"upscale.preview.processing" = "Yüksəltmə önbaxışı...";
+"upscale.preview.before" = "əvvəl";
+"upscale.preview.after" = "Sonra";
+"upscale.preview.save" = "Yaddaşda saxla";
+"upscale.preview.saveSettings" = "Yaddaşa önbax";
+"upscale.preview.autoSave" = "Önbaxışdan sonra yaddaşda sax";
+"upscale.preview.autoSaveHint" = "Önbaxış tamamlandıqda hədəf qovluğuna yazılır.";
+"upscale.preview.saveNeedFolder" = "Əvvəlcə hədəf qovluğu seçin.";
+"upscale.preview.saveFailed" = "Önbaxış təsvirini kodlaşdırmaq mümkün olmadı.";
+"upscale.preview.loadFailed" = "Önbaxış təsvirini yükləmək mümkün olmadı.";
+"upscale.backend.missing.hint" = "Cometscaly mühərriki və ya model faylları tətbiq paketində yoxdur. Layihəni yenidən qurun.";
+"upscale.error.bundle" = "Tətbiqdə Upscale paket qovluğu yoxdur.";
+"upscale.error.binary" = "tətbiq paketində cometscaly mühərriki tapılmadı.";
+"upscale.error.model" = "Model faylları upscayl-standard-4x.param/.bin yoxdur.";
+"upscale.error.process" = "Ucuzlaşdırma alınmadı (%d çıxın): %@";
+"upscale.error.none" = "Heç bir şəkil ört-basdır edilmədi.";
+
 "menu.home" = "Ana Səhifə";
 "menu.convertImage" = "Şəkil Çevir";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Parametrlər";
 "menu.tools" = "Alətlər";
 "menu.document" = "SƏNƏD";
-"menu.team" = "Komandamız";
-"menu.team.title" = "Komandamız";
-"menu.team.subtitle" = "Comet Editor-in arxasındakı istedadlı insanlarla tanışlıq";
 "menu.stockImage" = "Stok Şəkil";
 "menu.qrCode" = "QR Kod";
 "menu.bgRemove" = "Fon Siləni";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Şrift Yüklə";
 "menu.videoConvert" = "Video Çevir";
 "menu.pdfEdit" = "PDF Redaktəsi";
-"menu.suggestion" = "Rəy göndər";
-"team.thanks_grafix" = "Grafix cəmiyyətinə töhfələri üçün minnətdarıq.";
+
 "alert.success.title" = "Uğurlu";
 "alert.error.title" = "Xəta";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Qovluğu Aç";
 "alert.success.message.image" = "Şəkillər uğurla %@ ünvanına saxlanıldı.";
 "alert.success.message.video" = "Videolar uğurla %@ ünvanına saxlanıldı.";
+"alert.error.conversion" = "Bəzi şəkillər çevrilə bilmədi.";
+
 "home.welcome" = "Comet Editor-ə Xoş Gəldiniz";
 "home.welcome.subtitle" = "Bir tətbiqdə ehtiyacınız olan hər şey.";
 "home.visitWebsite" = "Saytımıza daxil olun";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "Balanslaşdırılmış keyfiyyətə malik MP4 — bir axınla çevirin və ya sıxın.";
 "home.quick.pdf.title" = "PDF-i redaktə edin";
 "home.quick.pdf.subtitle" = "PDF redaktorunu açın — səhifələri yenidən sıralayın, sıxın və ya bir yerdə bükün.";
+"home.feature.convertImage.desc" = "Şəkilləri PNG, JPG, WebP, HEIF və digər formatlara çevirin.";
+"home.feature.videoConvert.desc" = "Videolarınızı asanlıqla çevirin və sıxışdırın.";
+"home.feature.stockImage.desc" = "Pulsuz yüksək keyfiyyətli stok fotoları axtarın və yükləyin.";
+"home.feature.pdfEdit.desc" = "PDF fayllarınızı redaktə edin, yenidən sıralayın, sıxışdırın və idarə edin.";
+"home.feature.qrCode.desc" = "QR kodlarını dərhal yaradın və özəlləşdirin.";
+"home.feature.bgRemove.desc" = "Şəkil fonlarını AI ilə avtomatik silin.";
+"home.feature.ocr.desc" = "Optik tanıma ilə şəkillərdən mətn çıxarın.";
+"home.feature.fontDownload.desc" = "Google Fonts-dan birbaşa Mac-a şriftlər yükləyin";
 "home.preset.pdf.deletePage" = "Səhifələri Sil";
 "home.preset.pdf.reorder" = "Səhifələri Yenidən Sırala";
 "home.preset.pdf.optimize" = "PDF-i optimallaşdırın";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Sağ paneldən çıxış formatını (PNG, jpg, WebP, HEIC və s.) seçin.";
 "home.guide.convertImage.step3" = "Keyfiyyəti, miqyası və ya ölçüləri tənzimləyin — sonra çevirin.";
 "home.guide.convertImage.tip" = "Eyni anda bir neçə şəkil əlavə edə bilərsiniz. Hər bir fayl eyni parametrlərlə müstəqil şəkildə çevrilir.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Videoları MP4, MOV, AVI və s.-yə çevirin və sıxın.";
 "home.guide.video.step2" = "Çıxış formatını seçin (MP4, MOV...) və FPS-i və ya həlli tənzimləyin.";
 "home.guide.video.step3" = "Səs aktiv və ya deaktiv edin, sonra Çevir üzərinə klikləyin.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Şriftə önbaxış edin və istədiyiniz üslubları seçin.";
 "home.guide.font.step3" = "Mac-da şrifti quraşdırmaq üçün Endir üzərinə klikləyin.";
 "home.guide.font.tip" = "Endirilən şriftlər sistem daxilində quraşdırılır və dərhal bütün tətbiqlərdə mövcuddur.";
-"home.feature.convertImage.desc" = "Şəkilləri PNG, JPG, WebP, HEIF və digər formatlara çevirin.";
-"home.feature.videoConvert.desc" = "Videolarınızı asanlıqla çevirin və sıxışdırın.";
-"home.feature.stockImage.desc" = "Pulsuz yüksək keyfiyyətli stok fotoları axtarın və yükləyin.";
-"home.feature.pdfEdit.desc" = "PDF fayllarınızı redaktə edin, yenidən sıralayın, sıxışdırın və idarə edin.";
-"home.feature.qrCode.desc" = "QR kodlarını dərhal yaradın və özəlləşdirin.";
-"home.feature.bgRemove.desc" = "Şəkil fonlarını AI ilə avtomatik silin.";
-"home.feature.ocr.desc" = "Optik tanıma ilə şəkillərdən mətn çıxarın.";
-"home.feature.fontDownload.desc" = "Google Fonts-dan birbaşa Mac-a şriftlər yükləyin";
+
 "video.drop.subtitle" = "və ya video faylları axtarmaq üçün klikləyin";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LİMİTİ";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% Ölçü";
 "video.resolution.50" = "50% Ölçü";
 "video.resolution.25" = "25% Ölçü (Aşağı Keyfiyyət)";
+
 "pdf.drop.title" = "PDF-i Sürükləyin və Buraxın";
 "pdf.drop.subtitle" = "və ya PDF faylları axtarmaq üçün klikləyin";
 "pdf.page.count" = "%lld Səhifə";
 "pdf.page.info" = "%lld-dən %lld Səhifə";
 "pdf.estimatedSize" = "Təxmini Optimallaşdırılmış Ölçü";
+"pdf.quality.modal.title" = "Optimallaşdırma səviyyəsini seçin";
+"pdf.quality.modal.subtitle" = "Fayl ölçüsünü nə qədər azaltmaq istədiyinizi seçin. Daha yüksək sıxışdırma daha kiçik fayl, lakin müəyyən keyfiyyət itkisi deməkdir.";
+"pdf.quality.modal.estimated" = "Təxmini ölçü";
+"pdf.quality.modal.confirm" = "Optimallaşdır";
+"pdf.quality.modal.cancel" = "Ləğv et";
+"pdf.quality.low.title" = "Maksimum sıxışdırma";
+"pdf.quality.low.desc" = "Ən kiçik fayl, görünən keyfiyyət itkisi";
+"pdf.quality.medium.title" = "Balanslaşdırılmış";
+"pdf.quality.medium.desc" = "Ölçü və keyfiyyət arasında yaxşı balans";
+"pdf.quality.high.title" = "Yüksək keyfiyyət";
+"pdf.quality.high.desc" = "Minimal keyfiyyət itkisi, orta azalma";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF-i Optimallaşdır";
+"pdf.tools.quality" = "KEYFİYYƏT";
+"pdf.tools.quality.label" = "Şəkil keyfiyyəti";
+"pdf.tools.quality.small" = "Daha kiçik fayl";
+"pdf.tools.quality.large" = "Daha yaxşı keyfiyyət";
+"pdf.tools.quality.lossless" = "İtkilsiz";
+"pdf.tools.resolution" = "QƏTNAMƏ MİQYASI";
+"pdf.tools.resolution.enable" = "Qətnaməni azalt";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK ÇEVİRİCİ";
+"pdf.color.enable" = "Rəng məkanını çevir";
+"pdf.color.convert" = "Çevir və saxla";
 "pdf.tools.save" = "PDF-i Saxla";
 "pdf.reorder.title" = "Səhifə Sırası";
 "pdf.reorder.hint" = "Çox seçim üçün Ctrl saxlayın, sonra sürükləyin.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Bu səhifədən sonra əlavə et";
 "pdf.addContent.atEnd" = "Sonuna əlavə et";
 "pdf.addContent.chooseFile" = "Fayl Seç və Əlavə Et";
+
 "stock.deselectAll" = "Hamısının Seçimini Ləğv Et";
 "stock.download" = "Seçilənləri Yüklə";
 "stock.download.count" = "%d Foto Yüklə";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "URL və ya mətni daxil edin...";
 "qr.settings.colors" = "Rənglər";
 "qr.settings.fgColor" = "Ön plan rəngi";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Görüntü imkanı";
 "qr.settings.customSize" = "Fərdi ölçü (px)";
 "qr.download" = "QR kodu endir";
+"qr.settings.type" = "QR növü";
+"qr.type.website" = "Veb sayt";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Əlaqə (vCard)";
+"qr.type.email" = "E-poçt";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Şəbəkə adı (SSID)";
+"qr.wifi.password" = "Parol";
+"qr.wifi.hidden" = "Gizli şəbəkə";
+"qr.wifi.noEncryption" = "Yoxdur";
+"qr.vcard.firstName" = "Ad";
+"qr.vcard.lastName" = "Soyad";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-poçt";
+"qr.vcard.company" = "Şirkət";
+"qr.vcard.jobTitle" = "Vəzifə";
+"qr.vcard.address" = "Ünvan";
+"qr.vcard.website" = "Veb sayt";
+"qr.email.address" = "E-poçt ünvanı";
+"qr.email.subject" = "Mövzu";
+"qr.email.body" = "Mesaj";
+"qr.phone.number" = "Telefon nömrəsi";
+
 "bgremove.unavailable.title" = "macOS 14 Tələb Olunur";
 "bgremove.unavailable.subtitle" = "Fon Siləni Apple-ın Neural Engine texnologiyasından istifadə edir.\nZəhmət olmasa macOS 14 Sonoma və ya daha yenisini yeniləyin.";
 "bgremove.drop.title" = "Şəkli Sürükləyin və Buraxın";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "KƏNARLARı İNCƏLƏŞDİR";
 "bgremove.settings.feather" = "Yumşaltma";
 "bgremove.settings.featherAmount" = "Yumşaltma Miqdarı";
+
 "ocr.drop.title" = "Şəkli Sürükləyin və Buraxın";
 "ocr.drop.subtitle" = "və ya faylları axtarmaq üçün klikləyin";
 "ocr.processing" = "Mətn tanınır...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Təmizlə";
 "ocr.newFile" = "Yeni Fayl";
 "ocr.copied" = "Kopyalandı!";
+
 "app.comingSoon.title" = "Tezliklə";
 "app.comingSoon.message" = "Bu xüsusiyyət tezliklə mövcud olacaq.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Şriftlər axtar...";
 "font.preview.custom" = "Nəsə yazın...";
 "font.inspector.preview" = "Önizləmə";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Koreya";
 "font.writing.thai" = "Tailand";
 "font.writing.vietnamese" = "Vyetnam";
-
 "font.families.count" = "%d ailə";
 "font.styles.count" = "%d stil · %@";
 "font.noResults" = "Şrift tapılmadı";
-"suggestion.title" = "Təklif göndər";
-"suggestion.subtitle" = "İdeyalarınızı bölüşün və bizə inkişaf etməyə kömək edin";
-"suggestion.placeholder.title" = "Başlıq";
-"suggestion.placeholder.body" = "Təklifinizi ətraflı izah edin...";
-"suggestion.category.bug" = "Xəta";
-"suggestion.category.feature" = "Funksiya sorğusu";
-"suggestion.category.ui" = "İnterfeys";
-"suggestion.category.performance" = "Performans";
-"suggestion.category.other" = "Digər";
-"suggestion.send" = "Təklif göndər";
-"suggestion.sending" = "Göndərilir...";
-"suggestion.sent.title" = "Təşəkkür edirik!";
-"suggestion.sent.message" = "Təklifiniz qəbul edildi. Tezliklə nəzərdən keçirəcəyik.";
-"suggestion.error" = "Göndərmə uğursuz oldu. Yenidən cəhd edin.";
-"suggestion.validation.title" = "Boş sahələr";
-"suggestion.validation.body" = "Başlıq və təsviri doldurun.";
-
-"suggestion.label.category" = "Kateqoriya";
-"suggestion.label.title" = "Başlıq";
-"suggestion.label.description" = "Təsvir";
 
 "video.drop.title" = "Videonu bura sürükləyin";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Buraya yalnız videolar çevrilə bilər";
+
 "app.maintenance.title" = "Texniki xidmət rejimi";
 "app.forceUpdate.title" = "Yeniləmə tələb olunur";
 "app.forceUpdate.button" = "App Store-da yeniləyin";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Bəzi şəkillər çevrilə bilmədi.";
-"pdf.color.convert" = "Çevir və saxla";
-"pdf.color.enable" = "Rəng məkanını çevir";
-"pdf.color.title" = "RGB/CMYK ÇEVİRİCİ";
-"pdf.tools.quality" = "KEYFİYYƏT";
-"pdf.tools.quality.label" = "Şəkil keyfiyyəti";
-"pdf.tools.quality.large" = "Daha yaxşı keyfiyyət";
-"pdf.tools.quality.lossless" = "İtkilsiz";
-"pdf.tools.resolution" = "QƏTNAMƏ MİQYASI";
-"pdf.tools.resolution.enable" = "Qətnaməni azalt";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Daha kiçik fayl";
 
 "ad.sponsored" = "Reklam";
 "ad.visit" = "Ziyarət et";
 
-"pdf.quality.modal.title" = "Optimallaşdırma səviyyəsini seçin";
-"pdf.quality.modal.subtitle" = "Fayl ölçüsünü nə qədər azaltmaq istədiyinizi seçin. Daha yüksək sıxışdırma daha kiçik fayl, lakin müəyyən keyfiyyət itkisi deməkdir.";
-"pdf.quality.modal.estimated" = "Təxmini ölçü";
-"pdf.quality.modal.confirm" = "Optimallaşdır";
-"pdf.quality.modal.cancel" = "Ləğv et";
-"pdf.quality.low.title" = "Maksimum sıxışdırma";
-"pdf.quality.low.desc" = "Ən kiçik fayl, görünən keyfiyyət itkisi";
-"pdf.quality.medium.title" = "Balanslaşdırılmış";
-"pdf.quality.medium.desc" = "Ölçü və keyfiyyət arasında yaxşı balans";
-"pdf.quality.high.title" = "Yüksək keyfiyyət";
-"pdf.quality.high.desc" = "Minimal keyfiyyət itkisi, orta azalma";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor təcrübənizi fərdiləşdirin";
+"settings.section.output" = "ÇIXIŞ";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Standart çıxış qovluğu";
+"settings.noFolderSelected" = "Seçilməyib — hər dəfə soruşulacaq";
+"settings.chooseFolder" = "Qovluq seçin";
+"settings.clearFolder" = "Sil";
+"settings.folderPicker.message" = "İxrac edilmiş fayllar üçün standart qovluq seçin";
+"settings.folderPicker.button" = "Qovluq seçin";
 
 "app.maintenance.title2" = "Texniki xidmət";
 "app.maintenance.body" = "Tətbiq müvəqqəti əlçatmazdır. Tezliklə geri qayıdacağıq.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store-da yenilə";
 "app.quit2" = "Tətbiqi bağla";
 
-"settings.subtitle" = "Comet Editor təcrübənizi fərdiləşdirin";
-"settings.section.output" = "ÇIXIŞ";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Standart çıxış qovluğu";
-"settings.noFolderSelected" = "Seçilməyib — hər dəfə soruşulacaq";
-"settings.chooseFolder" = "Qovluq seçin";
-"settings.clearFolder" = "Sil";
-"settings.folderPicker.message" = "İxrac edilmiş fayllar üçün standart qovluq seçin";
-"settings.folderPicker.button" = "Qovluq seçin";
-"menu.announcements" = "Elanlar";
-"announcements.subtitle" = "Komandadan son xəbərlər və yeniləmələr";
-"announcements.empty" = "Hələ elan yoxdur";
-
 "settings.pdfOutputFolder" = "PDF çıxış qovluğu";
 
 "folder.default.prompt.title" = "Standart qovluq kimi təyin et?";
 "folder.default.prompt.body" = "Bunu standart çıxış qovluğunuz kimi təyin etmək istəyirsiniz? Bunu istənilən vaxt Parametrlərdə dəyişə bilərsiniz.";
 "folder.default.prompt.yes" = "Standart kimi təyin et";
 "folder.default.prompt.no" = "İndi yox";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Klipləri düzəldin, arzuolunmaz hissələri silin və bir neçə videonu birləşdirin.";
-"home.guide.videoedit.preset.concat" = "Videoları birləşdirin";
-"home.guide.videoedit.preset.trim" = "Videonu kəs";
-"home.guide.videoedit.step1" = "+ düyməsindən istifadə edərək bir və ya bir neçə video faylı əlavə edin və ya sürükləyin və buraxın.";
-"home.guide.videoedit.step2" = "Klip seçin, sonra başlanğıc və son nöqtələri təyin etmək üçün trim tutacaqlarını qrafiki üzrə dartın.";
-"home.guide.videoedit.step3" = "Son ardıcıllığı təyin etmək üçün klipləri siyahıda yenidən sıralayın.";
-"home.guide.videoedit.step4" = "Çıxış formatı və qovluq seçin, sonra İxrac et üzərinə klikləyin.";
-"home.guide.videoedit.tip" = "Dəyirmana doğru sürüşdürün — dəqiq kəsimə önbaxış etmək üçün oynatma çubuğundan istifadə edin.";
-"menu.videoEdit" = "Video redaktoru";
-"qr.email.address" = "E-poçt ünvanı";
-"qr.email.body" = "Mesaj";
-"qr.email.subject" = "Mövzu";
-"qr.phone.number" = "Telefon nömrəsi";
-"qr.settings.type" = "QR növü";
-"qr.type.email" = "E-poçt";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Əlaqə (vCard)";
-"qr.type.website" = "Veb sayt";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Ünvan";
-"qr.vcard.company" = "Şirkət";
-"qr.vcard.email" = "E-poçt";
-"qr.vcard.firstName" = "Ad";
-"qr.vcard.jobTitle" = "Vəzifə";
-"qr.vcard.lastName" = "Soyad";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Veb sayt";
-"qr.wifi.hidden" = "Gizli şəbəkə";
-"qr.wifi.noEncryption" = "Yoxdur";
-"qr.wifi.password" = "Parol";
-"qr.wifi.ssid" = "Şəbəkə adı (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Foto əlavə et";
-"videoedit.addMore" = "Əlavə et";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Video əlavə et";
-"videoedit.empty.subtitle" = "Video faylları buraya atın və ya aşağıdakı düyməni basın";
-"videoedit.empty.title" = "Redaktə üçün video əlavə edin";
-"videoedit.export.merge" = "Birləşdir və ixrac et";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Parametrlər";
-"videoedit.export.trim" = "Klipləri ixrac et";
-"videoedit.exporting" = "İxrac olunur…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTO MÜDDƏTİ";
-"videoedit.imageDuration.default" = "Yeni fotolar üçün standart";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SAXLA";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Tətbiq et";
-"watermark.button" = "Filqram əlavə et";
-"watermark.cancel" = "Ləğv et";
-"watermark.color.black" = "Qara";
-"watermark.color.darkGray" = "Tünd boz";
-"watermark.color.gray" = "Boz";
-"watermark.color.lightGray" = "Açıq boz";
-"watermark.color.none" = "Yoxdur";
-"watermark.color.white" = "Ağ";
-"watermark.colorOverlay" = "Rəng örtüyü";
-"watermark.logo" = "Loqo";
-"watermark.opacity" = "Şəffaflıq";
-"watermark.pos.bottomCenter" = "Aşağı mərkəz";
-"watermark.pos.bottomLeft" = "Aşağı sol";
-"watermark.pos.bottomRight" = "Aşağı sağ";
-"watermark.pos.center" = "Mərkəz";
-"watermark.pos.centerLeft" = "Mərkəz sol";
-"watermark.pos.centerRight" = "Mərkəz sağ";
-"watermark.pos.topCenter" = "Yuxarı mərkəz";
-"watermark.pos.topLeft" = "Yuxarı sol";
-"watermark.pos.topRight" = "Yuxarı sağ";
-"watermark.position" = "Mövqe";
-"watermark.preview" = "Ön baxış";
-"watermark.removeLogo" = "Sil";
-"watermark.scale" = "Miqyas";
-"watermark.selectLogo" = "Şəkil seç";
-"watermark.tileMode" = "Plitə rejimi";
-"watermark.tileMode.desc" = "Şəkil üzrə təkrarla";
+
 "watermark.title" = "Filqram";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Filqram əlavə et";
+"watermark.logo" = "Loqo";
+"watermark.selectLogo" = "Şəkil seç";
+"watermark.removeLogo" = "Sil";
+"watermark.position" = "Mövqe";
+"watermark.scale" = "Miqyas";
+"watermark.opacity" = "Şəffaflıq";
+"watermark.preview" = "Ön baxış";
+"watermark.apply" = "Tətbiq et";
+"watermark.cancel" = "Ləğv et";
+"watermark.pos.topLeft" = "Yuxarı sol";
+"watermark.pos.topCenter" = "Yuxarı mərkəz";
+"watermark.pos.topRight" = "Yuxarı sağ";
+"watermark.pos.centerLeft" = "Mərkəz sol";
+"watermark.pos.center" = "Mərkəz";
+"watermark.pos.centerRight" = "Mərkəz sağ";
+"watermark.pos.bottomLeft" = "Aşağı sol";
+"watermark.pos.bottomCenter" = "Aşağı mərkəz";
+"watermark.pos.bottomRight" = "Aşağı sağ";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Rəng örtüyü";
+"watermark.color.none" = "Yoxdur";
+"watermark.color.black" = "Qara";
+"watermark.color.darkGray" = "Tünd boz";
+"watermark.color.gray" = "Boz";
+"watermark.color.lightGray" = "Açıq boz";
+"watermark.color.white" = "Ağ";
+"watermark.tileMode" = "Plitə rejimi";
+"watermark.tileMode.desc" = "Şəkil üzrə təkrarla";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Parametrlər";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Komet Standartı";
-"upscale.model.scaleHint" = "Upscayl Standartı (4×) — AI detallarının genişləndirilməsi";
-"upscale.settings.scale" = "Miqyas";
-"upscale.scale.multiPassHint" = "8× və 16× run birdən çox AI keçir — daha uzun çəkir.";
-"upscale.settings.outputFormat" = "Çıxış formatı";
-"upscale.drop.title" = "Təsvirləri dartıb buraxın";
-"upscale.drop.subtitle" = "və ya faylları axtarmaq üçün klikləyin";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Burada yalnız dəstəklənən raster təsvirləri əks oluna bilər";
-"upscale.runButton" = "Upskale";
-"upscale.preview.run" = "Ön-baxış";
-"upscale.preview.hint" = "Tərəzi seçin və müqayisə etmək üçün Önbaxış üzərinə basın";
-"upscale.preview.processing" = "Yüksəltmə önbaxışı...";
-"upscale.preview.before" = "əvvəl";
-"upscale.preview.after" = "Sonra";
-"upscale.preview.save" = "Yaddaşda saxla";
-"upscale.preview.saveSettings" = "Yaddaşa önbax";
-"upscale.preview.autoSave" = "Önbaxışdan sonra yaddaşda sax";
-"upscale.preview.autoSaveHint" = "Önbaxış tamamlandıqda hədəf qovluğuna yazılır.";
-"upscale.preview.saveNeedFolder" = "Əvvəlcə hədəf qovluğu seçin.";
-"upscale.preview.saveFailed" = "Önbaxış təsvirini kodlaşdırmaq mümkün olmadı.";
-"upscale.preview.loadFailed" = "Önbaxış təsvirini yükləmək mümkün olmadı.";
-"upscale.backend.missing.hint" = "Cometscaly mühərriki və ya model faylları tətbiq paketində yoxdur. Layihəni yenidən qurun.";
-"upscale.error.bundle" = "Tətbiqdə Upscale paket qovluğu yoxdur.";
-"upscale.error.binary" = "tətbiq paketində cometscaly mühərriki tapılmadı.";
-"upscale.error.model" = "Model faylları upscayl-standard-4x.param/.bin yoxdur.";
-"upscale.error.process" = "Ucuzlaşdırma alınmadı (%d çıxın): %@";
-"upscale.error.none" = "Heç bir şəkil ört-basdır edilmədi.";
-"videoedit.resize.modePercent" = "Miqyas";
-"videoedit.resize.modeCustom" = "Fərdi ölçü";
-"videoedit.resize.autoFill" = "Avtomatik doldurma kətanı";
-"videoedit.resize.autoFillHint" = "Aktiv olduqda: böyük görüntülər məktub qutusu ilə içəriyə uyğun gəlir; kiçik görüntülər yaxınlaşdırılır və mərkəzi doldurmaq üçün kəsilir.";
+"inspector.format" = "Format";
+"inspector.output" = "Çıxış";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Önizləmə üçün şəkil əlavə edin";
+"watermark.rotation" = "Fırlanma";
+"watermark.text" = "Loqo mətni";
+"watermark.text.placeholder" = "Loqo mətni daxil edin";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

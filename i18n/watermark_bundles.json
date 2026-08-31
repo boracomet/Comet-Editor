@@ -28,7 +28,11 @@
     "watermark.color.lightGray": "Light Gray",
     "watermark.color.white": "White",
     "watermark.tileMode": "Tile Mode",
-    "watermark.tileMode.desc": "Repeat across image"
+    "watermark.tileMode.desc": "Repeat across image",
+    "watermark.text": "Logo text",
+    "watermark.text.placeholder": "Enter logo text",
+    "watermark.rotation": "Rotation",
+    "watermark.preview.empty": "Add a photo to preview"
   },
   "fi": {
     "watermark.title": "Vesileima",
@@ -59,7 +63,11 @@
     "watermark.color.lightGray": "Vaaleanharmaa",
     "watermark.color.white": "Valkoinen",
     "watermark.tileMode": "Laatoitus",
-    "watermark.tileMode.desc": "Toista kuvan päällä"
+    "watermark.tileMode.desc": "Toista kuvan päällä",
+    "watermark.text": "Logoteksti",
+    "watermark.text.placeholder": "Kirjoita logoteksti",
+    "watermark.rotation": "Kierto",
+    "watermark.preview.empty": "Lisää kuva esikatselua varten"
   },
   "de": {
     "watermark.title": "Wasserzeichen",
@@ -90,7 +98,11 @@
     "watermark.color.lightGray": "Hellgrau",
     "watermark.color.white": "Weiß",
     "watermark.tileMode": "Kachelmodus",
-    "watermark.tileMode.desc": "Über das Bild wiederholen"
+    "watermark.tileMode.desc": "Über das Bild wiederholen",
+    "watermark.text": "Logo-Text",
+    "watermark.text.placeholder": "Logo-Text eingeben",
+    "watermark.rotation": "Drehung",
+    "watermark.preview.empty": "Foto zur Vorschau hinzufügen"
   },
   "fr": {
     "watermark.title": "Filigrane",
@@ -121,7 +133,11 @@
     "watermark.color.lightGray": "Gris clair",
     "watermark.color.white": "Blanc",
     "watermark.tileMode": "Mode mosaïque",
-    "watermark.tileMode.desc": "Répéter sur toute l’image"
+    "watermark.tileMode.desc": "Répéter sur toute l’image",
+    "watermark.text": "Texte du logo",
+    "watermark.text.placeholder": "Saisir le texte du logo",
+    "watermark.rotation": "Rotation",
+    "watermark.preview.empty": "Ajoutez une photo pour l’aperçu"
   },
   "es": {
     "watermark.title": "Marca de agua",
@@ -152,7 +168,11 @@
     "watermark.color.lightGray": "Gris claro",
     "watermark.color.white": "Blanco",
     "watermark.tileMode": "Modo mosaico",
-    "watermark.tileMode.desc": "Repetir en toda la imagen"
+    "watermark.tileMode.desc": "Repetir en toda la imagen",
+    "watermark.text": "Texto del logo",
+    "watermark.text.placeholder": "Escribe el texto del logo",
+    "watermark.rotation": "Rotación",
+    "watermark.preview.empty": "Añade una foto para previsualizar"
   },
   "it": {
     "watermark.title": "Filigrana",
@@ -183,7 +203,11 @@
     "watermark.color.lightGray": "Grigio chiaro",
     "watermark.color.white": "Bianco",
     "watermark.tileMode": "Modalità riquadri",
-    "watermark.tileMode.desc": "Ripeti sull’immagine"
+    "watermark.tileMode.desc": "Ripeti sull’immagine",
+    "watermark.text": "Testo del logo",
+    "watermark.text.placeholder": "Inserisci il testo del logo",
+    "watermark.rotation": "Rotazione",
+    "watermark.preview.empty": "Aggiungi una foto per l’anteprima"
   },
   "nl": {
     "watermark.title": "Watermerk",
@@ -214,7 +238,11 @@
     "watermark.color.lightGray": "Lichtgrijs",
     "watermark.color.white": "Wit",
     "watermark.tileMode": "Tegelmodus",
-    "watermark.tileMode.desc": "Herhalen over afbeelding"
+    "watermark.tileMode.desc": "Herhalen over afbeelding",
+    "watermark.text": "Logotekst",
+    "watermark.text.placeholder": "Voer logotekst in",
+    "watermark.rotation": "Rotatie",
+    "watermark.preview.empty": "Voeg een foto toe voor voorbeeld"
   },
   "pl": {
     "watermark.title": "Znak wodny",
@@ -245,7 +273,11 @@
     "watermark.color.lightGray": "Jasnoszary",
     "watermark.color.white": "Biały",
     "watermark.tileMode": "Tryb kafelków",
-    "watermark.tileMode.desc": "Powtarzaj na obrazie"
+    "watermark.tileMode.desc": "Powtarzaj na obrazie",
+    "watermark.text": "Tekst logo",
+    "watermark.text.placeholder": "Wpisz tekst logo",
+    "watermark.rotation": "Obrót",
+    "watermark.preview.empty": "Dodaj zdjęcie do podglądu"
   },
   "pt": {
     "watermark.title": "Marca d’água",
@@ -276,7 +308,11 @@
     "watermark.color.lightGray": "Cinza claro",
     "watermark.color.white": "Branco",
     "watermark.tileMode": "Modo mosaico",
-    "watermark.tileMode.desc": "Repetir na imagem"
+    "watermark.tileMode.desc": "Repetir na imagem",
+    "watermark.text": "Texto do logo",
+    "watermark.text.placeholder": "Digite o texto do logo",
+    "watermark.rotation": "Rotação",
+    "watermark.preview.empty": "Adicione uma foto para pré-visualizar"
   },
   "ru": {
     "watermark.title": "Водяной знак",
@@ -307,7 +343,11 @@
     "watermark.color.lightGray": "Светло-серый",
     "watermark.color.white": "Белый",
     "watermark.tileMode": "Режим плитки",
-    "watermark.tileMode.desc": "Повторять по изображению"
+    "watermark.tileMode.desc": "Повторять по изображению",
+    "watermark.text": "Текст логотипа",
+    "watermark.text.placeholder": "Введите текст логотипа",
+    "watermark.rotation": "Поворот",
+    "watermark.preview.empty": "Добавьте фото для предпросмотра"
   },
   "uk": {
     "watermark.title": "Водяний знак",
@@ -338,7 +378,11 @@
     "watermark.color.lightGray": "Світло-сірий",
     "watermark.color.white": "Білий",
     "watermark.tileMode": "Режим плитки",
-    "watermark.tileMode.desc": "Повторювати по зображенню"
+    "watermark.tileMode.desc": "Повторювати по зображенню",
+    "watermark.text": "Текст логотипа",
+    "watermark.text.placeholder": "Введіть текст логотипа",
+    "watermark.rotation": "Обертання",
+    "watermark.preview.empty": "Додайте фото для перегляду"
   },
   "cs": {
     "watermark.title": "Vodoznak",
@@ -369,7 +413,11 @@
     "watermark.color.lightGray": "Světle šedá",
     "watermark.color.white": "Bílá",
     "watermark.tileMode": "Režim dlaždic",
-    "watermark.tileMode.desc": "Opakovat přes obrázek"
+    "watermark.tileMode.desc": "Opakovat přes obrázek",
+    "watermark.text": "Text loga",
+    "watermark.text.placeholder": "Zadejte text loga",
+    "watermark.rotation": "Otočení",
+    "watermark.preview.empty": "Přidejte fotografii pro náhled"
   },
   "sk": {
     "watermark.title": "Vodoznak",
@@ -400,7 +448,11 @@
     "watermark.color.lightGray": "Svetlosivá",
     "watermark.color.white": "Biela",
     "watermark.tileMode": "Režim dlaždíc",
-    "watermark.tileMode.desc": "Opakovať cez obrázok"
+    "watermark.tileMode.desc": "Opakovať cez obrázok",
+    "watermark.text": "Text loga",
+    "watermark.text.placeholder": "Zadajte text loga",
+    "watermark.rotation": "Otočenie",
+    "watermark.preview.empty": "Pridajte fotografiu na náhľad"
   },
   "sv": {
     "watermark.title": "Vattenstämpel",
@@ -431,7 +483,11 @@
     "watermark.color.lightGray": "Ljusgrå",
     "watermark.color.white": "Vit",
     "watermark.tileMode": "Kakeläge",
-    "watermark.tileMode.desc": "Upprepa över bilden"
+    "watermark.tileMode.desc": "Upprepa över bilden",
+    "watermark.text": "Logotext",
+    "watermark.text.placeholder": "Ange logotext",
+    "watermark.rotation": "Rotation",
+    "watermark.preview.empty": "Lägg till ett foto för förhandsgranskning"
   },
   "da": {
     "watermark.title": "Vandmærke",
@@ -462,7 +518,11 @@
     "watermark.color.lightGray": "Lysegrå",
     "watermark.color.white": "Hvid",
     "watermark.tileMode": "Flisetilstand",
-    "watermark.tileMode.desc": "Gentag over billedet"
+    "watermark.tileMode.desc": "Gentag over billedet",
+    "watermark.text": "Logotekst",
+    "watermark.text.placeholder": "Indtast logotekst",
+    "watermark.rotation": "Rotation",
+    "watermark.preview.empty": "Tilføj et foto til forhåndsvisning"
   },
   "no": {
     "watermark.title": "Vannmerke",
@@ -493,7 +553,11 @@
     "watermark.color.lightGray": "Lysegrå",
     "watermark.color.white": "Hvit",
     "watermark.tileMode": "Flismodus",
-    "watermark.tileMode.desc": "Gjenta over bildet"
+    "watermark.tileMode.desc": "Gjenta over bildet",
+    "watermark.text": "Logotekst",
+    "watermark.text.placeholder": "Skriv inn logotekst",
+    "watermark.rotation": "Rotasjon",
+    "watermark.preview.empty": "Legg til et bilde for forhåndsvisning"
   },
   "is": {
     "watermark.title": "Vatnsmerki",
@@ -524,7 +588,11 @@
     "watermark.color.lightGray": "Ljósgrár",
     "watermark.color.white": "Hvítur",
     "watermark.tileMode": "Flísastilling",
-    "watermark.tileMode.desc": "Endurtaka yfir mynd"
+    "watermark.tileMode.desc": "Endurtaka yfir mynd",
+    "watermark.text": "Lógótexti",
+    "watermark.text.placeholder": "Sláðu inn lógótexta",
+    "watermark.rotation": "Snúningur",
+    "watermark.preview.empty": "Bættu við mynd til forskoðunar"
   },
   "ro": {
     "watermark.title": "Filigran",
@@ -555,7 +623,11 @@
     "watermark.color.lightGray": "Gri deschis",
     "watermark.color.white": "Alb",
     "watermark.tileMode": "Mod mozaic",
-    "watermark.tileMode.desc": "Repetă peste imagine"
+    "watermark.tileMode.desc": "Repetă peste imagine",
+    "watermark.text": "Text logo",
+    "watermark.text.placeholder": "Introduceți textul logo-ului",
+    "watermark.rotation": "Rotație",
+    "watermark.preview.empty": "Adăugați o fotografie pentru previzualizare"
   },
   "hu": {
     "watermark.title": "Vízjel",
@@ -586,7 +658,11 @@
     "watermark.color.lightGray": "Világosszürke",
     "watermark.color.white": "Fehér",
     "watermark.tileMode": "Mozaik mód",
-    "watermark.tileMode.desc": "Ismétlés a képen"
+    "watermark.tileMode.desc": "Ismétlés a képen",
+    "watermark.text": "Logószöveg",
+    "watermark.text.placeholder": "Adja meg a logó szövegét",
+    "watermark.rotation": "Forgatás",
+    "watermark.preview.empty": "Adjon hozzá egy fotót az előnézethez"
   },
   "el": {
     "watermark.title": "Υδατογράφημα",
@@ -617,7 +693,11 @@
     "watermark.color.lightGray": "Ανοιχτό γκρι",
     "watermark.color.white": "Λευκό",
     "watermark.tileMode": "Λειτουργία πλακιδίων",
-    "watermark.tileMode.desc": "Επανάληψη στην εικόνα"
+    "watermark.tileMode.desc": "Επανάληψη στην εικόνα",
+    "watermark.text": "Κείμενο λογότυπου",
+    "watermark.text.placeholder": "Εισαγάγετε κείμενο λογότυπου",
+    "watermark.rotation": "Περιστροφή",
+    "watermark.preview.empty": "Προσθέστε μια φωτογραφία για προεπισκόπηση"
   },
   "he": {
     "watermark.title": "סימן מים",
@@ -648,7 +728,11 @@
     "watermark.color.lightGray": "אפור בהיר",
     "watermark.color.white": "לבן",
     "watermark.tileMode": "מצב אריח",
-    "watermark.tileMode.desc": "חזור על פני התמונה"
+    "watermark.tileMode.desc": "חזור על פני התמונה",
+    "watermark.text": "טקסט לוגו",
+    "watermark.text.placeholder": "הזן טקסט לוגו",
+    "watermark.rotation": "סיבוב",
+    "watermark.preview.empty": "הוסף תמונה לתצוגה מקדימה"
   },
   "ja": {
     "watermark.title": "透かし",
@@ -679,7 +763,11 @@
     "watermark.color.lightGray": "ライトグレー",
     "watermark.color.white": "白",
     "watermark.tileMode": "タイルモード",
-    "watermark.tileMode.desc": "画像全体に繰り返す"
+    "watermark.tileMode.desc": "画像全体に繰り返す",
+    "watermark.text": "ロゴテキスト",
+    "watermark.text.placeholder": "ロゴテキストを入力",
+    "watermark.rotation": "回転",
+    "watermark.preview.empty": "プレビューする写真を追加"
   },
   "ko": {
     "watermark.title": "워터마크",
@@ -710,7 +798,11 @@
     "watermark.color.lightGray": "밝은 회색",
     "watermark.color.white": "흰색",
     "watermark.tileMode": "타일 모드",
-    "watermark.tileMode.desc": "이미지 전체에 반복"
+    "watermark.tileMode.desc": "이미지 전체에 반복",
+    "watermark.text": "로고 텍스트",
+    "watermark.text.placeholder": "로고 텍스트 입력",
+    "watermark.rotation": "회전",
+    "watermark.preview.empty": "미리볼 사진을 추가하세요"
   },
   "zh_Hans": {
     "watermark.title": "水印",
@@ -741,7 +833,11 @@
     "watermark.color.lightGray": "浅灰色",
     "watermark.color.white": "白色",
     "watermark.tileMode": "平铺模式",
-    "watermark.tileMode.desc": "在图像上重复"
+    "watermark.tileMode.desc": "在图像上重复",
+    "watermark.text": "标志文字",
+    "watermark.text.placeholder": "输入标志文字",
+    "watermark.rotation": "旋转",
+    "watermark.preview.empty": "添加照片以预览"
   },
   "zh_Hant": {
     "watermark.title": "浮水印",
@@ -772,7 +868,11 @@
     "watermark.color.lightGray": "淺灰色",
     "watermark.color.white": "白色",
     "watermark.tileMode": "拼貼模式",
-    "watermark.tileMode.desc": "在影像上重複"
+    "watermark.tileMode.desc": "在影像上重複",
+    "watermark.text": "標誌文字",
+    "watermark.text.placeholder": "輸入標誌文字",
+    "watermark.rotation": "旋轉",
+    "watermark.preview.empty": "新增照片以預覽"
   },
   "id": {
     "watermark.title": "Tanda air",
@@ -803,7 +903,11 @@
     "watermark.color.lightGray": "Abu-abu terang",
     "watermark.color.white": "Putih",
     "watermark.tileMode": "Mode ubin",
-    "watermark.tileMode.desc": "Ulangi di seluruh gambar"
+    "watermark.tileMode.desc": "Ulangi di seluruh gambar",
+    "watermark.text": "Teks logo",
+    "watermark.text.placeholder": "Masukkan teks logo",
+    "watermark.rotation": "Rotasi",
+    "watermark.preview.empty": "Tambahkan foto untuk pratinjau"
   },
   "vi": {
     "watermark.title": "Hình mờ",
@@ -834,7 +938,11 @@
     "watermark.color.lightGray": "Xám nhạt",
     "watermark.color.white": "Trắng",
     "watermark.tileMode": "Chế độ lặp",
-    "watermark.tileMode.desc": "Lặp lại trên ảnh"
+    "watermark.tileMode.desc": "Lặp lại trên ảnh",
+    "watermark.text": "Chữ logo",
+    "watermark.text.placeholder": "Nhập chữ logo",
+    "watermark.rotation": "Xoay",
+    "watermark.preview.empty": "Thêm ảnh để xem trước"
   },
   "th": {
     "watermark.title": "ลายน้ำ",
@@ -865,7 +973,11 @@
     "watermark.color.lightGray": "เทาอ่อน",
     "watermark.color.white": "ขาว",
     "watermark.tileMode": "โหมดกระเบื้อง",
-    "watermark.tileMode.desc": "ทำซ้ำทั่วภาพ"
+    "watermark.tileMode.desc": "ทำซ้ำทั่วภาพ",
+    "watermark.text": "ข้อความโลโก้",
+    "watermark.text.placeholder": "ใส่ข้อความโลโก้",
+    "watermark.rotation": "หมุน",
+    "watermark.preview.empty": "เพิ่มรูปเพื่อดูตัวอย่าง"
   },
   "ms": {
     "watermark.title": "Tera air",
@@ -896,7 +1008,11 @@
     "watermark.color.lightGray": "Kelabu terang",
     "watermark.color.white": "Putih",
     "watermark.tileMode": "Mod jubin",
-    "watermark.tileMode.desc": "Ulang merentasi imej"
+    "watermark.tileMode.desc": "Ulang merentasi imej",
+    "watermark.text": "Teks logo",
+    "watermark.text.placeholder": "Masukkan teks logo",
+    "watermark.rotation": "Putaran",
+    "watermark.preview.empty": "Tambah foto untuk pratonton"
   },
   "hr": {
     "watermark.title": "Vodeni žig",
@@ -927,7 +1043,11 @@
     "watermark.color.lightGray": "Svijetlosiva",
     "watermark.color.white": "Bijela",
     "watermark.tileMode": "Način pločica",
-    "watermark.tileMode.desc": "Ponovi preko slike"
+    "watermark.tileMode.desc": "Ponovi preko slike",
+    "watermark.text": "Tekst logotipa",
+    "watermark.text.placeholder": "Unesite tekst logotipa",
+    "watermark.rotation": "Rotacija",
+    "watermark.preview.empty": "Dodajte fotografiju za pregled"
   },
   "bg": {
     "watermark.title": "Воден знак",
@@ -958,7 +1078,11 @@
     "watermark.color.lightGray": "Светло сиво",
     "watermark.color.white": "Бяло",
     "watermark.tileMode": "Режим плочки",
-    "watermark.tileMode.desc": "Повтори върху изображението"
+    "watermark.tileMode.desc": "Повтори върху изображението",
+    "watermark.text": "Текст на логото",
+    "watermark.text.placeholder": "Въведете текст на логото",
+    "watermark.rotation": "Завъртане",
+    "watermark.preview.empty": "Добавете снимка за преглед"
   },
   "sr": {
     "watermark.title": "Водени жиг",
@@ -989,7 +1113,11 @@
     "watermark.color.lightGray": "Светло сива",
     "watermark.color.white": "Бела",
     "watermark.tileMode": "Режим плочица",
-    "watermark.tileMode.desc": "Понови преко слике"
+    "watermark.tileMode.desc": "Понови преко слике",
+    "watermark.text": "Текст логотипа",
+    "watermark.text.placeholder": "Унесите текст логотипа",
+    "watermark.rotation": "Ротација",
+    "watermark.preview.empty": "Додајте фотографију за преглед"
   },
   "bs": {
     "watermark.title": "Vodeni žig",
@@ -1020,7 +1148,11 @@
     "watermark.color.lightGray": "Svijetlosiva",
     "watermark.color.white": "Bijela",
     "watermark.tileMode": "Način pločica",
-    "watermark.tileMode.desc": "Ponovi preko slike"
+    "watermark.tileMode.desc": "Ponovi preko slike",
+    "watermark.text": "Tekst logotipa",
+    "watermark.text.placeholder": "Unesite tekst logotipa",
+    "watermark.rotation": "Rotacija",
+    "watermark.preview.empty": "Dodajte fotografiju za pregled"
   },
   "sl": {
     "watermark.title": "Vodni žig",
@@ -1051,7 +1183,11 @@
     "watermark.color.lightGray": "Svetlo siva",
     "watermark.color.white": "Bela",
     "watermark.tileMode": "Način ploščic",
-    "watermark.tileMode.desc": "Ponovi čez sliko"
+    "watermark.tileMode.desc": "Ponovi čez sliko",
+    "watermark.text": "Besedilo logotipa",
+    "watermark.text.placeholder": "Vnesite besedilo logotipa",
+    "watermark.rotation": "Sukanje",
+    "watermark.preview.empty": "Dodajte fotografijo za predogled"
   },
   "sq": {
     "watermark.title": "Filigram",
@@ -1082,7 +1218,11 @@
     "watermark.color.lightGray": "Gri e çelët",
     "watermark.color.white": "E bardhë",
     "watermark.tileMode": "Mënyra pllakash",
-    "watermark.tileMode.desc": "Përsërit mbi imazh"
+    "watermark.tileMode.desc": "Përsërit mbi imazh",
+    "watermark.text": "Teksti i logos",
+    "watermark.text.placeholder": "Shkruani tekstin e logos",
+    "watermark.rotation": "Rrotullimi",
+    "watermark.preview.empty": "Shtoni një foto për parapamje"
   },
   "et": {
     "watermark.title": "Vesimärk",
@@ -1113,7 +1253,11 @@
     "watermark.color.lightGray": "Helehall",
     "watermark.color.white": "Valge",
     "watermark.tileMode": "Paanrežiim",
-    "watermark.tileMode.desc": "Korda üle pildi"
+    "watermark.tileMode.desc": "Korda üle pildi",
+    "watermark.text": "Logo tekst",
+    "watermark.text.placeholder": "Sisestage logo tekst",
+    "watermark.rotation": "Pööramine",
+    "watermark.preview.empty": "Lisa eelvaateks foto"
   },
   "lt": {
     "watermark.title": "Vandens ženklas",
@@ -1144,7 +1288,11 @@
     "watermark.color.lightGray": "Šviesiai pilka",
     "watermark.color.white": "Balta",
     "watermark.tileMode": "Plokščių režimas",
-    "watermark.tileMode.desc": "Kartoti per paveikslėlį"
+    "watermark.tileMode.desc": "Kartoti per paveikslėlį",
+    "watermark.text": "Logotipo tekstas",
+    "watermark.text.placeholder": "Įveskite logotipo tekstą",
+    "watermark.rotation": "Pasukimas",
+    "watermark.preview.empty": "Pridėkite nuotrauką peržiūrai"
   },
   "lv": {
     "watermark.title": "Ūdenszīme",
@@ -1175,7 +1323,11 @@
     "watermark.color.lightGray": "Gaiši pelēks",
     "watermark.color.white": "Balts",
     "watermark.tileMode": "Flīžu režīms",
-    "watermark.tileMode.desc": "Atkārtot attēlā"
+    "watermark.tileMode.desc": "Atkārtot attēlā",
+    "watermark.text": "Logotipa teksts",
+    "watermark.text.placeholder": "Ievadiet logotipa tekstu",
+    "watermark.rotation": "Pagriešana",
+    "watermark.preview.empty": "Pievienojiet foto priekšskatījumam"
   },
   "hy": {
     "watermark.title": "Ջրանիշ",
@@ -1206,7 +1358,11 @@
     "watermark.color.lightGray": "Բաց մոխրագույն",
     "watermark.color.white": "Սպիտակ",
     "watermark.tileMode": "Սալիկների ռեժիմ",
-    "watermark.tileMode.desc": "Կրկնել պատկերի վրա"
+    "watermark.tileMode.desc": "Կրկնել պատկերի վրա",
+    "watermark.text": "Լոգոյի տեքստ",
+    "watermark.text.placeholder": "Մուտքագրեք լոգոյի տեքստը",
+    "watermark.rotation": "Պտույտ",
+    "watermark.preview.empty": "Ավելացրեք լուսանկար նախադիտման համար"
   },
   "ka": {
     "watermark.title": "წყლის ნიშანი",
@@ -1237,7 +1393,11 @@
     "watermark.color.lightGray": "ღია ნაცრისფერი",
     "watermark.color.white": "თეთრი",
     "watermark.tileMode": "ფილების რეჟიმი",
-    "watermark.tileMode.desc": "გაიმეორე სურათზე"
+    "watermark.tileMode.desc": "გაიმეორე სურათზე",
+    "watermark.text": "ლოგოს ტექსტი",
+    "watermark.text.placeholder": "შეიყვანეთ ლოგოს ტექსტი",
+    "watermark.rotation": "ბრუნვა",
+    "watermark.preview.empty": "დაამატეთ ფოტო წინასწარი ხედისთვის"
   },
   "kk": {
     "watermark.title": "Су белгісі",
@@ -1268,7 +1428,11 @@
     "watermark.color.lightGray": "Ашық сұр",
     "watermark.color.white": "Ақ",
     "watermark.tileMode": "Плитка режимі",
-    "watermark.tileMode.desc": "Сурет бойынша қайталау"
+    "watermark.tileMode.desc": "Сурет бойынша қайталау",
+    "watermark.text": "Логотип мәтіні",
+    "watermark.text.placeholder": "Логотип мәтінін енгізіңіз",
+    "watermark.rotation": "Бұру",
+    "watermark.preview.empty": "Алдын ала қарау үшін фото қосыңыз"
   },
   "az": {
     "watermark.title": "Filqram",
@@ -1299,7 +1463,11 @@
     "watermark.color.lightGray": "Açıq boz",
     "watermark.color.white": "Ağ",
     "watermark.tileMode": "Plitə rejimi",
-    "watermark.tileMode.desc": "Şəkil üzrə təkrarla"
+    "watermark.tileMode.desc": "Şəkil üzrə təkrarla",
+    "watermark.text": "Loqo mətni",
+    "watermark.text.placeholder": "Loqo mətni daxil edin",
+    "watermark.rotation": "Fırlanma",
+    "watermark.preview.empty": "Önizləmə üçün şəkil əlavə edin"
   },
   "uz": {
     "watermark.title": "Suv belgisi",
@@ -1330,7 +1498,11 @@
     "watermark.color.lightGray": "Och kulrang",
     "watermark.color.white": "Oq",
     "watermark.tileMode": "Katakcha rejimi",
-    "watermark.tileMode.desc": "Rasm bo‘ylab takrorlash"
+    "watermark.tileMode.desc": "Rasm bo‘ylab takrorlash",
+    "watermark.text": "Logo matni",
+    "watermark.text.placeholder": "Logo matnini kiriting",
+    "watermark.rotation": "Aylantirish",
+    "watermark.preview.empty": "Ko‘rish uchun rasm qo‘shing"
   },
   "bn": {
     "watermark.title": "ওয়াটারমার্ক",
@@ -1361,7 +1533,11 @@
     "watermark.color.lightGray": "হালকা ধূসর",
     "watermark.color.white": "সাদা",
     "watermark.tileMode": "টাইল মোড",
-    "watermark.tileMode.desc": "ছবিতে পুনরাবৃত্তি করুন"
+    "watermark.tileMode.desc": "ছবিতে পুনরাবৃত্তি করুন",
+    "watermark.text": "লোগো টেক্সট",
+    "watermark.text.placeholder": "লোগো টেক্সট লিখুন",
+    "watermark.rotation": "ঘূর্ণন",
+    "watermark.preview.empty": "প্রিভিউয়ের জন্য ছবি যোগ করুন"
   },
   "hi": {
     "watermark.title": "वॉटरमार्क",
@@ -1392,7 +1568,11 @@
     "watermark.color.lightGray": "हल्का ग्रे",
     "watermark.color.white": "सफेद",
     "watermark.tileMode": "टाइल मोड",
-    "watermark.tileMode.desc": "छवि पर दोहराएँ"
+    "watermark.tileMode.desc": "छवि पर दोहराएँ",
+    "watermark.text": "लोगो पाठ",
+    "watermark.text.placeholder": "लोगो पाठ दर्ज करें",
+    "watermark.rotation": "घुमाव",
+    "watermark.preview.empty": "पूर्वावलोकन के लिए फ़ोटो जोड़ें"
   },
   "ur": {
     "watermark.title": "واٹر مارک",
@@ -1423,6 +1603,10 @@
     "watermark.color.lightGray": "ہلکا سرمئی",
     "watermark.color.white": "سفید",
     "watermark.tileMode": "ٹائل موڈ",
-    "watermark.tileMode.desc": "تصویر پر دہرائیں"
+    "watermark.tileMode.desc": "تصویر پر دہرائیں",
+    "watermark.text": "لوگو متن",
+    "watermark.text.placeholder": "لوگو متن درج کریں",
+    "watermark.rotation": "گردش",
+    "watermark.preview.empty": "پیش نظارہ کے لیے تصویر شامل کریں"
   }
 }

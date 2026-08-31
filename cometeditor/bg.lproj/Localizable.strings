@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Пуснете изображения тук";
 "convert.drop.subtitle" = "Поддържа PNG, JPG, WebP, HEIF и други формати";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Ширина";
 "convert.settings.height" = "Височина";
+
 "meta.info" = "Метаданните ще бъдат запазени";
+
 "convert.settings.targetFolder" = "ЦЕЛЕВА ПАПКА";
 "convert.settings.noFolder" = "Не е избрана папка";
 "convert.settings.chooseFolder" = "Избор на папка";
+
+"folder.missing.title" = "Папката не е намерена";
+"folder.missing.subtitle" = "Запазеният път до папката вече не съществува. Изберете нова.";
+"folder.missing.pick" = "Избор на нова папка";
+"folder.missing.panel.message" = "Изходната папка не е намерена. Моля, изберете нова папка.";
+
+"bgremove.error.noMaskFound" = "Маската на преден план не е намерена.";
+"bgremove.error.maskConversionFailed" = "Преобразуването на маската се провали.";
+"bgremove.error.compositeFailed" = "Комбинирането на изображението се провали.";
+
 "convert.settings.convertButton" = "Конвертиране";
 "convert.clearAll" = "Изчисти всички";
 "convert.addMore" = "Добави още";
 "convert.wrongType.image" = "Тук могат да се конвертират само изображения";
+
+"upscale.settings.title" = "Опции";
+"upscale.settings.model" = "Модел";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Стандарт Upscayl (4×) — подобряване на детайлите на изкуствения интелект";
+"upscale.settings.scale" = "Запълване";
+"upscale.scale.multiPassHint" = "8× и 16× пробег няколко преминавания с изкуствен интелект — отнема повече време.";
+"upscale.settings.outputFormat" = "Output format/ Формат на извеждане";
+"upscale.drop.title" = "Плъзнете и пуснете снимките тук";
+"upscale.drop.subtitle" = "или щракнете, за да прегледате файловете";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Само поддържаните растерни изображения могат да бъдат мащабирани тук";
+"upscale.runButton" = "Луксозна стока";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Предварителен преглед";
+"upscale.preview.hint" = "Изберете мащаб и докоснете Предварителен преглед за сравнение";
+"upscale.preview.processing" = "Увеличаване на мащаба на визуализацията...";
+"upscale.preview.before" = "ПРЕДИ";
+"upscale.preview.after" = "СЛЕД";
+"upscale.preview.save" = "Записване";
+"upscale.preview.saveSettings" = "Преглед на запазването";
+"upscale.preview.autoSave" = "Запазване след визуализация";
+"upscale.preview.autoSaveHint" = "Записва в целевата папка, когато визуализацията приключи.";
+"upscale.preview.saveNeedFolder" = "Първо изберете целева папка.";
+"upscale.preview.saveFailed" = "Не може да се кодира изображението за предварителен преглед.";
+"upscale.preview.loadFailed" = "Изображението за предварителен преглед не може да се зареди.";
+"upscale.backend.missing.hint" = "От пакета с приложения липсват файловете на двигателя или модела на cometscaly. Възстановяване на проекта.";
+"upscale.error.bundle" = "Голямата папка на пакета липсва в приложението.";
+"upscale.error.binary" = "ядрото cometscaly не е намерено в пакета приложения.";
+"upscale.error.model" = "Липсват файлове с модели upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Неуспешно увеличаване на мащаба (изход %d): %@";
+"upscale.error.none" = "Няма изображения с по - голям мащаб.";
+
 "menu.home" = "Начало";
 "menu.convertImage" = "Конвертиране на изображение";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Настройки";
 "menu.tools" = "Инструменти";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Екипът";
-"menu.team.title" = "Разработено от Comet Dev";
-"menu.team.subtitle" = "Изградено с любов и внимание към детайла";
 "menu.stockImage" = "Стокови снимки";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Премахване на фон";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Шрифтове";
 "menu.videoConvert" = "Конвертиране на видео";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Изпрати обратна връзка";
-"team.thanks_grafix" = "Специална благодарност към Grafix за дизайна";
+
 "alert.success.title" = "Успех";
 "alert.error.title" = "Грешка";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Отвори папката";
 "alert.success.message.image" = "Изображението е запазено в %@.";
 "alert.success.message.video" = "Видеото е запазено в %@.";
+"alert.error.conversion" = "Някои изображения не могат да бъдат конвертирани.";
+
 "home.welcome" = "Добре дошли в Comet Editor";
 "home.welcome.subtitle" = "Всичко, от което се нуждаете, в едно приложение.";
 "home.visitWebsite" = "Посети уебсайта";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 с балансирано качество — конвертиране или компресиране в един поток.";
 "home.quick.pdf.title" = "Редактиране на PDF";
 "home.quick.pdf.subtitle" = "Отворете PDF редактора — пренаредете страници, компресирайте или ощипете на едно място.";
+"home.feature.convertImage.desc" = "Конвертирайте изображения между различни формати с лекота";
+"home.feature.videoConvert.desc" = "Конвертирайте и компресирайте видео файлове бързо";
+"home.feature.stockImage.desc" = "Разглеждайте и изтегляйте безплатни стокови снимки";
+"home.feature.pdfEdit.desc" = "Редактирайте, обединявайте и оптимизирайте PDF файлове";
+"home.feature.qrCode.desc" = "Генерирайте персонализирани QR кодове мигновено";
+"home.feature.bgRemove.desc" = "Премахнете фона от изображения с AI";
+"home.feature.ocr.desc" = "Извличайте текст от изображения с OCR";
+"home.feature.fontDownload.desc" = "Разглеждайте и изтегляйте шрифтове от Google Fonts";
 "home.preset.pdf.deletePage" = "невярно";
 "home.preset.pdf.reorder" = "Пренареждане на страници";
 "home.preset.pdf.optimize" = "Оптимизиране на PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Изберете изходния формат (PNG, JPG, WebP, HEIC и др.) от десния панел.";
 "home.guide.convertImage.step3" = "Регулирайте качеството, мащаба или размерите — след това преобразувайте.";
 "home.guide.convertImage.tip" = "Можете да добавите няколко изображения наведнъж. Всеки файл се конвертира независимо със същите настройки.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Конвертиране и компресиране на видеоклипове в MP4, MOV, AVI и др.";
 "home.guide.video.step2" = "Изберете изходния формат (MP4, MOV...) и регулирайте FPS или разделителната способност.";
 "home.guide.video.step3" = "Активирайте или деактивирайте аудио, след което щракнете върху Конвертиране.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Прегледайте шрифта и изберете стиловете, които искате.";
 "home.guide.font.step3" = "Щракнете върху Изтегляне, за да инсталирате шрифта на Вашия Mac.";
 "home.guide.font.tip" = "Изтеглените шрифтове се инсталират в цялата система и се предлагат във всички приложения незабавно.";
-"home.feature.convertImage.desc" = "Конвертирайте изображения между различни формати с лекота";
-"home.feature.videoConvert.desc" = "Конвертирайте и компресирайте видео файлове бързо";
-"home.feature.stockImage.desc" = "Разглеждайте и изтегляйте безплатни стокови снимки";
-"home.feature.pdfEdit.desc" = "Редактирайте, обединявайте и оптимизирайте PDF файлове";
-"home.feature.qrCode.desc" = "Генерирайте персонализирани QR кодове мигновено";
-"home.feature.bgRemove.desc" = "Премахнете фона от изображения с AI";
-"home.feature.ocr.desc" = "Извличайте текст от изображения с OCR";
-"home.feature.fontDownload.desc" = "Разглеждайте и изтегляйте шрифтове от Google Fonts";
+
 "video.drop.subtitle" = "Поддържа MP4, MOV, AVI и други формати";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% от оригинала";
 "video.resolution.50" = "50% от оригинала";
 "video.resolution.25" = "25% от оригинала (Ниско качество)";
+
 "pdf.drop.title" = "Пуснете PDF файл тук";
 "pdf.drop.subtitle" = "Изберете PDF файл за редактиране";
 "pdf.page.count" = "%lld страници";
 "pdf.page.info" = "Страница %lld от %lld";
 "pdf.estimatedSize" = "Очакван размер";
+"pdf.quality.modal.title" = "Изберете ниво на оптимизация";
+"pdf.quality.modal.subtitle" = "Изберете с колко да намалите размера на файла. По-висока компресия означава по-малък файл с известна загуба на качество.";
+"pdf.quality.modal.estimated" = "Очакван размер";
+"pdf.quality.modal.confirm" = "Оптимизиране";
+"pdf.quality.modal.cancel" = "Отказ";
+"pdf.quality.low.title" = "Максимална компресия";
+"pdf.quality.low.desc" = "Най-малък файл, видима загуба на качество";
+"pdf.quality.medium.title" = "Балансиран";
+"pdf.quality.medium.desc" = "Добър баланс между размер и качество";
+"pdf.quality.high.title" = "Високо качество";
+"pdf.quality.high.desc" = "Минимална загуба на качество, умерено намаляване";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Оптимизиране на PDF";
+"pdf.tools.quality" = "КАЧЕСТВО";
+"pdf.tools.quality.label" = "Качество на изображението";
+"pdf.tools.quality.small" = "По-малък файл";
+"pdf.tools.quality.large" = "По-добро качество";
+"pdf.tools.quality.lossless" = "Без загуба";
+"pdf.tools.resolution" = "МАЩАБ НА РЕЗОЛЮЦИЯТА";
+"pdf.tools.resolution.enable" = "Намали резолюцията";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK КОНВЕРТОР";
+"pdf.color.enable" = "Конвертирай цветово пространство";
+"pdf.color.convert" = "Конвертирай и запази";
 "pdf.tools.save" = "Запазване на PDF";
 "pdf.reorder.title" = "Пренареждане на страници";
 "pdf.reorder.hint" = "Плъзнете за промяна на реда на страниците";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "След";
 "pdf.addContent.atEnd" = "В края";
 "pdf.addContent.chooseFile" = "Избор на файл";
+
 "stock.deselectAll" = "Отмяна на избора";
 "stock.download" = "Изтегляне";
 "stock.download.count" = "Изтегляне на %d снимки";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Въведете URL или текст тук...";
 "qr.settings.colors" = "Цветове";
 "qr.settings.fgColor" = "Цвят на преден план";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Резолюция";
 "qr.settings.customSize" = "Персонализиран размер (px)";
 "qr.download" = "Изтегляне на QR код";
+"qr.settings.type" = "Тип QR";
+"qr.type.website" = "Уебсайт";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Контакт (vCard)";
+"qr.type.email" = "Имейл";
+"qr.type.phone" = "Телефон";
+"qr.wifi.ssid" = "Име на мрежата (SSID)";
+"qr.wifi.password" = "Парола";
+"qr.wifi.hidden" = "Скрита мрежа";
+"qr.wifi.noEncryption" = "Няма";
+"qr.vcard.firstName" = "Име";
+"qr.vcard.lastName" = "Фамилия";
+"qr.vcard.phone" = "Телефон";
+"qr.vcard.email" = "Имейл";
+"qr.vcard.company" = "Компания";
+"qr.vcard.jobTitle" = "Длъжност";
+"qr.vcard.address" = "Адрес";
+"qr.vcard.website" = "Уебсайт";
+"qr.email.address" = "Имейл адрес";
+"qr.email.subject" = "Тема";
+"qr.email.body" = "Съобщение";
+"qr.phone.number" = "Телефонен номер";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Тази функция изисква macOS 14 или по-нова версия";
 "bgremove.drop.title" = "Пуснете изображения тук";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Омекотяване на ръбовете";
 "bgremove.settings.featherAmount" = "Степен на омекотяване";
+
 "ocr.drop.title" = "Пуснете изображение тук";
 "ocr.drop.subtitle" = "Поддържа PNG, JPG и WebP";
 "ocr.processing" = "Разпознаване на текст...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Изчисти";
 "ocr.newFile" = "Нов файл";
 "ocr.copied" = "Копирано!";
+
 "app.comingSoon.title" = "Очаквайте скоро";
 "app.comingSoon.message" = "Тази функция се разработва и скоро ще бъде налична.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Търсене на шрифтове...";
 "font.preview.custom" = "Персонализиран преглед";
 "font.inspector.preview" = "ПРЕГЛЕД";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d семейства";
 "font.styles.count" = "%d стила · %@";
 "font.noResults" = "Не са намерени шрифтове";
-"suggestion.title" = "Изпрати предложение";
-"suggestion.subtitle" = "Споделете идеите си и ни помогнете да се подобрим";
-"suggestion.placeholder.title" = "Заглавие";
-"suggestion.placeholder.body" = "Опишете предложението си подробно...";
-"suggestion.category.bug" = "Грешка";
-"suggestion.category.feature" = "Заявка за функция";
-"suggestion.category.ui" = "Интерфейс";
-"suggestion.category.performance" = "Производителност";
-"suggestion.category.other" = "Друго";
-"suggestion.send" = "Изпрати предложение";
-"suggestion.sending" = "Изпращане...";
-"suggestion.sent.title" = "Благодарим!";
-"suggestion.sent.message" = "Вашето предложение е получено. Ще го разгледаме скоро.";
-"suggestion.error" = "Изпращането е неуспешно. Опитайте отново.";
-"suggestion.validation.title" = "Липсващи полета";
-"suggestion.validation.body" = "Моля, попълнете заглавие и описание.";
-
-"suggestion.label.category" = "Категория";
-"suggestion.label.title" = "Заглавие";
-"suggestion.label.description" = "Описание";
 
 "video.drop.title" = "Пуснете видео тук";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Тук могат да се конвертират само видеа";
+
 "app.maintenance.title" = "Режим поддръжка";
 "app.forceUpdate.title" = "Необходима актуализация";
 "app.forceUpdate.button" = "Актуализирай в App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Търсене";
 "stock.search.placeholder" = "Търсене на снимки...";
 "stock.selected" = "%d избрани";
+
 "video.cancel" = "Отказ";
 "video.error.decoder" = "Видеото не може да бъде декодирано.";
 "video.saved.gain" = "спестено";
 "video.saved.increased" = "по-голям";
 "video.settings.fps.desc" = "Деактивирайте за запазване на оригиналния FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Изображение";
 "pdf.tools.pageManagement" = "УПРАВЛЕНИЕ НА СТРАНИЦИТЕ";
 "pdf.tools.addContent" = "Добавяне на съдържание";
 "pdf.tools.reorder" = "Пренареждане";
 "pdf.tools.targetFolder" = "ЦЕЛЕВА ПАПКА";
-"alert.error.conversion" = "Някои изображения не могат да бъдат конвертирани.";
-"pdf.color.convert" = "Конвертирай и запази";
-"pdf.color.enable" = "Конвертирай цветово пространство";
-"pdf.color.title" = "RGB/CMYK КОНВЕРТОР";
-"pdf.tools.quality" = "КАЧЕСТВО";
-"pdf.tools.quality.label" = "Качество на изображението";
-"pdf.tools.quality.large" = "По-добро качество";
-"pdf.tools.quality.lossless" = "Без загуба";
-"pdf.tools.resolution" = "МАЩАБ НА РЕЗОЛЮЦИЯТА";
-"pdf.tools.resolution.enable" = "Намали резолюцията";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "По-малък файл";
 
 "ad.sponsored" = "Спонсорирано";
 "ad.visit" = "Посети";
 
-"pdf.quality.modal.title" = "Изберете ниво на оптимизация";
-"pdf.quality.modal.subtitle" = "Изберете с колко да намалите размера на файла. По-висока компресия означава по-малък файл с известна загуба на качество.";
-"pdf.quality.modal.estimated" = "Очакван размер";
-"pdf.quality.modal.confirm" = "Оптимизиране";
-"pdf.quality.modal.cancel" = "Отказ";
-"pdf.quality.low.title" = "Максимална компресия";
-"pdf.quality.low.desc" = "Най-малък файл, видима загуба на качество";
-"pdf.quality.medium.title" = "Балансиран";
-"pdf.quality.medium.desc" = "Добър баланс между размер и качество";
-"pdf.quality.high.title" = "Високо качество";
-"pdf.quality.high.desc" = "Минимална загуба на качество, умерено намаляване";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Персонализирайте Comet Editor";
+"settings.section.output" = "ИЗХОД";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Папка по подразбиране";
+"settings.noFolderSelected" = "Не е избрана — ще пита всеки път";
+"settings.chooseFolder" = "Изберете папка";
+"settings.clearFolder" = "Изчисти";
+"settings.folderPicker.message" = "Изберете папка по подразбиране за експортираните файлове";
+"settings.folderPicker.button" = "Изберете папка";
 
 "app.maintenance.title2" = "Техническо обслужване";
 "app.maintenance.body" = "Приложението е временно недостъпно. Ще се върнем скоро.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Актуализирай в App Store";
 "app.quit2" = "Затвори приложението";
 
-"settings.subtitle" = "Персонализирайте Comet Editor";
-"settings.section.output" = "ИЗХОД";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Папка по подразбиране";
-"settings.noFolderSelected" = "Не е избрана — ще пита всеки път";
-"settings.chooseFolder" = "Изберете папка";
-"settings.clearFolder" = "Изчисти";
-"settings.folderPicker.message" = "Изберете папка по подразбиране за експортираните файлове";
-"settings.folderPicker.button" = "Изберете папка";
-"menu.announcements" = "Съобщения";
-"announcements.subtitle" = "Последни новини и актуализации от екипа";
-"announcements.empty" = "Няма съобщения";
-
 "settings.pdfOutputFolder" = "PDF изходна папка";
 
 "folder.default.prompt.title" = "Задаване като папка по подразбиране?";
 "folder.default.prompt.body" = "Искате ли да зададете тази като папка за изходни файлове по подразбиране? Можете да я промените по всяко време в Настройки.";
 "folder.default.prompt.yes" = "Задаване по подразбиране";
 "folder.default.prompt.no" = "Не сега";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Изрязване на клипове, премахване на нежелани части и обединяване на няколко видеоклипа в едно.";
-"home.guide.videoedit.preset.concat" = "Обединяване на видеоклипове";
-"home.guide.videoedit.preset.trim" = "Подрязване на видеоклип";
-"home.guide.videoedit.step1" = "Добавете един или повече видео файлове, като използвате бутона + или плъзнете и пуснете.";
-"home.guide.videoedit.step2" = "Изберете клип, след което плъзнете дръжките на тапицерията на времевата линия, за да зададете начална и крайна точка.";
-"home.guide.videoedit.step3" = "Пренаредете клиповете в списъка, като ги плъзнете, за да зададете последната последователност.";
-"home.guide.videoedit.step4" = "Изберете изходен формат и папка, след което щракнете върху Експортиране.";
-"home.guide.videoedit.tip" = "Подрязвайте дръжките до милисекунда — използвайте лентата за възпроизвеждане, за да прегледате точното изрязване.";
-"menu.videoEdit" = "Видео редактор";
-"qr.email.address" = "Имейл адрес";
-"qr.email.body" = "Съобщение";
-"qr.email.subject" = "Тема";
-"qr.phone.number" = "Телефонен номер";
-"qr.settings.type" = "Тип QR";
-"qr.type.email" = "Имейл";
-"qr.type.phone" = "Телефон";
-"qr.type.vcard" = "Контакт (vCard)";
-"qr.type.website" = "Уебсайт";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Адрес";
-"qr.vcard.company" = "Компания";
-"qr.vcard.email" = "Имейл";
-"qr.vcard.firstName" = "Име";
-"qr.vcard.jobTitle" = "Длъжност";
-"qr.vcard.lastName" = "Фамилия";
-"qr.vcard.phone" = "Телефон";
-"qr.vcard.website" = "Уебсайт";
-"qr.wifi.hidden" = "Скрита мрежа";
-"qr.wifi.noEncryption" = "Няма";
-"qr.wifi.password" = "Парола";
-"qr.wifi.ssid" = "Име на мрежата (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Добави снимка";
-"videoedit.addMore" = "Добави";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Добави видеа";
-"videoedit.empty.subtitle" = "Пуснете видео файлове тук или натиснете бутона по-долу";
-"videoedit.empty.title" = "Добавете видеа за редактиране";
-"videoedit.export.merge" = "Сливане и експорт";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Настройки";
-"videoedit.export.trim" = "Експорт на клип";
-"videoedit.exporting" = "Експортиране…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "ПРОДЪЛЖИТЕЛНОСТ НА СНИМКА";
-"videoedit.imageDuration.default" = "По подразбиране за нови снимки";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "ЗАПАЗИ В";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Приложи";
-"watermark.button" = "Добави воден знак";
-"watermark.cancel" = "Отказ";
-"watermark.color.black" = "Черно";
-"watermark.color.darkGray" = "Тъмно сиво";
-"watermark.color.gray" = "Сиво";
-"watermark.color.lightGray" = "Светло сиво";
-"watermark.color.none" = "Няма";
-"watermark.color.white" = "Бяло";
-"watermark.colorOverlay" = "Цветно наслагване";
-"watermark.logo" = "Лого";
-"watermark.opacity" = "Непрозрачност";
-"watermark.pos.bottomCenter" = "Долу център";
-"watermark.pos.bottomLeft" = "Долу вляво";
-"watermark.pos.bottomRight" = "Долу вдясно";
-"watermark.pos.center" = "Център";
-"watermark.pos.centerLeft" = "Център вляво";
-"watermark.pos.centerRight" = "Център вдясно";
-"watermark.pos.topCenter" = "Горе център";
-"watermark.pos.topLeft" = "Горе вляво";
-"watermark.pos.topRight" = "Горе вдясно";
-"watermark.position" = "Позиция";
-"watermark.preview" = "Преглед";
-"watermark.removeLogo" = "Премахни";
-"watermark.scale" = "Мащаб";
-"watermark.selectLogo" = "Избери изображение";
-"watermark.tileMode" = "Режим плочки";
-"watermark.tileMode.desc" = "Повтори върху изображението";
+
 "watermark.title" = "Воден знак";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Добави воден знак";
+"watermark.logo" = "Лого";
+"watermark.selectLogo" = "Избери изображение";
+"watermark.removeLogo" = "Премахни";
+"watermark.position" = "Позиция";
+"watermark.scale" = "Мащаб";
+"watermark.opacity" = "Непрозрачност";
+"watermark.preview" = "Преглед";
+"watermark.apply" = "Приложи";
+"watermark.cancel" = "Отказ";
+"watermark.pos.topLeft" = "Горе вляво";
+"watermark.pos.topCenter" = "Горе център";
+"watermark.pos.topRight" = "Горе вдясно";
+"watermark.pos.centerLeft" = "Център вляво";
+"watermark.pos.center" = "Център";
+"watermark.pos.centerRight" = "Център вдясно";
+"watermark.pos.bottomLeft" = "Долу вляво";
+"watermark.pos.bottomCenter" = "Долу център";
+"watermark.pos.bottomRight" = "Долу вдясно";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Цветно наслагване";
+"watermark.color.none" = "Няма";
+"watermark.color.black" = "Черно";
+"watermark.color.darkGray" = "Тъмно сиво";
+"watermark.color.gray" = "Сиво";
+"watermark.color.lightGray" = "Светло сиво";
+"watermark.color.white" = "Бяло";
+"watermark.tileMode" = "Режим плочки";
+"watermark.tileMode.desc" = "Повтори върху изображението";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Опции";
-"upscale.settings.model" = "Модел";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Стандарт Upscayl (4×) — подобряване на детайлите на изкуствения интелект";
-"upscale.settings.scale" = "Запълване";
-"upscale.scale.multiPassHint" = "8× и 16× пробег няколко преминавания с изкуствен интелект — отнема повече време.";
-"upscale.settings.outputFormat" = "Output format/ Формат на извеждане";
-"upscale.drop.title" = "Плъзнете и пуснете снимките тук";
-"upscale.drop.subtitle" = "или щракнете, за да прегледате файловете";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Само поддържаните растерни изображения могат да бъдат мащабирани тук";
-"upscale.runButton" = "Луксозна стока";
-"upscale.preview.run" = "Предварителен преглед";
-"upscale.preview.hint" = "Изберете мащаб и докоснете Предварителен преглед за сравнение";
-"upscale.preview.processing" = "Увеличаване на мащаба на визуализацията...";
-"upscale.preview.before" = "ПРЕДИ";
-"upscale.preview.after" = "СЛЕД";
-"upscale.preview.save" = "Записване";
-"upscale.preview.saveSettings" = "Преглед на запазването";
-"upscale.preview.autoSave" = "Запазване след визуализация";
-"upscale.preview.autoSaveHint" = "Записва в целевата папка, когато визуализацията приключи.";
-"upscale.preview.saveNeedFolder" = "Първо изберете целева папка.";
-"upscale.preview.saveFailed" = "Не може да се кодира изображението за предварителен преглед.";
-"upscale.preview.loadFailed" = "Изображението за предварителен преглед не може да се зареди.";
-"upscale.backend.missing.hint" = "От пакета с приложения липсват файловете на двигателя или модела на cometscaly. Възстановяване на проекта.";
-"upscale.error.bundle" = "Голямата папка на пакета липсва в приложението.";
-"upscale.error.binary" = "ядрото cometscaly не е намерено в пакета приложения.";
-"upscale.error.model" = "Липсват файлове с модели upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Неуспешно увеличаване на мащаба (изход %d): %@";
-"upscale.error.none" = "Няма изображения с по - голям мащаб.";
-"videoedit.resize.modePercent" = "Запълване";
-"videoedit.resize.modeCustom" = "Потребителски размер";
-"videoedit.resize.autoFill" = "Автоматично запълване на платно";
-"videoedit.resize.autoFillHint" = "Когато е включено: големи кадри се побират вътре с пощенска кутия; по - малки кадри се увеличават и се изрязват в центъра, за да се запълнят.";
+"inspector.format" = "Формат";
+"inspector.output" = "Изход";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Добавете снимка за преглед";
+"watermark.rotation" = "Завъртане";
+"watermark.text" = "Текст на логото";
+"watermark.text.placeholder" = "Въведете текст на логото";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

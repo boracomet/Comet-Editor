@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Kéo ảnh vào đây";
 "convert.drop.subtitle" = "Hỗ trợ PNG, JPG, WebP, HEIF và các định dạng khác";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Chiều rộng";
 "convert.settings.height" = "Chiều cao";
+
 "meta.info" = "Metadata sẽ được giữ lại";
+
 "convert.settings.targetFolder" = "THƯ MỤC ĐÍCH";
 "convert.settings.noFolder" = "Chưa chọn thư mục";
 "convert.settings.chooseFolder" = "Chọn thư mục";
+
+"folder.missing.title" = "Không tìm thấy thư mục";
+"folder.missing.subtitle" = "Đường dẫn thư mục đã lưu không còn tồn tại. Vui lòng chọn đường dẫn mới.";
+"folder.missing.pick" = "Chọn thư mục mới";
+"folder.missing.panel.message" = "Không tìm thấy thư mục đầu ra. Vui lòng chọn thư mục mới.";
+
+"bgremove.error.noMaskFound" = "Không tìm thấy mặt nạ tiền cảnh.";
+"bgremove.error.maskConversionFailed" = "Chuyển đổi mặt nạ thất bại.";
+"bgremove.error.compositeFailed" = "Kết hợp hình ảnh thất bại.";
+
 "convert.settings.convertButton" = "Chuyển đổi";
 "convert.clearAll" = "Xóa tất cả";
 "convert.addMore" = "Thêm nữa";
 "convert.wrongType.image" = "Ở đây chỉ có thể chuyển đổi hình ảnh";
+
+"upscale.settings.title" = "Cài đặt";
+"upscale.settings.model" = "Mô hình";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — tăng cường chi tiết bằng AI";
+"upscale.settings.scale" = "Tỷ lệ";
+"upscale.scale.multiPassHint" = "8× và 16× chạy nhiều vòng AI — lâu hơn.";
+"upscale.settings.outputFormat" = "Định dạng đầu ra";
+"upscale.drop.title" = "Kéo và thả ảnh";
+"upscale.drop.subtitle" = "hoặc nhấp để duyệt tệp";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Chỉ có thể phóng to ảnh raster được hỗ trợ tại đây";
+"upscale.runButton" = "Phóng to";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Xem trước";
+"upscale.preview.hint" = "Chọn tỷ lệ và chạm Xem trước để so sánh";
+"upscale.preview.processing" = "Đang tạo xem trước…";
+"upscale.preview.before" = "TRƯỚC";
+"upscale.preview.after" = "SAU";
+"upscale.preview.save" = "Lưu";
+"upscale.preview.saveSettings" = "Lưu xem trước";
+"upscale.preview.autoSave" = "Lưu sau khi xem trước";
+"upscale.preview.autoSaveHint" = "Ghi vào thư mục đích khi xem trước xong.";
+"upscale.preview.saveNeedFolder" = "Hãy chọn thư mục đích trước.";
+"upscale.preview.saveFailed" = "Không thể mã hóa ảnh xem trước.";
+"upscale.preview.loadFailed" = "Không thể tải ảnh xem trước.";
+"upscale.backend.missing.hint" = "Gói ứng dụng thiếu engine cometscaly hoặc tệp mô hình. Hãy build lại dự án.";
+"upscale.error.bundle" = "Thiếu thư mục bundle Upscale trong ứng dụng.";
+"upscale.error.binary" = "Không tìm thấy cometscaly trong gói ứng dụng.";
+"upscale.error.model" = "Thiếu tệp mô hình upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Phóng to thất bại (exit %d): %@";
+"upscale.error.none" = "Không có ảnh nào được phóng to.";
+
 "menu.home" = "Trang chủ";
 "menu.convertImage" = "Chuyển đổi ảnh";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Cài đặt";
 "menu.tools" = "Công cụ";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Nhóm";
-"menu.team.title" = "Phát triển bởi Comet Dev";
-"menu.team.subtitle" = "Được tạo ra với tình yêu và sự chú ý đến từng chi tiết";
 "menu.stockImage" = "Ảnh stock";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Xóa nền";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Phông chữ";
 "menu.videoConvert" = "Chuyển đổi video";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Gửi phản hồi";
-"team.thanks_grafix" = "Đặc biệt cảm ơn Grafix vì thiết kế";
+
 "alert.success.title" = "Thành công";
 "alert.error.title" = "Lỗi";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Mở thư mục";
 "alert.success.message.image" = "Ảnh đã được lưu vào %@.";
 "alert.success.message.video" = "Video đã được lưu vào %@.";
+"alert.error.conversion" = "Một số hình ảnh không thể chuyển đổi.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Hỗ trợ MP4, MOV, AVI và các định dạng khác";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% gốc";
 "video.resolution.50" = "50% gốc";
 "video.resolution.25" = "25% gốc (Chất lượng thấp)";
+
 "pdf.drop.title" = "Kéo tệp PDF vào đây";
 "pdf.drop.subtitle" = "Chọn tệp PDF để chỉnh sửa";
 "pdf.page.count" = "%lld trang";
 "pdf.page.info" = "Trang %lld / %lld";
 "pdf.estimatedSize" = "Kích thước ước tính";
+"pdf.quality.modal.title" = "Chọn mức tối ưu hóa";
+"pdf.quality.modal.subtitle" = "Chọn mức độ giảm kích thước tệp. Nén cao hơn có nghĩa là tệp nhỏ hơn với một số mất mát chất lượng.";
+"pdf.quality.modal.estimated" = "Kích thước ước tính";
+"pdf.quality.modal.confirm" = "Tối ưu hóa";
+"pdf.quality.modal.cancel" = "Hủy";
+"pdf.quality.low.title" = "Nén tối đa";
+"pdf.quality.low.desc" = "Tệp nhỏ nhất, mất chất lượng rõ ràng";
+"pdf.quality.medium.title" = "Cân bằng";
+"pdf.quality.medium.desc" = "Cân bằng tốt giữa kích thước và chất lượng";
+"pdf.quality.high.title" = "Chất lượng cao";
+"pdf.quality.high.desc" = "Mất chất lượng tối thiểu, giảm kích thước vừa phải";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Tối ưu hóa PDF";
+"pdf.tools.quality" = "CHẤT LƯỢNG";
+"pdf.tools.quality.label" = "Chất lượng hình ảnh";
+"pdf.tools.quality.small" = "Tệp nhỏ hơn";
+"pdf.tools.quality.large" = "Chất lượng tốt hơn";
+"pdf.tools.quality.lossless" = "Không mất dữ liệu";
+"pdf.tools.resolution" = "TỶ LỆ ĐỘ PHÂN GIẢI";
+"pdf.tools.resolution.enable" = "Giảm độ phân giải";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "BỘ CHUYỂN ĐỔI RGB/CMYK";
+"pdf.color.enable" = "Chuyển đổi không gian màu";
+"pdf.color.convert" = "Chuyển đổi & Lưu";
 "pdf.tools.save" = "Lưu PDF";
 "pdf.reorder.title" = "Sắp xếp lại trang";
 "pdf.reorder.hint" = "Kéo để thay đổi thứ tự trang";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Sau";
 "pdf.addContent.atEnd" = "Ở cuối";
 "pdf.addContent.chooseFile" = "Chọn tệp";
+
 "stock.deselectAll" = "Bỏ chọn tất cả";
 "stock.download" = "Tải xuống";
 "stock.download.count" = "Tải xuống %d ảnh";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Nhập URL hoặc văn bản tại đây...";
 "qr.settings.colors" = "Màu sắc";
 "qr.settings.fgColor" = "Màu nền trước";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Độ phân giải";
 "qr.settings.customSize" = "Kích thước tùy chỉnh (px)";
 "qr.download" = "Tải mã QR";
+"qr.settings.type" = "Loại QR";
+"qr.type.website" = "Trang web";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Danh bạ (vCard)";
+"qr.type.email" = "Email";
+"qr.type.phone" = "Điện thoại";
+"qr.wifi.ssid" = "Tên mạng (SSID)";
+"qr.wifi.password" = "Mật khẩu";
+"qr.wifi.hidden" = "Mạng ẩn";
+"qr.wifi.noEncryption" = "Không";
+"qr.vcard.firstName" = "Tên";
+"qr.vcard.lastName" = "Họ";
+"qr.vcard.phone" = "Điện thoại";
+"qr.vcard.email" = "Email";
+"qr.vcard.company" = "Công ty";
+"qr.vcard.jobTitle" = "Chức danh";
+"qr.vcard.address" = "Địa chỉ";
+"qr.vcard.website" = "Trang web";
+"qr.email.address" = "Địa chỉ email";
+"qr.email.subject" = "Tiêu đề";
+"qr.email.body" = "Nội dung";
+"qr.phone.number" = "Số điện thoại";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Tính năng này yêu cầu macOS 14 hoặc mới hơn";
 "bgremove.drop.title" = "Kéo ảnh vào đây";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Làm mềm cạnh";
 "bgremove.settings.featherAmount" = "Mức độ làm mềm";
+
 "ocr.drop.title" = "Kéo ảnh vào đây";
 "ocr.drop.subtitle" = "Hỗ trợ PNG, JPG và WebP";
 "ocr.processing" = "Đang nhận dạng văn bản...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Xóa";
 "ocr.newFile" = "Tệp mới";
 "ocr.copied" = "Đã sao chép!";
+
 "app.comingSoon.title" = "Sắp ra mắt";
 "app.comingSoon.message" = "Tính năng này đang được phát triển và sẽ sớm có mặt.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Tìm phông chữ...";
 "font.preview.custom" = "Xem trước tùy chỉnh";
 "font.inspector.preview" = "XEM TRƯỚC";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d gia đình";
 "font.styles.count" = "%d kiểu · %@";
 "font.noResults" = "Không tìm thấy phông chữ";
-"suggestion.title" = "Gửi đề xuất";
-"suggestion.subtitle" = "Chia sẻ ý tưởng của bạn và giúp chúng tôi cải thiện";
-"suggestion.placeholder.title" = "Tiêu đề";
-"suggestion.placeholder.body" = "Mô tả chi tiết đề xuất của bạn...";
-"suggestion.category.bug" = "Lỗi";
-"suggestion.category.feature" = "Yêu cầu tính năng";
-"suggestion.category.ui" = "Giao diện";
-"suggestion.category.performance" = "Hiệu suất";
-"suggestion.category.other" = "Khác";
-"suggestion.send" = "Gửi đề xuất";
-"suggestion.sending" = "Đang gửi...";
-"suggestion.sent.title" = "Cảm ơn!";
-"suggestion.sent.message" = "Đề xuất của bạn đã được nhận. Chúng tôi sẽ xem xét sớm.";
-"suggestion.error" = "Gửi thất bại. Vui lòng thử lại.";
-"suggestion.validation.title" = "Thiếu thông tin";
-"suggestion.validation.body" = "Vui lòng điền tiêu đề và mô tả.";
-
-"suggestion.label.category" = "Danh mục";
-"suggestion.label.title" = "Tiêu đề";
-"suggestion.label.description" = "Mô tả";
 
 "video.drop.title" = "Kéo thả video vào đây";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Ở đây chỉ có thể chuyển đổi video";
+
 "app.maintenance.title" = "Chế độ bảo trì";
 "app.forceUpdate.title" = "Cần cập nhật";
 "app.forceUpdate.button" = "Cập nhật trên App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Tìm kiếm";
 "stock.search.placeholder" = "Tìm kiếm ảnh...";
 "stock.selected" = "Đã chọn %d";
+
 "video.cancel" = "Hủy";
 "video.error.decoder" = "Không thể giải mã video.";
 "video.saved.gain" = "đã tiết kiệm";
 "video.saved.increased" = "lớn hơn";
 "video.settings.fps.desc" = "Tắt để giữ nguyên FPS gốc";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Hình ảnh";
 "pdf.tools.pageManagement" = "QUẢN LÝ TRANG";
 "pdf.tools.addContent" = "Thêm nội dung";
 "pdf.tools.reorder" = "Sắp xếp lại";
 "pdf.tools.targetFolder" = "THƯ MỤC ĐÍCH";
-"alert.error.conversion" = "Một số hình ảnh không thể chuyển đổi.";
-"pdf.color.convert" = "Chuyển đổi & Lưu";
-"pdf.color.enable" = "Chuyển đổi không gian màu";
-"pdf.color.title" = "BỘ CHUYỂN ĐỔI RGB/CMYK";
-"pdf.tools.quality" = "CHẤT LƯỢNG";
-"pdf.tools.quality.label" = "Chất lượng hình ảnh";
-"pdf.tools.quality.large" = "Chất lượng tốt hơn";
-"pdf.tools.quality.lossless" = "Không mất dữ liệu";
-"pdf.tools.resolution" = "TỶ LỆ ĐỘ PHÂN GIẢI";
-"pdf.tools.resolution.enable" = "Giảm độ phân giải";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Tệp nhỏ hơn";
 
 "ad.sponsored" = "Tài trợ";
 "ad.visit" = "Truy cập";
 
-"pdf.quality.modal.title" = "Chọn mức tối ưu hóa";
-"pdf.quality.modal.subtitle" = "Chọn mức độ giảm kích thước tệp. Nén cao hơn có nghĩa là tệp nhỏ hơn với một số mất mát chất lượng.";
-"pdf.quality.modal.estimated" = "Kích thước ước tính";
-"pdf.quality.modal.confirm" = "Tối ưu hóa";
-"pdf.quality.modal.cancel" = "Hủy";
-"pdf.quality.low.title" = "Nén tối đa";
-"pdf.quality.low.desc" = "Tệp nhỏ nhất, mất chất lượng rõ ràng";
-"pdf.quality.medium.title" = "Cân bằng";
-"pdf.quality.medium.desc" = "Cân bằng tốt giữa kích thước và chất lượng";
-"pdf.quality.high.title" = "Chất lượng cao";
-"pdf.quality.high.desc" = "Mất chất lượng tối thiểu, giảm kích thước vừa phải";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Tùy chỉnh trải nghiệm Comet Editor của bạn";
+"settings.section.output" = "ĐẦU RA";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Thư mục xuất mặc định";
+"settings.noFolderSelected" = "Chưa chọn — sẽ hỏi mỗi lần";
+"settings.chooseFolder" = "Chọn thư mục";
+"settings.clearFolder" = "Xóa";
+"settings.folderPicker.message" = "Chọn thư mục mặc định cho các tệp xuất";
+"settings.folderPicker.button" = "Chọn thư mục";
 
 "app.maintenance.title2" = "Đang bảo trì";
 "app.maintenance.body" = "Ứng dụng tạm thời không khả dụng. Chúng tôi sẽ sớm trở lại.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Cập nhật trên App Store";
 "app.quit2" = "Thoát ứng dụng";
 
-"settings.subtitle" = "Tùy chỉnh trải nghiệm Comet Editor của bạn";
-"settings.section.output" = "ĐẦU RA";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Thư mục xuất mặc định";
-"settings.noFolderSelected" = "Chưa chọn — sẽ hỏi mỗi lần";
-"settings.chooseFolder" = "Chọn thư mục";
-"settings.clearFolder" = "Xóa";
-"settings.folderPicker.message" = "Chọn thư mục mặc định cho các tệp xuất";
-"settings.folderPicker.button" = "Chọn thư mục";
-"menu.announcements" = "Thông báo";
-"announcements.subtitle" = "Tin tức và cập nhật mới nhất từ đội ngũ";
-"announcements.empty" = "Chưa có thông báo";
-
 "settings.pdfOutputFolder" = "Thư mục xuất PDF";
 
 "folder.default.prompt.title" = "Đặt làm thư mục mặc định?";
 "folder.default.prompt.body" = "Bạn có muốn đặt đây làm thư mục đầu ra mặc định không? Bạn có thể thay đổi bất kỳ lúc nào trong Cài đặt.";
 "folder.default.prompt.yes" = "Đặt làm mặc định";
 "folder.default.prompt.no" = "Không phải bây giờ";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Chỉnh sửa video";
-"qr.email.address" = "Địa chỉ email";
-"qr.email.body" = "Nội dung";
-"qr.email.subject" = "Tiêu đề";
-"qr.phone.number" = "Số điện thoại";
-"qr.settings.type" = "Loại QR";
-"qr.type.email" = "Email";
-"qr.type.phone" = "Điện thoại";
-"qr.type.vcard" = "Danh bạ (vCard)";
-"qr.type.website" = "Trang web";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Địa chỉ";
-"qr.vcard.company" = "Công ty";
-"qr.vcard.email" = "Email";
-"qr.vcard.firstName" = "Tên";
-"qr.vcard.jobTitle" = "Chức danh";
-"qr.vcard.lastName" = "Họ";
-"qr.vcard.phone" = "Điện thoại";
-"qr.vcard.website" = "Trang web";
-"qr.wifi.hidden" = "Mạng ẩn";
-"qr.wifi.noEncryption" = "Không";
-"qr.wifi.password" = "Mật khẩu";
-"qr.wifi.ssid" = "Tên mạng (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Thêm ảnh";
-"videoedit.addMore" = "Thêm";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Thêm video";
-"videoedit.empty.subtitle" = "Thả tệp video vào đây hoặc nhấn nút bên dưới";
-"videoedit.empty.title" = "Thêm video để chỉnh sửa";
-"videoedit.export.merge" = "Gộp và xuất";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Cài đặt";
-"videoedit.export.trim" = "Xuất clip";
-"videoedit.exporting" = "Đang xuất…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "THỜI LƯỢNG ẢNH";
-"videoedit.imageDuration.default" = "Mặc định cho ảnh mới";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "LƯU VÀO";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Áp dụng";
-"watermark.button" = "Thêm hình mờ";
-"watermark.cancel" = "Hủy";
-"watermark.color.black" = "Đen";
-"watermark.color.darkGray" = "Xám đậm";
-"watermark.color.gray" = "Xám";
-"watermark.color.lightGray" = "Xám nhạt";
-"watermark.color.none" = "Không";
-"watermark.color.white" = "Trắng";
-"watermark.colorOverlay" = "Lớp phủ màu";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Độ mờ";
-"watermark.pos.bottomCenter" = "Dưới giữa";
-"watermark.pos.bottomLeft" = "Dưới trái";
-"watermark.pos.bottomRight" = "Dưới phải";
-"watermark.pos.center" = "Giữa";
-"watermark.pos.centerLeft" = "Giữa trái";
-"watermark.pos.centerRight" = "Giữa phải";
-"watermark.pos.topCenter" = "Trên giữa";
-"watermark.pos.topLeft" = "Trên trái";
-"watermark.pos.topRight" = "Trên phải";
-"watermark.position" = "Vị trí";
-"watermark.preview" = "Xem trước";
-"watermark.removeLogo" = "Gỡ";
-"watermark.scale" = "Tỷ lệ";
-"watermark.selectLogo" = "Chọn ảnh";
-"watermark.tileMode" = "Chế độ lặp";
-"watermark.tileMode.desc" = "Lặp lại trên ảnh";
+
 "watermark.title" = "Hình mờ";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Thêm hình mờ";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Chọn ảnh";
+"watermark.removeLogo" = "Gỡ";
+"watermark.position" = "Vị trí";
+"watermark.scale" = "Tỷ lệ";
+"watermark.opacity" = "Độ mờ";
+"watermark.preview" = "Xem trước";
+"watermark.apply" = "Áp dụng";
+"watermark.cancel" = "Hủy";
+"watermark.pos.topLeft" = "Trên trái";
+"watermark.pos.topCenter" = "Trên giữa";
+"watermark.pos.topRight" = "Trên phải";
+"watermark.pos.centerLeft" = "Giữa trái";
+"watermark.pos.center" = "Giữa";
+"watermark.pos.centerRight" = "Giữa phải";
+"watermark.pos.bottomLeft" = "Dưới trái";
+"watermark.pos.bottomCenter" = "Dưới giữa";
+"watermark.pos.bottomRight" = "Dưới phải";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Lớp phủ màu";
+"watermark.color.none" = "Không";
+"watermark.color.black" = "Đen";
+"watermark.color.darkGray" = "Xám đậm";
+"watermark.color.gray" = "Xám";
+"watermark.color.lightGray" = "Xám nhạt";
+"watermark.color.white" = "Trắng";
+"watermark.tileMode" = "Chế độ lặp";
+"watermark.tileMode.desc" = "Lặp lại trên ảnh";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Cài đặt";
-"upscale.settings.model" = "Mô hình";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — tăng cường chi tiết bằng AI";
-"upscale.settings.scale" = "Tỷ lệ";
-"upscale.scale.multiPassHint" = "8× và 16× chạy nhiều vòng AI — lâu hơn.";
-"upscale.settings.outputFormat" = "Định dạng đầu ra";
-"upscale.drop.title" = "Kéo và thả ảnh";
-"upscale.drop.subtitle" = "hoặc nhấp để duyệt tệp";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Chỉ có thể phóng to ảnh raster được hỗ trợ tại đây";
-"upscale.runButton" = "Phóng to";
-"upscale.preview.run" = "Xem trước";
-"upscale.preview.hint" = "Chọn tỷ lệ và chạm Xem trước để so sánh";
-"upscale.preview.processing" = "Đang tạo xem trước…";
-"upscale.preview.before" = "TRƯỚC";
-"upscale.preview.after" = "SAU";
-"upscale.preview.save" = "Lưu";
-"upscale.preview.saveSettings" = "Lưu xem trước";
-"upscale.preview.autoSave" = "Lưu sau khi xem trước";
-"upscale.preview.autoSaveHint" = "Ghi vào thư mục đích khi xem trước xong.";
-"upscale.preview.saveNeedFolder" = "Hãy chọn thư mục đích trước.";
-"upscale.preview.saveFailed" = "Không thể mã hóa ảnh xem trước.";
-"upscale.preview.loadFailed" = "Không thể tải ảnh xem trước.";
-"upscale.backend.missing.hint" = "Gói ứng dụng thiếu engine cometscaly hoặc tệp mô hình. Hãy build lại dự án.";
-"upscale.error.bundle" = "Thiếu thư mục bundle Upscale trong ứng dụng.";
-"upscale.error.binary" = "Không tìm thấy cometscaly trong gói ứng dụng.";
-"upscale.error.model" = "Thiếu tệp mô hình upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Phóng to thất bại (exit %d): %@";
-"upscale.error.none" = "Không có ảnh nào được phóng to.";
-"videoedit.resize.modePercent" = "Tỷ lệ (%)";
-"videoedit.resize.modeCustom" = "Kích thước tùy chỉnh";
-"videoedit.resize.autoFill" = "Tự động lấp đầy canvas";
-"videoedit.resize.autoFillHint" = "Bật: cảnh rộng vừa khung với letterbox; cảnh nhỏ được phóng to và cắt giữa để lấp đầy.";
+"inspector.format" = "Định dạng";
+"inspector.output" = "Đầu ra";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Thêm ảnh để xem trước";
+"watermark.rotation" = "Xoay";
+"watermark.text" = "Chữ logo";
+"watermark.text.placeholder" = "Nhập chữ logo";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

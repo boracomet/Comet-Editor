@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "拖放圖片";
 "convert.drop.subtitle" = "或點擊瀏覽檔案";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "闊度 px";
 "convert.settings.height" = "高度 px";
+
 "meta.info" = "元數據保護";
+
 "convert.settings.targetFolder" = "目標資料夾";
 "convert.settings.noFolder" = "未選擇";
 "convert.settings.chooseFolder" = "從 Finder 選擇";
+
+"folder.missing.title" = "找不到資料夾";
+"folder.missing.subtitle" = "已儲存的資料夾路徑不再存在，請選擇新路徑。";
+"folder.missing.pick" = "選擇新資料夾";
+"folder.missing.panel.message" = "找不到輸出資料夾，請選擇新資料夾。";
+
+"bgremove.error.noMaskFound" = "找不到前景遮罩。";
+"bgremove.error.maskConversionFailed" = "遮罩轉換失敗。";
+"bgremove.error.compositeFailed" = "圖像合成失敗。";
+
 "convert.settings.convertButton" = "轉換";
 "convert.clearAll" = "全部清除";
 "convert.addMore" = "新增";
 "convert.wrongType.image" = "此處只能轉換圖片";
+
+"upscale.settings.title" = "設定";
+"upscale.settings.model" = "模型";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 細節增強";
+"upscale.settings.scale" = "縮放";
+"upscale.scale.multiPassHint" = "8× 與 16× 會執行多輪 AI，耗時更久。";
+"upscale.settings.outputFormat" = "輸出格式";
+"upscale.drop.title" = "拖放圖像";
+"upscale.drop.subtitle" = "或按一下瀏覽檔案";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "此處僅可放大支援的點陣影像";
+"upscale.runButton" = "放大";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "預覽";
+"upscale.preview.hint" = "選擇縮放比例並點一下「預覽」以比較";
+"upscale.preview.processing" = "正在產生預覽…";
+"upscale.preview.before" = "前";
+"upscale.preview.after" = "後";
+"upscale.preview.save" = "儲存";
+"upscale.preview.saveSettings" = "儲存預覽";
+"upscale.preview.autoSave" = "預覽後儲存";
+"upscale.preview.autoSaveHint" = "預覽完成後寫入目標資料夾。";
+"upscale.preview.saveNeedFolder" = "請先選擇目標資料夾。";
+"upscale.preview.saveFailed" = "無法編碼預覽圖像。";
+"upscale.preview.loadFailed" = "無法載入預覽圖像。";
+"upscale.backend.missing.hint" = "應用程式套件缺少 cometscaly 引擎或模型檔案。請重新建置專案。";
+"upscale.error.bundle" = "應用程式缺少 Upscale 套件資料夾。";
+"upscale.error.binary" = "在應用程式套件中找不到 cometscaly。";
+"upscale.error.model" = "缺少模型檔案 upscayl-standard-4x.param/.bin。";
+"upscale.error.process" = "放大失敗 (exit %d): %@";
+"upscale.error.none" = "沒有放大任何圖像。";
+
 "menu.home" = "主頁";
 "menu.convertImage" = "圖片轉換";
 "menu.upscaleImage" = "影像放大";
@@ -28,9 +78,6 @@
 "menu.settings" = "設定";
 "menu.tools" = "工具";
 "menu.document" = "文件";
-"menu.team" = "我們的團隊";
-"menu.team.title" = "我們的團隊";
-"menu.team.subtitle" = "認識 Comet Editor 背後的優秀人才";
 "menu.stockImage" = "圖庫圖片";
 "menu.qrCode" = "二維碼";
 "menu.bgRemove" = "背景移除";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "下載字型";
 "menu.videoConvert" = "影片轉換";
 "menu.pdfEdit" = "PDF 編輯";
-"menu.suggestion" = "傳送意見回饋";
-"team.thanks_grafix" = "感謝 Grafix 社群的貢獻。";
+
 "alert.success.title" = "成功";
 "alert.error.title" = "錯誤";
 "alert.ok" = "確定";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "開啟資料夾";
 "alert.success.message.image" = "圖片已成功儲存至 %@。";
 "alert.success.message.video" = "影片已成功儲存至 %@。";
+"alert.error.conversion" = "部分圖片無法轉換。";
+
 "home.welcome" = "歡迎使用 Comet Editor";
 "home.welcome.subtitle" = "您需要的功能盡在同一個 App。";
 "home.visitWebsite" = "造訪我們的網站";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "品質平衡的 MP4，一站式轉換或壓縮。";
 "home.quick.pdf.title" = "編輯 PDF";
 "home.quick.pdf.subtitle" = "開啟 PDF 編輯器，在同一處重新排序、壓縮或微調。";
+"home.feature.convertImage.desc" = "將影像轉換為 PNG、JPG、WebP、HEIF 等格式。";
+"home.feature.videoConvert.desc" = "輕鬆轉換並壓縮影片。";
+"home.feature.stockImage.desc" = "瀏覽並下載高品質免費圖庫照片。";
+"home.feature.pdfEdit.desc" = "編輯、重新排序、壓縮並管理 PDF 檔案。";
+"home.feature.qrCode.desc" = "即時產生並自訂 QR 圖碼。";
+"home.feature.bgRemove.desc" = "使用 AI 自動移除影像背景。";
+"home.feature.ocr.desc" = "透過光學辨識從影像擷取文字。";
+"home.feature.fontDownload.desc" = "在 Mac 上瀏覽並下載 Google Fonts 字型。";
 "home.preset.pdf.deletePage" = "刪除頁面";
 "home.preset.pdf.reorder" = "重新排序頁面";
 "home.preset.pdf.optimize" = "最佳化 PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "在右側面板選擇輸出格式（PNG、JPG、WebP、HEIC 等）。";
 "home.guide.convertImage.step3" = "調整品質、縮放或尺寸後轉換。";
 "home.guide.convertImage.tip" = "可一次加入多張圖片，每個檔案以相同設定單獨轉換。";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "將影片轉換並壓縮為 MP4、MOV、AVI 等格式。";
 "home.guide.video.step2" = "選擇輸出格式（MP4、MOV 等）並調整影格率或解析度。";
 "home.guide.video.step3" = "開啟或關閉音訊後點按轉換。";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "預覽字型並選擇需要的樣式。";
 "home.guide.font.step3" = "點按下載將字型安裝到 Mac。";
 "home.guide.font.tip" = "已安裝字型會立刻在所有 App 中可用。";
-"home.feature.convertImage.desc" = "將影像轉換為 PNG、JPG、WebP、HEIF 等格式。";
-"home.feature.videoConvert.desc" = "輕鬆轉換並壓縮影片。";
-"home.feature.stockImage.desc" = "瀏覽並下載高品質免費圖庫照片。";
-"home.feature.pdfEdit.desc" = "編輯、重新排序、壓縮並管理 PDF 檔案。";
-"home.feature.qrCode.desc" = "即時產生並自訂 QR 圖碼。";
-"home.feature.bgRemove.desc" = "使用 AI 自動移除影像背景。";
-"home.feature.ocr.desc" = "透過光學辨識從影像擷取文字。";
-"home.feature.fontDownload.desc" = "在 Mac 上瀏覽並下載 Google Fonts 字型。";
+
 "video.drop.subtitle" = "或點擊瀏覽影片檔案";
 "video.settings.format" = "格式";
 "video.settings.fps" = "幀率限制";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% 大小";
 "video.resolution.50" = "50% 大小";
 "video.resolution.25" = "25% 大小（低質素）";
+
 "pdf.drop.title" = "拖放 PDF";
 "pdf.drop.subtitle" = "或點擊瀏覽 PDF 檔案";
 "pdf.page.count" = "%lld 頁";
 "pdf.page.info" = "第 %lld 頁，共 %lld 頁";
 "pdf.estimatedSize" = "預估優化後大小";
+"pdf.quality.modal.title" = "選擇最佳化等級";
+"pdf.quality.modal.subtitle" = "選擇要壓縮檔案大小的程度。壓縮率越高，檔案越小，但會有一定畫質損失。";
+"pdf.quality.modal.estimated" = "預估大小";
+"pdf.quality.modal.confirm" = "最佳化";
+"pdf.quality.modal.cancel" = "取消";
+"pdf.quality.low.title" = "最大壓縮";
+"pdf.quality.low.desc" = "檔案最小，畫質損失明顯";
+"pdf.quality.medium.title" = "均衡";
+"pdf.quality.medium.desc" = "大小與畫質的良好平衡";
+"pdf.quality.high.title" = "高畫質";
+"pdf.quality.high.desc" = "畫質損失最小，適度縮小檔案";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "優化 PDF";
+"pdf.tools.quality" = "品質";
+"pdf.tools.quality.label" = "影像品質";
+"pdf.tools.quality.small" = "更小的檔案";
+"pdf.tools.quality.large" = "更好的品質";
+"pdf.tools.quality.lossless" = "無損";
+"pdf.tools.resolution" = "解析度縮放";
+"pdf.tools.resolution.enable" = "降低解析度";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK 轉換器";
+"pdf.color.enable" = "轉換色彩空間";
+"pdf.color.convert" = "轉換並儲存";
 "pdf.tools.save" = "儲存 PDF";
 "pdf.reorder.title" = "頁面順序";
 "pdf.reorder.hint" = "按住 Ctrl 多選，然後拖曳以重新排列。";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "在此頁面後插入";
 "pdf.addContent.atEnd" = "附加至末尾";
 "pdf.addContent.chooseFile" = "選擇檔案並插入";
+
 "stock.deselectAll" = "取消全選";
 "stock.download" = "下載所選";
 "stock.download.count" = "下載 %d 張照片";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "在此輸入網址或文字...";
 "qr.settings.colors" = "顏色";
 "qr.settings.fgColor" = "前景顏色";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "解析度";
 "qr.settings.customSize" = "自訂大小（px）";
 "qr.download" = "下載 QR 碼";
+"qr.settings.type" = "QR 類型";
+"qr.type.website" = "網站";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "聯絡人（vCard）";
+"qr.type.email" = "電子郵件";
+"qr.type.phone" = "電話";
+"qr.wifi.ssid" = "網路名稱（SSID）";
+"qr.wifi.password" = "密碼";
+"qr.wifi.hidden" = "隱藏網路";
+"qr.wifi.noEncryption" = "無";
+"qr.vcard.firstName" = "名字";
+"qr.vcard.lastName" = "姓氏";
+"qr.vcard.phone" = "電話";
+"qr.vcard.email" = "電子郵件";
+"qr.vcard.company" = "公司";
+"qr.vcard.jobTitle" = "職稱";
+"qr.vcard.address" = "地址";
+"qr.vcard.website" = "網站";
+"qr.email.address" = "電子郵件地址";
+"qr.email.subject" = "主旨";
+"qr.email.body" = "內文";
+"qr.phone.number" = "電話號碼";
+
 "bgremove.unavailable.title" = "需要 macOS 14";
 "bgremove.unavailable.subtitle" = "背景移除使用 Apple 神經網絡引擎技術。\n請更新至 macOS 14 Sonoma 或更新版本。";
 "bgremove.drop.title" = "拖放圖片";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "邊緣細化";
 "bgremove.settings.feather" = "羽化";
 "bgremove.settings.featherAmount" = "羽化量";
+
 "ocr.drop.title" = "拖放圖片";
 "ocr.drop.subtitle" = "或點擊瀏覽檔案";
 "ocr.processing" = "正在識別文字...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "清除";
 "ocr.newFile" = "新增檔案";
 "ocr.copied" = "已複製！";
+
 "app.comingSoon.title" = "即將推出";
 "app.comingSoon.message" = "此功能即將上線。";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "搜尋字型...";
 "font.preview.custom" = "輸入文字...";
 "font.inspector.preview" = "預覽";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "韓文";
 "font.writing.thai" = "泰文";
 "font.writing.vietnamese" = "越南文";
-
 "font.families.count" = "%d 個字體家族";
 "font.styles.count" = "%d 種樣式 · %@";
 "font.noResults" = "找不到字體";
-"suggestion.title" = "傳送建議";
-"suggestion.subtitle" = "分享您的想法，幫助我們改進";
-"suggestion.placeholder.title" = "標題";
-"suggestion.placeholder.body" = "詳細描述您的建議...";
-"suggestion.category.bug" = "錯誤";
-"suggestion.category.feature" = "功能請求";
-"suggestion.category.ui" = "介面";
-"suggestion.category.performance" = "效能";
-"suggestion.category.other" = "其他";
-"suggestion.send" = "傳送建議";
-"suggestion.sending" = "傳送中...";
-"suggestion.sent.title" = "感謝！";
-"suggestion.sent.message" = "您的建議已收到，我們將盡快審查。";
-"suggestion.error" = "傳送失敗，請重試。";
-"suggestion.validation.title" = "缺少欄位";
-"suggestion.validation.body" = "請填寫標題和描述。";
-
-"suggestion.label.category" = "分類";
-"suggestion.label.title" = "標題";
-"suggestion.label.description" = "描述";
 
 "video.drop.title" = "將影片拖放至此";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "此處只能轉換影片";
+
 "app.maintenance.title" = "維護模式";
 "app.forceUpdate.title" = "需要更新";
 "app.forceUpdate.button" = "在 App Store 更新";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "部分圖片無法轉換。";
-"pdf.color.convert" = "轉換並儲存";
-"pdf.color.enable" = "轉換色彩空間";
-"pdf.color.title" = "RGB/CMYK 轉換器";
-"pdf.tools.quality" = "品質";
-"pdf.tools.quality.label" = "影像品質";
-"pdf.tools.quality.large" = "更好的品質";
-"pdf.tools.quality.lossless" = "無損";
-"pdf.tools.resolution" = "解析度縮放";
-"pdf.tools.resolution.enable" = "降低解析度";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "更小的檔案";
 
 "ad.sponsored" = "贊助";
 "ad.visit" = "前往";
 
-"pdf.quality.modal.title" = "選擇最佳化等級";
-"pdf.quality.modal.subtitle" = "選擇要壓縮檔案大小的程度。壓縮率越高，檔案越小，但會有一定畫質損失。";
-"pdf.quality.modal.estimated" = "預估大小";
-"pdf.quality.modal.confirm" = "最佳化";
-"pdf.quality.modal.cancel" = "取消";
-"pdf.quality.low.title" = "最大壓縮";
-"pdf.quality.low.desc" = "檔案最小，畫質損失明顯";
-"pdf.quality.medium.title" = "均衡";
-"pdf.quality.medium.desc" = "大小與畫質的良好平衡";
-"pdf.quality.high.title" = "高畫質";
-"pdf.quality.high.desc" = "畫質損失最小，適度縮小檔案";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "自訂您的 Comet Editor 體驗";
+"settings.section.output" = "輸出";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "關於";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "預設輸出資料夾";
+"settings.noFolderSelected" = "未選擇 — 每次都會詢問";
+"settings.chooseFolder" = "選擇資料夾";
+"settings.clearFolder" = "清除";
+"settings.folderPicker.message" = "選擇匯出檔案的預設資料夾";
+"settings.folderPicker.button" = "選擇資料夾";
 
 "app.maintenance.title2" = "維護中";
 "app.maintenance.body" = "應用程式暫時無法使用，我們將儘快恢復。";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "在 App Store 更新";
 "app.quit2" = "結束應用程式";
 
-"settings.subtitle" = "自訂您的 Comet Editor 體驗";
-"settings.section.output" = "輸出";
-"settings.section.about" = "關於";
-"settings.defaultOutputFolder" = "預設輸出資料夾";
-"settings.noFolderSelected" = "未選擇 — 每次都會詢問";
-"settings.chooseFolder" = "選擇資料夾";
-"settings.clearFolder" = "清除";
-"settings.folderPicker.message" = "選擇匯出檔案的預設資料夾";
-"settings.folderPicker.button" = "選擇資料夾";
-"menu.announcements" = "公告";
-"announcements.subtitle" = "來自團隊的最新消息";
-"announcements.empty" = "目前沒有公告";
-
 "settings.pdfOutputFolder" = "PDF 輸出資料夾";
 
 "folder.default.prompt.title" = "設為預設資料夾？";
 "folder.default.prompt.body" = "是否將此設為預設輸出資料夾？您可以隨時在設定中更改。";
 "folder.default.prompt.yes" = "設為預設";
 "folder.default.prompt.no" = "暫不";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "修剪片段、移除不需要的部分，並將多段影片合併為一。";
-"home.guide.videoedit.preset.concat" = "合併影片";
-"home.guide.videoedit.preset.trim" = "修剪影片";
-"home.guide.videoedit.step1" = "使用 + 按鈕或拖放加入一個或多個影片檔。";
-"home.guide.videoedit.step2" = "選擇片段後在時間軸拖移修剪控點設定起迄。";
-"home.guide.videoedit.step3" = "在列表中拖移片段以設定最終順序。";
-"home.guide.videoedit.step4" = "選擇輸出格式與資料夾，然後點按輸出。";
-"home.guide.videoedit.tip" = "修剪控點可對齊到毫秒，請用播放列預覽剪切位置。";
-"menu.videoEdit" = "影片編輯";
-"qr.email.address" = "電子郵件地址";
-"qr.email.body" = "內文";
-"qr.email.subject" = "主旨";
-"qr.phone.number" = "電話號碼";
-"qr.settings.type" = "QR 類型";
-"qr.type.email" = "電子郵件";
-"qr.type.phone" = "電話";
-"qr.type.vcard" = "聯絡人（vCard）";
-"qr.type.website" = "網站";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "地址";
-"qr.vcard.company" = "公司";
-"qr.vcard.email" = "電子郵件";
-"qr.vcard.firstName" = "名字";
-"qr.vcard.jobTitle" = "職稱";
-"qr.vcard.lastName" = "姓氏";
-"qr.vcard.phone" = "電話";
-"qr.vcard.website" = "網站";
-"qr.wifi.hidden" = "隱藏網路";
-"qr.wifi.noEncryption" = "無";
-"qr.wifi.password" = "密碼";
-"qr.wifi.ssid" = "網路名稱（SSID）";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "加入照片";
-"videoedit.addMore" = "加入";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "加入影片";
-"videoedit.empty.subtitle" = "將影片檔拖放到此處或點擊下方按鈕";
-"videoedit.empty.title" = "加入要編輯的影片";
-"videoedit.export.merge" = "合併並輸出";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "設定";
-"videoedit.export.trim" = "輸出片段";
-"videoedit.exporting" = "正在輸出…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "照片長度";
-"videoedit.imageDuration.default" = "新照片的預設值";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "儲存至";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "套用";
-"watermark.button" = "加入浮水印";
-"watermark.cancel" = "取消";
-"watermark.color.black" = "黑色";
-"watermark.color.darkGray" = "深灰色";
-"watermark.color.gray" = "灰色";
-"watermark.color.lightGray" = "淺灰色";
-"watermark.color.none" = "無";
-"watermark.color.white" = "白色";
-"watermark.colorOverlay" = "顏色疊加";
-"watermark.logo" = "標誌";
-"watermark.opacity" = "不透明度";
-"watermark.pos.bottomCenter" = "下中";
-"watermark.pos.bottomLeft" = "左下";
-"watermark.pos.bottomRight" = "右下";
-"watermark.pos.center" = "置中";
-"watermark.pos.centerLeft" = "左中";
-"watermark.pos.centerRight" = "右中";
-"watermark.pos.topCenter" = "上中";
-"watermark.pos.topLeft" = "左上";
-"watermark.pos.topRight" = "右上";
-"watermark.position" = "位置";
-"watermark.preview" = "預覽";
-"watermark.removeLogo" = "移除";
-"watermark.scale" = "縮放";
-"watermark.selectLogo" = "選擇圖片";
-"watermark.tileMode" = "拼貼模式";
-"watermark.tileMode.desc" = "在影像上重複";
+
 "watermark.title" = "浮水印";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "加入浮水印";
+"watermark.logo" = "標誌";
+"watermark.selectLogo" = "選擇圖片";
+"watermark.removeLogo" = "移除";
+"watermark.position" = "位置";
+"watermark.scale" = "縮放";
+"watermark.opacity" = "不透明度";
+"watermark.preview" = "預覽";
+"watermark.apply" = "套用";
+"watermark.cancel" = "取消";
+"watermark.pos.topLeft" = "左上";
+"watermark.pos.topCenter" = "上中";
+"watermark.pos.topRight" = "右上";
+"watermark.pos.centerLeft" = "左中";
+"watermark.pos.center" = "置中";
+"watermark.pos.centerRight" = "右中";
+"watermark.pos.bottomLeft" = "左下";
+"watermark.pos.bottomCenter" = "下中";
+"watermark.pos.bottomRight" = "右下";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "顏色疊加";
+"watermark.color.none" = "無";
+"watermark.color.black" = "黑色";
+"watermark.color.darkGray" = "深灰色";
+"watermark.color.gray" = "灰色";
+"watermark.color.lightGray" = "淺灰色";
+"watermark.color.white" = "白色";
+"watermark.tileMode" = "拼貼模式";
+"watermark.tileMode.desc" = "在影像上重複";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "設定";
-"upscale.settings.model" = "模型";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 細節增強";
-"upscale.settings.scale" = "縮放";
-"upscale.scale.multiPassHint" = "8× 與 16× 會執行多輪 AI，耗時更久。";
-"upscale.settings.outputFormat" = "輸出格式";
-"upscale.drop.title" = "拖放圖像";
-"upscale.drop.subtitle" = "或按一下瀏覽檔案";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "此處僅可放大支援的點陣影像";
-"upscale.runButton" = "放大";
-"upscale.preview.run" = "預覽";
-"upscale.preview.hint" = "選擇縮放比例並點一下「預覽」以比較";
-"upscale.preview.processing" = "正在產生預覽…";
-"upscale.preview.before" = "前";
-"upscale.preview.after" = "後";
-"upscale.preview.save" = "儲存";
-"upscale.preview.saveSettings" = "儲存預覽";
-"upscale.preview.autoSave" = "預覽後儲存";
-"upscale.preview.autoSaveHint" = "預覽完成後寫入目標資料夾。";
-"upscale.preview.saveNeedFolder" = "請先選擇目標資料夾。";
-"upscale.preview.saveFailed" = "無法編碼預覽圖像。";
-"upscale.preview.loadFailed" = "無法載入預覽圖像。";
-"upscale.backend.missing.hint" = "應用程式套件缺少 cometscaly 引擎或模型檔案。請重新建置專案。";
-"upscale.error.bundle" = "應用程式缺少 Upscale 套件資料夾。";
-"upscale.error.binary" = "在應用程式套件中找不到 cometscaly。";
-"upscale.error.model" = "缺少模型檔案 upscayl-standard-4x.param/.bin。";
-"upscale.error.process" = "放大失敗 (exit %d): %@";
-"upscale.error.none" = "沒有放大任何圖像。";
-"videoedit.resize.modePercent" = "縮放 (%)";
-"videoedit.resize.modeCustom" = "自訂大小";
-"videoedit.resize.autoFill" = "自動填滿畫布";
-"videoedit.resize.autoFillHint" = "開啟：較寬素材以黑邊適配；較小素材放大並置中裁切以填滿。";
+"inspector.format" = "格式";
+"inspector.output" = "輸出";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "新增照片以預覽";
+"watermark.rotation" = "旋轉";
+"watermark.text" = "標誌文字";
+"watermark.text.placeholder" = "輸入標誌文字";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

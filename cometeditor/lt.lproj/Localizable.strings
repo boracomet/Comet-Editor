@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Vilkite vaizdus čia";
 "convert.drop.subtitle" = "Palaiko PNG, JPG, WebP, HEIF ir kitus formatus";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Plotis";
 "convert.settings.height" = "Aukštis";
+
 "meta.info" = "Metaduomenys bus išsaugoti";
+
 "convert.settings.targetFolder" = "PASKIRTIES APLANKAS";
 "convert.settings.noFolder" = "Aplankas nepasirinktas";
 "convert.settings.chooseFolder" = "Pasirinkti aplanką";
+
+"folder.missing.title" = "Aplankas nerastas";
+"folder.missing.subtitle" = "Išsaugoto aplanko kelias nebeegzistuoja. Pasirinkite naują.";
+"folder.missing.pick" = "Pasirinkti naują aplanką";
+"folder.missing.panel.message" = "Išvesties aplankas nerastas. Pasirinkite naują aplanką.";
+
+"bgremove.error.noMaskFound" = "Priekinio plano kaukė nerasta.";
+"bgremove.error.maskConversionFailed" = "Nepavyko konvertuoti kaukės.";
+"bgremove.error.compositeFailed" = "Nepavyko sukomponuoti vaizdo.";
+
 "convert.settings.convertButton" = "Konvertuoti";
 "convert.clearAll" = "Išvalyti viską";
 "convert.addMore" = "Pridėti daugiau";
 "convert.wrongType.image" = "Čia galima konvertuoti tik vaizdus";
+
+"upscale.settings.title" = "Nustatymai";
+"upscale.settings.model" = "Modelis";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — detalių gerinimas DI";
+"upscale.settings.scale" = "Mastelis";
+"upscale.scale.multiPassHint" = "8× ir 16× vykdo kelis DI praejimus — užtrunka ilgiau.";
+"upscale.settings.outputFormat" = "Išvesties formatas";
+"upscale.drop.title" = "Vilkite ir numeskite paveikslėlius";
+"upscale.drop.subtitle" = "arba spustelėkite, norėdami naršyti failus";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Čia galima padidinti tik palaikomus rastrinius paveikslėlius";
+"upscale.runButton" = "Padidinti";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Peržiūra";
+"upscale.preview.hint" = "Pasirinkite mastelį ir palieskite Peržiūra palyginimui";
+"upscale.preview.processing" = "Kuriama peržiūra…";
+"upscale.preview.before" = "PRIEŠ";
+"upscale.preview.after" = "PO";
+"upscale.preview.save" = "Išsaugoti";
+"upscale.preview.saveSettings" = "Išsaugoti peržiūrą";
+"upscale.preview.autoSave" = "Išsaugoti po peržiūros";
+"upscale.preview.autoSaveHint" = "Baigus peržiūrą įrašo į paskirties aplanką.";
+"upscale.preview.saveNeedFolder" = "Pirmiausia pasirinkite paskirties aplanką.";
+"upscale.preview.saveFailed" = "Nepavyko užkoduoti peržiūros paveikslėlio.";
+"upscale.preview.loadFailed" = "Nepavyko įkelti peržiūros paveikslėlio.";
+"upscale.backend.missing.hint" = "Programėlės pakete trūksta cometscaly variklio ar modelio failų. Perkurkite projektą.";
+"upscale.error.bundle" = "Programėlėje trūksta Upscale paketo aplanko.";
+"upscale.error.binary" = "cometscaly nerasta programėlės pakete.";
+"upscale.error.model" = "Trūksta modelio failų upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Padidinimas nepavyko (exit %d): %@";
+"upscale.error.none" = "Ne vienas paveikslėlis nepadidintas.";
+
 "menu.home" = "Pradžia";
 "menu.convertImage" = "Vaizdų konvertavimas";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Nustatymai";
 "menu.tools" = "Įrankiai";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Komanda";
-"menu.team.title" = "Sukūrė Comet Dev";
-"menu.team.subtitle" = "Sukurta su meile ir dėmesiu detalėms";
 "menu.stockImage" = "Stock nuotraukos";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Fono šalinimas";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Šriftai";
 "menu.videoConvert" = "Vaizdo įrašų konvertavimas";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Siųsti atsiliepimą";
-"team.thanks_grafix" = "Ypatingas dėkingumas Grafix už dizainą";
+
 "alert.success.title" = "Sėkmė";
 "alert.error.title" = "Klaida";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Atidaryti aplanką";
 "alert.success.message.image" = "Vaizdas išsaugotas į %@.";
 "alert.success.message.video" = "Vaizdo įrašas išsaugotas į %@.";
+"alert.error.conversion" = "Kai kurių vaizdų nepavyko konvertuoti.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Palaiko MP4, MOV, AVI ir kitus formatus";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% originalo";
 "video.resolution.50" = "50% originalo";
 "video.resolution.25" = "25% originalo (Žema kokybė)";
+
 "pdf.drop.title" = "Vilkite PDF failą čia";
 "pdf.drop.subtitle" = "Pasirinkite PDF failą redagavimui";
 "pdf.page.count" = "%lld puslapių";
 "pdf.page.info" = "Puslapis %lld iš %lld";
 "pdf.estimatedSize" = "Numatomas dydis";
+"pdf.quality.modal.title" = "Pasirinkite optimizavimo lygį";
+"pdf.quality.modal.subtitle" = "Pasirinkite, kiek sumažinti failo dydį. Didesnis glaudinimas reiškia mažesnį failą su tam tikru kokybės praradimu.";
+"pdf.quality.modal.estimated" = "Numatomas dydis";
+"pdf.quality.modal.confirm" = "Optimizuoti";
+"pdf.quality.modal.cancel" = "Atšaukti";
+"pdf.quality.low.title" = "Maksimalus glaudinimas";
+"pdf.quality.low.desc" = "Mažiausias failas, matomas kokybės praradimas";
+"pdf.quality.medium.title" = "Subalansuotas";
+"pdf.quality.medium.desc" = "Geras dydžio ir kokybės balansas";
+"pdf.quality.high.title" = "Aukšta kokybė";
+"pdf.quality.high.desc" = "Minimalus kokybės praradimas, vidutinis sumažinimas";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimizuoti PDF";
+"pdf.tools.quality" = "KOKYBĖ";
+"pdf.tools.quality.label" = "Vaizdo kokybė";
+"pdf.tools.quality.small" = "Mažesnis failas";
+"pdf.tools.quality.large" = "Geresnė kokybė";
+"pdf.tools.quality.lossless" = "Be nuostolių";
+"pdf.tools.resolution" = "REZOLIUCIJOS SKALĖ";
+"pdf.tools.resolution.enable" = "Sumažinti rezoliuciją";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK KEITIKLIS";
+"pdf.color.enable" = "Konvertuoti spalvų erdvę";
+"pdf.color.convert" = "Konvertuoti ir išsaugoti";
 "pdf.tools.save" = "Išsaugoti PDF";
 "pdf.reorder.title" = "Puslapių pertvarkymas";
 "pdf.reorder.hint" = "Vilkite norėdami pakeisti puslapių tvarką";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Po";
 "pdf.addContent.atEnd" = "Pabaigoje";
 "pdf.addContent.chooseFile" = "Pasirinkti failą";
+
 "stock.deselectAll" = "Atžymėti viską";
 "stock.download" = "Atsisiųsti";
 "stock.download.count" = "Atsisiųsti %d nuotraukų";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Įveskite URL arba tekstą čia...";
 "qr.settings.colors" = "Spalvos";
 "qr.settings.fgColor" = "Priekinio plano spalva";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Raiška";
 "qr.settings.customSize" = "Tinkintas dydis (px)";
 "qr.download" = "Atsisiųsti QR kodą";
+"qr.settings.type" = "QR tipas";
+"qr.type.website" = "Interneto svetainė";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontaktas (vCard)";
+"qr.type.email" = "El. paštas";
+"qr.type.phone" = "Telefonas";
+"qr.wifi.ssid" = "Tinklo pavadinimas (SSID)";
+"qr.wifi.password" = "Slaptažodis";
+"qr.wifi.hidden" = "Paslėptas tinklas";
+"qr.wifi.noEncryption" = "Nėra";
+"qr.vcard.firstName" = "Vardas";
+"qr.vcard.lastName" = "Pavardė";
+"qr.vcard.phone" = "Telefonas";
+"qr.vcard.email" = "El. paštas";
+"qr.vcard.company" = "Įmonė";
+"qr.vcard.jobTitle" = "Pareigos";
+"qr.vcard.address" = "Adresas";
+"qr.vcard.website" = "Interneto svetainė";
+"qr.email.address" = "El. pašto adresas";
+"qr.email.subject" = "Tema";
+"qr.email.body" = "Žinutė";
+"qr.phone.number" = "Telefono numeris";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Šiai funkcijai reikalinga macOS 14 arba naujesnė versija";
 "bgremove.drop.title" = "Vilkite vaizdus čia";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Kraštų minkštinimas";
 "bgremove.settings.featherAmount" = "Minkštinimo laipsnis";
+
 "ocr.drop.title" = "Vilkite vaizdą čia";
 "ocr.drop.subtitle" = "Palaiko PNG, JPG ir WebP";
 "ocr.processing" = "Atpažįstamas tekstas...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Išvalyti";
 "ocr.newFile" = "Naujas failas";
 "ocr.copied" = "Nukopijuota!";
+
 "app.comingSoon.title" = "Netrukus";
 "app.comingSoon.message" = "Ši funkcija kuriama ir netrukus bus prieinama.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Ieškoti šriftų...";
 "font.preview.custom" = "Pasirinktinė peržiūra";
 "font.inspector.preview" = "PERŽIŪRA";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d šeimų";
 "font.styles.count" = "%d stilių · %@";
 "font.noResults" = "Šriftų nerasta";
-"suggestion.title" = "Siųsti pasiūlymą";
-"suggestion.subtitle" = "Pasidalykite idėjomis ir padėkite mums tobulėti";
-"suggestion.placeholder.title" = "Pavadinimas";
-"suggestion.placeholder.body" = "Išsamiai apibūdinkite savo pasiūlymą...";
-"suggestion.category.bug" = "Klaida";
-"suggestion.category.feature" = "Funkcijos užklausa";
-"suggestion.category.ui" = "Sąsaja";
-"suggestion.category.performance" = "Našumas";
-"suggestion.category.other" = "Kita";
-"suggestion.send" = "Siųsti pasiūlymą";
-"suggestion.sending" = "Siunčiama...";
-"suggestion.sent.title" = "Ačiū!";
-"suggestion.sent.message" = "Jūsų pasiūlymas gautas. Netrukus jį peržiūrėsime.";
-"suggestion.error" = "Siuntimas nepavyko. Bandykite dar kartą.";
-"suggestion.validation.title" = "Trūksta laukų";
-"suggestion.validation.body" = "Užpildykite pavadinimą ir aprašymą.";
-
-"suggestion.label.category" = "Kategorija";
-"suggestion.label.title" = "Pavadinimas";
-"suggestion.label.description" = "Aprašymas";
 
 "video.drop.title" = "Numeskite vaizdo įrašą čia";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Čia galima konvertuoti tik vaizdo įrašus";
+
 "app.maintenance.title" = "Priežiūros režimas";
 "app.forceUpdate.title" = "Reikalingas atnaujinimas";
 "app.forceUpdate.button" = "Atnaujinti App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ieškoti";
 "stock.search.placeholder" = "Ieškoti nuotraukų...";
 "stock.selected" = "%d pasirinkta";
+
 "video.cancel" = "Atšaukti";
 "video.error.decoder" = "Vaizdo įrašo nepavyko iššifruoti.";
 "video.saved.gain" = "sutaupyta";
 "video.saved.increased" = "didesnis";
 "video.settings.fps.desc" = "Išjunkite, kad išlaikytumėte originalų FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Vaizdas";
 "pdf.tools.pageManagement" = "PUSLAPIŲ TVARKYMAS";
 "pdf.tools.addContent" = "Pridėti turinį";
 "pdf.tools.reorder" = "Pertvarkyti";
 "pdf.tools.targetFolder" = "PASKIRTIES APLANKAS";
-"alert.error.conversion" = "Kai kurių vaizdų nepavyko konvertuoti.";
-"pdf.color.convert" = "Konvertuoti ir išsaugoti";
-"pdf.color.enable" = "Konvertuoti spalvų erdvę";
-"pdf.color.title" = "RGB/CMYK KEITIKLIS";
-"pdf.tools.quality" = "KOKYBĖ";
-"pdf.tools.quality.label" = "Vaizdo kokybė";
-"pdf.tools.quality.large" = "Geresnė kokybė";
-"pdf.tools.quality.lossless" = "Be nuostolių";
-"pdf.tools.resolution" = "REZOLIUCIJOS SKALĖ";
-"pdf.tools.resolution.enable" = "Sumažinti rezoliuciją";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Mažesnis failas";
 
 "ad.sponsored" = "Remiama";
 "ad.visit" = "Apsilankyti";
 
-"pdf.quality.modal.title" = "Pasirinkite optimizavimo lygį";
-"pdf.quality.modal.subtitle" = "Pasirinkite, kiek sumažinti failo dydį. Didesnis glaudinimas reiškia mažesnį failą su tam tikru kokybės praradimu.";
-"pdf.quality.modal.estimated" = "Numatomas dydis";
-"pdf.quality.modal.confirm" = "Optimizuoti";
-"pdf.quality.modal.cancel" = "Atšaukti";
-"pdf.quality.low.title" = "Maksimalus glaudinimas";
-"pdf.quality.low.desc" = "Mažiausias failas, matomas kokybės praradimas";
-"pdf.quality.medium.title" = "Subalansuotas";
-"pdf.quality.medium.desc" = "Geras dydžio ir kokybės balansas";
-"pdf.quality.high.title" = "Aukšta kokybė";
-"pdf.quality.high.desc" = "Minimalus kokybės praradimas, vidutinis sumažinimas";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Tinkinkite savo Comet Editor patirtį";
+"settings.section.output" = "IŠVESTIS";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Numatytasis išvesties aplankas";
+"settings.noFolderSelected" = "Nepasirinkta — bus klausiama kiekvieną kartą";
+"settings.chooseFolder" = "Pasirinkti aplanką";
+"settings.clearFolder" = "Išvalyti";
+"settings.folderPicker.message" = "Pasirinkite numatytąjį eksportuojamų failų aplanką";
+"settings.folderPicker.button" = "Pasirinkti aplanką";
 
 "app.maintenance.title2" = "Vykdoma priežiūra";
 "app.maintenance.body" = "Programa laikinai nepasiekiama. Greitai grįšime.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Atnaujinti App Store";
 "app.quit2" = "Uždaryti programą";
 
-"settings.subtitle" = "Tinkinkite savo Comet Editor patirtį";
-"settings.section.output" = "IŠVESTIS";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Numatytasis išvesties aplankas";
-"settings.noFolderSelected" = "Nepasirinkta — bus klausiama kiekvieną kartą";
-"settings.chooseFolder" = "Pasirinkti aplanką";
-"settings.clearFolder" = "Išvalyti";
-"settings.folderPicker.message" = "Pasirinkite numatytąjį eksportuojamų failų aplanką";
-"settings.folderPicker.button" = "Pasirinkti aplanką";
-"menu.announcements" = "Skelbimai";
-"announcements.subtitle" = "Naujausios komandos naujienos ir atnaujinimai";
-"announcements.empty" = "Skelbimų dar nėra";
-
 "settings.pdfOutputFolder" = "PDF išvesties aplankas";
 
 "folder.default.prompt.title" = "Nustatyti kaip numatytąjį aplanką?";
 "folder.default.prompt.body" = "Ar norite tai nustatyti kaip numatytąjį išvesties aplanką? Galite tai pakeisti bet kada Nustatymuose.";
 "folder.default.prompt.yes" = "Nustatyti kaip numatytąjį";
 "folder.default.prompt.no" = "Ne dabar";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Vaizdo įrašų redaktorius";
-"qr.email.address" = "El. pašto adresas";
-"qr.email.body" = "Žinutė";
-"qr.email.subject" = "Tema";
-"qr.phone.number" = "Telefono numeris";
-"qr.settings.type" = "QR tipas";
-"qr.type.email" = "El. paštas";
-"qr.type.phone" = "Telefonas";
-"qr.type.vcard" = "Kontaktas (vCard)";
-"qr.type.website" = "Interneto svetainė";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adresas";
-"qr.vcard.company" = "Įmonė";
-"qr.vcard.email" = "El. paštas";
-"qr.vcard.firstName" = "Vardas";
-"qr.vcard.jobTitle" = "Pareigos";
-"qr.vcard.lastName" = "Pavardė";
-"qr.vcard.phone" = "Telefonas";
-"qr.vcard.website" = "Interneto svetainė";
-"qr.wifi.hidden" = "Paslėptas tinklas";
-"qr.wifi.noEncryption" = "Nėra";
-"qr.wifi.password" = "Slaptažodis";
-"qr.wifi.ssid" = "Tinklo pavadinimas (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Pridėti nuotrauką";
-"videoedit.addMore" = "Pridėti";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Pridėti vaizdo įrašus";
-"videoedit.empty.subtitle" = "Meskite vaizdo failus čia arba spustelėkite mygtuką žemiau";
-"videoedit.empty.title" = "Pridėkite vaizdo įrašus redaguoti";
-"videoedit.export.merge" = "Sulieti ir eksportuoti";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Nustatymai";
-"videoedit.export.trim" = "Eksportuoti klipą";
-"videoedit.exporting" = "Eksportuojama…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "NUOTRAUKOS TRUKMĖ";
-"videoedit.imageDuration.default" = "Numatyta naujoms nuotraukoms";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "IŠSAUGOTI Į";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Taikyti";
-"watermark.button" = "Pridėti vandens ženklą";
-"watermark.cancel" = "Atšaukti";
-"watermark.color.black" = "Juoda";
-"watermark.color.darkGray" = "Tamsiai pilka";
-"watermark.color.gray" = "Pilka";
-"watermark.color.lightGray" = "Šviesiai pilka";
-"watermark.color.none" = "Nėra";
-"watermark.color.white" = "Balta";
-"watermark.colorOverlay" = "Spalvos perdanga";
-"watermark.logo" = "Logotipas";
-"watermark.opacity" = "Nepermatomumas";
-"watermark.pos.bottomCenter" = "Apačioje centre";
-"watermark.pos.bottomLeft" = "Apačioje kairėje";
-"watermark.pos.bottomRight" = "Apačioje dešinėje";
-"watermark.pos.center" = "Centre";
-"watermark.pos.centerLeft" = "Centre kairėje";
-"watermark.pos.centerRight" = "Centre dešinėje";
-"watermark.pos.topCenter" = "Viršuje centre";
-"watermark.pos.topLeft" = "Viršuje kairėje";
-"watermark.pos.topRight" = "Viršuje dešinėje";
-"watermark.position" = "Padėtis";
-"watermark.preview" = "Peržiūra";
-"watermark.removeLogo" = "Pašalinti";
-"watermark.scale" = "Mastelis";
-"watermark.selectLogo" = "Pasirinkti paveikslėlį";
-"watermark.tileMode" = "Plokščių režimas";
-"watermark.tileMode.desc" = "Kartoti per paveikslėlį";
+
 "watermark.title" = "Vandens ženklas";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Pridėti vandens ženklą";
+"watermark.logo" = "Logotipas";
+"watermark.selectLogo" = "Pasirinkti paveikslėlį";
+"watermark.removeLogo" = "Pašalinti";
+"watermark.position" = "Padėtis";
+"watermark.scale" = "Mastelis";
+"watermark.opacity" = "Nepermatomumas";
+"watermark.preview" = "Peržiūra";
+"watermark.apply" = "Taikyti";
+"watermark.cancel" = "Atšaukti";
+"watermark.pos.topLeft" = "Viršuje kairėje";
+"watermark.pos.topCenter" = "Viršuje centre";
+"watermark.pos.topRight" = "Viršuje dešinėje";
+"watermark.pos.centerLeft" = "Centre kairėje";
+"watermark.pos.center" = "Centre";
+"watermark.pos.centerRight" = "Centre dešinėje";
+"watermark.pos.bottomLeft" = "Apačioje kairėje";
+"watermark.pos.bottomCenter" = "Apačioje centre";
+"watermark.pos.bottomRight" = "Apačioje dešinėje";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Spalvos perdanga";
+"watermark.color.none" = "Nėra";
+"watermark.color.black" = "Juoda";
+"watermark.color.darkGray" = "Tamsiai pilka";
+"watermark.color.gray" = "Pilka";
+"watermark.color.lightGray" = "Šviesiai pilka";
+"watermark.color.white" = "Balta";
+"watermark.tileMode" = "Plokščių režimas";
+"watermark.tileMode.desc" = "Kartoti per paveikslėlį";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Nustatymai";
-"upscale.settings.model" = "Modelis";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — detalių gerinimas DI";
-"upscale.settings.scale" = "Mastelis";
-"upscale.scale.multiPassHint" = "8× ir 16× vykdo kelis DI praejimus — užtrunka ilgiau.";
-"upscale.settings.outputFormat" = "Išvesties formatas";
-"upscale.drop.title" = "Vilkite ir numeskite paveikslėlius";
-"upscale.drop.subtitle" = "arba spustelėkite, norėdami naršyti failus";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Čia galima padidinti tik palaikomus rastrinius paveikslėlius";
-"upscale.runButton" = "Padidinti";
-"upscale.preview.run" = "Peržiūra";
-"upscale.preview.hint" = "Pasirinkite mastelį ir palieskite Peržiūra palyginimui";
-"upscale.preview.processing" = "Kuriama peržiūra…";
-"upscale.preview.before" = "PRIEŠ";
-"upscale.preview.after" = "PO";
-"upscale.preview.save" = "Išsaugoti";
-"upscale.preview.saveSettings" = "Išsaugoti peržiūrą";
-"upscale.preview.autoSave" = "Išsaugoti po peržiūros";
-"upscale.preview.autoSaveHint" = "Baigus peržiūrą įrašo į paskirties aplanką.";
-"upscale.preview.saveNeedFolder" = "Pirmiausia pasirinkite paskirties aplanką.";
-"upscale.preview.saveFailed" = "Nepavyko užkoduoti peržiūros paveikslėlio.";
-"upscale.preview.loadFailed" = "Nepavyko įkelti peržiūros paveikslėlio.";
-"upscale.backend.missing.hint" = "Programėlės pakete trūksta cometscaly variklio ar modelio failų. Perkurkite projektą.";
-"upscale.error.bundle" = "Programėlėje trūksta Upscale paketo aplanko.";
-"upscale.error.binary" = "cometscaly nerasta programėlės pakete.";
-"upscale.error.model" = "Trūksta modelio failų upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Padidinimas nepavyko (exit %d): %@";
-"upscale.error.none" = "Ne vienas paveikslėlis nepadidintas.";
-"videoedit.resize.modePercent" = "Mastelis (%)";
-"videoedit.resize.modeCustom" = "Pasirinktinis dydis";
-"videoedit.resize.autoFill" = "Automatiškai užpildyti drobę";
-"videoedit.resize.autoFillHint" = "Įjungta: platus vaizdas telpa su letterbox; mažesnis priartinamas ir apkarpomas centre.";
+"inspector.format" = "Formatas";
+"inspector.output" = "Išvestis";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Pridėkite nuotrauką peržiūrai";
+"watermark.rotation" = "Pasukimas";
+"watermark.text" = "Logotipo tekstas";
+"watermark.text.placeholder" = "Įveskite logotipo tekstą";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

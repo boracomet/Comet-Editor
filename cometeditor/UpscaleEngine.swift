@@ -2,9 +2,8 @@
 //  UpscaleEngine.swift
 //  cometeditor
 //
-//  Upscayl NCNN (realesrgan-ncnn-vulkan) ikilisini uygulama paketindeki
-//  `Resources/upscale/` klasöründen çalıştırır.
-//  Gerekli: upscale/realesrgan-ncnn-vulkan + upscale/models/upscayl-standard-4x.{param,bin}
+//  Upscayl NCNN (realesrgan-ncnn-vulkan).
+//  Binary: Contents/MacOS/cometscaly. Models: Contents/Resources/upscale/models/.
 //
 
 import Foundation
@@ -60,7 +59,7 @@ enum UpscaleScale: Int, CaseIterable, Identifiable {
 enum UpscaleEngine {
     static let upscaylStandardNCNNModelName = "upscayl-standard-4x"
 
-    /// `Contents/Resources/upscale` (Xcode’da `third_party/upscale` klasör referansı)
+    /// Models stay in `Contents/Resources/upscale`; the binary is nested code in MacOS.
     private static func bundleUpscaleRoot() throws -> URL {
         guard let res = Bundle.main.resourceURL else { throw UpscaleEngineError.bundleLayoutMissing }
         let root = res.appendingPathComponent("upscale", isDirectory: true)
@@ -70,12 +69,17 @@ enum UpscaleEngine {
 
     private static let binaryName = "cometscaly"
 
-    private static func binaryURL(root: URL) throws -> URL {
-        let u = root.appendingPathComponent(binaryName)
-        guard FileManager.default.isExecutableFile(atPath: u.path) else {
-            throw UpscaleEngineError.binaryMissing
+    private static func binaryURL() throws -> URL {
+        let fm = FileManager.default
+        let bundle = Bundle.main.bundleURL
+        let candidates = [
+            bundle.appendingPathComponent("Contents/MacOS/\(binaryName)"),
+            bundle.appendingPathComponent("Contents/Helpers/\(binaryName)")
+        ]
+        if let u = candidates.first(where: { fm.isExecutableFile(atPath: $0.path) }) {
+            return u
         }
-        return u
+        throw UpscaleEngineError.binaryMissing
     }
 
     private static func modelsDirectoryURL(forRoot root: URL) -> URL {
@@ -87,7 +91,7 @@ enum UpscaleEngine {
         let root = res.appendingPathComponent("upscale", isDirectory: true)
         guard FileManager.default.fileExists(atPath: root.path),
               FileManager.default.fileExists(atPath: modelsDirectoryURL(forRoot: root).path) else { return false }
-        guard (try? binaryURL(root: root)) != nil else { return false }
+        guard (try? binaryURL()) != nil else { return false }
         return modelFilesExist(modelsDir: modelsDirectoryURL(forRoot: root))
     }
 
@@ -114,7 +118,7 @@ enum UpscaleEngine {
     /// `progress` 0…100 arası; çok geçişte geçiş başına ağırlıklandırılır.
     static func upscale(inputURL: URL, outputURL: URL, scale: UpscaleScale, progress: (@Sendable (Int) -> Void)? = nil) async throws {
         let root = try bundleUpscaleRoot()
-        let binary = try binaryURL(root: root)
+        let binary = try binaryURL()
         let modelsDir = modelsDirectoryURL(forRoot: root)
         guard modelFilesExist(modelsDir: modelsDir) else { throw UpscaleEngineError.modelFilesMissing }
 

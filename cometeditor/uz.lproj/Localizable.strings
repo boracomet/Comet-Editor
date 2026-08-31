@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Rasmni Sudrab Tashlang";
 "convert.drop.subtitle" = "yoki fayllarni ko'rish uchun bosing";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Kenglik px";
 "convert.settings.height" = "Balandlik px";
+
 "meta.info" = "Metadata himoyasi";
+
 "convert.settings.targetFolder" = "Maqsadli papka";
 "convert.settings.noFolder" = "Tanlanmagan";
 "convert.settings.chooseFolder" = "Finder-dan tanlang";
+
+"folder.missing.title" = "Papka topilmadi";
+"folder.missing.subtitle" = "Saqlangan papka yo'li endi mavjud emas. Yangi birini tanlang.";
+"folder.missing.pick" = "Yangi papka tanlash";
+"folder.missing.panel.message" = "Chiqish papkasi topilmadi. Yangi papka tanlang.";
+
+"bgremove.error.noMaskFound" = "Oldingi plan maskasi topilmadi.";
+"bgremove.error.maskConversionFailed" = "Maskani o'zgartirish muvaffaqiyatsiz.";
+"bgremove.error.compositeFailed" = "Tasvirni birlashtirish muvaffaqiyatsiz.";
+
 "convert.settings.convertButton" = "Aylantirish";
 "convert.clearAll" = "Hammasini tozalash";
 "convert.addMore" = "Qo'shish";
 "convert.wrongType.image" = "Bu yerda faqat rasmlar konvertatsiya qilinishi mumkin";
+
+"upscale.settings.title" = "Sozlamalar";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — sun’iy intellekt bilan tafsilotlarni yaxshilash";
+"upscale.settings.scale" = "Masshtab";
+"upscale.scale.multiPassHint" = "8× va 16× bir nechta AI o‘tkazishlarini bajaradi — uzoqroq.";
+"upscale.settings.outputFormat" = "Chiqish formati";
+"upscale.drop.title" = "Rasmlarni sudrab tashlang";
+"upscale.drop.subtitle" = "yoki fayllarni ko‘rish uchun bosing";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Bu yerda faqat qo‘llab-quvvatlanadigan raster rasmlarni kattalashtirish mumkin";
+"upscale.runButton" = "Kattalashtirish";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Oldindan ko‘rish";
+"upscale.preview.hint" = "Masshtabni tanlang va solishtirish uchun Oldindan ko‘rishni bosing";
+"upscale.preview.processing" = "Oldindan ko‘rish yaratilmoqda…";
+"upscale.preview.before" = "OLDIN";
+"upscale.preview.after" = "KEYIN";
+"upscale.preview.save" = "Saqlash";
+"upscale.preview.saveSettings" = "Oldindan ko‘rishni saqlash";
+"upscale.preview.autoSave" = "Oldindan ko‘rishdan keyin saqlash";
+"upscale.preview.autoSaveHint" = "Oldindan ko‘rish tugagach maqsadli papkaga yozadi.";
+"upscale.preview.saveNeedFolder" = "Avval maqsadli papkani tanlang.";
+"upscale.preview.saveFailed" = "Oldindan ko‘rish rasmini kodlash mumkin emas.";
+"upscale.preview.loadFailed" = "Oldindan ko‘rish rasmini yuklab bo‘lmadi.";
+"upscale.backend.missing.hint" = "Ilova paketida cometscaly dvigateli yoki model fayllari yo‘q. Loyihani qayta yarating.";
+"upscale.error.bundle" = "Ilovada Upscale bundle papkasi yo‘q.";
+"upscale.error.binary" = "Ilova paketida cometscaly topilmadi.";
+"upscale.error.model" = "upscayl-standard-4x.param/.bin model fayllari yo‘q.";
+"upscale.error.process" = "Kattalashtirish muvaffaqiyatsiz (exit %d): %@";
+"upscale.error.none" = "Hech qanday rasm kattalashtirilmadi.";
+
 "menu.home" = "Bosh sahifa";
 "menu.convertImage" = "Rasmni aylantirish";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Sozlamalar";
 "menu.tools" = "Vositalar";
 "menu.document" = "HUJJAT";
-"menu.team" = "Bizning jamoa";
-"menu.team.title" = "Bizning jamoa";
-"menu.team.subtitle" = "Comet Editor ortidagi iqtidorli odamlar bilan tanishing";
 "menu.stockImage" = "Stok rasm";
 "menu.qrCode" = "QR kod";
 "menu.bgRemove" = "Fonni o'chirish";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Shrift Yuklab Olish";
 "menu.videoConvert" = "Videoni aylantirish";
 "menu.pdfEdit" = "PDF tahrirlash";
-"menu.suggestion" = "Fikr yuborish";
-"team.thanks_grafix" = "Grafix hamjamiyatiga hissalari uchun minnatdorchilik bildiramiz.";
+
 "alert.success.title" = "Muvaffaqiyat";
 "alert.error.title" = "Xato";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Papkani ochish";
 "alert.success.message.image" = "Rasmlar muvaffaqiyatli %@ ga saqlandi.";
 "alert.success.message.video" = "Videolar muvaffaqiyatli %@ ga saqlandi.";
+"alert.error.conversion" = "Ba'zi rasmlarni konvertatsiya qilish imkonsiz.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "yoki video fayllarni ko'rish uchun bosing";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS CHEGARASI";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% o'lcham";
 "video.resolution.50" = "50% o'lcham";
 "video.resolution.25" = "25% o'lcham (past sifat)";
+
 "pdf.drop.title" = "PDF-ni Sudrab Tashlang";
 "pdf.drop.subtitle" = "yoki PDF fayllarni ko'rish uchun bosing";
 "pdf.page.count" = "%lld Sahifa";
 "pdf.page.info" = "%lld sahifaning %lld";
 "pdf.estimatedSize" = "Taxminiy optimallashtirilgan o'lcham";
+"pdf.quality.modal.title" = "Optimallashtirish darajasini tanlang";
+"pdf.quality.modal.subtitle" = "Fayl hajmini qancha kamaytirish kerakligini tanlang. Yuqori siqish — kichikroq fayl, lekin sifat biroz pasayadi.";
+"pdf.quality.modal.estimated" = "Taxminiy hajm";
+"pdf.quality.modal.confirm" = "Optimallashtirish";
+"pdf.quality.modal.cancel" = "Bekor qilish";
+"pdf.quality.low.title" = "Maksimal siqish";
+"pdf.quality.low.desc" = "Eng kichik fayl, ko'rinadigan sifat yo'qolishi";
+"pdf.quality.medium.title" = "Muvozanatli";
+"pdf.quality.medium.desc" = "Hajm va sifat o'rtasida yaxshi balans";
+"pdf.quality.high.title" = "Yuqori sifat";
+"pdf.quality.high.desc" = "Minimal sifat yo'qolishi, o'rtacha kamaytirish";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF ni optimallashtirish";
+"pdf.tools.quality" = "SIFAT";
+"pdf.tools.quality.label" = "Rasm sifati";
+"pdf.tools.quality.small" = "Kichikroq fayl";
+"pdf.tools.quality.large" = "Yaxshiroq sifat";
+"pdf.tools.quality.lossless" = "Yo'qotishsiz";
+"pdf.tools.resolution" = "RUXSAT MASSHTABI";
+"pdf.tools.resolution.enable" = "Ruxsatni kamaytirish";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK KONVERTOR";
+"pdf.color.enable" = "Rang maydonini konvertatsiya qilish";
+"pdf.color.convert" = "Konvertatsiya qilish va saqlash";
 "pdf.tools.save" = "PDF ni saqlash";
 "pdf.reorder.title" = "Sahifa tartibi";
 "pdf.reorder.hint" = "Ko'p tanlash uchun Ctrl ni ushlab turing, keyin sudrab o'tkazing.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Ushbu sahifadan keyin joylashtirish";
 "pdf.addContent.atEnd" = "Oxiriga qo'shish";
 "pdf.addContent.chooseFile" = "Fayl tanlang va joylashtiring";
+
 "stock.deselectAll" = "Hammasini bekor qilish";
 "stock.download" = "Tanlanganlarni yuklash";
 "stock.download.count" = "%d fotosurat yuklab olish";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "URL yoki matnni kiriting...";
 "qr.settings.colors" = "Ranglar";
 "qr.settings.fgColor" = "Old fon rangi";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Piksellar";
 "qr.settings.customSize" = "Maxsus o‘lcham (px)";
 "qr.download" = "QR kodni yuklab olish";
+"qr.settings.type" = "QR turi";
+"qr.type.website" = "Veb-sayt";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontakt (vCard)";
+"qr.type.email" = "Elektron pochta";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Tarmoq nomi (SSID)";
+"qr.wifi.password" = "Parol";
+"qr.wifi.hidden" = "Yashirin tarmoq";
+"qr.wifi.noEncryption" = "Yo‘q";
+"qr.vcard.firstName" = "Ism";
+"qr.vcard.lastName" = "Familiya";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "Elektron pochta";
+"qr.vcard.company" = "Kompaniya";
+"qr.vcard.jobTitle" = "Lavozim";
+"qr.vcard.address" = "Manzil";
+"qr.vcard.website" = "Veb-sayt";
+"qr.email.address" = "Elektron pochta manzili";
+"qr.email.subject" = "Mavzu";
+"qr.email.body" = "Xabar";
+"qr.phone.number" = "Telefon raqami";
+
 "bgremove.unavailable.title" = "macOS 14 talab etiladi";
 "bgremove.unavailable.subtitle" = "Fonni o'chirish Apple-ning Neural Engine texnologiyasidan foydalanadi.\nmacOS 14 Sonoma yoki undan keyingi versiyaga yangilang.";
 "bgremove.drop.title" = "Rasmni Sudrab Tashlang";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "CHEGARALARNI ANIQLASH";
 "bgremove.settings.feather" = "Yumshatish";
 "bgremove.settings.featherAmount" = "Yumshatish miqdori";
+
 "ocr.drop.title" = "Rasmni Sudrab Tashlang";
 "ocr.drop.subtitle" = "yoki fayllarni ko'rish uchun bosing";
 "ocr.processing" = "Matn tanib olinmoqda...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Tozalash";
 "ocr.newFile" = "Yangi fayl";
 "ocr.copied" = "Nusxa olindi!";
+
 "app.comingSoon.title" = "Tez kunda";
 "app.comingSoon.message" = "Bu funksiya tez kunda mavjud bo'ladi.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Search fonts...";
 "font.preview.custom" = "Type something...";
 "font.inspector.preview" = "Preview";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
-
 "font.families.count" = "%d oila";
 "font.styles.count" = "%d uslub · %@";
 "font.noResults" = "Shriftlar topilmadi";
-"suggestion.title" = "Taklif yuborish";
-"suggestion.subtitle" = "G'oyalaringizni baham ko'ring va bizni yaxshilashga yordam bering";
-"suggestion.placeholder.title" = "Sarlavha";
-"suggestion.placeholder.body" = "Taklifingizni batafsil tasvirlab bering...";
-"suggestion.category.bug" = "Xato";
-"suggestion.category.feature" = "Funksiya so'rovi";
-"suggestion.category.ui" = "Interfeys";
-"suggestion.category.performance" = "Unumdorlik";
-"suggestion.category.other" = "Boshqa";
-"suggestion.send" = "Taklif yuborish";
-"suggestion.sending" = "Yuborilmoqda...";
-"suggestion.sent.title" = "Rahmat!";
-"suggestion.sent.message" = "Taklifingiz qabul qilindi. Yaqinda ko'rib chiqamiz.";
-"suggestion.error" = "Yuborish muvaffaqiyatsiz. Qayta urinib ko'ring.";
-"suggestion.validation.title" = "Bo'sh maydonlar";
-"suggestion.validation.body" = "Sarlavha va tavsifni to'ldiring.";
-
-"suggestion.label.category" = "Kategoriya";
-"suggestion.label.title" = "Sarlavha";
-"suggestion.label.description" = "Tavsif";
 
 "video.drop.title" = "Videoni bu yerga tashlang";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Bu yerda faqat videolar konvertatsiya qilinishi mumkin";
+
 "app.maintenance.title" = "Texnik xizmat ko'rsatish rejimi";
 "app.forceUpdate.title" = "Yangilash talab qilinadi";
 "app.forceUpdate.button" = "App Store'da yangilash";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Ba'zi rasmlarni konvertatsiya qilish imkonsiz.";
-"pdf.color.convert" = "Konvertatsiya qilish va saqlash";
-"pdf.color.enable" = "Rang maydonini konvertatsiya qilish";
-"pdf.color.title" = "RGB/CMYK KONVERTOR";
-"pdf.tools.quality" = "SIFAT";
-"pdf.tools.quality.label" = "Rasm sifati";
-"pdf.tools.quality.large" = "Yaxshiroq sifat";
-"pdf.tools.quality.lossless" = "Yo'qotishsiz";
-"pdf.tools.resolution" = "RUXSAT MASSHTABI";
-"pdf.tools.resolution.enable" = "Ruxsatni kamaytirish";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Kichikroq fayl";
 
 "ad.sponsored" = "Reklama";
 "ad.visit" = "Tashrif";
 
-"pdf.quality.modal.title" = "Optimallashtirish darajasini tanlang";
-"pdf.quality.modal.subtitle" = "Fayl hajmini qancha kamaytirish kerakligini tanlang. Yuqori siqish — kichikroq fayl, lekin sifat biroz pasayadi.";
-"pdf.quality.modal.estimated" = "Taxminiy hajm";
-"pdf.quality.modal.confirm" = "Optimallashtirish";
-"pdf.quality.modal.cancel" = "Bekor qilish";
-"pdf.quality.low.title" = "Maksimal siqish";
-"pdf.quality.low.desc" = "Eng kichik fayl, ko'rinadigan sifat yo'qolishi";
-"pdf.quality.medium.title" = "Muvozanatli";
-"pdf.quality.medium.desc" = "Hajm va sifat o'rtasida yaxshi balans";
-"pdf.quality.high.title" = "Yuqori sifat";
-"pdf.quality.high.desc" = "Minimal sifat yo'qolishi, o'rtacha kamaytirish";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor tajribasini moslash";
+"settings.section.output" = "CHIQISH";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Standart chiqish papkasi";
+"settings.noFolderSelected" = "Tanlanmagan — har safar so'raladi";
+"settings.chooseFolder" = "Papka tanlash";
+"settings.clearFolder" = "Tozalash";
+"settings.folderPicker.message" = "Eksport qilingan fayllar uchun standart papkani tanlang";
+"settings.folderPicker.button" = "Papka tanlash";
 
 "app.maintenance.title2" = "Texnik xizmat";
 "app.maintenance.body" = "Ilova vaqtincha mavjud emas. Tez orada qaytamiz.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store'da yangilash";
 "app.quit2" = "Ilovani yopish";
 
-"settings.subtitle" = "Comet Editor tajribasini moslash";
-"settings.section.output" = "CHIQISH";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Standart chiqish papkasi";
-"settings.noFolderSelected" = "Tanlanmagan — har safar so'raladi";
-"settings.chooseFolder" = "Papka tanlash";
-"settings.clearFolder" = "Tozalash";
-"settings.folderPicker.message" = "Eksport qilingan fayllar uchun standart papkani tanlang";
-"settings.folderPicker.button" = "Papka tanlash";
-"menu.announcements" = "E'lonlar";
-"announcements.subtitle" = "Jamoadan so'nggi yangiliklar";
-"announcements.empty" = "Hozircha e'lon yo'q";
-
 "settings.pdfOutputFolder" = "PDF chiqish papkasi";
 
 "folder.default.prompt.title" = "Standart papka sifatida belgilash?";
 "folder.default.prompt.body" = "Bu papkani standart chiqish papkasi sifatida belgilamoqchimisiz? Buni Sozlamalarda istalgan vaqt o'zgartirishingiz mumkin.";
 "folder.default.prompt.yes" = "Standart sifatida belgilash";
 "folder.default.prompt.no" = "Hozir emas";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Video tahrirlash";
-"qr.email.address" = "Elektron pochta manzili";
-"qr.email.body" = "Xabar";
-"qr.email.subject" = "Mavzu";
-"qr.phone.number" = "Telefon raqami";
-"qr.settings.type" = "QR turi";
-"qr.type.email" = "Elektron pochta";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Kontakt (vCard)";
-"qr.type.website" = "Veb-sayt";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Manzil";
-"qr.vcard.company" = "Kompaniya";
-"qr.vcard.email" = "Elektron pochta";
-"qr.vcard.firstName" = "Ism";
-"qr.vcard.jobTitle" = "Lavozim";
-"qr.vcard.lastName" = "Familiya";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Veb-sayt";
-"qr.wifi.hidden" = "Yashirin tarmoq";
-"qr.wifi.noEncryption" = "Yo‘q";
-"qr.wifi.password" = "Parol";
-"qr.wifi.ssid" = "Tarmoq nomi (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Foto qo‘shish";
-"videoedit.addMore" = "Qo‘shish";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Video qo‘shish";
-"videoedit.empty.subtitle" = "Video fayllarni shu yerga tashlang yoki pastdagi tugmani bosing";
-"videoedit.empty.title" = "Tahrirlash uchun video qo‘shing";
-"videoedit.export.merge" = "Birlashtirib eksport qilish";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Sozlamalar";
-"videoedit.export.trim" = "Klipni eksport qilish";
-"videoedit.exporting" = "Eksport qilinmoqda…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTO DAVOMIYLIGI";
-"videoedit.imageDuration.default" = "Yangi fotolar uchun standart";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SAQLASH JOYI";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Qo‘llash";
-"watermark.button" = "Suv belgisini qo‘shish";
-"watermark.cancel" = "Bekor qilish";
-"watermark.color.black" = "Qora";
-"watermark.color.darkGray" = "To‘q kulrang";
-"watermark.color.gray" = "Kulrang";
-"watermark.color.lightGray" = "Och kulrang";
-"watermark.color.none" = "Yo‘q";
-"watermark.color.white" = "Oq";
-"watermark.colorOverlay" = "Rang qoplamasi";
-"watermark.logo" = "Logotip";
-"watermark.opacity" = "Shaffoflik";
-"watermark.pos.bottomCenter" = "Pastki markaz";
-"watermark.pos.bottomLeft" = "Pastki chap";
-"watermark.pos.bottomRight" = "Pastki o‘ng";
-"watermark.pos.center" = "Markaz";
-"watermark.pos.centerLeft" = "Markaz chap";
-"watermark.pos.centerRight" = "Markaz o‘ng";
-"watermark.pos.topCenter" = "Yuqori markaz";
-"watermark.pos.topLeft" = "Yuqori chap";
-"watermark.pos.topRight" = "Yuqori o‘ng";
-"watermark.position" = "Joylashuv";
-"watermark.preview" = "Oldindan ko‘rish";
-"watermark.removeLogo" = "Olib tashlash";
-"watermark.scale" = "Masshtab";
-"watermark.selectLogo" = "Rasm tanlash";
-"watermark.tileMode" = "Katakcha rejimi";
-"watermark.tileMode.desc" = "Rasm bo‘ylab takrorlash";
+
 "watermark.title" = "Suv belgisi";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Suv belgisini qo‘shish";
+"watermark.logo" = "Logotip";
+"watermark.selectLogo" = "Rasm tanlash";
+"watermark.removeLogo" = "Olib tashlash";
+"watermark.position" = "Joylashuv";
+"watermark.scale" = "Masshtab";
+"watermark.opacity" = "Shaffoflik";
+"watermark.preview" = "Oldindan ko‘rish";
+"watermark.apply" = "Qo‘llash";
+"watermark.cancel" = "Bekor qilish";
+"watermark.pos.topLeft" = "Yuqori chap";
+"watermark.pos.topCenter" = "Yuqori markaz";
+"watermark.pos.topRight" = "Yuqori o‘ng";
+"watermark.pos.centerLeft" = "Markaz chap";
+"watermark.pos.center" = "Markaz";
+"watermark.pos.centerRight" = "Markaz o‘ng";
+"watermark.pos.bottomLeft" = "Pastki chap";
+"watermark.pos.bottomCenter" = "Pastki markaz";
+"watermark.pos.bottomRight" = "Pastki o‘ng";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Rang qoplamasi";
+"watermark.color.none" = "Yo‘q";
+"watermark.color.black" = "Qora";
+"watermark.color.darkGray" = "To‘q kulrang";
+"watermark.color.gray" = "Kulrang";
+"watermark.color.lightGray" = "Och kulrang";
+"watermark.color.white" = "Oq";
+"watermark.tileMode" = "Katakcha rejimi";
+"watermark.tileMode.desc" = "Rasm bo‘ylab takrorlash";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Sozlamalar";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — sun’iy intellekt bilan tafsilotlarni yaxshilash";
-"upscale.settings.scale" = "Masshtab";
-"upscale.scale.multiPassHint" = "8× va 16× bir nechta AI o‘tkazishlarini bajaradi — uzoqroq.";
-"upscale.settings.outputFormat" = "Chiqish formati";
-"upscale.drop.title" = "Rasmlarni sudrab tashlang";
-"upscale.drop.subtitle" = "yoki fayllarni ko‘rish uchun bosing";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Bu yerda faqat qo‘llab-quvvatlanadigan raster rasmlarni kattalashtirish mumkin";
-"upscale.runButton" = "Kattalashtirish";
-"upscale.preview.run" = "Oldindan ko‘rish";
-"upscale.preview.hint" = "Masshtabni tanlang va solishtirish uchun Oldindan ko‘rishni bosing";
-"upscale.preview.processing" = "Oldindan ko‘rish yaratilmoqda…";
-"upscale.preview.before" = "OLDIN";
-"upscale.preview.after" = "KEYIN";
-"upscale.preview.save" = "Saqlash";
-"upscale.preview.saveSettings" = "Oldindan ko‘rishni saqlash";
-"upscale.preview.autoSave" = "Oldindan ko‘rishdan keyin saqlash";
-"upscale.preview.autoSaveHint" = "Oldindan ko‘rish tugagach maqsadli papkaga yozadi.";
-"upscale.preview.saveNeedFolder" = "Avval maqsadli papkani tanlang.";
-"upscale.preview.saveFailed" = "Oldindan ko‘rish rasmini kodlash mumkin emas.";
-"upscale.preview.loadFailed" = "Oldindan ko‘rish rasmini yuklab bo‘lmadi.";
-"upscale.backend.missing.hint" = "Ilova paketida cometscaly dvigateli yoki model fayllari yo‘q. Loyihani qayta yarating.";
-"upscale.error.bundle" = "Ilovada Upscale bundle papkasi yo‘q.";
-"upscale.error.binary" = "Ilova paketida cometscaly topilmadi.";
-"upscale.error.model" = "upscayl-standard-4x.param/.bin model fayllari yo‘q.";
-"upscale.error.process" = "Kattalashtirish muvaffaqiyatsiz (exit %d): %@";
-"upscale.error.none" = "Hech qanday rasm kattalashtirilmadi.";
-"videoedit.resize.modePercent" = "Masshtab (%)";
-"videoedit.resize.modeCustom" = "Maxsus o‘lcham";
-"videoedit.resize.autoFill" = "Kanvasni avtomatik to‘ldirish";
-"videoedit.resize.autoFillHint" = "Yoqilgan: keng material letterbox bilan sig‘adi; kichikroq kattalashtiriladi va markazdan kesiladi.";
+"inspector.format" = "Format";
+"inspector.output" = "Chiqish";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Ko‘rish uchun rasm qo‘shing";
+"watermark.rotation" = "Aylantirish";
+"watermark.text" = "Logo matni";
+"watermark.text.placeholder" = "Logo matnini kiriting";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

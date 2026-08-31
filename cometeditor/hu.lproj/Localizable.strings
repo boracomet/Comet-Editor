@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Húzza ide a képet";
 "convert.drop.subtitle" = "vagy kattintson a fájlok tallózásához";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Szélesség px";
 "convert.settings.height" = "Magasság px";
+
 "meta.info" = "Metaadatok védelme";
+
 "convert.settings.targetFolder" = "Célmappa";
 "convert.settings.noFolder" = "Nincs kiválasztva";
 "convert.settings.chooseFolder" = "Választás a Finderből";
+
+"folder.missing.title" = "Mappa nem található";
+"folder.missing.subtitle" = "A mentett mappaútvonal már nem létezik. Kérjük, válasszon újat.";
+"folder.missing.pick" = "Új mappa kiválasztása";
+"folder.missing.panel.message" = "A kimeneti mappa nem található. Kérjük, válasszon új mappát.";
+
+"bgremove.error.noMaskFound" = "Nem található előtérmaszk.";
+"bgremove.error.maskConversionFailed" = "A maszk átalakítása sikertelen.";
+"bgremove.error.compositeFailed" = "A képösszeállítás sikertelen.";
+
 "convert.settings.convertButton" = "Konvertálás";
 "convert.clearAll" = "Összes törlése";
 "convert.addMore" = "Hozzáadás";
 "convert.wrongType.image" = "Itt csak képeket lehet konvertálni";
+
+"upscale.settings.title" = "Beállítások";
+"upscale.settings.model" = "Modell";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — részletjavítás MI-vel";
+"upscale.settings.scale" = "Skála";
+"upscale.scale.multiPassHint" = "A 8× és 16× több MI-fordulót futtat — tovább tart.";
+"upscale.settings.outputFormat" = "Kimeneti formátum";
+"upscale.drop.title" = "Húzza ide a képeket";
+"upscale.drop.subtitle" = "vagy kattintson a fájlok tallózásához";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Csak támogatott raszterképek nagyíthatók itt";
+"upscale.runButton" = "Nagyítás";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Előnézet";
+"upscale.preview.hint" = "Válasszon skálát, és koppintson az Előnézetre az összehasonlításhoz";
+"upscale.preview.processing" = "Előnézet készítése…";
+"upscale.preview.before" = "ELŐTTE";
+"upscale.preview.after" = "UTÁNA";
+"upscale.preview.save" = "Mentés";
+"upscale.preview.saveSettings" = "Előnézet mentése";
+"upscale.preview.autoSave" = "Mentés előnézet után";
+"upscale.preview.autoSaveHint" = "Az előnézet végén a célmappába ír.";
+"upscale.preview.saveNeedFolder" = "Először válasszon célmappát.";
+"upscale.preview.saveFailed" = "Nem sikerült kódolni az előnézeti képet.";
+"upscale.preview.loadFailed" = "Nem sikerült betölteni az előnézeti képet.";
+"upscale.backend.missing.hint" = "A cometscaly motor vagy a modellfájlok hiányoznak az alkalmazás csomagjában. Építse újra a projektet.";
+"upscale.error.bundle" = "Hiányzik az Upscale bundle mappa az alkalmazásból.";
+"upscale.error.binary" = "A cometscaly nem található az alkalmazás csomagjában.";
+"upscale.error.model" = "Hiányoznak a upscayl-standard-4x.param/.bin modellfájlok.";
+"upscale.error.process" = "A nagyítás sikertelen (exit %d): %@";
+"upscale.error.none" = "Egy kép sem lett nagyítva.";
+
 "menu.home" = "Kezdőlap";
 "menu.convertImage" = "Kép konvertálása";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Beállítások";
 "menu.tools" = "Eszközök";
 "menu.document" = "DOKUMENTUM";
-"menu.team" = "Csapatunk";
-"menu.team.title" = "Csapatunk";
-"menu.team.subtitle" = "Ismerd meg a Comet Editor mögött álló tehetséges embereket";
 "menu.stockImage" = "Stock kép";
 "menu.qrCode" = "QR-kód";
 "menu.bgRemove" = "Háttér eltávolítása";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Betűtípus Letöltése";
 "menu.videoConvert" = "Videó konvertálása";
 "menu.pdfEdit" = "PDF szerkesztése";
-"menu.suggestion" = "Visszajelzés küldése";
-"team.thanks_grafix" = "Köszönetet mondunk a Grafix közösségnek hozzájárulásaikért.";
+
 "alert.success.title" = "Siker";
 "alert.error.title" = "Hiba";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Mappa megnyitása";
 "alert.success.message.image" = "A képek sikeresen mentve a következő helyre: %@.";
 "alert.success.message.video" = "A videók sikeresen mentve a következő helyre: %@.";
+"alert.error.conversion" = "Néhány képet nem sikerült konvertálni.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "vagy kattintson a videófájlok tallózásához";
 "video.settings.format" = "FORMÁTUM";
 "video.settings.fps" = "FPS KORLÁT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% méret";
 "video.resolution.50" = "50% méret";
 "video.resolution.25" = "25% méret (alacsony minőség)";
+
 "pdf.drop.title" = "Húzza ide a PDF-et";
 "pdf.drop.subtitle" = "vagy kattintson a PDF-fájlok tallózásához";
 "pdf.page.count" = "%lld oldal";
 "pdf.page.info" = "%lld. oldal / %lld";
 "pdf.estimatedSize" = "Becsült optimalizált méret";
+"pdf.quality.modal.title" = "Optimalizálási szint kiválasztása";
+"pdf.quality.modal.subtitle" = "Válassza ki, mennyivel csökkentse a fájlméretet. A nagyobb tömörítés kisebb fájlt jelent némi minőségveszteséggel.";
+"pdf.quality.modal.estimated" = "Becsült méret";
+"pdf.quality.modal.confirm" = "Optimalizálás";
+"pdf.quality.modal.cancel" = "Mégse";
+"pdf.quality.low.title" = "Maximális tömörítés";
+"pdf.quality.low.desc" = "Legkisebb fájl, látható minőségveszteség";
+"pdf.quality.medium.title" = "Kiegyensúlyozott";
+"pdf.quality.medium.desc" = "Jó egyensúly méret és minőség között";
+"pdf.quality.high.title" = "Magas minőség";
+"pdf.quality.high.desc" = "Minimális minőségveszteség, mérsékelt méretcsökkentés";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF optimalizálása";
+"pdf.tools.quality" = "MINŐSÉG";
+"pdf.tools.quality.label" = "Képminőség";
+"pdf.tools.quality.small" = "Kisebb fájl";
+"pdf.tools.quality.large" = "Jobb minőség";
+"pdf.tools.quality.lossless" = "Veszteségmentes";
+"pdf.tools.resolution" = "FELBONTÁS SKÁLA";
+"pdf.tools.resolution.enable" = "Felbontás csökkentése";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK KONVERTER";
+"pdf.color.enable" = "Színtér konvertálása";
+"pdf.color.convert" = "Konvertálás és mentés";
 "pdf.tools.save" = "PDF mentése";
 "pdf.reorder.title" = "Oldalak sorrendje";
 "pdf.reorder.hint" = "Több kijelöléshez tartsa lenyomva a Ctrl-t, majd húzza az átrendezéshez.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Beillesztés az oldal mögé";
 "pdf.addContent.atEnd" = "Hozzáfűzés a végéhez";
 "pdf.addContent.chooseFile" = "Fájl kiválasztása és beillesztése";
+
 "stock.deselectAll" = "Összes kijelölés megszüntetése";
 "stock.download" = "Kijelöltek letöltése";
 "stock.download.count" = "%d fotó letöltése";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Írja be az URL-t vagy a szöveget...";
 "qr.settings.colors" = "Színek";
 "qr.settings.fgColor" = "Előtérszín";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Felbontás";
 "qr.settings.customSize" = "Egyéni méret (px)";
 "qr.download" = "QR-kód letöltése";
+"qr.settings.type" = "QR típus";
+"qr.type.website" = "Weboldal";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Névjegy (vCard)";
+"qr.type.email" = "E-mail";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Hálózat neve (SSID)";
+"qr.wifi.password" = "Jelszó";
+"qr.wifi.hidden" = "Rejtett hálózat";
+"qr.wifi.noEncryption" = "Nincs";
+"qr.vcard.firstName" = "Keresztnév";
+"qr.vcard.lastName" = "Vezetéknév";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-mail";
+"qr.vcard.company" = "Cég";
+"qr.vcard.jobTitle" = "Beosztás";
+"qr.vcard.address" = "Cím";
+"qr.vcard.website" = "Weboldal";
+"qr.email.address" = "E-mail-cím";
+"qr.email.subject" = "Tárgy";
+"qr.email.body" = "Üzenet";
+"qr.phone.number" = "Telefonszám";
+
 "bgremove.unavailable.title" = "macOS 14 szükséges";
 "bgremove.unavailable.subtitle" = "A háttér eltávolítása az Apple Neural Engine technológiáját használja.\nFrissítsen macOS 14 Sonomára vagy újabbra.";
 "bgremove.drop.title" = "Húzza ide a képet";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "ÉLEK FINOMÍTÁSA";
 "bgremove.settings.feather" = "Lágyszél";
 "bgremove.settings.featherAmount" = "Lágyszél értéke";
+
 "ocr.drop.title" = "Húzza ide a képet";
 "ocr.drop.subtitle" = "vagy kattintson a fájlok tallózásához";
 "ocr.processing" = "Szöveg felismerése...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Törlés";
 "ocr.newFile" = "Új fájl";
 "ocr.copied" = "Másolva!";
+
 "app.comingSoon.title" = "Hamarosan";
 "app.comingSoon.message" = "Ez a funkció hamarosan elérhető lesz.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Betűtípus keresése...";
 "font.preview.custom" = "Írjon valamit...";
 "font.inspector.preview" = "Előnézet";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Koreai";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnami";
-
 "font.families.count" = "%d család";
 "font.styles.count" = "%d stílus · %@";
 "font.noResults" = "Nincs találat";
-"suggestion.title" = "Javaslat küldése";
-"suggestion.subtitle" = "Ossza meg ötleteit és segítsen fejleszteni";
-"suggestion.placeholder.title" = "Cím";
-"suggestion.placeholder.body" = "Írja le részletesen javaslatát...";
-"suggestion.category.bug" = "Hiba";
-"suggestion.category.feature" = "Funkciókérés";
-"suggestion.category.ui" = "Felület";
-"suggestion.category.performance" = "Teljesítmény";
-"suggestion.category.other" = "Egyéb";
-"suggestion.send" = "Javaslat küldése";
-"suggestion.sending" = "Küldés...";
-"suggestion.sent.title" = "Köszönjük!";
-"suggestion.sent.message" = "Javaslatát megkaptuk. Hamarosan átnézzük.";
-"suggestion.error" = "Küldés sikertelen. Kérjük, próbálja újra.";
-"suggestion.validation.title" = "Hiányzó mezők";
-"suggestion.validation.body" = "Kérjük, töltse ki a címet és a leírást.";
-
-"suggestion.label.category" = "Kategória";
-"suggestion.label.title" = "Cím";
-"suggestion.label.description" = "Leírás";
 
 "video.drop.title" = "Húzzon ide egy videót";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Itt csak videókat lehet konvertálni";
+
 "app.maintenance.title" = "Karbantartási mód";
 "app.forceUpdate.title" = "Frissítés szükséges";
 "app.forceUpdate.button" = "Frissítés az App Store-ban";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Keresés";
 "stock.search.placeholder" = "Fotók keresése...";
 "stock.selected" = "%d kiválasztva";
+
 "video.cancel" = "Mégse";
 "video.error.decoder" = "A videó nem dekódolható.";
 "video.saved.gain" = "megtakarítva";
 "video.saved.increased" = "nagyobb";
 "video.settings.fps.desc" = "Tiltsa le az eredeti FPS megőrzéséhez";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Kép";
 "pdf.tools.pageManagement" = "OLDALKEZELÉS";
 "pdf.tools.addContent" = "Tartalom hozzáadása";
 "pdf.tools.reorder" = "Átrendezés";
 "pdf.tools.targetFolder" = "CÉLMAPPA";
-"alert.error.conversion" = "Néhány képet nem sikerült konvertálni.";
-"pdf.color.convert" = "Konvertálás és mentés";
-"pdf.color.enable" = "Színtér konvertálása";
-"pdf.color.title" = "RGB/CMYK KONVERTER";
-"pdf.tools.quality" = "MINŐSÉG";
-"pdf.tools.quality.label" = "Képminőség";
-"pdf.tools.quality.large" = "Jobb minőség";
-"pdf.tools.quality.lossless" = "Veszteségmentes";
-"pdf.tools.resolution" = "FELBONTÁS SKÁLA";
-"pdf.tools.resolution.enable" = "Felbontás csökkentése";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Kisebb fájl";
 
 "ad.sponsored" = "Szponzorált";
 "ad.visit" = "Látogatás";
 
-"pdf.quality.modal.title" = "Optimalizálási szint kiválasztása";
-"pdf.quality.modal.subtitle" = "Válassza ki, mennyivel csökkentse a fájlméretet. A nagyobb tömörítés kisebb fájlt jelent némi minőségveszteséggel.";
-"pdf.quality.modal.estimated" = "Becsült méret";
-"pdf.quality.modal.confirm" = "Optimalizálás";
-"pdf.quality.modal.cancel" = "Mégse";
-"pdf.quality.low.title" = "Maximális tömörítés";
-"pdf.quality.low.desc" = "Legkisebb fájl, látható minőségveszteség";
-"pdf.quality.medium.title" = "Kiegyensúlyozott";
-"pdf.quality.medium.desc" = "Jó egyensúly méret és minőség között";
-"pdf.quality.high.title" = "Magas minőség";
-"pdf.quality.high.desc" = "Minimális minőségveszteség, mérsékelt méretcsökkentés";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Testreszabhatja a Comet Editor élményt";
+"settings.section.output" = "KIMENET";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Alapértelmezett kimeneti mappa";
+"settings.noFolderSelected" = "Nincs kiválasztva — minden alkalommal kérdez";
+"settings.chooseFolder" = "Mappa kiválasztása";
+"settings.clearFolder" = "Törlés";
+"settings.folderPicker.message" = "Válasszon alapértelmezett mappát az exportált fájlokhoz";
+"settings.folderPicker.button" = "Mappa kiválasztása";
 
 "app.maintenance.title2" = "Karbantartás folyamatban";
 "app.maintenance.body" = "Az alkalmazás ideiglenesen nem érhető el. Hamarosan visszatérünk.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Frissítés az App Store-ban";
 "app.quit2" = "Alkalmazás bezárása";
 
-"settings.subtitle" = "Testreszabhatja a Comet Editor élményt";
-"settings.section.output" = "KIMENET";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Alapértelmezett kimeneti mappa";
-"settings.noFolderSelected" = "Nincs kiválasztva — minden alkalommal kérdez";
-"settings.chooseFolder" = "Mappa kiválasztása";
-"settings.clearFolder" = "Törlés";
-"settings.folderPicker.message" = "Válasszon alapértelmezett mappát az exportált fájlokhoz";
-"settings.folderPicker.button" = "Mappa kiválasztása";
-"menu.announcements" = "Közlemények";
-"announcements.subtitle" = "Legújabb hírek és frissítések a csapattól";
-"announcements.empty" = "Még nincsenek közlemények";
-
 "settings.pdfOutputFolder" = "PDF kimeneti mappa";
 
 "folder.default.prompt.title" = "Beállítás alapértelmezett mappának?";
 "folder.default.prompt.body" = "Szeretné ezt beállítani alapértelmezett kimeneti mappának? Bármikor megváltoztathatja a Beállításokban.";
 "folder.default.prompt.yes" = "Beállítás alapértelmezettként";
 "folder.default.prompt.no" = "Most nem";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Videószerkesztő";
-"qr.email.address" = "E-mail-cím";
-"qr.email.body" = "Üzenet";
-"qr.email.subject" = "Tárgy";
-"qr.phone.number" = "Telefonszám";
-"qr.settings.type" = "QR típus";
-"qr.type.email" = "E-mail";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Névjegy (vCard)";
-"qr.type.website" = "Weboldal";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Cím";
-"qr.vcard.company" = "Cég";
-"qr.vcard.email" = "E-mail";
-"qr.vcard.firstName" = "Keresztnév";
-"qr.vcard.jobTitle" = "Beosztás";
-"qr.vcard.lastName" = "Vezetéknév";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Weboldal";
-"qr.wifi.hidden" = "Rejtett hálózat";
-"qr.wifi.noEncryption" = "Nincs";
-"qr.wifi.password" = "Jelszó";
-"qr.wifi.ssid" = "Hálózat neve (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Fotó hozzáadása";
-"videoedit.addMore" = "Hozzáadás";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Videók hozzáadása";
-"videoedit.empty.subtitle" = "Húzza ide a videofájlokat, vagy kattintson az alábbi gombra";
-"videoedit.empty.title" = "Videók hozzáadása szerkesztéshez";
-"videoedit.export.merge" = "Összevonás és exportálás";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Beállítások";
-"videoedit.export.trim" = "Klip exportálása";
-"videoedit.exporting" = "Exportálás…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTÓ IDŐTARTAMA";
-"videoedit.imageDuration.default" = "Alapértelmezés új fotókhoz";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "MENTÉS IDE";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Alkalmaz";
-"watermark.button" = "Vízjel hozzáadása";
-"watermark.cancel" = "Mégse";
-"watermark.color.black" = "Fekete";
-"watermark.color.darkGray" = "Sötétszürke";
-"watermark.color.gray" = "Szürke";
-"watermark.color.lightGray" = "Világosszürke";
-"watermark.color.none" = "Nincs";
-"watermark.color.white" = "Fehér";
-"watermark.colorOverlay" = "Színárnyékolás";
-"watermark.logo" = "Logó";
-"watermark.opacity" = "Átlátszatlanság";
-"watermark.pos.bottomCenter" = "Alsó közép";
-"watermark.pos.bottomLeft" = "Bal alsó";
-"watermark.pos.bottomRight" = "Jobb alsó";
-"watermark.pos.center" = "Közép";
-"watermark.pos.centerLeft" = "Közép bal";
-"watermark.pos.centerRight" = "Közép jobb";
-"watermark.pos.topCenter" = "Felső közép";
-"watermark.pos.topLeft" = "Bal felső";
-"watermark.pos.topRight" = "Jobb felső";
-"watermark.position" = "Pozíció";
-"watermark.preview" = "Előnézet";
-"watermark.removeLogo" = "Eltávolítás";
-"watermark.scale" = "Méret";
-"watermark.selectLogo" = "Kép kiválasztása";
-"watermark.tileMode" = "Mozaik mód";
-"watermark.tileMode.desc" = "Ismétlés a képen";
+
 "watermark.title" = "Vízjel";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Vízjel hozzáadása";
+"watermark.logo" = "Logó";
+"watermark.selectLogo" = "Kép kiválasztása";
+"watermark.removeLogo" = "Eltávolítás";
+"watermark.position" = "Pozíció";
+"watermark.scale" = "Méret";
+"watermark.opacity" = "Átlátszatlanság";
+"watermark.preview" = "Előnézet";
+"watermark.apply" = "Alkalmaz";
+"watermark.cancel" = "Mégse";
+"watermark.pos.topLeft" = "Bal felső";
+"watermark.pos.topCenter" = "Felső közép";
+"watermark.pos.topRight" = "Jobb felső";
+"watermark.pos.centerLeft" = "Közép bal";
+"watermark.pos.center" = "Közép";
+"watermark.pos.centerRight" = "Közép jobb";
+"watermark.pos.bottomLeft" = "Bal alsó";
+"watermark.pos.bottomCenter" = "Alsó közép";
+"watermark.pos.bottomRight" = "Jobb alsó";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Színárnyékolás";
+"watermark.color.none" = "Nincs";
+"watermark.color.black" = "Fekete";
+"watermark.color.darkGray" = "Sötétszürke";
+"watermark.color.gray" = "Szürke";
+"watermark.color.lightGray" = "Világosszürke";
+"watermark.color.white" = "Fehér";
+"watermark.tileMode" = "Mozaik mód";
+"watermark.tileMode.desc" = "Ismétlés a képen";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Beállítások";
-"upscale.settings.model" = "Modell";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — részletjavítás MI-vel";
-"upscale.settings.scale" = "Skála";
-"upscale.scale.multiPassHint" = "A 8× és 16× több MI-fordulót futtat — tovább tart.";
-"upscale.settings.outputFormat" = "Kimeneti formátum";
-"upscale.drop.title" = "Húzza ide a képeket";
-"upscale.drop.subtitle" = "vagy kattintson a fájlok tallózásához";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Csak támogatott raszterképek nagyíthatók itt";
-"upscale.runButton" = "Nagyítás";
-"upscale.preview.run" = "Előnézet";
-"upscale.preview.hint" = "Válasszon skálát, és koppintson az Előnézetre az összehasonlításhoz";
-"upscale.preview.processing" = "Előnézet készítése…";
-"upscale.preview.before" = "ELŐTTE";
-"upscale.preview.after" = "UTÁNA";
-"upscale.preview.save" = "Mentés";
-"upscale.preview.saveSettings" = "Előnézet mentése";
-"upscale.preview.autoSave" = "Mentés előnézet után";
-"upscale.preview.autoSaveHint" = "Az előnézet végén a célmappába ír.";
-"upscale.preview.saveNeedFolder" = "Először válasszon célmappát.";
-"upscale.preview.saveFailed" = "Nem sikerült kódolni az előnézeti képet.";
-"upscale.preview.loadFailed" = "Nem sikerült betölteni az előnézeti képet.";
-"upscale.backend.missing.hint" = "A cometscaly motor vagy a modellfájlok hiányoznak az alkalmazás csomagjában. Építse újra a projektet.";
-"upscale.error.bundle" = "Hiányzik az Upscale bundle mappa az alkalmazásból.";
-"upscale.error.binary" = "A cometscaly nem található az alkalmazás csomagjában.";
-"upscale.error.model" = "Hiányoznak a upscayl-standard-4x.param/.bin modellfájlok.";
-"upscale.error.process" = "A nagyítás sikertelen (exit %d): %@";
-"upscale.error.none" = "Egy kép sem lett nagyítva.";
-"videoedit.resize.modePercent" = "Skála (%)";
-"videoedit.resize.modeCustom" = "Egyéni méret";
-"videoedit.resize.autoFill" = "Vászon automatikus kitöltése";
-"videoedit.resize.autoFillHint" = "Bekapcsolva: a széles felvétel letterbox-szal fér be; a kisebb nagyítva és középen vágva tölt ki.";
+"inspector.format" = "Formátum";
+"inspector.output" = "Kimenet";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Adjon hozzá egy fotót az előnézethez";
+"watermark.rotation" = "Forgatás";
+"watermark.text" = "Logószöveg";
+"watermark.text.placeholder" = "Adja meg a logó szövegét";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

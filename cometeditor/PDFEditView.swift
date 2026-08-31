@@ -514,125 +514,75 @@ struct PDFEditView: View {
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                // Header — always "Ayarlar"
-                HStack {
-                    Text(LanguageManager.shared.string("convert.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
                 Group {
                     let pdf = appState.selectedPDF
                     let pageCount = pdf?.document?.pageCount ?? 0
 
-                    // Page Management
                     inspectorSection("pdf.tools.pageManagement") {
-                        VStack(spacing: 2) {
-                            toolButton(icon: "plus.rectangle.on.rectangle", title: "pdf.tools.addContent") {
-                                showAddContentModal = true
-                            }
+                        toolButton(icon: "plus.rectangle.on.rectangle", title: "pdf.tools.addContent") {
+                            showAddContentModal = true
+                        }
 
-                            toolButton(icon: "arrow.up.arrow.down", title: "pdf.tools.reorder") {
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    if appState.pdfReorderPageOrder == nil {
-                                        appState.pdfReorderPageOrder = Array(0..<pageCount)
-                                    }
-                                    appState.pdfViewMode = .reorder
+                        InspectorCardSeparator()
+
+                        toolButton(icon: "arrow.up.arrow.down", title: "pdf.tools.reorder") {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                if appState.pdfReorderPageOrder == nil {
+                                    appState.pdfReorderPageOrder = Array(0..<pageCount)
                                 }
+                                appState.pdfViewMode = .reorder
                             }
                         }
                     }
 
-                    Divider()
-
-                    // Renk Uzayı Dönüşümü
                     inspectorSection("pdf.color.title") {
-                        VStack(alignment: .leading, spacing: 10) {
-                            // Toggle satırı
-                            HStack {
-                                Text(LocalizedStringKey("pdf.color.enable"))
-                                    .font(.system(size: 12))
-                                Spacer()
-                                Toggle("", isOn: $colorConversionEnabled)
-                                    .toggleStyle(.switch)
-                                    .controlSize(.small)
-                                    .disabled(isConvertingColor)
-                            }
-
-                            // Hedef seçici — sadece toggle açıksa
-                            if colorConversionEnabled {
-                                Picker("", selection: $colorTarget) {
-                                    ForEach(ColorTarget.allCases, id: \.self) { t in
-                                        Text(t.rawValue).tag(t)
-                                    }
-                                }
-                                .pickerStyle(.segmented)
-                                .frame(maxWidth: .infinity)
-                                .disabled(isConvertingColor || isCompressing)
-                            }
-                        }
-                    }
-
-                    Divider()
-
-                    // Hedef Klasör
-                    inspectorSection("pdf.tools.targetFolder") {
-                        VStack(alignment: .leading, spacing: 10) {
-                            HStack(spacing: 8) {
-                                Group {
-                                    if let folder = appState.targetFolder {
-                                        Text(truncatedPath(folder.path))
-                                            .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                            .foregroundStyle(Color.primary.opacity(0.8))
-                                            .lineLimit(1)
-                                            .truncationMode(.middle)
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 6)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.primary.opacity(0.05)))
-                                            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Color.primary.opacity(0.1), lineWidth: 1))
-                                    } else {
-                                        Text("convert.settings.noFolder")
-                                            .font(.system(size: 11, weight: .medium))
-                                            .foregroundStyle(Color.red.opacity(0.8))
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 6)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.red.opacity(0.05)))
-                                            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.red.opacity(0.2), lineWidth: 1))
-                                    }
-                                }
-
-                                Button("convert.settings.chooseFolder") {
-                                    pickFolder { url in
-    appState.handleFolderSelected(url)
-    appState.targetFolder = url
-}
-                                }
+                        InspectorSettingRow {
+                            Text(LocalizedStringKey("pdf.color.enable"))
+                                .font(.system(size: 13))
+                        } control: {
+                            Toggle("", isOn: $colorConversionEnabled)
+                                .toggleStyle(.switch)
                                 .controlSize(.small)
-                            }
+                                .labelsHidden()
+                                .disabled(isConvertingColor)
+                        }
 
-                            if isCompressing || isConvertingColor {
-                                let prog = isConvertingColor ? colorConversionProgress : compressionProgress
-                                VStack(alignment: .leading, spacing: 4) {
-                                    ProgressView(value: prog, total: 1.0)
-                                        .progressViewStyle(.linear)
-                                    Text("%\(Int(prog * 100))")
-                                        .font(.system(size: 10, weight: .medium, design: .monospaced))
-                                        .foregroundStyle(Color.secondary)
+                        if colorConversionEnabled {
+                            InspectorCardSeparator()
+                            Picker("", selection: $colorTarget) {
+                                ForEach(ColorTarget.allCases, id: \.self) { t in
+                                    Text(t.rawValue).tag(t)
                                 }
+                            }
+                            .pickerStyle(.segmented)
+                            .labelsHidden()
+                            .disabled(isConvertingColor || isCompressing)
+                        }
+                    }
+
+                    inspectorSection("pdf.tools.targetFolder") {
+                        FolderPickerRow(
+                            folder: appState.targetFolder,
+                            isStale: appState.targetFolderStale
+                        ) {
+                            pickFolder { url in
+                                appState.handleFolderSelected(url)
+                                appState.targetFolder = url
+                            }
+                        }
+
+                        if isCompressing || isConvertingColor {
+                            let prog = isConvertingColor ? colorConversionProgress : compressionProgress
+                            VStack(alignment: .leading, spacing: 4) {
+                                ProgressView(value: prog, total: 1.0)
+                                    .progressViewStyle(.linear)
+                                Text("%\(Int(prog * 100))")
+                                    .font(.system(size: 10, weight: .medium, design: .monospaced))
+                                    .foregroundStyle(Color.secondary)
                             }
                         }
                     }
 
-                    Divider()
-
-                    // Optimize + Save
                     VStack(spacing: 10) {
                         Button {
                             if let pdf = pdf {
@@ -671,28 +621,15 @@ struct PDFEditView: View {
                         .controlSize(.large)
                         .disabled(pdf == nil)
                     }
-                    .padding(16)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 8)
                 }
                 .disabled(appState.selectedPDF == nil)
                 .opacity(appState.selectedPDF == nil ? 0.6 : 1.0)
             }
+            .padding(.top, 16)
         }
-        .background(Material.bar)
-    }
-
-    // MARK: - Inspector Section
-    private func inspectorSection<Content: View>(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(title)
-                .font(.system(size: 11, weight: .bold))
-                .foregroundStyle(Color.secondary)
-                .padding(.horizontal, 16)
-                .padding(.top, 14)
-
-            VStack(spacing: 0) { content() }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 14)
-        }
+        .inspectorPanelChrome()
     }
 
     @ViewBuilder
@@ -800,7 +737,7 @@ struct PDFEditView: View {
         if let explicit = explicitURL {
             outputURL = explicit
         } else {
-            guard let targetFolder = appState.targetFolder else { return }
+            guard let targetFolder = await appState.resolveOutputFolder() else { return }
             let baseName = pdf.url.deletingPathExtension().lastPathComponent
             let suffix = "_optimized_\(quality.rawValue)"
             var url = targetFolder.appendingPathComponent("\(baseName)\(suffix).pdf")
@@ -844,8 +781,6 @@ struct PDFEditView: View {
             log.info("PDF compress succeeded → \(destURL.path)")
             lastSavedPath = destURL.path
             showCompressSuccess = true
-            CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited,
-                metadata: ["action": "compress", "quality": quality.rawValue, "pages": pageCount])
         } else {
             compressionProgress = 0
             log.error("PDF compress failed")
@@ -867,7 +802,7 @@ struct PDFEditView: View {
         if let explicit = destURL {
             outputURL = explicit
         } else {
-            guard let targetFolder = appState.targetFolder else { return }
+            guard let targetFolder = await appState.resolveOutputFolder() else { return }
             let suffix = target == .rgb ? "_rgb" : "_cmyk"
             let baseName = pdf.url.deletingPathExtension().lastPathComponent
             var candidate = targetFolder.appendingPathComponent("\(baseName)\(suffix).pdf")
@@ -953,11 +888,6 @@ struct PDFEditView: View {
             lastSavedPath = finalURL.path
             showCompressSuccess = true
         }
-        CometAnalytics.shared.trackEvent(
-            page: "pdfEdit",
-            eventType: .pdfEdited,
-            metadata: ["action": "colorConvert", "target": target.rawValue, "pages": pageCount]
-        )
     }
 
     private func applyReorder(_ newOrder: [Int], for pdf: PDFItem) async {
@@ -1013,7 +943,6 @@ struct PDFEditView: View {
         if appState.pdfDocumentVersion == 0 {
             try? FileManager.default.removeItem(at: saveURL)
             try? FileManager.default.copyItem(at: pdf.url, to: saveURL)
-            CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
             lastSavedPath = saveURL.path
             showSaveSuccess = true
             return
@@ -1021,7 +950,6 @@ struct PDFEditView: View {
 
         // Modified — PDFKit write (preserves vector streams).
         if document.write(to: saveURL) {
-            CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
             lastSavedPath = saveURL.path
             showSaveSuccess = true
             return
@@ -1046,7 +974,6 @@ struct PDFEditView: View {
             ctx.closePDF()
         }
 
-        CometAnalytics.shared.trackEvent(page: "pdfEdit", eventType: .pdfEdited, metadata: ["action": "save"])
         lastSavedPath = saveURL.path
         showSaveSuccess = true
     }

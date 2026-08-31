@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Suraty Süýräp Goýberiň";
 "convert.drop.subtitle" = "ýa-da faýllara göz aýlamak üçin basyň";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Ini px";
 "convert.settings.height" = "Beýikligi px";
+
 "meta.info" = "Metadata goragы";
+
 "convert.settings.targetFolder" = "Maksatly bukja";
 "convert.settings.noFolder" = "Saýlanmady";
 "convert.settings.chooseFolder" = "Finder-den saýlaň";
+
+"folder.missing.title" = "Bukja tapylmady";
+"folder.missing.subtitle" = "Saklanan bukjanyň ýoly indi ýok. Täzesini saýlaň.";
+"folder.missing.pick" = "Täze bukja saýla";
+"folder.missing.panel.message" = "Çykyş bukjasy tapylmady. Täze bukja saýlaň.";
+
+"bgremove.error.noMaskFound" = "Öň plan maskasy tapylmady.";
+"bgremove.error.maskConversionFailed" = "Maska öwürmek başarmady.";
+"bgremove.error.compositeFailed" = "Surat birikmegi başarmady.";
+
 "convert.settings.convertButton" = "Öwür";
 "convert.clearAll" = "Hemmesini arassala";
 "convert.addMore" = "Goş";
 "convert.wrongType.image" = "Bu ýerde diňe suratlary öwrüp bolýar";
+
+"upscale.settings.title" = "Sazlamalar";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI bilen jikme-jiklik gowulandyryş";
+"upscale.settings.scale" = "Massştab";
+"upscale.scale.multiPassHint" = "8× we 16× köp AI geçişini ýerine ýetirýär — has uzak.";
+"upscale.settings.outputFormat" = "Çykyş formaty";
+"upscale.drop.title" = "Suratlary süýşüriň";
+"upscale.drop.subtitle" = "ýa-da faýllara göz aýlamak üçin basyň";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Bu ýerde diňe goldanylýan raster suratlary ulap bolýar";
+"upscale.runButton" = "Ulad";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Öňünden görkeziş";
+"upscale.preview.hint" = "Massştab saýla we deňeşdirmek üçin Öňünden görkezişe bas";
+"upscale.preview.processing" = "Öňünden görkeziş döredilýär…";
+"upscale.preview.before" = "ÖŇI";
+"upscale.preview.after" = "SOŇRA";
+"upscale.preview.save" = "Ýatda sakla";
+"upscale.preview.saveSettings" = "Öňünden görkezişi ýatda sakla";
+"upscale.preview.autoSave" = "Öňünden görkezişden soň ýatda sakla";
+"upscale.preview.autoSaveHint" = "Öňünden görkeziş gutaranda maksat bukjasyna ýazýar.";
+"upscale.preview.saveNeedFolder" = "Ilki bilen maksat bukjasyny saýla.";
+"upscale.preview.saveFailed" = "Öňünden görkeziş suratyny kodlamak mümkin bolmady.";
+"upscale.preview.loadFailed" = "Öňünden görkeziş suratyny ýüklemek mümkin bolmady.";
+"upscale.backend.missing.hint" = "Programma toplumynda cometscaly motor ýa-da model faýllary ýok. Taslamany täzeden gur.";
+"upscale.error.bundle" = "Programmada Upscale bundle bukjasy ýok.";
+"upscale.error.binary" = "Programma toplumynda cometscaly tapylmady.";
+"upscale.error.model" = "upscayl-standard-4x.param/.bin model faýllary ýok.";
+"upscale.error.process" = "Uladmak şowsuz (exit %d): %@";
+"upscale.error.none" = "Hiç hili surat ulaldylmady.";
+
 "menu.home" = "Baş sahypa";
 "menu.convertImage" = "Suraty öwür";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Sazlamalar";
 "menu.tools" = "Guraly";
 "menu.document" = "RESMINAMA";
-"menu.team" = "Toparymyz";
-"menu.team.title" = "Toparymyz";
-"menu.team.subtitle" = "Comet Editor-iň aňyrsynda duran zehinli adamlar bilen tanyşyň";
 "menu.stockImage" = "Stok surat";
 "menu.qrCode" = "QR kod";
 "menu.bgRemove" = "Fon aýyryjy";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Ýazuw Görnüşini Ýükle";
 "menu.videoConvert" = "Wideo öwür";
 "menu.pdfEdit" = "PDF redaktirle";
-"menu.suggestion" = "Pikir ibermek";
-"team.thanks_grafix" = "Grafix jemgyýetine goşantlary üçin minnetdarlygymyzy bildirýäris.";
+
 "alert.success.title" = "Üstünlik";
 "alert.error.title" = "Ýalňyşlyk";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Bukjany aç";
 "alert.success.message.image" = "Suratlar üstünlikli %@ ýere saklandy.";
 "alert.success.message.video" = "Wideoler üstünlikli %@ ýere saklandy.";
+"alert.error.conversion" = "Käbir suratlary öwürmek mümkin bolmady.";
+
 "home.welcome" = "Comet Editor'a Hoş Geldiniz";
 "home.welcome.subtitle" = "Tüm ihtiyaçlarınız tek bir uygulamada.";
 "home.visitWebsite" = "Web sitemize git";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "Dengeli kalitede MP4 — tek akışta dönüştürün veya sıkıştırın.";
 "home.quick.pdf.title" = "PDF düzenle";
 "home.quick.pdf.subtitle" = "PDF düzenleyiciyi açın — sayfaları yeniden sıralayın, sıkıştırın veya düzenleyin.";
+"home.feature.convertImage.desc" = "Resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
+"home.feature.videoConvert.desc" = "Videolarınızı kolayca dönüştürün ve sıkıştırın.";
+"home.feature.stockImage.desc" = "Ücretsiz yüksek kaliteli stok fotoğraflara göz atın ve indirin.";
+"home.feature.pdfEdit.desc" = "PDF dosyalarınızı düzenleyin, yeniden sıralayın ve sıkıştırın.";
+"home.feature.qrCode.desc" = "Anında QR kod oluşturun ve özelleştirin.";
+"home.feature.bgRemove.desc" = "Yapay zeka ile resim arka planlarını otomatik kaldırın.";
+"home.feature.ocr.desc" = "Optik tanıma ile resimlerden metin çıkarın.";
+"home.feature.fontDownload.desc" = "Google Fonts'tan fontları doğrudan Mac'inize göz atın ve indirin.";
 "home.preset.pdf.deletePage" = "Sayfa Sil";
 "home.preset.pdf.reorder" = "Sayfa Sırala";
 "home.preset.pdf.optimize" = "PDF Optimize Et";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Sağ panelden çıktı formatını seçin (PNG, JPG, WebP, HEIC vb.).";
 "home.guide.convertImage.step3" = "Kalite, ölçek veya boyutları ayarlayın — ardından dönüştürün.";
 "home.guide.convertImage.tip" = "Aynı anda birden fazla görüntü ekleyebilirsiniz. Her dosya aynı ayarlarla ayrı ayrı dönüştürülür.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Videoları MP4, MOV, AVI ve daha fazlasına dönüştürün ve sıkıştırın.";
 "home.guide.video.step2" = "Çıktı formatını (MP4, MOV…) seçin; FPS veya çözünürlüğü ayarlayın.";
 "home.guide.video.step3" = "Sesi etkinleştirin veya devre dışı bırakın, ardından Dönüştür'e tıklayın.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Fontu önizleyin ve istediğiniz stilleri seçin.";
 "home.guide.font.step3" = "Fontu Mac'inize yüklemek için İndir'e tıklayın.";
 "home.guide.font.tip" = "İndirilen fontlar sistem genelinde yüklenir ve tüm uygulamalarda hemen kullanılabilir.";
-"home.feature.convertImage.desc" = "Resimleri PNG, JPG, WebP, HEIF ve daha fazlasına dönüştürün.";
-"home.feature.videoConvert.desc" = "Videolarınızı kolayca dönüştürün ve sıkıştırın.";
-"home.feature.stockImage.desc" = "Ücretsiz yüksek kaliteli stok fotoğraflara göz atın ve indirin.";
-"home.feature.pdfEdit.desc" = "PDF dosyalarınızı düzenleyin, yeniden sıralayın ve sıkıştırın.";
-"home.feature.qrCode.desc" = "Anında QR kod oluşturun ve özelleştirin.";
-"home.feature.bgRemove.desc" = "Yapay zeka ile resim arka planlarını otomatik kaldırın.";
-"home.feature.ocr.desc" = "Optik tanıma ile resimlerden metin çıkarın.";
-"home.feature.fontDownload.desc" = "Google Fonts'tan fontları doğrudan Mac'inize göz atın ve indirin.";
+
 "video.drop.subtitle" = "ýa-da wideo faýllara göz aýlamak üçin basyň";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS ÇÄGI";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% ölçeg";
 "video.resolution.50" = "50% ölçeg";
 "video.resolution.25" = "25% ölçeg (pes hil)";
+
 "pdf.drop.title" = "PDF-i Süýräp Goýberiň";
 "pdf.drop.subtitle" = "ýa-da PDF faýllara göz aýlamak üçin basyň";
 "pdf.page.count" = "%lld Sahypa";
 "pdf.page.info" = "%lld sahypanyň %lld";
 "pdf.estimatedSize" = "Takmynan optimizirlenan ölçeg";
+"pdf.quality.modal.title" = "Optimizirleme derejesini saýlaň";
+"pdf.quality.modal.subtitle" = "Faýlyň ululygyny näçe azaltmalydygyny saýlaň. Ýokary gysyş has kiçi faýl, ýöne hil biraz peseler.";
+"pdf.quality.modal.estimated" = "Takmynan ululyk";
+"pdf.quality.modal.confirm" = "Optimizirle";
+"pdf.quality.modal.cancel" = "Ýatyr";
+"pdf.quality.low.title" = "Iň ýokary gysyş";
+"pdf.quality.low.desc" = "Iň kiçi faýl, görünýän hil ýitgisi";
+"pdf.quality.medium.title" = "Deňagramly";
+"pdf.quality.medium.desc" = "Ululyk we hiliň gowy deňagramlylygy";
+"pdf.quality.high.title" = "Ýokary hil";
+"pdf.quality.high.desc" = "Iň az hil ýitgisi, orta azalma";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF-i optimizirlä";
+"pdf.tools.quality" = "HILI";
+"pdf.tools.quality.label" = "Surat hili";
+"pdf.tools.quality.small" = "Kiçi faýl";
+"pdf.tools.quality.large" = "Gowy hil";
+"pdf.tools.quality.lossless" = "Ýitgisiz";
+"pdf.tools.resolution" = "ÇÖZGÜNLIK ÖLÇEGI";
+"pdf.tools.resolution.enable" = "Çözgünligi kiçelt";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK ÖWÜRIJI";
+"pdf.color.enable" = "Reňk giňişligini öwür";
+"pdf.color.convert" = "Öwür we sakla";
 "pdf.tools.save" = "PDF-i sakla";
 "pdf.reorder.title" = "Sahypa tertibi";
 "pdf.reorder.hint" = "Köp saýlamak üçin Ctrl saklaň, soňra süýräň.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Bu sahypadan soň goý";
 "pdf.addContent.atEnd" = "Ahyryna goş";
 "pdf.addContent.chooseFile" = "Faýl saýla we goý";
+
 "stock.deselectAll" = "Hemmesini aýyr";
 "stock.download" = "Saýlananlary ýükle";
 "stock.download.count" = "%d suraty ýükle";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "URL veya metin giriniz...";
 "qr.settings.colors" = "RENKLER";
 "qr.settings.fgColor" = "QR Rengi";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "ÇÖZÜNÜRLÜK";
 "qr.settings.customSize" = "Özel Çözünürlük (px)";
 "qr.download" = "QR Kodu İndir";
+"qr.settings.type" = "QR TÜRÜ";
+"qr.type.website" = "Web Sitesi";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kişi (vCard)";
+"qr.type.email" = "E-posta";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Ağ adı (SSID)";
+"qr.wifi.password" = "Şifre";
+"qr.wifi.hidden" = "Gizli ağ";
+"qr.wifi.noEncryption" = "Yok";
+"qr.vcard.firstName" = "Ad";
+"qr.vcard.lastName" = "Soyad";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-posta";
+"qr.vcard.company" = "Şirket";
+"qr.vcard.jobTitle" = "Ünvan";
+"qr.vcard.address" = "Adres";
+"qr.vcard.website" = "Web sitesi";
+"qr.email.address" = "E-posta adresi";
+"qr.email.subject" = "Konu";
+"qr.email.body" = "Mesaj";
+"qr.phone.number" = "Telefon numarası";
+
 "bgremove.unavailable.title" = "macOS 14 gerek";
 "bgremove.unavailable.subtitle" = "Fon aýyryjy Apple-iň Neural Engine tehnologiýasyny ulanýar.\nmacOS 14 Sonoma ýa-da soňrakyna täzeläň.";
 "bgremove.drop.title" = "Suraty Süýräp Goýberiň";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "GYRALARYNY KÄMILLEŞDIR";
 "bgremove.settings.feather" = "Ýumşatma";
 "bgremove.settings.featherAmount" = "Ýumşatma mukdary";
+
 "ocr.drop.title" = "Suraty Süýräp Goýberiň";
 "ocr.drop.subtitle" = "ýa-da faýllara göz aýlamak üçin basyň";
 "ocr.processing" = "Tekst tanalýar...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Arassala";
 "ocr.newFile" = "Täze faýl";
 "ocr.copied" = "Göçürildi!";
+
 "app.comingSoon.title" = "Ýakynda";
 "app.comingSoon.message" = "Bu aýratynlyk ýakynda elýeterli bolar.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Search fonts...";
 "font.preview.custom" = "Type something...";
 "font.inspector.preview" = "Preview";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
-
 "font.families.count" = "%d maşgala";
 "font.styles.count" = "%d stil · %@";
 "font.noResults" = "Şrift tapylmady";
-"suggestion.title" = "Teklip ibermek";
-"suggestion.subtitle" = "Pikirlerinizi paýlaşyň we bizi kämilleşdirmäge kömek ediň";
-"suggestion.placeholder.title" = "Başlyk";
-"suggestion.placeholder.body" = "Teklibiňizi jikme-jik beýan ediň...";
-"suggestion.category.bug" = "Ýalňyşlyk";
-"suggestion.category.feature" = "Funksiýa haýyşy";
-"suggestion.category.ui" = "Interfeýs";
-"suggestion.category.performance" = "Öndürijilik";
-"suggestion.category.other" = "Beýleki";
-"suggestion.send" = "Teklip ibermek";
-"suggestion.sending" = "Iberilýär...";
-"suggestion.sent.title" = "Sag boluň!";
-"suggestion.sent.message" = "Teklibiňiz alyndy. Ýakyn wagtda seredereris.";
-"suggestion.error" = "Ibermek şowsuz boldy. Täzeden synanyşyň.";
-"suggestion.validation.title" = "Boş meýdanlar";
-"suggestion.validation.body" = "Başlygy we beýany dolduryň.";
-
-"suggestion.label.category" = "Kategoriýa";
-"suggestion.label.title" = "Başlyk";
-"suggestion.label.description" = "Düşündiriş";
 
 "video.drop.title" = "Wideony bu ýere süýräň";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Bu ýerde diňe wideolary öwrüp bolýar";
+
 "app.maintenance.title" = "Tehniki hyzmat tertibi";
 "app.forceUpdate.title" = "Täzeleme gerek";
 "app.forceUpdate.button" = "App Store-da täzeläň";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Käbir suratlary öwürmek mümkin bolmady.";
-"pdf.color.convert" = "Öwür we sakla";
-"pdf.color.enable" = "Reňk giňişligini öwür";
-"pdf.color.title" = "RGB/CMYK ÖWÜRIJI";
-"pdf.tools.quality" = "HILI";
-"pdf.tools.quality.label" = "Surat hili";
-"pdf.tools.quality.large" = "Gowy hil";
-"pdf.tools.quality.lossless" = "Ýitgisiz";
-"pdf.tools.resolution" = "ÇÖZGÜNLIK ÖLÇEGI";
-"pdf.tools.resolution.enable" = "Çözgünligi kiçelt";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Kiçi faýl";
 
 "ad.sponsored" = "Mahabat";
 "ad.visit" = "Baryp gör";
 
-"pdf.quality.modal.title" = "Optimizirleme derejesini saýlaň";
-"pdf.quality.modal.subtitle" = "Faýlyň ululygyny näçe azaltmalydygyny saýlaň. Ýokary gysyş has kiçi faýl, ýöne hil biraz peseler.";
-"pdf.quality.modal.estimated" = "Takmynan ululyk";
-"pdf.quality.modal.confirm" = "Optimizirle";
-"pdf.quality.modal.cancel" = "Ýatyr";
-"pdf.quality.low.title" = "Iň ýokary gysyş";
-"pdf.quality.low.desc" = "Iň kiçi faýl, görünýän hil ýitgisi";
-"pdf.quality.medium.title" = "Deňagramly";
-"pdf.quality.medium.desc" = "Ululyk we hiliň gowy deňagramlylygy";
-"pdf.quality.high.title" = "Ýokary hil";
-"pdf.quality.high.desc" = "Iň az hil ýitgisi, orta azalma";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor tejribäňizi düzeltmek";
+"settings.section.output" = "ÇYKYŞ";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Girizilen yzygiderli bukja";
+"settings.noFolderSelected" = "Saýlanmadyk — her gezek soralýar";
+"settings.chooseFolder" = "Bukja saýlamak";
+"settings.clearFolder" = "Arassalamak";
+"settings.folderPicker.message" = "Eksport edilen faýllar üçin adaty bukja saýlaň";
+"settings.folderPicker.button" = "Bukja saýlamak";
 
 "app.maintenance.title2" = "Tehniki hyzmat";
 "app.maintenance.body" = "Goşundy wagtlaýyn elýeterli däl. Ýakyn wagtda gaýdyp geleris.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store-da täzele";
 "app.quit2" = "Programmany ýap";
 
-"settings.subtitle" = "Comet Editor tejribäňizi düzeltmek";
-"settings.section.output" = "ÇYKYŞ";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Girizilen yzygiderli bukja";
-"settings.noFolderSelected" = "Saýlanmadyk — her gezek soralýar";
-"settings.chooseFolder" = "Bukja saýlamak";
-"settings.clearFolder" = "Arassalamak";
-"settings.folderPicker.message" = "Eksport edilen faýllar üçin adaty bukja saýlaň";
-"settings.folderPicker.button" = "Bukja saýlamak";
-"menu.announcements" = "Yglanlar";
-"announcements.subtitle" = "Topardan soňky täzelikler";
-"announcements.empty" = "Yglan ýok";
-
 "settings.pdfOutputFolder" = "PDF çykyş bukjasy";
 
 "folder.default.prompt.title" = "Standart bukja hökmünde bellemek?";
 "folder.default.prompt.body" = "Muny deslapky çykyş bukjasy hökmünde bellemek isleýärsiňizmi? Sazlamalarda islendik wagt üýtgedip bilersiňiz.";
 "folder.default.prompt.yes" = "Standart hökmünde belle";
 "folder.default.prompt.no" = "Häzir däl";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Klipleri kırpın, istenmeyen kısımları çıkarın ve birden fazla videoyu birleştirin.";
-"home.guide.videoedit.preset.concat" = "Videoları Birleştir";
-"home.guide.videoedit.preset.trim" = "Video Kırp";
-"home.guide.videoedit.step1" = "+ butonu veya sürükle bırak ile bir ya da birden fazla video ekleyin.";
-"home.guide.videoedit.step2" = "Bir klip seçin, başlangıç ve bitiş noktasını ayarlamak için timeline'daki kırpma kollarını sürükleyin.";
-"home.guide.videoedit.step3" = "Son sıralamayı belirlemek için listedeki klipleri sürükleyerek yeniden sıralayın.";
-"home.guide.videoedit.step4" = "Çıktı formatını ve klasörü seçin, ardından Dışa Aktar'a tıklayın.";
-"home.guide.videoedit.tip" = "Kırpma kolları milisaniye hassasiyetiyle çalışır — tam kesim noktasını önizlemek için oynatma çubuğunu kullanın.";
-"menu.videoEdit" = "Video Düzenle";
-"qr.email.address" = "E-posta adresi";
-"qr.email.body" = "Mesaj";
-"qr.email.subject" = "Konu";
-"qr.phone.number" = "Telefon numarası";
-"qr.settings.type" = "QR TÜRÜ";
-"qr.type.email" = "E-posta";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Kişi (vCard)";
-"qr.type.website" = "Web Sitesi";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adres";
-"qr.vcard.company" = "Şirket";
-"qr.vcard.email" = "E-posta";
-"qr.vcard.firstName" = "Ad";
-"qr.vcard.jobTitle" = "Ünvan";
-"qr.vcard.lastName" = "Soyad";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Web sitesi";
-"qr.wifi.hidden" = "Gizli ağ";
-"qr.wifi.noEncryption" = "Yok";
-"qr.wifi.password" = "Şifre";
-"qr.wifi.ssid" = "Ağ adı (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Fotoğraf Ekle";
-"videoedit.addMore" = "Ekle";
-"videoedit.cancel" = "İptal";
-"videoedit.clip.remove" = "Klibi Kaldır";
-"videoedit.clip.trimmed" = "kırpılmış";
-"videoedit.clips" = "Klipler";
-"videoedit.clips.total" = "toplam";
-"videoedit.drop.subtitle" = "Buraya sürükleyin veya + tuşuna basın";
-"videoedit.drop.title" = "Video Dosyası Ekle";
-"videoedit.empty.button" = "Video Ekle";
-"videoedit.empty.subtitle" = "Video dosyalarını buraya sürükleyin veya aşağıdaki butona tıklayın";
-"videoedit.empty.title" = "Düzenlemek İçin Video Ekle";
-"videoedit.export.merge" = "Birleştir ve Dışa Aktar";
-"videoedit.export.noFolder" = "Önce kayıt klasörü seçin";
-"videoedit.export.settings" = "Ayarlar";
-"videoedit.export.trim" = "Klibi Dışa Aktar";
-"videoedit.exporting" = "Dışa aktarılıyor...";
-"videoedit.folder.change" = "Klasörü Değiştir";
-"videoedit.imageDuration" = "FOTOĞRAF SÜRESİ";
-"videoedit.imageDuration.default" = "Yeni fotoğraflar için varsayılan";
-"videoedit.insert.after" = "Arkasına ekle";
-"videoedit.insert.append" = "Sona ekle";
-"videoedit.insert.before" = "Önüne ekle";
-"videoedit.insert.prepend" = "Başa ekle";
-"videoedit.inspector.folder" = "KAYIT YERİ";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "ÇIKTI FORMATI";
-"videoedit.inspector.quality" = "Kalite";
-"videoedit.inspector.trim" = "KIRP";
-"videoedit.noClip" = "Önizlemek için klip seçin";
-"videoedit.noClip.hint" = "Başlamak için sol panelden video ekleyin.";
-"videoedit.timeline.title" = "Kırp";
-"videoedit.trim.confirm" = "Kırpmayı onayla";
-"videoedit.trim.duration" = "Süre";
-"videoedit.trim.end" = "Bitiş";
-"videoedit.trim.reset" = "Sıfırla";
-"videoedit.trim.start" = "Başlangıç";
-"watermark.apply" = "Uygula";
-"watermark.button" = "Filigran Ekle";
-"watermark.cancel" = "İptal";
-"watermark.color.black" = "Siyah";
-"watermark.color.darkGray" = "Koyu Gri";
-"watermark.color.gray" = "Gri";
-"watermark.color.lightGray" = "Açık Gri";
-"watermark.color.none" = "Yok";
-"watermark.color.white" = "Beyaz";
-"watermark.colorOverlay" = "Renk Kaplama";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Saydamlık";
-"watermark.pos.bottomCenter" = "Alt Orta";
-"watermark.pos.bottomLeft" = "Sol Alt";
-"watermark.pos.bottomRight" = "Sağ Alt";
-"watermark.pos.center" = "Merkez";
-"watermark.pos.centerLeft" = "Sol Orta";
-"watermark.pos.centerRight" = "Sağ Orta";
-"watermark.pos.topCenter" = "Üst Orta";
-"watermark.pos.topLeft" = "Sol Üst";
-"watermark.pos.topRight" = "Sağ Üst";
-"watermark.position" = "Konum";
-"watermark.preview" = "Önizleme";
-"watermark.removeLogo" = "Kaldır";
-"watermark.scale" = "Ölçek";
-"watermark.selectLogo" = "Görsel Seç";
-"watermark.tileMode" = "Tekrar Modu";
-"watermark.tileMode.desc" = "Resim boyunca tekrarla";
+
 "watermark.title" = "Filigran";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Filigran Ekle";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Görsel Seç";
+"watermark.removeLogo" = "Kaldır";
+"watermark.position" = "Konum";
+"watermark.scale" = "Ölçek";
+"watermark.opacity" = "Saydamlık";
+"watermark.preview" = "Önizleme";
+"watermark.apply" = "Uygula";
+"watermark.cancel" = "İptal";
+"watermark.pos.topLeft" = "Sol Üst";
+"watermark.pos.topCenter" = "Üst Orta";
+"watermark.pos.topRight" = "Sağ Üst";
+"watermark.pos.centerLeft" = "Sol Orta";
+"watermark.pos.center" = "Merkez";
+"watermark.pos.centerRight" = "Sağ Orta";
+"watermark.pos.bottomLeft" = "Sol Alt";
+"watermark.pos.bottomCenter" = "Alt Orta";
+"watermark.pos.bottomRight" = "Sağ Alt";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Renk Kaplama";
+"watermark.color.none" = "Yok";
+"watermark.color.black" = "Siyah";
+"watermark.color.darkGray" = "Koyu Gri";
+"watermark.color.gray" = "Gri";
+"watermark.color.lightGray" = "Açık Gri";
+"watermark.color.white" = "Beyaz";
+"watermark.tileMode" = "Tekrar Modu";
+"watermark.tileMode.desc" = "Resim boyunca tekrarla";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Sazlamalar";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI bilen jikme-jiklik gowulandyryş";
-"upscale.settings.scale" = "Massştab";
-"upscale.scale.multiPassHint" = "8× we 16× köp AI geçişini ýerine ýetirýär — has uzak.";
-"upscale.settings.outputFormat" = "Çykyş formaty";
-"upscale.drop.title" = "Suratlary süýşüriň";
-"upscale.drop.subtitle" = "ýa-da faýllara göz aýlamak üçin basyň";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Bu ýerde diňe goldanylýan raster suratlary ulap bolýar";
-"upscale.runButton" = "Ulad";
-"upscale.preview.run" = "Öňünden görkeziş";
-"upscale.preview.hint" = "Massştab saýla we deňeşdirmek üçin Öňünden görkezişe bas";
-"upscale.preview.processing" = "Öňünden görkeziş döredilýär…";
-"upscale.preview.before" = "ÖŇI";
-"upscale.preview.after" = "SOŇRA";
-"upscale.preview.save" = "Ýatda sakla";
-"upscale.preview.saveSettings" = "Öňünden görkezişi ýatda sakla";
-"upscale.preview.autoSave" = "Öňünden görkezişden soň ýatda sakla";
-"upscale.preview.autoSaveHint" = "Öňünden görkeziş gutaranda maksat bukjasyna ýazýar.";
-"upscale.preview.saveNeedFolder" = "Ilki bilen maksat bukjasyny saýla.";
-"upscale.preview.saveFailed" = "Öňünden görkeziş suratyny kodlamak mümkin bolmady.";
-"upscale.preview.loadFailed" = "Öňünden görkeziş suratyny ýüklemek mümkin bolmady.";
-"upscale.backend.missing.hint" = "Programma toplumynda cometscaly motor ýa-da model faýllary ýok. Taslamany täzeden gur.";
-"upscale.error.bundle" = "Programmada Upscale bundle bukjasy ýok.";
-"upscale.error.binary" = "Programma toplumynda cometscaly tapylmady.";
-"upscale.error.model" = "upscayl-standard-4x.param/.bin model faýllary ýok.";
-"upscale.error.process" = "Uladmak şowsuz (exit %d): %@";
-"upscale.error.none" = "Hiç hili surat ulaldylmady.";
-"videoedit.resize.modePercent" = "Massştab (%)";
-"videoedit.resize.modeCustom" = "Aýratyn ululyk";
-"videoedit.resize.autoFill" = "Kanwasy awtomatik doldur";
-"videoedit.resize.autoFillHint" = "Açyk: ini material letterbox bilen syýar; kiçisi ulanylýar we merkezden kesilýär.";
+"inspector.format" = "Format";
+"inspector.output" = "Çykyş";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Önizleme için fotoğraf ekleyin";
+"watermark.rotation" = "Döndürme";
+"watermark.text" = "Logo metni";
+"watermark.text.placeholder" = "Logo metni girin";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

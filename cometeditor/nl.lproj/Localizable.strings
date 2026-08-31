@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Afbeelding slepen en neerzetten";
 "convert.drop.subtitle" = "of klik om bestanden te bladeren";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Breedte px";
 "convert.settings.height" = "Hoogte px";
+
 "meta.info" = "Metadatabeveiliging";
+
 "convert.settings.targetFolder" = "Doelmap";
 "convert.settings.noFolder" = "Niet geselecteerd";
 "convert.settings.chooseFolder" = "Kiezen uit Finder";
+
+"folder.missing.title" = "Map niet gevonden";
+"folder.missing.subtitle" = "Het opgeslagen mappad bestaat niet meer. Selecteer een nieuw pad.";
+"folder.missing.pick" = "Nieuwe map selecteren";
+"folder.missing.panel.message" = "De uitvoermap is niet gevonden. Kies een nieuwe map.";
+
+"bgremove.error.noMaskFound" = "Geen voorgrondmasker gevonden.";
+"bgremove.error.maskConversionFailed" = "Maskerconversie mislukt.";
+"bgremove.error.compositeFailed" = "Beeldsamenstelling mislukt.";
+
 "convert.settings.convertButton" = "Converteren";
 "convert.clearAll" = "Alles wissen";
 "convert.addMore" = "Toevoegen";
 "convert.wrongType.image" = "Hier kunnen alleen afbeeldingen worden geconverteerd";
+
+"upscale.settings.title" = "Instellingen";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-detailverbetering";
+"upscale.settings.scale" = "Schaal";
+"upscale.scale.multiPassHint" = "8× en 16× voeren meerdere AI-rondes uit — duurt langer.";
+"upscale.settings.outputFormat" = "Uitvoerformaat";
+"upscale.drop.title" = "Sleep afbeeldingen hierheen";
+"upscale.drop.subtitle" = "of klik om bestanden te kiezen";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Alleen ondersteunde rasterafbeeldingen kunnen hier worden vergroot";
+"upscale.runButton" = "Vergroten";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Voorbeeld";
+"upscale.preview.hint" = "Kies een schaal en tik op Voorbeeld om te vergelijken";
+"upscale.preview.processing" = "Voorbeeld vergroten…";
+"upscale.preview.before" = "VOOR";
+"upscale.preview.after" = "NA";
+"upscale.preview.save" = "Opslaan";
+"upscale.preview.saveSettings" = "Voorbeeld opslaan";
+"upscale.preview.autoSave" = "Opslaan na voorbeeld";
+"upscale.preview.autoSaveHint" = "Schrijft naar de doelmap wanneer het voorbeeld klaar is.";
+"upscale.preview.saveNeedFolder" = "Kies eerst een doelmap.";
+"upscale.preview.saveFailed" = "Kan voorbeeldafbeelding niet coderen.";
+"upscale.preview.loadFailed" = "Kan voorbeeldafbeelding niet laden.";
+"upscale.backend.missing.hint" = "De cometscaly-engine of modelbestanden ontbreken in de app-bundle. Bouw het project opnieuw.";
+"upscale.error.bundle" = "De Upscale-bundlemap ontbreekt in de app.";
+"upscale.error.binary" = "cometscaly is niet gevonden in de app-bundle.";
+"upscale.error.model" = "Modelbestanden upscayl-standard-4x.param/.bin ontbreken.";
+"upscale.error.process" = "Vergroten mislukt (exit %d): %@";
+"upscale.error.none" = "Er is geen afbeelding vergroot.";
+
 "menu.home" = "Home";
 "menu.convertImage" = "Afbeelding converteren";
 "menu.upscaleImage" = "Afbeelding vergroten";
@@ -28,9 +78,6 @@
 "menu.settings" = "Instellingen";
 "menu.tools" = "Tools";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Ons team";
-"menu.team.title" = "Ons team";
-"menu.team.subtitle" = "Maak kennis met de talentvolle mensen achter Comet Editor";
 "menu.stockImage" = "Stockafbeelding";
 "menu.qrCode" = "QR-code";
 "menu.bgRemove" = "Achtergrondverwijderaar";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Lettertype Downloaden";
 "menu.videoConvert" = "Video converteren";
 "menu.pdfEdit" = "PDF bewerken";
-"menu.suggestion" = "Feedback sturen";
-"team.thanks_grafix" = "We bedanken de Grafix-community voor hun bijdragen.";
+
 "alert.success.title" = "Succes";
 "alert.error.title" = "Fout";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Map openen";
 "alert.success.message.image" = "Afbeeldingen succesvol opgeslagen in %@.";
 "alert.success.message.video" = "Video's succesvol opgeslagen in %@.";
+"alert.error.conversion" = "Sommige afbeeldingen konden niet worden geconverteerd.";
+
 "home.welcome" = "Welkom bij Comet Editor";
 "home.welcome.subtitle" = "Alles wat je nodig hebt in één app.";
 "home.visitWebsite" = "Bezoek onze website";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 met evenwichtige kwaliteit — converteren of comprimeren in één stroom.";
 "home.quick.pdf.title" = "PDF bewerken";
 "home.quick.pdf.subtitle" = "Open de PDF-editor — herschik pagina’s, comprimeer of pas aan op één plek.";
+"home.feature.convertImage.desc" = "Converteer afbeeldingen naar PNG, JPG, WebP, HEIF en meer.";
+"home.feature.videoConvert.desc" = "Converteer en comprimeer je video’s eenvoudig.";
+"home.feature.stockImage.desc" = "Blader en download gratis hoogwaardige stockfoto’s.";
+"home.feature.pdfEdit.desc" = "Bewerk, herschik, comprimeer en beheer je PDF-bestanden.";
+"home.feature.qrCode.desc" = "Genereer en pas QR-codes direct aan.";
+"home.feature.bgRemove.desc" = "Verwijder automatisch achtergronden van afbeeldingen met AI.";
+"home.feature.ocr.desc" = "Haal tekst uit afbeeldingen met optische tekstherkenning.";
+"home.feature.fontDownload.desc" = "Blader en download Google Fonts rechtstreeks op je Mac.";
 "home.preset.pdf.deletePage" = "Pagina’s verwijderen";
 "home.preset.pdf.reorder" = "Pagina’s herschikken";
 "home.preset.pdf.optimize" = "PDF optimaliseren";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Kies het uitvoerformaat (PNG, JPG, WebP, HEIC enz.) in het rechterpaneel.";
 "home.guide.convertImage.step3" = "Pas kwaliteit, schaal of afmetingen aan — en converteer.";
 "home.guide.convertImage.tip" = "Je kunt meerdere afbeeldingen tegelijk toevoegen. Elk bestand wordt apart met dezelfde instellingen geconverteerd.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Converteer en comprimeer video’s naar MP4, MOV, AVI en meer.";
 "home.guide.video.step2" = "Kies het uitvoerformaat (MP4, MOV…) en pas FPS of resolutie aan.";
 "home.guide.video.step3" = "Schakel audio in of uit en klik vervolgens op Converteren.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Bekijk een voorbeeld en selecteer de gewenste stijlen.";
 "home.guide.font.step3" = "Klik op Downloaden om het lettertype op je Mac te installeren.";
 "home.guide.font.tip" = "Geïnstalleerde lettertypen zijn systeembreed direct in alle apps beschikbaar.";
-"home.feature.convertImage.desc" = "Converteer afbeeldingen naar PNG, JPG, WebP, HEIF en meer.";
-"home.feature.videoConvert.desc" = "Converteer en comprimeer je video’s eenvoudig.";
-"home.feature.stockImage.desc" = "Blader en download gratis hoogwaardige stockfoto’s.";
-"home.feature.pdfEdit.desc" = "Bewerk, herschik, comprimeer en beheer je PDF-bestanden.";
-"home.feature.qrCode.desc" = "Genereer en pas QR-codes direct aan.";
-"home.feature.bgRemove.desc" = "Verwijder automatisch achtergronden van afbeeldingen met AI.";
-"home.feature.ocr.desc" = "Haal tekst uit afbeeldingen met optische tekstherkenning.";
-"home.feature.fontDownload.desc" = "Blader en download Google Fonts rechtstreeks op je Mac.";
+
 "video.drop.subtitle" = "of klik om videobestanden te bladeren";
 "video.settings.format" = "FORMAAT";
 "video.settings.fps" = "FPS-LIMIET";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% formaat";
 "video.resolution.50" = "50% formaat";
 "video.resolution.25" = "25% formaat (lage kwaliteit)";
+
 "pdf.drop.title" = "PDF slepen en neerzetten";
 "pdf.drop.subtitle" = "of klik om PDF-bestanden te bladeren";
 "pdf.page.count" = "%lld pagina's";
 "pdf.page.info" = "Pagina %lld van %lld";
 "pdf.estimatedSize" = "Geschatte geoptimaliseerde grootte";
+"pdf.quality.modal.title" = "Optimalisatieniveau kiezen";
+"pdf.quality.modal.subtitle" = "Selecteer hoeveel de bestandsgrootte moet worden verkleind. Hogere compressie betekent een kleiner bestand met enig kwaliteitsverlies.";
+"pdf.quality.modal.estimated" = "Geschatte grootte";
+"pdf.quality.modal.confirm" = "Optimaliseren";
+"pdf.quality.modal.cancel" = "Annuleren";
+"pdf.quality.low.title" = "Maximale compressie";
+"pdf.quality.low.desc" = "Kleinste bestand, zichtbaar kwaliteitsverlies";
+"pdf.quality.medium.title" = "Uitgebalanceerd";
+"pdf.quality.medium.desc" = "Goede balans tussen grootte en kwaliteit";
+"pdf.quality.high.title" = "Hoge kwaliteit";
+"pdf.quality.high.desc" = "Minimaal kwaliteitsverlies, matige verkleining";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF optimaliseren";
+"pdf.tools.quality" = "KWALITEIT";
+"pdf.tools.quality.label" = "Beeldkwaliteit";
+"pdf.tools.quality.small" = "Kleiner bestand";
+"pdf.tools.quality.large" = "Betere kwaliteit";
+"pdf.tools.quality.lossless" = "Verliesvrij";
+"pdf.tools.resolution" = "RESOLUTIESCHAAL";
+"pdf.tools.resolution.enable" = "Resolutie verkleinen";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK CONVERTER";
+"pdf.color.enable" = "Kleurruimte converteren";
+"pdf.color.convert" = "Converteren & opslaan";
 "pdf.tools.save" = "PDF opslaan";
 "pdf.reorder.title" = "Paginavolgorde";
 "pdf.reorder.hint" = "Houd Ctrl ingedrukt voor meerdere selecties, sleep dan om te herordenen.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Na deze pagina invoegen";
 "pdf.addContent.atEnd" = "Aan het einde toevoegen";
 "pdf.addContent.chooseFile" = "Bestand kiezen en invoegen";
+
 "stock.deselectAll" = "Alles deselecteren";
 "stock.download" = "Geselecteerde downloaden";
 "stock.download.count" = "%d foto's downloaden";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Voer hier URL of tekst in...";
 "qr.settings.colors" = "Kleuren";
 "qr.settings.fgColor" = "Voorgrondkleur";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Resolutie";
 "qr.settings.customSize" = "Aangepaste grootte (px)";
 "qr.download" = "QR-code downloaden";
+"qr.settings.type" = "QR-type";
+"qr.type.website" = "Website";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Contact (vCard)";
+"qr.type.email" = "E-mail";
+"qr.type.phone" = "Telefoon";
+"qr.wifi.ssid" = "Netwerknaam (SSID)";
+"qr.wifi.password" = "Wachtwoord";
+"qr.wifi.hidden" = "Verborgen netwerk";
+"qr.wifi.noEncryption" = "Geen";
+"qr.vcard.firstName" = "Voornaam";
+"qr.vcard.lastName" = "Achternaam";
+"qr.vcard.phone" = "Telefoon";
+"qr.vcard.email" = "E-mail";
+"qr.vcard.company" = "Bedrijf";
+"qr.vcard.jobTitle" = "Functietitel";
+"qr.vcard.address" = "Adres";
+"qr.vcard.website" = "Website";
+"qr.email.address" = "E-mailadres";
+"qr.email.subject" = "Onderwerp";
+"qr.email.body" = "Bericht";
+"qr.phone.number" = "Telefoonnummer";
+
 "bgremove.unavailable.title" = "macOS 14 vereist";
 "bgremove.unavailable.subtitle" = "De achtergrondverwijderaar gebruikt Apple's Neural Engine-technologie.\nUpdate naar macOS 14 Sonoma of later.";
 "bgremove.drop.title" = "Afbeelding slepen en neerzetten";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "RANDEN VERFIJNEN";
 "bgremove.settings.feather" = "Vervagen";
 "bgremove.settings.featherAmount" = "Vervagingswaarde";
+
 "ocr.drop.title" = "Afbeelding slepen en neerzetten";
 "ocr.drop.subtitle" = "of klik om bestanden te bladeren";
 "ocr.processing" = "Tekst herkennen...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Wissen";
 "ocr.newFile" = "Nieuw bestand";
 "ocr.copied" = "Gekopieerd!";
+
 "app.comingSoon.title" = "Binnenkort";
 "app.comingSoon.message" = "Deze functie is binnenkort beschikbaar.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Lettertypen zoeken...";
 "font.preview.custom" = "Typ iets...";
 "font.inspector.preview" = "Voorbeeld";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Koreaans";
 "font.writing.thai" = "Thais";
 "font.writing.vietnamese" = "Vietnamees";
-
 "font.families.count" = "%d families";
 "font.styles.count" = "%d stijlen · %@";
 "font.noResults" = "Geen lettertypen gevonden";
-"suggestion.title" = "Suggestie sturen";
-"suggestion.subtitle" = "Deel uw ideeën en help ons te verbeteren";
-"suggestion.placeholder.title" = "Titel";
-"suggestion.placeholder.body" = "Beschrijf uw suggestie in detail...";
-"suggestion.category.bug" = "Bug";
-"suggestion.category.feature" = "Functieverzoek";
-"suggestion.category.ui" = "Interface";
-"suggestion.category.performance" = "Prestaties";
-"suggestion.category.other" = "Overig";
-"suggestion.send" = "Suggestie sturen";
-"suggestion.sending" = "Verzenden...";
-"suggestion.sent.title" = "Dank u!";
-"suggestion.sent.message" = "Uw suggestie is ontvangen. We zullen het snel bekijken.";
-"suggestion.error" = "Verzenden mislukt. Probeer het opnieuw.";
-"suggestion.validation.title" = "Ontbrekende velden";
-"suggestion.validation.body" = "Vul de titel en beschrijving in.";
-
-"suggestion.label.category" = "Categorie";
-"suggestion.label.title" = "Titel";
-"suggestion.label.description" = "Beschrijving";
 
 "video.drop.title" = "Sleep video hier naartoe";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Hier kunnen alleen video's worden geconverteerd";
+
 "app.maintenance.title" = "Onderhoudsmodus";
 "app.forceUpdate.title" = "Update vereist";
 "app.forceUpdate.button" = "Bijwerken in App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Zoeken";
 "stock.search.placeholder" = "Foto's zoeken...";
 "stock.selected" = "%d geselecteerd";
+
 "video.cancel" = "Annuleren";
 "video.error.decoder" = "Video kon niet worden gedecodeerd.";
 "video.saved.gain" = "bespaard";
 "video.saved.increased" = "groter";
 "video.settings.fps.desc" = "Uitschakelen om de originele FPS te behouden";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Afbeelding";
 "pdf.tools.pageManagement" = "PAGINABEHEER";
 "pdf.tools.addContent" = "Inhoud toevoegen";
 "pdf.tools.reorder" = "Opnieuw rangschikken";
 "pdf.tools.targetFolder" = "DOELMAP";
-"alert.error.conversion" = "Sommige afbeeldingen konden niet worden geconverteerd.";
-"pdf.color.convert" = "Converteren & opslaan";
-"pdf.color.enable" = "Kleurruimte converteren";
-"pdf.color.title" = "RGB/CMYK CONVERTER";
-"pdf.tools.quality" = "KWALITEIT";
-"pdf.tools.quality.label" = "Beeldkwaliteit";
-"pdf.tools.quality.large" = "Betere kwaliteit";
-"pdf.tools.quality.lossless" = "Verliesvrij";
-"pdf.tools.resolution" = "RESOLUTIESCHAAL";
-"pdf.tools.resolution.enable" = "Resolutie verkleinen";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Kleiner bestand";
 
 "ad.sponsored" = "Gesponsord";
 "ad.visit" = "Bezoeken";
 
-"pdf.quality.modal.title" = "Optimalisatieniveau kiezen";
-"pdf.quality.modal.subtitle" = "Selecteer hoeveel de bestandsgrootte moet worden verkleind. Hogere compressie betekent een kleiner bestand met enig kwaliteitsverlies.";
-"pdf.quality.modal.estimated" = "Geschatte grootte";
-"pdf.quality.modal.confirm" = "Optimaliseren";
-"pdf.quality.modal.cancel" = "Annuleren";
-"pdf.quality.low.title" = "Maximale compressie";
-"pdf.quality.low.desc" = "Kleinste bestand, zichtbaar kwaliteitsverlies";
-"pdf.quality.medium.title" = "Uitgebalanceerd";
-"pdf.quality.medium.desc" = "Goede balans tussen grootte en kwaliteit";
-"pdf.quality.high.title" = "Hoge kwaliteit";
-"pdf.quality.high.desc" = "Minimaal kwaliteitsverlies, matige verkleining";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Pas Comet Editor aan uw wensen aan";
+"settings.section.output" = "UITVOER";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "OVER";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Standaard uitvoermap";
+"settings.noFolderSelected" = "Niet geselecteerd — elke keer gevraagd";
+"settings.chooseFolder" = "Map kiezen";
+"settings.clearFolder" = "Wissen";
+"settings.folderPicker.message" = "Kies een standaardmap voor geëxporteerde bestanden";
+"settings.folderPicker.button" = "Map selecteren";
 
 "app.maintenance.title2" = "Onderhoud bezig";
 "app.maintenance.body" = "De app is tijdelijk niet beschikbaar. We zijn snel terug.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Bijwerken in App Store";
 "app.quit2" = "App afsluiten";
 
-"settings.subtitle" = "Pas Comet Editor aan uw wensen aan";
-"settings.section.output" = "UITVOER";
-"settings.section.about" = "OVER";
-"settings.defaultOutputFolder" = "Standaard uitvoermap";
-"settings.noFolderSelected" = "Niet geselecteerd — elke keer gevraagd";
-"settings.chooseFolder" = "Map kiezen";
-"settings.clearFolder" = "Wissen";
-"settings.folderPicker.message" = "Kies een standaardmap voor geëxporteerde bestanden";
-"settings.folderPicker.button" = "Map selecteren";
-"menu.announcements" = "Aankondigingen";
-"announcements.subtitle" = "Laatste nieuws en updates van het team";
-"announcements.empty" = "Nog geen aankondigingen";
-
 "settings.pdfOutputFolder" = "PDF uitvoermap";
 
 "folder.default.prompt.title" = "Instellen als standaardmap?";
 "folder.default.prompt.body" = "Wilt u dit instellen als uw standaard uitvoermap? U kunt dit op elk moment wijzigen in Instellingen.";
 "folder.default.prompt.yes" = "Instellen als standaard";
 "folder.default.prompt.no" = "Niet nu";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Knip clips, verwijder ongewenste delen en voeg meerdere video’s samen.";
-"home.guide.videoedit.preset.concat" = "Video’s samenvoegen";
-"home.guide.videoedit.preset.trim" = "Video knippen";
-"home.guide.videoedit.step1" = "Voeg een of meer videobestanden toe met + of sleep ze hierheen.";
-"home.guide.videoedit.step2" = "Selecteer een clip en sleep de trimgrepen op de tijdlijn voor begin en eind.";
-"home.guide.videoedit.step3" = "Herschik clips in de lijst door ze te slepen naar de uiteindelijke volgorde.";
-"home.guide.videoedit.step4" = "Kies uitvoerformaat en map en klik vervolgens op Exporteren.";
-"home.guide.videoedit.tip" = "Trimgrepen klikken op de milliseconde — gebruik de afspeelbalk om de snede te controleren.";
-"menu.videoEdit" = "Videobewerking";
-"qr.email.address" = "E-mailadres";
-"qr.email.body" = "Bericht";
-"qr.email.subject" = "Onderwerp";
-"qr.phone.number" = "Telefoonnummer";
-"qr.settings.type" = "QR-type";
-"qr.type.email" = "E-mail";
-"qr.type.phone" = "Telefoon";
-"qr.type.vcard" = "Contact (vCard)";
-"qr.type.website" = "Website";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adres";
-"qr.vcard.company" = "Bedrijf";
-"qr.vcard.email" = "E-mail";
-"qr.vcard.firstName" = "Voornaam";
-"qr.vcard.jobTitle" = "Functietitel";
-"qr.vcard.lastName" = "Achternaam";
-"qr.vcard.phone" = "Telefoon";
-"qr.vcard.website" = "Website";
-"qr.wifi.hidden" = "Verborgen netwerk";
-"qr.wifi.noEncryption" = "Geen";
-"qr.wifi.password" = "Wachtwoord";
-"qr.wifi.ssid" = "Netwerknaam (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Foto toevoegen";
-"videoedit.addMore" = "Toevoegen";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Video’s toevoegen";
-"videoedit.empty.subtitle" = "Sleep videobestanden hierheen of tik op de knop hieronder";
-"videoedit.empty.title" = "Video’s toevoegen om te bewerken";
-"videoedit.export.merge" = "Samenvoegen en exporteren";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Instellingen";
-"videoedit.export.trim" = "Clip exporteren";
-"videoedit.exporting" = "Exporteren…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTODUUR";
-"videoedit.imageDuration.default" = "Standaard voor nieuwe foto’s";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "OPSLAGLOCATIE";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Toepassen";
-"watermark.button" = "Watermerk toevoegen";
-"watermark.cancel" = "Annuleren";
-"watermark.color.black" = "Zwart";
-"watermark.color.darkGray" = "Donkergrijs";
-"watermark.color.gray" = "Grijs";
-"watermark.color.lightGray" = "Lichtgrijs";
-"watermark.color.none" = "Geen";
-"watermark.color.white" = "Wit";
-"watermark.colorOverlay" = "Kleuroverlay";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Dekking";
-"watermark.pos.bottomCenter" = "Onder midden";
-"watermark.pos.bottomLeft" = "Onder links";
-"watermark.pos.bottomRight" = "Onder rechts";
-"watermark.pos.center" = "Midden";
-"watermark.pos.centerLeft" = "Midden links";
-"watermark.pos.centerRight" = "Midden rechts";
-"watermark.pos.topCenter" = "Boven midden";
-"watermark.pos.topLeft" = "Boven links";
-"watermark.pos.topRight" = "Boven rechts";
-"watermark.position" = "Positie";
-"watermark.preview" = "Voorbeeld";
-"watermark.removeLogo" = "Verwijderen";
-"watermark.scale" = "Schaal";
-"watermark.selectLogo" = "Afbeelding kiezen";
-"watermark.tileMode" = "Tegelmodus";
-"watermark.tileMode.desc" = "Herhalen over afbeelding";
+
 "watermark.title" = "Watermerk";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Watermerk toevoegen";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Afbeelding kiezen";
+"watermark.removeLogo" = "Verwijderen";
+"watermark.position" = "Positie";
+"watermark.scale" = "Schaal";
+"watermark.opacity" = "Dekking";
+"watermark.preview" = "Voorbeeld";
+"watermark.apply" = "Toepassen";
+"watermark.cancel" = "Annuleren";
+"watermark.pos.topLeft" = "Boven links";
+"watermark.pos.topCenter" = "Boven midden";
+"watermark.pos.topRight" = "Boven rechts";
+"watermark.pos.centerLeft" = "Midden links";
+"watermark.pos.center" = "Midden";
+"watermark.pos.centerRight" = "Midden rechts";
+"watermark.pos.bottomLeft" = "Onder links";
+"watermark.pos.bottomCenter" = "Onder midden";
+"watermark.pos.bottomRight" = "Onder rechts";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Kleuroverlay";
+"watermark.color.none" = "Geen";
+"watermark.color.black" = "Zwart";
+"watermark.color.darkGray" = "Donkergrijs";
+"watermark.color.gray" = "Grijs";
+"watermark.color.lightGray" = "Lichtgrijs";
+"watermark.color.white" = "Wit";
+"watermark.tileMode" = "Tegelmodus";
+"watermark.tileMode.desc" = "Herhalen over afbeelding";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Instellingen";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-detailverbetering";
-"upscale.settings.scale" = "Schaal";
-"upscale.scale.multiPassHint" = "8× en 16× voeren meerdere AI-rondes uit — duurt langer.";
-"upscale.settings.outputFormat" = "Uitvoerformaat";
-"upscale.drop.title" = "Sleep afbeeldingen hierheen";
-"upscale.drop.subtitle" = "of klik om bestanden te kiezen";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Alleen ondersteunde rasterafbeeldingen kunnen hier worden vergroot";
-"upscale.runButton" = "Vergroten";
-"upscale.preview.run" = "Voorbeeld";
-"upscale.preview.hint" = "Kies een schaal en tik op Voorbeeld om te vergelijken";
-"upscale.preview.processing" = "Voorbeeld vergroten…";
-"upscale.preview.before" = "VOOR";
-"upscale.preview.after" = "NA";
-"upscale.preview.save" = "Opslaan";
-"upscale.preview.saveSettings" = "Voorbeeld opslaan";
-"upscale.preview.autoSave" = "Opslaan na voorbeeld";
-"upscale.preview.autoSaveHint" = "Schrijft naar de doelmap wanneer het voorbeeld klaar is.";
-"upscale.preview.saveNeedFolder" = "Kies eerst een doelmap.";
-"upscale.preview.saveFailed" = "Kan voorbeeldafbeelding niet coderen.";
-"upscale.preview.loadFailed" = "Kan voorbeeldafbeelding niet laden.";
-"upscale.backend.missing.hint" = "De cometscaly-engine of modelbestanden ontbreken in de app-bundle. Bouw het project opnieuw.";
-"upscale.error.bundle" = "De Upscale-bundlemap ontbreekt in de app.";
-"upscale.error.binary" = "cometscaly is niet gevonden in de app-bundle.";
-"upscale.error.model" = "Modelbestanden upscayl-standard-4x.param/.bin ontbreken.";
-"upscale.error.process" = "Vergroten mislukt (exit %d): %@";
-"upscale.error.none" = "Er is geen afbeelding vergroot.";
-"videoedit.resize.modePercent" = "Schaal (%)";
-"videoedit.resize.modeCustom" = "Aangepaste grootte";
-"videoedit.resize.autoFill" = "Canvas automatisch vullen";
-"videoedit.resize.autoFillHint" = "Aan: breed materiaal past met letterbox; smaller materiaal wordt ingezoomd en midden bijgesneden om te vullen.";
+"inspector.format" = "Formaat";
+"inspector.output" = "Uitvoer";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Voeg een foto toe voor voorbeeld";
+"watermark.rotation" = "Rotatie";
+"watermark.text" = "Logotekst";
+"watermark.text.placeholder" = "Voer logotekst in";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

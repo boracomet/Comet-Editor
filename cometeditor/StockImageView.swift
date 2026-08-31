@@ -26,6 +26,7 @@ struct UnsplashPhoto: Identifiable, Equatable {
 
 struct StockImageView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
+    var onNavigate: ((MenuItem) -> Void)? = nil
     @EnvironmentObject var appState: GlobalAppState
     @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.colorScheme) private var colorScheme
@@ -44,6 +45,7 @@ struct StockImageView: View {
     @State private var scaleSelection: String = "75%"
     @State private var metadataEnabled: Bool = true
     @State private var isDownloading: Bool = false
+    @State private var isSendingToConvert: Bool = false
     @State private var downloadProgress: Double = 0
 
     @State private var previewPhoto: UnsplashPhoto? = nil
@@ -59,6 +61,7 @@ struct StockImageView: View {
     }
     private var selectedPhotos: [UnsplashPhoto] { photos.filter(\.isSelected) }
     private var selectedCount: Int { selectedPhotos.count }
+    private var isBusy: Bool { isDownloading || isSendingToConvert }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -266,29 +269,10 @@ struct StockImageView: View {
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text(LanguageManager.shared.string("convert.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
                 // Export Format
-                inspectorSection("convert.settings.format") {
-                    Picker("", selection: $selectedFormat) {
-                        ForEach(ImageFormat.allCases) { f in
-                            Text(f.label).tag(f)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .labelsHidden()
+                inspectorSection("inspector.output") {
+                    InspectorMenuChip(title: selectedFormat.label, selection: $selectedFormat, options: Array(ImageFormat.allCases)) { $0.label }
                 }
-
-                Divider()
 
                 // Quality
                 inspectorSection("convert.settings.quality") {
@@ -310,8 +294,6 @@ struct StockImageView: View {
                     }
                 }
 
-                Divider()
-
                 // Scale
                 inspectorSection("convert.settings.scale") {
                     VStack(alignment: .leading, spacing: 8) {
@@ -328,7 +310,7 @@ struct StockImageView: View {
                         if scaleEnabled {
                             Picker("", selection: $scaleSelection) {
                                 ForEach(scaleOptions, id: \.self) { opt in
-                                    Text(LocalizedStringKey(opt)).tag(opt)
+                                    Text(languageManager.scaleMenuTitle(for: opt)).tag(opt)
                                 }
                             }
                             .pickerStyle(.menu)
@@ -337,8 +319,6 @@ struct StockImageView: View {
                         }
                     }
                 }
-
-                Divider()
 
                 // Metadata
                 inspectorSection("meta.info") {
@@ -353,60 +333,22 @@ struct StockImageView: View {
                     }
                 }
 
-                Divider()
-
                 // Target Folder
                 inspectorSection("convert.settings.targetFolder") {
-                    HStack(spacing: 8) {
-                        if let folderURL = appState.targetFolder {
-                            Text(truncatedPath(folderURL.path))
-                                .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                .foregroundStyle(Color.primary.opacity(0.8))
-                                .lineLimit(1)
-                                .truncationMode(.middle)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.primary.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-                                )
-                        } else {
-                            Text("convert.settings.noFolder")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.red.opacity(0.8))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.red.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.red.opacity(0.2), lineWidth: 1)
-                                )
+                    FolderPickerRow(
+                        folder: appState.targetFolder,
+                        isStale: appState.targetFolderStale
+                    ) {
+                        pickFolder { url in
+                            appState.handleFolderSelected(url)
+                            appState.targetFolder = url
                         }
-
-                        Button("convert.settings.chooseFolder") {
-                            pickFolder { url in
-                                appState.handleFolderSelected(url)
-                                appState.targetFolder = url
-                            }
-                        }
-                        .controlSize(.small)
                     }
                 }
 
-                Divider()
-
                 // Download Button
                 VStack(spacing: 10) {
-                    if isDownloading {
+                    if isBusy {
                         ProgressView(value: downloadProgress, total: 1.0)
                             .progressViewStyle(.linear)
                             .padding(.horizontal, 4)
@@ -435,12 +377,35 @@ struct StockImageView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
-                    .disabled(selectedCount == 0 || appState.targetFolder == nil || isDownloading)
+                    .disabled(selectedCount == 0 || appState.targetFolder == nil || isBusy)
+
+                    Button {
+                        isSendingToConvert = true
+                        downloadProgress = 0
+                        Task { await sendSelectedToConvert() }
+                    } label: {
+                        HStack {
+                            if isSendingToConvert {
+                                ProgressView().controlSize(.small)
+                                Text(LocalizedStringKey("video.processing"))
+                            } else {
+                                Image(systemName: "photo.on.rectangle.angled")
+                                Text(LocalizedStringKey("stock.sendToConvert"))
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                    .disabled(selectedCount == 0 || isBusy)
+                    .help(LocalizedStringKey("stock.sendToConvert"))
                 }
-                .padding(16)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
             }
+            .padding(.top, 16)
         }
-        .background(Material.bar)
+        .inspectorPanelChrome()
     }
 
     // MARK: - API
@@ -534,7 +499,7 @@ struct StockImageView: View {
 
     @MainActor
     private func downloadSelected() async {
-        guard let folder = appState.targetFolder else {
+        guard let folder = await appState.resolveOutputFolder() else {
             isDownloading = false
             return
         }
@@ -577,13 +542,105 @@ struct StockImageView: View {
         }
 
         for i in photos.indices { photos[i].isSelected = false }
-        CometAnalytics.shared.trackEvent(
-            page: "stockImage",
-            eventType: .stockDownloaded,
-            metadata: ["count": toDownload.count, "format": selectedFormat.rawValue]
-        )
         alertMessage = String(format: NSLocalizedString("alert.success.message.image", comment: ""), folder.path)
         showSuccessAlert = true
+    }
+
+    /// Seçili stok fotoğraflarını geçici klasöre indirip Resim Dönüştür kuyruğuna ekler.
+    @MainActor
+    private func sendSelectedToConvert() async {
+        appState.processingMenuItem = .stockImage
+        defer {
+            isSendingToConvert = false
+            appState.processingMenuItem = nil
+        }
+
+        let toSend = selectedPhotos
+        guard !toSend.isEmpty else { return }
+
+        let fm = FileManager.default
+        let folder = fm.temporaryDirectory.appendingPathComponent("comet-stock-convert", isDirectory: true)
+        do {
+            try fm.createDirectory(at: folder, withIntermediateDirectories: true)
+        } catch {
+            alertMessage = languageManager.string("stock.sendToConvert.error")
+            showErrorAlert = true
+            return
+        }
+
+        var built: [ImageItem] = []
+        let existing = Set(appState.selectedImages.map(\.url))
+
+        for (i, photo) in toSend.enumerated() {
+            let outputURL = folder.appendingPathComponent("\(photo.id)_unsplash.jpg")
+            if existing.contains(outputURL) {
+                downloadProgress = Double(i + 1) / Double(toSend.count)
+                continue
+            }
+            do {
+                let (data, _) = try await URLSession.shared.data(from: photo.fullURL)
+                try data.write(to: outputURL, options: .atomic)
+                if let item = makeImageItem(from: outputURL) {
+                    built.append(item)
+                }
+            } catch { }
+
+            downloadProgress = Double(i + 1) / Double(toSend.count)
+        }
+
+        if built.isEmpty {
+            let alreadyQueued = toSend.contains {
+                existing.contains(folder.appendingPathComponent("\($0.id)_unsplash.jpg"))
+            }
+            if alreadyQueued {
+                for i in photos.indices { photos[i].isSelected = false }
+                onNavigate?(.convertImage)
+                return
+            }
+            alertMessage = languageManager.string("stock.sendToConvert.error")
+            showErrorAlert = true
+            return
+        }
+
+        appState.selectedImages.append(contentsOf: built)
+        for i in photos.indices { photos[i].isSelected = false }
+        onNavigate?(.convertImage)
+    }
+
+    private func makeImageItem(from fileURL: URL) -> ImageItem? {
+        let bookmark = ImageItem.makeBookmark(for: fileURL)
+
+        var fileSizeStr = "0 KB"
+        if let attrs = try? FileManager.default.attributesOfItem(atPath: fileURL.path),
+           let size = attrs[.size] as? Int64 {
+            fileSizeStr = ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
+        }
+
+        var dimStr = ""
+        var nsImage: NSImage? = nil
+        if let src = CGImageSourceCreateWithURL(fileURL as CFURL, nil) {
+            if let props = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
+               let w = props[kCGImagePropertyPixelWidth] as? Int,
+               let h = props[kCGImagePropertyPixelHeight] as? Int {
+                dimStr = "\(w)×\(h)"
+            }
+            let thumbOpts: [CFString: Any] = [
+                kCGImageSourceCreateThumbnailFromImageAlways: true,
+                kCGImageSourceThumbnailMaxPixelSize: 720,
+                kCGImageSourceCreateThumbnailWithTransform: true
+            ]
+            if let cg = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOpts as CFDictionary) {
+                nsImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+            }
+        }
+
+        return ImageItem(
+            url: fileURL,
+            image: nsImage,
+            fileSizeString: fileSizeStr,
+            dimensionsString: dimStr,
+            bookmarkData: bookmark
+        )
     }
 
     private func save(image: NSImage, to url: URL, format: ImageFormat, scale: Double, customSize: CGSize?) async throws {

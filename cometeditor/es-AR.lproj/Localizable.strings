@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Arrastrá y soltá una imagen";
 "convert.drop.subtitle" = "o hacé clic para explorar archivos";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Ancho px";
 "convert.settings.height" = "Alto px";
+
 "meta.info" = "Protección de metadatos";
+
 "convert.settings.targetFolder" = "Carpeta de destino";
 "convert.settings.noFolder" = "No seleccionada";
 "convert.settings.chooseFolder" = "Elegir desde Finder";
+
+"folder.missing.title" = "Carpeta no encontrada";
+"folder.missing.subtitle" = "La ruta de la carpeta guardada ya no existe. Seleccione una nueva.";
+"folder.missing.pick" = "Seleccionar nueva carpeta";
+"folder.missing.panel.message" = "No se encontró la carpeta de salida. Seleccione una nueva carpeta.";
+
+"bgremove.error.noMaskFound" = "No se encontró máscara de primer plano.";
+"bgremove.error.maskConversionFailed" = "Error en la conversión de la máscara.";
+"bgremove.error.compositeFailed" = "Error al componer la imagen.";
+
 "convert.settings.convertButton" = "Convertir";
 "convert.clearAll" = "Limpiar todo";
 "convert.addMore" = "Agregar";
 "convert.wrongType.image" = "Aquí solo se pueden convertir imágenes";
+
+"upscale.settings.title" = "Ajustes";
+"upscale.settings.model" = "Modelo";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — mejora de detalle con IA";
+"upscale.settings.scale" = "Escala";
+"upscale.scale.multiPassHint" = "8× y 16× ejecutan varias pasadas de IA — tarda más.";
+"upscale.settings.outputFormat" = "Formato de salida";
+"upscale.drop.title" = "Arrastra y suelta imágenes";
+"upscale.drop.subtitle" = "o haz clic para buscar archivos";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Solo se pueden ampliar aquí imágenes ráster admitidas";
+"upscale.runButton" = "Ampliar";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Vista previa";
+"upscale.preview.hint" = "Elige una escala y toca Vista previa para comparar";
+"upscale.preview.processing" = "Generando vista previa…";
+"upscale.preview.before" = "ANTES";
+"upscale.preview.after" = "DESPUÉS";
+"upscale.preview.save" = "Guardar";
+"upscale.preview.saveSettings" = "Guardar vista previa";
+"upscale.preview.autoSave" = "Guardar tras la vista previa";
+"upscale.preview.autoSaveHint" = "Escribe en la carpeta de destino al terminar la vista previa.";
+"upscale.preview.saveNeedFolder" = "Primero elige una carpeta de destino.";
+"upscale.preview.saveFailed" = "No se pudo codificar la imagen de vista previa.";
+"upscale.preview.loadFailed" = "No se pudo cargar la imagen de vista previa.";
+"upscale.backend.missing.hint" = "Falta el motor cometscaly o los archivos del modelo en el bundle. Recompila el proyecto.";
+"upscale.error.bundle" = "Falta la carpeta bundle de Upscale en la app.";
+"upscale.error.binary" = "No se encontró cometscaly en el bundle de la app.";
+"upscale.error.model" = "Faltan los archivos del modelo upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "La ampliación falló (exit %d): %@";
+"upscale.error.none" = "No se amplió ninguna imagen.";
+
 "menu.home" = "Inicio";
 "menu.convertImage" = "Convertir imagen";
 "menu.upscaleImage" = "Ampliar imagen";
@@ -28,9 +78,6 @@
 "menu.settings" = "Ajustes";
 "menu.tools" = "Herramientas";
 "menu.document" = "DOCUMENTO";
-"menu.team" = "Nuestro equipo";
-"menu.team.title" = "Nuestro equipo";
-"menu.team.subtitle" = "Conocé a las personas talentosas detrás de Comet Editor";
 "menu.stockImage" = "Imagen de stock";
 "menu.qrCode" = "Código QR";
 "menu.bgRemove" = "Eliminador de fondo";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Descargar Fuente";
 "menu.videoConvert" = "Convertir video";
 "menu.pdfEdit" = "Editar PDF";
-"menu.suggestion" = "Enviar sugerencia";
-"team.thanks_grafix" = "Agradecemos a la comunidad Grafix por sus contribuciones.";
+
 "alert.success.title" = "Éxito";
 "alert.error.title" = "Error";
 "alert.ok" = "Aceptar";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Abrir carpeta";
 "alert.success.message.image" = "Las imágenes se guardaron correctamente en %@.";
 "alert.success.message.video" = "Los videos se guardaron correctamente en %@.";
+"alert.error.conversion" = "Algunas imágenes no se pudieron convertir.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "o hacé clic para explorar archivos de video";
 "video.settings.format" = "FORMATO";
 "video.settings.fps" = "LÍMITE DE FPS";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% tamaño";
 "video.resolution.50" = "50% tamaño";
 "video.resolution.25" = "25% tamaño (baja calidad)";
+
 "pdf.drop.title" = "Arrastrá y soltá un PDF";
 "pdf.drop.subtitle" = "o hacé clic para explorar archivos PDF";
 "pdf.page.count" = "%lld páginas";
 "pdf.page.info" = "Página %lld de %lld";
 "pdf.estimatedSize" = "Tamaño optimizado estimado";
+"pdf.quality.modal.title" = "Elegir nivel de optimización";
+"pdf.quality.modal.subtitle" = "Selecciona cuánto reducir el tamaño del archivo. Mayor compresión significa archivo más pequeño con algo de pérdida de calidad.";
+"pdf.quality.modal.estimated" = "Tamaño estimado";
+"pdf.quality.modal.confirm" = "Optimizar";
+"pdf.quality.modal.cancel" = "Cancelar";
+"pdf.quality.low.title" = "Compresión máxima";
+"pdf.quality.low.desc" = "Archivo más pequeño, pérdida de calidad visible";
+"pdf.quality.medium.title" = "Equilibrado";
+"pdf.quality.medium.desc" = "Buen equilibrio entre tamaño y calidad";
+"pdf.quality.high.title" = "Alta calidad";
+"pdf.quality.high.desc" = "Pérdida mínima de calidad, reducción moderada";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimizar PDF";
+"pdf.tools.quality" = "CALIDAD";
+"pdf.tools.quality.label" = "Calidad de imagen";
+"pdf.tools.quality.small" = "Archivo más pequeño";
+"pdf.tools.quality.large" = "Mejor calidad";
+"pdf.tools.quality.lossless" = "Sin pérdida";
+"pdf.tools.resolution" = "ESCALA DE RESOLUCIÓN";
+"pdf.tools.resolution.enable" = "Reducir resolución";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "CONVERSOR RGB/CMYK";
+"pdf.color.enable" = "Convertir espacio de color";
+"pdf.color.convert" = "Convertir y guardar";
 "pdf.tools.save" = "Guardar PDF";
 "pdf.reorder.title" = "Orden de páginas";
 "pdf.reorder.hint" = "Mantené Ctrl para selección múltiple, luego arrastrá para reordenar.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Insertar después de esta página";
 "pdf.addContent.atEnd" = "Agregar al final";
 "pdf.addContent.chooseFile" = "Elegir archivo e insertar";
+
 "stock.deselectAll" = "Deseleccionar todo";
 "stock.download" = "Descargar seleccionadas";
 "stock.download.count" = "Descargar %d fotos";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Introduce la URL o el texto aquí...";
 "qr.settings.colors" = "Colores";
 "qr.settings.fgColor" = "Color de primer plano";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Resolución";
 "qr.settings.customSize" = "Tamaño personalizado (px)";
 "qr.download" = "Descargar código QR";
+"qr.settings.type" = "Tipo de QR";
+"qr.type.website" = "Sitio web";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Contacto (vCard)";
+"qr.type.email" = "Correo";
+"qr.type.phone" = "Teléfono";
+"qr.wifi.ssid" = "Nombre de red (SSID)";
+"qr.wifi.password" = "Contraseña";
+"qr.wifi.hidden" = "Red oculta";
+"qr.wifi.noEncryption" = "Ninguno";
+"qr.vcard.firstName" = "Nombre";
+"qr.vcard.lastName" = "Apellidos";
+"qr.vcard.phone" = "Teléfono";
+"qr.vcard.email" = "Correo electrónico";
+"qr.vcard.company" = "Empresa";
+"qr.vcard.jobTitle" = "Puesto";
+"qr.vcard.address" = "Dirección";
+"qr.vcard.website" = "Sitio web";
+"qr.email.address" = "Dirección de correo";
+"qr.email.subject" = "Asunto";
+"qr.email.body" = "Mensaje";
+"qr.phone.number" = "Número de teléfono";
+
 "bgremove.unavailable.title" = "Se requiere macOS 14";
 "bgremove.unavailable.subtitle" = "El eliminador de fondo usa la tecnología Neural Engine de Apple.\nActualizá a macOS 14 Sonoma o posterior.";
 "bgremove.drop.title" = "Arrastrá y soltá una imagen";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINAR BORDES";
 "bgremove.settings.feather" = "Difuminar";
 "bgremove.settings.featherAmount" = "Cantidad de difuminado";
+
 "ocr.drop.title" = "Arrastrá y soltá una imagen";
 "ocr.drop.subtitle" = "o hacé clic para explorar archivos";
 "ocr.processing" = "Reconociendo texto...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Limpiar";
 "ocr.newFile" = "Nuevo archivo";
 "ocr.copied" = "¡Copiado!";
+
 "app.comingSoon.title" = "Próximamente";
 "app.comingSoon.message" = "Esta función estará disponible pronto.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Buscar fuentes...";
 "font.preview.custom" = "Escribe algo...";
 "font.inspector.preview" = "Vista previa";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Coreano";
 "font.writing.thai" = "Tailandés";
 "font.writing.vietnamese" = "Vietnamita";
-
 "font.families.count" = "%d familias";
 "font.styles.count" = "%d estilos · %@";
 "font.noResults" = "No se encontraron fuentes";
-"suggestion.title" = "Hacer una sugerencia";
-"suggestion.subtitle" = "Comparte tus ideas y ayúdanos a mejorar";
-"suggestion.placeholder.title" = "Título";
-"suggestion.placeholder.body" = "Describe tu sugerencia en detalle...";
-"suggestion.category.bug" = "Error";
-"suggestion.category.feature" = "Solicitud de función";
-"suggestion.category.ui" = "Interfaz";
-"suggestion.category.performance" = "Rendimiento";
-"suggestion.category.other" = "Otro";
-"suggestion.send" = "Enviar sugerencia";
-"suggestion.sending" = "Enviando...";
-"suggestion.sent.title" = "¡Gracias!";
-"suggestion.sent.message" = "Tu sugerencia ha sido recibida. La revisaremos pronto.";
-"suggestion.error" = "Error al enviar. Intente de nuevo.";
-"suggestion.validation.title" = "Campos faltantes";
-"suggestion.validation.body" = "Por favor completa el título y la descripción.";
-
-"suggestion.label.category" = "Categoría";
-"suggestion.label.title" = "Título";
-"suggestion.label.description" = "Descripción";
 
 "video.drop.title" = "Arrastrá un video aquí";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Aquí solo se pueden convertir videos";
+
 "app.maintenance.title" = "Modo de mantenimiento";
 "app.forceUpdate.title" = "Actualización requerida";
 "app.forceUpdate.button" = "Actualizar en App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Algunas imágenes no se pudieron convertir.";
-"pdf.color.convert" = "Convertir y guardar";
-"pdf.color.enable" = "Convertir espacio de color";
-"pdf.color.title" = "CONVERSOR RGB/CMYK";
-"pdf.tools.quality" = "CALIDAD";
-"pdf.tools.quality.label" = "Calidad de imagen";
-"pdf.tools.quality.large" = "Mejor calidad";
-"pdf.tools.quality.lossless" = "Sin pérdida";
-"pdf.tools.resolution" = "ESCALA DE RESOLUCIÓN";
-"pdf.tools.resolution.enable" = "Reducir resolución";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Archivo más pequeño";
 
 "ad.sponsored" = "Patrocinado";
 "ad.visit" = "Visitar";
 
-"pdf.quality.modal.title" = "Elegir nivel de optimización";
-"pdf.quality.modal.subtitle" = "Selecciona cuánto reducir el tamaño del archivo. Mayor compresión significa archivo más pequeño con algo de pérdida de calidad.";
-"pdf.quality.modal.estimated" = "Tamaño estimado";
-"pdf.quality.modal.confirm" = "Optimizar";
-"pdf.quality.modal.cancel" = "Cancelar";
-"pdf.quality.low.title" = "Compresión máxima";
-"pdf.quality.low.desc" = "Archivo más pequeño, pérdida de calidad visible";
-"pdf.quality.medium.title" = "Equilibrado";
-"pdf.quality.medium.desc" = "Buen equilibrio entre tamaño y calidad";
-"pdf.quality.high.title" = "Alta calidad";
-"pdf.quality.high.desc" = "Pérdida mínima de calidad, reducción moderada";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Personaliza tu experiencia de Comet Editor";
+"settings.section.output" = "SALIDA";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ACERCA DE";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Carpeta de salida predeterminada";
+"settings.noFolderSelected" = "No seleccionada — se te preguntará cada vez";
+"settings.chooseFolder" = "Elegir carpeta";
+"settings.clearFolder" = "Borrar";
+"settings.folderPicker.message" = "Elige una carpeta predeterminada para los archivos exportados";
+"settings.folderPicker.button" = "Seleccionar carpeta";
 
 "app.maintenance.title2" = "En mantenimiento";
 "app.maintenance.body" = "La app no está disponible temporalmente. Volveremos pronto.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Actualizar en App Store";
 "app.quit2" = "Cerrar app";
 
-"settings.subtitle" = "Personaliza tu experiencia de Comet Editor";
-"settings.section.output" = "SALIDA";
-"settings.section.about" = "ACERCA DE";
-"settings.defaultOutputFolder" = "Carpeta de salida predeterminada";
-"settings.noFolderSelected" = "No seleccionada — se te preguntará cada vez";
-"settings.chooseFolder" = "Elegir carpeta";
-"settings.clearFolder" = "Borrar";
-"settings.folderPicker.message" = "Elige una carpeta predeterminada para los archivos exportados";
-"settings.folderPicker.button" = "Seleccionar carpeta";
-"menu.announcements" = "Anuncios";
-"announcements.subtitle" = "Últimas noticias y actualizaciones del equipo";
-"announcements.empty" = "Sin anuncios aún";
-
 "settings.pdfOutputFolder" = "Carpeta de salida PDF";
 
 "folder.default.prompt.title" = "¿Establecer como carpeta predeterminada?";
 "folder.default.prompt.body" = "¿Desea establecer esta como su carpeta de salida predeterminada? Puede cambiarla en cualquier momento en Ajustes.";
 "folder.default.prompt.yes" = "Establecer como predeterminada";
 "folder.default.prompt.no" = "Ahora no";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Editor de vídeo";
-"qr.email.address" = "Dirección de correo";
-"qr.email.body" = "Mensaje";
-"qr.email.subject" = "Asunto";
-"qr.phone.number" = "Número de teléfono";
-"qr.settings.type" = "Tipo de QR";
-"qr.type.email" = "Correo";
-"qr.type.phone" = "Teléfono";
-"qr.type.vcard" = "Contacto (vCard)";
-"qr.type.website" = "Sitio web";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Dirección";
-"qr.vcard.company" = "Empresa";
-"qr.vcard.email" = "Correo electrónico";
-"qr.vcard.firstName" = "Nombre";
-"qr.vcard.jobTitle" = "Puesto";
-"qr.vcard.lastName" = "Apellidos";
-"qr.vcard.phone" = "Teléfono";
-"qr.vcard.website" = "Sitio web";
-"qr.wifi.hidden" = "Red oculta";
-"qr.wifi.noEncryption" = "Ninguno";
-"qr.wifi.password" = "Contraseña";
-"qr.wifi.ssid" = "Nombre de red (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Añadir foto";
-"videoedit.addMore" = "Añadir";
-"videoedit.cancel" = "Cancelar";
-"videoedit.clip.remove" = "Eliminar clip";
-"videoedit.clip.trimmed" = "recortado";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Suelta vídeos aquí o toca +";
-"videoedit.drop.title" = "Añadir archivos de vídeo";
-"videoedit.empty.button" = "Añadir vídeos";
-"videoedit.empty.subtitle" = "Suelta archivos de vídeo aquí o haz clic en el botón de abajo";
-"videoedit.empty.title" = "Añade vídeos para editar";
-"videoedit.export.merge" = "Unir y exportar";
-"videoedit.export.noFolder" = "Elige primero una carpeta de guardado";
-"videoedit.export.settings" = "Ajustes";
-"videoedit.export.trim" = "Exportar clip";
-"videoedit.exporting" = "Exportando…";
-"videoedit.folder.change" = "Cambiar carpeta";
-"videoedit.imageDuration" = "DURACIÓN DE FOTO";
-"videoedit.imageDuration.default" = "Predeterminado para fotos nuevas";
-"videoedit.insert.after" = "Insertar después";
-"videoedit.insert.append" = "Añadir al final";
-"videoedit.insert.before" = "Insertar antes";
-"videoedit.insert.prepend" = "Añadir al inicio";
-"videoedit.inspector.folder" = "GUARDAR EN";
-"videoedit.inspector.format" = "Formato";
-"videoedit.inspector.output" = "FORMATO DE SALIDA";
-"videoedit.inspector.quality" = "Calidad";
-"videoedit.inspector.trim" = "RECORTAR";
-"videoedit.noClip" = "Selecciona un clip para previsualizar";
-"videoedit.noClip.hint" = "Añade archivos de vídeo desde la izquierda para empezar.";
-"videoedit.timeline.title" = "Recortar";
-"videoedit.trim.confirm" = "Confirmar recorte";
-"videoedit.trim.duration" = "Duración";
-"videoedit.trim.end" = "Fin";
-"videoedit.trim.reset" = "Restablecer";
-"videoedit.trim.start" = "Inicio";
-"watermark.apply" = "Aplicar";
-"watermark.button" = "Añadir marca de agua";
-"watermark.cancel" = "Cancelar";
-"watermark.color.black" = "Negro";
-"watermark.color.darkGray" = "Gris oscuro";
-"watermark.color.gray" = "Gris";
-"watermark.color.lightGray" = "Gris claro";
-"watermark.color.none" = "Ninguno";
-"watermark.color.white" = "Blanco";
-"watermark.colorOverlay" = "Superposición de color";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Opacidad";
-"watermark.pos.bottomCenter" = "Inferior centro";
-"watermark.pos.bottomLeft" = "Inferior izquierda";
-"watermark.pos.bottomRight" = "Inferior derecha";
-"watermark.pos.center" = "Centro";
-"watermark.pos.centerLeft" = "Centro izquierda";
-"watermark.pos.centerRight" = "Centro derecha";
-"watermark.pos.topCenter" = "Superior centro";
-"watermark.pos.topLeft" = "Superior izquierda";
-"watermark.pos.topRight" = "Superior derecha";
-"watermark.position" = "Posición";
-"watermark.preview" = "Vista previa";
-"watermark.removeLogo" = "Quitar";
-"watermark.scale" = "Escala";
-"watermark.selectLogo" = "Seleccionar imagen";
-"watermark.tileMode" = "Modo mosaico";
-"watermark.tileMode.desc" = "Repetir en toda la imagen";
+
 "watermark.title" = "Marca de agua";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Añadir marca de agua";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Seleccionar imagen";
+"watermark.removeLogo" = "Quitar";
+"watermark.position" = "Posición";
+"watermark.scale" = "Escala";
+"watermark.opacity" = "Opacidad";
+"watermark.preview" = "Vista previa";
+"watermark.apply" = "Aplicar";
+"watermark.cancel" = "Cancelar";
+"watermark.pos.topLeft" = "Superior izquierda";
+"watermark.pos.topCenter" = "Superior centro";
+"watermark.pos.topRight" = "Superior derecha";
+"watermark.pos.centerLeft" = "Centro izquierda";
+"watermark.pos.center" = "Centro";
+"watermark.pos.centerRight" = "Centro derecha";
+"watermark.pos.bottomLeft" = "Inferior izquierda";
+"watermark.pos.bottomCenter" = "Inferior centro";
+"watermark.pos.bottomRight" = "Inferior derecha";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Superposición de color";
+"watermark.color.none" = "Ninguno";
+"watermark.color.black" = "Negro";
+"watermark.color.darkGray" = "Gris oscuro";
+"watermark.color.gray" = "Gris";
+"watermark.color.lightGray" = "Gris claro";
+"watermark.color.white" = "Blanco";
+"watermark.tileMode" = "Modo mosaico";
+"watermark.tileMode.desc" = "Repetir en toda la imagen";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Ajustes";
-"upscale.settings.model" = "Modelo";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — mejora de detalle con IA";
-"upscale.settings.scale" = "Escala";
-"upscale.scale.multiPassHint" = "8× y 16× ejecutan varias pasadas de IA — tarda más.";
-"upscale.settings.outputFormat" = "Formato de salida";
-"upscale.drop.title" = "Arrastra y suelta imágenes";
-"upscale.drop.subtitle" = "o haz clic para buscar archivos";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Solo se pueden ampliar aquí imágenes ráster admitidas";
-"upscale.runButton" = "Ampliar";
-"upscale.preview.run" = "Vista previa";
-"upscale.preview.hint" = "Elige una escala y toca Vista previa para comparar";
-"upscale.preview.processing" = "Generando vista previa…";
-"upscale.preview.before" = "ANTES";
-"upscale.preview.after" = "DESPUÉS";
-"upscale.preview.save" = "Guardar";
-"upscale.preview.saveSettings" = "Guardar vista previa";
-"upscale.preview.autoSave" = "Guardar tras la vista previa";
-"upscale.preview.autoSaveHint" = "Escribe en la carpeta de destino al terminar la vista previa.";
-"upscale.preview.saveNeedFolder" = "Primero elige una carpeta de destino.";
-"upscale.preview.saveFailed" = "No se pudo codificar la imagen de vista previa.";
-"upscale.preview.loadFailed" = "No se pudo cargar la imagen de vista previa.";
-"upscale.backend.missing.hint" = "Falta el motor cometscaly o los archivos del modelo en el bundle. Recompila el proyecto.";
-"upscale.error.bundle" = "Falta la carpeta bundle de Upscale en la app.";
-"upscale.error.binary" = "No se encontró cometscaly en el bundle de la app.";
-"upscale.error.model" = "Faltan los archivos del modelo upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "La ampliación falló (exit %d): %@";
-"upscale.error.none" = "No se amplió ninguna imagen.";
-"videoedit.resize.modePercent" = "Escala (%)";
-"videoedit.resize.modeCustom" = "Tamaño personalizado";
-"videoedit.resize.autoFill" = "Rellenar lienzo automáticamente";
-"videoedit.resize.autoFillHint" = "Activado: el material grande encaja con bandas; el más pequeño se amplía y recorta al centro para llenar.";
+"inspector.format" = "Formato";
+"inspector.output" = "Salida";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Añade una foto para previsualizar";
+"watermark.rotation" = "Rotación";
+"watermark.text" = "Texto del logo";
+"watermark.text.placeholder" = "Escribe el texto del logo";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

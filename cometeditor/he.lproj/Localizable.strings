@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Grer tmunot le-kan";
 "convert.drop.subtitle" = "Tomekh be-PNG, JPG, WebP, HEIF ve-formatim acherim";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Rochav";
 "convert.settings.height" = "Govah";
+
 "meta.info" = "Metadata yishmaret";
+
 "convert.settings.targetFolder" = "TIKAT YIUD";
 "convert.settings.noFolder" = "Lo nivchera tikiya";
 "convert.settings.chooseFolder" = "Becher tikiya";
+
+"folder.missing.title" = "התיקייה לא נמצאה";
+"folder.missing.subtitle" = "הנתיב לתיקייה השמורה אינו קיים עוד. אנא בחר נתיב חדש.";
+"folder.missing.pick" = "בחר תיקייה חדשה";
+"folder.missing.panel.message" = "תיקיית הפלט לא נמצאה. אנא בחר תיקייה חדשה.";
+
+"bgremove.error.noMaskFound" = "לא נמצאה מסכת חזית.";
+"bgremove.error.maskConversionFailed" = "המרת המסכה נכשלה.";
+"bgremove.error.compositeFailed" = "הרכבת התמונה נכשלה.";
+
 "convert.settings.convertButton" = "Hamar";
 "convert.clearAll" = "Nake hakol";
 "convert.addMore" = "Hosaf od";
 "convert.wrongType.image" = "כאן ניתן להמיר תמונות בלבד";
+
+"upscale.settings.title" = "הגדרות";
+"upscale.settings.model" = "מודל";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — שיפור פרטים באמצעות בינה מלאכותית";
+"upscale.settings.scale" = "קנה מידה";
+"upscale.scale.multiPassHint" = "8× ו־16× מריצים מספר מעברי בינה מלאכותית — לוקח יותר זמן.";
+"upscale.settings.outputFormat" = "פורמט פלט";
+"upscale.drop.title" = "גרור ושחרר תמונות";
+"upscale.drop.subtitle" = "או לחץ כדי לעיין בקבצים";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "ניתן להגדיל כאן רק תמונות רסטר נתמכות";
+"upscale.runButton" = "הגדל";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "תצוגה מקדימה";
+"upscale.preview.hint" = "בחר קנה מידה והקש על תצוגה מקדימה להשוואה";
+"upscale.preview.processing" = "יוצר תצוגה מקדימה…";
+"upscale.preview.before" = "לפני";
+"upscale.preview.after" = "אחרי";
+"upscale.preview.save" = "שמור";
+"upscale.preview.saveSettings" = "שמירת תצוגה מקדימה";
+"upscale.preview.autoSave" = "שמור אחרי תצוגה מקדימה";
+"upscale.preview.autoSaveHint" = "כותב לתיקיית היעד כשהתצוגה המקדימה מסתיימת.";
+"upscale.preview.saveNeedFolder" = "בחר תיקיית יעד תחילה.";
+"upscale.preview.saveFailed" = "לא ניתן לקודד את תמונת התצוגה המקדימה.";
+"upscale.preview.loadFailed" = "לא ניתן לטעון את תמונת התצוגה המקדימה.";
+"upscale.backend.missing.hint" = "מנוע cometscaly או קבצי המודל חסרים בחבילת האפליקציה. בנה מחדש את הפרויקט.";
+"upscale.error.bundle" = "תיקיית ה־bundle של Upscale חסרה באפליקציה.";
+"upscale.error.binary" = "cometscaly לא נמצא בחבילת האפליקציה.";
+"upscale.error.model" = "חסרים קבצי המודל upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "ההגדלה נכשלה (exit %d): %@";
+"upscale.error.none" = "לא הוגדלו תמונות.";
+
 "menu.home" = "Bayit";
 "menu.convertImage" = "Hamarot tmunot";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "הגדרות";
 "menu.tools" = "כלים";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Tsevet";
-"menu.team.title" = "Pumah al yedey Comet Dev";
-"menu.team.subtitle" = "Nivna be-ahava ve-qeshev la-prat";
 "menu.stockImage" = "Tmunot stock";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Hasser reka";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Gufanim";
 "menu.videoConvert" = "Hamarot video";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "שלח משוב";
-"team.thanks_grafix" = "Toda meyuhedet le-Grafix al ha-itsub";
+
 "alert.success.title" = "Hatslacha";
 "alert.error.title" = "Shegia";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Petach tikiya";
 "alert.success.message.image" = "Ha-tmuna nishmera be-%@.";
 "alert.success.message.video" = "Ha-video nishmar be-%@.";
+"alert.error.conversion" = "חלק מהתמונות לא הומרו.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Tomekh be-MP4, MOV, AVI ve-formatim acherim";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% min ha-mekori";
 "video.resolution.50" = "50% min ha-mekori";
 "video.resolution.25" = "25% min ha-mekori (Eikhut nachuta)";
+
 "pdf.drop.title" = "Grer kavsetz PDF le-kan";
 "pdf.drop.subtitle" = "Becher kavsetz PDF le-ikuv";
 "pdf.page.count" = "%lld amudim";
 "pdf.page.info" = "Amud %lld mi-%lld";
 "pdf.estimatedSize" = "Godel meshooar";
+"pdf.quality.modal.title" = "בחר רמת אופטימיזציה";
+"pdf.quality.modal.subtitle" = "בחר כמה להקטין את גודל הקובץ. דחיסה גבוהה יותר פירושה קובץ קטן יותר עם אובדן איכות מסוים.";
+"pdf.quality.modal.estimated" = "גודל משוער";
+"pdf.quality.modal.confirm" = "אופטימיזציה";
+"pdf.quality.modal.cancel" = "ביטול";
+"pdf.quality.low.title" = "דחיסה מקסימלית";
+"pdf.quality.low.desc" = "קובץ קטן ביותר, אובדן איכות גלוי";
+"pdf.quality.medium.title" = "מאוזן";
+"pdf.quality.medium.desc" = "איזון טוב בין גודל לאיכות";
+"pdf.quality.high.title" = "איכות גבוהה";
+"pdf.quality.high.desc" = "אובדן איכות מינימלי, הפחתה מתונה";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Iyel PDF";
+"pdf.tools.quality" = "איכות";
+"pdf.tools.quality.label" = "איכות תמונה";
+"pdf.tools.quality.small" = "קובץ קטן יותר";
+"pdf.tools.quality.large" = "איכות טובה יותר";
+"pdf.tools.quality.lossless" = "ללא אובדן";
+"pdf.tools.resolution" = "סקאלת הרזולוציה";
+"pdf.tools.resolution.enable" = "הקטן רזולוציה";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "ממיר RGB/CMYK";
+"pdf.color.enable" = "המר מרחב צבע";
+"pdf.color.convert" = "המר ושמור";
 "pdf.tools.save" = "Shmoer PDF";
 "pdf.reorder.title" = "Seder mikush amudim";
 "pdf.reorder.hint" = "Grer le-shinuy seder ha-amudim";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Acharey";
 "pdf.addContent.atEnd" = "Ba-sof";
 "pdf.addContent.chooseFile" = "Becher kavsetz";
+
 "stock.deselectAll" = "Batel bechirat hakol";
 "stock.download" = "Horhed";
 "stock.download.count" = "Horhed %d tmunot";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "הזינו כתובת או טקסט כאן...";
 "qr.settings.colors" = "צבעים";
 "qr.settings.fgColor" = "צבע חזית";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "רזולוציה";
 "qr.settings.customSize" = "גודל מותאם (px)";
 "qr.download" = "הורדת קוד QR";
+"qr.settings.type" = "סוג QR";
+"qr.type.website" = "אתר";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "איש קשר (vCard)";
+"qr.type.email" = "אימייל";
+"qr.type.phone" = "טלפון";
+"qr.wifi.ssid" = "שם הרשת (SSID)";
+"qr.wifi.password" = "סיסמה";
+"qr.wifi.hidden" = "רשת נסתרת";
+"qr.wifi.noEncryption" = "ללא";
+"qr.vcard.firstName" = "שם פרטי";
+"qr.vcard.lastName" = "שם משפחה";
+"qr.vcard.phone" = "טלפון";
+"qr.vcard.email" = "אימייל";
+"qr.vcard.company" = "חברה";
+"qr.vcard.jobTitle" = "תפקיד";
+"qr.vcard.address" = "כתובת";
+"qr.vcard.website" = "אתר";
+"qr.email.address" = "כתובת אימייל";
+"qr.email.subject" = "נושא";
+"qr.email.body" = "הודעה";
+"qr.phone.number" = "מספר טלפון";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Tkhuna zu dorashet macOS 14 o garshat chadasha yoter";
 "bgremove.drop.title" = "Grer tmunot le-kan";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Rikkuv gevulot";
 "bgremove.settings.featherAmount" = "Ramas rikkuv";
+
 "ocr.drop.title" = "Grer tmuna le-kan";
 "ocr.drop.subtitle" = "Tomekh be-PNG, JPG ve-WebP";
 "ocr.processing" = "Macer tekst...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Nake";
 "ocr.newFile" = "Kavsetz chadash";
 "ocr.copied" = "Hustak!";
+
 "app.comingSoon.title" = "Bekarov";
 "app.comingSoon.message" = "Tkhuna zu be-pituach ve-tihiye zaminit bekarov.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Chapes gufanim...";
 "font.preview.custom" = "Tatspit mukevet";
 "font.inspector.preview" = "TATSPIT";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d משפחות";
 "font.styles.count" = "%d סגנונות · %@";
 "font.noResults" = "לא נמצאו גופנים";
-"suggestion.title" = "שלח הצעה";
-"suggestion.subtitle" = "שתף את הרעיונות שלך ועזור לנו להשתפר";
-"suggestion.placeholder.title" = "כותרת";
-"suggestion.placeholder.body" = "תאר את ההצעה שלך בפירוט...";
-"suggestion.category.bug" = "באג";
-"suggestion.category.feature" = "בקשת תכונה";
-"suggestion.category.ui" = "ממשק";
-"suggestion.category.performance" = "ביצועים";
-"suggestion.category.other" = "אחר";
-"suggestion.send" = "שלח הצעה";
-"suggestion.sending" = "שולח...";
-"suggestion.sent.title" = "תודה!";
-"suggestion.sent.message" = "ההצעה שלך התקבלה. נבדוק אותה בקרוב.";
-"suggestion.error" = "שליחה נכשלה. אנא נסה שנית.";
-"suggestion.validation.title" = "שדות חסרים";
-"suggestion.validation.body" = "אנא מלא כותרת ותיאור.";
-
-"suggestion.label.category" = "קטגוריה";
-"suggestion.label.title" = "כותרת";
-"suggestion.label.description" = "תיאור";
 
 "video.drop.title" = "גרור סרטון לכאן";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "כאן ניתן להמיר סרטוני וידאו בלבד";
+
 "app.maintenance.title" = "מצב תחזוקה";
 "app.forceUpdate.title" = "נדרש עדכון";
 "app.forceUpdate.button" = "עדכן ב-App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "חיפוש";
 "stock.search.placeholder" = "חפש תמונות...";
 "stock.selected" = "%d נבחרו";
+
 "video.cancel" = "ביטול";
 "video.error.decoder" = "לא ניתן לפענח את הסרטון.";
 "video.saved.gain" = "נשמר";
 "video.saved.increased" = "גדול יותר";
 "video.settings.fps.desc" = "בטל כדי לשמור על ה-FPS המקורי";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "תמונה";
 "pdf.tools.pageManagement" = "ניהול עמודים";
 "pdf.tools.addContent" = "הוסף תוכן";
 "pdf.tools.reorder" = "סדר מחדש";
 "pdf.tools.targetFolder" = "תיקיית יעד";
-"alert.error.conversion" = "חלק מהתמונות לא הומרו.";
-"pdf.color.convert" = "המר ושמור";
-"pdf.color.enable" = "המר מרחב צבע";
-"pdf.color.title" = "ממיר RGB/CMYK";
-"pdf.tools.quality" = "איכות";
-"pdf.tools.quality.label" = "איכות תמונה";
-"pdf.tools.quality.large" = "איכות טובה יותר";
-"pdf.tools.quality.lossless" = "ללא אובדן";
-"pdf.tools.resolution" = "סקאלת הרזולוציה";
-"pdf.tools.resolution.enable" = "הקטן רזולוציה";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "קובץ קטן יותר";
 
 "ad.sponsored" = "ממומן";
 "ad.visit" = "בקר";
 
-"pdf.quality.modal.title" = "בחר רמת אופטימיזציה";
-"pdf.quality.modal.subtitle" = "בחר כמה להקטין את גודל הקובץ. דחיסה גבוהה יותר פירושה קובץ קטן יותר עם אובדן איכות מסוים.";
-"pdf.quality.modal.estimated" = "גודל משוער";
-"pdf.quality.modal.confirm" = "אופטימיזציה";
-"pdf.quality.modal.cancel" = "ביטול";
-"pdf.quality.low.title" = "דחיסה מקסימלית";
-"pdf.quality.low.desc" = "קובץ קטן ביותר, אובדן איכות גלוי";
-"pdf.quality.medium.title" = "מאוזן";
-"pdf.quality.medium.desc" = "איזון טוב בין גודל לאיכות";
-"pdf.quality.high.title" = "איכות גבוהה";
-"pdf.quality.high.desc" = "אובדן איכות מינימלי, הפחתה מתונה";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "התאם אישית את חוויית Comet Editor שלך";
+"settings.section.output" = "פלט";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "תיקיית פלט ברירת מחדל";
+"settings.noFolderSelected" = "לא נבחר — יישאל בכל פעם";
+"settings.chooseFolder" = "בחר תיקיה";
+"settings.clearFolder" = "נקה";
+"settings.folderPicker.message" = "בחר תיקיית ברירת מחדל לקבצים המיוצאים";
+"settings.folderPicker.button" = "בחר תיקיה";
 
 "app.maintenance.title2" = "בתחזוקה";
 "app.maintenance.body" = "האפליקציה אינה זמינה זמנית. נחזור בקרוב.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "עדכן ב-App Store";
 "app.quit2" = "סגור אפליקציה";
 
-"settings.subtitle" = "התאם אישית את חוויית Comet Editor שלך";
-"settings.section.output" = "פלט";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "תיקיית פלט ברירת מחדל";
-"settings.noFolderSelected" = "לא נבחר — יישאל בכל פעם";
-"settings.chooseFolder" = "בחר תיקיה";
-"settings.clearFolder" = "נקה";
-"settings.folderPicker.message" = "בחר תיקיית ברירת מחדל לקבצים המיוצאים";
-"settings.folderPicker.button" = "בחר תיקיה";
-"menu.announcements" = "הודעות";
-"announcements.subtitle" = "חדשות ועדכונים אחרונים מהצוות";
-"announcements.empty" = "אין הודעות עדיין";
-
 "settings.pdfOutputFolder" = "תיקיית פלט PDF";
 
 "folder.default.prompt.title" = "להגדיר כתיקיית ברירת מחדל?";
 "folder.default.prompt.body" = "האם ברצונך להגדיר זאת כתיקיית הפלט שלך כברירת מחדל? תוכל לשנות זאת בכל עת בהגדרות.";
 "folder.default.prompt.yes" = "הגדר כברירת מחדל";
 "folder.default.prompt.no" = "לא עכשיו";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "עורך וידאו";
-"qr.email.address" = "כתובת אימייל";
-"qr.email.body" = "הודעה";
-"qr.email.subject" = "נושא";
-"qr.phone.number" = "מספר טלפון";
-"qr.settings.type" = "סוג QR";
-"qr.type.email" = "אימייל";
-"qr.type.phone" = "טלפון";
-"qr.type.vcard" = "איש קשר (vCard)";
-"qr.type.website" = "אתר";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "כתובת";
-"qr.vcard.company" = "חברה";
-"qr.vcard.email" = "אימייל";
-"qr.vcard.firstName" = "שם פרטי";
-"qr.vcard.jobTitle" = "תפקיד";
-"qr.vcard.lastName" = "שם משפחה";
-"qr.vcard.phone" = "טלפון";
-"qr.vcard.website" = "אתר";
-"qr.wifi.hidden" = "רשת נסתרת";
-"qr.wifi.noEncryption" = "ללא";
-"qr.wifi.password" = "סיסמה";
-"qr.wifi.ssid" = "שם הרשת (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "הוסף תמונה";
-"videoedit.addMore" = "הוסף";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "הוסף סרטונים";
-"videoedit.empty.subtitle" = "גררו קבצי וידאו לכאן או לחצו על הכפתור למטה";
-"videoedit.empty.title" = "הוספת סרטונים לעריכה";
-"videoedit.export.merge" = "מיזוג וייצוא";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "הגדרות";
-"videoedit.export.trim" = "ייצוא קליפ";
-"videoedit.exporting" = "מייצא…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "משך תצוגת תמונה";
-"videoedit.imageDuration.default" = "ברירת מחדל לתמונות חדשות";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "שמירה ל";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "החל";
-"watermark.button" = "הוסף סימן מים";
-"watermark.cancel" = "ביטול";
-"watermark.color.black" = "שחור";
-"watermark.color.darkGray" = "אפור כהה";
-"watermark.color.gray" = "אפור";
-"watermark.color.lightGray" = "אפור בהיר";
-"watermark.color.none" = "ללא";
-"watermark.color.white" = "לבן";
-"watermark.colorOverlay" = "שכבת צבע";
-"watermark.logo" = "לוגו";
-"watermark.opacity" = "אטימות";
-"watermark.pos.bottomCenter" = "מרכז תחתון";
-"watermark.pos.bottomLeft" = "שמאל תחתון";
-"watermark.pos.bottomRight" = "ימין תחתון";
-"watermark.pos.center" = "מרכז";
-"watermark.pos.centerLeft" = "שמאל מרכז";
-"watermark.pos.centerRight" = "ימין מרכז";
-"watermark.pos.topCenter" = "מרכז עליון";
-"watermark.pos.topLeft" = "שמאל עליון";
-"watermark.pos.topRight" = "ימין עליון";
-"watermark.position" = "מיקום";
-"watermark.preview" = "תצוגה מקדימה";
-"watermark.removeLogo" = "הסר";
-"watermark.scale" = "קנה מידה";
-"watermark.selectLogo" = "בחר תמונה";
-"watermark.tileMode" = "מצב אריח";
-"watermark.tileMode.desc" = "חזור על פני התמונה";
+
 "watermark.title" = "סימן מים";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "הוסף סימן מים";
+"watermark.logo" = "לוגו";
+"watermark.selectLogo" = "בחר תמונה";
+"watermark.removeLogo" = "הסר";
+"watermark.position" = "מיקום";
+"watermark.scale" = "קנה מידה";
+"watermark.opacity" = "אטימות";
+"watermark.preview" = "תצוגה מקדימה";
+"watermark.apply" = "החל";
+"watermark.cancel" = "ביטול";
+"watermark.pos.topLeft" = "שמאל עליון";
+"watermark.pos.topCenter" = "מרכז עליון";
+"watermark.pos.topRight" = "ימין עליון";
+"watermark.pos.centerLeft" = "שמאל מרכז";
+"watermark.pos.center" = "מרכז";
+"watermark.pos.centerRight" = "ימין מרכז";
+"watermark.pos.bottomLeft" = "שמאל תחתון";
+"watermark.pos.bottomCenter" = "מרכז תחתון";
+"watermark.pos.bottomRight" = "ימין תחתון";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "שכבת צבע";
+"watermark.color.none" = "ללא";
+"watermark.color.black" = "שחור";
+"watermark.color.darkGray" = "אפור כהה";
+"watermark.color.gray" = "אפור";
+"watermark.color.lightGray" = "אפור בהיר";
+"watermark.color.white" = "לבן";
+"watermark.tileMode" = "מצב אריח";
+"watermark.tileMode.desc" = "חזור על פני התמונה";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "הגדרות";
-"upscale.settings.model" = "מודל";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — שיפור פרטים באמצעות בינה מלאכותית";
-"upscale.settings.scale" = "קנה מידה";
-"upscale.scale.multiPassHint" = "8× ו־16× מריצים מספר מעברי בינה מלאכותית — לוקח יותר זמן.";
-"upscale.settings.outputFormat" = "פורמט פלט";
-"upscale.drop.title" = "גרור ושחרר תמונות";
-"upscale.drop.subtitle" = "או לחץ כדי לעיין בקבצים";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "ניתן להגדיל כאן רק תמונות רסטר נתמכות";
-"upscale.runButton" = "הגדל";
-"upscale.preview.run" = "תצוגה מקדימה";
-"upscale.preview.hint" = "בחר קנה מידה והקש על תצוגה מקדימה להשוואה";
-"upscale.preview.processing" = "יוצר תצוגה מקדימה…";
-"upscale.preview.before" = "לפני";
-"upscale.preview.after" = "אחרי";
-"upscale.preview.save" = "שמור";
-"upscale.preview.saveSettings" = "שמירת תצוגה מקדימה";
-"upscale.preview.autoSave" = "שמור אחרי תצוגה מקדימה";
-"upscale.preview.autoSaveHint" = "כותב לתיקיית היעד כשהתצוגה המקדימה מסתיימת.";
-"upscale.preview.saveNeedFolder" = "בחר תיקיית יעד תחילה.";
-"upscale.preview.saveFailed" = "לא ניתן לקודד את תמונת התצוגה המקדימה.";
-"upscale.preview.loadFailed" = "לא ניתן לטעון את תמונת התצוגה המקדימה.";
-"upscale.backend.missing.hint" = "מנוע cometscaly או קבצי המודל חסרים בחבילת האפליקציה. בנה מחדש את הפרויקט.";
-"upscale.error.bundle" = "תיקיית ה־bundle של Upscale חסרה באפליקציה.";
-"upscale.error.binary" = "cometscaly לא נמצא בחבילת האפליקציה.";
-"upscale.error.model" = "חסרים קבצי המודל upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "ההגדלה נכשלה (exit %d): %@";
-"upscale.error.none" = "לא הוגדלו תמונות.";
-"videoedit.resize.modePercent" = "קנה מידה (%)";
-"videoedit.resize.modeCustom" = "גודל מותאם";
-"videoedit.resize.autoFill" = "מילוי בד אוטומטי";
-"videoedit.resize.autoFillHint" = "כשמופעל: צילום רחב מתאים עם letterbox; צילום קטן יותר מוגדל וחתוך במרכז למילוי.";
+"inspector.format" = "פורמט";
+"inspector.output" = "פלט";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "הוסף תמונה לתצוגה מקדימה";
+"watermark.rotation" = "סיבוב";
+"watermark.text" = "טקסט לוגו";
+"watermark.text.placeholder" = "הזן טקסט לוגו";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

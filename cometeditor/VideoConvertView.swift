@@ -205,7 +205,7 @@ struct VideoConvertView: View {
         if appState.selectedVideos.isEmpty {
             emptyDropZone
         } else {
-            videoGrid
+            videoList
         }
     }
 
@@ -252,19 +252,20 @@ struct VideoConvertView: View {
         .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
     }
 
-    private var videoGrid: some View {
+    private var videoList: some View {
         VStack(spacing: 0) {
-            GeometryReader { geo in
-                ScrollView {
-                    let columnCount = max(2, Int(geo.size.width / 200))
-                    let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: columnCount)
-                    LazyVGrid(columns: columns, spacing: 12) {
-                        ForEach(appState.selectedVideos) { item in
-                            videoGridItem(item)
-                        }
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    ForEach(appState.selectedVideos) { item in
+                        VideoConvertListRow(
+                            item: item,
+                            onPreview: {
+                                withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
+                            }
+                        )
                     }
-                    .padding(20)
                 }
+                .padding(.vertical, 6)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
@@ -293,6 +294,7 @@ struct VideoConvertView: View {
                     .foregroundStyle(Color.primary.opacity(0.7))
                 }
                 .buttonStyle(.plain)
+                .handCursor()
 
                 Button {
                     selectFilesFromFinder()
@@ -313,132 +315,14 @@ struct VideoConvertView: View {
         }
     }
 
-    private func videoGridItem(_ item: VideoItem) -> some View {
-        VStack(spacing: 0) {
-            // Thumbnail — 16:9
-            GeometryReader { geo in
-                Group {
-                    if let nsImage = item.thumbnail {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .scaledToFill()
-                    } else {
-                        Rectangle()
-                            .fill(Color.secondary.opacity(0.12))
-                            .overlay(
-                                Image(systemName: "play.fill")
-                                    .font(.system(size: 22))
-                                    .foregroundStyle(Color.secondary.opacity(0.6))
-                            )
-                    }
-                }
-                .frame(width: geo.size.width, height: geo.size.height)
-                .clipped()
-                // Duration badge
-                .overlay(alignment: .topLeading) {
-                    Text(item.durationString)
-                        .font(.system(size: 10, weight: .semibold, design: .monospaced))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 3)
-                        .background(.black.opacity(0.55))
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                        .padding(6)
-                }
-                // Delete button
-                .overlay(alignment: .topTrailing) {
-                    Button {
-                        appState.selectedVideos.removeAll(where: { $0.id == item.id })
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 8, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(5)
-                            .background(.black.opacity(0.55))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .handCursor()
-                    .padding(6)
-                }
-            }
-            .aspectRatio(16 / 9, contentMode: .fit)
-
-            // Info bar
-            VStack(alignment: .leading, spacing: 3) {
-                Text(item.fileName)
-                    .font(.system(size: 11, weight: .semibold))
-                    .foregroundStyle(item.isCompleted ? Color.green : Color.primary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-
-                HStack(spacing: 0) {
-                    Text(item.fileSizeString)
-                        .foregroundStyle(Color.secondary)
-                    if let res = item.resolutionString {
-                        Text(" · \(res)")
-                            .foregroundStyle(Color.secondary)
-                    }
-                    if let fps = item.fpsString {
-                        Text(" · \(fps)")
-                            .foregroundStyle(Color.secondary)
-                    }
-                }
-                .font(.system(size: 10, design: .monospaced))
-                .lineLimit(1)
-
-                if item.isCompleted, let saved = item.savedSizeString {
-                    Text(saved)
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundStyle(Color.green)
-                        .lineLimit(1)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 7)
-            .background(Color.primary.opacity(0.04))
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-        )
-        .contentShape(Rectangle())
-        .onTapGesture {
-            withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
-        }
-        .handCursor()
-    }
-
     // MARK: - Inspector Panel
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                // Header
-                HStack {
-                    Text(LanguageManager.shared.string("convert.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
                 // Format Section
-                inspectorSection("video.settings.format") {
-                    Picker("", selection: $selectedFormat) {
-                        ForEach(VideoFormat.allCases) { format in
-                            Text(format.displayName).tag(format)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .labelsHidden()
+                inspectorSection("inspector.output") {
+                    InspectorMenuChip(title: selectedFormat.displayName, selection: $selectedFormat, options: Array(VideoFormat.allCases)) { $0.displayName }
                 }
-
-                Divider()
 
                 // Quality Section
                 inspectorSection("convert.settings.quality") {
@@ -450,8 +334,6 @@ struct VideoConvertView: View {
                             .frame(width: 24, alignment: .trailing)
                     }
                 }
-
-                Divider()
 
                 // Advanced Settings (FPS, Resolution Scale, Audio, Metadata)
                 inspectorSection("video.settings.fps") {
@@ -486,8 +368,6 @@ struct VideoConvertView: View {
                     }
                 }
 
-                Divider()
-
                 inspectorSection("video.settings.resize") {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
@@ -503,7 +383,7 @@ struct VideoConvertView: View {
                         if scaleEnabled {
                             Picker("", selection: $selectedScale) {
                                 ForEach(ResolutionScale.allCases) { scale in
-                                    Text(languageManager.string(scale.localizationKey)).tag(scale)
+                                    Text(scale.menuTitle(languageManager)).tag(scale)
                                 }
                             }
                             .pickerStyle(.menu)
@@ -512,8 +392,6 @@ struct VideoConvertView: View {
                         }
                     }
                 }
-
-                Divider()
 
                 inspectorSection("video.settings.audio") {
                     HStack {
@@ -529,8 +407,6 @@ struct VideoConvertView: View {
                     .disabled(selectedFormat == .gif)
                 }
 
-                Divider()
-
                 inspectorSection("video.settings.metadata") {
                     HStack {
                         Text("convert.settings.enable")
@@ -543,56 +419,18 @@ struct VideoConvertView: View {
                     }
                 }
 
-                Divider()
-
                 // Target Folder Section
                 inspectorSection("convert.settings.targetFolder") {
-                    HStack(spacing: 8) {
-                        if let folderURL = appState.targetFolder {
-                            Text(truncatedPath(folderURL.path))
-                                .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                .foregroundStyle(Color.primary.opacity(0.8))
-                                .lineLimit(1)
-                                .truncationMode(.middle)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.primary.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-                                )
-                        } else {
-                            Text("convert.settings.noFolder")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.red.opacity(0.8))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.red.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.red.opacity(0.2), lineWidth: 1)
-                                )
+                    FolderPickerRow(
+                        folder: appState.targetFolder,
+                        isStale: appState.targetFolderStale
+                    ) {
+                        pickFolder { url in
+                            appState.handleFolderSelected(url)
+                            appState.targetFolder = url
                         }
-
-                        Button("convert.settings.chooseFolder") {
-                            pickFolder { url in
-    appState.handleFolderSelected(url)
-    appState.targetFolder = url
-}
-                        }
-                        .controlSize(.small)
                     }
                 }
-
-                Divider()
 
                 // Convert Button & Progress
                 VStack(spacing: 12) {
@@ -608,7 +446,7 @@ struct VideoConvertView: View {
 
                     HStack(spacing: 12) {
                         Button {
-                            performVideoConversion()
+                            Task { await performVideoConversion() }
                         } label: {
                             HStack {
                                 if processor.isProcessing {
@@ -628,6 +466,7 @@ struct VideoConvertView: View {
                         if processor.isProcessing {
                             Button {
                                 appState.videoConversionTask?.cancel()
+                                Task { await FFmpegBridge.shared.cancel() }
                             } label: {
                                 Text(LocalizedStringKey("video.cancel"))
                             }
@@ -636,15 +475,18 @@ struct VideoConvertView: View {
                         }
                     }
                 }
-                .padding(16)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
             }
+            .padding(.top, 16)
         }
-        .background(Material.bar)
+        .inspectorPanelChrome()
     }
 
     // MARK: - Core Conversion Trigger
-    private func performVideoConversion() {
-        guard let folder = appState.targetFolder else { return }
+    @MainActor
+    private func performVideoConversion() async {
+        guard let folder = await appState.resolveOutputFolder() else { return }
 
         processor.isProcessing = true
         processor.progress = 0
@@ -652,8 +494,10 @@ struct VideoConvertView: View {
         // Reset old statuses
         for i in 0..<appState.selectedVideos.count {
             appState.selectedVideos[i].isCompleted = false
-            appState.selectedVideos[i].savedSizeString = nil
-            appState.selectedVideos[i].convertedSizeString = nil
+            appState.selectedVideos[i].outputURL = nil
+            appState.selectedVideos[i].outputFileSizeString = nil
+            appState.selectedVideos[i].outputDimensionsString = nil
+            appState.selectedVideos[i].outputSizeDropPercent = nil
         }
 
         totalProcessingCount = appState.selectedVideos.count
@@ -701,36 +545,34 @@ struct VideoConvertView: View {
                     )
 
                     let newSize = (try? FileManager.default.attributesOfItem(atPath: outputURL.path)[.size] as? Int64) ?? 0
-                    var savedStr: String? = nil
-
+                    let newSizeStr = newSize > 0 ? ByteCountFormatter.string(fromByteCount: newSize, countStyle: .file) : nil
+                    var drop: Double? = nil
                     if originalSize > 0, newSize > 0 {
-                        let formatter = ByteCountFormatter()
-                        formatter.allowedUnits = [.useAll]
-                        formatter.countStyle = .file
-
-                        if originalSize > newSize {
-                            let savedBytes = originalSize - newSize
-                            savedStr = "\(formatter.string(fromByteCount: savedBytes)) \(NSLocalizedString("video.saved.gain", comment: ""))"
-                        } else {
-                            let extraBytes = newSize - originalSize
-                            savedStr = "+\(formatter.string(fromByteCount: extraBytes)) \(NSLocalizedString("video.saved.increased", comment: ""))"
-                        }
+                        drop = (1.0 - Double(newSize) / Double(originalSize)) * 100.0
                     }
 
-                    let newSizeStr = newSize > 0 ? ByteCountFormatter.string(fromByteCount: newSize, countStyle: .file) : nil
+                    var outputDim: String? = nil
+                    if let meta = await probeVideoWithFFmpeg(url: outputURL),
+                       let res = meta.resolution, !res.isEmpty {
+                        outputDim = res.replacingOccurrences(of: "x", with: "×")
+                    } else if let fallback = Self.scaledDimensionsString(
+                        from: video.resolutionString,
+                        scale: settings.resolutionScale
+                    ) {
+                        outputDim = fallback
+                    }
 
+                    let itemID = video.id
                     await MainActor.run {
-                        appState.selectedVideos[index].isCompleted = true
-                        appState.selectedVideos[index].savedSizeString = savedStr
-                        appState.selectedVideos[index].convertedSizeString = newSizeStr
+                        guard let i = appState.selectedVideos.firstIndex(where: { $0.id == itemID }) else { return }
+                        appState.selectedVideos[i].isCompleted = true
+                        appState.selectedVideos[i].outputURL = outputURL
+                        appState.selectedVideos[i].outputFileSizeString = newSizeStr
+                        appState.selectedVideos[i].outputDimensionsString = outputDim
+                        appState.selectedVideos[i].outputSizeDropPercent = drop
                     }
                 }
                 if !Task.isCancelled {
-                    CometAnalytics.shared.trackEvent(
-                        page: "videoConvert",
-                        eventType: .videoConverted,
-                        metadata: ["count": appState.selectedVideos.count, "format": selectedFormat.rawValue]
-                    )
                     showSuccessAlert = true
                 }
             } catch {
@@ -746,6 +588,22 @@ struct VideoConvertView: View {
     }
 
     // MARK: - Helper Methods
+    private static func scaledDimensionsString(from source: String?, scale: ResolutionScale) -> String? {
+        guard let source, !source.isEmpty else { return nil }
+        let normalized = source.replacingOccurrences(of: "×", with: "x")
+        let parts = normalized.split(separator: "x")
+        guard parts.count == 2, let w = Double(parts[0]), let h = Double(parts[1]), w > 0, h > 0 else {
+            return source.replacingOccurrences(of: "x", with: "×")
+        }
+        let m = scale.multiplier
+        var ow = Int((w * m).rounded())
+        var oh = Int((h * m).rounded())
+        ow -= ow % 2
+        oh -= oh % 2
+        guard ow > 0, oh > 0 else { return nil }
+        return "\(ow)×\(oh)"
+    }
+
     private static let imageTypes: [UTType] = [.image, .png, .jpeg, .webP, .heic, .bmp, .tiff, .gif, .svg, .rawImage]
 
     private func handleDrop(_ providers: [NSItemProvider]) -> Bool {
@@ -877,9 +735,7 @@ struct VideoConvertView: View {
     }
 
     private func probeVideoWithFFmpeg(url: URL) async -> FFprobeResult? {
-        guard let ffmpegURL = FFmpegBridge.ffmpegURL() else { return nil }
-        let ffprobeURL = ffmpegURL.deletingLastPathComponent().appendingPathComponent("ffprobe")
-        guard FileManager.default.fileExists(atPath: ffprobeURL.path) else { return nil }
+        guard let ffprobeURL = FFmpegBridge.ffprobeURL() else { return nil }
 
         return await Task.detached(priority: .utility) {
             let process = Process()
@@ -987,6 +843,124 @@ struct VideoConvertView: View {
     }
 }
 
+// MARK: - Finder-style convert list row
+
+private struct VideoConvertListRow: View {
+    let item: VideoItem
+    let onPreview: () -> Void
+
+    @State private var isHovered = false
+
+    private var subtitle: String {
+        var parts: [String] = []
+        if !item.fileSizeString.isEmpty { parts.append(item.fileSizeString) }
+        if let res = item.resolutionString, !res.isEmpty { parts.append(res) }
+        if let fps = item.fpsString, !fps.isEmpty { parts.append(fps) }
+        if !item.durationString.isEmpty { parts.append(item.durationString) }
+        return parts.joined(separator: " · ")
+    }
+
+    /// Koyu arayüzde okunan, neon olmayan nane yeşili.
+    private var resultMint: Color {
+        Color(red: 0.40, green: 0.84, blue: 0.58)
+    }
+
+    private var resultSuffix: String? {
+        guard item.isCompleted else { return nil }
+        var parts: [String] = []
+        if let dim = item.outputDimensionsString, !dim.isEmpty {
+            parts.append(dim)
+        }
+        if let size = item.outputFileSizeString, !size.isEmpty {
+            if let pct = item.outputSizeDropPercent {
+                parts.append("\(size) (\(Self.formatDropPercent(pct)))")
+            } else {
+                parts.append(size)
+            }
+        } else if let pct = item.outputSizeDropPercent {
+            parts.append(Self.formatDropPercent(pct))
+        }
+        guard !parts.isEmpty else { return nil }
+        return "→ " + parts.joined(separator: " · ")
+    }
+
+    private static func formatDropPercent(_ drop: Double) -> String {
+        let absVal = abs(drop)
+        let number: String
+        if absVal > 0 && absVal < 10 {
+            number = String(format: "%.1f", absVal)
+        } else {
+            number = String(format: "%.0f", absVal.rounded())
+        }
+        if drop > 0.049 {
+            return "−\(number)%"
+        } else if drop < -0.049 {
+            return "+\(number)%"
+        } else {
+            return "0%"
+        }
+    }
+
+    private var metadataLine: Text {
+        let base = Text(subtitle).foregroundColor(Color.secondary)
+        guard let suffix = resultSuffix else { return base }
+        return base + Text(" \(suffix)").foregroundColor(resultMint)
+    }
+
+    var body: some View {
+        Button(action: onPreview) {
+            HStack(spacing: 12) {
+                thumbnail
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(item.fileName)
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                    metadataLine
+                        .font(.system(size: 11))
+                        .lineLimit(1)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .handCursor()
+        .padding(.horizontal, 16)
+        .padding(.vertical, 7)
+        .background(isHovered ? Color.primary.opacity(0.05) : Color.clear)
+        .overlay(alignment: .bottom) {
+            Divider().padding(.leading, 72)
+        }
+        .onHover { isHovered = $0 }
+    }
+
+    private var thumbnail: some View {
+        Group {
+            if let nsImage = item.thumbnail {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                ZStack {
+                    Color.secondary.opacity(0.15)
+                    Image(systemName: "play.fill")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.secondary.opacity(0.55))
+                }
+            }
+        }
+        .frame(width: 44, height: 44)
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
+        )
+    }
+}
+
 enum VideoFormat: String, CaseIterable, Identifiable {
     case mp4
     case mov
@@ -1072,6 +1046,22 @@ enum ResolutionScale: String, CaseIterable, Identifiable {
         case .scale50: return "video.resolution.50"
         case .scale25: return "video.resolution.25"
         }
+    }
+
+    var percent: Int? {
+        switch self {
+        case .original: return nil
+        case .scale75: return 75
+        case .scale50: return 50
+        case .scale25: return 25
+        }
+    }
+
+    func menuTitle(_ languageManager: LanguageManager) -> String {
+        if let percent {
+            return languageManager.scalePercentLabel(percent)
+        }
+        return languageManager.string(localizationKey)
     }
 
     var multiplier: Double {

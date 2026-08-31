@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "ลากรูปภาพมาที่นี่";
 "convert.drop.subtitle" = "รองรับ PNG, JPG, WebP, HEIF และรูปแบบอื่นๆ";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "ความกว้าง";
 "convert.settings.height" = "ความสูง";
+
 "meta.info" = "Metadata จะถูกเก็บรักษา";
+
 "convert.settings.targetFolder" = "โฟลเดอร์ปลายทาง";
 "convert.settings.noFolder" = "ยังไม่ได้เลือกโฟลเดอร์";
 "convert.settings.chooseFolder" = "เลือกโฟลเดอร์";
+
+"folder.missing.title" = "ไม่พบโฟลเดอร์";
+"folder.missing.subtitle" = "เส้นทางโฟลเดอร์ที่บันทึกไว้ไม่มีอยู่แล้ว โปรดเลือกใหม่";
+"folder.missing.pick" = "เลือกโฟลเดอร์ใหม่";
+"folder.missing.panel.message" = "ไม่พบโฟลเดอร์เอาต์พุต โปรดเลือกโฟลเดอร์ใหม่";
+
+"bgremove.error.noMaskFound" = "ไม่พบมาสก์เบื้องหน้า";
+"bgremove.error.maskConversionFailed" = "การแปลงมาสก์ล้มเหลว";
+"bgremove.error.compositeFailed" = "การรวมภาพล้มเหลว";
+
 "convert.settings.convertButton" = "แปลง";
 "convert.clearAll" = "ล้างทั้งหมด";
 "convert.addMore" = "เพิ่มเติม";
 "convert.wrongType.image" = "ที่นี่แปลงได้เฉพาะรูปภาพเท่านั้น";
+
+"upscale.settings.title" = "การตั้งค่า";
+"upscale.settings.model" = "โมเดล";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — เพิ่มรายละเอียดด้วย AI";
+"upscale.settings.scale" = "สเกล";
+"upscale.scale.multiPassHint" = "8× และ 16× รันหลายรอบ AI — ใช้เวลานานขึ้น";
+"upscale.settings.outputFormat" = "รูปแบบเอาต์พุต";
+"upscale.drop.title" = "ลากและวางรูปภาพ";
+"upscale.drop.subtitle" = "หรือคลิกเพื่อเรียกดูไฟล์";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "รองรับเฉพาะรูปแรสเตอร์ที่สามารถอัปสเกลที่นี่";
+"upscale.runButton" = "อัปสเกล";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "แสดงตัวอย่าง";
+"upscale.preview.hint" = "เลือกสเกลแล้วแตะแสดงตัวอย่างเพื่อเปรียบเทียบ";
+"upscale.preview.processing" = "กำลังสร้างตัวอย่าง…";
+"upscale.preview.before" = "ก่อน";
+"upscale.preview.after" = "หลัง";
+"upscale.preview.save" = "บันทึก";
+"upscale.preview.saveSettings" = "บันทึกตัวอย่าง";
+"upscale.preview.autoSave" = "บันทึกหลังแสดงตัวอย่าง";
+"upscale.preview.autoSaveHint" = "เขียนไปยังโฟลเดอร์ปลายทางเมื่อแสดงตัวอย่างเสร็จ";
+"upscale.preview.saveNeedFolder" = "เลือกโฟลเดอร์ปลายทางก่อน";
+"upscale.preview.saveFailed" = "เข้ารหัสรูปตัวอย่างไม่ได้";
+"upscale.preview.loadFailed" = "โหลดรูปตัวอย่างไม่ได้";
+"upscale.backend.missing.hint" = "แพ็กแอปไม่มีเอนจิน cometscaly หรือไฟล์โมเดล โปรดสร้างโปรเจ็กต์ใหม่";
+"upscale.error.bundle" = "โฟลเดอร์บันเดิล Upscale หายจากแอป";
+"upscale.error.binary" = "ไม่พบ cometscaly ในแพ็กแอป";
+"upscale.error.model" = "ไฟล์โมเดล upscayl-standard-4x.param/.bin หายไป";
+"upscale.error.process" = "อัปสเกลล้มเหลว (exit %d): %@";
+"upscale.error.none" = "ไม่มีรูปที่ถูกอัปสเกล";
+
 "menu.home" = "หน้าหลัก";
 "menu.convertImage" = "แปลงรูปภาพ";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "การตั้งค่า";
 "menu.tools" = "เครื่องมือ";
 "menu.document" = "DOCUMENT";
-"menu.team" = "ทีม";
-"menu.team.title" = "พัฒนาโดย Comet Dev";
-"menu.team.subtitle" = "สร้างด้วยความรักและความใส่ใจในรายละเอียด";
 "menu.stockImage" = "ภาพสต็อก";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "ลบพื้นหลัง";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "แบบอักษร";
 "menu.videoConvert" = "แปลงวิดีโอ";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "ส่งความคิดเห็น";
-"team.thanks_grafix" = "ขอบคุณพิเศษ Grafix สำหรับการออกแบบ";
+
 "alert.success.title" = "สำเร็จ";
 "alert.error.title" = "ข้อผิดพลาด";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "เปิดโฟลเดอร์";
 "alert.success.message.image" = "บันทึกรูปภาพไว้ที่ %@ แล้ว";
 "alert.success.message.video" = "บันทึกวิดีโอไว้ที่ %@ แล้ว";
+"alert.error.conversion" = "ไม่สามารถแปลงบางภาพได้.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "รองรับ MP4, MOV, AVI และรูปแบบอื่นๆ";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% ของต้นฉบับ";
 "video.resolution.50" = "50% ของต้นฉบับ";
 "video.resolution.25" = "25% ของต้นฉบับ (คุณภาพต่ำ)";
+
 "pdf.drop.title" = "ลากไฟล์ PDF มาที่นี่";
 "pdf.drop.subtitle" = "เลือกไฟล์ PDF เพื่อแก้ไข";
 "pdf.page.count" = "%lld หน้า";
 "pdf.page.info" = "หน้า %lld จาก %lld";
 "pdf.estimatedSize" = "ขนาดโดยประมาณ";
+"pdf.quality.modal.title" = "เลือกระดับการเพิ่มประสิทธิภาพ";
+"pdf.quality.modal.subtitle" = "เลือกว่าต้องการลดขนาดไฟล์เท่าใด การบีบอัดที่สูงขึ้นหมายถึงไฟล์ที่เล็กลงพร้อมกับการสูญเสียคุณภาพบางส่วน";
+"pdf.quality.modal.estimated" = "ขนาดโดยประมาณ";
+"pdf.quality.modal.confirm" = "เพิ่มประสิทธิภาพ";
+"pdf.quality.modal.cancel" = "ยกเลิก";
+"pdf.quality.low.title" = "บีบอัดสูงสุด";
+"pdf.quality.low.desc" = "ไฟล์เล็กที่สุด สูญเสียคุณภาพที่มองเห็นได้";
+"pdf.quality.medium.title" = "สมดุล";
+"pdf.quality.medium.desc" = "สมดุลที่ดีระหว่างขนาดและคุณภาพ";
+"pdf.quality.high.title" = "คุณภาพสูง";
+"pdf.quality.high.desc" = "สูญเสียคุณภาพน้อยที่สุด ลดขนาดปานกลาง";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "ปรับปรุง PDF";
+"pdf.tools.quality" = "คุณภาพ";
+"pdf.tools.quality.label" = "คุณภาพภาพ";
+"pdf.tools.quality.small" = "ไฟล์เล็กกว่า";
+"pdf.tools.quality.large" = "คุณภาพดีกว่า";
+"pdf.tools.quality.lossless" = "ไม่สูญเสีย";
+"pdf.tools.resolution" = "สเกลความละเอียด";
+"pdf.tools.resolution.enable" = "ลดความละเอียด";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "ตัวแปลง RGB/CMYK";
+"pdf.color.enable" = "แปลงพื้นที่สี";
+"pdf.color.convert" = "แปลงและบันทึก";
 "pdf.tools.save" = "บันทึก PDF";
 "pdf.reorder.title" = "จัดเรียงหน้าใหม่";
 "pdf.reorder.hint" = "ลากเพื่อเปลี่ยนลำดับหน้า";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "หลัง";
 "pdf.addContent.atEnd" = "ท้ายสุด";
 "pdf.addContent.chooseFile" = "เลือกไฟล์";
+
 "stock.deselectAll" = "ยกเลิกการเลือกทั้งหมด";
 "stock.download" = "ดาวน์โหลด";
 "stock.download.count" = "ดาวน์โหลด %d รูปภาพ";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "ใส่ URL หรือข้อความที่นี่...";
 "qr.settings.colors" = "สี";
 "qr.settings.fgColor" = "สีพื้นหน้า";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "ความละเอียด";
 "qr.settings.customSize" = "ขนาดกำหนดเอง (px)";
 "qr.download" = "ดาวน์โหลดคิวอาร์โค้ด";
+"qr.settings.type" = "ประเภท QR";
+"qr.type.website" = "เว็บไซต์";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "รายชื่อติดต่อ (vCard)";
+"qr.type.email" = "อีเมล";
+"qr.type.phone" = "โทรศัพท์";
+"qr.wifi.ssid" = "ชื่อเครือข่าย (SSID)";
+"qr.wifi.password" = "รหัสผ่าน";
+"qr.wifi.hidden" = "เครือข่ายที่ซ่อนอยู่";
+"qr.wifi.noEncryption" = "ไม่มี";
+"qr.vcard.firstName" = "ชื่อ";
+"qr.vcard.lastName" = "นามสกุล";
+"qr.vcard.phone" = "โทรศัพท์";
+"qr.vcard.email" = "อีเมล";
+"qr.vcard.company" = "บริษัท";
+"qr.vcard.jobTitle" = "ตำแหน่ง";
+"qr.vcard.address" = "ที่อยู่";
+"qr.vcard.website" = "เว็บไซต์";
+"qr.email.address" = "ที่อยู่อีเมล";
+"qr.email.subject" = "หัวเรื่อง";
+"qr.email.body" = "ข้อความ";
+"qr.phone.number" = "หมายเลขโทรศัพท์";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "ฟีเจอร์นี้ต้องการ macOS 14 หรือใหม่กว่า";
 "bgremove.drop.title" = "ลากรูปภาพมาที่นี่";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "ทำให้ขอบนุ่มนวล";
 "bgremove.settings.featherAmount" = "ระดับความนุ่มนวล";
+
 "ocr.drop.title" = "ลากรูปภาพมาที่นี่";
 "ocr.drop.subtitle" = "รองรับ PNG, JPG และ WebP";
 "ocr.processing" = "กำลังรู้จำข้อความ...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "ล้าง";
 "ocr.newFile" = "ไฟล์ใหม่";
 "ocr.copied" = "คัดลอกแล้ว!";
+
 "app.comingSoon.title" = "เร็วๆ นี้";
 "app.comingSoon.message" = "ฟีเจอร์นี้กำลังพัฒนาและจะพร้อมใช้งานในเร็วๆ นี้";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "ค้นหาแบบอักษร...";
 "font.preview.custom" = "ดูตัวอย่างที่กำหนดเอง";
 "font.inspector.preview" = "ดูตัวอย่าง";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d ตระกูล";
 "font.styles.count" = "%d สไตล์ · %@";
 "font.noResults" = "ไม่พบฟอนต์";
-"suggestion.title" = "ส่งข้อเสนอแนะ";
-"suggestion.subtitle" = "แบ่งปันความคิดของคุณและช่วยเราพัฒนา";
-"suggestion.placeholder.title" = "หัวข้อ";
-"suggestion.placeholder.body" = "อธิบายข้อเสนอแนะของคุณโดยละเอียด...";
-"suggestion.category.bug" = "ข้อผิดพลาด";
-"suggestion.category.feature" = "คำขอฟีเจอร์";
-"suggestion.category.ui" = "อินเทอร์เฟซ";
-"suggestion.category.performance" = "ประสิทธิภาพ";
-"suggestion.category.other" = "อื่นๆ";
-"suggestion.send" = "ส่งข้อเสนอแนะ";
-"suggestion.sending" = "กำลังส่ง...";
-"suggestion.sent.title" = "ขอบคุณ!";
-"suggestion.sent.message" = "ได้รับข้อเสนอแนะของคุณแล้ว เราจะตรวจสอบในเร็วๆ นี้";
-"suggestion.error" = "ส่งไม่สำเร็จ กรุณาลองอีกครั้ง";
-"suggestion.validation.title" = "ข้อมูลไม่ครบ";
-"suggestion.validation.body" = "กรุณากรอกหัวข้อและคำอธิบาย";
-
-"suggestion.label.category" = "หมวดหมู่";
-"suggestion.label.title" = "หัวข้อ";
-"suggestion.label.description" = "คำอธิบาย";
 
 "video.drop.title" = "ลากวางวิดีโอที่นี่";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "ที่นี่แปลงได้เฉพาะวิดีโอเท่านั้น";
+
 "app.maintenance.title" = "โหมดบำรุงรักษา";
 "app.forceUpdate.title" = "ต้องอัปเดต";
 "app.forceUpdate.button" = "อัปเดตบน App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "ค้นหา";
 "stock.search.placeholder" = "ค้นหาภาพถ่าย...";
 "stock.selected" = "เลือก %d รายการ";
+
 "video.cancel" = "ยกเลิก";
 "video.error.decoder" = "ไม่สามารถถอดรหัสวิดีโอได้";
 "video.saved.gain" = "ประหยัดได้";
 "video.saved.increased" = "ใหญ่ขึ้น";
 "video.settings.fps.desc" = "ปิดการใช้งานเพื่อรักษา FPS เดิม";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "รูปภาพ";
 "pdf.tools.pageManagement" = "จัดการหน้า";
 "pdf.tools.addContent" = "เพิ่มเนื้อหา";
 "pdf.tools.reorder" = "จัดเรียงใหม่";
 "pdf.tools.targetFolder" = "โฟลเดอร์เป้าหมาย";
-"alert.error.conversion" = "ไม่สามารถแปลงบางภาพได้.";
-"pdf.color.convert" = "แปลงและบันทึก";
-"pdf.color.enable" = "แปลงพื้นที่สี";
-"pdf.color.title" = "ตัวแปลง RGB/CMYK";
-"pdf.tools.quality" = "คุณภาพ";
-"pdf.tools.quality.label" = "คุณภาพภาพ";
-"pdf.tools.quality.large" = "คุณภาพดีกว่า";
-"pdf.tools.quality.lossless" = "ไม่สูญเสีย";
-"pdf.tools.resolution" = "สเกลความละเอียด";
-"pdf.tools.resolution.enable" = "ลดความละเอียด";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "ไฟล์เล็กกว่า";
 
 "ad.sponsored" = "สนับสนุน";
 "ad.visit" = "เยี่ยมชม";
 
-"pdf.quality.modal.title" = "เลือกระดับการเพิ่มประสิทธิภาพ";
-"pdf.quality.modal.subtitle" = "เลือกว่าต้องการลดขนาดไฟล์เท่าใด การบีบอัดที่สูงขึ้นหมายถึงไฟล์ที่เล็กลงพร้อมกับการสูญเสียคุณภาพบางส่วน";
-"pdf.quality.modal.estimated" = "ขนาดโดยประมาณ";
-"pdf.quality.modal.confirm" = "เพิ่มประสิทธิภาพ";
-"pdf.quality.modal.cancel" = "ยกเลิก";
-"pdf.quality.low.title" = "บีบอัดสูงสุด";
-"pdf.quality.low.desc" = "ไฟล์เล็กที่สุด สูญเสียคุณภาพที่มองเห็นได้";
-"pdf.quality.medium.title" = "สมดุล";
-"pdf.quality.medium.desc" = "สมดุลที่ดีระหว่างขนาดและคุณภาพ";
-"pdf.quality.high.title" = "คุณภาพสูง";
-"pdf.quality.high.desc" = "สูญเสียคุณภาพน้อยที่สุด ลดขนาดปานกลาง";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "ปรับแต่งประสบการณ์ Comet Editor ของคุณ";
+"settings.section.output" = "ส่งออก";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "โฟลเดอร์ส่งออกเริ่มต้น";
+"settings.noFolderSelected" = "ยังไม่ได้เลือก — จะถามทุกครั้ง";
+"settings.chooseFolder" = "เลือกโฟลเดอร์";
+"settings.clearFolder" = "ล้าง";
+"settings.folderPicker.message" = "เลือกโฟลเดอร์เริ่มต้นสำหรับไฟล์ที่ส่งออก";
+"settings.folderPicker.button" = "เลือกโฟลเดอร์";
 
 "app.maintenance.title2" = "อยู่ระหว่างการบำรุงรักษา";
 "app.maintenance.body" = "แอปไม่พร้อมใช้งานชั่วคราว เราจะกลับมาเร็วๆ นี้";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "อัปเดตใน App Store";
 "app.quit2" = "ปิดแอป";
 
-"settings.subtitle" = "ปรับแต่งประสบการณ์ Comet Editor ของคุณ";
-"settings.section.output" = "ส่งออก";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "โฟลเดอร์ส่งออกเริ่มต้น";
-"settings.noFolderSelected" = "ยังไม่ได้เลือก — จะถามทุกครั้ง";
-"settings.chooseFolder" = "เลือกโฟลเดอร์";
-"settings.clearFolder" = "ล้าง";
-"settings.folderPicker.message" = "เลือกโฟลเดอร์เริ่มต้นสำหรับไฟล์ที่ส่งออก";
-"settings.folderPicker.button" = "เลือกโฟลเดอร์";
-"menu.announcements" = "ประกาศ";
-"announcements.subtitle" = "ข่าวสารและการอัปเดตล่าสุดจากทีม";
-"announcements.empty" = "ยังไม่มีประกาศ";
-
 "settings.pdfOutputFolder" = "โฟลเดอร์ส่งออก PDF";
 
 "folder.default.prompt.title" = "ตั้งเป็นโฟลเดอร์เริ่มต้น?";
 "folder.default.prompt.body" = "คุณต้องการตั้งนี้เป็นโฟลเดอร์ผลลัพธ์เริ่มต้นหรือไม่? คุณสามารถเปลี่ยนได้ตลอดเวลาในการตั้งค่า";
 "folder.default.prompt.yes" = "ตั้งเป็นค่าเริ่มต้น";
 "folder.default.prompt.no" = "ไม่ใช่ตอนนี้";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "ตัดต่อวิดีโอ";
-"qr.email.address" = "ที่อยู่อีเมล";
-"qr.email.body" = "ข้อความ";
-"qr.email.subject" = "หัวเรื่อง";
-"qr.phone.number" = "หมายเลขโทรศัพท์";
-"qr.settings.type" = "ประเภท QR";
-"qr.type.email" = "อีเมล";
-"qr.type.phone" = "โทรศัพท์";
-"qr.type.vcard" = "รายชื่อติดต่อ (vCard)";
-"qr.type.website" = "เว็บไซต์";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "ที่อยู่";
-"qr.vcard.company" = "บริษัท";
-"qr.vcard.email" = "อีเมล";
-"qr.vcard.firstName" = "ชื่อ";
-"qr.vcard.jobTitle" = "ตำแหน่ง";
-"qr.vcard.lastName" = "นามสกุล";
-"qr.vcard.phone" = "โทรศัพท์";
-"qr.vcard.website" = "เว็บไซต์";
-"qr.wifi.hidden" = "เครือข่ายที่ซ่อนอยู่";
-"qr.wifi.noEncryption" = "ไม่มี";
-"qr.wifi.password" = "รหัสผ่าน";
-"qr.wifi.ssid" = "ชื่อเครือข่าย (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "เพิ่มรูป";
-"videoedit.addMore" = "เพิ่ม";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "เพิ่มวิดีโอ";
-"videoedit.empty.subtitle" = "ลากไฟล์วิดีโอมาที่นี่หรือแตะปุ่มด้านล่าง";
-"videoedit.empty.title" = "เพิ่มวิดีโอเพื่อแก้ไข";
-"videoedit.export.merge" = "รวมแล้วส่งออก";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "การตั้งค่า";
-"videoedit.export.trim" = "ส่งออกคลิป";
-"videoedit.exporting" = "กำลังส่งออก…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "ระยะเวลาแสดงรูป";
-"videoedit.imageDuration.default" = "ค่าเริ่มต้นสำหรับรูปใหม่";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "บันทึกไปที่";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "นำไปใช้";
-"watermark.button" = "เพิ่มลายน้ำ";
-"watermark.cancel" = "ยกเลิก";
-"watermark.color.black" = "ดำ";
-"watermark.color.darkGray" = "เทาเข้ม";
-"watermark.color.gray" = "เทา";
-"watermark.color.lightGray" = "เทาอ่อน";
-"watermark.color.none" = "ไม่มี";
-"watermark.color.white" = "ขาว";
-"watermark.colorOverlay" = "การซ้อนสี";
-"watermark.logo" = "โลโก้";
-"watermark.opacity" = "ความทึบแสง";
-"watermark.pos.bottomCenter" = "กลางล่าง";
-"watermark.pos.bottomLeft" = "ซ้ายล่าง";
-"watermark.pos.bottomRight" = "ขวาล่าง";
-"watermark.pos.center" = "กลาง";
-"watermark.pos.centerLeft" = "ซ้ายกลาง";
-"watermark.pos.centerRight" = "ขวากลาง";
-"watermark.pos.topCenter" = "กลางบน";
-"watermark.pos.topLeft" = "ซ้ายบน";
-"watermark.pos.topRight" = "ขวาบน";
-"watermark.position" = "ตำแหน่ง";
-"watermark.preview" = "แสดงตัวอย่าง";
-"watermark.removeLogo" = "ลบ";
-"watermark.scale" = "มาตราส่วน";
-"watermark.selectLogo" = "เลือกรูป";
-"watermark.tileMode" = "โหมดกระเบื้อง";
-"watermark.tileMode.desc" = "ทำซ้ำทั่วภาพ";
+
 "watermark.title" = "ลายน้ำ";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "เพิ่มลายน้ำ";
+"watermark.logo" = "โลโก้";
+"watermark.selectLogo" = "เลือกรูป";
+"watermark.removeLogo" = "ลบ";
+"watermark.position" = "ตำแหน่ง";
+"watermark.scale" = "มาตราส่วน";
+"watermark.opacity" = "ความทึบแสง";
+"watermark.preview" = "แสดงตัวอย่าง";
+"watermark.apply" = "นำไปใช้";
+"watermark.cancel" = "ยกเลิก";
+"watermark.pos.topLeft" = "ซ้ายบน";
+"watermark.pos.topCenter" = "กลางบน";
+"watermark.pos.topRight" = "ขวาบน";
+"watermark.pos.centerLeft" = "ซ้ายกลาง";
+"watermark.pos.center" = "กลาง";
+"watermark.pos.centerRight" = "ขวากลาง";
+"watermark.pos.bottomLeft" = "ซ้ายล่าง";
+"watermark.pos.bottomCenter" = "กลางล่าง";
+"watermark.pos.bottomRight" = "ขวาล่าง";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "การซ้อนสี";
+"watermark.color.none" = "ไม่มี";
+"watermark.color.black" = "ดำ";
+"watermark.color.darkGray" = "เทาเข้ม";
+"watermark.color.gray" = "เทา";
+"watermark.color.lightGray" = "เทาอ่อน";
+"watermark.color.white" = "ขาว";
+"watermark.tileMode" = "โหมดกระเบื้อง";
+"watermark.tileMode.desc" = "ทำซ้ำทั่วภาพ";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "การตั้งค่า";
-"upscale.settings.model" = "โมเดล";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — เพิ่มรายละเอียดด้วย AI";
-"upscale.settings.scale" = "สเกล";
-"upscale.scale.multiPassHint" = "8× และ 16× รันหลายรอบ AI — ใช้เวลานานขึ้น";
-"upscale.settings.outputFormat" = "รูปแบบเอาต์พุต";
-"upscale.drop.title" = "ลากและวางรูปภาพ";
-"upscale.drop.subtitle" = "หรือคลิกเพื่อเรียกดูไฟล์";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "รองรับเฉพาะรูปแรสเตอร์ที่สามารถอัปสเกลที่นี่";
-"upscale.runButton" = "อัปสเกล";
-"upscale.preview.run" = "แสดงตัวอย่าง";
-"upscale.preview.hint" = "เลือกสเกลแล้วแตะแสดงตัวอย่างเพื่อเปรียบเทียบ";
-"upscale.preview.processing" = "กำลังสร้างตัวอย่าง…";
-"upscale.preview.before" = "ก่อน";
-"upscale.preview.after" = "หลัง";
-"upscale.preview.save" = "บันทึก";
-"upscale.preview.saveSettings" = "บันทึกตัวอย่าง";
-"upscale.preview.autoSave" = "บันทึกหลังแสดงตัวอย่าง";
-"upscale.preview.autoSaveHint" = "เขียนไปยังโฟลเดอร์ปลายทางเมื่อแสดงตัวอย่างเสร็จ";
-"upscale.preview.saveNeedFolder" = "เลือกโฟลเดอร์ปลายทางก่อน";
-"upscale.preview.saveFailed" = "เข้ารหัสรูปตัวอย่างไม่ได้";
-"upscale.preview.loadFailed" = "โหลดรูปตัวอย่างไม่ได้";
-"upscale.backend.missing.hint" = "แพ็กแอปไม่มีเอนจิน cometscaly หรือไฟล์โมเดล โปรดสร้างโปรเจ็กต์ใหม่";
-"upscale.error.bundle" = "โฟลเดอร์บันเดิล Upscale หายจากแอป";
-"upscale.error.binary" = "ไม่พบ cometscaly ในแพ็กแอป";
-"upscale.error.model" = "ไฟล์โมเดล upscayl-standard-4x.param/.bin หายไป";
-"upscale.error.process" = "อัปสเกลล้มเหลว (exit %d): %@";
-"upscale.error.none" = "ไม่มีรูปที่ถูกอัปสเกล";
-"videoedit.resize.modePercent" = "สเกล (%)";
-"videoedit.resize.modeCustom" = "ขนาดกำหนดเอง";
-"videoedit.resize.autoFill" = "เติมแคนวาสอัตโนมัติ";
-"videoedit.resize.autoFillHint" = "เปิด: ฟุตเทจกว้างพอดีกรอบแบบ letterbox; ฟุตเทจเล็กซูมและครอปกลางเพื่อเติมเต็ม";
+"inspector.format" = "รูปแบบ";
+"inspector.output" = "ผลลัพธ์";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "เพิ่มรูปเพื่อดูตัวอย่าง";
+"watermark.rotation" = "หมุน";
+"watermark.text" = "ข้อความโลโก้";
+"watermark.text.placeholder" = "ใส่ข้อความโลโก้";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

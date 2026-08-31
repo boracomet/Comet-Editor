@@ -5,19 +5,14 @@ import os
 @preconcurrency import PDFKit
 
 
-// MARK: - Models
-struct ImageItem: Identifiable, Equatable {
-    let id = UUID()
-    let url: URL
-    let image: NSImage?
-    let fileSizeString: String
-    let dimensionsString: String
-    /// Sandbox'tan gelen dosyaları daha sonra yeniden açabilmek için
-    /// security-scoped bookmark verisi. Drop/Open-panel sırasında oluşturulur.
-    let bookmarkData: Data?
-    var fileName: String { url.lastPathComponent }
+// MARK: - Security-Scoped File Item
 
-    /// Bookmark'tan security-scoped URL elde eder; yoksa orijinal URL'i döndürür.
+protocol SecurityScopedFileItem {
+    nonisolated var url: URL { get }
+    nonisolated var bookmarkData: Data? { get }
+}
+
+extension SecurityScopedFileItem {
     nonisolated func securityScopedURL() -> (url: URL, accessed: Bool) {
         if let data = bookmarkData {
             var isStale = false
@@ -44,6 +39,29 @@ struct ImageItem: Identifiable, Equatable {
     }
 }
 
+// MARK: - Models
+struct ImageItem: Identifiable, Equatable, SecurityScopedFileItem {
+    let id = UUID()
+    nonisolated let url: URL
+    let image: NSImage?
+    let fileSizeString: String
+    let dimensionsString: String
+    /// Sandbox'tan gelen dosyaları daha sonra yeniden açabilmek için
+    /// security-scoped bookmark verisi. Drop/Open-panel sırasında oluşturulur.
+    nonisolated let bookmarkData: Data?
+    var fileName: String { url.lastPathComponent }
+
+    /// Image Convert: bu öğe başarıyla dönüştürüldü mü.
+    var isCompleted: Bool = false
+    var outputURL: URL? = nil
+    var outputFileSizeString: String? = nil
+    var outputDimensionsString: String? = nil
+    /// Pozitif = dosya küçüldü (ör. 77 → −77%).
+    var outputSizeDropPercent: Double? = nil
+    /// Görüntü büyütme: cometscaly sonucu bellekte (hedef klasöre yazılmadan).
+    var upscaledImage: NSImage? = nil
+}
+
 // MARK: - Ana sayfa hızlı başlangıç (hazır ayarlar)
 
 enum HomeQuickImagePreset: Equatable {
@@ -60,13 +78,6 @@ enum HomePDFPreset: Equatable {
     case optimize     // Optimize modal'ı aç
 }
 
-/// Video düzenleyicide çözünürlük: yüzde çarpanı veya özel piksel boyutu
-enum VideoEditResizeKind: String, CaseIterable, Identifiable {
-    case percent
-    case custom
-    var id: String { rawValue }
-}
-
 enum HomeQuickVideoPreset: Equatable {
     /// MP4 (H.264), dengeli kalite — paylaşım için hızlı başlangıç.
     case quickMp4Balanced
@@ -80,9 +91,9 @@ enum HomeQuickVideoPreset: Equatable {
     case movToMp4
 }
 
-struct VideoItem: Identifiable, Equatable {
+struct VideoItem: Identifiable, Equatable, SecurityScopedFileItem {
     let id = UUID()
-    let url: URL
+    nonisolated let url: URL
     let fileSizeString: String
     let durationString: String
     var resolutionString: String?
@@ -91,30 +102,16 @@ struct VideoItem: Identifiable, Equatable {
     /// AVFoundation'ın desteklemediği formatlar (AVI, WMV vb.) için ffmpeg ile
     /// oluşturulan geçici MP4 dosyası. Preview bu URL üzerinden oynatılır.
     var playbackURL: URL?
-    let bookmarkData: Data?
+    nonisolated let bookmarkData: Data?
 
     var isCompleted: Bool = false
-    var savedSizeString: String? = nil
-    var convertedSizeString: String? = nil
+    var outputURL: URL? = nil
+    var outputFileSizeString: String? = nil
+    var outputDimensionsString: String? = nil
+    /// Pozitif = dosya küçüldü (ör. 77 → −77%).
+    var outputSizeDropPercent: Double? = nil
 
     var fileName: String { url.lastPathComponent }
-
-    nonisolated func securityScopedURL() -> (url: URL, accessed: Bool) {
-        if let data = bookmarkData {
-            var isStale = false
-            if let resolved = try? URL(
-                resolvingBookmarkData: data,
-                options: .withSecurityScope,
-                relativeTo: nil,
-                bookmarkDataIsStale: &isStale
-            ) {
-                let ok = resolved.startAccessingSecurityScopedResource()
-                return (resolved, ok)
-            }
-        }
-        let ok = url.startAccessingSecurityScopedResource()
-        return (url, ok)
-    }
 
     /// AVFoundation'ın doğrudan desteklemediği formatlar
     static let avUnsupportedExtensions: Set<String> = ["avi", "wmv", "flv", "mkv", "webm", "mpeg", "mpg", "3gp"]
@@ -162,12 +159,53 @@ class GlobalAppState: ObservableObject {
     @Published var processingMenuItem: MenuItem? = nil
     /// Video dönüşüm task'ı — iptal için (VideoConvertView dışından da erişilebilir)
     var videoConversionTask: Task<Void, Never>? = nil
+    /// Görsel dönüşüm task'ı — iptal için (ConvertImageView)
+    var imageConversionTask: Task<Void, Never>? = nil
+    /// Resim Dönüştür: sekme değişince @State kaybolmasın diye app-level bayrak.
+    @Published var isConvertingImages = false
+    @Published var imageConversionProgress = ""
+
+    @MainActor
+    func endImageConversion() {
+        isConvertingImages = false
+        imageConversionProgress = ""
+        imageConversionTask = nil
+        if processingMenuItem == .convertImage {
+            processingMenuItem = nil
+        }
+    }
+
+    @MainActor
+    func requestCancelImageConversion() {
+        imageConversionTask?.cancel()
+        CometImageCodec.shared.cancel()
+    }
+
+    /// Görüntü büyütme task'ı — sayfa değişince iptal edilmez (cometscaly sürer).
+    var upscaleTask: Task<Void, Never>? = nil
+    @Published var isUpscaling = false
+    @Published var upscaleProgressLabel = ""
+    @Published var upscaleProgressPercent = 0
+    @Published var upscaleActiveItemID: UUID? = nil
+    @Published var upscalePendingSuccess = false
+    @Published var upscalePendingErrorMessage: String?
 
     // Shared File Lists
     @Published var selectedImages: [ImageItem] = []
     /// Görüntü büyütme sayfası kuyruğu (Resim Dönüştür listesinden ayrı).
     @Published var upscaleImages: [ImageItem] = []
-    @Published var selectedVideos: [VideoItem] = []
+    @Published var selectedVideos: [VideoItem] = [] {
+        didSet { cleanupRemovedPlaybackURLs(old: oldValue, new: selectedVideos) }
+    }
+
+    private func cleanupRemovedPlaybackURLs(old: [VideoItem], new: [VideoItem]) {
+        let newIDs = Set(new.map { $0.id })
+        for item in old where !newIDs.contains(item.id) {
+            if let tmp = item.playbackURL {
+                try? FileManager.default.removeItem(at: tmp)
+            }
+        }
+    }
 
     /// Ana sayfa kartından gelen PDF hazır ayarı (bir kez tüketilir).
     @Published var pendingHomePDFPreset: HomePDFPreset?
@@ -204,7 +242,12 @@ class GlobalAppState: ObservableObject {
     @Published var pdfDocumentVersion: Int = 0
     @Published var pdfViewMode: PDFViewMode = .viewer
     @Published var pdfCompressionTargetFolder: URL? = nil {
-        didSet { savePDFFolderBookmark() }
+        didSet {
+            if let old = oldValue {
+                old.stopAccessingSecurityScopedResource()
+            }
+            savePDFFolderBookmark()
+        }
     }
     @Published var pdfReorderPageOrder: [Int]? = nil
     @Published var pdfIsDeletingPage = false
@@ -341,11 +384,12 @@ class GlobalAppState: ObservableObject {
             if let old = oldValue {
                 old.stopAccessingSecurityScopedResource()
             }
+            targetFolderStale = false
             saveFolderBookmark()
         }
     }
-
-    @Published var showingTeamModal = false
+    /// Kaydedilmiş klasör bookmark'ı çözüldü ama klasör artık disk'te yok.
+    @Published var targetFolderStale: Bool = false
 
     // Default klasör prompt: kullanıcıya bir kez sorulur
     @Published var showDefaultFolderPrompt: Bool = false
@@ -360,8 +404,45 @@ class GlobalAppState: ObservableObject {
         }
     }
 
-    // Announcements
-    @Published var cachedAnnouncements: [AppConfig.AnnouncementInfo] = []
+    // MARK: - Output Folder Resolution
+
+    /// Dönüşüm başlamadan çağrılır. Geçerli bir çıktı klasörü döndürür.
+    /// - Klasör varsa: doğrudan döndürür.
+    /// - Klasör yoksa veya nil ise: NSOpenPanel açar, kullanıcı seçer.
+    /// - Seçilen klasör varsayılan yeni bir klasörse (eski yoktu veya silindi):
+    ///   "Yeni varsayılan yap mı?" sorusunu tetikler.
+    /// - Kullanıcı iptal ederse: nil döner, çağıran taraf işlemi durdurur.
+    @MainActor
+    func resolveOutputFolder() async -> URL? {
+        // 1. Mevcut klasör disk'te var mı?
+        if let current = targetFolder {
+            if FileManager.default.fileExists(atPath: current.path) {
+                return current
+            }
+            // Klasör silindi — stale yap, nil'e çek
+            targetFolderStale = true
+            targetFolder = nil
+        }
+
+        // 2. Klasör yok — NSOpenPanel aç
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.message = NSLocalizedString("folder.missing.panel.message", comment: "")
+        panel.prompt = NSLocalizedString("folder.missing.pick", comment: "")
+
+        guard panel.runModal() == .OK, let chosen = panel.url else {
+            return nil // kullanıcı iptal etti
+        }
+
+        // 3. Seçilen klasörü geçici olarak kullan;
+        //    "varsayılan yap mı?" sorusunu sor (ContentView'daki alert handle eder)
+        pendingDefaultFolderURL = chosen
+        showDefaultFolderPrompt = true
+
+        return chosen
+    }
 
     // OCR State
     @Published var ocrImage: NSImage? = nil
@@ -385,23 +466,6 @@ class GlobalAppState: ObservableObject {
     @Published var qrSelectedSize: CGFloat = 1024
     @Published var qrCustomSize: String = "1024"
 
-    // Video Edit State
-    @Published var videoEditClips: [VideoEditClip] = []
-    @Published var videoEditSelectedClipID: UUID? = nil
-    @Published var videoEditOutputFormat: VideoEditOutputFormat = .mp4
-    @Published var videoEditOutputQuality: Double = 8
-    @Published var videoEditFpsEnabled: Bool = false
-    @Published var videoEditSelectedFPS: FPSLimit = .original
-    @Published var videoEditScaleEnabled: Bool = false
-    @Published var videoEditSelectedScale: ResolutionScale = .original
-    @Published var videoEditResizeKind: VideoEditResizeKind = .percent
-    @Published var videoEditCustomWidthText: String = "1920"
-    @Published var videoEditCustomHeightText: String = "1080"
-    @Published var videoEditAutoFillCanvas: Bool = true
-    @Published var videoEditRemoveAudio: Bool = false
-    @Published var videoEditMetadataEnabled: Bool = true
-    @Published var videoEditImageDuration: Double = 5.0
-
     // Stock Image State
     @Published var stockSearchQuery: String = ""
 
@@ -415,6 +479,11 @@ class GlobalAppState: ObservableObject {
         loadPDFFolderBookmark()
     }
 
+    deinit {
+        targetFolder?.stopAccessingSecurityScopedResource()
+        pdfCompressionTargetFolder?.stopAccessingSecurityScopedResource()
+    }
+
     // MARK: - Bookmark Persistence
 
     private func saveFolderBookmark() {
@@ -422,7 +491,7 @@ class GlobalAppState: ObservableObject {
     }
 
     private func loadFolderBookmark() {
-        loadBookmark(forKey: Keys.folderBookmark) { self.targetFolder = $0 }
+        loadBookmark(forKey: Keys.folderBookmark) { self.targetFolder = $0 } onMissing: { self.targetFolderStale = true }
     }
 
     private func savePDFFolderBookmark() {
@@ -446,13 +515,18 @@ class GlobalAppState: ObservableObject {
         }
     }
 
-    private func loadBookmark(forKey key: String, assign: @escaping (URL) -> Void) {
+    private func loadBookmark(forKey key: String, assign: @escaping (URL) -> Void, onMissing: (() -> Void)? = nil) {
         guard let data = UserDefaults.standard.data(forKey: key) else { return }
         var isStale = false
         do {
             let url = try URL(resolvingBookmarkData: data, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             if isStale, let fresh = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil) {
                 UserDefaults.standard.set(fresh, forKey: key)
+            }
+            guard FileManager.default.fileExists(atPath: url.path) else {
+                UserDefaults.standard.removeObject(forKey: key)
+                DispatchQueue.main.async { onMissing?() }
+                return
             }
             if url.startAccessingSecurityScopedResource() {
                 DispatchQueue.main.async { assign(url) }

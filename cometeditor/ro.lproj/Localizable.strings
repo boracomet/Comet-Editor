@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Trageți și plasați o imagine";
 "convert.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Lățime px";
 "convert.settings.height" = "Înălțime px";
+
 "meta.info" = "Protecție metadate";
+
 "convert.settings.targetFolder" = "Dosar de destinație";
 "convert.settings.noFolder" = "Neselectat";
 "convert.settings.chooseFolder" = "Alegeți din Finder";
+
+"folder.missing.title" = "Folder negăsit";
+"folder.missing.subtitle" = "Calea folderului salvat nu mai există. Selectați unul nou.";
+"folder.missing.pick" = "Selectați un folder nou";
+"folder.missing.panel.message" = "Folderul de ieșire nu a fost găsit. Selectați un folder nou.";
+
+"bgremove.error.noMaskFound" = "Nu s-a găsit masca de prim-plan.";
+"bgremove.error.maskConversionFailed" = "Conversia măștii a eșuat.";
+"bgremove.error.compositeFailed" = "Compoziția imaginii a eșuat.";
+
 "convert.settings.convertButton" = "Convertire";
 "convert.clearAll" = "Ștergere totală";
 "convert.addMore" = "Adăugare";
 "convert.wrongType.image" = "Aici pot fi convertite doar imagini";
+
+"upscale.settings.title" = "Setări";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — îmbunătățire detalii cu IA";
+"upscale.settings.scale" = "Scară";
+"upscale.scale.multiPassHint" = "8× și 16× rulează mai multe treceri IA — durează mai mult.";
+"upscale.settings.outputFormat" = "Format ieșire";
+"upscale.drop.title" = "Trageți și plasați imagini";
+"upscale.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Aici pot fi mărite doar imagini raster acceptate";
+"upscale.runButton" = "Mărește";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Previzualizare";
+"upscale.preview.hint" = "Alegeți o scală și atingeți Previzualizare pentru a compara";
+"upscale.preview.processing" = "Se generează previzualizarea…";
+"upscale.preview.before" = "ÎNAINTE";
+"upscale.preview.after" = "DUPĂ";
+"upscale.preview.save" = "Salvează";
+"upscale.preview.saveSettings" = "Salvare previzualizare";
+"upscale.preview.autoSave" = "Salvează după previzualizare";
+"upscale.preview.autoSaveHint" = "Scrie în folderul țintă când previzualizarea se termină.";
+"upscale.preview.saveNeedFolder" = "Alegeți mai întâi un folder țintă.";
+"upscale.preview.saveFailed" = "Nu s-a putut codifica imaginea de previzualizare.";
+"upscale.preview.loadFailed" = "Nu s-a putut încărca imaginea de previzualizare.";
+"upscale.backend.missing.hint" = "Motorul cometscaly sau fișierele modelului lipsesc din bundle-ul aplicației. Reconstruiți proiectul.";
+"upscale.error.bundle" = "Lipsește folderul bundle Upscale din aplicație.";
+"upscale.error.binary" = "cometscaly nu a fost găsit în bundle-ul aplicației.";
+"upscale.error.model" = "Lipsesc fișierele modelului upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Mărirea a eșuat (exit %d): %@";
+"upscale.error.none" = "Nicio imagine nu a fost mărită.";
+
 "menu.home" = "Acasă";
 "menu.convertImage" = "Convertire imagine";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Setări";
 "menu.tools" = "Instrumente";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Echipa noastră";
-"menu.team.title" = "Echipa noastră";
-"menu.team.subtitle" = "Cunoașteți oamenii talentați din spatele Comet Editor";
 "menu.stockImage" = "Imagine stock";
 "menu.qrCode" = "Cod QR";
 "menu.bgRemove" = "Eliminare fundal";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Descarcă Font";
 "menu.videoConvert" = "Convertire video";
 "menu.pdfEdit" = "Editare PDF";
-"menu.suggestion" = "Trimite feedback";
-"team.thanks_grafix" = "Mulțumim comunității Grafix pentru contribuțiile lor.";
+
 "alert.success.title" = "Succes";
 "alert.error.title" = "Eroare";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Deschidere dosar";
 "alert.success.message.image" = "Imaginile au fost salvate cu succes în %@.";
 "alert.success.message.video" = "Videoclipurile au fost salvate cu succes în %@.";
+"alert.error.conversion" = "Unele imagini nu au putut fi convertite.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele video";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "LIMITĂ FPS";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% dimensiune";
 "video.resolution.50" = "50% dimensiune";
 "video.resolution.25" = "25% dimensiune (calitate scăzută)";
+
 "pdf.drop.title" = "Trageți și plasați un PDF";
 "pdf.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele PDF";
 "pdf.page.count" = "%lld pagini";
 "pdf.page.info" = "Pagina %lld din %lld";
 "pdf.estimatedSize" = "Dimensiunea optimizată estimată";
+"pdf.quality.modal.title" = "Alegeți nivelul de optimizare";
+"pdf.quality.modal.subtitle" = "Selectați cât de mult să reduceți dimensiunea fișierului. O compresie mai mare înseamnă un fișier mai mic cu o ușoară pierdere de calitate.";
+"pdf.quality.modal.estimated" = "Dimensiune estimată";
+"pdf.quality.modal.confirm" = "Optimizează";
+"pdf.quality.modal.cancel" = "Anulează";
+"pdf.quality.low.title" = "Compresie maximă";
+"pdf.quality.low.desc" = "Fișier mai mic, pierdere de calitate vizibilă";
+"pdf.quality.medium.title" = "Echilibrat";
+"pdf.quality.medium.desc" = "Echilibru bun între dimensiune și calitate";
+"pdf.quality.high.title" = "Calitate înaltă";
+"pdf.quality.high.desc" = "Pierdere minimă de calitate, reducere moderată";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimizare PDF";
+"pdf.tools.quality" = "CALITATE";
+"pdf.tools.quality.label" = "Calitate imagine";
+"pdf.tools.quality.small" = "Fișier mai mic";
+"pdf.tools.quality.large" = "Calitate mai bună";
+"pdf.tools.quality.lossless" = "Fără pierderi";
+"pdf.tools.resolution" = "SCARA REZOLUȚIEI";
+"pdf.tools.resolution.enable" = "Reduce rezoluția";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "CONVERTOR RGB/CMYK";
+"pdf.color.enable" = "Convertește spațiul de culoare";
+"pdf.color.convert" = "Convertește și salvează";
 "pdf.tools.save" = "Salvare PDF";
 "pdf.reorder.title" = "Ordinea paginilor";
 "pdf.reorder.hint" = "Mențineți apăsat Ctrl pentru selecție multiplă, apoi trageți pentru reordonare.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Inserare după această pagină";
 "pdf.addContent.atEnd" = "Adăugare la sfârșit";
 "pdf.addContent.chooseFile" = "Alegeți fișierul și inserați";
+
 "stock.deselectAll" = "Deselectare totală";
 "stock.download" = "Descărcare selectate";
 "stock.download.count" = "Descărcați %d fotografii";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Introduceți URL-ul sau textul aici...";
 "qr.settings.colors" = "Culori";
 "qr.settings.fgColor" = "Culoare prim-plan";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Rezoluție";
 "qr.settings.customSize" = "Dimensiune personalizată (px)";
 "qr.download" = "Descarcă codul QR";
+"qr.settings.type" = "Tip QR";
+"qr.type.website" = "Site web";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Contact (vCard)";
+"qr.type.email" = "E-mail";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Nume rețea (SSID)";
+"qr.wifi.password" = "Parolă";
+"qr.wifi.hidden" = "Rețea ascunsă";
+"qr.wifi.noEncryption" = "Fără";
+"qr.vcard.firstName" = "Prenume";
+"qr.vcard.lastName" = "Nume";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-mail";
+"qr.vcard.company" = "Companie";
+"qr.vcard.jobTitle" = "Funcție";
+"qr.vcard.address" = "Adresă";
+"qr.vcard.website" = "Site web";
+"qr.email.address" = "Adresă de e-mail";
+"qr.email.subject" = "Subiect";
+"qr.email.body" = "Mesaj";
+"qr.phone.number" = "Număr de telefon";
+
 "bgremove.unavailable.title" = "Se necesită macOS 14";
 "bgremove.unavailable.subtitle" = "Eliminarea fundalului folosește tehnologia Neural Engine de la Apple.\nActualizați la macOS 14 Sonoma sau ulterior.";
 "bgremove.drop.title" = "Trageți și plasați o imagine";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "RAFINARE MARGINI";
 "bgremove.settings.feather" = "Estompare";
 "bgremove.settings.featherAmount" = "Valoare estompare";
+
 "ocr.drop.title" = "Trageți și plasați o imagine";
 "ocr.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele";
 "ocr.processing" = "Recunoaștere text...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Ștergere";
 "ocr.newFile" = "Fișier nou";
 "ocr.copied" = "Copiat!";
+
 "app.comingSoon.title" = "În curând";
 "app.comingSoon.message" = "Această funcție va fi disponibilă în curând.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Căutați fonturi...";
 "font.preview.custom" = "Scrieți ceva...";
 "font.inspector.preview" = "Previzualizare";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Coreeană";
 "font.writing.thai" = "Thailandeză";
 "font.writing.vietnamese" = "Vietnameză";
-
 "font.families.count" = "%d familii";
 "font.styles.count" = "%d stiluri · %@";
 "font.noResults" = "Nu s-au găsit fonturi";
-"suggestion.title" = "Trimite o sugestie";
-"suggestion.subtitle" = "Împărtășește ideile tale și ajută-ne să ne îmbunătățim";
-"suggestion.placeholder.title" = "Titlu";
-"suggestion.placeholder.body" = "Descrie sugestia ta în detaliu...";
-"suggestion.category.bug" = "Bug";
-"suggestion.category.feature" = "Solicitare funcție";
-"suggestion.category.ui" = "Interfață";
-"suggestion.category.performance" = "Performanță";
-"suggestion.category.other" = "Altele";
-"suggestion.send" = "Trimite sugestie";
-"suggestion.sending" = "Se trimite...";
-"suggestion.sent.title" = "Mulțumim!";
-"suggestion.sent.message" = "Sugestia ta a fost primită. O vom analiza în curând.";
-"suggestion.error" = "Trimitere eșuată. Încearcă din nou.";
-"suggestion.validation.title" = "Câmpuri lipsă";
-"suggestion.validation.body" = "Te rugăm să completezi titlul și descrierea.";
-
-"suggestion.label.category" = "Categorie";
-"suggestion.label.title" = "Titlu";
-"suggestion.label.description" = "Descriere";
 
 "video.drop.title" = "Glisați un videoclip aici";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Aici pot fi convertite doar videoclipuri";
+
 "app.maintenance.title" = "Mod întreținere";
 "app.forceUpdate.title" = "Actualizare necesară";
 "app.forceUpdate.button" = "Actualizează în App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Căutare";
 "stock.search.placeholder" = "Caută fotografii...";
 "stock.selected" = "%d selectat";
+
 "video.cancel" = "Anulare";
 "video.error.decoder" = "Videoclipul nu a putut fi decodat.";
 "video.saved.gain" = "economisit";
 "video.saved.increased" = "mai mare";
 "video.settings.fps.desc" = "Dezactivați pentru a păstra FPS-ul original";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Imagine";
 "pdf.tools.pageManagement" = "GESTIONARE PAGINI";
 "pdf.tools.addContent" = "Adăugare conținut";
 "pdf.tools.reorder" = "Reordonare";
 "pdf.tools.targetFolder" = "FOLDER DESTINAȚIE";
-"alert.error.conversion" = "Unele imagini nu au putut fi convertite.";
-"pdf.color.convert" = "Convertește și salvează";
-"pdf.color.enable" = "Convertește spațiul de culoare";
-"pdf.color.title" = "CONVERTOR RGB/CMYK";
-"pdf.tools.quality" = "CALITATE";
-"pdf.tools.quality.label" = "Calitate imagine";
-"pdf.tools.quality.large" = "Calitate mai bună";
-"pdf.tools.quality.lossless" = "Fără pierderi";
-"pdf.tools.resolution" = "SCARA REZOLUȚIEI";
-"pdf.tools.resolution.enable" = "Reduce rezoluția";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Fișier mai mic";
 
 "ad.sponsored" = "Sponsorizat";
 "ad.visit" = "Vizitați";
 
-"pdf.quality.modal.title" = "Alegeți nivelul de optimizare";
-"pdf.quality.modal.subtitle" = "Selectați cât de mult să reduceți dimensiunea fișierului. O compresie mai mare înseamnă un fișier mai mic cu o ușoară pierdere de calitate.";
-"pdf.quality.modal.estimated" = "Dimensiune estimată";
-"pdf.quality.modal.confirm" = "Optimizează";
-"pdf.quality.modal.cancel" = "Anulează";
-"pdf.quality.low.title" = "Compresie maximă";
-"pdf.quality.low.desc" = "Fișier mai mic, pierdere de calitate vizibilă";
-"pdf.quality.medium.title" = "Echilibrat";
-"pdf.quality.medium.desc" = "Echilibru bun între dimensiune și calitate";
-"pdf.quality.high.title" = "Calitate înaltă";
-"pdf.quality.high.desc" = "Pierdere minimă de calitate, reducere moderată";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Personalizați experiența Comet Editor";
+"settings.section.output" = "IEȘIRE";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Dosar implicit de ieșire";
+"settings.noFolderSelected" = "Neselectat — vi se va cere de fiecare dată";
+"settings.chooseFolder" = "Alege dosar";
+"settings.clearFolder" = "Șterge";
+"settings.folderPicker.message" = "Alegeți un dosar implicit pentru fișierele exportate";
+"settings.folderPicker.button" = "Selectați dosarul";
 
 "app.maintenance.title2" = "Mentenanță în curs";
 "app.maintenance.body" = "Aplicația este temporar indisponibilă. Ne vom întoarce în curând.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Actualizează în App Store";
 "app.quit2" = "Închide aplicația";
 
-"settings.subtitle" = "Personalizați experiența Comet Editor";
-"settings.section.output" = "IEȘIRE";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Dosar implicit de ieșire";
-"settings.noFolderSelected" = "Neselectat — vi se va cere de fiecare dată";
-"settings.chooseFolder" = "Alege dosar";
-"settings.clearFolder" = "Șterge";
-"settings.folderPicker.message" = "Alegeți un dosar implicit pentru fișierele exportate";
-"settings.folderPicker.button" = "Selectați dosarul";
-"menu.announcements" = "Anunțuri";
-"announcements.subtitle" = "Ultimele știri și actualizări de la echipă";
-"announcements.empty" = "Nu există anunțuri";
-
 "settings.pdfOutputFolder" = "Dosar de ieșire PDF";
 
 "folder.default.prompt.title" = "Setați ca dosar implicit?";
 "folder.default.prompt.body" = "Doriți să setați aceasta ca dosar de ieșire implicit? O puteți schimba oricând în Setări.";
 "folder.default.prompt.yes" = "Setați ca implicit";
 "folder.default.prompt.no" = "Nu acum";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Editor video";
-"qr.email.address" = "Adresă de e-mail";
-"qr.email.body" = "Mesaj";
-"qr.email.subject" = "Subiect";
-"qr.phone.number" = "Număr de telefon";
-"qr.settings.type" = "Tip QR";
-"qr.type.email" = "E-mail";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Contact (vCard)";
-"qr.type.website" = "Site web";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adresă";
-"qr.vcard.company" = "Companie";
-"qr.vcard.email" = "E-mail";
-"qr.vcard.firstName" = "Prenume";
-"qr.vcard.jobTitle" = "Funcție";
-"qr.vcard.lastName" = "Nume";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Site web";
-"qr.wifi.hidden" = "Rețea ascunsă";
-"qr.wifi.noEncryption" = "Fără";
-"qr.wifi.password" = "Parolă";
-"qr.wifi.ssid" = "Nume rețea (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Adaugă fotografie";
-"videoedit.addMore" = "Adaugă";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Adaugă videoclipuri";
-"videoedit.empty.subtitle" = "Trage fișiere video aici sau apasă butonul de mai jos";
-"videoedit.empty.title" = "Adaugă videoclipuri de editat";
-"videoedit.export.merge" = "Îmbină și exportă";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Setări";
-"videoedit.export.trim" = "Exportă clipul";
-"videoedit.exporting" = "Se exportă…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "DURATĂ FOTO";
-"videoedit.imageDuration.default" = "Implicit pentru fotografii noi";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SALVEAZĂ ÎN";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Aplică";
-"watermark.button" = "Adaugă filigran";
-"watermark.cancel" = "Anulează";
-"watermark.color.black" = "Negru";
-"watermark.color.darkGray" = "Gri închis";
-"watermark.color.gray" = "Gri";
-"watermark.color.lightGray" = "Gri deschis";
-"watermark.color.none" = "Niciunul";
-"watermark.color.white" = "Alb";
-"watermark.colorOverlay" = "Suprapunere culoare";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Opacitate";
-"watermark.pos.bottomCenter" = "Jos centru";
-"watermark.pos.bottomLeft" = "Jos stânga";
-"watermark.pos.bottomRight" = "Jos dreapta";
-"watermark.pos.center" = "Centru";
-"watermark.pos.centerLeft" = "Centru stânga";
-"watermark.pos.centerRight" = "Centru dreapta";
-"watermark.pos.topCenter" = "Sus centru";
-"watermark.pos.topLeft" = "Sus stânga";
-"watermark.pos.topRight" = "Sus dreapta";
-"watermark.position" = "Poziție";
-"watermark.preview" = "Previzualizare";
-"watermark.removeLogo" = "Elimină";
-"watermark.scale" = "Scară";
-"watermark.selectLogo" = "Selectează imagine";
-"watermark.tileMode" = "Mod mozaic";
-"watermark.tileMode.desc" = "Repetă peste imagine";
+
 "watermark.title" = "Filigran";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Adaugă filigran";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Selectează imagine";
+"watermark.removeLogo" = "Elimină";
+"watermark.position" = "Poziție";
+"watermark.scale" = "Scară";
+"watermark.opacity" = "Opacitate";
+"watermark.preview" = "Previzualizare";
+"watermark.apply" = "Aplică";
+"watermark.cancel" = "Anulează";
+"watermark.pos.topLeft" = "Sus stânga";
+"watermark.pos.topCenter" = "Sus centru";
+"watermark.pos.topRight" = "Sus dreapta";
+"watermark.pos.centerLeft" = "Centru stânga";
+"watermark.pos.center" = "Centru";
+"watermark.pos.centerRight" = "Centru dreapta";
+"watermark.pos.bottomLeft" = "Jos stânga";
+"watermark.pos.bottomCenter" = "Jos centru";
+"watermark.pos.bottomRight" = "Jos dreapta";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Suprapunere culoare";
+"watermark.color.none" = "Niciunul";
+"watermark.color.black" = "Negru";
+"watermark.color.darkGray" = "Gri închis";
+"watermark.color.gray" = "Gri";
+"watermark.color.lightGray" = "Gri deschis";
+"watermark.color.white" = "Alb";
+"watermark.tileMode" = "Mod mozaic";
+"watermark.tileMode.desc" = "Repetă peste imagine";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Setări";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — îmbunătățire detalii cu IA";
-"upscale.settings.scale" = "Scară";
-"upscale.scale.multiPassHint" = "8× și 16× rulează mai multe treceri IA — durează mai mult.";
-"upscale.settings.outputFormat" = "Format ieșire";
-"upscale.drop.title" = "Trageți și plasați imagini";
-"upscale.drop.subtitle" = "sau faceți clic pentru a răsfoi fișierele";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Aici pot fi mărite doar imagini raster acceptate";
-"upscale.runButton" = "Mărește";
-"upscale.preview.run" = "Previzualizare";
-"upscale.preview.hint" = "Alegeți o scală și atingeți Previzualizare pentru a compara";
-"upscale.preview.processing" = "Se generează previzualizarea…";
-"upscale.preview.before" = "ÎNAINTE";
-"upscale.preview.after" = "DUPĂ";
-"upscale.preview.save" = "Salvează";
-"upscale.preview.saveSettings" = "Salvare previzualizare";
-"upscale.preview.autoSave" = "Salvează după previzualizare";
-"upscale.preview.autoSaveHint" = "Scrie în folderul țintă când previzualizarea se termină.";
-"upscale.preview.saveNeedFolder" = "Alegeți mai întâi un folder țintă.";
-"upscale.preview.saveFailed" = "Nu s-a putut codifica imaginea de previzualizare.";
-"upscale.preview.loadFailed" = "Nu s-a putut încărca imaginea de previzualizare.";
-"upscale.backend.missing.hint" = "Motorul cometscaly sau fișierele modelului lipsesc din bundle-ul aplicației. Reconstruiți proiectul.";
-"upscale.error.bundle" = "Lipsește folderul bundle Upscale din aplicație.";
-"upscale.error.binary" = "cometscaly nu a fost găsit în bundle-ul aplicației.";
-"upscale.error.model" = "Lipsesc fișierele modelului upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Mărirea a eșuat (exit %d): %@";
-"upscale.error.none" = "Nicio imagine nu a fost mărită.";
-"videoedit.resize.modePercent" = "Scară (%)";
-"videoedit.resize.modeCustom" = "Dimensiune personalizată";
-"videoedit.resize.autoFill" = "Umple automat pânza";
-"videoedit.resize.autoFillHint" = "Activ: materialele late încadrează cu letterbox; cele mai mici sunt mărite și decupate pe centru.";
+"inspector.format" = "Format";
+"inspector.output" = "Ieșire";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Adăugați o fotografie pentru previzualizare";
+"watermark.rotation" = "Rotație";
+"watermark.text" = "Text logo";
+"watermark.text.placeholder" = "Introduceți textul logo-ului";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

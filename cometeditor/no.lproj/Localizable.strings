@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Dra og slipp et bilde";
 "convert.drop.subtitle" = "eller klikk for å bla gjennom filer";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Bredde px";
 "convert.settings.height" = "Høyde px";
+
 "meta.info" = "Metadatabeskyttelse";
+
 "convert.settings.targetFolder" = "Målmappe";
 "convert.settings.noFolder" = "Ikke valgt";
 "convert.settings.chooseFolder" = "Velg fra Finder";
+
+"folder.missing.title" = "Mappe ikke funnet";
+"folder.missing.subtitle" = "Den lagrede mappebanen eksisterer ikke lenger. Velg en ny.";
+"folder.missing.pick" = "Velg ny mappe";
+"folder.missing.panel.message" = "Utdatamappen ble ikke funnet. Velg en ny mappe.";
+
+"bgremove.error.noMaskFound" = "Ingen forgrunnsmaske funnet.";
+"bgremove.error.maskConversionFailed" = "Maskekonvertering mislyktes.";
+"bgremove.error.compositeFailed" = "Bildekomposisjon mislyktes.";
+
 "convert.settings.convertButton" = "Konverter";
 "convert.clearAll" = "Fjern alt";
 "convert.addMore" = "Legg til";
 "convert.wrongType.image" = "Her kan bare bilder konverteres";
+
+"upscale.settings.title" = "Innstillinger";
+"upscale.settings.model" = "Modell";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-forbedring av detaljer";
+"upscale.settings.scale" = "Skala";
+"upscale.scale.multiPassHint" = "8× og 16× kjører flere AI-runder — tar lengre tid.";
+"upscale.settings.outputFormat" = "Utdataformat";
+"upscale.drop.title" = "Dra og slipp bilder";
+"upscale.drop.subtitle" = "eller klikk for å bla i filer";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Bare støttede rasterbilder kan oppskaleres her";
+"upscale.runButton" = "Oppskaler";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Forhåndsvis";
+"upscale.preview.hint" = "Velg en skala og trykk Forhåndsvis for å sammenligne";
+"upscale.preview.processing" = "Genererer forhåndsvisning…";
+"upscale.preview.before" = "FØR";
+"upscale.preview.after" = "ETTER";
+"upscale.preview.save" = "Lagre";
+"upscale.preview.saveSettings" = "Lagre forhåndsvisning";
+"upscale.preview.autoSave" = "Lagre etter forhåndsvisning";
+"upscale.preview.autoSaveHint" = "Skriver til målmappe når forhåndsvisningen er ferdig.";
+"upscale.preview.saveNeedFolder" = "Velg målmappe først.";
+"upscale.preview.saveFailed" = "Kunne ikke kode forhåndsvisningsbildet.";
+"upscale.preview.loadFailed" = "Kunne ikke laste forhåndsvisningsbildet.";
+"upscale.backend.missing.hint" = "cometscaly-motoren eller modellfiler mangler i app-pakken. Bygg prosjektet på nytt.";
+"upscale.error.bundle" = "Mappen Upscale-bundle mangler i appen.";
+"upscale.error.binary" = "cometscaly ble ikke funnet i app-pakken.";
+"upscale.error.model" = "Modellfiler upscayl-standard-4x.param/.bin mangler.";
+"upscale.error.process" = "Oppskalering mislyktes (exit %d): %@";
+"upscale.error.none" = "Ingen bilder ble oppskalert.";
+
 "menu.home" = "Hjem";
 "menu.convertImage" = "Konverter bilde";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Innstillinger";
 "menu.tools" = "Verktøy";
 "menu.document" = "DOKUMENT";
-"menu.team" = "Vårt team";
-"menu.team.title" = "Vårt team";
-"menu.team.subtitle" = "Møt de talentfulle personene bak Comet Editor";
 "menu.stockImage" = "Stockbilde";
 "menu.qrCode" = "QR-kode";
 "menu.bgRemove" = "Bakgrunnsfjerner";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Last Ned Skrifttype";
 "menu.videoConvert" = "Konverter video";
 "menu.pdfEdit" = "Rediger PDF";
-"menu.suggestion" = "Send tilbakemelding";
-"team.thanks_grafix" = "Vi takker Grafix-samfunnet for deres bidrag.";
+
 "alert.success.title" = "Vellykket";
 "alert.error.title" = "Feil";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Åpne mappe";
 "alert.success.message.image" = "Bilder ble lagret til %@.";
 "alert.success.message.video" = "Videoer ble lagret til %@.";
+"alert.error.conversion" = "Noen bilder kunne ikke konverteres.";
+
 "home.welcome" = "Velkommen til Comet Editor";
 "home.welcome.subtitle" = "Alt du trenger i én app.";
 "home.visitWebsite" = "Besøk nettstedet vårt";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 med balansert kvalitet — konverter eller komprimer i ett løp.";
 "home.quick.pdf.title" = "Rediger PDF";
 "home.quick.pdf.subtitle" = "Åpne PDF-redigeringsprogrammet — omorganiser sider, komprimer eller juster på ett sted.";
+"home.feature.convertImage.desc" = "Konverter bilder til PNG, JPG, WebP, HEIF med mer.";
+"home.feature.videoConvert.desc" = "Konverter og komprimer videoene dine enkelt.";
+"home.feature.stockImage.desc" = "Bla og last ned gratis stockbilder i høy kvalitet.";
+"home.feature.pdfEdit.desc" = "Rediger, omorganiser, komprimer og administrer PDF-filene dine.";
+"home.feature.qrCode.desc" = "Generer og tilpass QR-koder med én gang.";
+"home.feature.bgRemove.desc" = "Fjern bakgrunner på bilder automatisk med AI.";
+"home.feature.ocr.desc" = "Hent tekst fra bilder med optisk tegngjenkjenning.";
+"home.feature.fontDownload.desc" = "Bla og last ned Google Fonts direkte til Mac-en din.";
 "home.preset.pdf.deletePage" = "Slett sider";
 "home.preset.pdf.reorder" = "Omorganiser sider";
 "home.preset.pdf.optimize" = "Optimaliser PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Velg utdataformat (PNG, JPG, WebP, HEIC osv.) i høyrepanelet.";
 "home.guide.convertImage.step3" = "Juster kvalitet, skala eller mål — og konverter.";
 "home.guide.convertImage.tip" = "Du kan legge til flere bilder samtidig. Hver fil konverteres med samme innstillinger.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Konverter og komprimer videoer til MP4, MOV, AVI med mer.";
 "home.guide.video.step2" = "Velg utdataformat (MP4, MOV …) og juster bildefrekvens eller oppløsning.";
 "home.guide.video.step3" = "Slå lyd på eller av og klikk deretter Konverter.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Forhåndsvis skrifttypen og velg ønskede snitt.";
 "home.guide.font.step3" = "Klikk Last ned for å installere skrifttypen på Mac-en.";
 "home.guide.font.tip" = "Installerte skrifttyper er tilgjengelige i alle apper med én gang.";
-"home.feature.convertImage.desc" = "Konverter bilder til PNG, JPG, WebP, HEIF med mer.";
-"home.feature.videoConvert.desc" = "Konverter og komprimer videoene dine enkelt.";
-"home.feature.stockImage.desc" = "Bla og last ned gratis stockbilder i høy kvalitet.";
-"home.feature.pdfEdit.desc" = "Rediger, omorganiser, komprimer og administrer PDF-filene dine.";
-"home.feature.qrCode.desc" = "Generer og tilpass QR-koder med én gang.";
-"home.feature.bgRemove.desc" = "Fjern bakgrunner på bilder automatisk med AI.";
-"home.feature.ocr.desc" = "Hent tekst fra bilder med optisk tegngjenkjenning.";
-"home.feature.fontDownload.desc" = "Bla og last ned Google Fonts direkte til Mac-en din.";
+
 "video.drop.subtitle" = "eller klikk for å bla gjennom videofiler";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS-GRENSE";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% størrelse";
 "video.resolution.50" = "50% størrelse";
 "video.resolution.25" = "25% størrelse (lav kvalitet)";
+
 "pdf.drop.title" = "Dra og slipp en PDF";
 "pdf.drop.subtitle" = "eller klikk for å bla gjennom PDF-filer";
 "pdf.page.count" = "%lld sider";
 "pdf.page.info" = "Side %lld av %lld";
 "pdf.estimatedSize" = "Estimert optimalisert størrelse";
+"pdf.quality.modal.title" = "Velg optimaliseringsnivå";
+"pdf.quality.modal.subtitle" = "Velg hvor mye filstørrelsen skal reduseres. Høyere komprimering gir en mindre fil med noe kvalitetstap.";
+"pdf.quality.modal.estimated" = "Anslått størrelse";
+"pdf.quality.modal.confirm" = "Optimaliser";
+"pdf.quality.modal.cancel" = "Avbryt";
+"pdf.quality.low.title" = "Maksimal komprimering";
+"pdf.quality.low.desc" = "Minste fil, synlig kvalitetstap";
+"pdf.quality.medium.title" = "Balansert";
+"pdf.quality.medium.desc" = "God balanse mellom størrelse og kvalitet";
+"pdf.quality.high.title" = "Høy kvalitet";
+"pdf.quality.high.desc" = "Minimalt kvalitetstap, moderat reduksjon";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimaliser PDF";
+"pdf.tools.quality" = "KVALITET";
+"pdf.tools.quality.label" = "Bildekvalitet";
+"pdf.tools.quality.small" = "Mindre fil";
+"pdf.tools.quality.large" = "Bedre kvalitet";
+"pdf.tools.quality.lossless" = "Tapsfri";
+"pdf.tools.resolution" = "OPPLØSNINGSSKALA";
+"pdf.tools.resolution.enable" = "Reduser oppløsning";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK KONVERTER";
+"pdf.color.enable" = "Konverter fargerom";
+"pdf.color.convert" = "Konverter og lagre";
 "pdf.tools.save" = "Lagre PDF";
 "pdf.reorder.title" = "Siderekkefølge";
 "pdf.reorder.hint" = "Hold Ctrl for flervalg, dra deretter for å sortere på nytt.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Sett inn etter denne siden";
 "pdf.addContent.atEnd" = "Legg til på slutten";
 "pdf.addContent.chooseFile" = "Velg fil og sett inn";
+
 "stock.deselectAll" = "Fjern alle valg";
 "stock.download" = "Last ned valgte";
 "stock.download.count" = "Last ned %d bilder";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Skriv inn URL eller tekst her...";
 "qr.settings.colors" = "Farger";
 "qr.settings.fgColor" = "Forgrunnsfarge";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Oppløsning";
 "qr.settings.customSize" = "Tilpasset størrelse (px)";
 "qr.download" = "Last ned QR-kode";
+"qr.settings.type" = "QR-type";
+"qr.type.website" = "Nettsted";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontakt (vCard)";
+"qr.type.email" = "E-post";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Nettverksnavn (SSID)";
+"qr.wifi.password" = "Passord";
+"qr.wifi.hidden" = "Skjult nettverk";
+"qr.wifi.noEncryption" = "Ingen";
+"qr.vcard.firstName" = "Fornavn";
+"qr.vcard.lastName" = "Etternavn";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-post";
+"qr.vcard.company" = "Bedrift";
+"qr.vcard.jobTitle" = "Stilling";
+"qr.vcard.address" = "Adresse";
+"qr.vcard.website" = "Nettsted";
+"qr.email.address" = "E-postadresse";
+"qr.email.subject" = "Emne";
+"qr.email.body" = "Melding";
+"qr.phone.number" = "Telefonnummer";
+
 "bgremove.unavailable.title" = "macOS 14 kreves";
 "bgremove.unavailable.subtitle" = "Bakgrunnsfjerneren bruker Apples Neural Engine-teknologi.\nOppdater til macOS 14 Sonoma eller nyere.";
 "bgremove.drop.title" = "Dra og slipp et bilde";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "FORBEDRE KANTER";
 "bgremove.settings.feather" = "Mykgjøring";
 "bgremove.settings.featherAmount" = "Mykgjøringsverdi";
+
 "ocr.drop.title" = "Dra og slipp et bilde";
 "ocr.drop.subtitle" = "eller klikk for å bla gjennom filer";
 "ocr.processing" = "Gjenkjenner tekst...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Fjern";
 "ocr.newFile" = "Ny fil";
 "ocr.copied" = "Kopiert!";
+
 "app.comingSoon.title" = "Kommer snart";
 "app.comingSoon.message" = "Denne funksjonen vil snart være tilgjengelig.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Søk etter skrifttyper...";
 "font.preview.custom" = "Skriv noe...";
 "font.inspector.preview" = "Forhåndsvisning";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Koreansk";
 "font.writing.thai" = "Thailandsk";
 "font.writing.vietnamese" = "Vietnamesisk";
-
 "font.families.count" = "%d familier";
 "font.styles.count" = "%d stiler · %@";
 "font.noResults" = "Ingen skrifter funnet";
-"suggestion.title" = "Send forslag";
-"suggestion.subtitle" = "Del ideene dine og hjelp oss å forbedre oss";
-"suggestion.placeholder.title" = "Tittel";
-"suggestion.placeholder.body" = "Beskriv forslaget ditt i detalj...";
-"suggestion.category.bug" = "Feil";
-"suggestion.category.feature" = "Funksjonsforespørsel";
-"suggestion.category.ui" = "Grensesnitt";
-"suggestion.category.performance" = "Ytelse";
-"suggestion.category.other" = "Annet";
-"suggestion.send" = "Send forslag";
-"suggestion.sending" = "Sender...";
-"suggestion.sent.title" = "Takk!";
-"suggestion.sent.message" = "Forslaget ditt er mottatt. Vi gjennomgår det snart.";
-"suggestion.error" = "Sending mislyktes. Prøv igjen.";
-"suggestion.validation.title" = "Manglende felt";
-"suggestion.validation.body" = "Fyll inn tittel og beskrivelse.";
-
-"suggestion.label.category" = "Kategori";
-"suggestion.label.title" = "Tittel";
-"suggestion.label.description" = "Beskrivelse";
 
 "video.drop.title" = "Slipp video her";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Her kan bare videoer konverteres";
+
 "app.maintenance.title" = "Vedlikeholdsmodus";
 "app.forceUpdate.title" = "Oppdatering kreves";
 "app.forceUpdate.button" = "Oppdater i App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Noen bilder kunne ikke konverteres.";
-"pdf.color.convert" = "Konverter og lagre";
-"pdf.color.enable" = "Konverter fargerom";
-"pdf.color.title" = "RGB/CMYK KONVERTER";
-"pdf.tools.quality" = "KVALITET";
-"pdf.tools.quality.label" = "Bildekvalitet";
-"pdf.tools.quality.large" = "Bedre kvalitet";
-"pdf.tools.quality.lossless" = "Tapsfri";
-"pdf.tools.resolution" = "OPPLØSNINGSSKALA";
-"pdf.tools.resolution.enable" = "Reduser oppløsning";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Mindre fil";
 
 "ad.sponsored" = "Sponset";
 "ad.visit" = "Besøk";
 
-"pdf.quality.modal.title" = "Velg optimaliseringsnivå";
-"pdf.quality.modal.subtitle" = "Velg hvor mye filstørrelsen skal reduseres. Høyere komprimering gir en mindre fil med noe kvalitetstap.";
-"pdf.quality.modal.estimated" = "Anslått størrelse";
-"pdf.quality.modal.confirm" = "Optimaliser";
-"pdf.quality.modal.cancel" = "Avbryt";
-"pdf.quality.low.title" = "Maksimal komprimering";
-"pdf.quality.low.desc" = "Minste fil, synlig kvalitetstap";
-"pdf.quality.medium.title" = "Balansert";
-"pdf.quality.medium.desc" = "God balanse mellom størrelse og kvalitet";
-"pdf.quality.high.title" = "Høy kvalitet";
-"pdf.quality.high.desc" = "Minimalt kvalitetstap, moderat reduksjon";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Tilpass din Comet Editor-opplevelse";
+"settings.section.output" = "UTDATA";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Standard utdatamappe";
+"settings.noFolderSelected" = "Ikke valgt — du blir spurt hver gang";
+"settings.chooseFolder" = "Velg mappe";
+"settings.clearFolder" = "Tøm";
+"settings.folderPicker.message" = "Velg en standardmappe for eksporterte filer";
+"settings.folderPicker.button" = "Velg mappe";
 
 "app.maintenance.title2" = "Vedlikehold pågår";
 "app.maintenance.body" = "Appen er midlertidig utilgjengelig. Vi er snart tilbake.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Oppdater i App Store";
 "app.quit2" = "Lukk app";
 
-"settings.subtitle" = "Tilpass din Comet Editor-opplevelse";
-"settings.section.output" = "UTDATA";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Standard utdatamappe";
-"settings.noFolderSelected" = "Ikke valgt — du blir spurt hver gang";
-"settings.chooseFolder" = "Velg mappe";
-"settings.clearFolder" = "Tøm";
-"settings.folderPicker.message" = "Velg en standardmappe for eksporterte filer";
-"settings.folderPicker.button" = "Velg mappe";
-"menu.announcements" = "Kunngjøringer";
-"announcements.subtitle" = "Siste nyheter og oppdateringer fra teamet";
-"announcements.empty" = "Ingen kunngjøringer ennå";
-
 "settings.pdfOutputFolder" = "PDF-utdatamappe";
 
 "folder.default.prompt.title" = "Angi som standardmappe?";
 "folder.default.prompt.body" = "Vil du angi dette som standard utdatamappe? Du kan endre det når som helst i Innstillinger.";
 "folder.default.prompt.yes" = "Angi som standard";
 "folder.default.prompt.no" = "Ikke nå";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Trim klipp, fjern uønskede deler og slå sammen flere videoer til én.";
-"home.guide.videoedit.preset.concat" = "Slå sammen videoer";
-"home.guide.videoedit.preset.trim" = "Trim en video";
-"home.guide.videoedit.step1" = "Legg til én eller flere videofiler med + eller dra og slipp.";
-"home.guide.videoedit.step2" = "Velg et klipp og dra trimhåndtakene på tidslinjen for start og slutt.";
-"home.guide.videoedit.step3" = "Omorganiser klipp i listen ved å dra dem til endelig rekkefølge.";
-"home.guide.videoedit.step4" = "Velg utdataformat og mappe og klikk deretter Eksporter.";
-"home.guide.videoedit.tip" = "Trimhåndtak fester til millisekund — bruk avspillingslinjen for nøyaktig forhåndsvisning.";
-"menu.videoEdit" = "Videoredigering";
-"qr.email.address" = "E-postadresse";
-"qr.email.body" = "Melding";
-"qr.email.subject" = "Emne";
-"qr.phone.number" = "Telefonnummer";
-"qr.settings.type" = "QR-type";
-"qr.type.email" = "E-post";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Kontakt (vCard)";
-"qr.type.website" = "Nettsted";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adresse";
-"qr.vcard.company" = "Bedrift";
-"qr.vcard.email" = "E-post";
-"qr.vcard.firstName" = "Fornavn";
-"qr.vcard.jobTitle" = "Stilling";
-"qr.vcard.lastName" = "Etternavn";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Nettsted";
-"qr.wifi.hidden" = "Skjult nettverk";
-"qr.wifi.noEncryption" = "Ingen";
-"qr.wifi.password" = "Passord";
-"qr.wifi.ssid" = "Nettverksnavn (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Legg til bilde";
-"videoedit.addMore" = "Legg til";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Legg til videoer";
-"videoedit.empty.subtitle" = "Slipp videofiler her, eller klikk knappen nedenfor";
-"videoedit.empty.title" = "Legg til videoer som skal redigeres";
-"videoedit.export.merge" = "Slå sammen og eksporter";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Innstillinger";
-"videoedit.export.trim" = "Eksporter klipp";
-"videoedit.exporting" = "Eksporterer…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTOVARIGHET";
-"videoedit.imageDuration.default" = "Standard for nye bilder";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "LAGRE I";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Bruk";
-"watermark.button" = "Legg til vannmerke";
-"watermark.cancel" = "Avbryt";
-"watermark.color.black" = "Svart";
-"watermark.color.darkGray" = "Mørkegrå";
-"watermark.color.gray" = "Grå";
-"watermark.color.lightGray" = "Lysegrå";
-"watermark.color.none" = "Ingen";
-"watermark.color.white" = "Hvit";
-"watermark.colorOverlay" = "Fargeoverlegg";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Opasitet";
-"watermark.pos.bottomCenter" = "Nederst i midten";
-"watermark.pos.bottomLeft" = "Nederst til venstre";
-"watermark.pos.bottomRight" = "Nederst til høyre";
-"watermark.pos.center" = "Midt";
-"watermark.pos.centerLeft" = "Midt til venstre";
-"watermark.pos.centerRight" = "Midt til høyre";
-"watermark.pos.topCenter" = "Øverst i midten";
-"watermark.pos.topLeft" = "Øverst til venstre";
-"watermark.pos.topRight" = "Øverst til høyre";
-"watermark.position" = "Posisjon";
-"watermark.preview" = "Forhåndsvisning";
-"watermark.removeLogo" = "Fjern";
-"watermark.scale" = "Skala";
-"watermark.selectLogo" = "Velg bilde";
-"watermark.tileMode" = "Flismodus";
-"watermark.tileMode.desc" = "Gjenta over bildet";
+
 "watermark.title" = "Vannmerke";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Legg til vannmerke";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Velg bilde";
+"watermark.removeLogo" = "Fjern";
+"watermark.position" = "Posisjon";
+"watermark.scale" = "Skala";
+"watermark.opacity" = "Opasitet";
+"watermark.preview" = "Forhåndsvisning";
+"watermark.apply" = "Bruk";
+"watermark.cancel" = "Avbryt";
+"watermark.pos.topLeft" = "Øverst til venstre";
+"watermark.pos.topCenter" = "Øverst i midten";
+"watermark.pos.topRight" = "Øverst til høyre";
+"watermark.pos.centerLeft" = "Midt til venstre";
+"watermark.pos.center" = "Midt";
+"watermark.pos.centerRight" = "Midt til høyre";
+"watermark.pos.bottomLeft" = "Nederst til venstre";
+"watermark.pos.bottomCenter" = "Nederst i midten";
+"watermark.pos.bottomRight" = "Nederst til høyre";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Fargeoverlegg";
+"watermark.color.none" = "Ingen";
+"watermark.color.black" = "Svart";
+"watermark.color.darkGray" = "Mørkegrå";
+"watermark.color.gray" = "Grå";
+"watermark.color.lightGray" = "Lysegrå";
+"watermark.color.white" = "Hvit";
+"watermark.tileMode" = "Flismodus";
+"watermark.tileMode.desc" = "Gjenta over bildet";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Innstillinger";
-"upscale.settings.model" = "Modell";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-forbedring av detaljer";
-"upscale.settings.scale" = "Skala";
-"upscale.scale.multiPassHint" = "8× og 16× kjører flere AI-runder — tar lengre tid.";
-"upscale.settings.outputFormat" = "Utdataformat";
-"upscale.drop.title" = "Dra og slipp bilder";
-"upscale.drop.subtitle" = "eller klikk for å bla i filer";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Bare støttede rasterbilder kan oppskaleres her";
-"upscale.runButton" = "Oppskaler";
-"upscale.preview.run" = "Forhåndsvis";
-"upscale.preview.hint" = "Velg en skala og trykk Forhåndsvis for å sammenligne";
-"upscale.preview.processing" = "Genererer forhåndsvisning…";
-"upscale.preview.before" = "FØR";
-"upscale.preview.after" = "ETTER";
-"upscale.preview.save" = "Lagre";
-"upscale.preview.saveSettings" = "Lagre forhåndsvisning";
-"upscale.preview.autoSave" = "Lagre etter forhåndsvisning";
-"upscale.preview.autoSaveHint" = "Skriver til målmappe når forhåndsvisningen er ferdig.";
-"upscale.preview.saveNeedFolder" = "Velg målmappe først.";
-"upscale.preview.saveFailed" = "Kunne ikke kode forhåndsvisningsbildet.";
-"upscale.preview.loadFailed" = "Kunne ikke laste forhåndsvisningsbildet.";
-"upscale.backend.missing.hint" = "cometscaly-motoren eller modellfiler mangler i app-pakken. Bygg prosjektet på nytt.";
-"upscale.error.bundle" = "Mappen Upscale-bundle mangler i appen.";
-"upscale.error.binary" = "cometscaly ble ikke funnet i app-pakken.";
-"upscale.error.model" = "Modellfiler upscayl-standard-4x.param/.bin mangler.";
-"upscale.error.process" = "Oppskalering mislyktes (exit %d): %@";
-"upscale.error.none" = "Ingen bilder ble oppskalert.";
-"videoedit.resize.modePercent" = "Skala (%)";
-"videoedit.resize.modeCustom" = "Tilpasset størrelse";
-"videoedit.resize.autoFill" = "Fyll lerret automatisk";
-"videoedit.resize.autoFillHint" = "På: bredt materiale tilpasses med letterbox; mindre materiale zoomes og beskjæres i midten.";
+"inspector.format" = "Format";
+"inspector.output" = "Utdata";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Legg til et bilde for forhåndsvisning";
+"watermark.rotation" = "Rotasjon";
+"watermark.text" = "Logotekst";
+"watermark.text.placeholder" = "Skriv inn logotekst";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "이미지를 끌어다 놓기";
 "convert.drop.subtitle" = "또는 클릭하여 파일 찾아보기";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "너비 px";
 "convert.settings.height" = "높이 px";
+
 "meta.info" = "메타데이터 보호";
+
 "convert.settings.targetFolder" = "대상 폴더";
 "convert.settings.noFolder" = "선택 안 됨";
 "convert.settings.chooseFolder" = "Finder에서 선택";
+
+"folder.missing.title" = "폴더를 찾을 수 없음";
+"folder.missing.subtitle" = "저장된 폴더 경로가 더 이상 존재하지 않습니다. 새 경로를 선택하세요.";
+"folder.missing.pick" = "새 폴더 선택";
+"folder.missing.panel.message" = "출력 폴더를 찾을 수 없습니다. 새 폴더를 선택하세요.";
+
+"bgremove.error.noMaskFound" = "전경 마스크를 찾을 수 없습니다.";
+"bgremove.error.maskConversionFailed" = "마스크 변환에 실패했습니다.";
+"bgremove.error.compositeFailed" = "이미지 합성에 실패했습니다.";
+
 "convert.settings.convertButton" = "변환";
 "convert.clearAll" = "모두 지우기";
 "convert.addMore" = "추가";
 "convert.wrongType.image" = "여기서는 이미지만 변환할 수 있습니다";
+
+"upscale.settings.title" = "설정";
+"upscale.settings.model" = "모델";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 디테일 향상";
+"upscale.settings.scale" = "배율";
+"upscale.scale.multiPassHint" = "8× 및 16×는 여러 번의 AI 처리를 수행하므로 더 오래 걸립니다.";
+"upscale.settings.outputFormat" = "출력 형식";
+"upscale.drop.title" = "이미지를 끌어다 놓기";
+"upscale.drop.subtitle" = "또는 클릭하여 파일 찾기";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "지원되는 래스터 이미지만 여기서 확대할 수 있습니다";
+"upscale.runButton" = "확대";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "미리보기";
+"upscale.preview.hint" = "배율을 선택하고 미리보기를 눌러 비교";
+"upscale.preview.processing" = "미리보기 생성 중…";
+"upscale.preview.before" = "전";
+"upscale.preview.after" = "후";
+"upscale.preview.save" = "저장";
+"upscale.preview.saveSettings" = "미리보기 저장";
+"upscale.preview.autoSave" = "미리보기 후 저장";
+"upscale.preview.autoSaveHint" = "미리보기가 끝나면 대상 폴더에 저장합니다.";
+"upscale.preview.saveNeedFolder" = "먼저 대상 폴더를 선택하세요.";
+"upscale.preview.saveFailed" = "미리보기 이미지를 인코딩할 수 없습니다.";
+"upscale.preview.loadFailed" = "미리보기 이미지를 불러올 수 없습니다.";
+"upscale.backend.missing.hint" = "앱 번들에 cometscaly 엔진 또는 모델 파일이 없습니다. 프로젝트를 다시 빌드하세요.";
+"upscale.error.bundle" = "앱에 Upscale 번들 폴더가 없습니다.";
+"upscale.error.binary" = "앱 번들에서 cometscaly를 찾을 수 없습니다.";
+"upscale.error.model" = "모델 파일 upscayl-standard-4x.param/.bin이 없습니다.";
+"upscale.error.process" = "확대 실패 (exit %d): %@";
+"upscale.error.none" = "확대된 이미지가 없습니다.";
+
 "menu.home" = "홈";
 "menu.convertImage" = "이미지 변환";
 "menu.upscaleImage" = "이미지 확대";
@@ -28,9 +78,6 @@
 "menu.settings" = "설정";
 "menu.tools" = "도구";
 "menu.document" = "문서";
-"menu.team" = "우리 팀";
-"menu.team.title" = "우리 팀";
-"menu.team.subtitle" = "Comet Editor를 만드는 재능 있는 사람들을 만나보세요";
 "menu.stockImage" = "스톡 이미지";
 "menu.qrCode" = "QR 코드";
 "menu.bgRemove" = "배경 제거";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "폰트 다운로드";
 "menu.videoConvert" = "동영상 변환";
 "menu.pdfEdit" = "PDF 편집";
-"menu.suggestion" = "피드백 보내기";
-"team.thanks_grafix" = "Grafix 커뮤니티의 기여에 감사드립니다.";
+
 "alert.success.title" = "성공";
 "alert.error.title" = "오류";
 "alert.ok" = "확인";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "폴더 열기";
 "alert.success.message.image" = "이미지가 %@에 성공적으로 저장되었습니다.";
 "alert.success.message.video" = "동영상이 %@에 성공적으로 저장되었습니다.";
+"alert.error.conversion" = "일부 이미지를 변환할 수 없었습니다.";
+
 "home.welcome" = "Comet Editor에 오신 것을 환영합니다";
 "home.welcome.subtitle" = "필요한 모든 기능이 하나의 앱에.";
 "home.visitWebsite" = "웹사이트 방문";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "균형 잡힌 품질의 MP4 — 한 번에 변환하거나 압축합니다.";
 "home.quick.pdf.title" = "PDF 편집";
 "home.quick.pdf.subtitle" = "PDF 편집기를 열어 한곳에서 페이지 재정렬·압축·조정을 합니다.";
+"home.feature.convertImage.desc" = "이미지를 PNG, JPG, WebP, HEIF 등으로 변환합니다.";
+"home.feature.videoConvert.desc" = "동영상을 쉽게 변환하고 압축합니다.";
+"home.feature.stockImage.desc" = "고품질 무료 스톡 사진을 찾아 다운로드합니다.";
+"home.feature.pdfEdit.desc" = "PDF를 편집하고 페이지를 재정렬·압축·관리합니다.";
+"home.feature.qrCode.desc" = "QR 코드를 즉시 만들고 사용자 지정합니다.";
+"home.feature.bgRemove.desc" = "AI로 이미지 배경을 자동으로 제거합니다.";
+"home.feature.ocr.desc" = "광학 문자 인식으로 이미지에서 텍스트를 추출합니다.";
+"home.feature.fontDownload.desc" = "Google 폰트를 Mac에서 바로 찾아 다운로드합니다.";
 "home.preset.pdf.deletePage" = "페이지 삭제";
 "home.preset.pdf.reorder" = "페이지 재정렬";
 "home.preset.pdf.optimize" = "PDF 최적화";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "오른쪽 패널에서 출력 형식(PNG, JPG, WebP, HEIC 등)을 선택합니다.";
 "home.guide.convertImage.step3" = "품질, 비율 또는 크기를 조정한 뒤 변환합니다.";
 "home.guide.convertImage.tip" = "여러 이미지를 한 번에 추가할 수 있습니다. 각 파일은 같은 설정으로 개별 변환됩니다.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "동영상을 MP4, MOV, AVI 등으로 변환·압축합니다.";
 "home.guide.video.step2" = "출력 형식(MP4, MOV 등)을 선택하고 FPS나 해상도를 조정합니다.";
 "home.guide.video.step3" = "오디오를 켜거나 끈 뒤 변환을 클릭합니다.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "글꼴을 미리 보고 원하는 스타일을 선택합니다.";
 "home.guide.font.step3" = "다운로드를 눌러 Mac에 글꼴을 설치합니다.";
 "home.guide.font.tip" = "설치한 글꼴은 모든 앱에서 즉시 사용할 수 있습니다.";
-"home.feature.convertImage.desc" = "이미지를 PNG, JPG, WebP, HEIF 등으로 변환합니다.";
-"home.feature.videoConvert.desc" = "동영상을 쉽게 변환하고 압축합니다.";
-"home.feature.stockImage.desc" = "고품질 무료 스톡 사진을 찾아 다운로드합니다.";
-"home.feature.pdfEdit.desc" = "PDF를 편집하고 페이지를 재정렬·압축·관리합니다.";
-"home.feature.qrCode.desc" = "QR 코드를 즉시 만들고 사용자 지정합니다.";
-"home.feature.bgRemove.desc" = "AI로 이미지 배경을 자동으로 제거합니다.";
-"home.feature.ocr.desc" = "광학 문자 인식으로 이미지에서 텍스트를 추출합니다.";
-"home.feature.fontDownload.desc" = "Google 폰트를 Mac에서 바로 찾아 다운로드합니다.";
+
 "video.drop.subtitle" = "또는 클릭하여 동영상 파일 찾아보기";
 "video.settings.format" = "형식";
 "video.settings.fps" = "FPS 제한";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% 크기";
 "video.resolution.50" = "50% 크기";
 "video.resolution.25" = "25% 크기 (낮은 품질)";
+
 "pdf.drop.title" = "PDF를 끌어다 놓기";
 "pdf.drop.subtitle" = "또는 클릭하여 PDF 파일 찾아보기";
 "pdf.page.count" = "%lld 페이지";
 "pdf.page.info" = "%lld / %lld 페이지";
 "pdf.estimatedSize" = "예상 최적화 크기";
+"pdf.quality.modal.title" = "최적화 수준 선택";
+"pdf.quality.modal.subtitle" = "파일 크기를 얼마나 줄일지 선택하세요. 압축률이 높을수록 파일이 작아지지만 품질이 저하됩니다.";
+"pdf.quality.modal.estimated" = "예상 크기";
+"pdf.quality.modal.confirm" = "최적화";
+"pdf.quality.modal.cancel" = "취소";
+"pdf.quality.low.title" = "최대 압축";
+"pdf.quality.low.desc" = "가장 작은 파일, 눈에 띄는 품질 저하";
+"pdf.quality.medium.title" = "균형";
+"pdf.quality.medium.desc" = "크기와 품질의 적절한 균형";
+"pdf.quality.high.title" = "고품질";
+"pdf.quality.high.desc" = "최소한의 품질 저하, 적당한 크기 감소";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF 최적화";
+"pdf.tools.quality" = "품질";
+"pdf.tools.quality.label" = "이미지 품질";
+"pdf.tools.quality.small" = "더 작은 파일";
+"pdf.tools.quality.large" = "더 나은 품질";
+"pdf.tools.quality.lossless" = "무손실";
+"pdf.tools.resolution" = "해상도 배율";
+"pdf.tools.resolution.enable" = "해상도 줄이기";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK 변환기";
+"pdf.color.enable" = "색 공간 변환";
+"pdf.color.convert" = "변환 및 저장";
 "pdf.tools.save" = "PDF 저장";
 "pdf.reorder.title" = "페이지 순서";
 "pdf.reorder.hint" = "Ctrl을 눌러 여러 개 선택한 후 드래그하여 재정렬하세요.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "이 페이지 뒤에 삽입";
 "pdf.addContent.atEnd" = "끝에 추가";
 "pdf.addContent.chooseFile" = "파일 선택 및 삽입";
+
 "stock.deselectAll" = "모두 선택 해제";
 "stock.download" = "선택 항목 다운로드";
 "stock.download.count" = "사진 %d장 다운로드";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "URL 또는 텍스트를 입력하세요...";
 "qr.settings.colors" = "색상";
 "qr.settings.fgColor" = "전경색";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "해상도";
 "qr.settings.customSize" = "사용자 지정 크기(px)";
 "qr.download" = "QR 코드 다운로드";
+"qr.settings.type" = "QR 유형";
+"qr.type.website" = "웹사이트";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "연락처(vCard)";
+"qr.type.email" = "이메일";
+"qr.type.phone" = "전화";
+"qr.wifi.ssid" = "네트워크 이름(SSID)";
+"qr.wifi.password" = "암호";
+"qr.wifi.hidden" = "숨겨진 네트워크";
+"qr.wifi.noEncryption" = "없음";
+"qr.vcard.firstName" = "이름";
+"qr.vcard.lastName" = "성";
+"qr.vcard.phone" = "전화";
+"qr.vcard.email" = "이메일";
+"qr.vcard.company" = "회사";
+"qr.vcard.jobTitle" = "직함";
+"qr.vcard.address" = "주소";
+"qr.vcard.website" = "웹사이트";
+"qr.email.address" = "이메일 주소";
+"qr.email.subject" = "제목";
+"qr.email.body" = "메시지";
+"qr.phone.number" = "전화번호";
+
 "bgremove.unavailable.title" = "macOS 14 필요";
 "bgremove.unavailable.subtitle" = "배경 제거는 Apple의 Neural Engine 기술을 사용합니다.\nmacOS 14 Sonoma 이상으로 업데이트하세요.";
 "bgremove.drop.title" = "이미지를 끌어다 놓기";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "가장자리 다듬기";
 "bgremove.settings.feather" = "페더";
 "bgremove.settings.featherAmount" = "페더 양";
+
 "ocr.drop.title" = "이미지를 끌어다 놓기";
 "ocr.drop.subtitle" = "또는 클릭하여 파일 찾아보기";
 "ocr.processing" = "텍스트 인식 중...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "지우기";
 "ocr.newFile" = "새 파일";
 "ocr.copied" = "복사됨!";
+
 "app.comingSoon.title" = "곧 출시";
 "app.comingSoon.message" = "이 기능은 곧 사용 가능해집니다.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "폰트 검색...";
 "font.preview.custom" = "텍스트 입력...";
 "font.inspector.preview" = "미리보기";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "한국어";
 "font.writing.thai" = "태국어";
 "font.writing.vietnamese" = "베트남어";
-
 "font.families.count" = "%d 패밀리";
 "font.styles.count" = "%d 스타일 · %@";
 "font.noResults" = "폰트를 찾을 수 없습니다";
-"suggestion.title" = "제안 보내기";
-"suggestion.subtitle" = "아이디어를 공유하고 개선에 도움을 주세요";
-"suggestion.placeholder.title" = "제목";
-"suggestion.placeholder.body" = "제안을 자세히 설명해주세요...";
-"suggestion.category.bug" = "버그";
-"suggestion.category.feature" = "기능 요청";
-"suggestion.category.ui" = "UI/UX";
-"suggestion.category.performance" = "성능";
-"suggestion.category.other" = "기타";
-"suggestion.send" = "제안 보내기";
-"suggestion.sending" = "전송 중...";
-"suggestion.sent.title" = "감사합니다!";
-"suggestion.sent.message" = "제안이 접수되었습니다. 곧 검토하겠습니다.";
-"suggestion.error" = "전송 실패. 다시 시도해주세요.";
-"suggestion.validation.title" = "필수 항목";
-"suggestion.validation.body" = "제목과 설명을 입력해주세요.";
-
-"suggestion.label.category" = "카테고리";
-"suggestion.label.title" = "제목";
-"suggestion.label.description" = "설명";
 
 "video.drop.title" = "여기에 비디오 드롭";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "여기서는 동영상만 변환할 수 있습니다";
+
 "app.maintenance.title" = "유지보수 모드";
 "app.forceUpdate.title" = "업데이트 필요";
 "app.forceUpdate.button" = "App Store에서 업데이트";
@@ -283,49 +371,40 @@
 "stock.search.button" = "검색";
 "stock.search.placeholder" = "사진 검색...";
 "stock.selected" = "%d개 선택됨";
+
 "video.cancel" = "취소";
 "video.error.decoder" = "비디오를 디코딩할 수 없습니다.";
 "video.saved.gain" = "절약됨";
 "video.saved.increased" = "커졌음";
 "video.settings.fps.desc" = "원본 FPS 유지를 위해 비활성화";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "이미지";
 "pdf.tools.pageManagement" = "페이지 관리";
 "pdf.tools.addContent" = "내용 추가";
 "pdf.tools.reorder" = "순서 변경";
 "pdf.tools.targetFolder" = "대상 폴더";
-"alert.error.conversion" = "일부 이미지를 변환할 수 없었습니다.";
-"pdf.color.convert" = "변환 및 저장";
-"pdf.color.enable" = "색 공간 변환";
-"pdf.color.title" = "RGB/CMYK 변환기";
-"pdf.tools.quality" = "품질";
-"pdf.tools.quality.label" = "이미지 품질";
-"pdf.tools.quality.large" = "더 나은 품질";
-"pdf.tools.quality.lossless" = "무손실";
-"pdf.tools.resolution" = "해상도 배율";
-"pdf.tools.resolution.enable" = "해상도 줄이기";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "더 작은 파일";
 
 "ad.sponsored" = "광고";
 "ad.visit" = "방문";
 
-"pdf.quality.modal.title" = "최적화 수준 선택";
-"pdf.quality.modal.subtitle" = "파일 크기를 얼마나 줄일지 선택하세요. 압축률이 높을수록 파일이 작아지지만 품질이 저하됩니다.";
-"pdf.quality.modal.estimated" = "예상 크기";
-"pdf.quality.modal.confirm" = "최적화";
-"pdf.quality.modal.cancel" = "취소";
-"pdf.quality.low.title" = "최대 압축";
-"pdf.quality.low.desc" = "가장 작은 파일, 눈에 띄는 품질 저하";
-"pdf.quality.medium.title" = "균형";
-"pdf.quality.medium.desc" = "크기와 품질의 적절한 균형";
-"pdf.quality.high.title" = "고품질";
-"pdf.quality.high.desc" = "최소한의 품질 저하, 적당한 크기 감소";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor 경험을 맞춤 설정하세요";
+"settings.section.output" = "출력";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "정보";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "기본 출력 폴더";
+"settings.noFolderSelected" = "선택하지 않음 — 매번 묻습니다";
+"settings.chooseFolder" = "폴더 선택";
+"settings.clearFolder" = "지우기";
+"settings.folderPicker.message" = "내보낸 파일의 기본 폴더를 선택하세요";
+"settings.folderPicker.button" = "폴더 선택";
 
 "app.maintenance.title2" = "점검 중";
 "app.maintenance.body" = "앱이 일시적으로 사용할 수 없습니다. 곧 돌아오겠습니다.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store에서 업데이트";
 "app.quit2" = "앱 종료";
 
-"settings.subtitle" = "Comet Editor 경험을 맞춤 설정하세요";
-"settings.section.output" = "출력";
-"settings.section.about" = "정보";
-"settings.defaultOutputFolder" = "기본 출력 폴더";
-"settings.noFolderSelected" = "선택하지 않음 — 매번 묻습니다";
-"settings.chooseFolder" = "폴더 선택";
-"settings.clearFolder" = "지우기";
-"settings.folderPicker.message" = "내보낸 파일의 기본 폴더를 선택하세요";
-"settings.folderPicker.button" = "폴더 선택";
-"menu.announcements" = "공지사항";
-"announcements.subtitle" = "팀의 최신 뉴스 및 업데이트";
-"announcements.empty" = "공지사항이 없습니다";
-
 "settings.pdfOutputFolder" = "PDF 출력 폴더";
 
 "folder.default.prompt.title" = "기본 폴더로 설정하시겠습니까?";
 "folder.default.prompt.body" = "이 폴더를 기본 출력 폴더로 설정하시겠습니까? 언제든지 설정에서 변경할 수 있습니다.";
 "folder.default.prompt.yes" = "기본값으로 설정";
 "folder.default.prompt.no" = "나중에";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "클립을 자르고, 원하지 않는 부분을 제거하며, 여러 동영상을 하나로 합칩니다.";
-"home.guide.videoedit.preset.concat" = "동영상 합치기";
-"home.guide.videoedit.preset.trim" = "동영상 자르기";
-"home.guide.videoedit.step1" = "+ 버튼이나 끌어다 놓기로 동영상 파일을 추가합니다.";
-"home.guide.videoedit.step2" = "클립을 선택한 뒤 타임라인에서 자르기 핸들로 시작·끝을 설정합니다.";
-"home.guide.videoedit.step3" = "목록에서 클립을 드래그해 최종 순서를 정합니다.";
-"home.guide.videoedit.step4" = "출력 형식과 폴더를 선택한 다음,보내기를 클릭합니다.";
-"home.guide.videoedit.tip" = "자르기 핸들은 밀리초 단위로 맞춰집니다. 재생 막대로 정확히 확인하세요.";
-"menu.videoEdit" = "동영상 편집";
-"qr.email.address" = "이메일 주소";
-"qr.email.body" = "메시지";
-"qr.email.subject" = "제목";
-"qr.phone.number" = "전화번호";
-"qr.settings.type" = "QR 유형";
-"qr.type.email" = "이메일";
-"qr.type.phone" = "전화";
-"qr.type.vcard" = "연락처(vCard)";
-"qr.type.website" = "웹사이트";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "주소";
-"qr.vcard.company" = "회사";
-"qr.vcard.email" = "이메일";
-"qr.vcard.firstName" = "이름";
-"qr.vcard.jobTitle" = "직함";
-"qr.vcard.lastName" = "성";
-"qr.vcard.phone" = "전화";
-"qr.vcard.website" = "웹사이트";
-"qr.wifi.hidden" = "숨겨진 네트워크";
-"qr.wifi.noEncryption" = "없음";
-"qr.wifi.password" = "암호";
-"qr.wifi.ssid" = "네트워크 이름(SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "사진 추가";
-"videoedit.addMore" = "추가";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "동영상 추가";
-"videoedit.empty.subtitle" = "동영상 파일을 여기에 놓거나 아래 버튼을 클릭하세요";
-"videoedit.empty.title" = "편집할 동영상 추가";
-"videoedit.export.merge" = "병합 후보내기";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "설정";
-"videoedit.export.trim" = "클립보내기";
-"videoedit.exporting" = "보내는 중…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "사진 길이";
-"videoedit.imageDuration.default" = "새 사진의 기본값";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "저장 위치";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "적용";
-"watermark.button" = "워터마크 추가";
-"watermark.cancel" = "취소";
-"watermark.color.black" = "검정";
-"watermark.color.darkGray" = "짙은 회색";
-"watermark.color.gray" = "회색";
-"watermark.color.lightGray" = "밝은 회색";
-"watermark.color.none" = "없음";
-"watermark.color.white" = "흰색";
-"watermark.colorOverlay" = "색상 오버레이";
-"watermark.logo" = "로고";
-"watermark.opacity" = "불투명도";
-"watermark.pos.bottomCenter" = "하단 중앙";
-"watermark.pos.bottomLeft" = "왼쪽 하단";
-"watermark.pos.bottomRight" = "오른쪽 하단";
-"watermark.pos.center" = "중앙";
-"watermark.pos.centerLeft" = "왼쪽 중앙";
-"watermark.pos.centerRight" = "오른쪽 중앙";
-"watermark.pos.topCenter" = "상단 중앙";
-"watermark.pos.topLeft" = "왼쪽 상단";
-"watermark.pos.topRight" = "오른쪽 상단";
-"watermark.position" = "위치";
-"watermark.preview" = "미리보기";
-"watermark.removeLogo" = "제거";
-"watermark.scale" = "크기";
-"watermark.selectLogo" = "이미지 선택";
-"watermark.tileMode" = "타일 모드";
-"watermark.tileMode.desc" = "이미지 전체에 반복";
+
 "watermark.title" = "워터마크";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "워터마크 추가";
+"watermark.logo" = "로고";
+"watermark.selectLogo" = "이미지 선택";
+"watermark.removeLogo" = "제거";
+"watermark.position" = "위치";
+"watermark.scale" = "크기";
+"watermark.opacity" = "불투명도";
+"watermark.preview" = "미리보기";
+"watermark.apply" = "적용";
+"watermark.cancel" = "취소";
+"watermark.pos.topLeft" = "왼쪽 상단";
+"watermark.pos.topCenter" = "상단 중앙";
+"watermark.pos.topRight" = "오른쪽 상단";
+"watermark.pos.centerLeft" = "왼쪽 중앙";
+"watermark.pos.center" = "중앙";
+"watermark.pos.centerRight" = "오른쪽 중앙";
+"watermark.pos.bottomLeft" = "왼쪽 하단";
+"watermark.pos.bottomCenter" = "하단 중앙";
+"watermark.pos.bottomRight" = "오른쪽 하단";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "색상 오버레이";
+"watermark.color.none" = "없음";
+"watermark.color.black" = "검정";
+"watermark.color.darkGray" = "짙은 회색";
+"watermark.color.gray" = "회색";
+"watermark.color.lightGray" = "밝은 회색";
+"watermark.color.white" = "흰색";
+"watermark.tileMode" = "타일 모드";
+"watermark.tileMode.desc" = "이미지 전체에 반복";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "설정";
-"upscale.settings.model" = "모델";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 디테일 향상";
-"upscale.settings.scale" = "배율";
-"upscale.scale.multiPassHint" = "8× 및 16×는 여러 번의 AI 처리를 수행하므로 더 오래 걸립니다.";
-"upscale.settings.outputFormat" = "출력 형식";
-"upscale.drop.title" = "이미지를 끌어다 놓기";
-"upscale.drop.subtitle" = "또는 클릭하여 파일 찾기";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "지원되는 래스터 이미지만 여기서 확대할 수 있습니다";
-"upscale.runButton" = "확대";
-"upscale.preview.run" = "미리보기";
-"upscale.preview.hint" = "배율을 선택하고 미리보기를 눌러 비교";
-"upscale.preview.processing" = "미리보기 생성 중…";
-"upscale.preview.before" = "전";
-"upscale.preview.after" = "후";
-"upscale.preview.save" = "저장";
-"upscale.preview.saveSettings" = "미리보기 저장";
-"upscale.preview.autoSave" = "미리보기 후 저장";
-"upscale.preview.autoSaveHint" = "미리보기가 끝나면 대상 폴더에 저장합니다.";
-"upscale.preview.saveNeedFolder" = "먼저 대상 폴더를 선택하세요.";
-"upscale.preview.saveFailed" = "미리보기 이미지를 인코딩할 수 없습니다.";
-"upscale.preview.loadFailed" = "미리보기 이미지를 불러올 수 없습니다.";
-"upscale.backend.missing.hint" = "앱 번들에 cometscaly 엔진 또는 모델 파일이 없습니다. 프로젝트를 다시 빌드하세요.";
-"upscale.error.bundle" = "앱에 Upscale 번들 폴더가 없습니다.";
-"upscale.error.binary" = "앱 번들에서 cometscaly를 찾을 수 없습니다.";
-"upscale.error.model" = "모델 파일 upscayl-standard-4x.param/.bin이 없습니다.";
-"upscale.error.process" = "확대 실패 (exit %d): %@";
-"upscale.error.none" = "확대된 이미지가 없습니다.";
-"videoedit.resize.modePercent" = "배율 (%)";
-"videoedit.resize.modeCustom" = "사용자 지정 크기";
-"videoedit.resize.autoFill" = "캔버스 자동 채우기";
-"videoedit.resize.autoFillHint" = "켜면: 넓은 영상은 레터박스로 맞추고, 더 작은 영상은 확대 후 중앙 크롭으로 채웁니다.";
+"inspector.format" = "형식";
+"inspector.output" = "출력";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "미리볼 사진을 추가하세요";
+"watermark.rotation" = "회전";
+"watermark.text" = "로고 텍스트";
+"watermark.text.placeholder" = "로고 텍스트 입력";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

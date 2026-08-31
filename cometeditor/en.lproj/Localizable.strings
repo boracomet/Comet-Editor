@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Drag & Drop Image";
 "convert.drop.subtitle" = "or click to browse files";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -9,13 +12,27 @@
 "convert.settings.scale" = "Scale";
 "convert.settings.scale.amount" = "Scale Amount";
 "convert.scale.original" = "Original";
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";
 "convert.settings.width" = "Width px";
 "convert.settings.height" = "Height px";
+
 "meta.info" = "Metadata Protection";
+
 "convert.settings.targetFolder" = "Target Folder";
 "convert.settings.noFolder" = "Not Selected";
 "convert.settings.chooseFolder" = "Choose from Finder";
+
+"folder.missing.title" = "Folder Not Found";
+"folder.missing.subtitle" = "The saved folder path no longer exists. Please select a new one.";
+"folder.missing.pick" = "Select New Folder";
+"folder.missing.panel.message" = "The output folder could not be found. Please choose a new folder.";
+
+"bgremove.error.noMaskFound" = "No foreground mask found.";
+"bgremove.error.maskConversionFailed" = "Mask conversion failed.";
+"bgremove.error.compositeFailed" = "Image compositing failed.";
+
 "convert.settings.convertButton" = "Convert";
+"convert.cancel" = "Stop";
 "convert.clearAll" = "Clear All";
 "convert.addMore" = "Add";
 "convert.wrongType.image" = "Only images can be converted here";
@@ -32,9 +49,12 @@
 "upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
 "upscale.wrongType" = "Only supported raster images can be upscaled here";
 "upscale.runButton" = "Upscale";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
 "upscale.preview.run" = "Preview";
-"upscale.preview.hint" = "Select a scale and tap Preview to compare";
-"upscale.preview.processing" = "Upscaling preview…";
+"upscale.preview.hint" = "Select a scale and tap Convert to compare";
+"upscale.preview.processing" = "Upscaling…";
 "upscale.preview.before" = "BEFORE";
 "upscale.preview.after" = "AFTER";
 "upscale.preview.save" = "Save";
@@ -44,6 +64,9 @@
 "upscale.preview.saveNeedFolder" = "Choose a target folder first.";
 "upscale.preview.saveFailed" = "Could not encode the preview image.";
 "upscale.preview.loadFailed" = "Could not load the preview image.";
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
 "upscale.backend.missing.hint" = "The cometscaly engine or model files are missing from the app bundle. Rebuild the project.";
 "upscale.error.bundle" = "Upscale bundle folder is missing from the app.";
 "upscale.error.binary" = "cometscaly engine was not found in the app bundle.";
@@ -60,20 +83,14 @@
 "menu.settings" = "Settings";
 "menu.tools" = "Tools";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Our Team";
-"menu.team.title" = "Our Team";
-"menu.team.subtitle" = "Meet the talented people behind Comet Editor";
 "menu.stockImage" = "Stock Image";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Background Remover";
 "menu.ocr" = "Image to Text";
 "menu.fontDownload" = "Font Download";
 "menu.videoConvert" = "Video Convert";
-"menu.videoEdit" = "Video Editor";
-
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Send Feedback";
-"team.thanks_grafix" = "We thank the Grafix community for their contributions.";
+
 "alert.success.title" = "Success";
 "alert.error.title" = "Error";
 "alert.ok" = "OK";
@@ -82,6 +99,7 @@
 "alert.success.message.image" = "Images successfully saved to %@.";
 "alert.success.message.video" = "Videos successfully saved to %@.";
 "alert.error.conversion" = "Some images could not be converted.";
+
 "home.welcome" = "Welcome to Comet Editor";
 "home.welcome.subtitle" = "Everything you need in one app.";
 "home.visitWebsite" = "Visit our website";
@@ -108,8 +126,6 @@
 "home.feature.bgRemove.desc" = "Remove image backgrounds automatically with AI.";
 "home.feature.ocr.desc" = "Extract text from images using optical recognition.";
 "home.feature.fontDownload.desc" = "Browse and download Google Fonts directly to your Mac.";
-
-// Home Guide Section
 "home.preset.pdf.deletePage" = "Delete Pages";
 "home.preset.pdf.reorder" = "Reorder Pages";
 "home.preset.pdf.optimize" = "Optimize PDF";
@@ -126,66 +142,49 @@
 "home.guide.open" = "Open Tool";
 "home.guide.step.drop" = "Drag & drop your files onto the tool, or click to browse.";
 "home.guide.step.convert" = "Click the Convert button and wait for the result.";
-
-// Convert Image Guide
 "home.guide.convertImage.desc" = "Convert images between 15+ formats with quality and resize options.";
 "home.guide.convertImage.step2" = "Choose the output format (PNG, JPG, WebP, HEIC, etc.) from the right panel.";
 "home.guide.convertImage.step3" = "Adjust quality, scale, or dimensions — then convert.";
 "home.guide.convertImage.tip" = "You can add multiple images at once. Each file is converted independently with the same settings.";
-
-// Image Upscale Guide
 "home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
 "home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
 "home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
 "home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
 "home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
-
-// Video Guide
 "home.guide.video.desc" = "Convert and compress videos to MP4, MOV, AVI and more.";
 "home.guide.video.step2" = "Select the output format (MP4, MOV…) and adjust FPS or resolution.";
 "home.guide.video.step3" = "Enable or disable audio, then click Convert.";
 "home.guide.video.tip" = "For the smallest file size, choose 50% resolution and 30 FPS for social media sharing.";
-
-// PDF Guide
 "home.guide.pdf.desc" = "Edit, reorder, compress and manage your PDF files.";
 "home.guide.pdf.step1" = "Drag & drop a PDF file onto the editor.";
 "home.guide.pdf.step2" = "Switch to Reorder mode to drag pages into a new order, or delete pages.";
 "home.guide.pdf.step3" = "Use Optimize PDF to compress the file — choose a quality level.";
 "home.guide.pdf.step4" = "Click Save PDF to export your changes.";
 "home.guide.pdf.tip" = "Use Ctrl+Z to undo any page deletion or reorder operation.";
-
-// Background Remover Guide
 "home.guide.bgRemove.desc" = "Remove image backgrounds automatically using Apple's Neural Engine.";
 "home.guide.bgRemove.step2" = "The background is removed instantly using on-device AI.";
 "home.guide.bgRemove.step3" = "Choose PNG or WebP output format and save.";
 "home.guide.bgRemove.tip" = "Works best on photos with a clear subject. Requires macOS 14 Sonoma or later.";
-
-// OCR Guide
 "home.guide.ocr.desc" = "Extract and copy text from any image using optical character recognition.";
 "home.guide.ocr.step2" = "The tool automatically detects and extracts all text.";
 "home.guide.ocr.step3" = "Copy the recognized text or save it as a file.";
 "home.guide.ocr.tip" = "Works with printed text, screenshots, and scanned documents.";
-
-// QR Code Guide
 "home.guide.qr.desc" = "Generate custom QR codes for URLs, text, or any data.";
 "home.guide.qr.step1" = "Type or paste a URL or any text into the input field.";
 "home.guide.qr.step2" = "Customize the foreground/background colors and corner radius.";
 "home.guide.qr.step3" = "Download the QR code as PNG or SVG in your chosen resolution.";
 "home.guide.qr.tip" = "Higher resolution exports look better when printed on physical materials.";
-
-// Stock Image Guide
 "home.guide.stock.desc" = "Search and download free high-quality stock photos from Pexels.";
 "home.guide.stock.step1" = "Type a keyword (e.g. 'mountain', 'office') into the search bar.";
 "home.guide.stock.step2" = "Browse the results and select the photos you want.";
 "home.guide.stock.step3" = "Click Download to save the selected photos in original or low quality.";
 "home.guide.stock.tip" = "All photos are free to use under the Pexels license.";
-
-// Font Download Guide
 "home.guide.font.desc" = "Browse and install Google Fonts directly to your Mac.";
 "home.guide.font.step1" = "Search for a font by name or browse the catalog.";
 "home.guide.font.step2" = "Preview the font and select the styles you want.";
 "home.guide.font.step3" = "Click Download to install the font on your Mac.";
 "home.guide.font.tip" = "Downloaded fonts are installed system-wide and available in all apps immediately.";
+
 "video.drop.subtitle" = "or click to browse video files";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -206,10 +205,7 @@
 "video.resolution.75" = "75% Size";
 "video.resolution.50" = "50% Size";
 "video.resolution.25" = "25% Size (Low Quality)";
-"videoedit.resize.modePercent" = "Scale (%)";
-"videoedit.resize.modeCustom" = "Custom size";
-"videoedit.resize.autoFill" = "Auto fill canvas";
-"videoedit.resize.autoFillHint" = "When on: large footage fits inside with letterboxing; smaller footage is zoomed and center-cropped to fill.";
+
 "pdf.drop.title" = "Drag & Drop PDF";
 "pdf.drop.subtitle" = "or click to browse PDF files";
 "pdf.page.count" = "%lld Pages";
@@ -257,11 +253,15 @@
 "pdf.addContent.after" = "Insert after this page";
 "pdf.addContent.atEnd" = "Append to end";
 "pdf.addContent.chooseFile" = "Choose File & Insert";
+
 "stock.deselectAll" = "Deselect All";
 "stock.download" = "Download Selected";
 "stock.download.count" = "Download %d Photos";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Enter URL or text here...";
 "qr.settings.colors" = "COLORS";
 "qr.settings.fgColor" = "Foreground Color";
@@ -271,22 +271,16 @@
 "qr.settings.resolution" = "RESOLUTION";
 "qr.settings.customSize" = "Custom Size (px)";
 "qr.download" = "Download QR Code";
-
-// QR Type Selection
 "qr.settings.type" = "QR TYPE";
 "qr.type.website" = "Website";
 "qr.type.wifi" = "Wi-Fi";
 "qr.type.vcard" = "Contact (vCard)";
 "qr.type.email" = "Email";
 "qr.type.phone" = "Phone";
-
-// QR Wi-Fi
 "qr.wifi.ssid" = "Network name (SSID)";
 "qr.wifi.password" = "Password";
 "qr.wifi.hidden" = "Hidden network";
 "qr.wifi.noEncryption" = "None";
-
-// QR vCard
 "qr.vcard.firstName" = "First name";
 "qr.vcard.lastName" = "Last name";
 "qr.vcard.phone" = "Phone";
@@ -295,17 +289,13 @@
 "qr.vcard.jobTitle" = "Job title";
 "qr.vcard.address" = "Address";
 "qr.vcard.website" = "Website";
-
-// QR Email
 "qr.email.address" = "Email address";
 "qr.email.subject" = "Subject";
 "qr.email.body" = "Message";
-
-// QR Phone
 "qr.phone.number" = "Phone number";
 
 "bgremove.unavailable.title" = "macOS 14 Required";
-"bgremove.unavailable.subtitle" = "Background Remover uses Apple's Neural Engine technology.\nPlease update to macOS 14 Sonoma or later.";
+"bgremove.unavailable.subtitle" = "Background Remover uses Apple's Neural Engine technology.\\nPlease update to macOS 14 Sonoma or later.";
 "bgremove.drop.title" = "Drag & Drop Image";
 "bgremove.drop.subtitle" = "or click to browse files";
 "bgremove.processing" = "Removing background...";
@@ -320,6 +310,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Feather";
 "bgremove.settings.featherAmount" = "Feather Amount";
+
 "ocr.drop.title" = "Drag & Drop Image";
 "ocr.drop.subtitle" = "or click to browse files";
 "ocr.processing" = "Recognizing text...";
@@ -329,9 +320,11 @@
 "ocr.clear" = "Clear";
 "ocr.newFile" = "New File";
 "ocr.copied" = "Copied!";
+
 "app.comingSoon.title" = "Coming Soon";
 "app.comingSoon.message" = "This feature will be available soon.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Search fonts...";
 "font.preview.custom" = "Type something...";
 "font.inspector.preview" = "Preview";
@@ -365,39 +358,15 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
-
 "font.families.count" = "%d families";
 "font.styles.count" = "%d styles · %@";
 "font.noResults" = "No fonts found";
-"suggestion.title" = "Suggest a Feature";
-"suggestion.subtitle" = "Share your ideas and help us improve";
-"suggestion.placeholder.title" = "Title";
-"suggestion.placeholder.body" = "Describe your suggestion in detail...";
-"suggestion.category.bug" = "Bug";
-"suggestion.category.feature" = "Feature Request";
-"suggestion.category.ui" = "UI/UX";
-"suggestion.category.performance" = "Performance";
-"suggestion.category.other" = "Other";
-"suggestion.label.category" = "Category";
-"suggestion.label.title" = "Title";
-"suggestion.label.description" = "Description";
-"suggestion.send" = "Send Suggestion";
-"suggestion.sending" = "Sending...";
-"suggestion.sent.title" = "Thank You!";
-"suggestion.sent.message" = "Your suggestion has been received. We'll review it soon.";
-"suggestion.error" = "Failed to send. Please try again.";
-"suggestion.validation.title" = "Missing Fields";
-"suggestion.validation.body" = "Please fill in the title and description.";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
 
 "video.drop.title" = "Drop Video Here";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Only videos can be converted here";
+
 "app.maintenance.title" = "Maintenance Mode";
 "app.forceUpdate.title" = "Update Required";
 "app.forceUpdate.button" = "Update on App Store";
@@ -409,11 +378,13 @@
 "stock.search.button" = "Search";
 "stock.search.placeholder" = "Search photos...";
 "stock.selected" = "%d selected";
-"video.cancel" = "Cancel";
+
+"video.cancel" = "Stop";
 "video.error.decoder" = "Video could not be decoded.";
 "video.saved.gain" = "saved";
 "video.saved.increased" = "larger";
 "video.settings.fps.desc" = "Disable to keep the original FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Image";
 "pdf.tools.pageManagement" = "PAGE MANAGEMENT";
@@ -423,15 +394,18 @@
 
 "ad.sponsored" = "Sponsored";
 "ad.visit" = "Visit";
-"announcement.understood" = "Got it";
-
-"menu.announcements" = "Announcements";
-"announcements.subtitle" = "Latest news and updates from the team";
-"announcements.empty" = "No announcements yet";
 
 "settings.subtitle" = "Customize your Comet Editor experience";
 "settings.section.output" = "OUTPUT";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
 "settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
 "settings.defaultOutputFolder" = "Default Output Folder";
 "settings.noFolderSelected" = "Not selected — you'll be asked each time";
 "settings.chooseFolder" = "Choose Folder";
@@ -445,55 +419,6 @@
 "app.forceUpdate.body" = "A new version is required to continue. Please update to the latest version.";
 "app.forceUpdate.button2" = "Update on App Store";
 "app.quit2" = "Quit App";
-
-// Video Editor Guide (Home)
-"home.guide.videoedit.desc" = "Trim clips, remove unwanted parts, and merge multiple videos into one.";
-"home.guide.videoedit.step1" = "Add one or more video files using the + button or drag & drop.";
-"home.guide.videoedit.step2" = "Select a clip, then drag the trim handles on the timeline to set start and end points.";
-"home.guide.videoedit.step3" = "Reorder clips in the list by dragging them to set the final sequence.";
-"home.guide.videoedit.step4" = "Choose an output format and folder, then click Export.";
-"home.guide.videoedit.tip" = "Trim handles snap to the millisecond — use the playback bar to preview the exact cut.";
-"home.guide.videoedit.preset.trim" = "Trim a Video";
-"home.guide.videoedit.preset.concat" = "Merge Videos";
-
-// Video Editor
-"videoedit.clips" = "Clips";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.after" = "Insert after";
-"videoedit.clips.total" = "total";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.timeline.title" = "Trim";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.trim.start" = "Start";
-"videoedit.trim.end" = "End";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.reset" = "Reset";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.folder" = "SAVE TO";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.export.trim" = "Export Clip";
-"videoedit.export.merge" = "Merge & Export";
-"videoedit.imageDuration" = "PHOTO DURATION";
-"videoedit.imageDuration.default" = "Default for new photos";
-"videoedit.addImage" = "Add Photo";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.exporting" = "Exporting...";
-"videoedit.cancel" = "Cancel";
-"videoedit.empty.title" = "Add Videos to Edit";
-"videoedit.empty.subtitle" = "Drop video files here or click the button below";
-"videoedit.empty.button" = "Add Videos";
-"videoedit.addMore" = "Add";
-"videoedit.export.settings" = "Settings";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.trim.confirm" = "Confirm trim";
 
 "settings.pdfOutputFolder" = "PDF Output Folder";
 
@@ -522,6 +447,7 @@
 "watermark.pos.bottomLeft" = "Bottom Left";
 "watermark.pos.bottomCenter" = "Bottom Center";
 "watermark.pos.bottomRight" = "Bottom Right";
+
 "font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
 "font.variant.regular" = "Regular 400";
@@ -546,11 +472,14 @@
 "watermark.color.white" = "White";
 "watermark.tileMode" = "Tile Mode";
 "watermark.tileMode.desc" = "Repeat across image";
+"watermark.text" = "Logo text";
+"watermark.text.placeholder" = "Enter logo text";
+"watermark.rotation" = "Rotation";
+"watermark.preview.empty" = "Add a photo to preview";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
+
+"inspector.format" = "Format";
+"inspector.output" = "Output";

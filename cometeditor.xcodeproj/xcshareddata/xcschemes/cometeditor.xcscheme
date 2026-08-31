@@ -74,5 +74,23 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Sign bundled helpers in archive"
+               scriptText = "set -euo pipefail&#10;SRC=&quot;${SRCROOT:-${PROJECT_DIR}}&quot;&#10;if [ -z &quot;${SRC}&quot; ]; then&#10;  echo &quot;error: SRCROOT/PROJECT_DIR not set in archive post-action&quot; &gt;&amp;2&#10;  exit 1&#10;fi&#10;if [ -z &quot;${ARCHIVE_PATH:-}&quot; ]; then&#10;  echo &quot;error: ARCHIVE_PATH not set in archive post-action&quot; &gt;&amp;2&#10;  exit 1&#10;fi&#10;export SRCROOT=&quot;${SRC}&quot;&#10;export ARCHIVE_PATH&#10;/bin/bash &quot;${SRC}/scripts/sign_bundled_helpers.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "F96E19BE2F58C27F005B69FE"
+                     BuildableName = "Comet Editor.app"
+                     BlueprintName = "cometeditor"
+                     ReferencedContainer = "container:cometeditor.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>

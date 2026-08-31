@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Povlecite slike sem";
 "convert.drop.subtitle" = "Podpira PNG, JPG, WebP, HEIF in druge formate";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Širina";
 "convert.settings.height" = "Višina";
+
 "meta.info" = "Metapodatki bodo ohranjeni";
+
 "convert.settings.targetFolder" = "CILJNA MAPA";
 "convert.settings.noFolder" = "Ni izbrane mape";
 "convert.settings.chooseFolder" = "Izberite mapo";
+
+"folder.missing.title" = "Mapa ni najdena";
+"folder.missing.subtitle" = "Shranjena pot do mape ne obstaja več. Izberite novo.";
+"folder.missing.pick" = "Izberite novo mapo";
+"folder.missing.panel.message" = "Izhodna mapa ni najdena. Izberite novo mapo.";
+
+"bgremove.error.noMaskFound" = "Maske ospredja ni mogoče najti.";
+"bgremove.error.maskConversionFailed" = "Pretvorba maske ni uspela.";
+"bgremove.error.compositeFailed" = "Sestavljanje slike ni uspelo.";
+
 "convert.settings.convertButton" = "Pretvori";
 "convert.clearAll" = "Počisti vse";
 "convert.addMore" = "Dodaj več";
 "convert.wrongType.image" = "Tukaj je mogoče pretvoriti samo slike";
+
+"upscale.settings.title" = "Nastavitve";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — izboljšava podrobnosti z AI";
+"upscale.settings.scale" = "Merilo";
+"upscale.scale.multiPassHint" = "8× in 16× zaženeta več AI prehodov — traja dlje.";
+"upscale.settings.outputFormat" = "Izhodni format";
+"upscale.drop.title" = "Povlecite in spustite slike";
+"upscale.drop.subtitle" = "ali kliknite za brskanje datotek";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Tu je mogoče povečati le podprte rastrske slike";
+"upscale.runButton" = "Povečaj";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Predogled";
+"upscale.preview.hint" = "Izberite merilo in tapnite Predogled za primerjavo";
+"upscale.preview.processing" = "Ustvarjanje predogleda…";
+"upscale.preview.before" = "PRED";
+"upscale.preview.after" = "PO";
+"upscale.preview.save" = "Shrani";
+"upscale.preview.saveSettings" = "Shrani predogled";
+"upscale.preview.autoSave" = "Shrani po predogledu";
+"upscale.preview.autoSaveHint" = "Zapiše v ciljno mapo, ko se predogled konča.";
+"upscale.preview.saveNeedFolder" = "Najprej izberite ciljno mapo.";
+"upscale.preview.saveFailed" = "Predogledne slike ni bilo mogoče kodirati.";
+"upscale.preview.loadFailed" = "Predogledne slike ni bilo mogoče naložiti.";
+"upscale.backend.missing.hint" = "V paketu aplikacije manjkata pogon cometscaly ali datoteke modela. Znova zgradite projekt.";
+"upscale.error.bundle" = "V aplikaciji manjka mapa paketa Upscale.";
+"upscale.error.binary" = "cometscaly ni bil najden v paketu aplikacije.";
+"upscale.error.model" = "Manjkajo datoteke modela upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Povečava ni uspela (exit %d): %@";
+"upscale.error.none" = "Nobena slika ni bila povečana.";
+
 "menu.home" = "Domov";
 "menu.convertImage" = "Pretvorba slik";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Nastavitve";
 "menu.tools" = "Orodja";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Ekipa";
-"menu.team.title" = "Razvil Comet Dev";
-"menu.team.subtitle" = "Zgrajeno z ljubeznijo in pozornostjo do podrobnosti";
 "menu.stockImage" = "Stock fotografije";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Odstranitev ozadja";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Pisave";
 "menu.videoConvert" = "Pretvorba videa";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Pošlji povratne informacije";
-"team.thanks_grafix" = "Posebna zahvala Grafix-u za oblikovanje";
+
 "alert.success.title" = "Uspeh";
 "alert.error.title" = "Napaka";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Odpri mapo";
 "alert.success.message.image" = "Slika je shranjena v %@.";
 "alert.success.message.video" = "Video je shranjen v %@.";
+"alert.error.conversion" = "Nekaterih slik ni bilo mogoče pretvoriti.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Podpira MP4, MOV, AVI in druge formate";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% izvirnika";
 "video.resolution.50" = "50% izvirnika";
 "video.resolution.25" = "25% izvirnika (Nizka kakovost)";
+
 "pdf.drop.title" = "Povlecite PDF datoteko sem";
 "pdf.drop.subtitle" = "Izberite PDF datoteko za urejanje";
 "pdf.page.count" = "%lld strani";
 "pdf.page.info" = "Stran %lld od %lld";
 "pdf.estimatedSize" = "Ocenjena velikost";
+"pdf.quality.modal.title" = "Izberite raven optimizacije";
+"pdf.quality.modal.subtitle" = "Izberite, koliko zmanjšati velikost datoteke. Višja stiskanje pomeni manjšo datoteko z določeno izgubo kakovosti.";
+"pdf.quality.modal.estimated" = "Ocenjena velikost";
+"pdf.quality.modal.confirm" = "Optimiziraj";
+"pdf.quality.modal.cancel" = "Prekliči";
+"pdf.quality.low.title" = "Največje stiskanje";
+"pdf.quality.low.desc" = "Najmanjša datoteka, vidna izguba kakovosti";
+"pdf.quality.medium.title" = "Uravnoteženo";
+"pdf.quality.medium.desc" = "Dobro ravnovesje velikosti in kakovosti";
+"pdf.quality.high.title" = "Visoka kakovost";
+"pdf.quality.high.desc" = "Minimalna izguba kakovosti, zmerna zmanjšava";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimiziraj PDF";
+"pdf.tools.quality" = "KAKOVOST";
+"pdf.tools.quality.label" = "Kakovost slike";
+"pdf.tools.quality.small" = "Manjša datoteka";
+"pdf.tools.quality.large" = "Boljša kakovost";
+"pdf.tools.quality.lossless" = "Brez izgube";
+"pdf.tools.resolution" = "LESTVICA LOČLJIVOSTI";
+"pdf.tools.resolution.enable" = "Zmanjšaj ločljivost";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK PRETVORNIK";
+"pdf.color.enable" = "Pretvori barvni prostor";
+"pdf.color.convert" = "Pretvori in shrani";
 "pdf.tools.save" = "Shrani PDF";
 "pdf.reorder.title" = "Preurejanje strani";
 "pdf.reorder.hint" = "Povlecite za spremembo vrstnega reda strani";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Za";
 "pdf.addContent.atEnd" = "Na koncu";
 "pdf.addContent.chooseFile" = "Izberite datoteko";
+
 "stock.deselectAll" = "Prekliči izbor";
 "stock.download" = "Prenesi";
 "stock.download.count" = "Prenesi %d fotografij";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Vnesite URL ali besedilo tukaj...";
 "qr.settings.colors" = "Barve";
 "qr.settings.fgColor" = "Barva ospredja";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Ločljivost";
 "qr.settings.customSize" = "Velikost po meri (px)";
 "qr.download" = "Prenesi QR kodo";
+"qr.settings.type" = "Vrsta QR";
+"qr.type.website" = "Spletna stran";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Stik (vCard)";
+"qr.type.email" = "E-pošta";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Ime omrežja (SSID)";
+"qr.wifi.password" = "Geslo";
+"qr.wifi.hidden" = "Skrito omrežje";
+"qr.wifi.noEncryption" = "Brez";
+"qr.vcard.firstName" = "Ime";
+"qr.vcard.lastName" = "Priimek";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-pošta";
+"qr.vcard.company" = "Podjetje";
+"qr.vcard.jobTitle" = "Delovno mesto";
+"qr.vcard.address" = "Naslov";
+"qr.vcard.website" = "Spletna stran";
+"qr.email.address" = "E-poštni naslov";
+"qr.email.subject" = "Zadeva";
+"qr.email.body" = "Sporočilo";
+"qr.phone.number" = "Telefonska številka";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Ta funkcija zahteva macOS 14 ali novejšo različico";
 "bgremove.drop.title" = "Povlecite slike sem";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Mehčanje robov";
 "bgremove.settings.featherAmount" = "Stopnja mehčanja";
+
 "ocr.drop.title" = "Povlecite sliko sem";
 "ocr.drop.subtitle" = "Podpira PNG, JPG in WebP";
 "ocr.processing" = "Prepoznavanje besedila...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Počisti";
 "ocr.newFile" = "Nova datoteka";
 "ocr.copied" = "Kopirano!";
+
 "app.comingSoon.title" = "Kmalu";
 "app.comingSoon.message" = "Ta funkcija je v razvoju in bo kmalu na voljo.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Iščite pisave...";
 "font.preview.custom" = "Prilagojeni predogled";
 "font.inspector.preview" = "PREDOGLED";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d družin";
 "font.styles.count" = "%d slogov · %@";
 "font.noResults" = "Ni najdenih pisav";
-"suggestion.title" = "Pošlji predlog";
-"suggestion.subtitle" = "Delite svoje ideje in nam pomagajte izboljšati se";
-"suggestion.placeholder.title" = "Naslov";
-"suggestion.placeholder.body" = "Opišite predlog podrobno...";
-"suggestion.category.bug" = "Napaka";
-"suggestion.category.feature" = "Zahteva za funkcijo";
-"suggestion.category.ui" = "Vmesnik";
-"suggestion.category.performance" = "Zmogljivost";
-"suggestion.category.other" = "Drugo";
-"suggestion.send" = "Pošlji predlog";
-"suggestion.sending" = "Pošiljanje...";
-"suggestion.sent.title" = "Hvala!";
-"suggestion.sent.message" = "Vaš predlog je bil prejet. Kmalu ga bomo pregledali.";
-"suggestion.error" = "Pošiljanje neuspešno. Poskusite znova.";
-"suggestion.validation.title" = "Manjkajoča polja";
-"suggestion.validation.body" = "Izpolnite naslov in opis.";
-
-"suggestion.label.category" = "Kategorija";
-"suggestion.label.title" = "Naslov";
-"suggestion.label.description" = "Opis";
 
 "video.drop.title" = "Spustite video sem";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Tukaj je mogoče pretvoriti samo videoposnetke";
+
 "app.maintenance.title" = "Način vzdrževanja";
 "app.forceUpdate.title" = "Zahtevana posodobitev";
 "app.forceUpdate.button" = "Posodobi v App Storu";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Iskanje";
 "stock.search.placeholder" = "Iskanje fotografij...";
 "stock.selected" = "%d izbrano";
+
 "video.cancel" = "Prekliči";
 "video.error.decoder" = "Videoposnetka ni mogoče dekodirati.";
 "video.saved.gain" = "prihranjenega";
 "video.saved.increased" = "večji";
 "video.settings.fps.desc" = "Onemogočite za ohranitev izvirnih FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Slika";
 "pdf.tools.pageManagement" = "UPRAVLJANJE STRANI";
 "pdf.tools.addContent" = "Dodaj vsebino";
 "pdf.tools.reorder" = "Prerazporedi";
 "pdf.tools.targetFolder" = "CILJNA MAPA";
-"alert.error.conversion" = "Nekaterih slik ni bilo mogoče pretvoriti.";
-"pdf.color.convert" = "Pretvori in shrani";
-"pdf.color.enable" = "Pretvori barvni prostor";
-"pdf.color.title" = "RGB/CMYK PRETVORNIK";
-"pdf.tools.quality" = "KAKOVOST";
-"pdf.tools.quality.label" = "Kakovost slike";
-"pdf.tools.quality.large" = "Boljša kakovost";
-"pdf.tools.quality.lossless" = "Brez izgube";
-"pdf.tools.resolution" = "LESTVICA LOČLJIVOSTI";
-"pdf.tools.resolution.enable" = "Zmanjšaj ločljivost";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Manjša datoteka";
 
 "ad.sponsored" = "Sponzorirano";
 "ad.visit" = "Obiščite";
 
-"pdf.quality.modal.title" = "Izberite raven optimizacije";
-"pdf.quality.modal.subtitle" = "Izberite, koliko zmanjšati velikost datoteke. Višja stiskanje pomeni manjšo datoteko z določeno izgubo kakovosti.";
-"pdf.quality.modal.estimated" = "Ocenjena velikost";
-"pdf.quality.modal.confirm" = "Optimiziraj";
-"pdf.quality.modal.cancel" = "Prekliči";
-"pdf.quality.low.title" = "Največje stiskanje";
-"pdf.quality.low.desc" = "Najmanjša datoteka, vidna izguba kakovosti";
-"pdf.quality.medium.title" = "Uravnoteženo";
-"pdf.quality.medium.desc" = "Dobro ravnovesje velikosti in kakovosti";
-"pdf.quality.high.title" = "Visoka kakovost";
-"pdf.quality.high.desc" = "Minimalna izguba kakovosti, zmerna zmanjšava";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Prilagodite Comet Editor sebi";
+"settings.section.output" = "IZHOD";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Privzeta izhodna mapa";
+"settings.noFolderSelected" = "Ni izbrana — vsakič bo vprašano";
+"settings.chooseFolder" = "Izberi mapo";
+"settings.clearFolder" = "Počisti";
+"settings.folderPicker.message" = "Izberite privzeto mapo za izvožene datoteke";
+"settings.folderPicker.button" = "Izberi mapo";
 
 "app.maintenance.title2" = "Vzdrževalna dela";
 "app.maintenance.body" = "Aplikacija je začasno nedosegljiva. Kmalu se vrnemo.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Posodobi v App Store";
 "app.quit2" = "Zapri aplikacijo";
 
-"settings.subtitle" = "Prilagodite Comet Editor sebi";
-"settings.section.output" = "IZHOD";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Privzeta izhodna mapa";
-"settings.noFolderSelected" = "Ni izbrana — vsakič bo vprašano";
-"settings.chooseFolder" = "Izberi mapo";
-"settings.clearFolder" = "Počisti";
-"settings.folderPicker.message" = "Izberite privzeto mapo za izvožene datoteke";
-"settings.folderPicker.button" = "Izberi mapo";
-"menu.announcements" = "Obvestila";
-"announcements.subtitle" = "Najnovejše novice in posodobitve ekipe";
-"announcements.empty" = "Ni obvestil";
-
 "settings.pdfOutputFolder" = "Izhodna mapa za PDF";
 
 "folder.default.prompt.title" = "Nastavi kot privzeto mapo?";
 "folder.default.prompt.body" = "Ali želite to nastaviti kot privzeto izhodno mapo? Spremenite jo lahko kadarkoli v Nastavitvah.";
 "folder.default.prompt.yes" = "Nastavi kot privzeto";
 "folder.default.prompt.no" = "Ne zdaj";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Videourejevalnik";
-"qr.email.address" = "E-poštni naslov";
-"qr.email.body" = "Sporočilo";
-"qr.email.subject" = "Zadeva";
-"qr.phone.number" = "Telefonska številka";
-"qr.settings.type" = "Vrsta QR";
-"qr.type.email" = "E-pošta";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Stik (vCard)";
-"qr.type.website" = "Spletna stran";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Naslov";
-"qr.vcard.company" = "Podjetje";
-"qr.vcard.email" = "E-pošta";
-"qr.vcard.firstName" = "Ime";
-"qr.vcard.jobTitle" = "Delovno mesto";
-"qr.vcard.lastName" = "Priimek";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Spletna stran";
-"qr.wifi.hidden" = "Skrito omrežje";
-"qr.wifi.noEncryption" = "Brez";
-"qr.wifi.password" = "Geslo";
-"qr.wifi.ssid" = "Ime omrežja (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Dodaj fotografijo";
-"videoedit.addMore" = "Dodaj";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Dodaj videoposnetke";
-"videoedit.empty.subtitle" = "Spustite videodatoteke sem ali tapnite gumb spodaj";
-"videoedit.empty.title" = "Dodajte videoposnetke za urejanje";
-"videoedit.export.merge" = "Združi in izvozi";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Nastavitve";
-"videoedit.export.trim" = "Izvozi posnetek";
-"videoedit.exporting" = "Izvažanje…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "TRAJANJE FOTOGRAFIJE";
-"videoedit.imageDuration.default" = "Privzeto za nove fotografije";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SHRANI V";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Uporabi";
-"watermark.button" = "Dodaj vodni žig";
-"watermark.cancel" = "Prekliči";
-"watermark.color.black" = "Črna";
-"watermark.color.darkGray" = "Temno siva";
-"watermark.color.gray" = "Siva";
-"watermark.color.lightGray" = "Svetlo siva";
-"watermark.color.none" = "Brez";
-"watermark.color.white" = "Bela";
-"watermark.colorOverlay" = "Prekrivanje barve";
-"watermark.logo" = "Logotip";
-"watermark.opacity" = "Neprosojnost";
-"watermark.pos.bottomCenter" = "Spodaj sredina";
-"watermark.pos.bottomLeft" = "Spodaj levo";
-"watermark.pos.bottomRight" = "Spodaj desno";
-"watermark.pos.center" = "Sredina";
-"watermark.pos.centerLeft" = "Sredina levo";
-"watermark.pos.centerRight" = "Sredina desno";
-"watermark.pos.topCenter" = "Zgoraj sredina";
-"watermark.pos.topLeft" = "Zgoraj levo";
-"watermark.pos.topRight" = "Zgoraj desno";
-"watermark.position" = "Položaj";
-"watermark.preview" = "Predogled";
-"watermark.removeLogo" = "Odstrani";
-"watermark.scale" = "Merilo";
-"watermark.selectLogo" = "Izberi sliko";
-"watermark.tileMode" = "Način ploščic";
-"watermark.tileMode.desc" = "Ponovi čez sliko";
+
 "watermark.title" = "Vodni žig";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Dodaj vodni žig";
+"watermark.logo" = "Logotip";
+"watermark.selectLogo" = "Izberi sliko";
+"watermark.removeLogo" = "Odstrani";
+"watermark.position" = "Položaj";
+"watermark.scale" = "Merilo";
+"watermark.opacity" = "Neprosojnost";
+"watermark.preview" = "Predogled";
+"watermark.apply" = "Uporabi";
+"watermark.cancel" = "Prekliči";
+"watermark.pos.topLeft" = "Zgoraj levo";
+"watermark.pos.topCenter" = "Zgoraj sredina";
+"watermark.pos.topRight" = "Zgoraj desno";
+"watermark.pos.centerLeft" = "Sredina levo";
+"watermark.pos.center" = "Sredina";
+"watermark.pos.centerRight" = "Sredina desno";
+"watermark.pos.bottomLeft" = "Spodaj levo";
+"watermark.pos.bottomCenter" = "Spodaj sredina";
+"watermark.pos.bottomRight" = "Spodaj desno";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Prekrivanje barve";
+"watermark.color.none" = "Brez";
+"watermark.color.black" = "Črna";
+"watermark.color.darkGray" = "Temno siva";
+"watermark.color.gray" = "Siva";
+"watermark.color.lightGray" = "Svetlo siva";
+"watermark.color.white" = "Bela";
+"watermark.tileMode" = "Način ploščic";
+"watermark.tileMode.desc" = "Ponovi čez sliko";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Nastavitve";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — izboljšava podrobnosti z AI";
-"upscale.settings.scale" = "Merilo";
-"upscale.scale.multiPassHint" = "8× in 16× zaženeta več AI prehodov — traja dlje.";
-"upscale.settings.outputFormat" = "Izhodni format";
-"upscale.drop.title" = "Povlecite in spustite slike";
-"upscale.drop.subtitle" = "ali kliknite za brskanje datotek";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Tu je mogoče povečati le podprte rastrske slike";
-"upscale.runButton" = "Povečaj";
-"upscale.preview.run" = "Predogled";
-"upscale.preview.hint" = "Izberite merilo in tapnite Predogled za primerjavo";
-"upscale.preview.processing" = "Ustvarjanje predogleda…";
-"upscale.preview.before" = "PRED";
-"upscale.preview.after" = "PO";
-"upscale.preview.save" = "Shrani";
-"upscale.preview.saveSettings" = "Shrani predogled";
-"upscale.preview.autoSave" = "Shrani po predogledu";
-"upscale.preview.autoSaveHint" = "Zapiše v ciljno mapo, ko se predogled konča.";
-"upscale.preview.saveNeedFolder" = "Najprej izberite ciljno mapo.";
-"upscale.preview.saveFailed" = "Predogledne slike ni bilo mogoče kodirati.";
-"upscale.preview.loadFailed" = "Predogledne slike ni bilo mogoče naložiti.";
-"upscale.backend.missing.hint" = "V paketu aplikacije manjkata pogon cometscaly ali datoteke modela. Znova zgradite projekt.";
-"upscale.error.bundle" = "V aplikaciji manjka mapa paketa Upscale.";
-"upscale.error.binary" = "cometscaly ni bil najden v paketu aplikacije.";
-"upscale.error.model" = "Manjkajo datoteke modela upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Povečava ni uspela (exit %d): %@";
-"upscale.error.none" = "Nobena slika ni bila povečana.";
-"videoedit.resize.modePercent" = "Merilo (%)";
-"videoedit.resize.modeCustom" = "Velikost po meri";
-"videoedit.resize.autoFill" = "Samodejno zapolni platno";
-"videoedit.resize.autoFillHint" = "Vklopljeno: širok posnetek se prilega z letterboxom; manjši je povečan in obrezan na sredino.";
+"inspector.format" = "Format";
+"inspector.output" = "Izhod";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Dodajte fotografijo za predogled";
+"watermark.rotation" = "Sukanje";
+"watermark.text" = "Besedilo logotipa";
+"watermark.text.placeholder" = "Vnesite besedilo logotipa";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

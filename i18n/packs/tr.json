@@ -1,0 +1,11 @@
+{
+  "inspector.format": "Biçim",
+  "inspector.output": "Çıktı",
+  "convert.drop.subtitle": "veya dosya seçmek için tıklayın",
+  "convert.settings.enable": "Etkinleştir",
+  "video.drop.subtitle": "veya video seçmek için tıklayın",
+  "pdf.drop.subtitle": "veya PDF seçmek için tıklayın",
+  "bgremove.drop.subtitle": "veya dosya seçmek için tıklayın",
+  "ocr.drop.subtitle": "veya dosya seçmek için tıklayın",
+  "qr.input.placeholder": "URL veya metin girin..."
+}

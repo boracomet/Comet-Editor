@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Vedä ja pudota kuva";
 "convert.drop.subtitle" = "tai napsauta selataksesi tiedostoja";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Leveys px";
 "convert.settings.height" = "Korkeus px";
+
 "meta.info" = "Metatietojen suojaus";
+
 "convert.settings.targetFolder" = "Kohdekansio";
 "convert.settings.noFolder" = "Ei valittu";
 "convert.settings.chooseFolder" = "Valitse Finderista";
+
+"folder.missing.title" = "Kansiota ei löydy";
+"folder.missing.subtitle" = "Tallennettu kansion polku ei enää ole olemassa. Valitse uusi.";
+"folder.missing.pick" = "Valitse uusi kansio";
+"folder.missing.panel.message" = "Kohdekansiota ei löydy. Valitse uusi kansio.";
+
+"bgremove.error.noMaskFound" = "Etualan maskia ei löytynyt.";
+"bgremove.error.maskConversionFailed" = "Maskin muunnos epäonnistui.";
+"bgremove.error.compositeFailed" = "Kuvan koostaminen epäonnistui.";
+
 "convert.settings.convertButton" = "Muunna";
 "convert.clearAll" = "Tyhjennä kaikki";
 "convert.addMore" = "Lisää";
 "convert.wrongType.image" = "Täällä voidaan muuntaa vain kuvia";
+
+"upscale.settings.title" = "Asetukset";
+"upscale.settings.model" = "Malli";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — tekoälyparannus yksityiskohtiin";
+"upscale.settings.scale" = "Skaala";
+"upscale.scale.multiPassHint" = "8× ja 16× suorittavat useita tekoälykierroksia — kestää kauemmin.";
+"upscale.settings.outputFormat" = "Tulostemuoto";
+"upscale.drop.title" = "Vedä ja pudota kuvia";
+"upscale.drop.subtitle" = "tai napsauta selataksesi tiedostoja";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Vain tuetut bittikarttakuvat voidaan suurentaa täällä";
+"upscale.runButton" = "Suurenna";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Esikatsele";
+"upscale.preview.hint" = "Valitse skaala ja napauta Esikatsele vertaillaksesi";
+"upscale.preview.processing" = "Luodaan esikatselua…";
+"upscale.preview.before" = "ENNEN";
+"upscale.preview.after" = "JÄLKEEN";
+"upscale.preview.save" = "Tallenna";
+"upscale.preview.saveSettings" = "Tallenna esikatselu";
+"upscale.preview.autoSave" = "Tallenna esikatselun jälkeen";
+"upscale.preview.autoSaveHint" = "Kirjoittaa kohdekansioon, kun esikatselu valmistuu.";
+"upscale.preview.saveNeedFolder" = "Valitse ensin kohdekansio.";
+"upscale.preview.saveFailed" = "Esikatselukuvaa ei voitu koodata.";
+"upscale.preview.loadFailed" = "Esikatselukuvaa ei voitu ladata.";
+"upscale.backend.missing.hint" = "cometscaly-moottori tai mallitiedostot puuttuvat sovelluspaketista. Rakenna projekti uudelleen.";
+"upscale.error.bundle" = "Upscale-bundle-kansio puuttuu sovelluksesta.";
+"upscale.error.binary" = "cometscalya ei löytynyt sovelluspaketista.";
+"upscale.error.model" = "Mallitiedostot upscayl-standard-4x.param/.bin puuttuvat.";
+"upscale.error.process" = "Suurennus epäonnistui (exit %d): %@";
+"upscale.error.none" = "Yhtään kuvaa ei suurennettu.";
+
 "menu.home" = "Etusivu";
 "menu.convertImage" = "Muunna kuva";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Asetukset";
 "menu.tools" = "Työkalut";
 "menu.document" = "ASIAKIRJA";
-"menu.team" = "Tiimimme";
-"menu.team.title" = "Tiimimme";
-"menu.team.subtitle" = "Tutustu Comet Editorin takana oleviin lahjakkaasiin ihmisiin";
 "menu.stockImage" = "Kuvapankkikuva";
 "menu.qrCode" = "QR-koodi";
 "menu.bgRemove" = "Taustan poisto";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Lataa Fontti";
 "menu.videoConvert" = "Muunna video";
 "menu.pdfEdit" = "Muokkaa PDF";
-"menu.suggestion" = "Lähetä palautetta";
-"team.thanks_grafix" = "Kiitämme Grafix-yhteisöä heidän panoksistaan.";
+
 "alert.success.title" = "Onnistui";
 "alert.error.title" = "Virhe";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Avaa kansio";
 "alert.success.message.image" = "Kuvat tallennettu onnistuneesti kohteeseen %@.";
 "alert.success.message.video" = "Videot tallennettu onnistuneesti kohteeseen %@.";
+"alert.error.conversion" = "Joitakin kuvia ei voitu muuntaa.";
+
 "home.welcome" = "Tervetuloa Comet Editoriin";
 "home.welcome.subtitle" = "Kaikki tarvitsemasi yhdessä sovelluksessa.";
 "home.visitWebsite" = "Vieraile verkkosivustollamme";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 tasapainoisella laadulla — muunna tai pakkaa yhdessä virrassa.";
 "home.quick.pdf.title" = "Muokkaa PDF";
 "home.quick.pdf.subtitle" = "Avaa PDF-editori — järjestä sivuja uudelleen, pakkaa tai säädä yhdessä näkymässä.";
+"home.feature.convertImage.desc" = "Muunna kuvia PNG-, JPG-, WebP-, HEIF-muotoihin ja muihin.";
+"home.feature.videoConvert.desc" = "Muunna ja pakkaa videosi helposti.";
+"home.feature.stockImage.desc" = "Selaa ja lataa ilmaisia korkealaatuisia kuvapankkikuvia.";
+"home.feature.pdfEdit.desc" = "Muokkaa, järjestele uudelleen, pakkaa ja hallitse PDF-tiedostojasi.";
+"home.feature.qrCode.desc" = "Luo ja mukauta QR-koodeja välittömästi.";
+"home.feature.bgRemove.desc" = "Poista kuvien taustat automaattisesti tekoälyllä.";
+"home.feature.ocr.desc" = "Poimi tekstiä kuvista optisen tunnistuksen avulla.";
+"home.feature.fontDownload.desc" = "Selaa ja lataa Google Fonts -fontteja suoraan Macillesi.";
 "home.preset.pdf.deletePage" = "Poista sivuja";
 "home.preset.pdf.reorder" = "Järjestä sivut uudelleen";
 "home.preset.pdf.optimize" = "Optimoi PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Valitse tulostemuoto (PNG, JPG, WebP, HEIC jne.) oikeasta paneelista.";
 "home.guide.convertImage.step3" = "Säädä laatua, skaalaa tai mittoja — ja muunna.";
 "home.guide.convertImage.tip" = "Voit lisätä useita kuvia kerralla. Jokainen tiedosto muunnetaan samoilla asetuksilla erikseen.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Muunna ja pakkaa videoita MP4-, MOV-, AVI-muotoihin ja muihin.";
 "home.guide.video.step2" = "Valitse tulostemuoto (MP4, MOV…) ja säädä kuvataajuutta tai resoluutiota.";
 "home.guide.video.step3" = "Ota ääni käyttöön tai poista se käytöstä ja napsauta sitten Muunna.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Esikatsele fonttia ja valitse haluamasi tyylit.";
 "home.guide.font.step3" = "Napsauta Lataa asentaaksesi fontin Macillesi.";
 "home.guide.font.tip" = "Ladatut fontit asennetaan järjestelmälaajuisesti ja ovat heti käytettävissä kaikissa sovelluksissa.";
-"home.feature.convertImage.desc" = "Muunna kuvia PNG-, JPG-, WebP-, HEIF-muotoihin ja muihin.";
-"home.feature.videoConvert.desc" = "Muunna ja pakkaa videosi helposti.";
-"home.feature.stockImage.desc" = "Selaa ja lataa ilmaisia korkealaatuisia kuvapankkikuvia.";
-"home.feature.pdfEdit.desc" = "Muokkaa, järjestele uudelleen, pakkaa ja hallitse PDF-tiedostojasi.";
-"home.feature.qrCode.desc" = "Luo ja mukauta QR-koodeja välittömästi.";
-"home.feature.bgRemove.desc" = "Poista kuvien taustat automaattisesti tekoälyllä.";
-"home.feature.ocr.desc" = "Poimi tekstiä kuvista optisen tunnistuksen avulla.";
-"home.feature.fontDownload.desc" = "Selaa ja lataa Google Fonts -fontteja suoraan Macillesi.";
+
 "video.drop.subtitle" = "tai napsauta selataksesi videotiedostoja";
 "video.settings.format" = "MUOTO";
 "video.settings.fps" = "FPS-RAJA";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% koko";
 "video.resolution.50" = "50% koko";
 "video.resolution.25" = "25% koko (matala laatu)";
+
 "pdf.drop.title" = "Vedä ja pudota PDF";
 "pdf.drop.subtitle" = "tai napsauta selataksesi PDF-tiedostoja";
 "pdf.page.count" = "%lld sivua";
 "pdf.page.info" = "Sivu %lld / %lld";
 "pdf.estimatedSize" = "Arvioitu optimoitu koko";
+"pdf.quality.modal.title" = "Valitse optimointitaso";
+"pdf.quality.modal.subtitle" = "Valitse kuinka paljon tiedostokokoa pienennetään. Suurempi pakkaus tarkoittaa pienempää tiedostoa jonkin verran laadun heikkenemisellä.";
+"pdf.quality.modal.estimated" = "Arvioitu koko";
+"pdf.quality.modal.confirm" = "Optimoi";
+"pdf.quality.modal.cancel" = "Peruuta";
+"pdf.quality.low.title" = "Maksimipakkaus";
+"pdf.quality.low.desc" = "Pienin tiedosto, näkyvä laadun heikkeneminen";
+"pdf.quality.medium.title" = "Tasapainoinen";
+"pdf.quality.medium.desc" = "Hyvä tasapaino koon ja laadun välillä";
+"pdf.quality.high.title" = "Korkea laatu";
+"pdf.quality.high.desc" = "Minimaalinen laadun heikkeneminen, kohtalainen pienennys";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimoi PDF";
+"pdf.tools.quality" = "LAATU";
+"pdf.tools.quality.label" = "Kuvanlaatu";
+"pdf.tools.quality.small" = "Pienempi tiedosto";
+"pdf.tools.quality.large" = "Parempi laatu";
+"pdf.tools.quality.lossless" = "Häviötön";
+"pdf.tools.resolution" = "RESOLUUTION SKAALA";
+"pdf.tools.resolution.enable" = "Pienennä resoluutiota";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK MUUNNIN";
+"pdf.color.enable" = "Muunna väriavaruus";
+"pdf.color.convert" = "Muunna ja tallenna";
 "pdf.tools.save" = "Tallenna PDF";
 "pdf.reorder.title" = "Sivujärjestys";
 "pdf.reorder.hint" = "Pidä Ctrl monivalintaan, vedä sitten järjestääksesi uudelleen.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Lisää tämän sivun jälkeen";
 "pdf.addContent.atEnd" = "Lisää loppuun";
 "pdf.addContent.chooseFile" = "Valitse tiedosto ja lisää";
+
 "stock.deselectAll" = "Poista kaikki valinnat";
 "stock.download" = "Lataa valitut";
 "stock.download.count" = "Lataa %d kuvaa";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Kirjoita URL tai teksti tähän...";
 "qr.settings.colors" = "Värit";
 "qr.settings.fgColor" = "Etualan väri";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Resoluutio";
 "qr.settings.customSize" = "Mukautettu koko (px)";
 "qr.download" = "Lataa QR-koodi";
+"qr.settings.type" = "QR-tyyppi";
+"qr.type.website" = "Verkkosivusto";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Yhteystieto (vCard)";
+"qr.type.email" = "Sähköposti";
+"qr.type.phone" = "Puhelin";
+"qr.wifi.ssid" = "Verkon nimi (SSID)";
+"qr.wifi.password" = "Salasana";
+"qr.wifi.hidden" = "Piilotettu verkko";
+"qr.wifi.noEncryption" = "Ei salausta";
+"qr.vcard.firstName" = "Etunimi";
+"qr.vcard.lastName" = "Sukunimi";
+"qr.vcard.phone" = "Puhelinnumero";
+"qr.vcard.email" = "Sähköposti";
+"qr.vcard.company" = "Yritys";
+"qr.vcard.jobTitle" = "Titteli";
+"qr.vcard.address" = "Osoite";
+"qr.vcard.website" = "Verkkosivusto";
+"qr.email.address" = "Sähköpostiosoite";
+"qr.email.subject" = "Aihe";
+"qr.email.body" = "Viesti";
+"qr.phone.number" = "Puhelinnumero";
+
 "bgremove.unavailable.title" = "macOS 14 vaaditaan";
 "bgremove.unavailable.subtitle" = "Taustan poisto käyttää Applen Neural Engine -teknologiaa.\nPäivitä macOS 14 Sonomaan tai uudempaan.";
 "bgremove.drop.title" = "Vedä ja pudota kuva";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "TARKENNA REUNOJA";
 "bgremove.settings.feather" = "Sulatus";
 "bgremove.settings.featherAmount" = "Sulatuksen arvo";
+
 "ocr.drop.title" = "Vedä ja pudota kuva";
 "ocr.drop.subtitle" = "tai napsauta selataksesi tiedostoja";
 "ocr.processing" = "Tunnistetaan tekstiä...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Tyhjennä";
 "ocr.newFile" = "Uusi tiedosto";
 "ocr.copied" = "Kopioitu!";
+
 "app.comingSoon.title" = "Tulossa pian";
 "app.comingSoon.message" = "Tämä ominaisuus on pian käytettävissä.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Hae fontteja...";
 "font.preview.custom" = "Kirjoita jotain...";
 "font.inspector.preview" = "Esikatselu";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korealainen";
 "font.writing.thai" = "Thaimaalainen";
 "font.writing.vietnamese" = "Vietnamilainen";
-
 "font.families.count" = "%d perhettä";
 "font.styles.count" = "%d tyyliä · %@";
 "font.noResults" = "Fontteja ei löydetty";
-"suggestion.title" = "Lähetä ehdotus";
-"suggestion.subtitle" = "Jaa ideasi ja auta meitä parantamaan";
-"suggestion.placeholder.title" = "Otsikko";
-"suggestion.placeholder.body" = "Kuvaile ehdotuksesi yksityiskohtaisesti...";
-"suggestion.category.bug" = "Virhe";
-"suggestion.category.feature" = "Toimintopyyntö";
-"suggestion.category.ui" = "Käyttöliittymä";
-"suggestion.category.performance" = "Suorituskyky";
-"suggestion.category.other" = "Muu";
-"suggestion.send" = "Lähetä ehdotus";
-"suggestion.sending" = "Lähetetään...";
-"suggestion.sent.title" = "Kiitos!";
-"suggestion.sent.message" = "Ehdotuksesi on vastaanotettu. Tarkistamme sen pian.";
-"suggestion.error" = "Lähetys epäonnistui. Yritä uudelleen.";
-"suggestion.validation.title" = "Puuttuvat kentät";
-"suggestion.validation.body" = "Täytä otsikko ja kuvaus.";
-
-"suggestion.label.category" = "Kategoria";
-"suggestion.label.title" = "Otsikko";
-"suggestion.label.description" = "Kuvaus";
 
 "video.drop.title" = "Vedä video tähän";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Täällä voidaan muuntaa vain videoita";
+
 "app.maintenance.title" = "Huoltotila";
 "app.forceUpdate.title" = "Päivitys vaaditaan";
 "app.forceUpdate.button" = "Päivitä App Storessa";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Hae";
 "stock.search.placeholder" = "Etsi kuvia...";
 "stock.selected" = "%d valittu";
+
 "video.cancel" = "Peruuta";
 "video.error.decoder" = "Videota ei voitu purkaa.";
 "video.saved.gain" = "säästetty";
 "video.saved.increased" = "suurempi";
 "video.settings.fps.desc" = "Poista käytöstä alkuperäisen FPS:n säilyttämiseksi";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Kuva";
 "pdf.tools.pageManagement" = "SIVUJEN HALLINTA";
 "pdf.tools.addContent" = "Lisää sisältöä";
 "pdf.tools.reorder" = "Järjestä uudelleen";
 "pdf.tools.targetFolder" = "KOHDEKANSIO";
-"alert.error.conversion" = "Joitakin kuvia ei voitu muuntaa.";
-"pdf.color.convert" = "Muunna ja tallenna";
-"pdf.color.enable" = "Muunna väriavaruus";
-"pdf.color.title" = "RGB/CMYK MUUNNIN";
-"pdf.tools.quality" = "LAATU";
-"pdf.tools.quality.label" = "Kuvanlaatu";
-"pdf.tools.quality.large" = "Parempi laatu";
-"pdf.tools.quality.lossless" = "Häviötön";
-"pdf.tools.resolution" = "RESOLUUTION SKAALA";
-"pdf.tools.resolution.enable" = "Pienennä resoluutiota";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Pienempi tiedosto";
 
 "ad.sponsored" = "Sponsoroitu";
 "ad.visit" = "Vieraile";
 
-"pdf.quality.modal.title" = "Valitse optimointitaso";
-"pdf.quality.modal.subtitle" = "Valitse kuinka paljon tiedostokokoa pienennetään. Suurempi pakkaus tarkoittaa pienempää tiedostoa jonkin verran laadun heikkenemisellä.";
-"pdf.quality.modal.estimated" = "Arvioitu koko";
-"pdf.quality.modal.confirm" = "Optimoi";
-"pdf.quality.modal.cancel" = "Peruuta";
-"pdf.quality.low.title" = "Maksimipakkaus";
-"pdf.quality.low.desc" = "Pienin tiedosto, näkyvä laadun heikkeneminen";
-"pdf.quality.medium.title" = "Tasapainoinen";
-"pdf.quality.medium.desc" = "Hyvä tasapaino koon ja laadun välillä";
-"pdf.quality.high.title" = "Korkea laatu";
-"pdf.quality.high.desc" = "Minimaalinen laadun heikkeneminen, kohtalainen pienennys";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Muokkaa Comet Editor -kokemustasi";
+"settings.section.output" = "TULOSTE";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Oletus tulostemappa";
+"settings.noFolderSelected" = "Ei valittu — kysytään joka kerta";
+"settings.chooseFolder" = "Valitse kansio";
+"settings.clearFolder" = "Tyhjennä";
+"settings.folderPicker.message" = "Valitse oletuskansio viedyille tiedostoille";
+"settings.folderPicker.button" = "Valitse kansio";
 
 "app.maintenance.title2" = "Huoltotöitä käynnissä";
 "app.maintenance.body" = "Sovellus ei ole väliaikaisesti käytettävissä. Palaamme pian.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Päivitä App Storessa";
 "app.quit2" = "Sulje sovellus";
 
-"settings.subtitle" = "Muokkaa Comet Editor -kokemustasi";
-"settings.section.output" = "TULOSTE";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Oletus tulostemappa";
-"settings.noFolderSelected" = "Ei valittu — kysytään joka kerta";
-"settings.chooseFolder" = "Valitse kansio";
-"settings.clearFolder" = "Tyhjennä";
-"settings.folderPicker.message" = "Valitse oletuskansio viedyille tiedostoille";
-"settings.folderPicker.button" = "Valitse kansio";
-"menu.announcements" = "Ilmoitukset";
-"announcements.subtitle" = "Tiimin uusimmat uutiset ja päivitykset";
-"announcements.empty" = "Ei ilmoituksia vielä";
-
 "settings.pdfOutputFolder" = "PDF-tulostemappa";
 
 "folder.default.prompt.title" = "Aseta oletuskansioksi?";
 "folder.default.prompt.body" = "Haluatko asettaa tämän oletustulostuskansioksesi? Voit muuttaa sen milloin tahansa Asetuksissa.";
 "folder.default.prompt.yes" = "Aseta oletukseksi";
 "folder.default.prompt.no" = "Ei nyt";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Leikkaa klippejä, poista ei-toivottuja osia ja yhdistä useita videoita yhdeksi.";
-"home.guide.videoedit.preset.concat" = "Yhdistä videot";
-"home.guide.videoedit.preset.trim" = "Leikkaa video";
-"home.guide.videoedit.step1" = "Lisää yksi tai useampi videotiedosto +-painikkeella tai vetämällä ja pudottamalla.";
-"home.guide.videoedit.step2" = "Valitse klippi ja vedä aikajanan leikkauskahvoja asettaaksesi alku- ja loppukohdat.";
-"home.guide.videoedit.step3" = "Järjestä klipit uudelleen listassa vetämällä ne lopulliseen järjestykseen.";
-"home.guide.videoedit.step4" = "Valitse tulostemuoto ja kansio ja napsauta sitten Vie.";
-"home.guide.videoedit.tip" = "Leikkauskahvat tarttuvat millisekunnin tarkkuudella — käytä toistopalkkia tarkistaaksesi leikkauksen.";
-"menu.videoEdit" = "Videon muokkaus";
-"qr.email.address" = "Sähköpostiosoite";
-"qr.email.body" = "Viesti";
-"qr.email.subject" = "Aihe";
-"qr.phone.number" = "Puhelinnumero";
-"qr.settings.type" = "QR-tyyppi";
-"qr.type.email" = "Sähköposti";
-"qr.type.phone" = "Puhelin";
-"qr.type.vcard" = "Yhteystieto (vCard)";
-"qr.type.website" = "Verkkosivusto";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Osoite";
-"qr.vcard.company" = "Yritys";
-"qr.vcard.email" = "Sähköposti";
-"qr.vcard.firstName" = "Etunimi";
-"qr.vcard.jobTitle" = "Titteli";
-"qr.vcard.lastName" = "Sukunimi";
-"qr.vcard.phone" = "Puhelinnumero";
-"qr.vcard.website" = "Verkkosivusto";
-"qr.wifi.hidden" = "Piilotettu verkko";
-"qr.wifi.noEncryption" = "Ei salausta";
-"qr.wifi.password" = "Salasana";
-"qr.wifi.ssid" = "Verkon nimi (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Lisää kuva";
-"videoedit.addMore" = "Lisää";
-"videoedit.cancel" = "Peruuta";
-"videoedit.clip.remove" = "Poista leike";
-"videoedit.clip.trimmed" = "leikattu";
-"videoedit.clips" = "Leikkeet";
-"videoedit.clips.total" = "yhteensä";
-"videoedit.drop.subtitle" = "Pudota videoita tähän tai napauta +";
-"videoedit.drop.title" = "Lisää videotiedostoja";
-"videoedit.empty.button" = "Lisää videoita";
-"videoedit.empty.subtitle" = "Pudota videotiedostoja tähän tai napsauta alla olevaa painiketta";
-"videoedit.empty.title" = "Lisää muokattavia videoita";
-"videoedit.export.merge" = "Yhdistä ja vie";
-"videoedit.export.noFolder" = "Valitse ensin tallennuskansio";
-"videoedit.export.settings" = "Asetukset";
-"videoedit.export.trim" = "Vie leike";
-"videoedit.exporting" = "Viedään…";
-"videoedit.folder.change" = "Vaihda kansiota";
-"videoedit.imageDuration" = "KUVAN KESTO";
-"videoedit.imageDuration.default" = "Oletus uusille kuville";
-"videoedit.insert.after" = "Lisää jälkeen";
-"videoedit.insert.append" = "Lisää loppuun";
-"videoedit.insert.before" = "Lisää ennen";
-"videoedit.insert.prepend" = "Lisää alkuun";
-"videoedit.inspector.folder" = "TALLENNUSKOHTEEN";
-"videoedit.inspector.format" = "Muoto";
-"videoedit.inspector.output" = "TULOSTEMUOTO";
-"videoedit.inspector.quality" = "Laatu";
-"videoedit.inspector.trim" = "LEIKKAA";
-"videoedit.noClip" = "Valitse leike esikatselua varten";
-"videoedit.noClip.hint" = "Lisää videotiedostoja vasemmalta aloittaaksesi.";
-"videoedit.timeline.title" = "Leikkaa";
-"videoedit.trim.confirm" = "Vahvista leikkaus";
-"videoedit.trim.duration" = "Kesto";
-"videoedit.trim.end" = "Loppu";
-"videoedit.trim.reset" = "Nollaa";
-"videoedit.trim.start" = "Alku";
-"watermark.apply" = "Käytä";
-"watermark.button" = "Lisää vesileimaa";
-"watermark.cancel" = "Peruuta";
-"watermark.color.black" = "Musta";
-"watermark.color.darkGray" = "Tummanharmaa";
-"watermark.color.gray" = "Harmaa";
-"watermark.color.lightGray" = "Vaaleanharmaa";
-"watermark.color.none" = "Ei väriä";
-"watermark.color.white" = "Valkoinen";
-"watermark.colorOverlay" = "Värikerros";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Peittävyys";
-"watermark.pos.bottomCenter" = "Ala keskellä";
-"watermark.pos.bottomLeft" = "Ala vasen";
-"watermark.pos.bottomRight" = "Ala oikea";
-"watermark.pos.center" = "Keskellä";
-"watermark.pos.centerLeft" = "Keskellä vasemmalla";
-"watermark.pos.centerRight" = "Keskellä oikealla";
-"watermark.pos.topCenter" = "Ylä keskellä";
-"watermark.pos.topLeft" = "Ylä vasen";
-"watermark.pos.topRight" = "Ylä oikea";
-"watermark.position" = "Sijainti";
-"watermark.preview" = "Esikatselu";
-"watermark.removeLogo" = "Poista";
-"watermark.scale" = "Skaala";
-"watermark.selectLogo" = "Valitse kuva";
-"watermark.tileMode" = "Laatoitus";
-"watermark.tileMode.desc" = "Toista kuvan päällä";
+
 "watermark.title" = "Vesileima";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Lisää vesileimaa";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Valitse kuva";
+"watermark.removeLogo" = "Poista";
+"watermark.position" = "Sijainti";
+"watermark.scale" = "Skaala";
+"watermark.opacity" = "Peittävyys";
+"watermark.preview" = "Esikatselu";
+"watermark.apply" = "Käytä";
+"watermark.cancel" = "Peruuta";
+"watermark.pos.topLeft" = "Ylä vasen";
+"watermark.pos.topCenter" = "Ylä keskellä";
+"watermark.pos.topRight" = "Ylä oikea";
+"watermark.pos.centerLeft" = "Keskellä vasemmalla";
+"watermark.pos.center" = "Keskellä";
+"watermark.pos.centerRight" = "Keskellä oikealla";
+"watermark.pos.bottomLeft" = "Ala vasen";
+"watermark.pos.bottomCenter" = "Ala keskellä";
+"watermark.pos.bottomRight" = "Ala oikea";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Värikerros";
+"watermark.color.none" = "Ei väriä";
+"watermark.color.black" = "Musta";
+"watermark.color.darkGray" = "Tummanharmaa";
+"watermark.color.gray" = "Harmaa";
+"watermark.color.lightGray" = "Vaaleanharmaa";
+"watermark.color.white" = "Valkoinen";
+"watermark.tileMode" = "Laatoitus";
+"watermark.tileMode.desc" = "Toista kuvan päällä";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Asetukset";
-"upscale.settings.model" = "Malli";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — tekoälyparannus yksityiskohtiin";
-"upscale.settings.scale" = "Skaala";
-"upscale.scale.multiPassHint" = "8× ja 16× suorittavat useita tekoälykierroksia — kestää kauemmin.";
-"upscale.settings.outputFormat" = "Tulostemuoto";
-"upscale.drop.title" = "Vedä ja pudota kuvia";
-"upscale.drop.subtitle" = "tai napsauta selataksesi tiedostoja";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Vain tuetut bittikarttakuvat voidaan suurentaa täällä";
-"upscale.runButton" = "Suurenna";
-"upscale.preview.run" = "Esikatsele";
-"upscale.preview.hint" = "Valitse skaala ja napauta Esikatsele vertaillaksesi";
-"upscale.preview.processing" = "Luodaan esikatselua…";
-"upscale.preview.before" = "ENNEN";
-"upscale.preview.after" = "JÄLKEEN";
-"upscale.preview.save" = "Tallenna";
-"upscale.preview.saveSettings" = "Tallenna esikatselu";
-"upscale.preview.autoSave" = "Tallenna esikatselun jälkeen";
-"upscale.preview.autoSaveHint" = "Kirjoittaa kohdekansioon, kun esikatselu valmistuu.";
-"upscale.preview.saveNeedFolder" = "Valitse ensin kohdekansio.";
-"upscale.preview.saveFailed" = "Esikatselukuvaa ei voitu koodata.";
-"upscale.preview.loadFailed" = "Esikatselukuvaa ei voitu ladata.";
-"upscale.backend.missing.hint" = "cometscaly-moottori tai mallitiedostot puuttuvat sovelluspaketista. Rakenna projekti uudelleen.";
-"upscale.error.bundle" = "Upscale-bundle-kansio puuttuu sovelluksesta.";
-"upscale.error.binary" = "cometscalya ei löytynyt sovelluspaketista.";
-"upscale.error.model" = "Mallitiedostot upscayl-standard-4x.param/.bin puuttuvat.";
-"upscale.error.process" = "Suurennus epäonnistui (exit %d): %@";
-"upscale.error.none" = "Yhtään kuvaa ei suurennettu.";
-"videoedit.resize.modePercent" = "Skaala (%)";
-"videoedit.resize.modeCustom" = "Mukautettu koko";
-"videoedit.resize.autoFill" = "Täytä kangas automaattisesti";
-"videoedit.resize.autoFillHint" = "Päällä: leveä materiaali sopii letterboxilla; pienempää zoomataan ja rajataan keskeltä.";
+"inspector.format" = "Muoto";
+"inspector.output" = "Ulostulo";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Lisää kuva esikatselua varten";
+"watermark.rotation" = "Kierto";
+"watermark.text" = "Logoteksti";
+"watermark.text.placeholder" = "Kirjoita logoteksti";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

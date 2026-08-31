@@ -42,3 +42,17 @@ third_party/imagemagick/x86_64/
 
 # MyMemory çeviri önbelleği (scripts/gen_home_bundles_mt.py)
 i18n/.home_mt_cache.json
+
+# Local secrets (copy Secrets.example.plist → Secrets.plist)
+cometeditor/Secrets.plist
+
+# Xcode user-specific
+xcuserdata/
+*.xcuserstate
+
+# Python
+__pycache__/
+*.pyc
+
+# One-off i18n scratch
+scripts/_wp_b_json/

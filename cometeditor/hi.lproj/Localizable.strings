@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "यहाँ छवियाँ खींचें";
 "convert.drop.subtitle" = "PNG, JPG, WebP, HEIF और अन्य प्रारूपों का समर्थन करता है";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "चौड़ाई";
 "convert.settings.height" = "ऊँचाई";
+
 "meta.info" = "मेटाडेटा सुरक्षित रहेगा";
+
 "convert.settings.targetFolder" = "लक्ष्य फ़ोल्डर";
 "convert.settings.noFolder" = "कोई फ़ोल्डर नहीं चुना गया";
 "convert.settings.chooseFolder" = "फ़ोल्डर चुनें";
+
+"folder.missing.title" = "फ़ोल्डर नहीं मिला";
+"folder.missing.subtitle" = "सहेजा गया फ़ोल्डर पथ अब मौजूद नहीं है। कृपया नया चुनें।";
+"folder.missing.pick" = "नया फ़ोल्डर चुनें";
+"folder.missing.panel.message" = "आउटपुट फ़ोल्डर नहीं मिला। कृपया नया फ़ोल्डर चुनें।";
+
+"bgremove.error.noMaskFound" = "कोई अग्रभूमि मास्क नहीं मिला।";
+"bgremove.error.maskConversionFailed" = "मास्क रूपांतरण विफल।";
+"bgremove.error.compositeFailed" = "चित्र संयोजन विफल।";
+
 "convert.settings.convertButton" = "रूपांतरित करें";
 "convert.clearAll" = "सभी साफ़ करें";
 "convert.addMore" = "और जोड़ें";
 "convert.wrongType.image" = "यहाँ केवल छवियाँ परिवर्तित की जा सकती हैं";
+
+"upscale.settings.title" = "सेटिंग्स";
+"upscale.settings.model" = "मॉडल";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI विवरण सुधार";
+"upscale.settings.scale" = "स्केल";
+"upscale.scale.multiPassHint" = "8× और 16× कई AI पास चलाते हैं — अधिक समय लगता है।";
+"upscale.settings.outputFormat" = "आउटपुट प्रारूप";
+"upscale.drop.title" = "छवियाँ खींचें और छोड़ें";
+"upscale.drop.subtitle" = "या फ़ाइलें चुनने के लिए क्लिक करें";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "यहाँ केवल समर्थित रास्टर छवियाँ बड़ी की जा सकती हैं";
+"upscale.runButton" = "बड़ा करें";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "पूर्वावलोकन";
+"upscale.preview.hint" = "स्केल चुनें और तुलना के लिए पूर्वावलोकन पर टैप करें";
+"upscale.preview.processing" = "पूर्वावलोकन बना रहा है…";
+"upscale.preview.before" = "पहले";
+"upscale.preview.after" = "बाद";
+"upscale.preview.save" = "सहेजें";
+"upscale.preview.saveSettings" = "पूर्वावलोकन सहेजें";
+"upscale.preview.autoSave" = "पूर्वावलोकन के बाद सहेजें";
+"upscale.preview.autoSaveHint" = "पूर्वावलोकन समाप्त होने पर लक्ष्य फ़ोल्डर में लिखता है।";
+"upscale.preview.saveNeedFolder" = "पहले लक्ष्य फ़ोल्डर चुनें।";
+"upscale.preview.saveFailed" = "पूर्वावलोकन छवि एन्कोड नहीं हो सकी।";
+"upscale.preview.loadFailed" = "पूर्वावलोकन छवि लोड नहीं हो सकी।";
+"upscale.backend.missing.hint" = "ऐप बंडल में cometscaly इंजन या मॉडल फ़ाइलें नहीं हैं। प्रोजेक्ट दोबारा बनाएँ।";
+"upscale.error.bundle" = "ऐप में Upscale बंडल फ़ोल्डर गायब है।";
+"upscale.error.binary" = "ऐप बंडल में cometscaly नहीं मिला।";
+"upscale.error.model" = "मॉडल फ़ाइलें upscayl-standard-4x.param/.bin गायब हैं।";
+"upscale.error.process" = "अपस्केल विफल (exit %d): %@";
+"upscale.error.none" = "कोई छवि बड़ी नहीं की गई।";
+
 "menu.home" = "होम";
 "menu.convertImage" = "छवि रूपांतरण";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "सेटिंग्स";
 "menu.tools" = "टूल्स";
 "menu.document" = "DOCUMENT";
-"menu.team" = "टीम";
-"menu.team.title" = "Comet Dev द्वारा विकसित";
-"menu.team.subtitle" = "प्यार और विवरण पर ध्यान के साथ बनाया गया";
 "menu.stockImage" = "स्टॉक फ़ोटो";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "पृष्ठभूमि हटाएं";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "फ़ॉन्ट";
 "menu.videoConvert" = "वीडियो रूपांतरण";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "सुझाव भेजें";
-"team.thanks_grafix" = "डिज़ाइन के लिए Grafix को विशेष धन्यवाद";
+
 "alert.success.title" = "सफलता";
 "alert.error.title" = "त्रुटि";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "फ़ोल्डर खोलें";
 "alert.success.message.image" = "छवि %@ में सहेजी गई।";
 "alert.success.message.video" = "वीडियो %@ में सहेजा गया।";
+"alert.error.conversion" = "कुछ छवियाँ कनवर्ट नहीं हो सकीं.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "MP4, MOV, AVI और अन्य प्रारूपों का समर्थन करता है";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "मूल का 75%";
 "video.resolution.50" = "मूल का 50%";
 "video.resolution.25" = "मूल का 25% (कम गुणवत्ता)";
+
 "pdf.drop.title" = "यहाँ PDF फ़ाइल खींचें";
 "pdf.drop.subtitle" = "संपादन के लिए PDF फ़ाइल चुनें";
 "pdf.page.count" = "%lld पृष्ठ";
 "pdf.page.info" = "पृष्ठ %lld / %lld";
 "pdf.estimatedSize" = "अनुमानित आकार";
+"pdf.quality.modal.title" = "ऑप्टिमाइज़ेशन स्तर चुनें";
+"pdf.quality.modal.subtitle" = "फ़ाइल का आकार कितना कम करना है चुनें। अधिक कम्प्रेशन मतलब छोटी फ़ाइल लेकिन कुछ गुणवत्ता हानि।";
+"pdf.quality.modal.estimated" = "अनुमानित आकार";
+"pdf.quality.modal.confirm" = "ऑप्टिमाइज़ करें";
+"pdf.quality.modal.cancel" = "रद्द करें";
+"pdf.quality.low.title" = "अधिकतम कम्प्रेशन";
+"pdf.quality.low.desc" = "सबसे छोटी फ़ाइल, दृश्यमान गुणवत्ता हानि";
+"pdf.quality.medium.title" = "संतुलित";
+"pdf.quality.medium.desc" = "आकार और गुणवत्ता का अच्छा संतुलन";
+"pdf.quality.high.title" = "उच्च गुणवत्ता";
+"pdf.quality.high.desc" = "न्यूनतम गुणवत्ता हानि, मध्यम कटौती";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF अनुकूलित करें";
+"pdf.tools.quality" = "गुणवत्ता";
+"pdf.tools.quality.label" = "छवि गुणवत्ता";
+"pdf.tools.quality.small" = "छोटी फ़ाइल";
+"pdf.tools.quality.large" = "बेहतर गुणवत्ता";
+"pdf.tools.quality.lossless" = "दोषरहित";
+"pdf.tools.resolution" = "रिज़ॉल्यूशन स्केल";
+"pdf.tools.resolution.enable" = "रिज़ॉल्यूशन कम करें";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK कनवर्टर";
+"pdf.color.enable" = "रंग स्थान कनवर्ट करें";
+"pdf.color.convert" = "कनवर्ट करें और सहेजें";
 "pdf.tools.save" = "PDF सहेजें";
 "pdf.reorder.title" = "पृष्ठ पुनर्क्रमण";
 "pdf.reorder.hint" = "पृष्ठों का क्रम बदलने के लिए खींचें";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "बाद में";
 "pdf.addContent.atEnd" = "अंत में";
 "pdf.addContent.chooseFile" = "फ़ाइल चुनें";
+
 "stock.deselectAll" = "सभी अचयनित करें";
 "stock.download" = "डाउनलोड करें";
 "stock.download.count" = "%d फ़ोटो डाउनलोड करें";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "यहाँ URL या टेक्स्ट दर्ज करें...";
 "qr.settings.colors" = "रंग";
 "qr.settings.fgColor" = "अग्रभूमि रंग";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "रिज़ॉल्यूशन";
 "qr.settings.customSize" = "कस्टम आकार (px)";
 "qr.download" = "QR कोड डाउनलोड करें";
+"qr.settings.type" = "QR प्रकार";
+"qr.type.website" = "वेबसाइट";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "संपर्क (vCard)";
+"qr.type.email" = "ईमेल";
+"qr.type.phone" = "फ़ोन";
+"qr.wifi.ssid" = "नेटवर्क नाम (SSID)";
+"qr.wifi.password" = "पासवर्ड";
+"qr.wifi.hidden" = "छुपा नेटवर्क";
+"qr.wifi.noEncryption" = "कोई नहीं";
+"qr.vcard.firstName" = "पहला नाम";
+"qr.vcard.lastName" = "अंतिम नाम";
+"qr.vcard.phone" = "फ़ोन";
+"qr.vcard.email" = "ईमेल";
+"qr.vcard.company" = "कंपनी";
+"qr.vcard.jobTitle" = "पद";
+"qr.vcard.address" = "पता";
+"qr.vcard.website" = "वेबसाइट";
+"qr.email.address" = "ईमेल पता";
+"qr.email.subject" = "विषय";
+"qr.email.body" = "संदेश";
+"qr.phone.number" = "फ़ोन नंबर";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "इस सुविधा के लिए macOS 14 या नया संस्करण आवश्यक है";
 "bgremove.drop.title" = "यहाँ छवियाँ खींचें";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "किनारों को नरम करें";
 "bgremove.settings.featherAmount" = "नरमी का स्तर";
+
 "ocr.drop.title" = "यहाँ छवि खींचें";
 "ocr.drop.subtitle" = "PNG, JPG और WebP का समर्थन करता है";
 "ocr.processing" = "टेक्स्ट पहचाना जा रहा है...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "साफ़ करें";
 "ocr.newFile" = "नई फ़ाइल";
 "ocr.copied" = "कॉपी हो गया!";
+
 "app.comingSoon.title" = "जल्द आएगा";
 "app.comingSoon.message" = "यह सुविधा विकास में है और जल्द ही उपलब्ध होगी।";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "फ़ॉन्ट खोजें...";
 "font.preview.custom" = "कस्टम पूर्वावलोकन";
 "font.inspector.preview" = "पूर्वावलोकन";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d परिवार";
 "font.styles.count" = "%d शैली · %@";
 "font.noResults" = "कोई फ़ॉन्ट नहीं मिला";
-"suggestion.title" = "सुझाव भेजें";
-"suggestion.subtitle" = "अपने विचार साझा करें और हमें बेहतर बनाने में मदद करें";
-"suggestion.placeholder.title" = "शीर्षक";
-"suggestion.placeholder.body" = "अपना सुझाव विस्तार से बताएं...";
-"suggestion.category.bug" = "बग";
-"suggestion.category.feature" = "सुविधा अनुरोध";
-"suggestion.category.ui" = "इंटरफ़ेस";
-"suggestion.category.performance" = "प्रदर्शन";
-"suggestion.category.other" = "अन्य";
-"suggestion.send" = "सुझाव भेजें";
-"suggestion.sending" = "भेजा जा रहा है...";
-"suggestion.sent.title" = "धन्यवाद!";
-"suggestion.sent.message" = "आपका सुझाव प्राप्त हो गया। हम जल्द ही इसकी समीक्षा करेंगे।";
-"suggestion.error" = "भेजना विफल। कृपया पुनः प्रयास करें।";
-"suggestion.validation.title" = "अनुपलब्ध फ़ील्ड";
-"suggestion.validation.body" = "कृपया शीर्षक और विवरण भरें।";
-
-"suggestion.label.category" = "श्रेणी";
-"suggestion.label.title" = "शीर्षक";
-"suggestion.label.description" = "विवरण";
 
 "video.drop.title" = "यहाँ वीडियो ड्रॉप करें";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "यहाँ केवल वीडियो परिवर्तित किए जा सकते हैं";
+
 "app.maintenance.title" = "रखरखाव मोड";
 "app.forceUpdate.title" = "अपडेट आवश्यक है";
 "app.forceUpdate.button" = "App Store पर अपडेट करें";
@@ -283,49 +371,40 @@
 "stock.search.button" = "खोजें";
 "stock.search.placeholder" = "फ़ोटो खोजें...";
 "stock.selected" = "%d चयनित";
+
 "video.cancel" = "रद्द करें";
 "video.error.decoder" = "वीडियो डीकोड नहीं किया जा सका।";
 "video.saved.gain" = "बचाया गया";
 "video.saved.increased" = "बड़ा";
 "video.settings.fps.desc" = "मूल FPS बनाए रखने के लिए अक्षम करें";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "छवि";
 "pdf.tools.pageManagement" = "पृष्ठ प्रबंधन";
 "pdf.tools.addContent" = "सामग्री जोड़ें";
 "pdf.tools.reorder" = "पुनः क्रमबद्ध करें";
 "pdf.tools.targetFolder" = "लक्ष्य फ़ोल्डर";
-"alert.error.conversion" = "कुछ छवियाँ कनवर्ट नहीं हो सकीं.";
-"pdf.color.convert" = "कनवर्ट करें और सहेजें";
-"pdf.color.enable" = "रंग स्थान कनवर्ट करें";
-"pdf.color.title" = "RGB/CMYK कनवर्टर";
-"pdf.tools.quality" = "गुणवत्ता";
-"pdf.tools.quality.label" = "छवि गुणवत्ता";
-"pdf.tools.quality.large" = "बेहतर गुणवत्ता";
-"pdf.tools.quality.lossless" = "दोषरहित";
-"pdf.tools.resolution" = "रिज़ॉल्यूशन स्केल";
-"pdf.tools.resolution.enable" = "रिज़ॉल्यूशन कम करें";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "छोटी फ़ाइल";
 
 "ad.sponsored" = "प्रायोजित";
 "ad.visit" = "जाएं";
 
-"pdf.quality.modal.title" = "ऑप्टिमाइज़ेशन स्तर चुनें";
-"pdf.quality.modal.subtitle" = "फ़ाइल का आकार कितना कम करना है चुनें। अधिक कम्प्रेशन मतलब छोटी फ़ाइल लेकिन कुछ गुणवत्ता हानि।";
-"pdf.quality.modal.estimated" = "अनुमानित आकार";
-"pdf.quality.modal.confirm" = "ऑप्टिमाइज़ करें";
-"pdf.quality.modal.cancel" = "रद्द करें";
-"pdf.quality.low.title" = "अधिकतम कम्प्रेशन";
-"pdf.quality.low.desc" = "सबसे छोटी फ़ाइल, दृश्यमान गुणवत्ता हानि";
-"pdf.quality.medium.title" = "संतुलित";
-"pdf.quality.medium.desc" = "आकार और गुणवत्ता का अच्छा संतुलन";
-"pdf.quality.high.title" = "उच्च गुणवत्ता";
-"pdf.quality.high.desc" = "न्यूनतम गुणवत्ता हानि, मध्यम कटौती";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor का अनुभव अनुकूलित करें";
+"settings.section.output" = "आउटपुट";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "डिफ़ॉल्ट आउटपुट फ़ोल्डर";
+"settings.noFolderSelected" = "चयनित नहीं — हर बार पूछा जाएगा";
+"settings.chooseFolder" = "फ़ोल्डर चुनें";
+"settings.clearFolder" = "साफ़ करें";
+"settings.folderPicker.message" = "निर्यात की गई फ़ाइलों के लिए डिफ़ॉल्ट फ़ोल्डर चुनें";
+"settings.folderPicker.button" = "फ़ोल्डर चुनें";
 
 "app.maintenance.title2" = "रखरखाव चल रहा है";
 "app.maintenance.body" = "ऐप अस्थायी रूप से उपलब्ध नहीं है। हम जल्द ही वापस आएंगे।";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store पर अपडेट करें";
 "app.quit2" = "ऐप बंद करें";
 
-"settings.subtitle" = "Comet Editor का अनुभव अनुकूलित करें";
-"settings.section.output" = "आउटपुट";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "डिफ़ॉल्ट आउटपुट फ़ोल्डर";
-"settings.noFolderSelected" = "चयनित नहीं — हर बार पूछा जाएगा";
-"settings.chooseFolder" = "फ़ोल्डर चुनें";
-"settings.clearFolder" = "साफ़ करें";
-"settings.folderPicker.message" = "निर्यात की गई फ़ाइलों के लिए डिफ़ॉल्ट फ़ोल्डर चुनें";
-"settings.folderPicker.button" = "फ़ोल्डर चुनें";
-"menu.announcements" = "घोषणाएँ";
-"announcements.subtitle" = "टीम से नवीनतम समाचार और अपडेट";
-"announcements.empty" = "अभी तक कोई घोषणा नहीं";
-
 "settings.pdfOutputFolder" = "PDF आउटपुट फ़ोल्डर";
 
 "folder.default.prompt.title" = "डिफ़ॉल्ट फ़ोल्डर के रूप में सेट करें?";
 "folder.default.prompt.body" = "क्या आप इसे अपने डिफ़ॉल्ट आउटपुट फ़ोल्डर के रूप में सेट करना चाहते हैं? आप इसे कभी भी सेटिंग में बदल सकते हैं।";
 "folder.default.prompt.yes" = "डिफ़ॉल्ट के रूप में सेट करें";
 "folder.default.prompt.no" = "अभी नहीं";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "वीडियो संपादक";
-"qr.email.address" = "ईमेल पता";
-"qr.email.body" = "संदेश";
-"qr.email.subject" = "विषय";
-"qr.phone.number" = "फ़ोन नंबर";
-"qr.settings.type" = "QR प्रकार";
-"qr.type.email" = "ईमेल";
-"qr.type.phone" = "फ़ोन";
-"qr.type.vcard" = "संपर्क (vCard)";
-"qr.type.website" = "वेबसाइट";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "पता";
-"qr.vcard.company" = "कंपनी";
-"qr.vcard.email" = "ईमेल";
-"qr.vcard.firstName" = "पहला नाम";
-"qr.vcard.jobTitle" = "पद";
-"qr.vcard.lastName" = "अंतिम नाम";
-"qr.vcard.phone" = "फ़ोन";
-"qr.vcard.website" = "वेबसाइट";
-"qr.wifi.hidden" = "छुपा नेटवर्क";
-"qr.wifi.noEncryption" = "कोई नहीं";
-"qr.wifi.password" = "पासवर्ड";
-"qr.wifi.ssid" = "नेटवर्क नाम (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "फ़ोटो जोड़ें";
-"videoedit.addMore" = "जोड़ें";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "वीडियो जोड़ें";
-"videoedit.empty.subtitle" = "वीडियो फ़ाइलें यहाँ छोड़ें या नीचे दिए बटन पर टैप करें";
-"videoedit.empty.title" = "संपादन के लिए वीडियो जोड़ें";
-"videoedit.export.merge" = "मर्ज करके निर्यात करें";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "सेटिंग्स";
-"videoedit.export.trim" = "क्लिप निर्यात करें";
-"videoedit.exporting" = "निर्यात हो रहा है…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "फ़ोटो अवधि";
-"videoedit.imageDuration.default" = "नई तस्वीरों के लिए डिफ़ॉल्ट";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "इसमें सहेजें";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "लागू करें";
-"watermark.button" = "वॉटरमार्क जोड़ें";
-"watermark.cancel" = "रद्द करें";
-"watermark.color.black" = "काला";
-"watermark.color.darkGray" = "गहरा ग्रे";
-"watermark.color.gray" = "ग्रे";
-"watermark.color.lightGray" = "हल्का ग्रे";
-"watermark.color.none" = "कोई नहीं";
-"watermark.color.white" = "सफेद";
-"watermark.colorOverlay" = "रंग ओवरले";
-"watermark.logo" = "लोगो";
-"watermark.opacity" = "अस्पष्टता";
-"watermark.pos.bottomCenter" = "नीचे केंद्र";
-"watermark.pos.bottomLeft" = "नीचे बाएँ";
-"watermark.pos.bottomRight" = "नीचे दाएँ";
-"watermark.pos.center" = "केंद्र";
-"watermark.pos.centerLeft" = "केंद्र बाएँ";
-"watermark.pos.centerRight" = "केंद्र दाएँ";
-"watermark.pos.topCenter" = "ऊपर केंद्र";
-"watermark.pos.topLeft" = "ऊपर बाएँ";
-"watermark.pos.topRight" = "ऊपर दाएँ";
-"watermark.position" = "स्थिति";
-"watermark.preview" = "पूर्वावलोकन";
-"watermark.removeLogo" = "हटाएँ";
-"watermark.scale" = "स्केल";
-"watermark.selectLogo" = "छवि चुनें";
-"watermark.tileMode" = "टाइल मोड";
-"watermark.tileMode.desc" = "छवि पर दोहराएँ";
+
 "watermark.title" = "वॉटरमार्क";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "वॉटरमार्क जोड़ें";
+"watermark.logo" = "लोगो";
+"watermark.selectLogo" = "छवि चुनें";
+"watermark.removeLogo" = "हटाएँ";
+"watermark.position" = "स्थिति";
+"watermark.scale" = "स्केल";
+"watermark.opacity" = "अस्पष्टता";
+"watermark.preview" = "पूर्वावलोकन";
+"watermark.apply" = "लागू करें";
+"watermark.cancel" = "रद्द करें";
+"watermark.pos.topLeft" = "ऊपर बाएँ";
+"watermark.pos.topCenter" = "ऊपर केंद्र";
+"watermark.pos.topRight" = "ऊपर दाएँ";
+"watermark.pos.centerLeft" = "केंद्र बाएँ";
+"watermark.pos.center" = "केंद्र";
+"watermark.pos.centerRight" = "केंद्र दाएँ";
+"watermark.pos.bottomLeft" = "नीचे बाएँ";
+"watermark.pos.bottomCenter" = "नीचे केंद्र";
+"watermark.pos.bottomRight" = "नीचे दाएँ";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "रंग ओवरले";
+"watermark.color.none" = "कोई नहीं";
+"watermark.color.black" = "काला";
+"watermark.color.darkGray" = "गहरा ग्रे";
+"watermark.color.gray" = "ग्रे";
+"watermark.color.lightGray" = "हल्का ग्रे";
+"watermark.color.white" = "सफेद";
+"watermark.tileMode" = "टाइल मोड";
+"watermark.tileMode.desc" = "छवि पर दोहराएँ";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "सेटिंग्स";
-"upscale.settings.model" = "मॉडल";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI विवरण सुधार";
-"upscale.settings.scale" = "स्केल";
-"upscale.scale.multiPassHint" = "8× और 16× कई AI पास चलाते हैं — अधिक समय लगता है।";
-"upscale.settings.outputFormat" = "आउटपुट प्रारूप";
-"upscale.drop.title" = "छवियाँ खींचें और छोड़ें";
-"upscale.drop.subtitle" = "या फ़ाइलें चुनने के लिए क्लिक करें";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "यहाँ केवल समर्थित रास्टर छवियाँ बड़ी की जा सकती हैं";
-"upscale.runButton" = "बड़ा करें";
-"upscale.preview.run" = "पूर्वावलोकन";
-"upscale.preview.hint" = "स्केल चुनें और तुलना के लिए पूर्वावलोकन पर टैप करें";
-"upscale.preview.processing" = "पूर्वावलोकन बना रहा है…";
-"upscale.preview.before" = "पहले";
-"upscale.preview.after" = "बाद";
-"upscale.preview.save" = "सहेजें";
-"upscale.preview.saveSettings" = "पूर्वावलोकन सहेजें";
-"upscale.preview.autoSave" = "पूर्वावलोकन के बाद सहेजें";
-"upscale.preview.autoSaveHint" = "पूर्वावलोकन समाप्त होने पर लक्ष्य फ़ोल्डर में लिखता है।";
-"upscale.preview.saveNeedFolder" = "पहले लक्ष्य फ़ोल्डर चुनें।";
-"upscale.preview.saveFailed" = "पूर्वावलोकन छवि एन्कोड नहीं हो सकी।";
-"upscale.preview.loadFailed" = "पूर्वावलोकन छवि लोड नहीं हो सकी।";
-"upscale.backend.missing.hint" = "ऐप बंडल में cometscaly इंजन या मॉडल फ़ाइलें नहीं हैं। प्रोजेक्ट दोबारा बनाएँ।";
-"upscale.error.bundle" = "ऐप में Upscale बंडल फ़ोल्डर गायब है।";
-"upscale.error.binary" = "ऐप बंडल में cometscaly नहीं मिला।";
-"upscale.error.model" = "मॉडल फ़ाइलें upscayl-standard-4x.param/.bin गायब हैं।";
-"upscale.error.process" = "अपस्केल विफल (exit %d): %@";
-"upscale.error.none" = "कोई छवि बड़ी नहीं की गई।";
-"videoedit.resize.modePercent" = "स्केल (%)";
-"videoedit.resize.modeCustom" = "कस्टम आकार";
-"videoedit.resize.autoFill" = "कैनवास स्वतः भरें";
-"videoedit.resize.autoFillHint" = "चालू: चौड़ा फुटेज लेटरबॉक्स के साथ फिट; छोटा ज़ूम और केंद्र क्रॉप से भरता है।";
+"inspector.format" = "प्रारूप";
+"inspector.output" = "आउटपुट";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "पूर्वावलोकन के लिए फ़ोटो जोड़ें";
+"watermark.rotation" = "घुमाव";
+"watermark.text" = "लोगो पाठ";
+"watermark.text.placeholder" = "लोगो पाठ दर्ज करें";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

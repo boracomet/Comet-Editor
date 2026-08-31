@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Velciet attēlus šeit";
 "convert.drop.subtitle" = "Atbalsta PNG, JPG, WebP, HEIF un citus formātus";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Platums";
 "convert.settings.height" = "Augstums";
+
 "meta.info" = "Metadati tiks saglabāti";
+
 "convert.settings.targetFolder" = "MĒRĶA MAPE";
 "convert.settings.noFolder" = "Mape nav izvēlēta";
 "convert.settings.chooseFolder" = "Izvēlēties mapi";
+
+"folder.missing.title" = "Mape nav atrasta";
+"folder.missing.subtitle" = "Saglabātais mapes ceļš vairs nepastāv. Lūdzu izvēlieties jaunu.";
+"folder.missing.pick" = "Izvēlēties jaunu mapi";
+"folder.missing.panel.message" = "Izvades mape nav atrasta. Lūdzu izvēlieties jaunu mapi.";
+
+"bgremove.error.noMaskFound" = "Priekšplāna maska nav atrasta.";
+"bgremove.error.maskConversionFailed" = "Maskas konvertēšana neizdevās.";
+"bgremove.error.compositeFailed" = "Attēla komponēšana neizdevās.";
+
 "convert.settings.convertButton" = "Konvertēt";
 "convert.clearAll" = "Notīrīt visu";
 "convert.addMore" = "Pievienot vairāk";
 "convert.wrongType.image" = "Šeit var konvertēt tikai attēlus";
+
+"upscale.settings.title" = "Iestatījumi";
+"upscale.settings.model" = "Modelis";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — detaļu uzlabošana ar MI";
+"upscale.settings.scale" = "Mērogs";
+"upscale.scale.multiPassHint" = "8× un 16× veic vairākus MI caurlaidus — ilgāk.";
+"upscale.settings.outputFormat" = "Izvades formāts";
+"upscale.drop.title" = "Velciet un nometiet attēlus";
+"upscale.drop.subtitle" = "vai noklikšķiniet, lai pārlūkotu failus";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Šeit var palielināt tikai atbalstītus rastra attēlus";
+"upscale.runButton" = "Palielināt";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Priekšskatījums";
+"upscale.preview.hint" = "Izvēlieties mērogu un pieskarieties Priekšskatījums salīdzināšanai";
+"upscale.preview.processing" = "Veido priekšskatījumu…";
+"upscale.preview.before" = "PIRMS";
+"upscale.preview.after" = "PĒC";
+"upscale.preview.save" = "Saglabāt";
+"upscale.preview.saveSettings" = "Saglabāt priekšskatījumu";
+"upscale.preview.autoSave" = "Saglabāt pēc priekšskatījuma";
+"upscale.preview.autoSaveHint" = "Pēc priekšskatījuma pabeigšanas ieraksta mērķa mapē.";
+"upscale.preview.saveNeedFolder" = "Vispirms izvēlieties mērķa mapi.";
+"upscale.preview.saveFailed" = "Nevarēja kodēt priekšskatījuma attēlu.";
+"upscale.preview.loadFailed" = "Nevarēja ielādēt priekšskatījuma attēlu.";
+"upscale.backend.missing.hint" = "Lietotnes pakotnē trūkst cometscaly dzinēja vai modeļa failu. Atkārtoti uzbūvējiet projektu.";
+"upscale.error.bundle" = "Lietotnē trūkst Upscale pakotnes mapes.";
+"upscale.error.binary" = "cometscaly nav atrasts lietotnes pakotnē.";
+"upscale.error.model" = "Trūkst modeļa failu upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Palielināšana neizdevās (exit %d): %@";
+"upscale.error.none" = "Neviens attēls netika palielināts.";
+
 "menu.home" = "Sākums";
 "menu.convertImage" = "Attēlu konvertēšana";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Iestatījumi";
 "menu.tools" = "Rīki";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Komanda";
-"menu.team.title" = "Izstrādāja Comet Dev";
-"menu.team.subtitle" = "Veidots ar mīlestību un uzmanību detaļām";
 "menu.stockImage" = "Stock fotogrāfijas";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Fona noņemšana";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Fonti";
 "menu.videoConvert" = "Video konvertēšana";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Nosūtīt atsauksmi";
-"team.thanks_grafix" = "Īpašs paldies Grafix par dizainu";
+
 "alert.success.title" = "Veiksmīgi";
 "alert.error.title" = "Kļūda";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Atvērt mapi";
 "alert.success.message.image" = "Attēls saglabāts %@.";
 "alert.success.message.video" = "Video saglabāts %@.";
+"alert.error.conversion" = "Dažus attēlus nevarēja konvertēt.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Atbalsta MP4, MOV, AVI un citus formātus";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% no oriģināla";
 "video.resolution.50" = "50% no oriģināla";
 "video.resolution.25" = "25% no oriģināla (Zema kvalitāte)";
+
 "pdf.drop.title" = "Velciet PDF failu šeit";
 "pdf.drop.subtitle" = "Izvēlieties PDF failu rediģēšanai";
 "pdf.page.count" = "%lld lapas";
 "pdf.page.info" = "Lapa %lld no %lld";
 "pdf.estimatedSize" = "Paredzamais izmērs";
+"pdf.quality.modal.title" = "Izvēlieties optimizācijas līmeni";
+"pdf.quality.modal.subtitle" = "Izvēlieties, cik daudz samazināt faila izmēru. Augstāka saspiešana nozīmē mazāku failu ar nelielu kvalitātes zudumu.";
+"pdf.quality.modal.estimated" = "Paredzamais izmērs";
+"pdf.quality.modal.confirm" = "Optimizēt";
+"pdf.quality.modal.cancel" = "Atcelt";
+"pdf.quality.low.title" = "Maksimālā saspiešana";
+"pdf.quality.low.desc" = "Mazākais fails, redzams kvalitātes zudums";
+"pdf.quality.medium.title" = "Sabalansēts";
+"pdf.quality.medium.desc" = "Labs izmēra un kvalitātes balanss";
+"pdf.quality.high.title" = "Augsta kvalitāte";
+"pdf.quality.high.desc" = "Minimāls kvalitātes zudums, mērena samazināšana";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimizēt PDF";
+"pdf.tools.quality" = "KVALITĀTE";
+"pdf.tools.quality.label" = "Attēla kvalitāte";
+"pdf.tools.quality.small" = "Mazāks fails";
+"pdf.tools.quality.large" = "Labāka kvalitāte";
+"pdf.tools.quality.lossless" = "Bez zudumiem";
+"pdf.tools.resolution" = "IZŠĶIRTSPĒJAS SKALA";
+"pdf.tools.resolution.enable" = "Samazināt izšķirtspēju";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK KONVERTERS";
+"pdf.color.enable" = "Konvertēt krāsu telpu";
+"pdf.color.convert" = "Konvertēt un saglabāt";
 "pdf.tools.save" = "Saglabāt PDF";
 "pdf.reorder.title" = "Lapu pārkārtošana";
 "pdf.reorder.hint" = "Velciet, lai mainītu lapu secību";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Pēc";
 "pdf.addContent.atEnd" = "Beigās";
 "pdf.addContent.chooseFile" = "Izvēlēties failu";
+
 "stock.deselectAll" = "Noņemt atlasi";
 "stock.download" = "Lejupielādēt";
 "stock.download.count" = "Lejupielādēt %d fotogrāfijas";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Ievadiet URL vai tekstu šeit...";
 "qr.settings.colors" = "Krāsas";
 "qr.settings.fgColor" = "Priekšplāna krāsa";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Izšķirtspēja";
 "qr.settings.customSize" = "Pielāgots izmērs (px)";
 "qr.download" = "Lejupielādēt QR kodu";
+"qr.settings.type" = "QR tips";
+"qr.type.website" = "Tīmekļa vietne";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontaktpersona (vCard)";
+"qr.type.email" = "E-pasts";
+"qr.type.phone" = "Tālrunis";
+"qr.wifi.ssid" = "Tīkla nosaukums (SSID)";
+"qr.wifi.password" = "Parole";
+"qr.wifi.hidden" = "Slēpts tīkls";
+"qr.wifi.noEncryption" = "Nav";
+"qr.vcard.firstName" = "Vārds";
+"qr.vcard.lastName" = "Uzvārds";
+"qr.vcard.phone" = "Tālrunis";
+"qr.vcard.email" = "E-pasts";
+"qr.vcard.company" = "Uzņēmums";
+"qr.vcard.jobTitle" = "Amata nosaukums";
+"qr.vcard.address" = "Adrese";
+"qr.vcard.website" = "Tīmekļa vietne";
+"qr.email.address" = "E-pasta adrese";
+"qr.email.subject" = "Temats";
+"qr.email.body" = "Ziņojums";
+"qr.phone.number" = "Tālruņa numurs";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Šai funkcijai nepieciešama macOS 14 vai jaunāka versija";
 "bgremove.drop.title" = "Velciet attēlus šeit";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Malu izplūšana";
 "bgremove.settings.featherAmount" = "Izplūšanas pakāpe";
+
 "ocr.drop.title" = "Velciet attēlu šeit";
 "ocr.drop.subtitle" = "Atbalsta PNG, JPG un WebP";
 "ocr.processing" = "Teksta atpazīšana...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Notīrīt";
 "ocr.newFile" = "Jauns fails";
 "ocr.copied" = "Nokopēts!";
+
 "app.comingSoon.title" = "Drīzumā";
 "app.comingSoon.message" = "Šī funkcija tiek izstrādāta un drīzumā būs pieejama.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Meklēt fontus...";
 "font.preview.custom" = "Pielāgots priekšskatījums";
 "font.inspector.preview" = "PRIEKŠSKATĪJUMS";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d ģimeņu";
 "font.styles.count" = "%d stili · %@";
 "font.noResults" = "Fonti nav atrasti";
-"suggestion.title" = "Nosūtīt ieteikumu";
-"suggestion.subtitle" = "Dalieties ar savām idejām un palīdziet mums uzlaboties";
-"suggestion.placeholder.title" = "Virsraksts";
-"suggestion.placeholder.body" = "Aprakstiet savu ieteikumu sīkāk...";
-"suggestion.category.bug" = "Kļūda";
-"suggestion.category.feature" = "Funkcionalitātes pieprasījums";
-"suggestion.category.ui" = "Interfeiss";
-"suggestion.category.performance" = "Veiktspēja";
-"suggestion.category.other" = "Cits";
-"suggestion.send" = "Nosūtīt ieteikumu";
-"suggestion.sending" = "Sūta...";
-"suggestion.sent.title" = "Paldies!";
-"suggestion.sent.message" = "Jūsu ieteikums saņemts. Mēs to drīz izskatīsim.";
-"suggestion.error" = "Nosūtīšana neizdevās. Lūdzu, mēģiniet vēlreiz.";
-"suggestion.validation.title" = "Trūkstošie lauki";
-"suggestion.validation.body" = "Lūdzu, aizpildiet virsrakstu un aprakstu.";
-
-"suggestion.label.category" = "Kategorija";
-"suggestion.label.title" = "Virsraksts";
-"suggestion.label.description" = "Apraksts";
 
 "video.drop.title" = "Ievelciet video šeit";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Šeit var konvertēt tikai videoklipus";
+
 "app.maintenance.title" = "Apkopes režīms";
 "app.forceUpdate.title" = "Nepieciešams atjauninājums";
 "app.forceUpdate.button" = "Atjaunināt App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Meklēt";
 "stock.search.placeholder" = "Meklēt fotogrāfijas...";
 "stock.selected" = "%d atlasīts";
+
 "video.cancel" = "Atcelt";
 "video.error.decoder" = "Video nevarēja atšifrēt.";
 "video.saved.gain" = "ietaupīts";
 "video.saved.increased" = "lielāks";
 "video.settings.fps.desc" = "Atspējojiet, lai saglabātu oriģinālo FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Attēls";
 "pdf.tools.pageManagement" = "LAPU PĀRVALDĪBA";
 "pdf.tools.addContent" = "Pievienot saturu";
 "pdf.tools.reorder" = "Pārkārtot";
 "pdf.tools.targetFolder" = "MĒRĶA MAPE";
-"alert.error.conversion" = "Dažus attēlus nevarēja konvertēt.";
-"pdf.color.convert" = "Konvertēt un saglabāt";
-"pdf.color.enable" = "Konvertēt krāsu telpu";
-"pdf.color.title" = "RGB/CMYK KONVERTERS";
-"pdf.tools.quality" = "KVALITĀTE";
-"pdf.tools.quality.label" = "Attēla kvalitāte";
-"pdf.tools.quality.large" = "Labāka kvalitāte";
-"pdf.tools.quality.lossless" = "Bez zudumiem";
-"pdf.tools.resolution" = "IZŠĶIRTSPĒJAS SKALA";
-"pdf.tools.resolution.enable" = "Samazināt izšķirtspēju";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Mazāks fails";
 
 "ad.sponsored" = "Sponsorēts";
 "ad.visit" = "Apmeklēt";
 
-"pdf.quality.modal.title" = "Izvēlieties optimizācijas līmeni";
-"pdf.quality.modal.subtitle" = "Izvēlieties, cik daudz samazināt faila izmēru. Augstāka saspiešana nozīmē mazāku failu ar nelielu kvalitātes zudumu.";
-"pdf.quality.modal.estimated" = "Paredzamais izmērs";
-"pdf.quality.modal.confirm" = "Optimizēt";
-"pdf.quality.modal.cancel" = "Atcelt";
-"pdf.quality.low.title" = "Maksimālā saspiešana";
-"pdf.quality.low.desc" = "Mazākais fails, redzams kvalitātes zudums";
-"pdf.quality.medium.title" = "Sabalansēts";
-"pdf.quality.medium.desc" = "Labs izmēra un kvalitātes balanss";
-"pdf.quality.high.title" = "Augsta kvalitāte";
-"pdf.quality.high.desc" = "Minimāls kvalitātes zudums, mērena samazināšana";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Pielāgojiet savu Comet Editor pieredzi";
+"settings.section.output" = "IZVADE";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Noklusējuma izvades mape";
+"settings.noFolderSelected" = "Nav izvēlēta — katru reizi tiks jautāts";
+"settings.chooseFolder" = "Izvēlēties mapi";
+"settings.clearFolder" = "Notīrīt";
+"settings.folderPicker.message" = "Izvēlieties noklusējuma mapi eksportētajiem failiem";
+"settings.folderPicker.button" = "Izvēlēties mapi";
 
 "app.maintenance.title2" = "Notiek apkope";
 "app.maintenance.body" = "Lietotne īslaicīgi nav pieejama. Drīz atgriezīsimies.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Atjaunināt App Store";
 "app.quit2" = "Aizvērt lietotni";
 
-"settings.subtitle" = "Pielāgojiet savu Comet Editor pieredzi";
-"settings.section.output" = "IZVADE";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Noklusējuma izvades mape";
-"settings.noFolderSelected" = "Nav izvēlēta — katru reizi tiks jautāts";
-"settings.chooseFolder" = "Izvēlēties mapi";
-"settings.clearFolder" = "Notīrīt";
-"settings.folderPicker.message" = "Izvēlieties noklusējuma mapi eksportētajiem failiem";
-"settings.folderPicker.button" = "Izvēlēties mapi";
-"menu.announcements" = "Paziņojumi";
-"announcements.subtitle" = "Komandas jaunākās ziņas un atjauninājumi";
-"announcements.empty" = "Vēl nav paziņojumu";
-
 "settings.pdfOutputFolder" = "PDF izvades mape";
 
 "folder.default.prompt.title" = "Iestatīt kā noklusēto mapi?";
 "folder.default.prompt.body" = "Vai vēlaties iestatīt šo kā noklusēto izvades mapi? To varat mainīt jebkurā laikā Iestatījumos.";
 "folder.default.prompt.yes" = "Iestatīt kā noklusēto";
 "folder.default.prompt.no" = "Ne tagad";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Video redaktors";
-"qr.email.address" = "E-pasta adrese";
-"qr.email.body" = "Ziņojums";
-"qr.email.subject" = "Temats";
-"qr.phone.number" = "Tālruņa numurs";
-"qr.settings.type" = "QR tips";
-"qr.type.email" = "E-pasts";
-"qr.type.phone" = "Tālrunis";
-"qr.type.vcard" = "Kontaktpersona (vCard)";
-"qr.type.website" = "Tīmekļa vietne";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adrese";
-"qr.vcard.company" = "Uzņēmums";
-"qr.vcard.email" = "E-pasts";
-"qr.vcard.firstName" = "Vārds";
-"qr.vcard.jobTitle" = "Amata nosaukums";
-"qr.vcard.lastName" = "Uzvārds";
-"qr.vcard.phone" = "Tālrunis";
-"qr.vcard.website" = "Tīmekļa vietne";
-"qr.wifi.hidden" = "Slēpts tīkls";
-"qr.wifi.noEncryption" = "Nav";
-"qr.wifi.password" = "Parole";
-"qr.wifi.ssid" = "Tīkla nosaukums (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Pievienot foto";
-"videoedit.addMore" = "Pievienot";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Pievienot video";
-"videoedit.empty.subtitle" = "Velciet video failus šeit vai noklikšķiniet uz pogas zemāk";
-"videoedit.empty.title" = "Pievienojiet video rediģēšanai";
-"videoedit.export.merge" = "Apvienot un eksportēt";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Iestatījumi";
-"videoedit.export.trim" = "Eksportēt klipu";
-"videoedit.exporting" = "Eksportē…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTO ILGUMS";
-"videoedit.imageDuration.default" = "Noklusējums jaunām fotogrāfijām";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SAGLABĀT";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Lietot";
-"watermark.button" = "Pievienot ūdenszīmi";
-"watermark.cancel" = "Atcelt";
-"watermark.color.black" = "Melns";
-"watermark.color.darkGray" = "Tumši pelēks";
-"watermark.color.gray" = "Pelēks";
-"watermark.color.lightGray" = "Gaiši pelēks";
-"watermark.color.none" = "Nav";
-"watermark.color.white" = "Balts";
-"watermark.colorOverlay" = "Krāsu pārklājums";
-"watermark.logo" = "Logotips";
-"watermark.opacity" = "Necaurredzamība";
-"watermark.pos.bottomCenter" = "Apakšā centrā";
-"watermark.pos.bottomLeft" = "Apakšā pa kreisi";
-"watermark.pos.bottomRight" = "Apakšā pa labi";
-"watermark.pos.center" = "Centrā";
-"watermark.pos.centerLeft" = "Centrā pa kreisi";
-"watermark.pos.centerRight" = "Centrā pa labi";
-"watermark.pos.topCenter" = "Augšā centrā";
-"watermark.pos.topLeft" = "Augšā pa kreisi";
-"watermark.pos.topRight" = "Augšā pa labi";
-"watermark.position" = "Pozīcija";
-"watermark.preview" = "Priekšskatījums";
-"watermark.removeLogo" = "Noņemt";
-"watermark.scale" = "Mērogs";
-"watermark.selectLogo" = "Izvēlēties attēlu";
-"watermark.tileMode" = "Flīžu režīms";
-"watermark.tileMode.desc" = "Atkārtot attēlā";
+
 "watermark.title" = "Ūdenszīme";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Pievienot ūdenszīmi";
+"watermark.logo" = "Logotips";
+"watermark.selectLogo" = "Izvēlēties attēlu";
+"watermark.removeLogo" = "Noņemt";
+"watermark.position" = "Pozīcija";
+"watermark.scale" = "Mērogs";
+"watermark.opacity" = "Necaurredzamība";
+"watermark.preview" = "Priekšskatījums";
+"watermark.apply" = "Lietot";
+"watermark.cancel" = "Atcelt";
+"watermark.pos.topLeft" = "Augšā pa kreisi";
+"watermark.pos.topCenter" = "Augšā centrā";
+"watermark.pos.topRight" = "Augšā pa labi";
+"watermark.pos.centerLeft" = "Centrā pa kreisi";
+"watermark.pos.center" = "Centrā";
+"watermark.pos.centerRight" = "Centrā pa labi";
+"watermark.pos.bottomLeft" = "Apakšā pa kreisi";
+"watermark.pos.bottomCenter" = "Apakšā centrā";
+"watermark.pos.bottomRight" = "Apakšā pa labi";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Krāsu pārklājums";
+"watermark.color.none" = "Nav";
+"watermark.color.black" = "Melns";
+"watermark.color.darkGray" = "Tumši pelēks";
+"watermark.color.gray" = "Pelēks";
+"watermark.color.lightGray" = "Gaiši pelēks";
+"watermark.color.white" = "Balts";
+"watermark.tileMode" = "Flīžu režīms";
+"watermark.tileMode.desc" = "Atkārtot attēlā";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Iestatījumi";
-"upscale.settings.model" = "Modelis";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — detaļu uzlabošana ar MI";
-"upscale.settings.scale" = "Mērogs";
-"upscale.scale.multiPassHint" = "8× un 16× veic vairākus MI caurlaidus — ilgāk.";
-"upscale.settings.outputFormat" = "Izvades formāts";
-"upscale.drop.title" = "Velciet un nometiet attēlus";
-"upscale.drop.subtitle" = "vai noklikšķiniet, lai pārlūkotu failus";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Šeit var palielināt tikai atbalstītus rastra attēlus";
-"upscale.runButton" = "Palielināt";
-"upscale.preview.run" = "Priekšskatījums";
-"upscale.preview.hint" = "Izvēlieties mērogu un pieskarieties Priekšskatījums salīdzināšanai";
-"upscale.preview.processing" = "Veido priekšskatījumu…";
-"upscale.preview.before" = "PIRMS";
-"upscale.preview.after" = "PĒC";
-"upscale.preview.save" = "Saglabāt";
-"upscale.preview.saveSettings" = "Saglabāt priekšskatījumu";
-"upscale.preview.autoSave" = "Saglabāt pēc priekšskatījuma";
-"upscale.preview.autoSaveHint" = "Pēc priekšskatījuma pabeigšanas ieraksta mērķa mapē.";
-"upscale.preview.saveNeedFolder" = "Vispirms izvēlieties mērķa mapi.";
-"upscale.preview.saveFailed" = "Nevarēja kodēt priekšskatījuma attēlu.";
-"upscale.preview.loadFailed" = "Nevarēja ielādēt priekšskatījuma attēlu.";
-"upscale.backend.missing.hint" = "Lietotnes pakotnē trūkst cometscaly dzinēja vai modeļa failu. Atkārtoti uzbūvējiet projektu.";
-"upscale.error.bundle" = "Lietotnē trūkst Upscale pakotnes mapes.";
-"upscale.error.binary" = "cometscaly nav atrasts lietotnes pakotnē.";
-"upscale.error.model" = "Trūkst modeļa failu upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Palielināšana neizdevās (exit %d): %@";
-"upscale.error.none" = "Neviens attēls netika palielināts.";
-"videoedit.resize.modePercent" = "Mērogs (%)";
-"videoedit.resize.modeCustom" = "Pielāgots izmērs";
-"videoedit.resize.autoFill" = "Automātiski aizpildīt audeklu";
-"videoedit.resize.autoFillHint" = "Ieslēgts: plats materiāls ietilpst ar letterbox; mazāks tiek tuvināts un apgriezts centrā.";
+"inspector.format" = "Formāts";
+"inspector.output" = "Izvade";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Pievienojiet foto priekšskatījumam";
+"watermark.rotation" = "Pagriešana";
+"watermark.text" = "Logotipa teksts";
+"watermark.text.placeholder" = "Ievadiet logotipa tekstu";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

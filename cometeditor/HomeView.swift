@@ -58,7 +58,6 @@ struct HomeView: View {
         let menuItem: MenuItem
         var id: String { menuItem.rawValue }
         let icon: String
-        let gradient: [Color]
         let titleKey: LocalizedStringKey
         let descKey: LocalizedStringKey
         let steps: [LocalizedStringKey]
@@ -78,7 +77,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .convertImage,
                 icon: "photo.on.rectangle.angled",
-                gradient: [.blue, .cyan],
                 titleKey: "menu.convertImage",
                 descKey: "home.guide.convertImage.desc",
                 steps: [
@@ -98,7 +96,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .upscaleImage,
                 icon: "arrow.up.left.and.arrow.down.right",
-                gradient: [.cyan, .mint],
                 titleKey: "menu.upscaleImage",
                 descKey: "home.guide.upscale.desc",
                 steps: [
@@ -109,14 +106,13 @@ struct HomeView: View {
                 ],
                 tipKey: "home.guide.upscale.tip",
                 presets: [
-                    FeaturePreset(labelKey: "upscale.preview.run", icon: "eye", action: { onNavigate?(.upscaleImage) }),
-                    FeaturePreset(labelKey: "upscale.runButton", icon: "arrow.up.left.and.arrow.down.right", action: { onNavigate?(.upscaleImage) })
+                    FeaturePreset(labelKey: "upscale.convert", icon: "wand.and.stars", action: { onNavigate?(.upscaleImage) }),
+                    FeaturePreset(labelKey: "upscale.upscaleAll", icon: "arrow.up.left.and.arrow.down.right", action: { onNavigate?(.upscaleImage) })
                 ]
             ),
             FeatureGuide(
                 menuItem: .videoConvert,
                 icon: "video.fill",
-                gradient: [.indigo, .purple],
                 titleKey: "menu.videoConvert",
                 descKey: "home.guide.video.desc",
                 steps: [
@@ -134,27 +130,8 @@ struct HomeView: View {
                 ]
             ),
             FeatureGuide(
-                menuItem: .videoEdit,
-                icon: "scissors",
-                gradient: [.purple, .pink],
-                titleKey: "menu.videoEdit",
-                descKey: "home.guide.videoedit.desc",
-                steps: [
-                    "home.guide.videoedit.step1",
-                    "home.guide.videoedit.step2",
-                    "home.guide.videoedit.step3",
-                    "home.guide.videoedit.step4"
-                ],
-                tipKey: "home.guide.videoedit.tip",
-                presets: [
-                    FeaturePreset(labelKey: "home.guide.videoedit.preset.trim",   icon: "scissors",          action: { onNavigate?(.videoEdit) }),
-                    FeaturePreset(labelKey: "home.guide.videoedit.preset.concat",  icon: "film.stack",        action: { onNavigate?(.videoEdit) })
-                ]
-            ),
-            FeatureGuide(
                 menuItem: .stockImage,
                 icon: "photo.stack.fill",
-                gradient: [.cyan, .blue],
                 titleKey: "menu.stockImage",
                 descKey: "home.guide.stock.desc",
                 steps: [
@@ -168,7 +145,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .pdfEdit,
                 icon: "doc.text.fill",
-                gradient: [.orange, .pink],
                 titleKey: "menu.pdfEdit",
                 descKey: "home.guide.pdf.desc",
                 steps: [
@@ -187,7 +163,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .qrCode,
                 icon: "qrcode",
-                gradient: [.yellow, .orange],
                 titleKey: "menu.qrCode",
                 descKey: "home.guide.qr.desc",
                 steps: [
@@ -201,7 +176,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .bgRemove,
                 icon: "person.and.background.dotted",
-                gradient: [.pink, .red],
                 titleKey: "menu.bgRemove",
                 descKey: "home.guide.bgRemove.desc",
                 steps: [
@@ -215,7 +189,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .ocr,
                 icon: "text.viewfinder",
-                gradient: [.green, .teal],
                 titleKey: "menu.ocr",
                 descKey: "home.guide.ocr.desc",
                 steps: [
@@ -229,7 +202,6 @@ struct HomeView: View {
             FeatureGuide(
                 menuItem: .fontDownload,
                 icon: "character.textbox",
-                gradient: [.purple, .indigo],
                 titleKey: "menu.fontDownload",
                 descKey: "home.guide.font.desc",
                 steps: [
@@ -243,7 +215,7 @@ struct HomeView: View {
         ]
     }
 
-    // Hangi kartların açık olduğunu burada tutuyoruz — sayfa değişince sıfırlanmaz
+    // Kartlar varsayılan olarak kapalı; kullanıcı başlığa tıklayarak açar.
     @State private var expandedGuides: Set<String> = []
 
     var body: some View {
@@ -338,30 +310,15 @@ private struct FeatureGuideCard: View {
                 HStack(spacing: 14) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(
-                                LinearGradient(
-                                    colors: guide.gradient.map { $0.opacity(0.25) },
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                            .fill(Color.primary.opacity(colorScheme == .dark ? 0.10 : 0.07))
                             .frame(width: 40, height: 40)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .strokeBorder(
-                                        LinearGradient(
-                                            colors: guide.gradient.map { $0.opacity(0.4) },
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        ),
-                                        lineWidth: 1
-                                    )
+                                    .strokeBorder(Color.primary.opacity(colorScheme == .dark ? 0.14 : 0.10), lineWidth: 1)
                             )
                         Image(systemName: guide.icon)
                             .font(.system(size: 17, weight: .semibold))
-                            .foregroundStyle(
-                                LinearGradient(colors: guide.gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
-                            )
+                            .foregroundStyle(Color.primary)
                     }
 
                     VStack(alignment: .leading, spacing: 3) {
@@ -400,13 +357,11 @@ private struct FeatureGuideCard: View {
                             HStack(alignment: .top, spacing: 10) {
                                 ZStack {
                                     Circle()
-                                        .fill(
-                                            LinearGradient(colors: guide.gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
-                                        )
+                                        .fill(Color.primary.opacity(colorScheme == .dark ? 0.18 : 0.12))
                                         .frame(width: 20, height: 20)
                                     Text("\(index + 1)")
                                         .font(.system(size: 10, weight: .bold))
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(Color.primary)
                                 }
                                 .padding(.top, 1)
 
@@ -422,7 +377,7 @@ private struct FeatureGuideCard: View {
                     HStack(alignment: .top, spacing: 10) {
                         Image(systemName: "lightbulb.fill")
                             .font(.system(size: 12))
-                            .foregroundStyle(.yellow)
+                            .foregroundStyle(Color.secondary)
                         Text(guide.tipKey)
                             .font(.system(size: 12))
                             .foregroundStyle(Color.secondary)
@@ -432,17 +387,16 @@ private struct FeatureGuideCard: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(Color.yellow.opacity(colorScheme == .dark ? 0.08 : 0.06))
+                            .fill(Color.primary.opacity(colorScheme == .dark ? 0.06 : 0.04))
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .strokeBorder(Color.yellow.opacity(0.2), lineWidth: 1)
+                            .strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
                     )
 
                     // Open button + Presets
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
-                            // Aracı Aç — en solda, renkli
                             Button(action: onNavigate) {
                                 HStack(spacing: 5) {
                                     Image(systemName: "arrow.right.circle.fill")
@@ -454,21 +408,15 @@ private struct FeatureGuideCard: View {
                                 .padding(.vertical, 7)
                                 .background(
                                     RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                        .fill(
-                                            LinearGradient(
-                                                colors: guide.gradient,
-                                                startPoint: .topLeading,
-                                                endPoint: .bottomTrailing
-                                            )
-                                        )
+                                        .fill(Color.primary)
                                 )
-                                .foregroundStyle(.white)
+                                .foregroundStyle(colorScheme == .dark ? Color.black : Color.white)
                             }
                             .buttonStyle(.plain)
                             .handCursor()
 
                             ForEach(guide.presets) { preset in
-                                PresetChip(preset: preset, gradient: guide.gradient)
+                                PresetChip(preset: preset)
                             }
                         }
                     }
@@ -584,7 +532,6 @@ private struct QuickActionTile: View {
 
 private struct PresetChip: View {
     let preset: HomeView.FeaturePreset
-    let gradient: [Color]
     @State private var isHovered = false
 
     var body: some View {
@@ -599,28 +546,13 @@ private struct PresetChip: View {
             .padding(.vertical, 7)
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            colors: gradient.map { $0.opacity(isHovered ? 0.32 : 0.18) },
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(Color.primary.opacity(isHovered ? 0.10 : 0.06))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .strokeBorder(
-                        LinearGradient(
-                            colors: gradient.map { $0.opacity(isHovered ? 0.55 : 0.35) },
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 1
-                    )
+                    .strokeBorder(Color.primary.opacity(isHovered ? 0.18 : 0.10), lineWidth: 1)
             )
-            .foregroundStyle(
-                LinearGradient(colors: gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
-            )
+            .foregroundStyle(Color.primary)
             .scaleEffect(isHovered ? 1.04 : 1.0)
         }
         .buttonStyle(.plain)

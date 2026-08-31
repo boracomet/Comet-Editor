@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Yahan tasveerein kheenchein";
 "convert.drop.subtitle" = "PNG, JPG, WebP, HEIF aur doosre formats support karta hai";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Chaurai";
 "convert.settings.height" = "Unchai";
+
 "meta.info" = "Metadata mahfooz rakhega";
+
 "convert.settings.targetFolder" = "MANZIL FOLDER";
 "convert.settings.noFolder" = "Koi folder nahi chuna";
 "convert.settings.chooseFolder" = "Folder chunein";
+
+"folder.missing.title" = "فولڈر نہیں ملا";
+"folder.missing.subtitle" = "محفوظ کردہ فولڈر کا راستہ اب موجود نہیں۔ نیا منتخب کریں۔";
+"folder.missing.pick" = "نیا فولڈر منتخب کریں";
+"folder.missing.panel.message" = "آؤٹ پٹ فولڈر نہیں ملا۔ براہ کرم نیا فولڈر منتخب کریں۔";
+
+"bgremove.error.noMaskFound" = "پیش منظر ماسک نہیں ملا۔";
+"bgremove.error.maskConversionFailed" = "ماسک تبدیلی ناکام ہو گئی۔";
+"bgremove.error.compositeFailed" = "تصویر کی ترتیب ناکام ہو گئی۔";
+
 "convert.settings.convertButton" = "Tabdeel karein";
 "convert.clearAll" = "Sab saaf karein";
 "convert.addMore" = "Mazeed shamil karein";
 "convert.wrongType.image" = "یہاں صرف تصاویر تبدیل کی جا سکتی ہیں";
+
+"upscale.settings.title" = "ترتیبات";
+"upscale.settings.model" = "ماڈل";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI سے تفصیل بہتر";
+"upscale.settings.scale" = "پیمانہ";
+"upscale.scale.multiPassHint" = "8× اور 16× متعدد AI دور چلاتے ہیں — زیادہ وقت لگتا ہے۔";
+"upscale.settings.outputFormat" = "آؤٹ پٹ فارمیٹ";
+"upscale.drop.title" = "تصاویر گھسیٹیں اور چھوڑیں";
+"upscale.drop.subtitle" = "یا فائلیں براؤز کرنے کے لیے کلک کریں";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "یہاں صرف معاون راسٹر تصاویر بڑی کی جا سکتی ہیں";
+"upscale.runButton" = "بڑا کریں";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "پیش نظارہ";
+"upscale.preview.hint" = "پیمانہ منتخب کریں اور موازنے کے لیے پیش نظارہ پر تھپتھپائیں";
+"upscale.preview.processing" = "پیش نظارہ بنایا جا رہا ہے…";
+"upscale.preview.before" = "پہلے";
+"upscale.preview.after" = "بعد";
+"upscale.preview.save" = "محفوظ کریں";
+"upscale.preview.saveSettings" = "پیش نظارہ محفوظ کریں";
+"upscale.preview.autoSave" = "پیش نظارہ کے بعد محفوظ کریں";
+"upscale.preview.autoSaveHint" = "پیش نظارہ مکمل ہونے پر ہدف فولڈر میں لکھتا ہے۔";
+"upscale.preview.saveNeedFolder" = "پہلے ہدف فولڈر منتخب کریں۔";
+"upscale.preview.saveFailed" = "پیش نظارہ تصویر انکوڈ نہیں ہو سکی۔";
+"upscale.preview.loadFailed" = "پیش نظارہ تصویر لوڈ نہیں ہو سکی۔";
+"upscale.backend.missing.hint" = "ایپ بَنڈل میں cometscaly انجن یا ماڈل فائلیں موجود نہیں۔ پروجیکٹ دوبارہ بنائیں۔";
+"upscale.error.bundle" = "ایپ میں Upscale بَنڈل فولڈر موجود نہیں۔";
+"upscale.error.binary" = "ایپ بَنڈل میں cometscaly نہیں ملا۔";
+"upscale.error.model" = "ماڈل فائلیں upscayl-standard-4x.param/.bin موجود نہیں۔";
+"upscale.error.process" = "اپ اسکیل ناکام (exit %d): %@";
+"upscale.error.none" = "کوئی تصویر بڑی نہیں کی گئی۔";
+
 "menu.home" = "Ghar";
 "menu.convertImage" = "Tasveer tabdeeli";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "ترتیبات";
 "menu.tools" = "ٹولز";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Team";
-"menu.team.title" = "Comet Dev ki taraf se";
-"menu.team.subtitle" = "Mohabbat aur tehreek ke saath banaya gaya";
 "menu.stockImage" = "Stock tasveerein";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Background hatayein";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Fonts";
 "menu.videoConvert" = "Video tabdeeli";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "رائے بھیجیں";
-"team.thanks_grafix" = "Design ke liye Grafix ka khusoosi shukriya";
+
 "alert.success.title" = "Kamiyabi";
 "alert.error.title" = "Ghalti";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Folder kholein";
 "alert.success.message.image" = "Tasveer %@ mein save hui.";
 "alert.success.message.video" = "Video %@ mein save hua.";
+"alert.error.conversion" = "کچھ تصاویر تبدیل نہیں ہو سکیں.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "MP4, MOV, AVI aur doosre formats support karta hai";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "Asli ka 75%";
 "video.resolution.50" = "Asli ka 50%";
 "video.resolution.25" = "Asli ka 25% (Kam معیار)";
+
 "pdf.drop.title" = "Yahan PDF file kheenchein";
 "pdf.drop.subtitle" = "Editing ke liye PDF file chunein";
 "pdf.page.count" = "%lld safhat";
 "pdf.page.info" = "Safha %lld / %lld";
 "pdf.estimatedSize" = "Andaza shuda saiz";
+"pdf.quality.modal.title" = "آپٹیمائزیشن کی سطح منتخب کریں";
+"pdf.quality.modal.subtitle" = "منتخب کریں کہ فائل کا سائز کتنا کم کرنا ہے۔ زیادہ کمپریشن کا مطلب چھوٹی فائل لیکن کچھ معیار میں کمی۔";
+"pdf.quality.modal.estimated" = "تخمینی سائز";
+"pdf.quality.modal.confirm" = "آپٹیمائز کریں";
+"pdf.quality.modal.cancel" = "منسوخ کریں";
+"pdf.quality.low.title" = "زیادہ سے زیادہ کمپریشن";
+"pdf.quality.low.desc" = "سب سے چھوٹی فائل، معیار میں نمایاں کمی";
+"pdf.quality.medium.title" = "متوازن";
+"pdf.quality.medium.desc" = "سائز اور معیار کے درمیان اچھا توازن";
+"pdf.quality.high.title" = "اعلی معیار";
+"pdf.quality.high.desc" = "معیار میں کم سے کم کمی، اعتدال پسند کمی";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF optimize karein";
+"pdf.tools.quality" = "معیار";
+"pdf.tools.quality.label" = "تصویر کا معیار";
+"pdf.tools.quality.small" = "چھوٹی فائل";
+"pdf.tools.quality.large" = "بہتر معیار";
+"pdf.tools.quality.lossless" = "بے نقصان";
+"pdf.tools.resolution" = "ریزولیوشن اسکیل";
+"pdf.tools.resolution.enable" = "ریزولیوشن کم کریں";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK کنورٹر";
+"pdf.color.enable" = "رنگ کی جگہ تبدیل کریں";
+"pdf.color.convert" = "تبدیل کریں اور محفوظ کریں";
 "pdf.tools.save" = "PDF save karein";
 "pdf.reorder.title" = "Safhat reorder karein";
 "pdf.reorder.hint" = "Safhat ka tarteeb badalne ke liye kheenchein";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Baad mein";
 "pdf.addContent.atEnd" = "Akhir mein";
 "pdf.addContent.chooseFile" = "File chunein";
+
 "stock.deselectAll" = "Sab untick karein";
 "stock.download" = "Download karein";
 "stock.download.count" = "%d tasveerein download karein";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "یہاں URL یا متن درج کریں...";
 "qr.settings.colors" = "رنگ";
 "qr.settings.fgColor" = "پیش منظر کا رنگ";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "ریزولوشن";
 "qr.settings.customSize" = "حسب ضرورت سائز (px)";
 "qr.download" = "QR کوڈ ڈاؤن لوڈ";
+"qr.settings.type" = "QR کی قسم";
+"qr.type.website" = "ویب سائٹ";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "رابطہ (vCard)";
+"qr.type.email" = "ای میل";
+"qr.type.phone" = "فون";
+"qr.wifi.ssid" = "نیٹ ورک کا نام (SSID)";
+"qr.wifi.password" = "پاس ورڈ";
+"qr.wifi.hidden" = "پوشیدہ نیٹ ورک";
+"qr.wifi.noEncryption" = "کوئی نہیں";
+"qr.vcard.firstName" = "پہلا نام";
+"qr.vcard.lastName" = "آخری نام";
+"qr.vcard.phone" = "فون";
+"qr.vcard.email" = "ای میل";
+"qr.vcard.company" = "کمپنی";
+"qr.vcard.jobTitle" = "عہدہ";
+"qr.vcard.address" = "پتہ";
+"qr.vcard.website" = "ویب سائٹ";
+"qr.email.address" = "ای میل پتہ";
+"qr.email.subject" = "موضوع";
+"qr.email.body" = "پیغام";
+"qr.phone.number" = "فون نمبر";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Is feature ke liye macOS 14 ya naya version chahiye";
 "bgremove.drop.title" = "Yahan tasveerein kheenchein";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Kinaron ko naram karein";
 "bgremove.settings.featherAmount" = "Naramii ki daraja";
+
 "ocr.drop.title" = "Yahan tasveer kheenchein";
 "ocr.drop.subtitle" = "PNG, JPG aur WebP support karta hai";
 "ocr.processing" = "Matn pehchana ja raha hai...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Saaf karein";
 "ocr.newFile" = "Nai file";
 "ocr.copied" = "Copy ho gaya!";
+
 "app.comingSoon.title" = "Jald Ayega";
 "app.comingSoon.message" = "Yeh feature tayyar ho raha hai aur jald dastiyab hoga.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Fonts dhundein...";
 "font.preview.custom" = "Custom preview";
 "font.inspector.preview" = "PREVIEW";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d خاندان";
 "font.styles.count" = "%d طرز · %@";
 "font.noResults" = "کوئی فونٹ نہیں ملا";
-"suggestion.title" = "تجویز بھیجیں";
-"suggestion.subtitle" = "اپنے خیالات شیئر کریں اور ہمیں بہتر بنانے میں مدد کریں";
-"suggestion.placeholder.title" = "عنوان";
-"suggestion.placeholder.body" = "اپنی تجویز تفصیل سے بیان کریں...";
-"suggestion.category.bug" = "خرابی";
-"suggestion.category.feature" = "فیچر کی درخواست";
-"suggestion.category.ui" = "انٹرفیس";
-"suggestion.category.performance" = "کارکردگی";
-"suggestion.category.other" = "دیگر";
-"suggestion.send" = "تجویز بھیجیں";
-"suggestion.sending" = "بھیجا جا رہا ہے...";
-"suggestion.sent.title" = "شکریہ!";
-"suggestion.sent.message" = "آپ کی تجویز موصول ہوئی۔ ہم جلد جائزہ لیں گے۔";
-"suggestion.error" = "بھیجنا ناکام ہوا۔ دوبارہ کوشش کریں۔";
-"suggestion.validation.title" = "خالی خانے";
-"suggestion.validation.body" = "براہ کرم عنوان اور تفصیل بھریں۔";
-
-"suggestion.label.category" = "زمرہ";
-"suggestion.label.title" = "عنوان";
-"suggestion.label.description" = "تفصیل";
 
 "video.drop.title" = "ویڈیو یہاں ڈراپ کریں";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "یہاں صرف ویڈیو تبدیل کی جا سکتی ہیں";
+
 "app.maintenance.title" = "دیکھ بھال کا موڈ";
 "app.forceUpdate.title" = "اپ ڈیٹ ضروری ہے";
 "app.forceUpdate.button" = "App Store پر اپ ڈیٹ کریں";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "کچھ تصاویر تبدیل نہیں ہو سکیں.";
-"pdf.color.convert" = "تبدیل کریں اور محفوظ کریں";
-"pdf.color.enable" = "رنگ کی جگہ تبدیل کریں";
-"pdf.color.title" = "RGB/CMYK کنورٹر";
-"pdf.tools.quality" = "معیار";
-"pdf.tools.quality.label" = "تصویر کا معیار";
-"pdf.tools.quality.large" = "بہتر معیار";
-"pdf.tools.quality.lossless" = "بے نقصان";
-"pdf.tools.resolution" = "ریزولیوشن اسکیل";
-"pdf.tools.resolution.enable" = "ریزولیوشن کم کریں";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "چھوٹی فائل";
 
 "ad.sponsored" = "سپانسر";
 "ad.visit" = "ملاحظہ کریں";
 
-"pdf.quality.modal.title" = "آپٹیمائزیشن کی سطح منتخب کریں";
-"pdf.quality.modal.subtitle" = "منتخب کریں کہ فائل کا سائز کتنا کم کرنا ہے۔ زیادہ کمپریشن کا مطلب چھوٹی فائل لیکن کچھ معیار میں کمی۔";
-"pdf.quality.modal.estimated" = "تخمینی سائز";
-"pdf.quality.modal.confirm" = "آپٹیمائز کریں";
-"pdf.quality.modal.cancel" = "منسوخ کریں";
-"pdf.quality.low.title" = "زیادہ سے زیادہ کمپریشن";
-"pdf.quality.low.desc" = "سب سے چھوٹی فائل، معیار میں نمایاں کمی";
-"pdf.quality.medium.title" = "متوازن";
-"pdf.quality.medium.desc" = "سائز اور معیار کے درمیان اچھا توازن";
-"pdf.quality.high.title" = "اعلی معیار";
-"pdf.quality.high.desc" = "معیار میں کم سے کم کمی، اعتدال پسند کمی";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor کا تجربہ اپنی مرضی سے بنائیں";
+"settings.section.output" = "آؤٹ پٹ";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "پہلے سے طے شدہ آؤٹ پٹ فولڈر";
+"settings.noFolderSelected" = "منتخب نہیں — ہر بار پوچھا جائے گا";
+"settings.chooseFolder" = "فولڈر منتخب کریں";
+"settings.clearFolder" = "صاف کریں";
+"settings.folderPicker.message" = "برآمد کردہ فائلوں کے لیے پہلے سے طے شدہ فولڈر منتخب کریں";
+"settings.folderPicker.button" = "فولڈر منتخب کریں";
 
 "app.maintenance.title2" = "دیکھ بھال جاری ہے";
 "app.maintenance.body" = "ایپ عارضی طور پر دستیاب نہیں ہے۔ ہم جلد واپس آئیں گے۔";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store پر اپڈیٹ کریں";
 "app.quit2" = "ایپ بند کریں";
 
-"settings.subtitle" = "Comet Editor کا تجربہ اپنی مرضی سے بنائیں";
-"settings.section.output" = "آؤٹ پٹ";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "پہلے سے طے شدہ آؤٹ پٹ فولڈر";
-"settings.noFolderSelected" = "منتخب نہیں — ہر بار پوچھا جائے گا";
-"settings.chooseFolder" = "فولڈر منتخب کریں";
-"settings.clearFolder" = "صاف کریں";
-"settings.folderPicker.message" = "برآمد کردہ فائلوں کے لیے پہلے سے طے شدہ فولڈر منتخب کریں";
-"settings.folderPicker.button" = "فولڈر منتخب کریں";
-"menu.announcements" = "اعلانات";
-"announcements.subtitle" = "ٹیم کی تازہ ترین خبریں اور اپڈیٹس";
-"announcements.empty" = "ابھی تک کوئی اعلان نہیں";
-
 "settings.pdfOutputFolder" = "PDF آؤٹ پٹ فولڈر";
 
 "folder.default.prompt.title" = "ڈیفالٹ فولڈر کے طور پر سیٹ کریں؟";
 "folder.default.prompt.body" = "کیا آپ اسے اپنے ڈیفالٹ آؤٹ پٹ فولڈر کے طور پر سیٹ کرنا چاہتے ہیں؟ آپ اسے ترتیبات میں کبھی بھی تبدیل کر سکتے ہیں۔";
 "folder.default.prompt.yes" = "ڈیفالٹ کے طور پر سیٹ کریں";
 "folder.default.prompt.no" = "ابھی نہیں";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "ویڈیو ایڈیٹر";
-"qr.email.address" = "ای میل پتہ";
-"qr.email.body" = "پیغام";
-"qr.email.subject" = "موضوع";
-"qr.phone.number" = "فون نمبر";
-"qr.settings.type" = "QR کی قسم";
-"qr.type.email" = "ای میل";
-"qr.type.phone" = "فون";
-"qr.type.vcard" = "رابطہ (vCard)";
-"qr.type.website" = "ویب سائٹ";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "پتہ";
-"qr.vcard.company" = "کمپنی";
-"qr.vcard.email" = "ای میل";
-"qr.vcard.firstName" = "پہلا نام";
-"qr.vcard.jobTitle" = "عہدہ";
-"qr.vcard.lastName" = "آخری نام";
-"qr.vcard.phone" = "فون";
-"qr.vcard.website" = "ویب سائٹ";
-"qr.wifi.hidden" = "پوشیدہ نیٹ ورک";
-"qr.wifi.noEncryption" = "کوئی نہیں";
-"qr.wifi.password" = "پاس ورڈ";
-"qr.wifi.ssid" = "نیٹ ورک کا نام (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "تصویر شامل کریں";
-"videoedit.addMore" = "شامل کریں";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "ویڈیوز شامل کریں";
-"videoedit.empty.subtitle" = "ویڈیو فائلیں یہاں چھوڑیں یا نیچے والے بٹن پر تھپتھائیں";
-"videoedit.empty.title" = "ترمیم کے لیے ویڈیوز شامل کریں";
-"videoedit.export.merge" = "ضم کر کے برآمد کریں";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "ترتیبات";
-"videoedit.export.trim" = "کلپ برآمد کریں";
-"videoedit.exporting" = "برآمد ہو رہا ہے…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "تصویر کی مدت";
-"videoedit.imageDuration.default" = "نئی تصاویر کے لیے طے شدہ";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "محفوظ کریں";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "لاگو کریں";
-"watermark.button" = "واٹر مارک شامل کریں";
-"watermark.cancel" = "منسوخ کریں";
-"watermark.color.black" = "سیاہ";
-"watermark.color.darkGray" = "گہرا سرمئی";
-"watermark.color.gray" = "سرمئی";
-"watermark.color.lightGray" = "ہلکا سرمئی";
-"watermark.color.none" = "کوئی نہیں";
-"watermark.color.white" = "سفید";
-"watermark.colorOverlay" = "رنگ کی تہہ";
-"watermark.logo" = "لوگو";
-"watermark.opacity" = "شفافیت";
-"watermark.pos.bottomCenter" = "نیچے وسط";
-"watermark.pos.bottomLeft" = "نیچے بائیں";
-"watermark.pos.bottomRight" = "نیچے دائیں";
-"watermark.pos.center" = "وسط";
-"watermark.pos.centerLeft" = "وسط بائیں";
-"watermark.pos.centerRight" = "وسط دائیں";
-"watermark.pos.topCenter" = "اوپر وسط";
-"watermark.pos.topLeft" = "اوپر بائیں";
-"watermark.pos.topRight" = "اوپر دائیں";
-"watermark.position" = "مقام";
-"watermark.preview" = "پیش نظارہ";
-"watermark.removeLogo" = "ہٹائیں";
-"watermark.scale" = "پیمانہ";
-"watermark.selectLogo" = "تصویر منتخب کریں";
-"watermark.tileMode" = "ٹائل موڈ";
-"watermark.tileMode.desc" = "تصویر پر دہرائیں";
+
 "watermark.title" = "واٹر مارک";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "واٹر مارک شامل کریں";
+"watermark.logo" = "لوگو";
+"watermark.selectLogo" = "تصویر منتخب کریں";
+"watermark.removeLogo" = "ہٹائیں";
+"watermark.position" = "مقام";
+"watermark.scale" = "پیمانہ";
+"watermark.opacity" = "شفافیت";
+"watermark.preview" = "پیش نظارہ";
+"watermark.apply" = "لاگو کریں";
+"watermark.cancel" = "منسوخ کریں";
+"watermark.pos.topLeft" = "اوپر بائیں";
+"watermark.pos.topCenter" = "اوپر وسط";
+"watermark.pos.topRight" = "اوپر دائیں";
+"watermark.pos.centerLeft" = "وسط بائیں";
+"watermark.pos.center" = "وسط";
+"watermark.pos.centerRight" = "وسط دائیں";
+"watermark.pos.bottomLeft" = "نیچے بائیں";
+"watermark.pos.bottomCenter" = "نیچے وسط";
+"watermark.pos.bottomRight" = "نیچے دائیں";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "رنگ کی تہہ";
+"watermark.color.none" = "کوئی نہیں";
+"watermark.color.black" = "سیاہ";
+"watermark.color.darkGray" = "گہرا سرمئی";
+"watermark.color.gray" = "سرمئی";
+"watermark.color.lightGray" = "ہلکا سرمئی";
+"watermark.color.white" = "سفید";
+"watermark.tileMode" = "ٹائل موڈ";
+"watermark.tileMode.desc" = "تصویر پر دہرائیں";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "ترتیبات";
-"upscale.settings.model" = "ماڈل";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI سے تفصیل بہتر";
-"upscale.settings.scale" = "پیمانہ";
-"upscale.scale.multiPassHint" = "8× اور 16× متعدد AI دور چلاتے ہیں — زیادہ وقت لگتا ہے۔";
-"upscale.settings.outputFormat" = "آؤٹ پٹ فارمیٹ";
-"upscale.drop.title" = "تصاویر گھسیٹیں اور چھوڑیں";
-"upscale.drop.subtitle" = "یا فائلیں براؤز کرنے کے لیے کلک کریں";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "یہاں صرف معاون راسٹر تصاویر بڑی کی جا سکتی ہیں";
-"upscale.runButton" = "بڑا کریں";
-"upscale.preview.run" = "پیش نظارہ";
-"upscale.preview.hint" = "پیمانہ منتخب کریں اور موازنے کے لیے پیش نظارہ پر تھپتھپائیں";
-"upscale.preview.processing" = "پیش نظارہ بنایا جا رہا ہے…";
-"upscale.preview.before" = "پہلے";
-"upscale.preview.after" = "بعد";
-"upscale.preview.save" = "محفوظ کریں";
-"upscale.preview.saveSettings" = "پیش نظارہ محفوظ کریں";
-"upscale.preview.autoSave" = "پیش نظارہ کے بعد محفوظ کریں";
-"upscale.preview.autoSaveHint" = "پیش نظارہ مکمل ہونے پر ہدف فولڈر میں لکھتا ہے۔";
-"upscale.preview.saveNeedFolder" = "پہلے ہدف فولڈر منتخب کریں۔";
-"upscale.preview.saveFailed" = "پیش نظارہ تصویر انکوڈ نہیں ہو سکی۔";
-"upscale.preview.loadFailed" = "پیش نظارہ تصویر لوڈ نہیں ہو سکی۔";
-"upscale.backend.missing.hint" = "ایپ بَنڈل میں cometscaly انجن یا ماڈل فائلیں موجود نہیں۔ پروجیکٹ دوبارہ بنائیں۔";
-"upscale.error.bundle" = "ایپ میں Upscale بَنڈل فولڈر موجود نہیں۔";
-"upscale.error.binary" = "ایپ بَنڈل میں cometscaly نہیں ملا۔";
-"upscale.error.model" = "ماڈل فائلیں upscayl-standard-4x.param/.bin موجود نہیں۔";
-"upscale.error.process" = "اپ اسکیل ناکام (exit %d): %@";
-"upscale.error.none" = "کوئی تصویر بڑی نہیں کی گئی۔";
-"videoedit.resize.modePercent" = "پیمانہ (%)";
-"videoedit.resize.modeCustom" = "حسب ضرورت سائز";
-"videoedit.resize.autoFill" = "کینوس خودکار بھریں";
-"videoedit.resize.autoFillHint" = "آن: چوڑا فوٹیج لیٹر باکس کے ساتھ فٹ؛ چھوٹا زوم اور مرکز سے کراپ ہو کر بھرتا ہے۔";
+"inspector.format" = "فارمیٹ";
+"inspector.output" = "آؤٹ پٹ";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "پیش نظارہ کے لیے تصویر شامل کریں";
+"watermark.rotation" = "گردش";
+"watermark.text" = "لوگو متن";
+"watermark.text.placeholder" = "لوگو متن درج کریں";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

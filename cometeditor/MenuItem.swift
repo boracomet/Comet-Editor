@@ -10,21 +10,18 @@ import SwiftUI
 enum MenuSection: String, CaseIterable {
     case main
     case tools
-    case other
 
     var title: LocalizedStringKey? {
         switch self {
         case .main:  return nil
         case .tools: return "menu.tools"
-        case .other: return nil
         }
     }
 
     var items: [MenuItem] {
         switch self {
         case .main:  return [.home]
-        case .tools: return [.convertImage, .upscaleImage, .videoConvert, .videoEdit, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
-        case .other: return [.suggestion, .announcements, .settings]
+        case .tools: return [.convertImage, .upscaleImage, .videoConvert, .stockImage, .pdfEdit, .qrCode, .bgRemove, .ocr, .fontDownload]
         }
     }
 }
@@ -34,17 +31,13 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
     case convertImage
     case upscaleImage
     case videoConvert
-    case videoEdit
     case stockImage
     case pdfEdit
     case qrCode
     case bgRemove
     case ocr
     case fontDownload
-    case suggestion
-    case announcements
     case settings
-    case team
 
     var id: String { rawValue }
 
@@ -54,17 +47,13 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .convertImage: return "menu.convertImage"
         case .upscaleImage: return "menu.upscaleImage"
         case .videoConvert: return "menu.videoConvert"
-        case .videoEdit: return "menu.videoEdit"
         case .stockImage: return "menu.stockImage"
         case .pdfEdit: return "menu.pdfEdit"
         case .qrCode: return "menu.qrCode"
         case .bgRemove: return "menu.bgRemove"
         case .ocr: return "menu.ocr"
         case .fontDownload: return "menu.fontDownload"
-        case .suggestion: return "menu.suggestion"
-        case .announcements: return "menu.announcements"
         case .settings: return "menu.settings"
-        case .team: return "menu.team"
         }
     }
 
@@ -74,21 +63,15 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .convertImage: return "photo.on.rectangle.angled"
         case .upscaleImage: return "arrow.up.left.and.arrow.down.right"
         case .videoConvert: return "video.fill"
-        case .videoEdit: return "scissors"
         case .stockImage: return "photo.stack.fill"
         case .pdfEdit: return "doc.text.fill"
         case .qrCode: return "qrcode"
         case .bgRemove: return "person.and.background.dotted"
         case .ocr: return "text.viewfinder"
         case .fontDownload: return "character.textbox"
-        case .suggestion: return "envelope.fill"
-        case .announcements: return "bell.fill"
         case .settings: return "gearshape.fill"
-        case .team: return "person.3.fill"
         }
     }
-
-    var badge: String? { nil }
 
     var iconGradient: [Color] {
         switch self {
@@ -96,17 +79,13 @@ enum MenuItem: String, CaseIterable, Identifiable, Hashable {
         case .convertImage:  return [.blue, .cyan]
         case .upscaleImage:  return [.cyan, .mint]
         case .videoConvert:  return [.indigo, .purple]
-        case .videoEdit:     return [.purple, .pink]
         case .stockImage:    return [.cyan, .blue]
         case .pdfEdit:       return [.orange, .pink]
         case .qrCode:        return [.yellow, .orange]
         case .bgRemove:      return [.pink, .red]
         case .ocr:           return [.green, .teal]
         case .fontDownload:  return [.purple, .indigo]
-        case .suggestion:    return [.green, .mint]
-        case .announcements: return [.yellow, .orange]
         case .settings:      return [.gray, .gray]
-        case .team:          return [.blue, .purple]
         }
     }
 }

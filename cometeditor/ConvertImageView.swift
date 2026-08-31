@@ -26,8 +26,6 @@ struct ConvertImageView: View {
     @EnvironmentObject var appState: GlobalAppState
     @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var windowState: WindowStateObserver
-    @State private var isProcessing = false
-    @State private var conversionProgress: String = ""
     @State private var showSuccessAlert = false
     @State private var showConversionError = false
     @State private var isDropTargeted = false
@@ -46,12 +44,19 @@ struct ConvertImageView: View {
     @State private var watermarkEnabled = false
     @State private var watermarkImage: NSImage? = nil
     @State private var watermarkURL: URL? = nil
+    @State private var watermarkText: String = ""
     @State private var watermarkPosition: WatermarkPosition = .bottomRight
     @State private var watermarkScale: Double = 0.15
     @State private var watermarkOpacity: Double = 0.8
     @State private var watermarkColorOverlay: WatermarkColorOverlay = .none
     @State private var watermarkTileMode = false
+    @State private var watermarkRotation: Double = 0
     @State private var showWatermarkSheet = false
+    @State private var lastWatermarkPreviewID: UUID?
+
+    private var hasWatermarkContent: Bool {
+        watermarkImage != nil || !WatermarkStamper.trimmedText(watermarkText).isEmpty
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -73,7 +78,13 @@ struct ConvertImageView: View {
                 .frame(width: 260)
         }
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
-        .onAppear { applyPendingHomeQuickImagePresetIfNeeded() }
+        .onAppear {
+            applyPendingHomeQuickImagePresetIfNeeded()
+            // View recreate (sekme değişimi) @State'i sıfırlardı; asılı kalsa bile footer boş kalmasın.
+            if appState.isConvertingImages && appState.imageConversionTask == nil {
+                appState.endImageConversion()
+            }
+        }
         .onChange(of: appState.pendingHomeQuickImagePreset) { newValue in
             guard newValue != nil else { return }
             applyPendingHomeQuickImagePresetIfNeeded()
@@ -83,6 +94,7 @@ struct ConvertImageView: View {
                 previewFullImage = nil
                 return
             }
+            lastWatermarkPreviewID = item.id
             Task.detached(priority: .userInitiated) {
                 let (url, accessed) = item.securityScopedURL()
                 defer { if accessed { url.stopAccessingSecurityScopedResource() } }
@@ -151,13 +163,16 @@ struct ConvertImageView: View {
             WatermarkSheet(
                 parentImage: $watermarkImage,
                 parentURL: $watermarkURL,
+                parentText: $watermarkText,
                 parentPosition: $watermarkPosition,
                 parentScale: $watermarkScale,
                 parentOpacity: $watermarkOpacity,
                 parentColorOverlay: $watermarkColorOverlay,
                 parentTileMode: $watermarkTileMode,
+                parentRotation: $watermarkRotation,
                 parentEnabled: $watermarkEnabled,
-                images: appState.selectedImages
+                images: appState.selectedImages,
+                focusedItemID: previewItem?.id ?? lastWatermarkPreviewID
             )
             .environmentObject(languageManager)
         }
@@ -201,7 +216,7 @@ struct ConvertImageView: View {
         }
     }
 
-    // MARK: - Inline Preview (full-area, replaces grid)
+    // MARK: - Inline Preview (full-area, replaces list)
     private var inlinePreview: some View {
         VStack(spacing: 0) {
             // Info bar
@@ -307,7 +322,7 @@ struct ConvertImageView: View {
         if appState.selectedImages.isEmpty {
             emptyDropZone
         } else {
-            imageGrid
+            imageList
         }
     }
 
@@ -356,19 +371,23 @@ struct ConvertImageView: View {
         .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
     }
 
-    private var imageGrid: some View {
+    private var imageList: some View {
         VStack(spacing: 0) {
-            GeometryReader { geo in
-                ScrollView {
-                    let columnCount = max(2, Int(geo.size.width / 240))
-                    let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: columnCount)
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(appState.selectedImages) { item in
-                            imageGridItem(item)
-                        }
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    ForEach(appState.selectedImages) { item in
+                        ImageConvertListRow(
+                            item: item,
+                            onPreview: {
+                                withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
+                            },
+                            onRemove: {
+                                appState.selectedImages.removeAll(where: { $0.id == item.id })
+                            }
+                        )
                     }
-                    .padding(24)
                 }
+                .padding(.vertical, 6)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
@@ -418,121 +437,31 @@ struct ConvertImageView: View {
         }
     }
 
-    private func imageGridItem(_ item: ImageItem) -> some View {
-        GeometryReader { geo in
-            imageGridItemContent(item: item, geo: geo)
-        }
-        .frame(height: 180)
-    }
-
-    @ViewBuilder
-    private func imageGridItemContent(item: ImageItem, geo: GeometryProxy) -> some View {
-        ZStack(alignment: .topTrailing) {
-            ZStack {
-                Group {
-                    if let nsImage = item.image {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .scaledToFill()
-                    } else {
-                        Color.secondary.opacity(0.2)
-                    }
-                }
-
-                if watermarkEnabled, let wm = watermarkImage {
-                    WatermarkOverlayView(
-                        watermarkImage: wm,
-                        containerSize: geo.size,
-                        scale: watermarkScale,
-                        opacity: watermarkOpacity,
-                        position: watermarkPosition,
-                        colorOverlay: watermarkColorOverlay,
-                        tileMode: watermarkTileMode
-                    )
-                    .allowsHitTesting(false)
-                }
-            }
-            .frame(width: geo.size.width, height: geo.size.height)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
-            }
-            .handCursor()
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-            )
-            .overlay(alignment: .bottom) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(item.fileName)
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                    Text(item.dimensionsString.isEmpty ? item.fileSizeString : "\(item.fileSizeString) · \(item.dimensionsString)")
-                        .font(.system(size: 9))
-                        .foregroundStyle(.white.opacity(0.75))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 6)
-                .background(
-                    LinearGradient(
-                        colors: [.clear, .black.opacity(0.72)],
-                        startPoint: .top, endPoint: .bottom
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                )
-                .allowsHitTesting(false)
-            }
-
-            Button {
-                appState.selectedImages.removeAll(where: { $0.id == item.id })
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.white)
-                    .padding(5)
-                    .background(Color.black.opacity(0.55))
-                    .clipShape(Circle())
-            }
-            .buttonStyle(.plain)
-            .handCursor()
-            .padding(6)
-        }
-    }
-
     // MARK: - Inspector Panel
     private var inspectorPanel: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                // Header
-                HStack {
-                    Text(languageManager.string("convert.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
+        VStack(spacing: 0) {
+            ScrollView {
+                inspectorSettings
+                    .padding(.top, 16)
+                    .padding(.bottom, 8)
+            }
+            Divider()
+            convertFooter
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .inspectorPanelChrome()
+    }
 
-                Divider()
-
-                // Format Section
-                inspectorSection("convert.settings.format") {
-                    Picker("", selection: $selectedFormat) {
-                        ForEach(ImageFormat.exportCases) { format in
-                            Text(format.label).tag(format)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .labelsHidden()
+    private var inspectorSettings: some View {
+        VStack(alignment: .leading, spacing: 0) {
+                // Format
+                inspectorSection("inspector.output") {
+                    InspectorMenuChip(title: selectedFormat.label, selection: $selectedFormat, options: ImageFormat.exportCases) { $0.label }
                 }
 
-                Divider()
-
-                // Quality Section
+                // Quality
                 inspectorSection("convert.settings.quality") {
                     HStack(spacing: 8) {
                         Slider(value: $quality, in: 1...100, step: 1)
@@ -543,14 +472,12 @@ struct ConvertImageView: View {
                     }
                 }
 
-                Divider()
-
-                // Scale Section
+                // Scale
                 inspectorSection("convert.settings.scale") {
-                    HStack {
+                    InspectorSettingRow {
                         Text("convert.settings.enable")
                             .font(.system(size: 13))
-                        Spacer()
+                    } control: {
                         Toggle("", isOn: $scaleEnabled)
                             .toggleStyle(.switch)
                             .controlSize(.small)
@@ -561,33 +488,32 @@ struct ConvertImageView: View {
                     }
 
                     if scaleEnabled {
-                        HStack {
+                        InspectorCardSeparator()
+                        InspectorSettingRow {
                             Text("convert.settings.scale.amount")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.secondary)
-                            Spacer()
+                                .font(.system(size: 13))
+                        } control: {
                             Picker("", selection: $scaleSelection) {
                                 ForEach(scaleOptions, id: \.self) { option in
-                                    Text(option.hasPrefix("convert.") ? languageManager.string(option) : option)
+                                    Text(languageManager.scaleMenuTitle(for: option))
+                                        .lineLimit(1)
                                         .tag(option as String)
                                 }
                             }
                             .pickerStyle(.menu)
                             .labelsHidden()
-                            .frame(width: 100)
+                            .controlSize(.small)
+                            .frame(minWidth: 132, maxWidth: 176)
                         }
-                        .padding(.top, 6)
                     }
                 }
 
-                Divider()
-
-                // Resize Section
+                // Resize
                 inspectorSection("convert.settings.resize") {
-                    HStack {
+                    InspectorSettingRow {
                         Text("convert.settings.enable")
                             .font(.system(size: 13))
-                        Spacer()
+                    } control: {
                         Toggle("", isOn: $resizeEnabled)
                             .toggleStyle(.switch)
                             .controlSize(.small)
@@ -598,37 +524,39 @@ struct ConvertImageView: View {
                     }
 
                     if resizeEnabled {
-                        HStack(spacing: 12) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("convert.settings.width")
-                                    .font(.system(size: 11, weight: .medium))
-                                    .foregroundStyle(Color.secondary)
-                                TextField("px", text: $customWidth)
-                                    .textFieldStyle(.roundedBorder)
-                                    .controlSize(.small)
-                            }
-
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("convert.settings.height")
-                                    .font(.system(size: 11, weight: .medium))
-                                    .foregroundStyle(Color.secondary)
-                                TextField("px", text: $customHeight)
-                                    .textFieldStyle(.roundedBorder)
-                                    .controlSize(.small)
-                            }
+                        InspectorCardSeparator()
+                        InspectorSettingRow {
+                            Text("convert.settings.width")
+                                .font(.system(size: 13))
+                        } control: {
+                            TextField("px", text: $customWidth)
+                                .textFieldStyle(.plain)
+                                .multilineTextAlignment(.trailing)
+                                .font(.system(size: 13, weight: .medium, design: .monospaced))
+                                .frame(width: 72)
+                                .controlSize(.small)
                         }
-                        .padding(.top, 6)
+                        InspectorCardSeparator()
+                        InspectorSettingRow {
+                            Text("convert.settings.height")
+                                .font(.system(size: 13))
+                        } control: {
+                            TextField("px", text: $customHeight)
+                                .textFieldStyle(.plain)
+                                .multilineTextAlignment(.trailing)
+                                .font(.system(size: 13, weight: .medium, design: .monospaced))
+                                .frame(width: 72)
+                                .controlSize(.small)
+                        }
                     }
                 }
 
-                Divider()
-
-                // Metadata Section
+                // Metadata
                 inspectorSection("meta.info") {
-                    HStack {
+                    InspectorSettingRow {
                         Text("convert.settings.enable")
                             .font(.system(size: 13))
-                        Spacer()
+                    } control: {
                         Toggle("", isOn: $metadataEnabled)
                             .toggleStyle(.switch)
                             .controlSize(.small)
@@ -636,59 +564,45 @@ struct ConvertImageView: View {
                     }
                 }
 
-                Divider()
-
-                // Target Folder Section
+                // Target Folder
                 inspectorSection("convert.settings.targetFolder") {
-                    HStack(spacing: 8) {
-                        if let folderURL = appState.targetFolder {
-                            Text(truncatedPath(folderURL.path))
-                                .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                .foregroundStyle(Color.primary.opacity(0.8))
-                                .lineLimit(1)
-                                .truncationMode(.middle)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.primary.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-                                )
-                        } else {
-                            Text("convert.settings.noFolder")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.red.opacity(0.8))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.red.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.red.opacity(0.2), lineWidth: 1)
-                                )
+                    FolderPickerRow(
+                        folder: appState.targetFolder,
+                        isStale: appState.targetFolderStale
+                    ) {
+                        pickFolder { url in
+                            appState.handleFolderSelected(url)
+                            appState.targetFolder = url
                         }
-
-                        Button("convert.settings.chooseFolder") {
-                            pickFolder { url in
-    appState.handleFolderSelected(url)
-    appState.targetFolder = url
-}
-                        }
-                        .controlSize(.small)
                     }
                 }
 
-                Divider()
+                // Watermark
+                inspectorSection("watermark.title") {
+                    InspectorSettingRow {
+                        Text("convert.settings.enable")
+                            .font(.system(size: 13))
+                    } control: {
+                        Toggle("", isOn: $watermarkEnabled)
+                            .toggleStyle(.switch)
+                            .controlSize(.small)
+                            .labelsHidden()
+                            .onChange(of: watermarkEnabled) { newValue in
+                                if newValue {
+                                    if !hasWatermarkContent {
+                                        showWatermarkSheet = true
+                                    }
+                                } else {
+                                    watermarkImage = nil
+                                    watermarkURL = nil
+                                    watermarkText = ""
+                                    watermarkRotation = 0
+                                }
+                            }
+                    }
 
-                // Watermark Section
-                VStack(spacing: 10) {
+                    InspectorCardSeparator()
+
                     Button {
                         showWatermarkSheet = true
                     } label: {
@@ -699,23 +613,43 @@ struct ConvertImageView: View {
                                 .font(.system(size: 13, weight: .medium))
                         }
                         .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
                     }
-                    .controlSize(.large)
+                    .buttonStyle(.plain)
                     .handCursor()
-                    .tint(watermarkEnabled ? .green : nil)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .fill(InspectorCardMetrics.chipFill(for: colorScheme))
+                    )
+                    .foregroundStyle(Color.primary)
 
-                    if watermarkEnabled, let wm = watermarkImage {
+                    if watermarkEnabled, hasWatermarkContent {
                         HStack(spacing: 8) {
-                            Image(nsImage: wm)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 28, height: 28)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                            if let wm = watermarkImage {
+                                Image(nsImage: wm)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 28, height: 28)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                            } else {
+                                Image(systemName: "textformat")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundStyle(Color.secondary)
+                                    .frame(width: 28, height: 28)
+                                    .background(RoundedRectangle(cornerRadius: 4).fill(Color.primary.opacity(0.06)))
+                            }
                             VStack(alignment: .leading, spacing: 1) {
-                                Text(languageManager.string(watermarkPosition.labelKey))
-                                    .font(.system(size: 10, weight: .medium))
-                                    .foregroundStyle(Color.primary)
-                                Text("\(Int(watermarkScale * 100))% · \(Int(watermarkOpacity * 100))%")
+                                if !WatermarkStamper.trimmedText(watermarkText).isEmpty {
+                                    Text(WatermarkStamper.trimmedText(watermarkText))
+                                        .font(.system(size: 10, weight: .medium))
+                                        .foregroundStyle(Color.primary)
+                                        .lineLimit(1)
+                                } else {
+                                    Text(languageManager.string(watermarkPosition.labelKey))
+                                        .font(.system(size: 10, weight: .medium))
+                                        .foregroundStyle(Color.primary)
+                                }
+                                Text("\(Int(watermarkScale * 100))% · \(Int(watermarkOpacity * 100))% · \(Int(watermarkRotation))°")
                                     .font(.system(size: 9, weight: .medium, design: .monospaced))
                                     .foregroundStyle(Color.secondary)
                             }
@@ -724,6 +658,8 @@ struct ConvertImageView: View {
                                 watermarkEnabled = false
                                 watermarkImage = nil
                                 watermarkURL = nil
+                                watermarkText = ""
+                                watermarkRotation = 0
                             } label: {
                                 Image(systemName: "xmark")
                                     .font(.system(size: 9, weight: .bold))
@@ -732,44 +668,63 @@ struct ConvertImageView: View {
                             .buttonStyle(.plain)
                             .handCursor()
                         }
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 8).fill(Color.primary.opacity(0.04)))
-                        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.primary.opacity(0.08), lineWidth: 1))
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
+                .onChange(of: showWatermarkSheet) { isShowing in
+                    if !isShowing && !hasWatermarkContent {
+                        watermarkEnabled = false
+                    }
+                }
+        }
+    }
 
-                Divider()
-
-                // Convert Button
-                VStack {
-                    Button {
-                        isProcessing = true
-                        conversionProgress = ""
-                        Task { await performConversion() }
-                    } label: {
-                        HStack {
-                            if isProcessing {
-                                ProgressView()
-                                    .controlSize(.small)
-                                    .padding(.trailing, 4)
-                                Text(conversionProgress.isEmpty ? LocalizedStringKey("video.processing") : LocalizedStringKey(conversionProgress))
-                            } else {
-                                Image(systemName: "arrow.triangle.2.circlepath")
-                                Text("convert.settings.convertButton")
-                            }
+    /// Sticky footer: Dönüştür / Durdur inspector kaydırılınca ekrandan düşmesin.
+    private var convertFooter: some View {
+        VStack(spacing: 8) {
+            Button {
+                startImageConversion()
+            } label: {
+                HStack {
+                    if appState.isConvertingImages {
+                        ProgressView()
+                            .controlSize(.small)
+                            .padding(.trailing, 4)
+                        if appState.imageConversionProgress.isEmpty {
+                            Text(LocalizedStringKey("video.processing"))
+                        } else {
+                            Text(appState.imageConversionProgress)
                         }
-                        .frame(maxWidth: .infinity)
+                    } else {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                        Text("convert.settings.convertButton")
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-                    .disabled(appState.targetFolder == nil || appState.selectedImages.isEmpty || isProcessing)
                 }
-                .padding(16)
+                .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .disabled(appState.isConvertingImages || appState.targetFolder == nil || appState.selectedImages.isEmpty)
+
+            if appState.isConvertingImages {
+                Button {
+                    appState.requestCancelImageConversion()
+                } label: {
+                    Text(LocalizedStringKey("convert.cancel"))
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
             }
         }
-        .background(Material.bar)
+    }
+
+    private func startImageConversion() {
+        guard !appState.isConvertingImages, appState.imageConversionTask == nil else { return }
+        guard !appState.selectedImages.isEmpty else { return }
+        let task = Task { @MainActor in
+            await performConversion()
+        }
+        appState.imageConversionTask = task
     }
 
     // MARK: - Preview Offset Clamp
@@ -784,12 +739,23 @@ struct ConvertImageView: View {
     }
 
     // MARK: - Conversion Logic
+    @MainActor
     private func performConversion() async {
-        guard let targetFolder = appState.targetFolder else { return }
-        appState.processingMenuItem = .convertImage
-        defer {
-            isProcessing = false
-            appState.processingMenuItem = nil
+        let state = appState
+        defer { state.endImageConversion() }
+        guard let targetFolder = await state.resolveOutputFolder() else { return }
+        if Task.isCancelled { return }
+
+        state.isConvertingImages = true
+        state.imageConversionProgress = ""
+        state.processingMenuItem = .convertImage
+
+        for i in appState.selectedImages.indices {
+            appState.selectedImages[i].isCompleted = false
+            appState.selectedImages[i].outputURL = nil
+            appState.selectedImages[i].outputFileSizeString = nil
+            appState.selectedImages[i].outputDimensionsString = nil
+            appState.selectedImages[i].outputSizeDropPercent = nil
         }
 
         let images = appState.selectedImages
@@ -800,13 +766,29 @@ struct ConvertImageView: View {
         let resizeEnabledCopy = resizeEnabled
         let customWidthCopy = customWidth
         let customHeightCopy = customHeight
+        let wmEnabled = watermarkEnabled
+        let wmNSImage = watermarkImage
+        let wmText = watermarkText
+        let wmPosition = watermarkPosition
+        let wmScale = watermarkScale
+        let wmOpacity = watermarkOpacity
+        let wmColor = watermarkColorOverlay
+        let wmTile = watermarkTileMode
+        let wmRotation = watermarkRotation
 
         var successCount = 0
         let total = images.count
 
+        var wasCancelled = false
+
         for (index, item) in images.enumerated() {
-            conversionProgress = "\(index + 1)/\(total)"
+            if Task.isCancelled {
+                wasCancelled = true
+                break
+            }
+            state.imageConversionProgress = "\(index + 1)/\(total)"
             let (url, accessed) = item.securityScopedURL()
+            let originalSizeBytes = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int64) ?? 0
 
             let ext = url.pathExtension.lowercased()
 
@@ -890,17 +872,23 @@ struct ConvertImageView: View {
             }
 
             // Watermark stamp
-            if watermarkEnabled, let wmNS = watermarkImage {
-                var rect = CGRect(origin: .zero, size: wmNS.size)
-                if let wmCG = wmNS.cgImage(forProposedRect: &rect, context: nil, hints: nil),
+            if wmEnabled {
+                var logoCG: CGImage?
+                if let wmNS = wmNSImage {
+                    var rect = CGRect(origin: .zero, size: wmNS.size)
+                    logoCG = wmNS.cgImage(forProposedRect: &rect, context: nil, hints: nil)
+                }
+                if WatermarkStamper.hasContent(logo: logoCG, text: wmText),
                    let stamped = WatermarkStamper.stamp(
                     onto: cg,
-                    watermark: wmCG,
-                    position: watermarkPosition,
-                    scale: watermarkScale,
-                    opacity: watermarkOpacity,
-                    colorOverlay: watermarkColorOverlay,
-                    tileMode: watermarkTileMode
+                    logo: logoCG,
+                    text: wmText,
+                    position: wmPosition,
+                    scale: wmScale,
+                    opacity: wmOpacity,
+                    colorOverlay: wmColor,
+                    tileMode: wmTile,
+                    rotationDegrees: wmRotation
                 ) {
                     cg = stamped
                 }
@@ -914,28 +902,87 @@ struct ConvertImageView: View {
                 outputURL = targetFolder.appendingPathComponent("\(baseName)_converted.\(outputExt)")
             }
 
+            if Task.isCancelled {
+                wasCancelled = true
+                break
+            }
+
             let magickFmt = format.magickFormat
             let q = CodecQuality(value: qualityValue)
             do {
-                _ = try await CometImageCodec.shared.convert(
+                let metrics = try await CometImageCodec.shared.convert(
                     cgImage: cg,
                     outputURL: outputURL,
                     quality: q,
                     magickFormat: magickFmt
                 )
+                recordConversionResult(
+                    itemID: item.id,
+                    outputURL: outputURL,
+                    outputWidth: cg.width,
+                    outputHeight: cg.height,
+                    originalSizeBytes: originalSizeBytes,
+                    encodedSizeBytes: metrics.outputSizeBytes
+                )
                 successCount += 1
+            } catch is CancellationError {
+                wasCancelled = true
+                try? FileManager.default.removeItem(at: outputURL)
+                break
+            } catch CodecError.cancelled {
+                wasCancelled = true
+                try? FileManager.default.removeItem(at: outputURL)
+                break
             } catch {
                 // Bu görseli atla, diğerlerine devam et
             }
         }
 
+        if wasCancelled || Task.isCancelled { return }
+
         await MainActor.run {
             if successCount > 0 {
                 showSuccessAlert = true
-                CometAnalytics.shared.trackEvent(page: "convertImage", eventType: .imageConverted, metadata: ["count": successCount])
             } else {
                 showConversionError = true
             }
+        }
+    }
+
+    private func recordConversionResult(
+        itemID: UUID,
+        outputURL: URL,
+        outputWidth: Int,
+        outputHeight: Int,
+        originalSizeBytes: Int64,
+        encodedSizeBytes: Int
+    ) {
+        let attrsSize = (try? FileManager.default.attributesOfItem(atPath: outputURL.path)[.size] as? Int64) ?? 0
+        let newSize = attrsSize > 0 ? attrsSize : Int64(encodedSizeBytes)
+
+        var dim = (outputWidth > 0 && outputHeight > 0) ? "\(outputWidth)×\(outputHeight)" : ""
+        if let src = CGImageSourceCreateWithURL(outputURL as CFURL, nil),
+           let props = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
+           let w = props[kCGImagePropertyPixelWidth] as? Int,
+           let h = props[kCGImagePropertyPixelHeight] as? Int,
+           w > 0, h > 0 {
+            dim = "\(w)×\(h)"
+        } else if dim.isEmpty, let img = NSImage(contentsOf: outputURL), img.size.width > 0 {
+            dim = "\(Int(img.size.width))×\(Int(img.size.height))"
+        }
+
+        let sizeStr = newSize > 0 ? ByteCountFormatter.string(fromByteCount: newSize, countStyle: .file) : nil
+        var drop: Double? = nil
+        if originalSizeBytes > 0, newSize > 0 {
+            drop = (1.0 - Double(newSize) / Double(originalSizeBytes)) * 100.0
+        }
+
+        if let i = appState.selectedImages.firstIndex(where: { $0.id == itemID }) {
+            appState.selectedImages[i].isCompleted = true
+            appState.selectedImages[i].outputURL = outputURL
+            appState.selectedImages[i].outputFileSizeString = sizeStr
+            appState.selectedImages[i].outputDimensionsString = dim.isEmpty ? nil : dim
+            appState.selectedImages[i].outputSizeDropPercent = drop
         }
     }
 
@@ -1095,674 +1142,141 @@ struct ConvertImageView: View {
     }
 }
 
-// MARK: - Watermark Color Overlay
+// MARK: - Finder-style convert list row
 
-enum WatermarkColorOverlay: String, CaseIterable, Identifiable {
-    case none, black, darkGray, gray, lightGray, white
+private struct ImageConvertListRow: View {
+    let item: ImageItem
+    let onPreview: () -> Void
+    let onRemove: () -> Void
 
-    var id: String { rawValue }
+    @State private var isHovered = false
 
-    var labelKey: String {
-        switch self {
-        case .none:      return "watermark.color.none"
-        case .black:     return "watermark.color.black"
-        case .darkGray:  return "watermark.color.darkGray"
-        case .gray:      return "watermark.color.gray"
-        case .lightGray: return "watermark.color.lightGray"
-        case .white:     return "watermark.color.white"
-        }
+    private var formatLabel: String {
+        item.url.pathExtension.uppercased()
     }
 
-    var cgColor: CGColor? {
-        switch self {
-        case .none:      return nil
-        case .black:     return CGColor(gray: 0, alpha: 1)
-        case .darkGray:  return CGColor(gray: 0.33, alpha: 1)
-        case .gray:      return CGColor(gray: 0.5, alpha: 1)
-        case .lightGray: return CGColor(gray: 0.75, alpha: 1)
-        case .white:     return CGColor(gray: 1, alpha: 1)
-        }
+    private var subtitle: String {
+        var parts: [String] = []
+        if !item.fileSizeString.isEmpty { parts.append(item.fileSizeString) }
+        if !item.dimensionsString.isEmpty { parts.append(item.dimensionsString) }
+        if !formatLabel.isEmpty { parts.append(formatLabel) }
+        return parts.joined(separator: " · ")
     }
 
-    var swiftUIColor: Color? {
-        switch self {
-        case .none:      return nil
-        case .black:     return .black
-        case .darkGray:  return Color(white: 0.33)
-        case .gray:      return .gray
-        case .lightGray: return Color(white: 0.75)
-        case .white:     return .white
-        }
+    /// Koyu arayüzde okunan, neon olmayan nane yeşili.
+    private var resultMint: Color {
+        Color(red: 0.40, green: 0.84, blue: 0.58)
     }
 
-    var previewCircleColor: Color {
-        switch self {
-        case .none:      return .clear
-        case .black:     return .black
-        case .darkGray:  return Color(white: 0.33)
-        case .gray:      return .gray
-        case .lightGray: return Color(white: 0.75)
-        case .white:     return .white
+    private var resultSuffix: String? {
+        guard item.isCompleted else { return nil }
+        var parts: [String] = []
+        if let dim = item.outputDimensionsString, !dim.isEmpty {
+            parts.append(dim)
         }
-    }
-}
-
-// MARK: - Watermark CGImage Helpers
-
-enum WatermarkStamper {
-
-    static func tintedImage(_ source: CGImage, color: CGColor) -> CGImage? {
-        let w = source.width, h = source.height
-        guard let ctx = CGContext(
-            data: nil, width: w, height: h,
-            bitsPerComponent: 8, bytesPerRow: w * 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
-        ) else { return nil }
-        let rect = CGRect(x: 0, y: 0, width: w, height: h)
-        ctx.clip(to: rect, mask: source)
-        ctx.setFillColor(color)
-        ctx.fill(rect)
-        return ctx.makeImage()
-    }
-
-    static func stamp(
-        onto base: CGImage,
-        watermark wm: CGImage,
-        position: WatermarkPosition,
-        scale: Double,
-        opacity: Double,
-        colorOverlay: WatermarkColorOverlay,
-        tileMode: Bool
-    ) -> CGImage? {
-        let imgW = CGFloat(base.width)
-        let imgH = CGFloat(base.height)
-
-        let finalWM: CGImage
-        if let tintColor = colorOverlay.cgColor, let tinted = tintedImage(wm, color: tintColor) {
-            finalWM = tinted
-        } else {
-            finalWM = wm
-        }
-
-        guard let ctx = CGContext(
-            data: nil, width: Int(imgW), height: Int(imgH),
-            bitsPerComponent: 8, bytesPerRow: Int(imgW) * 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
-        ) else { return nil }
-
-        ctx.draw(base, in: CGRect(x: 0, y: 0, width: imgW, height: imgH))
-
-        let shortSide = min(imgW, imgH)
-        let wmAspect = CGFloat(finalWM.width) / max(CGFloat(finalWM.height), 1)
-        let wmDrawW = shortSide * scale
-        let wmDrawH = wmDrawW / max(wmAspect, 0.01)
-        let wmSize = CGSize(width: wmDrawW, height: wmDrawH)
-
-        ctx.saveGState()
-        ctx.beginTransparencyLayer(auxiliaryInfo: nil)
-        ctx.setAlpha(CGFloat(opacity))
-
-        if tileMode {
-            let spacingX = wmDrawW * 1.6
-            let spacingY = wmDrawH * 1.6
-            var row = 0
-            var y = -wmDrawH * 0.5
-            while y < imgH + wmDrawH {
-                let xOffset: CGFloat = (row % 2 == 0) ? 0 : spacingX * 0.5
-                var x = -wmDrawW * 0.5 + xOffset
-                while x < imgW + wmDrawW {
-                    ctx.draw(finalWM, in: CGRect(x: x, y: y, width: wmDrawW, height: wmDrawH))
-                    x += spacingX
-                }
-                y += spacingY
-                row += 1
+        if let size = item.outputFileSizeString, !size.isEmpty {
+            if let pct = item.outputSizeDropPercent {
+                parts.append("\(size) (\(Self.formatDropPercent(pct)))")
+            } else {
+                parts.append(size)
             }
+        } else if let pct = item.outputSizeDropPercent {
+            parts.append(Self.formatDropPercent(pct))
+        }
+        guard !parts.isEmpty else { return nil }
+        return "→ " + parts.joined(separator: " · ")
+    }
+
+    private static func formatDropPercent(_ drop: Double) -> String {
+        let absVal = abs(drop)
+        let number: String
+        if absVal > 0 && absVal < 10 {
+            number = String(format: "%.1f", absVal)
         } else {
-            let origin = position.origin(imageSize: CGSize(width: imgW, height: imgH), watermarkSize: wmSize)
-            ctx.draw(finalWM, in: CGRect(origin: origin, size: wmSize))
+            number = String(format: "%.0f", absVal.rounded())
         }
-
-        ctx.endTransparencyLayer()
-        ctx.restoreGState()
-
-        return ctx.makeImage()
-    }
-}
-
-// MARK: - Watermark Position
-
-enum WatermarkPosition: String, CaseIterable, Identifiable {
-    case topLeft, topCenter, topRight
-    case centerLeft, center, centerRight
-    case bottomLeft, bottomCenter, bottomRight
-
-    var id: String { rawValue }
-
-    var labelKey: String {
-        switch self {
-        case .topLeft:      return "watermark.pos.topLeft"
-        case .topCenter:    return "watermark.pos.topCenter"
-        case .topRight:     return "watermark.pos.topRight"
-        case .centerLeft:   return "watermark.pos.centerLeft"
-        case .center:       return "watermark.pos.center"
-        case .centerRight:  return "watermark.pos.centerRight"
-        case .bottomLeft:   return "watermark.pos.bottomLeft"
-        case .bottomCenter: return "watermark.pos.bottomCenter"
-        case .bottomRight:  return "watermark.pos.bottomRight"
+        if drop > 0.049 {
+            return "−\(number)%"
+        } else if drop < -0.049 {
+            return "+\(number)%"
+        } else {
+            return "0%"
         }
     }
 
-    var icon: String {
-        switch self {
-        case .topLeft:      return "arrow.up.left"
-        case .topCenter:    return "arrow.up"
-        case .topRight:     return "arrow.up.right"
-        case .centerLeft:   return "arrow.left"
-        case .center:       return "circle.fill"
-        case .centerRight:  return "arrow.right"
-        case .bottomLeft:   return "arrow.down.left"
-        case .bottomCenter: return "arrow.down"
-        case .bottomRight:  return "arrow.down.right"
-        }
+    private var metadataLine: Text {
+        let base = Text(subtitle).foregroundColor(Color.secondary)
+        guard let suffix = resultSuffix else { return base }
+        return base + Text(" \(suffix)").foregroundColor(resultMint)
     }
-
-    func origin(imageSize: CGSize, watermarkSize: CGSize, margin: CGFloat = 0.03) -> CGPoint {
-        let mx = imageSize.width * margin
-        let my = imageSize.height * margin
-        let ww = watermarkSize.width
-        let wh = watermarkSize.height
-        let cx = (imageSize.width - ww) / 2
-        let cy = (imageSize.height - wh) / 2
-        switch self {
-        case .topLeft:      return CGPoint(x: mx, y: imageSize.height - wh - my)
-        case .topCenter:    return CGPoint(x: cx, y: imageSize.height - wh - my)
-        case .topRight:     return CGPoint(x: imageSize.width - ww - mx, y: imageSize.height - wh - my)
-        case .centerLeft:   return CGPoint(x: mx, y: cy)
-        case .center:       return CGPoint(x: cx, y: cy)
-        case .centerRight:  return CGPoint(x: imageSize.width - ww - mx, y: cy)
-        case .bottomLeft:   return CGPoint(x: mx, y: my)
-        case .bottomCenter: return CGPoint(x: cx, y: my)
-        case .bottomRight:  return CGPoint(x: imageSize.width - ww - mx, y: my)
-        }
-    }
-}
-
-// MARK: - Watermark Sheet
-
-struct WatermarkSheet: View {
-    @Binding var parentImage: NSImage?
-    @Binding var parentURL: URL?
-    @Binding var parentPosition: WatermarkPosition
-    @Binding var parentScale: Double
-    @Binding var parentOpacity: Double
-    @Binding var parentColorOverlay: WatermarkColorOverlay
-    @Binding var parentTileMode: Bool
-    @Binding var parentEnabled: Bool
-    let images: [ImageItem]
-    @EnvironmentObject var languageManager: LanguageManager
-    @Environment(\.dismiss) private var dismiss
-
-    @State private var watermarkImage: NSImage? = nil
-    @State private var watermarkURL: URL? = nil
-    @State private var watermarkPosition: WatermarkPosition = .bottomRight
-    @State private var watermarkScale: Double = 0.15
-    @State private var watermarkOpacity: Double = 0.8
-    @State private var watermarkColorOverlay: WatermarkColorOverlay = .none
-    @State private var watermarkTileMode: Bool = false
 
     var body: some View {
-        VStack(spacing: 0) {
-            // Title bar
-            HStack {
-                Text(languageManager.string("watermark.title"))
-                    .font(.system(size: 15, weight: .bold))
-                Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(Color.secondary)
-                        .padding(7)
-                        .background(Color.primary.opacity(0.08))
-                        .clipShape(Circle())
+        HStack(spacing: 12) {
+            Button(action: onPreview) {
+                HStack(spacing: 12) {
+                    thumbnail
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(item.fileName)
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(Color.primary)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        metadataLine
+                            .font(.system(size: 11))
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .buttonStyle(.plain)
-                .handCursor()
+                .contentShape(Rectangle())
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 18)
-            .padding(.bottom, 12)
+            .buttonStyle(.plain)
+            .handCursor()
 
-            Divider()
-
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-
-                    // Row 1: Logo + Position side by side
-                    HStack(alignment: .top, spacing: 16) {
-                        // Logo picker
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(languageManager.string("watermark.logo"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            HStack(spacing: 10) {
-                                if let img = watermarkImage {
-                                    Image(nsImage: img)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 52, height: 52)
-                                        .background(RoundedRectangle(cornerRadius: 8).fill(Color.primary.opacity(0.05)))
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.primary.opacity(0.12), lineWidth: 1))
-                                } else {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color.primary.opacity(0.05))
-                                        .frame(width: 52, height: 52)
-                                        .overlay(
-                                            Image(systemName: "photo.badge.plus")
-                                                .font(.system(size: 18))
-                                                .foregroundStyle(Color.secondary.opacity(0.5))
-                                        )
-                                        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.primary.opacity(0.1), lineWidth: 1))
-                                }
-
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Button(languageManager.string("watermark.selectLogo")) {
-                                        pickWatermarkFile()
-                                    }
-                                    .controlSize(.small)
-                                    .handCursor()
-
-                                    if let url = watermarkURL {
-                                        Text(url.lastPathComponent)
-                                            .font(.system(size: 9))
-                                            .foregroundStyle(Color.secondary)
-                                            .lineLimit(1)
-                                            .truncationMode(.middle)
-                                    }
-
-                                    if watermarkImage != nil {
-                                        Button(languageManager.string("watermark.removeLogo")) {
-                                            watermarkImage = nil
-                                            watermarkURL = nil
-                                        }
-                                        .font(.system(size: 10))
-                                        .foregroundStyle(Color.red.opacity(0.8))
-                                        .buttonStyle(.plain)
-                                        .handCursor()
-                                    }
-                                }
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                        // Position picker
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(languageManager.string("watermark.position"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            positionGrid
-                        }
-                    }
-
-                    Divider()
-
-                    // Row 2: Scale + Opacity side by side
-                    HStack(alignment: .top, spacing: 16) {
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(languageManager.string("watermark.scale"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            HStack(spacing: 6) {
-                                Slider(value: $watermarkScale, in: 0.03...0.5, step: 0.01)
-                                Text("\(Int(watermarkScale * 100))%")
-                                    .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                    .foregroundStyle(Color.secondary)
-                                    .frame(width: 32, alignment: .trailing)
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(languageManager.string("watermark.opacity"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            HStack(spacing: 6) {
-                                Slider(value: $watermarkOpacity, in: 0.05...1.0, step: 0.05)
-                                Text("\(Int(watermarkOpacity * 100))%")
-                                    .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                    .foregroundStyle(Color.secondary)
-                                    .frame(width: 32, alignment: .trailing)
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-
-                    Divider()
-
-                    // Row 3: Color overlay + Tile mode side by side
-                    HStack(alignment: .top, spacing: 16) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(languageManager.string("watermark.colorOverlay"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            HStack(spacing: 4) {
-                                ForEach(WatermarkColorOverlay.allCases) { overlay in
-                                    Button {
-                                        watermarkColorOverlay = overlay
-                                    } label: {
-                                        if overlay == .none {
-                                            Image(systemName: "circle.slash")
-                                                .font(.system(size: 12))
-                                                .foregroundStyle(Color.secondary)
-                                                .frame(width: 26, height: 24)
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .fill(watermarkColorOverlay == overlay ? Color.accentColor.opacity(0.2) : Color.primary.opacity(0.06))
-                                                )
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .strokeBorder(watermarkColorOverlay == overlay ? Color.accentColor : Color.clear, lineWidth: 1.5)
-                                                )
-                                        } else {
-                                            Circle()
-                                                .fill(overlay.previewCircleColor)
-                                                .frame(width: 16, height: 16)
-                                                .overlay(Circle().strokeBorder(Color.primary.opacity(0.2), lineWidth: 1))
-                                                .frame(width: 26, height: 24)
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .fill(watermarkColorOverlay == overlay ? Color.accentColor.opacity(0.2) : Color.clear)
-                                                )
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .strokeBorder(watermarkColorOverlay == overlay ? Color.accentColor : Color.clear, lineWidth: 1.5)
-                                                )
-                                        }
-                                    }
-                                    .buttonStyle(.plain)
-                                    .handCursor()
-                                }
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(languageManager.string("watermark.tileMode"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            Button {
-                                watermarkTileMode.toggle()
-                            } label: {
-                                HStack(spacing: 6) {
-                                    Image(systemName: watermarkTileMode ? "checkmark.circle.fill" : "circle")
-                                        .font(.system(size: 16))
-                                        .foregroundStyle(watermarkTileMode ? Color.accentColor : Color.secondary.opacity(0.5))
-                                    Text(languageManager.string("watermark.tileMode.desc"))
-                                        .font(.system(size: 11))
-                                        .foregroundStyle(Color.primary)
-                                }
-                                .contentShape(Rectangle())
-                            }
-                            .buttonStyle(.plain)
-                            .handCursor()
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-
-                    // Preview grid (up to 6 images)
-                    if !images.isEmpty && watermarkImage != nil {
-                        Divider()
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(languageManager.string("watermark.preview"))
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.secondary)
-                                .textCase(.uppercase)
-
-                            let previewImages = Array(images.prefix(6))
-                            let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
-                            LazyVGrid(columns: columns, spacing: 8) {
-                                ForEach(previewImages) { item in
-                                    watermarkPreviewCell(item)
-                                }
-                            }
-                        }
-                    }
-                }
-                .padding(20)
+            Button(action: onRemove) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundStyle(Color.secondary)
+                    .padding(6)
+                    .background(Color.primary.opacity(isHovered ? 0.12 : 0.07))
+                    .clipShape(Circle())
             }
-
-            Divider()
-
-            // Bottom bar
-            HStack {
-                Spacer()
-                Button(languageManager.string("watermark.cancel")) {
-                    dismiss()
-                }
-                .controlSize(.regular)
-                .keyboardShortcut(.escape, modifiers: [])
-                .handCursor()
-
-                Button(languageManager.string("watermark.apply")) {
-                    parentImage = watermarkImage
-                    parentURL = watermarkURL
-                    parentPosition = watermarkPosition
-                    parentScale = watermarkScale
-                    parentOpacity = watermarkOpacity
-                    parentColorOverlay = watermarkColorOverlay
-                    parentTileMode = watermarkTileMode
-                    parentEnabled = watermarkImage != nil
-                    dismiss()
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.regular)
-                .disabled(watermarkImage == nil)
-                .handCursor()
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 14)
+            .buttonStyle(.plain)
+            .handCursor()
         }
-        .frame(width: 580, height: 540)
-        .onAppear {
-            watermarkImage = parentImage
-            watermarkURL = parentURL
-            watermarkPosition = parentPosition
-            watermarkScale = parentScale
-            watermarkOpacity = parentOpacity
-            watermarkColorOverlay = parentColorOverlay
-            watermarkTileMode = parentTileMode
+        .padding(.horizontal, 16)
+        .padding(.vertical, 7)
+        .background(isHovered ? Color.primary.opacity(0.05) : Color.clear)
+        .overlay(alignment: .bottom) {
+            Divider().padding(.leading, 72)
         }
+        .onHover { isHovered = $0 }
     }
 
-    // MARK: - Position Grid
-
-    private var positionGrid: some View {
-        let positions: [[WatermarkPosition]] = [
-            [.topLeft, .topCenter, .topRight],
-            [.centerLeft, .center, .centerRight],
-            [.bottomLeft, .bottomCenter, .bottomRight],
-        ]
-        return VStack(spacing: 4) {
-            ForEach(Array(positions.enumerated()), id: \.offset) { _, row in
-                HStack(spacing: 4) {
-                    ForEach(row) { pos in
-                        Button {
-                            watermarkPosition = pos
-                        } label: {
-                            Image(systemName: pos.icon)
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(watermarkPosition == pos ? Color.white : Color.primary.opacity(0.6))
-                                .frame(width: 36, height: 28)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(watermarkPosition == pos ? Color.accentColor : Color.primary.opacity(0.08))
-                                )
-                        }
-                        .buttonStyle(.plain)
-                        .handCursor()
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - Preview Cell
-
-    @ViewBuilder
-    private func watermarkPreviewCell(_ item: ImageItem) -> some View {
-        GeometryReader { geo in
-            ZStack {
-                if let nsImage = item.image {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        .clipped()
-                } else {
+    private var thumbnail: some View {
+        Group {
+            if let nsImage = item.image {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                ZStack {
                     Color.secondary.opacity(0.15)
-                }
-
-                if let wm = watermarkImage {
-                    WatermarkOverlayView(
-                        watermarkImage: wm,
-                        containerSize: geo.size,
-                        scale: watermarkScale,
-                        opacity: watermarkOpacity,
-                        position: watermarkPosition,
-                        colorOverlay: watermarkColorOverlay,
-                        tileMode: watermarkTileMode
-                    )
-                    .allowsHitTesting(false)
+                    Image(systemName: "photo")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.secondary.opacity(0.55))
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: 6))
-            .overlay(
-                RoundedRectangle(cornerRadius: 6)
-                    .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-            )
         }
-        .frame(height: 120)
-    }
-
-    // MARK: - File Picker
-
-    private func pickWatermarkFile() {
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = false
-        panel.canChooseDirectories = false
-        panel.canChooseFiles = true
-        panel.allowedContentTypes = [.image, .png, .jpeg, .svg]
-        if panel.runModal() == .OK, let url = panel.url {
-            watermarkURL = url
-            watermarkImage = NSImage(contentsOf: url)
-        }
+        .frame(width: 44, height: 44)
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
+        )
     }
 }
 
-// MARK: - Shared Watermark Overlay View
-
-struct WatermarkOverlayView: View {
-    let watermarkImage: NSImage
-    let containerSize: CGSize
-    let scale: Double
-    let opacity: Double
-    let position: WatermarkPosition
-    let colorOverlay: WatermarkColorOverlay
-    let tileMode: Bool
-
-    var body: some View {
-        let wmAspect = watermarkImage.size.width / max(watermarkImage.size.height, 1)
-        let wmW = containerSize.width * scale * 2
-        let wmH = wmW / max(wmAspect, 0.1)
-        let tintColor = colorOverlay.swiftUIColor
-
-        if tileMode {
-            let spacingX = wmW * 1.6
-            let spacingY = wmH * 1.6
-            Canvas { ctx, size in
-                guard let resolved = ctx.resolveSymbol(id: "wm") else { return }
-                var row = 0
-                var y = -wmH * 0.5
-                while y < size.height + wmH {
-                    let xOff: CGFloat = (row % 2 == 0) ? 0 : spacingX * 0.5
-                    var x = -wmW * 0.5 + xOff
-                    while x < size.width + wmW {
-                        ctx.draw(resolved, at: CGPoint(x: x + wmW / 2, y: y + wmH / 2))
-                        x += spacingX
-                    }
-                    y += spacingY
-                    row += 1
-                }
-            } symbols: {
-                wmSingleImage(width: wmW, height: wmH, tintColor: tintColor)
-                    .tag("wm")
-            }
-            .allowsHitTesting(false)
-        } else {
-            let pos = position
-            let alignH: HorizontalAlignment = {
-                switch pos {
-                case .topLeft, .centerLeft, .bottomLeft: return .leading
-                case .topCenter, .center, .bottomCenter: return .center
-                case .topRight, .centerRight, .bottomRight: return .trailing
-                }
-            }()
-            let alignV: VerticalAlignment = {
-                switch pos {
-                case .topLeft, .topCenter, .topRight: return .top
-                case .centerLeft, .center, .centerRight: return .center
-                case .bottomLeft, .bottomCenter, .bottomRight: return .bottom
-                }
-            }()
-
-            VStack {
-                if alignV == .center || alignV == .bottom { Spacer(minLength: 0) }
-                HStack {
-                    if alignH == .center || alignH == .trailing { Spacer(minLength: 0) }
-                    wmSingleImage(width: wmW, height: wmH, tintColor: tintColor)
-                    if alignH == .center || alignH == .leading { Spacer(minLength: 0) }
-                }
-                if alignV == .center || alignV == .top { Spacer(minLength: 0) }
-            }
-            .padding(containerSize.width * 0.03)
-        }
-    }
-
-    @ViewBuilder
-    private func wmSingleImage(width: CGFloat, height: CGFloat, tintColor: Color?) -> some View {
-        if let tint = tintColor {
-            Image(nsImage: watermarkImage)
-                .resizable()
-                .scaledToFit()
-                .frame(width: width, height: height)
-                .colorMultiply(tint)
-                .opacity(opacity)
-        } else {
-            Image(nsImage: watermarkImage)
-                .resizable()
-                .scaledToFit()
-                .frame(width: width, height: height)
-                .opacity(opacity)
-        }
-    }
-}
 
 // MARK: - Image Format
 enum ImageFormat: String, CaseIterable, Identifiable {

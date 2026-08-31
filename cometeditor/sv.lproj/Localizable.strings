@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Dra och släpp en bild";
 "convert.drop.subtitle" = "eller klicka för att bläddra bland filer";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Bredd px";
 "convert.settings.height" = "Höjd px";
+
 "meta.info" = "Metadataskydd";
+
 "convert.settings.targetFolder" = "Målmapp";
 "convert.settings.noFolder" = "Inte vald";
 "convert.settings.chooseFolder" = "Välj från Finder";
+
+"folder.missing.title" = "Mappen hittades inte";
+"folder.missing.subtitle" = "Den sparade mappsökvägen finns inte längre. Välj en ny.";
+"folder.missing.pick" = "Välj ny mapp";
+"folder.missing.panel.message" = "Utdatamappen hittades inte. Välj en ny mapp.";
+
+"bgremove.error.noMaskFound" = "Ingen förgrundsmask hittades.";
+"bgremove.error.maskConversionFailed" = "Maskkonvertering misslyckades.";
+"bgremove.error.compositeFailed" = "Bildkomposition misslyckades.";
+
 "convert.settings.convertButton" = "Konvertera";
 "convert.clearAll" = "Rensa allt";
 "convert.addMore" = "Lägg till";
 "convert.wrongType.image" = "Här kan bara bilder konverteras";
+
+"upscale.settings.title" = "Inställningar";
+"upscale.settings.model" = "Modell";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-förbättring av detaljer";
+"upscale.settings.scale" = "Skala";
+"upscale.scale.multiPassHint" = "8× och 16× kör flera AI-pass — tar längre tid.";
+"upscale.settings.outputFormat" = "Utdataformat";
+"upscale.drop.title" = "Dra och släpp bilder";
+"upscale.drop.subtitle" = "eller klicka för att bläddra bland filer";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Endast stödda rasterbilder kan förstoras här";
+"upscale.runButton" = "Förstora";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Förhandsvisa";
+"upscale.preview.hint" = "Välj en skala och tryck på Förhandsvisa för att jämföra";
+"upscale.preview.processing" = "Skapar förhandsvisning…";
+"upscale.preview.before" = "FÖRE";
+"upscale.preview.after" = "EFTER";
+"upscale.preview.save" = "Spara";
+"upscale.preview.saveSettings" = "Spara förhandsvisning";
+"upscale.preview.autoSave" = "Spara efter förhandsvisning";
+"upscale.preview.autoSaveHint" = "Skriver till målmappen när förhandsvisningen är klar.";
+"upscale.preview.saveNeedFolder" = "Välj målmapp först.";
+"upscale.preview.saveFailed" = "Kunde inte koda förhandsvisningsbilden.";
+"upscale.preview.loadFailed" = "Kunde inte läsa in förhandsvisningsbilden.";
+"upscale.backend.missing.hint" = "cometscaly-motorn eller modellfiler saknas i appbunten. Bygg om projektet.";
+"upscale.error.bundle" = "Mappen Upscale bundle saknas i appen.";
+"upscale.error.binary" = "cometscaly hittades inte i appbunten.";
+"upscale.error.model" = "Modellfiler upscayl-standard-4x.param/.bin saknas.";
+"upscale.error.process" = "Förstoring misslyckades (exit %d): %@";
+"upscale.error.none" = "Inga bilder förstorades.";
+
 "menu.home" = "Hem";
 "menu.convertImage" = "Konvertera bild";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Inställningar";
 "menu.tools" = "Verktyg";
 "menu.document" = "DOKUMENT";
-"menu.team" = "Vårt team";
-"menu.team.title" = "Vårt team";
-"menu.team.subtitle" = "Möt de talangfulla personerna bakom Comet Editor";
 "menu.stockImage" = "Stockbild";
 "menu.qrCode" = "QR-kod";
 "menu.bgRemove" = "Bakgrundsbortagare";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Ladda Ner Teckensnitt";
 "menu.videoConvert" = "Konvertera video";
 "menu.pdfEdit" = "Redigera PDF";
-"menu.suggestion" = "Skicka feedback";
-"team.thanks_grafix" = "Vi tackar Grafix-gemenskapen för deras bidrag.";
+
 "alert.success.title" = "Lyckades";
 "alert.error.title" = "Fel";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Öppna mapp";
 "alert.success.message.image" = "Bilder sparades framgångsrikt till %@.";
 "alert.success.message.video" = "Videor sparades framgångsrikt till %@.";
+"alert.error.conversion" = "Vissa bilder kunde inte konverteras.";
+
 "home.welcome" = "Välkommen till Comet Editor";
 "home.welcome.subtitle" = "Allt du behöver i en app.";
 "home.visitWebsite" = "Besök vår webbplats";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 med balanserad kvalitet — konvertera eller komprimera i ett flöde.";
 "home.quick.pdf.title" = "Redigera PDF";
 "home.quick.pdf.subtitle" = "Öppna PDF-redigeraren — sortera om sidor, komprimera eller justera på ett ställe.";
+"home.feature.convertImage.desc" = "Konvertera bilder till PNG, JPG, WebP, HEIF med mera.";
+"home.feature.videoConvert.desc" = "Konvertera och komprimera dina videor enkelt.";
+"home.feature.stockImage.desc" = "Bläddra och ladda ner gratis stockfoton i hög kvalitet.";
+"home.feature.pdfEdit.desc" = "Redigera, sortera om, komprimera och hantera dina PDF-filer.";
+"home.feature.qrCode.desc" = "Skapa och anpassa QR-koder direkt.";
+"home.feature.bgRemove.desc" = "Ta bort bildbakgrunder automatiskt med AI.";
+"home.feature.ocr.desc" = "Extrahera text från bilder med optisk teckenigenkänning.";
+"home.feature.fontDownload.desc" = "Bläddra och ladda ner Google Fonts direkt till din Mac.";
 "home.preset.pdf.deletePage" = "Ta bort sidor";
 "home.preset.pdf.reorder" = "Sortera om sidor";
 "home.preset.pdf.optimize" = "Optimera PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Välj utdataformat (PNG, JPG, WebP, HEIC m.fl.) i högerpanelen.";
 "home.guide.convertImage.step3" = "Justera kvalitet, skala eller mått — konvertera sedan.";
 "home.guide.convertImage.tip" = "Du kan lägga till flera bilder samtidigt. Varje fil konverteras med samma inställningar.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Konvertera och komprimera videor till MP4, MOV, AVI med mera.";
 "home.guide.video.step2" = "Välj utdataformat (MP4, MOV …) och justera bildfrekvens eller upplösning.";
 "home.guide.video.step3" = "Aktivera eller inaktivera ljud och klicka sedan på Konvertera.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Förhandsgranska och välj önskade stilar.";
 "home.guide.font.step3" = "Klicka på Ladda ner för att installera teckensnittet på din Mac.";
 "home.guide.font.tip" = "Installerade teckensnitt finns direkt i alla appar.";
-"home.feature.convertImage.desc" = "Konvertera bilder till PNG, JPG, WebP, HEIF med mera.";
-"home.feature.videoConvert.desc" = "Konvertera och komprimera dina videor enkelt.";
-"home.feature.stockImage.desc" = "Bläddra och ladda ner gratis stockfoton i hög kvalitet.";
-"home.feature.pdfEdit.desc" = "Redigera, sortera om, komprimera och hantera dina PDF-filer.";
-"home.feature.qrCode.desc" = "Skapa och anpassa QR-koder direkt.";
-"home.feature.bgRemove.desc" = "Ta bort bildbakgrunder automatiskt med AI.";
-"home.feature.ocr.desc" = "Extrahera text från bilder med optisk teckenigenkänning.";
-"home.feature.fontDownload.desc" = "Bläddra och ladda ner Google Fonts direkt till din Mac.";
+
 "video.drop.subtitle" = "eller klicka för att bläddra bland videofiler";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS-GRÄNS";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% storlek";
 "video.resolution.50" = "50% storlek";
 "video.resolution.25" = "25% storlek (låg kvalitet)";
+
 "pdf.drop.title" = "Dra och släpp en PDF";
 "pdf.drop.subtitle" = "eller klicka för att bläddra bland PDF-filer";
 "pdf.page.count" = "%lld sidor";
 "pdf.page.info" = "Sida %lld av %lld";
 "pdf.estimatedSize" = "Beräknad optimerad storlek";
+"pdf.quality.modal.title" = "Välj optimeringsnivå";
+"pdf.quality.modal.subtitle" = "Välj hur mycket filstorleken ska minskas. Högre komprimering ger en mindre fil med viss kvalitetsförlust.";
+"pdf.quality.modal.estimated" = "Beräknad storlek";
+"pdf.quality.modal.confirm" = "Optimera";
+"pdf.quality.modal.cancel" = "Avbryt";
+"pdf.quality.low.title" = "Maximal komprimering";
+"pdf.quality.low.desc" = "Minsta fil, synlig kvalitetsförlust";
+"pdf.quality.medium.title" = "Balanserad";
+"pdf.quality.medium.desc" = "Bra balans mellan storlek och kvalitet";
+"pdf.quality.high.title" = "Hög kvalitet";
+"pdf.quality.high.desc" = "Minimal kvalitetsförlust, måttlig minskning";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimera PDF";
+"pdf.tools.quality" = "KVALITET";
+"pdf.tools.quality.label" = "Bildkvalitet";
+"pdf.tools.quality.small" = "Mindre fil";
+"pdf.tools.quality.large" = "Bättre kvalitet";
+"pdf.tools.quality.lossless" = "Förlustfri";
+"pdf.tools.resolution" = "UPPLÖSNINGSSKALA";
+"pdf.tools.resolution.enable" = "Minska upplösningen";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK KONVERTERARE";
+"pdf.color.enable" = "Konvertera färgrymd";
+"pdf.color.convert" = "Konvertera och spara";
 "pdf.tools.save" = "Spara PDF";
 "pdf.reorder.title" = "Sidordning";
 "pdf.reorder.hint" = "Håll Ctrl för flervalsmarkering, dra sedan för att ordna om.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Infoga efter den här sidan";
 "pdf.addContent.atEnd" = "Lägg till i slutet";
 "pdf.addContent.chooseFile" = "Välj fil och infoga";
+
 "stock.deselectAll" = "Avmarkera alla";
 "stock.download" = "Ladda ner valda";
 "stock.download.count" = "Ladda ner %d foton";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Ange URL eller text här...";
 "qr.settings.colors" = "Färger";
 "qr.settings.fgColor" = "Förgrundsfärg";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Upplösning";
 "qr.settings.customSize" = "Anpassad storlek (px)";
 "qr.download" = "Ladda ner QR-kod";
+"qr.settings.type" = "QR-typ";
+"qr.type.website" = "Webbplats";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontakt (vCard)";
+"qr.type.email" = "E-post";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Nätverksnamn (SSID)";
+"qr.wifi.password" = "Lösenord";
+"qr.wifi.hidden" = "Dolt nätverk";
+"qr.wifi.noEncryption" = "Ingen";
+"qr.vcard.firstName" = "Förnamn";
+"qr.vcard.lastName" = "Efternamn";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-post";
+"qr.vcard.company" = "Företag";
+"qr.vcard.jobTitle" = "Befattning";
+"qr.vcard.address" = "Adress";
+"qr.vcard.website" = "Webbplats";
+"qr.email.address" = "E-postadress";
+"qr.email.subject" = "Ämne";
+"qr.email.body" = "Meddelande";
+"qr.phone.number" = "Telefonnummer";
+
 "bgremove.unavailable.title" = "macOS 14 krävs";
 "bgremove.unavailable.subtitle" = "Bakgrundsbortagaren använder Apples Neural Engine-teknik.\nUppdatera till macOS 14 Sonoma eller senare.";
 "bgremove.drop.title" = "Dra och släpp en bild";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "FÖRFINA KANTER";
 "bgremove.settings.feather" = "Mjuka kanter";
 "bgremove.settings.featherAmount" = "Mjukkantsvärde";
+
 "ocr.drop.title" = "Dra och släpp en bild";
 "ocr.drop.subtitle" = "eller klicka för att bläddra bland filer";
 "ocr.processing" = "Känner igen text...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Rensa";
 "ocr.newFile" = "Ny fil";
 "ocr.copied" = "Kopierat!";
+
 "app.comingSoon.title" = "Kommer snart";
 "app.comingSoon.message" = "Den här funktionen kommer snart att vara tillgänglig.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Sök teckensnitt...";
 "font.preview.custom" = "Skriv något...";
 "font.inspector.preview" = "Förhandsvisning";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Koreanska";
 "font.writing.thai" = "Thailändska";
 "font.writing.vietnamese" = "Vietnamesiska";
-
 "font.families.count" = "%d familjer";
 "font.styles.count" = "%d stilar · %@";
 "font.noResults" = "Inga typsnitt hittades";
-"suggestion.title" = "Skicka förslag";
-"suggestion.subtitle" = "Dela dina idéer och hjälp oss att förbättra oss";
-"suggestion.placeholder.title" = "Titel";
-"suggestion.placeholder.body" = "Beskriv ditt förslag i detalj...";
-"suggestion.category.bug" = "Bugg";
-"suggestion.category.feature" = "Funktionsförfrågan";
-"suggestion.category.ui" = "Gränssnitt";
-"suggestion.category.performance" = "Prestanda";
-"suggestion.category.other" = "Övrigt";
-"suggestion.send" = "Skicka förslag";
-"suggestion.sending" = "Skickar...";
-"suggestion.sent.title" = "Tack!";
-"suggestion.sent.message" = "Ditt förslag har tagits emot. Vi granskar det snart.";
-"suggestion.error" = "Sändning misslyckades. Försök igen.";
-"suggestion.validation.title" = "Saknade fält";
-"suggestion.validation.body" = "Fyll i titel och beskrivning.";
-
-"suggestion.label.category" = "Kategori";
-"suggestion.label.title" = "Titel";
-"suggestion.label.description" = "Beskrivning";
 
 "video.drop.title" = "Släpp video här";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Här kan bara videor konverteras";
+
 "app.maintenance.title" = "Underhållsläge";
 "app.forceUpdate.title" = "Uppdatering krävs";
 "app.forceUpdate.button" = "Uppdatera i App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Sök";
 "stock.search.placeholder" = "Sök foton...";
 "stock.selected" = "%d valt";
+
 "video.cancel" = "Avbryt";
 "video.error.decoder" = "Videon kunde inte avkodas.";
 "video.saved.gain" = "sparad";
 "video.saved.increased" = "större";
 "video.settings.fps.desc" = "Inaktivera för att behålla original FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Bild";
 "pdf.tools.pageManagement" = "SIDHANTERING";
 "pdf.tools.addContent" = "Lägg till innehåll";
 "pdf.tools.reorder" = "Sortera om";
 "pdf.tools.targetFolder" = "MÅLMAPP";
-"alert.error.conversion" = "Vissa bilder kunde inte konverteras.";
-"pdf.color.convert" = "Konvertera och spara";
-"pdf.color.enable" = "Konvertera färgrymd";
-"pdf.color.title" = "RGB/CMYK KONVERTERARE";
-"pdf.tools.quality" = "KVALITET";
-"pdf.tools.quality.label" = "Bildkvalitet";
-"pdf.tools.quality.large" = "Bättre kvalitet";
-"pdf.tools.quality.lossless" = "Förlustfri";
-"pdf.tools.resolution" = "UPPLÖSNINGSSKALA";
-"pdf.tools.resolution.enable" = "Minska upplösningen";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Mindre fil";
 
 "ad.sponsored" = "Sponsrad";
 "ad.visit" = "Besök";
 
-"pdf.quality.modal.title" = "Välj optimeringsnivå";
-"pdf.quality.modal.subtitle" = "Välj hur mycket filstorleken ska minskas. Högre komprimering ger en mindre fil med viss kvalitetsförlust.";
-"pdf.quality.modal.estimated" = "Beräknad storlek";
-"pdf.quality.modal.confirm" = "Optimera";
-"pdf.quality.modal.cancel" = "Avbryt";
-"pdf.quality.low.title" = "Maximal komprimering";
-"pdf.quality.low.desc" = "Minsta fil, synlig kvalitetsförlust";
-"pdf.quality.medium.title" = "Balanserad";
-"pdf.quality.medium.desc" = "Bra balans mellan storlek och kvalitet";
-"pdf.quality.high.title" = "Hög kvalitet";
-"pdf.quality.high.desc" = "Minimal kvalitetsförlust, måttlig minskning";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Anpassa din Comet Editor-upplevelse";
+"settings.section.output" = "UTDATA";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Standard utdatamapp";
+"settings.noFolderSelected" = "Ej vald — du tillfrågas varje gång";
+"settings.chooseFolder" = "Välj mapp";
+"settings.clearFolder" = "Rensa";
+"settings.folderPicker.message" = "Välj en standardmapp för exporterade filer";
+"settings.folderPicker.button" = "Välj mapp";
 
 "app.maintenance.title2" = "Underhåll pågår";
 "app.maintenance.body" = "Appen är tillfälligt otillgänglig. Vi är snart tillbaka.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Uppdatera i App Store";
 "app.quit2" = "Stäng appen";
 
-"settings.subtitle" = "Anpassa din Comet Editor-upplevelse";
-"settings.section.output" = "UTDATA";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Standard utdatamapp";
-"settings.noFolderSelected" = "Ej vald — du tillfrågas varje gång";
-"settings.chooseFolder" = "Välj mapp";
-"settings.clearFolder" = "Rensa";
-"settings.folderPicker.message" = "Välj en standardmapp för exporterade filer";
-"settings.folderPicker.button" = "Välj mapp";
-"menu.announcements" = "Meddelanden";
-"announcements.subtitle" = "Senaste nyheter och uppdateringar från teamet";
-"announcements.empty" = "Inga meddelanden än";
-
 "settings.pdfOutputFolder" = "PDF-utdatamapp";
 
 "folder.default.prompt.title" = "Ange som standardmapp?";
 "folder.default.prompt.body" = "Vill du ange detta som din standardutdatamapp? Du kan ändra det när som helst i Inställningar.";
 "folder.default.prompt.yes" = "Ange som standard";
 "folder.default.prompt.no" = "Inte nu";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Trimma klipp, ta bort oönskade delar och slå ihop flera videor till en.";
-"home.guide.videoedit.preset.concat" = "Slå ihop videor";
-"home.guide.videoedit.preset.trim" = "Trimma en video";
-"home.guide.videoedit.step1" = "Lägg till en eller flera videofiler med + eller dra och släpp.";
-"home.guide.videoedit.step2" = "Välj ett klipp och dra trimhandtagen på tidslinjen för start och stopp.";
-"home.guide.videoedit.step3" = "Sortera om klipp i listan genom att dra dem till slutlig ordning.";
-"home.guide.videoedit.step4" = "Välj utdataformat och mapp och klicka sedan på Exportera.";
-"home.guide.videoedit.tip" = "Trimhandtag fäster på millisekund — använd uppspelningslisten för exakt förhandsvisning.";
-"menu.videoEdit" = "Videoredigerare";
-"qr.email.address" = "E-postadress";
-"qr.email.body" = "Meddelande";
-"qr.email.subject" = "Ämne";
-"qr.phone.number" = "Telefonnummer";
-"qr.settings.type" = "QR-typ";
-"qr.type.email" = "E-post";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Kontakt (vCard)";
-"qr.type.website" = "Webbplats";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adress";
-"qr.vcard.company" = "Företag";
-"qr.vcard.email" = "E-post";
-"qr.vcard.firstName" = "Förnamn";
-"qr.vcard.jobTitle" = "Befattning";
-"qr.vcard.lastName" = "Efternamn";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Webbplats";
-"qr.wifi.hidden" = "Dolt nätverk";
-"qr.wifi.noEncryption" = "Ingen";
-"qr.wifi.password" = "Lösenord";
-"qr.wifi.ssid" = "Nätverksnamn (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Lägg till foto";
-"videoedit.addMore" = "Lägg till";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Lägg till videor";
-"videoedit.empty.subtitle" = "Släpp videofiler här eller klicka på knappen nedan";
-"videoedit.empty.title" = "Lägg till videor att redigera";
-"videoedit.export.merge" = "Sammanfoga och exportera";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Inställningar";
-"videoedit.export.trim" = "Exportera klipp";
-"videoedit.exporting" = "Exporterar…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTOLÄNGD";
-"videoedit.imageDuration.default" = "Standard för nya foton";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SPARA TILL";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Verkställ";
-"watermark.button" = "Lägg till vattenstämpel";
-"watermark.cancel" = "Avbryt";
-"watermark.color.black" = "Svart";
-"watermark.color.darkGray" = "Mörkgrå";
-"watermark.color.gray" = "Grå";
-"watermark.color.lightGray" = "Ljusgrå";
-"watermark.color.none" = "Ingen";
-"watermark.color.white" = "Vit";
-"watermark.colorOverlay" = "Färgöverlagring";
-"watermark.logo" = "Logotyp";
-"watermark.opacity" = "Opacitet";
-"watermark.pos.bottomCenter" = "Nedre mitten";
-"watermark.pos.bottomLeft" = "Nedre vänster";
-"watermark.pos.bottomRight" = "Nedre höger";
-"watermark.pos.center" = "Mitten";
-"watermark.pos.centerLeft" = "Mitten vänster";
-"watermark.pos.centerRight" = "Mitten höger";
-"watermark.pos.topCenter" = "Övre mitten";
-"watermark.pos.topLeft" = "Övre vänster";
-"watermark.pos.topRight" = "Övre höger";
-"watermark.position" = "Position";
-"watermark.preview" = "Förhandsgranska";
-"watermark.removeLogo" = "Ta bort";
-"watermark.scale" = "Skala";
-"watermark.selectLogo" = "Välj bild";
-"watermark.tileMode" = "Kakeläge";
-"watermark.tileMode.desc" = "Upprepa över bilden";
+
 "watermark.title" = "Vattenstämpel";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Lägg till vattenstämpel";
+"watermark.logo" = "Logotyp";
+"watermark.selectLogo" = "Välj bild";
+"watermark.removeLogo" = "Ta bort";
+"watermark.position" = "Position";
+"watermark.scale" = "Skala";
+"watermark.opacity" = "Opacitet";
+"watermark.preview" = "Förhandsgranska";
+"watermark.apply" = "Verkställ";
+"watermark.cancel" = "Avbryt";
+"watermark.pos.topLeft" = "Övre vänster";
+"watermark.pos.topCenter" = "Övre mitten";
+"watermark.pos.topRight" = "Övre höger";
+"watermark.pos.centerLeft" = "Mitten vänster";
+"watermark.pos.center" = "Mitten";
+"watermark.pos.centerRight" = "Mitten höger";
+"watermark.pos.bottomLeft" = "Nedre vänster";
+"watermark.pos.bottomCenter" = "Nedre mitten";
+"watermark.pos.bottomRight" = "Nedre höger";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Färgöverlagring";
+"watermark.color.none" = "Ingen";
+"watermark.color.black" = "Svart";
+"watermark.color.darkGray" = "Mörkgrå";
+"watermark.color.gray" = "Grå";
+"watermark.color.lightGray" = "Ljusgrå";
+"watermark.color.white" = "Vit";
+"watermark.tileMode" = "Kakeläge";
+"watermark.tileMode.desc" = "Upprepa över bilden";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Inställningar";
-"upscale.settings.model" = "Modell";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI-förbättring av detaljer";
-"upscale.settings.scale" = "Skala";
-"upscale.scale.multiPassHint" = "8× och 16× kör flera AI-pass — tar längre tid.";
-"upscale.settings.outputFormat" = "Utdataformat";
-"upscale.drop.title" = "Dra och släpp bilder";
-"upscale.drop.subtitle" = "eller klicka för att bläddra bland filer";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Endast stödda rasterbilder kan förstoras här";
-"upscale.runButton" = "Förstora";
-"upscale.preview.run" = "Förhandsvisa";
-"upscale.preview.hint" = "Välj en skala och tryck på Förhandsvisa för att jämföra";
-"upscale.preview.processing" = "Skapar förhandsvisning…";
-"upscale.preview.before" = "FÖRE";
-"upscale.preview.after" = "EFTER";
-"upscale.preview.save" = "Spara";
-"upscale.preview.saveSettings" = "Spara förhandsvisning";
-"upscale.preview.autoSave" = "Spara efter förhandsvisning";
-"upscale.preview.autoSaveHint" = "Skriver till målmappen när förhandsvisningen är klar.";
-"upscale.preview.saveNeedFolder" = "Välj målmapp först.";
-"upscale.preview.saveFailed" = "Kunde inte koda förhandsvisningsbilden.";
-"upscale.preview.loadFailed" = "Kunde inte läsa in förhandsvisningsbilden.";
-"upscale.backend.missing.hint" = "cometscaly-motorn eller modellfiler saknas i appbunten. Bygg om projektet.";
-"upscale.error.bundle" = "Mappen Upscale bundle saknas i appen.";
-"upscale.error.binary" = "cometscaly hittades inte i appbunten.";
-"upscale.error.model" = "Modellfiler upscayl-standard-4x.param/.bin saknas.";
-"upscale.error.process" = "Förstoring misslyckades (exit %d): %@";
-"upscale.error.none" = "Inga bilder förstorades.";
-"videoedit.resize.modePercent" = "Skala (%)";
-"videoedit.resize.modeCustom" = "Anpassad storlek";
-"videoedit.resize.autoFill" = "Fyll arbetsytan automatiskt";
-"videoedit.resize.autoFillHint" = "På: brett material passar med letterbox; mindre zoomas och beskärs i mitten.";
+"inspector.format" = "Format";
+"inspector.output" = "Utdata";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Lägg till ett foto för förhandsgranskning";
+"watermark.rotation" = "Rotation";
+"watermark.text" = "Logotext";
+"watermark.text.placeholder" = "Ange logotext";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

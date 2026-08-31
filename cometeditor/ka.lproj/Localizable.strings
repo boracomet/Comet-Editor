@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "ჩააგდეთ სურათები აქ";
 "convert.drop.subtitle" = "მხარს უჭერს PNG, JPG, WebP, HEIF და სხვა ფორმატებს";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "სიგანე";
 "convert.settings.height" = "სიმაღლე";
+
 "meta.info" = "მეტამონაცემები შეინახება";
+
 "convert.settings.targetFolder" = "სამიზნე საქაღალდე";
 "convert.settings.noFolder" = "საქაღალდე არ არის არჩეული";
 "convert.settings.chooseFolder" = "საქაღალდის არჩევა";
+
+"folder.missing.title" = "საქაღალდე ვერ მოიძებნა";
+"folder.missing.subtitle" = "შენახული საქაღალდის გზა აღარ არსებობს. გთხოვთ, აირჩიოთ ახალი.";
+"folder.missing.pick" = "ახალი საქაღალდის არჩევა";
+"folder.missing.panel.message" = "გამომავალი საქაღალდე ვერ მოიძებნა. გთხოვთ, აირჩიოთ ახალი საქაღალდე.";
+
+"bgremove.error.noMaskFound" = "წინა პლანის ნიღაბი ვერ მოიძებნა.";
+"bgremove.error.maskConversionFailed" = "ნიღბის კონვერტაცია ვერ მოხერხდა.";
+"bgremove.error.compositeFailed" = "გამოსახულების კომპოზიცია ვერ მოხერხდა.";
+
 "convert.settings.convertButton" = "კონვერტაცია";
 "convert.clearAll" = "ყველაფრის გასუფთავება";
 "convert.addMore" = "მეტის დამატება";
 "convert.wrongType.image" = "აქ შეიძლება გამოიყოს მხოლოდ სურათები";
+
+"upscale.settings.title" = "პარამეტრები";
+"upscale.settings.model" = "მოდელი";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — დეტალების გაუმჯობესება AI-ით";
+"upscale.settings.scale" = "მასშტაბი";
+"upscale.scale.multiPassHint" = "8× და 16× ასრულებს რამდენიმე AI გასვლას — უფრო ხანგრძლივია.";
+"upscale.settings.outputFormat" = "გამოტანის ფორმატი";
+"upscale.drop.title" = "გადაიტანეთ სურათები";
+"upscale.drop.subtitle" = "ან დააჭირეთ ფაილების დასათვალიერებლად";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "აქ მხოლოდ მხარდაჭერილი რასტრული სურათები შეიძლება გაიზარდოს";
+"upscale.runButton" = "გადიდება";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "წინასწარი ხილვა";
+"upscale.preview.hint" = "აირჩიეთ მასშტაბი და შეეხეთ წინასწარ ხილვას შესადარებლად";
+"upscale.preview.processing" = "იქმნება წინასწარი ხილვა…";
+"upscale.preview.before" = "ადრე";
+"upscale.preview.after" = "შემდეგ";
+"upscale.preview.save" = "შენახვა";
+"upscale.preview.saveSettings" = "წინასწარი ხილვის შენახვა";
+"upscale.preview.autoSave" = "შენახვა წინასწარი ხილვის შემდეგ";
+"upscale.preview.autoSaveHint" = "წერს სამიზნე საქაღალდეში წინასწარი ხილვის დასრულებისას.";
+"upscale.preview.saveNeedFolder" = "ჯერ აირჩიეთ სამიზნე საქაღალდე.";
+"upscale.preview.saveFailed" = "წინასწარი ხილვის სურათის კოდირება ვერ მოხერხდა.";
+"upscale.preview.loadFailed" = "წინასწარი ხილვის სურათის ჩატვირთვა ვერ მოხერხდა.";
+"upscale.backend.missing.hint" = "აპის პაკეტში cometscaly ძრავა ან მოდელის ფაილები აკლია. ხელახლა ააგეთ პროექტი.";
+"upscale.error.bundle" = "აპში Upscale bundle საქაღალდე აკლია.";
+"upscale.error.binary" = "cometscaly ვერ მოიძებნა აპის პაკეტში.";
+"upscale.error.model" = "მოდელის ფაილები upscayl-standard-4x.param/.bin აკლია.";
+"upscale.error.process" = "გადიდება ვერ მოხერხდა (exit %d): %@";
+"upscale.error.none" = "არცერთი სურათი არ გადიდებულა.";
+
 "menu.home" = "მთავარი";
 "menu.convertImage" = "სურათების კონვერტაცია";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "პარამეტრები";
 "menu.tools" = "ინსტრუმენტები";
 "menu.document" = "DOCUMENT";
-"menu.team" = "გუნდი";
-"menu.team.title" = "შეიქმნა Comet Dev-ის მიერ";
-"menu.team.subtitle" = "შექმნილია სიყვარულითა და დეტალებზე ყურადღებით";
 "menu.stockImage" = "სტოკ ფოტოები";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "ფონის ამოღება";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "შრიფტები";
 "menu.videoConvert" = "ვიდეოს კონვერტაცია";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "გამოხმაურების გაგზავნა";
-"team.thanks_grafix" = "განსაკუთრებული მადლობა Grafix-ს დიზაინისთვის";
+
 "alert.success.title" = "წარმატება";
 "alert.error.title" = "შეცდომა";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "საქაღალდის გახსნა";
 "alert.success.message.image" = "სურათი შენახულია %@-ში.";
 "alert.success.message.video" = "ვიდეო შენახულია %@-ში.";
+"alert.error.conversion" = "ზოგიერთი სურათის კონვერტაცია ვერ მოხდა.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "მხარს უჭერს MP4, MOV, AVI და სხვა ფორმატებს";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "ორიგინალის 75%";
 "video.resolution.50" = "ორიგინალის 50%";
 "video.resolution.25" = "ორიგინალის 25% (დაბალი ხარისხი)";
+
 "pdf.drop.title" = "ჩააგდეთ PDF ფაილი აქ";
 "pdf.drop.subtitle" = "შეარჩიეთ PDF ფაილი სარედაქტაციოდ";
 "pdf.page.count" = "%lld გვერდი";
 "pdf.page.info" = "გვერდი %lld / %lld";
 "pdf.estimatedSize" = "სავარაუდო ზომა";
+"pdf.quality.modal.title" = "აირჩიეთ ოპტიმიზაციის დონე";
+"pdf.quality.modal.subtitle" = "აირჩიეთ რამდენად შემცირდეს ფაილის ზომა. უფრო მაღალი შეკუმშვა ნიშნავს მცირე ფაილს გარკვეული ხარისხის დაკარგვით.";
+"pdf.quality.modal.estimated" = "სავარაუდო ზომა";
+"pdf.quality.modal.confirm" = "ოპტიმიზაცია";
+"pdf.quality.modal.cancel" = "გაუქმება";
+"pdf.quality.low.title" = "მაქსიმალური შეკუმშვა";
+"pdf.quality.low.desc" = "ყველაზე მცირე ფაილი, ხარისხის შესამჩნევი დაკარგვა";
+"pdf.quality.medium.title" = "დაბალანსებული";
+"pdf.quality.medium.desc" = "კარგი ბალანსი ზომასა და ხარისხს შორის";
+"pdf.quality.high.title" = "მაღალი ხარისხი";
+"pdf.quality.high.desc" = "ხარისხის მინიმალური დაკარგვა, ზომიერი შემცირება";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF-ის ოპტიმიზაცია";
+"pdf.tools.quality" = "ხარისხი";
+"pdf.tools.quality.label" = "სურათის ხარისხი";
+"pdf.tools.quality.small" = "პატარა ფაილი";
+"pdf.tools.quality.large" = "უკეთესი ხარისხი";
+"pdf.tools.quality.lossless" = "უდანაკარგო";
+"pdf.tools.resolution" = "გარჩევადობის მასშტაბი";
+"pdf.tools.resolution.enable" = "გარჩევადობის შემცირება";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK კონვერტერი";
+"pdf.color.enable" = "ფერის სივრცის კონვერტაცია";
+"pdf.color.convert" = "კონვერტაცია და შენახვა";
 "pdf.tools.save" = "PDF-ის შენახვა";
 "pdf.reorder.title" = "გვერდების გადალაგება";
 "pdf.reorder.hint" = "გვერდების თანმიმდევრობის შეცვლისთვის გადაათრიეთ";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "შემდეგ";
 "pdf.addContent.atEnd" = "ბოლოში";
 "pdf.addContent.chooseFile" = "ფაილის არჩევა";
+
 "stock.deselectAll" = "ყველაფრის მოხსნა";
 "stock.download" = "გადმოტვირთვა";
 "stock.download.count" = "%d ფოტოს გადმოტვირთვა";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "შეიყვანეთ URL ან ტექსტი აქ...";
 "qr.settings.colors" = "ფერები";
 "qr.settings.fgColor" = "წინა პლანის ფერი";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "გარჩევადობა";
 "qr.settings.customSize" = "მორგებული ზომა (px)";
 "qr.download" = "QR კოდის ჩამოტვირთვა";
+"qr.settings.type" = "QR ტიპი";
+"qr.type.website" = "ვებსაიტი";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "კონტაქტი (vCard)";
+"qr.type.email" = "ელფოსტა";
+"qr.type.phone" = "ტელეფონი";
+"qr.wifi.ssid" = "ქსელის სახელი (SSID)";
+"qr.wifi.password" = "პაროლი";
+"qr.wifi.hidden" = "დამალული ქსელი";
+"qr.wifi.noEncryption" = "არცერთი";
+"qr.vcard.firstName" = "სახელი";
+"qr.vcard.lastName" = "გვარი";
+"qr.vcard.phone" = "ტელეფონი";
+"qr.vcard.email" = "ელფოსტა";
+"qr.vcard.company" = "კომპანია";
+"qr.vcard.jobTitle" = "თანამდებობა";
+"qr.vcard.address" = "მისამართი";
+"qr.vcard.website" = "ვებსაიტი";
+"qr.email.address" = "ელფოსტის მისამართი";
+"qr.email.subject" = "თემა";
+"qr.email.body" = "შეტყობინება";
+"qr.phone.number" = "ტელეფონის ნომერი";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "ეს ფუნქცია საჭიროებს macOS 14-ს ან უფრო ახალ ვერსიას";
 "bgremove.drop.title" = "ჩააგდეთ სურათები აქ";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "კიდეების დარბილება";
 "bgremove.settings.featherAmount" = "დარბილების ხარისხი";
+
 "ocr.drop.title" = "ჩააგდეთ სურათი აქ";
 "ocr.drop.subtitle" = "მხარს უჭერს PNG, JPG და WebP";
 "ocr.processing" = "ტექსტის ამოცნობა...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "გასუფთავება";
 "ocr.newFile" = "ახალი ფაილი";
 "ocr.copied" = "კოპირებულია!";
+
 "app.comingSoon.title" = "მალე";
 "app.comingSoon.message" = "ეს ფუნქცია შემუშავების პროცესშია და მალე ხელმისაწვდომი იქნება.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "შრიფტების ძიება...";
 "font.preview.custom" = "მორგებული გადახედვა";
 "font.inspector.preview" = "გადახედვა";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d ოჯახი";
 "font.styles.count" = "%d სტილი · %@";
 "font.noResults" = "შრიფტები ვერ მოიძებნა";
-"suggestion.title" = "წინადადების გაგზავნა";
-"suggestion.subtitle" = "გაუზიარეთ თქვენი იდეები და დაგვეხმარეთ გაუმჯობესებაში";
-"suggestion.placeholder.title" = "სათაური";
-"suggestion.placeholder.body" = "დეტალურად აღწერეთ წინადადება...";
-"suggestion.category.bug" = "შეცდომა";
-"suggestion.category.feature" = "ფუნქციის მოთხოვნა";
-"suggestion.category.ui" = "ინტერფეისი";
-"suggestion.category.performance" = "წარმადობა";
-"suggestion.category.other" = "სხვა";
-"suggestion.send" = "გაგზავნა";
-"suggestion.sending" = "იგზავნება...";
-"suggestion.sent.title" = "გმადლობთ!";
-"suggestion.sent.message" = "თქვენი წინადადება მიღებულია. მალე განვიხილავთ.";
-"suggestion.error" = "გაგზავნა ვერ მოხერხდა. სცადეთ ხელახლა.";
-"suggestion.validation.title" = "შეუვსებელი ველები";
-"suggestion.validation.body" = "შეავსეთ სათაური და აღწერა.";
-
-"suggestion.label.category" = "კატეგორია";
-"suggestion.label.title" = "სათაური";
-"suggestion.label.description" = "აღწერა";
 
 "video.drop.title" = "ვიდეო გადმოიტანეთ აქ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "აქ შეიძლება გამოიყოს მხოლოდ ვიდეოები";
+
 "app.maintenance.title" = "ტექნიკური მომსახურების რეჟიმი";
 "app.forceUpdate.title" = "საჭიროა განახლება";
 "app.forceUpdate.button" = "განახლება App Store-ში";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "ზოგიერთი სურათის კონვერტაცია ვერ მოხდა.";
-"pdf.color.convert" = "კონვერტაცია და შენახვა";
-"pdf.color.enable" = "ფერის სივრცის კონვერტაცია";
-"pdf.color.title" = "RGB/CMYK კონვერტერი";
-"pdf.tools.quality" = "ხარისხი";
-"pdf.tools.quality.label" = "სურათის ხარისხი";
-"pdf.tools.quality.large" = "უკეთესი ხარისხი";
-"pdf.tools.quality.lossless" = "უდანაკარგო";
-"pdf.tools.resolution" = "გარჩევადობის მასშტაბი";
-"pdf.tools.resolution.enable" = "გარჩევადობის შემცირება";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "პატარა ფაილი";
 
 "ad.sponsored" = "სარეკლამო";
 "ad.visit" = "გადასვლა";
 
-"pdf.quality.modal.title" = "აირჩიეთ ოპტიმიზაციის დონე";
-"pdf.quality.modal.subtitle" = "აირჩიეთ რამდენად შემცირდეს ფაილის ზომა. უფრო მაღალი შეკუმშვა ნიშნავს მცირე ფაილს გარკვეული ხარისხის დაკარგვით.";
-"pdf.quality.modal.estimated" = "სავარაუდო ზომა";
-"pdf.quality.modal.confirm" = "ოპტიმიზაცია";
-"pdf.quality.modal.cancel" = "გაუქმება";
-"pdf.quality.low.title" = "მაქსიმალური შეკუმშვა";
-"pdf.quality.low.desc" = "ყველაზე მცირე ფაილი, ხარისხის შესამჩნევი დაკარგვა";
-"pdf.quality.medium.title" = "დაბალანსებული";
-"pdf.quality.medium.desc" = "კარგი ბალანსი ზომასა და ხარისხს შორის";
-"pdf.quality.high.title" = "მაღალი ხარისხი";
-"pdf.quality.high.desc" = "ხარისხის მინიმალური დაკარგვა, ზომიერი შემცირება";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "მოარგეთ Comet Editor თქვენს გემოვნებას";
+"settings.section.output" = "გამოსავალი";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "ნაგულისხმევი გამოსახლების საქაღალდე";
+"settings.noFolderSelected" = "არ არის არჩეული — ყოველ ჯერ მოგთხოვთ";
+"settings.chooseFolder" = "საქაღალდის არჩევა";
+"settings.clearFolder" = "გასუფთავება";
+"settings.folderPicker.message" = "აირჩიეთ ნაგულისხმევი საქაღალდე ექსპორტირებული ფაილებისთვის";
+"settings.folderPicker.button" = "საქაღალდის არჩევა";
 
 "app.maintenance.title2" = "ტექნიკური სამუშაოები";
 "app.maintenance.body" = "აპლიკაცია დროებით მიუწვდომელია. მალე დავბრუნდებით.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "განახლება App Store-ში";
 "app.quit2" = "დახურვა";
 
-"settings.subtitle" = "მოარგეთ Comet Editor თქვენს გემოვნებას";
-"settings.section.output" = "გამოსავალი";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "ნაგულისხმევი გამოსახლების საქაღალდე";
-"settings.noFolderSelected" = "არ არის არჩეული — ყოველ ჯერ მოგთხოვთ";
-"settings.chooseFolder" = "საქაღალდის არჩევა";
-"settings.clearFolder" = "გასუფთავება";
-"settings.folderPicker.message" = "აირჩიეთ ნაგულისხმევი საქაღალდე ექსპორტირებული ფაილებისთვის";
-"settings.folderPicker.button" = "საქაღალდის არჩევა";
-"menu.announcements" = "განცხადებები";
-"announcements.subtitle" = "გუნდის უახლესი სიახლეები და განახლებები";
-"announcements.empty" = "განცხადებები არ არის";
-
 "settings.pdfOutputFolder" = "PDF-ის გამოსახლების საქაღალდე";
 
 "folder.default.prompt.title" = "საქაღალდის ნაგულისხმევად დაყენება?";
 "folder.default.prompt.body" = "გსურთ ეს გამომავალი საქაღალდე ნაგულისხმევად დაყენოთ? ნებისმიერ დროს შეგიძლიათ შეცვლა პარამეტრებში.";
 "folder.default.prompt.yes" = "ნაგულისხმევად დაყენება";
 "folder.default.prompt.no" = "არა ახლა";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "ვიდეო რედაქტორი";
-"qr.email.address" = "ელფოსტის მისამართი";
-"qr.email.body" = "შეტყობინება";
-"qr.email.subject" = "თემა";
-"qr.phone.number" = "ტელეფონის ნომერი";
-"qr.settings.type" = "QR ტიპი";
-"qr.type.email" = "ელფოსტა";
-"qr.type.phone" = "ტელეფონი";
-"qr.type.vcard" = "კონტაქტი (vCard)";
-"qr.type.website" = "ვებსაიტი";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "მისამართი";
-"qr.vcard.company" = "კომპანია";
-"qr.vcard.email" = "ელფოსტა";
-"qr.vcard.firstName" = "სახელი";
-"qr.vcard.jobTitle" = "თანამდებობა";
-"qr.vcard.lastName" = "გვარი";
-"qr.vcard.phone" = "ტელეფონი";
-"qr.vcard.website" = "ვებსაიტი";
-"qr.wifi.hidden" = "დამალული ქსელი";
-"qr.wifi.noEncryption" = "არცერთი";
-"qr.wifi.password" = "პაროლი";
-"qr.wifi.ssid" = "ქსელის სახელი (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "ფოტოს დამატება";
-"videoedit.addMore" = "დამატება";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "ვიდეოების დამატება";
-"videoedit.empty.subtitle" = "გადააგდეთ ვიდეო ფაილები აქ ან დააჭირეთ ქვემოთ მოცემულ ღილაკს";
-"videoedit.empty.title" = "დაამატეთ ვიდეოები რედაქტირებისთვის";
-"videoedit.export.merge" = "შეერთება და ექსპორტი";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "პარამეტრები";
-"videoedit.export.trim" = "კლიპის ექსპორტი";
-"videoedit.exporting" = "ექსპორტი…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "ფოტოს ხანგრძლივობა";
-"videoedit.imageDuration.default" = "ნაგულისხმევი ახალი ფოტოებისთვის";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "შენახვა";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "გამოყენება";
-"watermark.button" = "დაამატე წყლის ნიშანი";
-"watermark.cancel" = "გაუქმება";
-"watermark.color.black" = "შავი";
-"watermark.color.darkGray" = "მუქი ნაცრისფერი";
-"watermark.color.gray" = "ნაცრისფერი";
-"watermark.color.lightGray" = "ღია ნაცრისფერი";
-"watermark.color.none" = "არაფერი";
-"watermark.color.white" = "თეთრი";
-"watermark.colorOverlay" = "ფერის ფენა";
-"watermark.logo" = "ლოგო";
-"watermark.opacity" = "გაუმჭვირვალობა";
-"watermark.pos.bottomCenter" = "ქვედა ცენტრი";
-"watermark.pos.bottomLeft" = "ქვედა მარცხნივ";
-"watermark.pos.bottomRight" = "ქვედა მარჯვნივ";
-"watermark.pos.center" = "ცენტრი";
-"watermark.pos.centerLeft" = "ცენტრი მარცხნივ";
-"watermark.pos.centerRight" = "ცენტრი მარჯვნივ";
-"watermark.pos.topCenter" = "ზედა ცენტრი";
-"watermark.pos.topLeft" = "ზედა მარცხნივ";
-"watermark.pos.topRight" = "ზედა მარჯვნივ";
-"watermark.position" = "პოზიცია";
-"watermark.preview" = "წინასწარი ხედი";
-"watermark.removeLogo" = "ამოშლა";
-"watermark.scale" = "მასშტაბი";
-"watermark.selectLogo" = "აირჩიე სურათი";
-"watermark.tileMode" = "ფილების რეჟიმი";
-"watermark.tileMode.desc" = "გაიმეორე სურათზე";
+
 "watermark.title" = "წყლის ნიშანი";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "დაამატე წყლის ნიშანი";
+"watermark.logo" = "ლოგო";
+"watermark.selectLogo" = "აირჩიე სურათი";
+"watermark.removeLogo" = "ამოშლა";
+"watermark.position" = "პოზიცია";
+"watermark.scale" = "მასშტაბი";
+"watermark.opacity" = "გაუმჭვირვალობა";
+"watermark.preview" = "წინასწარი ხედი";
+"watermark.apply" = "გამოყენება";
+"watermark.cancel" = "გაუქმება";
+"watermark.pos.topLeft" = "ზედა მარცხნივ";
+"watermark.pos.topCenter" = "ზედა ცენტრი";
+"watermark.pos.topRight" = "ზედა მარჯვნივ";
+"watermark.pos.centerLeft" = "ცენტრი მარცხნივ";
+"watermark.pos.center" = "ცენტრი";
+"watermark.pos.centerRight" = "ცენტრი მარჯვნივ";
+"watermark.pos.bottomLeft" = "ქვედა მარცხნივ";
+"watermark.pos.bottomCenter" = "ქვედა ცენტრი";
+"watermark.pos.bottomRight" = "ქვედა მარჯვნივ";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "ფერის ფენა";
+"watermark.color.none" = "არაფერი";
+"watermark.color.black" = "შავი";
+"watermark.color.darkGray" = "მუქი ნაცრისფერი";
+"watermark.color.gray" = "ნაცრისფერი";
+"watermark.color.lightGray" = "ღია ნაცრისფერი";
+"watermark.color.white" = "თეთრი";
+"watermark.tileMode" = "ფილების რეჟიმი";
+"watermark.tileMode.desc" = "გაიმეორე სურათზე";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "პარამეტრები";
-"upscale.settings.model" = "მოდელი";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — დეტალების გაუმჯობესება AI-ით";
-"upscale.settings.scale" = "მასშტაბი";
-"upscale.scale.multiPassHint" = "8× და 16× ასრულებს რამდენიმე AI გასვლას — უფრო ხანგრძლივია.";
-"upscale.settings.outputFormat" = "გამოტანის ფორმატი";
-"upscale.drop.title" = "გადაიტანეთ სურათები";
-"upscale.drop.subtitle" = "ან დააჭირეთ ფაილების დასათვალიერებლად";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "აქ მხოლოდ მხარდაჭერილი რასტრული სურათები შეიძლება გაიზარდოს";
-"upscale.runButton" = "გადიდება";
-"upscale.preview.run" = "წინასწარი ხილვა";
-"upscale.preview.hint" = "აირჩიეთ მასშტაბი და შეეხეთ წინასწარ ხილვას შესადარებლად";
-"upscale.preview.processing" = "იქმნება წინასწარი ხილვა…";
-"upscale.preview.before" = "ადრე";
-"upscale.preview.after" = "შემდეგ";
-"upscale.preview.save" = "შენახვა";
-"upscale.preview.saveSettings" = "წინასწარი ხილვის შენახვა";
-"upscale.preview.autoSave" = "შენახვა წინასწარი ხილვის შემდეგ";
-"upscale.preview.autoSaveHint" = "წერს სამიზნე საქაღალდეში წინასწარი ხილვის დასრულებისას.";
-"upscale.preview.saveNeedFolder" = "ჯერ აირჩიეთ სამიზნე საქაღალდე.";
-"upscale.preview.saveFailed" = "წინასწარი ხილვის სურათის კოდირება ვერ მოხერხდა.";
-"upscale.preview.loadFailed" = "წინასწარი ხილვის სურათის ჩატვირთვა ვერ მოხერხდა.";
-"upscale.backend.missing.hint" = "აპის პაკეტში cometscaly ძრავა ან მოდელის ფაილები აკლია. ხელახლა ააგეთ პროექტი.";
-"upscale.error.bundle" = "აპში Upscale bundle საქაღალდე აკლია.";
-"upscale.error.binary" = "cometscaly ვერ მოიძებნა აპის პაკეტში.";
-"upscale.error.model" = "მოდელის ფაილები upscayl-standard-4x.param/.bin აკლია.";
-"upscale.error.process" = "გადიდება ვერ მოხერხდა (exit %d): %@";
-"upscale.error.none" = "არცერთი სურათი არ გადიდებულა.";
-"videoedit.resize.modePercent" = "მასშტაბი (%)";
-"videoedit.resize.modeCustom" = "მორგებული ზომა";
-"videoedit.resize.autoFill" = "კანვასის ავტოშევსება";
-"videoedit.resize.autoFillHint" = "ჩართული: ფართო მასალა ჯდება letterbox-ით; უფრო პატარა იზუმება და იჭრება ცენტრში.";
+"inspector.format" = "ფორმატი";
+"inspector.output" = "გამომავალი";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "დაამატეთ ფოტო წინასწარი ხედისთვის";
+"watermark.rotation" = "ბრუნვა";
+"watermark.text" = "ლოგოს ტექსტი";
+"watermark.text.placeholder" = "შეიყვანეთ ლოგოს ტექსტი";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

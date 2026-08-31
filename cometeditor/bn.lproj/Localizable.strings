@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "এখানে ছবি টেনে আনুন";
 "convert.drop.subtitle" = "PNG, JPG, WebP, HEIF এবং অন্যান্য ফরম্যাট সমর্থন করে";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "প্রস্থ";
 "convert.settings.height" = "উচ্চতা";
+
 "meta.info" = "মেটাডেটা সংরক্ষিত থাকবে";
+
 "convert.settings.targetFolder" = "লক্ষ্য ফোল্ডার";
 "convert.settings.noFolder" = "কোনো ফোল্ডার নির্বাচিত নয়";
 "convert.settings.chooseFolder" = "ফোল্ডার বেছে নিন";
+
+"folder.missing.title" = "ফোল্ডার পাওয়া যায়নি";
+"folder.missing.subtitle" = "সংরক্ষিত ফোল্ডার পথটি আর বিদ্যমান নেই। একটি নতুন নির্বাচন করুন।";
+"folder.missing.pick" = "নতুন ফোল্ডার নির্বাচন করুন";
+"folder.missing.panel.message" = "আউটপুট ফোল্ডার পাওয়া যায়নি। একটি নতুন ফোল্ডার নির্বাচন করুন।";
+
+"bgremove.error.noMaskFound" = "অগ্রভূমির মাস্ক পাওয়া যায়নি।";
+"bgremove.error.maskConversionFailed" = "মাস্ক রূপান্তর ব্যর্থ হয়েছে।";
+"bgremove.error.compositeFailed" = "চিত্র সংমিশ্রণ ব্যর্থ হয়েছে।";
+
 "convert.settings.convertButton" = "রূপান্তর করুন";
 "convert.clearAll" = "সব মুছুন";
 "convert.addMore" = "আরও যোগ করুন";
 "convert.wrongType.image" = "এখানে শুধুমাত্র ছবি রূপান্তর করা যাবে";
+
+"upscale.settings.title" = "সেটিংস";
+"upscale.settings.model" = "মডেল";
+"upscale.model.cometStandard" = "ধূমকেতুর মান";
+"upscale.model.scaleHint" = "Upscayl স্ট্যান্ডার্ড (4×) — AI বিস্তারিত বর্ধন";
+"upscale.settings.scale" = "স্কেল:";
+"upscale.scale.multiPassHint" = "8× এবং 16× রান একাধিক AI পাস — বেশি সময় নেয় ।";
+"upscale.settings.outputFormat" = "আউটপুট ফরমেট";
+"upscale.drop.title" = "ছবিগুলি টেনে আনুন এবং ড্রপ করুন";
+"upscale.drop.subtitle" = "অথবা ফাইল ব্রাউজ করতে ক্লিক করুন";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "শুধুমাত্র সমর্থিত রাস্টার চিত্রগুলি এখানে আপস্কেল করা যেতে পারে";
+"upscale.runButton" = "আপস্কেল";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "পূর্বরুপ";
+"upscale.preview.hint" = "একটি স্কেল নির্বাচন করুন এবং তুলনা করতে প্রিভিউতে ট্যাপ করুন";
+"upscale.preview.processing" = "আপস্কেলিং প্রিভিউ...";
+"upscale.preview.before" = "আগে";
+"upscale.preview.after" = "উপস্থিতি";
+"upscale.preview.save" = "সংরক্ষণ করুন";
+"upscale.preview.saveSettings" = "প্রিভিউ সেভ করুন";
+"upscale.preview.autoSave" = "প্রিভিউ এর পরে সেভ করুন";
+"upscale.preview.autoSaveHint" = "প্রিভিউ শেষ হলে টার্গেট ফোল্ডারে লিখুন ।";
+"upscale.preview.saveNeedFolder" = "প্রথমে একটি টার্গেট ফোল্ডার বেছে নিন ।";
+"upscale.preview.saveFailed" = "পূর্বরূপ চিত্র এনকোড করা যায়নি ।";
+"upscale.preview.loadFailed" = "পূর্বরূপ চিত্র লোড করা যায়নি ।";
+"upscale.backend.missing.hint" = "অ্যাপ বান্ডেল থেকে ধূমকেতু ইঞ্জিন বা মডেল ফাইলগুলি অনুপস্থিত । প্রকল্পটি পুনর্নির্মাণ করুন ।";
+"upscale.error.bundle" = "অ্যাপ থেকে আপস্কেল বান্ডেল ফোল্ডারটি অনুপস্থিত ।";
+"upscale.error.binary" = "অ্যাপ বান্ডেলে ধূমকেতু ইঞ্জিন পাওয়া যায়নি ।";
+"upscale.error.model" = "মডেল ফাইল upscayl-standard-4x.param/.bin অনুপস্থিত ।";
+"upscale.error.process" = "আপস্কেলিং ব্যর্থ হয়েছে (%d থেকে প্রস্থান করুন): %@";
+"upscale.error.none" = "কোনও ছবি আপলোড করা হয়নি ।";
+
 "menu.home" = "হোম";
 "menu.convertImage" = "ছবি রূপান্তর";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "সেটিংস";
 "menu.tools" = "টুলস";
 "menu.document" = "DOCUMENT";
-"menu.team" = "দল";
-"menu.team.title" = "Comet Dev দ্বারা তৈরি";
-"menu.team.subtitle" = "ভালোবাসা ও বিস্তারিত মনোযোগ দিয়ে তৈরি";
 "menu.stockImage" = "স্টক ফটো";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "পটভূমি সরান";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "ফন্ট";
 "menu.videoConvert" = "ভিডিও রূপান্তর";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "মতামত পাঠান";
-"team.thanks_grafix" = "ডিজাইনের জন্য Grafix-কে বিশেষ ধন্যবাদ";
+
 "alert.success.title" = "সফল";
 "alert.error.title" = "ত্রুটি";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "ফোল্ডার খুলুন";
 "alert.success.message.image" = "ছবি %@-এ সংরক্ষিত হয়েছে।";
 "alert.success.message.video" = "ভিডিও %@-এ সংরক্ষিত হয়েছে।";
+"alert.error.conversion" = "কিছু ছবি রূপান্তর করা যায়নি.";
+
 "home.welcome" = "Comet Editor-এ স্বাগতম";
 "home.welcome.subtitle" = "একটি অ্যাপে আপনার সব প্রয়োজন।";
 "home.visitWebsite" = "ওয়েবসাইট দেখুন";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "ভারসাম্যপূর্ণ মানের MP4 — এক প্রবাহে রূপান্তর বা সংকুচিত করা ।";
 "home.quick.pdf.title" = "পিডিএফ এডিট করুন";
 "home.quick.pdf.subtitle" = "পিডিএফ এডিটর খুলুন — এক জায়গায় পৃষ্ঠাগুলি পুনরায় অর্ডার করুন, সংকুচিত করুন বা টুইক করুন ।";
+"home.feature.convertImage.desc" = "বিভিন্ন ফরম্যাটের মধ্যে ছবি সহজে রূপান্তর করুন";
+"home.feature.videoConvert.desc" = "ভিডিও ফাইল দ্রুত রূপান্তর ও সংকুচিত করুন";
+"home.feature.stockImage.desc" = "বিনামূল্যে স্টক ফটো ব্রাউজ করুন ও ডাউনলোড করুন";
+"home.feature.pdfEdit.desc" = "PDF ফাইল সম্পাদনা, একত্রিত ও অপ্টিমাইজ করুন";
+"home.feature.qrCode.desc" = "তাৎক্ষণিকভাবে কাস্টম QR কোড তৈরি করুন";
+"home.feature.bgRemove.desc" = "AI দিয়ে ছবির পটভূমি সরান";
+"home.feature.ocr.desc" = "OCR দিয়ে ছবি থেকে টেক্সট বের করুন";
+"home.feature.fontDownload.desc" = "Google Fonts থেকে ফন্ট ব্রাউজ করুন ও ডাউনলোড করুন";
 "home.preset.pdf.deletePage" = "পৃষ্ঠাগুলি মুছুন";
 "home.preset.pdf.reorder" = "পুনর্বিন্যাস পৃষ্ঠা";
 "home.preset.pdf.optimize" = "পিডিএফ অপ্টিমাইজ করুন";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "ডান প্যানেল থেকে আউটপুট ফরম্যাট (PNG, JPG, WebP, HEIC, ইত্যাদি) বেছে নিন ।";
 "home.guide.convertImage.step3" = "মান, স্কেল বা মাত্রা সমন্বয় করুন — তারপর রূপান্তর করুন ।";
 "home.guide.convertImage.tip" = "আপনি একবারে একাধিক ছবি যোগ করতে পারেন । প্রতিটি ফাইল একই সেটিংসের সাথে স্বাধীনভাবে রূপান্তরিত হয় ।";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "MP4, MOV, AVI এবং আরও অনেক কিছুতে ভিডিওগুলি রূপান্তর করুন এবং সংকুচিত করুন ।";
 "home.guide.video.step2" = "আউটপুট ফরম্যাট (MP4, MOV...) নির্বাচন করুন এবং FPS বা রেজোলিউশন অ্যাডজাস্ট করুন ।";
 "home.guide.video.step3" = "অডিও সক্ষম বা অক্ষম করুন, তারপরে রূপান্তর ক্লিক করুন ।";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "ফন্টের পূর্বরূপ দেখুন এবং আপনি যে স্টাইলগুলি চান তা নির্বাচন করুন ।";
 "home.guide.font.step3" = "আপনার ম্যাকের ফন্ট ইনস্টল করতে ডাউনলোড ক্লিক করুন ।";
 "home.guide.font.tip" = "ডাউনলোড করা ফন্টগুলি সিস্টেম-ব্যাপী ইনস্টল করা হয় এবং অবিলম্বে সমস্ত অ্যাপে পাওয়া যায় ।";
-"home.feature.convertImage.desc" = "বিভিন্ন ফরম্যাটের মধ্যে ছবি সহজে রূপান্তর করুন";
-"home.feature.videoConvert.desc" = "ভিডিও ফাইল দ্রুত রূপান্তর ও সংকুচিত করুন";
-"home.feature.stockImage.desc" = "বিনামূল্যে স্টক ফটো ব্রাউজ করুন ও ডাউনলোড করুন";
-"home.feature.pdfEdit.desc" = "PDF ফাইল সম্পাদনা, একত্রিত ও অপ্টিমাইজ করুন";
-"home.feature.qrCode.desc" = "তাৎক্ষণিকভাবে কাস্টম QR কোড তৈরি করুন";
-"home.feature.bgRemove.desc" = "AI দিয়ে ছবির পটভূমি সরান";
-"home.feature.ocr.desc" = "OCR দিয়ে ছবি থেকে টেক্সট বের করুন";
-"home.feature.fontDownload.desc" = "Google Fonts থেকে ফন্ট ব্রাউজ করুন ও ডাউনলোড করুন";
+
 "video.drop.subtitle" = "MP4, MOV, AVI এবং অন্যান্য ফরম্যাট সমর্থন করে";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "মূলের ৭৫%";
 "video.resolution.50" = "মূলের ৫০%";
 "video.resolution.25" = "মূলের ২৫% (কম মান)";
+
 "pdf.drop.title" = "এখানে PDF ফাইল টেনে আনুন";
 "pdf.drop.subtitle" = "সম্পাদনার জন্য PDF ফাইল বেছে নিন";
 "pdf.page.count" = "%lld পৃষ্ঠা";
 "pdf.page.info" = "পৃষ্ঠা %lld / %lld";
 "pdf.estimatedSize" = "আনুমানিক আকার";
+"pdf.quality.modal.title" = "অপ্টিমাইজেশন স্তর বেছে নিন";
+"pdf.quality.modal.subtitle" = "ফাইলের আকার কতটা কমাতে হবে তা বেছে নিন। বেশি কম্প্রেশন মানে ছোট ফাইল কিন্তু কিছুটা মান কমে যাবে।";
+"pdf.quality.modal.estimated" = "আনুমানিক আকার";
+"pdf.quality.modal.confirm" = "অপ্টিমাইজ করুন";
+"pdf.quality.modal.cancel" = "বাতিল করুন";
+"pdf.quality.low.title" = "সর্বোচ্চ কম্প্রেশন";
+"pdf.quality.low.desc" = "সবচেয়ে ছোট ফাইল, দৃশ্যমান মানের হ্রাস";
+"pdf.quality.medium.title" = "সুষম";
+"pdf.quality.medium.desc" = "আকার ও মানের ভালো ভারসাম্য";
+"pdf.quality.high.title" = "উচ্চ মান";
+"pdf.quality.high.desc" = "ন্যূনতম মানের হ্রাস, মাঝারি হ্রাস";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF অপ্টিমাইজ করুন";
+"pdf.tools.quality" = "গুণমান";
+"pdf.tools.quality.label" = "চিত্রের গুণমান";
+"pdf.tools.quality.small" = "ছোট ফাইল";
+"pdf.tools.quality.large" = "ভালো গুণমান";
+"pdf.tools.quality.lossless" = "ক্ষতিহীন";
+"pdf.tools.resolution" = "রেজোলিউশন স্কেল";
+"pdf.tools.resolution.enable" = "রেজোলিউশন কমান";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK কনভার্টার";
+"pdf.color.enable" = "রঙের স্থান রূপান্তর করুন";
+"pdf.color.convert" = "রূপান্তর করুন এবং সংরক্ষণ করুন";
 "pdf.tools.save" = "PDF সংরক্ষণ করুন";
 "pdf.reorder.title" = "পৃষ্ঠা পুনর্বিন্যাস";
 "pdf.reorder.hint" = "পৃষ্ঠার ক্রম পরিবর্তন করতে টেনে আনুন";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "পরে";
 "pdf.addContent.atEnd" = "শেষে";
 "pdf.addContent.chooseFile" = "ফাইল বেছে নিন";
+
 "stock.deselectAll" = "সব অনির্বাচন করুন";
 "stock.download" = "ডাউনলোড করুন";
 "stock.download.count" = "%d ফটো ডাউনলোড করুন";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "এখানে URL বা টেক্সট লিখুন...";
 "qr.settings.colors" = "রঙ";
 "qr.settings.fgColor" = "পূর্বভূমির রঙ";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "রেজোলিউশন";
 "qr.settings.customSize" = "কাস্টম আকার (px)";
 "qr.download" = "QR কোড ডাউনলোড";
+"qr.settings.type" = "QR ধরন";
+"qr.type.website" = "ওয়েবসাইট";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "যোগাযোগ (vCard)";
+"qr.type.email" = "ইমেইল";
+"qr.type.phone" = "ফোন";
+"qr.wifi.ssid" = "নেটওয়ার্কের নাম (SSID)";
+"qr.wifi.password" = "পাসওয়ার্ড";
+"qr.wifi.hidden" = "লুকানো নেটওয়ার্ক";
+"qr.wifi.noEncryption" = "কোনো নয়";
+"qr.vcard.firstName" = "নামের প্রথম অংশ";
+"qr.vcard.lastName" = "নামের শেষাংশ";
+"qr.vcard.phone" = "ফোন";
+"qr.vcard.email" = "ইমেইল";
+"qr.vcard.company" = "কোম্পানি";
+"qr.vcard.jobTitle" = "পদবি";
+"qr.vcard.address" = "ঠিকানা";
+"qr.vcard.website" = "ওয়েবসাইট";
+"qr.email.address" = "ইমেইল ঠিকানা";
+"qr.email.subject" = "বিষয়";
+"qr.email.body" = "বার্তা";
+"qr.phone.number" = "ফোন নম্বর";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "এই বৈশিষ্ট্যের জন্য macOS 14 বা তার চেয়ে নতুন সংস্করণ প্রয়োজন";
 "bgremove.drop.title" = "এখানে ছবি টেনে আনুন";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "প্রান্ত নরম করুন";
 "bgremove.settings.featherAmount" = "নরমীকরণের মাত্রা";
+
 "ocr.drop.title" = "এখানে ছবি টেনে আনুন";
 "ocr.drop.subtitle" = "PNG, JPG এবং WebP সমর্থন করে";
 "ocr.processing" = "টেক্সট সনাক্ত করা হচ্ছে...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "পরিষ্কার করুন";
 "ocr.newFile" = "নতুন ফাইল";
 "ocr.copied" = "কপি হয়েছে!";
+
 "app.comingSoon.title" = "শীঘ্রই আসছে";
 "app.comingSoon.message" = "এই বৈশিষ্ট্যটি উন্নয়নাধীন এবং শীঘ্রই উপলব্ধ হবে।";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "ফন্ট খুঁজুন...";
 "font.preview.custom" = "কাস্টম প্রিভিউ";
 "font.inspector.preview" = "প্রিভিউ";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d পরিবার";
 "font.styles.count" = "%d শৈলী · %@";
 "font.noResults" = "কোনো ফন্ট পাওয়া যায়নি";
-"suggestion.title" = "পরামর্শ পাঠান";
-"suggestion.subtitle" = "আপনার ধারণা শেয়ার করুন এবং আমাদের উন্নত করতে সাহায্য করুন";
-"suggestion.placeholder.title" = "শিরোনাম";
-"suggestion.placeholder.body" = "আপনার পরামর্শ বিস্তারিত বর্ণনা করুন...";
-"suggestion.category.bug" = "বাগ";
-"suggestion.category.feature" = "ফিচার অনুরোধ";
-"suggestion.category.ui" = "ইন্টারফেস";
-"suggestion.category.performance" = "পারফরম্যান্স";
-"suggestion.category.other" = "অন্যান্য";
-"suggestion.send" = "পরামর্শ পাঠান";
-"suggestion.sending" = "পাঠানো হচ্ছে...";
-"suggestion.sent.title" = "ধন্যবাদ!";
-"suggestion.sent.message" = "আপনার পরামর্শ পাওয়া গেছে। আমরা শীঘ্রই পর্যালোচনা করব।";
-"suggestion.error" = "পাঠাতে ব্যর্থ। আবার চেষ্টা করুন।";
-"suggestion.validation.title" = "ফিল্ড অনুপস্থিত";
-"suggestion.validation.body" = "শিরোনাম এবং বিবরণ পূরণ করুন।";
-
-"suggestion.label.category" = "বিভাগ";
-"suggestion.label.title" = "শিরোনাম";
-"suggestion.label.description" = "বিবরণ";
 
 "video.drop.title" = "এখানে ভিডিও ড্রপ করুন";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "এখানে শুধুমাত্র ভিডিও রূপান্তর করা যাবে";
+
 "app.maintenance.title" = "রক্ষণাবেক্ষণ মোড";
 "app.forceUpdate.title" = "আপডেট প্রয়োজন";
 "app.forceUpdate.button" = "App Store-এ আপডেট করুন";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "কিছু ছবি রূপান্তর করা যায়নি.";
-"pdf.color.convert" = "রূপান্তর করুন এবং সংরক্ষণ করুন";
-"pdf.color.enable" = "রঙের স্থান রূপান্তর করুন";
-"pdf.color.title" = "RGB/CMYK কনভার্টার";
-"pdf.tools.quality" = "গুণমান";
-"pdf.tools.quality.label" = "চিত্রের গুণমান";
-"pdf.tools.quality.large" = "ভালো গুণমান";
-"pdf.tools.quality.lossless" = "ক্ষতিহীন";
-"pdf.tools.resolution" = "রেজোলিউশন স্কেল";
-"pdf.tools.resolution.enable" = "রেজোলিউশন কমান";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "ছোট ফাইল";
 
 "ad.sponsored" = "স্পনসর";
 "ad.visit" = "পরিদর্শন";
 
-"pdf.quality.modal.title" = "অপ্টিমাইজেশন স্তর বেছে নিন";
-"pdf.quality.modal.subtitle" = "ফাইলের আকার কতটা কমাতে হবে তা বেছে নিন। বেশি কম্প্রেশন মানে ছোট ফাইল কিন্তু কিছুটা মান কমে যাবে।";
-"pdf.quality.modal.estimated" = "আনুমানিক আকার";
-"pdf.quality.modal.confirm" = "অপ্টিমাইজ করুন";
-"pdf.quality.modal.cancel" = "বাতিল করুন";
-"pdf.quality.low.title" = "সর্বোচ্চ কম্প্রেশন";
-"pdf.quality.low.desc" = "সবচেয়ে ছোট ফাইল, দৃশ্যমান মানের হ্রাস";
-"pdf.quality.medium.title" = "সুষম";
-"pdf.quality.medium.desc" = "আকার ও মানের ভালো ভারসাম্য";
-"pdf.quality.high.title" = "উচ্চ মান";
-"pdf.quality.high.desc" = "ন্যূনতম মানের হ্রাস, মাঝারি হ্রাস";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "আপনার Comet Editor অভিজ্ঞতা কাস্টমাইজ করুন";
+"settings.section.output" = "আউটপুট";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "ডিফল্ট আউটপুট ফোল্ডার";
+"settings.noFolderSelected" = "নির্বাচিত নয় — প্রতিবার জিজ্ঞাসা করা হবে";
+"settings.chooseFolder" = "ফোল্ডার বেছে নিন";
+"settings.clearFolder" = "পরিষ্কার করুন";
+"settings.folderPicker.message" = "রপ্তানি করা ফাইলের জন্য ডিফল্ট ফোল্ডার বেছে নিন";
+"settings.folderPicker.button" = "ফোল্ডার নির্বাচন করুন";
 
 "app.maintenance.title2" = "রক্ষণাবেক্ষণ চলছে";
 "app.maintenance.body" = "অ্যাপটি সাময়িকভাবে অনুপলব্ধ। আমরা শীঘ্রই ফিরে আসব।";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store-এ আপডেট করুন";
 "app.quit2" = "অ্যাপ বন্ধ করুন";
 
-"settings.subtitle" = "আপনার Comet Editor অভিজ্ঞতা কাস্টমাইজ করুন";
-"settings.section.output" = "আউটপুট";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "ডিফল্ট আউটপুট ফোল্ডার";
-"settings.noFolderSelected" = "নির্বাচিত নয় — প্রতিবার জিজ্ঞাসা করা হবে";
-"settings.chooseFolder" = "ফোল্ডার বেছে নিন";
-"settings.clearFolder" = "পরিষ্কার করুন";
-"settings.folderPicker.message" = "রপ্তানি করা ফাইলের জন্য ডিফল্ট ফোল্ডার বেছে নিন";
-"settings.folderPicker.button" = "ফোল্ডার নির্বাচন করুন";
-"menu.announcements" = "ঘোষণা";
-"announcements.subtitle" = "টিম থেকে সর্বশেষ খবর ও আপডেট";
-"announcements.empty" = "এখনো কোনো ঘোষণা নেই";
-
 "settings.pdfOutputFolder" = "PDF আউটপুট ফোল্ডার";
 
 "folder.default.prompt.title" = "ডিফল্ট ফোল্ডার হিসেবে সেট করুন?";
 "folder.default.prompt.body" = "আপনি কি এটিকে আপনার ডিফল্ট আউটপুট ফোল্ডার হিসেবে সেট করতে চান? আপনি যেকোনো সময় সেটিংসে পরিবর্তন করতে পারেন।";
 "folder.default.prompt.yes" = "ডিফল্ট হিসেবে সেট করুন";
 "folder.default.prompt.no" = "এখন নয়";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "ক্লিপগুলি ছাঁটাই করুন, অযাচিত অংশগুলি সরান এবং একাধিক ভিডিওকে একত্রে মার্জ করুন ।";
-"home.guide.videoedit.preset.concat" = "ভিডিও মার্জ করুন";
-"home.guide.videoedit.preset.trim" = "একটি ভিডিও ছাঁটাই করুন";
-"home.guide.videoedit.step1" = "+ বোতাম ব্যবহার করে এক বা একাধিক ভিডিও ফাইল যোগ করুন বা টেনে আনুন এবং ড্রপ করুন ।";
-"home.guide.videoedit.step2" = "একটি ক্লিপ নির্বাচন করুন, তারপর শুরু এবং শেষ পয়েন্ট সেট করতে টাইমলাইনে ট্রিম হ্যান্ডলগুলি টেনে আনুন ।";
-"home.guide.videoedit.step3" = "চূড়ান্ত ক্রম সেট করতে তাদের টেনে তালিকায় ক্লিপগুলি পুনরায় অর্ডার করুন ।";
-"home.guide.videoedit.step4" = "একটি আউটপুট ফর্ম্যাট এবং ফোল্ডার নির্বাচন করুন, তারপরে এক্সপোর্ট ক্লিক করুন ।";
-"home.guide.videoedit.tip" = "ট্রিম মিলিসেকেন্ডে স্ন্যাপ পরিচালনা করে — সঠিক কাটটির পূর্বরূপ দেখতে প্লেব্যাক বারটি ব্যবহার করুন ।";
-"menu.videoEdit" = "ভিডিও সম্পাদক";
-"qr.email.address" = "ইমেইল ঠিকানা";
-"qr.email.body" = "বার্তা";
-"qr.email.subject" = "বিষয়";
-"qr.phone.number" = "ফোন নম্বর";
-"qr.settings.type" = "QR ধরন";
-"qr.type.email" = "ইমেইল";
-"qr.type.phone" = "ফোন";
-"qr.type.vcard" = "যোগাযোগ (vCard)";
-"qr.type.website" = "ওয়েবসাইট";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "ঠিকানা";
-"qr.vcard.company" = "কোম্পানি";
-"qr.vcard.email" = "ইমেইল";
-"qr.vcard.firstName" = "নামের প্রথম অংশ";
-"qr.vcard.jobTitle" = "পদবি";
-"qr.vcard.lastName" = "নামের শেষাংশ";
-"qr.vcard.phone" = "ফোন";
-"qr.vcard.website" = "ওয়েবসাইট";
-"qr.wifi.hidden" = "লুকানো নেটওয়ার্ক";
-"qr.wifi.noEncryption" = "কোনো নয়";
-"qr.wifi.password" = "পাসওয়ার্ড";
-"qr.wifi.ssid" = "নেটওয়ার্কের নাম (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "ছবি যোগ করুন";
-"videoedit.addMore" = "যোগ করুন";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "ভিডিও যোগ করুন";
-"videoedit.empty.subtitle" = "ভিডিও ফাইল এখানে ছাড়ুন বা নিচের বোতামে ট্যাপ করুন";
-"videoedit.empty.title" = "সম্পাদনার জন্য ভিডিও যোগ করুন";
-"videoedit.export.merge" = "মিশিয়ে এক্সপোর্ট";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "সেটিংস";
-"videoedit.export.trim" = "ক্লিপ এক্সপোর্ট";
-"videoedit.exporting" = "এক্সপোর্ট হচ্ছে…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "ছবির সময়কাল";
-"videoedit.imageDuration.default" = "নতুন ছবির জন্য ডিফল্ট";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "সংরক্ষণ করুন";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "প্রয়োগ করুন";
-"watermark.button" = "ওয়াটারমার্ক যোগ করুন";
-"watermark.cancel" = "বাতিল করুন";
-"watermark.color.black" = "কালো";
-"watermark.color.darkGray" = "গাঢ় ধূসর";
-"watermark.color.gray" = "ধূসর";
-"watermark.color.lightGray" = "হালকা ধূসর";
-"watermark.color.none" = "কিছু নয়";
-"watermark.color.white" = "সাদা";
-"watermark.colorOverlay" = "রঙের ওভারলে";
-"watermark.logo" = "লোগো";
-"watermark.opacity" = "স্বচ্ছতা";
-"watermark.pos.bottomCenter" = "নিচে মাঝ";
-"watermark.pos.bottomLeft" = "নিচে বাম";
-"watermark.pos.bottomRight" = "নিচে ডান";
-"watermark.pos.center" = "মাঝ";
-"watermark.pos.centerLeft" = "মাঝ বাম";
-"watermark.pos.centerRight" = "মাঝ ডান";
-"watermark.pos.topCenter" = "উপরে মাঝ";
-"watermark.pos.topLeft" = "উপরে বাম";
-"watermark.pos.topRight" = "উপরে ডান";
-"watermark.position" = "অবস্থান";
-"watermark.preview" = "প্রিভিউ";
-"watermark.removeLogo" = "সরান";
-"watermark.scale" = "স্কেল";
-"watermark.selectLogo" = "ছবি বেছে নিন";
-"watermark.tileMode" = "টাইল মোড";
-"watermark.tileMode.desc" = "ছবিতে পুনরাবৃত্তি করুন";
+
 "watermark.title" = "ওয়াটারমার্ক";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "ওয়াটারমার্ক যোগ করুন";
+"watermark.logo" = "লোগো";
+"watermark.selectLogo" = "ছবি বেছে নিন";
+"watermark.removeLogo" = "সরান";
+"watermark.position" = "অবস্থান";
+"watermark.scale" = "স্কেল";
+"watermark.opacity" = "স্বচ্ছতা";
+"watermark.preview" = "প্রিভিউ";
+"watermark.apply" = "প্রয়োগ করুন";
+"watermark.cancel" = "বাতিল করুন";
+"watermark.pos.topLeft" = "উপরে বাম";
+"watermark.pos.topCenter" = "উপরে মাঝ";
+"watermark.pos.topRight" = "উপরে ডান";
+"watermark.pos.centerLeft" = "মাঝ বাম";
+"watermark.pos.center" = "মাঝ";
+"watermark.pos.centerRight" = "মাঝ ডান";
+"watermark.pos.bottomLeft" = "নিচে বাম";
+"watermark.pos.bottomCenter" = "নিচে মাঝ";
+"watermark.pos.bottomRight" = "নিচে ডান";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "রঙের ওভারলে";
+"watermark.color.none" = "কিছু নয়";
+"watermark.color.black" = "কালো";
+"watermark.color.darkGray" = "গাঢ় ধূসর";
+"watermark.color.gray" = "ধূসর";
+"watermark.color.lightGray" = "হালকা ধূসর";
+"watermark.color.white" = "সাদা";
+"watermark.tileMode" = "টাইল মোড";
+"watermark.tileMode.desc" = "ছবিতে পুনরাবৃত্তি করুন";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "সেটিংস";
-"upscale.settings.model" = "মডেল";
-"upscale.model.cometStandard" = "ধূমকেতুর মান";
-"upscale.model.scaleHint" = "Upscayl স্ট্যান্ডার্ড (4×) — AI বিস্তারিত বর্ধন";
-"upscale.settings.scale" = "স্কেল:";
-"upscale.scale.multiPassHint" = "8× এবং 16× রান একাধিক AI পাস — বেশি সময় নেয় ।";
-"upscale.settings.outputFormat" = "আউটপুট ফরমেট";
-"upscale.drop.title" = "ছবিগুলি টেনে আনুন এবং ড্রপ করুন";
-"upscale.drop.subtitle" = "অথবা ফাইল ব্রাউজ করতে ক্লিক করুন";
-"upscale.drop.formats" = "পিএনজি, জেপিইজি, ওয়েবপি, টিআইএফএফ, জিআইএফ, এইচইআইসি, বিএমপি";
-"upscale.wrongType" = "শুধুমাত্র সমর্থিত রাস্টার চিত্রগুলি এখানে আপস্কেল করা যেতে পারে";
-"upscale.runButton" = "আপস্কেল";
-"upscale.preview.run" = "পূর্বরুপ";
-"upscale.preview.hint" = "একটি স্কেল নির্বাচন করুন এবং তুলনা করতে প্রিভিউতে ট্যাপ করুন";
-"upscale.preview.processing" = "আপস্কেলিং প্রিভিউ...";
-"upscale.preview.before" = "আগে";
-"upscale.preview.after" = "উপস্থিতি";
-"upscale.preview.save" = "সংরক্ষণ করুন";
-"upscale.preview.saveSettings" = "প্রিভিউ সেভ করুন";
-"upscale.preview.autoSave" = "প্রিভিউ এর পরে সেভ করুন";
-"upscale.preview.autoSaveHint" = "প্রিভিউ শেষ হলে টার্গেট ফোল্ডারে লিখুন ।";
-"upscale.preview.saveNeedFolder" = "প্রথমে একটি টার্গেট ফোল্ডার বেছে নিন ।";
-"upscale.preview.saveFailed" = "পূর্বরূপ চিত্র এনকোড করা যায়নি ।";
-"upscale.preview.loadFailed" = "পূর্বরূপ চিত্র লোড করা যায়নি ।";
-"upscale.backend.missing.hint" = "অ্যাপ বান্ডেল থেকে ধূমকেতু ইঞ্জিন বা মডেল ফাইলগুলি অনুপস্থিত । প্রকল্পটি পুনর্নির্মাণ করুন ।";
-"upscale.error.bundle" = "অ্যাপ থেকে আপস্কেল বান্ডেল ফোল্ডারটি অনুপস্থিত ।";
-"upscale.error.binary" = "অ্যাপ বান্ডেলে ধূমকেতু ইঞ্জিন পাওয়া যায়নি ।";
-"upscale.error.model" = "মডেল ফাইল upscayl-standard-4x.param/.bin অনুপস্থিত ।";
-"upscale.error.process" = "আপস্কেলিং ব্যর্থ হয়েছে (%d থেকে প্রস্থান করুন): %@";
-"upscale.error.none" = "কোনও ছবি আপলোড করা হয়নি ।";
-"videoedit.resize.modePercent" = "স্কেল:";
-"videoedit.resize.modeCustom" = "কাস্টম আকার";
-"videoedit.resize.autoFill" = "অটো ফিল ক্যানভাস";
-"videoedit.resize.autoFillHint" = "কখন: বড় ফুটেজ লেটারবক্সিংয়ের সাথে ভিতরে ফিট করে; ছোট ফুটেজ জুম করা হয় এবং ভরাট করার জন্য কেন্দ্র-ক্রপ করা হয় ।";
+"inspector.format" = "ফরম্যাট";
+"inspector.output" = "আউটপুট";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "প্রিভিউয়ের জন্য ছবি যোগ করুন";
+"watermark.rotation" = "ঘূর্ণন";
+"watermark.text" = "লোগো টেক্সট";
+"watermark.text.placeholder" = "লোগো টেক্সট লিখুন";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

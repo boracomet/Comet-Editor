@@ -114,9 +114,12 @@ enum BgRemoveError: LocalizedError {
     case noMaskFound, maskConversionFailed, compositeFailed
     var errorDescription: String? {
         switch self {
-        case .noMaskFound: return "No foreground mask found."
-        case .maskConversionFailed: return "Mask conversion failed."
-        case .compositeFailed: return "Image compositing failed."
+        case .noMaskFound:
+            return NSLocalizedString("bgremove.error.noMaskFound", comment: "")
+        case .maskConversionFailed:
+            return NSLocalizedString("bgremove.error.maskConversionFailed", comment: "")
+        case .compositeFailed:
+            return NSLocalizedString("bgremove.error.compositeFailed", comment: "")
         }
     }
 }

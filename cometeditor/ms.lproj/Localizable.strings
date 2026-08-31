@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Seret imej ke sini";
 "convert.drop.subtitle" = "Menyokong PNG, JPG, WebP, HEIF dan format lain";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Lebar";
 "convert.settings.height" = "Tinggi";
+
 "meta.info" = "Metadata akan dikekalkan";
+
 "convert.settings.targetFolder" = "FOLDER DESTINASI";
 "convert.settings.noFolder" = "Tiada folder dipilih";
 "convert.settings.chooseFolder" = "Pilih folder";
+
+"folder.missing.title" = "Folder tidak ditemui";
+"folder.missing.subtitle" = "Laluan folder yang disimpan tidak lagi wujud. Sila pilih yang baru.";
+"folder.missing.pick" = "Pilih folder baharu";
+"folder.missing.panel.message" = "Folder output tidak ditemui. Sila pilih folder baharu.";
+
+"bgremove.error.noMaskFound" = "Tiada topeng latar depan ditemui.";
+"bgremove.error.maskConversionFailed" = "Penukaran topeng gagal.";
+"bgremove.error.compositeFailed" = "Gabungan imej gagal.";
+
 "convert.settings.convertButton" = "Tukar";
 "convert.clearAll" = "Kosongkan semua";
 "convert.addMore" = "Tambah lagi";
 "convert.wrongType.image" = "Di sini hanya imej yang boleh ditukar";
+
+"upscale.settings.title" = "Tetapan";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — peningkatan butiran AI";
+"upscale.settings.scale" = "Skala";
+"upscale.scale.multiPassHint" = "8× dan 16× menjalankan beberapa laluan AI — mengambil masa lebih lama.";
+"upscale.settings.outputFormat" = "Format output";
+"upscale.drop.title" = "Seret & lepas imej";
+"upscale.drop.subtitle" = "atau klik untuk melayari fail";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Hanya imej raster yang disokong boleh diperbesar di sini";
+"upscale.runButton" = "Perbesar";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Pratonton";
+"upscale.preview.hint" = "Pilih skala dan ketik Pratonton untuk bandingkan";
+"upscale.preview.processing" = "Menjana pratonton…";
+"upscale.preview.before" = "SEBELUM";
+"upscale.preview.after" = "SELEPAS";
+"upscale.preview.save" = "Simpan";
+"upscale.preview.saveSettings" = "Simpan pratonton";
+"upscale.preview.autoSave" = "Simpan selepas pratonton";
+"upscale.preview.autoSaveHint" = "Menulis ke folder sasaran apabila pratonton selesai.";
+"upscale.preview.saveNeedFolder" = "Pilih folder sasaran dahulu.";
+"upscale.preview.saveFailed" = "Tidak dapat mengenkod imej pratonton.";
+"upscale.preview.loadFailed" = "Tidak dapat memuatkan imej pratonton.";
+"upscale.backend.missing.hint" = "Enjin cometscaly atau fail model tiada dalam bundle apl. Bina semula projek.";
+"upscale.error.bundle" = "Folder bundle Upscale tiada dalam apl.";
+"upscale.error.binary" = "cometscaly tidak dijumpai dalam bundle apl.";
+"upscale.error.model" = "Fail model upscayl-standard-4x.param/.bin tiada.";
+"upscale.error.process" = "Pembesaran gagal (exit %d): %@";
+"upscale.error.none" = "Tiada imej diperbesar.";
+
 "menu.home" = "Laman Utama";
 "menu.convertImage" = "Tukar Imej";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Tetapan";
 "menu.tools" = "Alat";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Pasukan";
-"menu.team.title" = "Dibangunkan oleh Comet Dev";
-"menu.team.subtitle" = "Dibina dengan penuh kasih sayang dan perhatian terhadap butiran";
 "menu.stockImage" = "Foto stok";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Buang Latar Belakang";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Fon";
 "menu.videoConvert" = "Tukar Video";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Hantar maklum balas";
-"team.thanks_grafix" = "Terima kasih khas kepada Grafix atas reka bentuk";
+
 "alert.success.title" = "Berjaya";
 "alert.error.title" = "Ralat";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Buka folder";
 "alert.success.message.image" = "Imej disimpan di %@.";
 "alert.success.message.video" = "Video disimpan di %@.";
+"alert.error.conversion" = "Sesetengah imej tidak dapat ditukar.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Menyokong MP4, MOV, AVI dan format lain";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% asal";
 "video.resolution.50" = "50% asal";
 "video.resolution.25" = "25% asal (Kualiti rendah)";
+
 "pdf.drop.title" = "Seret fail PDF ke sini";
 "pdf.drop.subtitle" = "Pilih fail PDF untuk diedit";
 "pdf.page.count" = "%lld halaman";
 "pdf.page.info" = "Halaman %lld daripada %lld";
 "pdf.estimatedSize" = "Saiz anggaran";
+"pdf.quality.modal.title" = "Pilih Tahap Pengoptimuman";
+"pdf.quality.modal.subtitle" = "Pilih berapa banyak saiz fail dikurangkan. Pemampatan lebih tinggi bermakna fail lebih kecil dengan sedikit kehilangan kualiti.";
+"pdf.quality.modal.estimated" = "Saiz anggaran";
+"pdf.quality.modal.confirm" = "Optimumkan";
+"pdf.quality.modal.cancel" = "Batal";
+"pdf.quality.low.title" = "Pemampatan Maksimum";
+"pdf.quality.low.desc" = "Fail terkecil, kehilangan kualiti ketara";
+"pdf.quality.medium.title" = "Seimbang";
+"pdf.quality.medium.desc" = "Keseimbangan baik antara saiz dan kualiti";
+"pdf.quality.high.title" = "Kualiti Tinggi";
+"pdf.quality.high.desc" = "Kehilangan kualiti minimum, pengurangan sederhana";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimumkan PDF";
+"pdf.tools.quality" = "KUALITI";
+"pdf.tools.quality.label" = "Kualiti imej";
+"pdf.tools.quality.small" = "Fail lebih kecil";
+"pdf.tools.quality.large" = "Kualiti lebih baik";
+"pdf.tools.quality.lossless" = "Tanpa kehilangan";
+"pdf.tools.resolution" = "SKALA RESOLUSI";
+"pdf.tools.resolution.enable" = "Kurangkan resolusi";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "PENUKAR RGB/CMYK";
+"pdf.color.enable" = "Tukar ruang warna";
+"pdf.color.convert" = "Tukar & Simpan";
 "pdf.tools.save" = "Simpan PDF";
 "pdf.reorder.title" = "Penyusunan semula halaman";
 "pdf.reorder.hint" = "Seret untuk mengubah susunan halaman";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Selepas";
 "pdf.addContent.atEnd" = "Di penghujung";
 "pdf.addContent.chooseFile" = "Pilih fail";
+
 "stock.deselectAll" = "Nyahpilih semua";
 "stock.download" = "Muat turun";
 "stock.download.count" = "Muat turun %d foto";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Masukkan URL atau teks di sini...";
 "qr.settings.colors" = "Warna";
 "qr.settings.fgColor" = "Warna latar hadapan";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Resolusi";
 "qr.settings.customSize" = "Saiz tersuai (px)";
 "qr.download" = "Muat turun kod QR";
+"qr.settings.type" = "Jenis QR";
+"qr.type.website" = "Laman web";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kenalan (vCard)";
+"qr.type.email" = "E-mel";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Nama rangkaian (SSID)";
+"qr.wifi.password" = "Kata laluan";
+"qr.wifi.hidden" = "Rangkaian tersembunyi";
+"qr.wifi.noEncryption" = "Tiada";
+"qr.vcard.firstName" = "Nama pertama";
+"qr.vcard.lastName" = "Nama akhir";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-mel";
+"qr.vcard.company" = "Syarikat";
+"qr.vcard.jobTitle" = "Jawatan";
+"qr.vcard.address" = "Alamat";
+"qr.vcard.website" = "Laman web";
+"qr.email.address" = "Alamat e-mel";
+"qr.email.subject" = "Subjek";
+"qr.email.body" = "Mesej";
+"qr.phone.number" = "Nombor telefon";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Ciri ini memerlukan macOS 14 atau versi lebih baru";
 "bgremove.drop.title" = "Seret imej ke sini";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Kelembutan tepi";
 "bgremove.settings.featherAmount" = "Tahap kelembutan";
+
 "ocr.drop.title" = "Seret imej ke sini";
 "ocr.drop.subtitle" = "Menyokong PNG, JPG dan WebP";
 "ocr.processing" = "Mengenali teks...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Kosongkan";
 "ocr.newFile" = "Fail baharu";
 "ocr.copied" = "Disalin!";
+
 "app.comingSoon.title" = "Akan Datang";
 "app.comingSoon.message" = "Ciri ini sedang dibangunkan dan akan tersedia tidak lama lagi.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Cari fon...";
 "font.preview.custom" = "Pratonton tersuai";
 "font.inspector.preview" = "PRATONTON";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d keluarga";
 "font.styles.count" = "%d gaya · %@";
 "font.noResults" = "Tiada fon dijumpai";
-"suggestion.title" = "Hantar cadangan";
-"suggestion.subtitle" = "Kongsi idea anda dan bantu kami bertambah baik";
-"suggestion.placeholder.title" = "Tajuk";
-"suggestion.placeholder.body" = "Huraikan cadangan anda secara terperinci...";
-"suggestion.category.bug" = "Bug";
-"suggestion.category.feature" = "Permintaan ciri";
-"suggestion.category.ui" = "Antara muka";
-"suggestion.category.performance" = "Prestasi";
-"suggestion.category.other" = "Lain-lain";
-"suggestion.send" = "Hantar cadangan";
-"suggestion.sending" = "Menghantar...";
-"suggestion.sent.title" = "Terima kasih!";
-"suggestion.sent.message" = "Cadangan anda telah diterima. Kami akan menyemaknya tidak lama lagi.";
-"suggestion.error" = "Penghantaran gagal. Sila cuba lagi.";
-"suggestion.validation.title" = "Medan kosong";
-"suggestion.validation.body" = "Sila isi tajuk dan penerangan.";
-
-"suggestion.label.category" = "Kategori";
-"suggestion.label.title" = "Tajuk";
-"suggestion.label.description" = "Penerangan";
 
 "video.drop.title" = "Seret video ke sini";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Di sini hanya video yang boleh ditukar";
+
 "app.maintenance.title" = "Mod Penyelenggaraan";
 "app.forceUpdate.title" = "Kemaskini Diperlukan";
 "app.forceUpdate.button" = "Kemas kini di App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Cari";
 "stock.search.placeholder" = "Cari foto...";
 "stock.selected" = "%d dipilih";
+
 "video.cancel" = "Batal";
 "video.error.decoder" = "Video tidak dapat dinyahkod.";
 "video.saved.gain" = "disimpan";
 "video.saved.increased" = "lebih besar";
 "video.settings.fps.desc" = "Lumpuhkan untuk mengekalkan FPS asal";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Imej";
 "pdf.tools.pageManagement" = "PENGURUSAN HALAMAN";
 "pdf.tools.addContent" = "Tambah Kandungan";
 "pdf.tools.reorder" = "Susun semula";
 "pdf.tools.targetFolder" = "FOLDER SASARAN";
-"alert.error.conversion" = "Sesetengah imej tidak dapat ditukar.";
-"pdf.color.convert" = "Tukar & Simpan";
-"pdf.color.enable" = "Tukar ruang warna";
-"pdf.color.title" = "PENUKAR RGB/CMYK";
-"pdf.tools.quality" = "KUALITI";
-"pdf.tools.quality.label" = "Kualiti imej";
-"pdf.tools.quality.large" = "Kualiti lebih baik";
-"pdf.tools.quality.lossless" = "Tanpa kehilangan";
-"pdf.tools.resolution" = "SKALA RESOLUSI";
-"pdf.tools.resolution.enable" = "Kurangkan resolusi";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Fail lebih kecil";
 
 "ad.sponsored" = "Ditaja";
 "ad.visit" = "Lawati";
 
-"pdf.quality.modal.title" = "Pilih Tahap Pengoptimuman";
-"pdf.quality.modal.subtitle" = "Pilih berapa banyak saiz fail dikurangkan. Pemampatan lebih tinggi bermakna fail lebih kecil dengan sedikit kehilangan kualiti.";
-"pdf.quality.modal.estimated" = "Saiz anggaran";
-"pdf.quality.modal.confirm" = "Optimumkan";
-"pdf.quality.modal.cancel" = "Batal";
-"pdf.quality.low.title" = "Pemampatan Maksimum";
-"pdf.quality.low.desc" = "Fail terkecil, kehilangan kualiti ketara";
-"pdf.quality.medium.title" = "Seimbang";
-"pdf.quality.medium.desc" = "Keseimbangan baik antara saiz dan kualiti";
-"pdf.quality.high.title" = "Kualiti Tinggi";
-"pdf.quality.high.desc" = "Kehilangan kualiti minimum, pengurangan sederhana";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Sesuaikan pengalaman Comet Editor anda";
+"settings.section.output" = "OUTPUT";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Folder output lalai";
+"settings.noFolderSelected" = "Belum dipilih — akan ditanya setiap kali";
+"settings.chooseFolder" = "Pilih folder";
+"settings.clearFolder" = "Kosongkan";
+"settings.folderPicker.message" = "Pilih folder lalai untuk fail yang dieksport";
+"settings.folderPicker.button" = "Pilih folder";
 
 "app.maintenance.title2" = "Dalam Penyelenggaraan";
 "app.maintenance.body" = "Aplikasi tidak tersedia buat sementara. Kami akan kembali tidak lama lagi.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Kemaskini di App Store";
 "app.quit2" = "Tutup App";
 
-"settings.subtitle" = "Sesuaikan pengalaman Comet Editor anda";
-"settings.section.output" = "OUTPUT";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Folder output lalai";
-"settings.noFolderSelected" = "Belum dipilih — akan ditanya setiap kali";
-"settings.chooseFolder" = "Pilih folder";
-"settings.clearFolder" = "Kosongkan";
-"settings.folderPicker.message" = "Pilih folder lalai untuk fail yang dieksport";
-"settings.folderPicker.button" = "Pilih folder";
-"menu.announcements" = "Pengumuman";
-"announcements.subtitle" = "Berita dan kemas kini terkini daripada pasukan";
-"announcements.empty" = "Tiada pengumuman lagi";
-
 "settings.pdfOutputFolder" = "Folder output PDF";
 
 "folder.default.prompt.title" = "Tetapkan sebagai folder lalai?";
 "folder.default.prompt.body" = "Adakah anda ingin menetapkan ini sebagai folder output lalai anda? Anda boleh mengubahnya bila-bila masa dalam Tetapan.";
 "folder.default.prompt.yes" = "Tetapkan sebagai lalai";
 "folder.default.prompt.no" = "Bukan sekarang";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Editor video";
-"qr.email.address" = "Alamat e-mel";
-"qr.email.body" = "Mesej";
-"qr.email.subject" = "Subjek";
-"qr.phone.number" = "Nombor telefon";
-"qr.settings.type" = "Jenis QR";
-"qr.type.email" = "E-mel";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Kenalan (vCard)";
-"qr.type.website" = "Laman web";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Alamat";
-"qr.vcard.company" = "Syarikat";
-"qr.vcard.email" = "E-mel";
-"qr.vcard.firstName" = "Nama pertama";
-"qr.vcard.jobTitle" = "Jawatan";
-"qr.vcard.lastName" = "Nama akhir";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Laman web";
-"qr.wifi.hidden" = "Rangkaian tersembunyi";
-"qr.wifi.noEncryption" = "Tiada";
-"qr.wifi.password" = "Kata laluan";
-"qr.wifi.ssid" = "Nama rangkaian (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Tambah foto";
-"videoedit.addMore" = "Tambah";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Tambah video";
-"videoedit.empty.subtitle" = "Lepaskan fail video di sini atau ketik butang di bawah";
-"videoedit.empty.title" = "Tambah video untuk disunting";
-"videoedit.export.merge" = "Gabung & eksport";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Tetapan";
-"videoedit.export.trim" = "Eksport klip";
-"videoedit.exporting" = "Mengeksport…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "TEMPOH FOTO";
-"videoedit.imageDuration.default" = "Lalai untuk foto baharu";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SIMPAN KE";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Guna";
-"watermark.button" = "Tambah tera air";
-"watermark.cancel" = "Batal";
-"watermark.color.black" = "Hitam";
-"watermark.color.darkGray" = "Kelabu gelap";
-"watermark.color.gray" = "Kelabu";
-"watermark.color.lightGray" = "Kelabu terang";
-"watermark.color.none" = "Tiada";
-"watermark.color.white" = "Putih";
-"watermark.colorOverlay" = "Lapisan warna";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Kelegapan";
-"watermark.pos.bottomCenter" = "Tengah bawah";
-"watermark.pos.bottomLeft" = "Kiri bawah";
-"watermark.pos.bottomRight" = "Kanan bawah";
-"watermark.pos.center" = "Tengah";
-"watermark.pos.centerLeft" = "Kiri tengah";
-"watermark.pos.centerRight" = "Kanan tengah";
-"watermark.pos.topCenter" = "Tengah atas";
-"watermark.pos.topLeft" = "Kiri atas";
-"watermark.pos.topRight" = "Kanan atas";
-"watermark.position" = "Kedudukan";
-"watermark.preview" = "Pratonton";
-"watermark.removeLogo" = "Buang";
-"watermark.scale" = "Skala";
-"watermark.selectLogo" = "Pilih imej";
-"watermark.tileMode" = "Mod jubin";
-"watermark.tileMode.desc" = "Ulang merentasi imej";
+
 "watermark.title" = "Tera air";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Tambah tera air";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Pilih imej";
+"watermark.removeLogo" = "Buang";
+"watermark.position" = "Kedudukan";
+"watermark.scale" = "Skala";
+"watermark.opacity" = "Kelegapan";
+"watermark.preview" = "Pratonton";
+"watermark.apply" = "Guna";
+"watermark.cancel" = "Batal";
+"watermark.pos.topLeft" = "Kiri atas";
+"watermark.pos.topCenter" = "Tengah atas";
+"watermark.pos.topRight" = "Kanan atas";
+"watermark.pos.centerLeft" = "Kiri tengah";
+"watermark.pos.center" = "Tengah";
+"watermark.pos.centerRight" = "Kanan tengah";
+"watermark.pos.bottomLeft" = "Kiri bawah";
+"watermark.pos.bottomCenter" = "Tengah bawah";
+"watermark.pos.bottomRight" = "Kanan bawah";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Lapisan warna";
+"watermark.color.none" = "Tiada";
+"watermark.color.black" = "Hitam";
+"watermark.color.darkGray" = "Kelabu gelap";
+"watermark.color.gray" = "Kelabu";
+"watermark.color.lightGray" = "Kelabu terang";
+"watermark.color.white" = "Putih";
+"watermark.tileMode" = "Mod jubin";
+"watermark.tileMode.desc" = "Ulang merentasi imej";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Tetapan";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — peningkatan butiran AI";
-"upscale.settings.scale" = "Skala";
-"upscale.scale.multiPassHint" = "8× dan 16× menjalankan beberapa laluan AI — mengambil masa lebih lama.";
-"upscale.settings.outputFormat" = "Format output";
-"upscale.drop.title" = "Seret & lepas imej";
-"upscale.drop.subtitle" = "atau klik untuk melayari fail";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Hanya imej raster yang disokong boleh diperbesar di sini";
-"upscale.runButton" = "Perbesar";
-"upscale.preview.run" = "Pratonton";
-"upscale.preview.hint" = "Pilih skala dan ketik Pratonton untuk bandingkan";
-"upscale.preview.processing" = "Menjana pratonton…";
-"upscale.preview.before" = "SEBELUM";
-"upscale.preview.after" = "SELEPAS";
-"upscale.preview.save" = "Simpan";
-"upscale.preview.saveSettings" = "Simpan pratonton";
-"upscale.preview.autoSave" = "Simpan selepas pratonton";
-"upscale.preview.autoSaveHint" = "Menulis ke folder sasaran apabila pratonton selesai.";
-"upscale.preview.saveNeedFolder" = "Pilih folder sasaran dahulu.";
-"upscale.preview.saveFailed" = "Tidak dapat mengenkod imej pratonton.";
-"upscale.preview.loadFailed" = "Tidak dapat memuatkan imej pratonton.";
-"upscale.backend.missing.hint" = "Enjin cometscaly atau fail model tiada dalam bundle apl. Bina semula projek.";
-"upscale.error.bundle" = "Folder bundle Upscale tiada dalam apl.";
-"upscale.error.binary" = "cometscaly tidak dijumpai dalam bundle apl.";
-"upscale.error.model" = "Fail model upscayl-standard-4x.param/.bin tiada.";
-"upscale.error.process" = "Pembesaran gagal (exit %d): %@";
-"upscale.error.none" = "Tiada imej diperbesar.";
-"videoedit.resize.modePercent" = "Skala (%)";
-"videoedit.resize.modeCustom" = "Saiz tersuai";
-"videoedit.resize.autoFill" = "Isi kanvas automatik";
-"videoedit.resize.autoFillHint" = "Hidup: rakaman lebar muat dengan letterbox; rakaman lebih kecil dizum dan dipotong tengah untuk mengisi.";
+"inspector.format" = "Format";
+"inspector.output" = "Output";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Tambah foto untuk pratonton";
+"watermark.rotation" = "Putaran";
+"watermark.text" = "Teks logo";
+"watermark.text.placeholder" = "Masukkan teks logo";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

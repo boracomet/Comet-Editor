@@ -2,7 +2,8 @@
 //  UpscaleView.swift
 //  cometeditor
 //
-//  Resim dönüştürme sayfasına benzer: sürükle-bırak, sağ panel ayarları, NCNN upscale.
+//  Liste + modal: satıra tıklayınca karşılaştırma; Dönüştür cometscaly çalıştırır.
+//  Sonuç bellekte kalır. Sayfa değişince Task iptal edilmez.
 //
 
 import SwiftUI
@@ -19,41 +20,28 @@ struct UpscaleView: View {
 
     @State private var outputFormat: UpscaleOutputFormat = .png
     @State private var selectedScale: UpscaleScale = .x4
-    @State private var isProcessing = false
-    @State private var progressLabel: String = ""
     @State private var showSuccessAlert = false
     @State private var showErrorAlert = false
     @State private var errorAlertMessage: String = ""
     @State private var isDropTargeted = false
     @State private var isWrongTypeDrop = false
     @State private var wrongTypeTask: Task<Void, Never>? = nil
+    @State private var isSavingDownloads = false
 
     @State private var previewItem: ImageItem?
     @State private var previewFullImage: NSImage?
-    @State private var previewUpscaledImage: NSImage?
     @State private var previewScale: UpscaleScale = .x4
-    @State private var isPreviewUpscaling = false
-    @State private var previewProgressPercent: Int = 0
     @State private var previewZoom: CGFloat = 1.0
     @State private var previewOffset: CGSize = .zero
-    @State private var previewImageFrame: CGSize = .zero
     @State private var beforeAfterRatio: CGFloat = 0.5
-    @State private var isSavingPreview = false
-    @AppStorage("comet.upscale.autoSavePreview") private var autoSaveAfterPreview = false
 
     private var items: [ImageItem] { appState.upscaleImages }
+    private var completedCount: Int { items.filter { $0.isCompleted && $0.upscaledImage != nil }.count }
 
     var body: some View {
         HStack(spacing: 0) {
-            Group {
-                if previewItem != nil {
-                    inlinePreview
-                } else {
-                    mainContentArea
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(.easeInOut(duration: 0.18), value: previewItem != nil)
+            mainContentArea
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             Divider()
 
@@ -61,38 +49,38 @@ struct UpscaleView: View {
                 .frame(width: 260)
         }
         .detailIgnoresSafeArea(columnVisibility: columnVisibility, isFullScreen: windowState.isFullScreen)
+        .sheet(item: $previewItem) { item in
+            UpscaleCompareSheet(
+                itemID: item.id,
+                previewScale: $previewScale,
+                previewFullImage: $previewFullImage,
+                beforeAfterRatio: $beforeAfterRatio,
+                previewZoom: $previewZoom,
+                previewOffset: $previewOffset,
+                onConvert: {
+                    startUpscale(itemIDs: [item.id], scale: previewScale)
+                },
+                onClose: {
+                    previewItem = nil
+                    previewFullImage = nil
+                    previewZoom = 1.0
+                    previewOffset = .zero
+                }
+            )
+            .frame(minWidth: 860, idealWidth: 980, minHeight: 580, idealHeight: 680)
+            .environmentObject(appState)
+            .environmentObject(languageManager)
+        }
         .onChange(of: previewItem) { item in
             guard let item else {
                 previewFullImage = nil
-                previewUpscaledImage = nil
                 return
             }
-            previewUpscaledImage = nil
             beforeAfterRatio = 0.5
             previewScale = selectedScale
-            Task.detached(priority: .userInitiated) {
-                let (url, accessed) = item.securityScopedURL()
-                defer { if accessed { url.stopAccessingSecurityScopedResource() } }
-                let ext = url.pathExtension.lowercased()
-                let fullImage: NSImage?
-                if ext == "svg" || ext == "ai" {
-                    fullImage = NSImage(contentsOf: url)
-                } else {
-                    var srcOpts: [CFString: Any] = [:]
-                    if ext == "jfif" || ext == "jpe" {
-                        srcOpts[kCGImageSourceTypeIdentifierHint] = "public.jpeg" as CFString
-                    }
-                    guard let src = CGImageSourceCreateWithURL(url as CFURL, srcOpts as CFDictionary),
-                          let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return }
-                    fullImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
-                }
-                guard let img = fullImage else { return }
-                await MainActor.run {
-                    withAnimation(.easeInOut(duration: 0.15)) {
-                        previewFullImage = img
-                    }
-                }
-            }
+            previewZoom = 1.0
+            previewOffset = .zero
+            loadFullImage(for: item)
         }
         .alert(LocalizedStringKey("alert.success.title"), isPresented: $showSuccessAlert) {
             Button(LocalizedStringKey("alert.ok"), role: .cancel) { }
@@ -111,381 +99,56 @@ struct UpscaleView: View {
         } message: {
             Text(errorAlertMessage)
         }
-        .onDisappear { wrongTypeTask?.cancel() }
-    }
-
-    // MARK: - Preview (Before / After)
-
-    private var inlinePreview: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack(spacing: 12) {
-                Image(systemName: "arrow.up.left.and.arrow.down.right")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(Color.accentColor)
-                if let item = previewItem {
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(item.fileName)
-                            .font(.system(size: 13, weight: .semibold))
-                            .lineLimit(1)
-                        Text(item.dimensionsString.isEmpty ? item.fileSizeString : "\(item.fileSizeString) · \(item.dimensionsString)")
-                            .font(.system(size: 11))
-                            .foregroundStyle(Color.secondary)
-                    }
-                }
-
-                Spacer()
-
-                // Scale picker in header
-                Picker("", selection: $previewScale) {
-                    ForEach(UpscaleScale.allCases) { scale in
-                        Text(scale.label).tag(scale)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .labelsHidden()
-                .frame(width: 180)
-
-                Button {
-                    runPreviewUpscale()
-                } label: {
-                    HStack(spacing: 4) {
-                        if isPreviewUpscaling {
-                            ProgressView()
-                                .controlSize(.small)
-                        } else {
-                            Image(systemName: "wand.and.stars")
-                                .font(.system(size: 11, weight: .medium))
-                        }
-                        Text(languageManager.string("upscale.preview.run"))
-                            .font(.system(size: 11, weight: .medium))
-                    }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
-                .disabled(isPreviewUpscaling || previewItem == nil)
-
-                Button {
-                    savePreviewResult()
-                } label: {
-                    HStack(spacing: 4) {
-                        if isSavingPreview {
-                            ProgressView()
-                                .controlSize(.small)
-                        } else {
-                            Image(systemName: "square.and.arrow.down")
-                                .font(.system(size: 11, weight: .medium))
-                        }
-                        Text(languageManager.string("upscale.preview.save"))
-                            .font(.system(size: 11, weight: .medium))
-                    }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                .disabled(isSavingPreview || previewUpscaledImage == nil || previewItem == nil)
-
-                Button {
-                    withAnimation(.easeInOut(duration: 0.18)) {
-                        previewItem = nil
-                        previewFullImage = nil
-                        previewUpscaledImage = nil
-                        previewZoom = 1.0
-                        previewOffset = .zero
-                    }
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(Color.secondary)
-                        .padding(7)
-                        .background(Color.primary.opacity(0.08))
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
-                .handCursor()
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 14)
-
-            Divider()
-
-            // Before / After area
-            GeometryReader { containerGeo in
-                ZStack {
-                    Color(NSColor.underPageBackgroundColor)
-
-                    if previewFullImage == nil && previewItem?.image == nil {
-                        ProgressView().controlSize(.large)
-                    } else if let upscaled = previewUpscaledImage, let original = previewFullImage ?? previewItem?.image {
-                        beforeAfterComparison(original: original, upscaled: upscaled, containerSize: containerGeo.size)
-                    } else if let nsImage = previewFullImage ?? previewItem?.image {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .scaledToFit()
-                            .scaleEffect(previewZoom)
-                            .offset(previewOffset)
-                            .allowsHitTesting(false)
-
-                        if !isPreviewUpscaling {
-                            VStack(spacing: 8) {
-                                Image(systemName: "wand.and.stars")
-                                    .font(.system(size: 28, weight: .ultraLight))
-                                    .foregroundStyle(.white.opacity(0.7))
-                                Text(languageManager.string("upscale.preview.hint"))
-                                    .font(.system(size: 12))
-                                    .foregroundStyle(.white.opacity(0.6))
-                            }
-                            .padding(16)
-                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
-                        }
-                    }
-
-                    if isPreviewUpscaling {
-                        Color.black.opacity(0.3)
-                        VStack(spacing: 10) {
-                            ProgressView()
-                                .controlSize(.large)
-                                .tint(.white)
-                            Text(languageManager.string("upscale.preview.processing"))
-                                .font(.system(size: 13, weight: .medium))
-                                .foregroundStyle(.white)
-                            Text("\(previewProgressPercent)%")
-                                .font(.system(size: 22, weight: .semibold, design: .rounded))
-                                .monospacedDigit()
-                                .foregroundStyle(.white)
-                        }
-                        .padding(24)
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .clipped()
+        .onAppear { consumePendingAlerts() }
+        .onChange(of: appState.upscalePendingSuccess) { ok in
+            if ok { consumePendingAlerts() }
+        }
+        .onChange(of: appState.upscalePendingErrorMessage) { msg in
+            if msg != nil { consumePendingAlerts() }
+        }
+        .onDisappear {
+            // Yalnızca yanlış-tür uyarısını temizle — upscale Task'ı iptal etme.
+            wrongTypeTask?.cancel()
         }
     }
 
-    @ViewBuilder
-    private func beforeAfterComparison(original: NSImage, upscaled: NSImage, containerSize: CGSize) -> some View {
-        let imgW = original.representations.first.map { CGFloat($0.pixelsWide) } ?? original.size.width
-        let imgH = original.representations.first.map { CGFloat($0.pixelsHigh) } ?? original.size.height
-        let imgAspect = imgW / max(1, imgH)
-        let containerAspect = containerSize.width / max(1, containerSize.height)
-        let displaySize: CGSize = {
-            if imgAspect > containerAspect {
-                let w = containerSize.width
-                return CGSize(width: w, height: w / imgAspect)
-            } else {
-                let h = containerSize.height
-                return CGSize(width: h * imgAspect, height: h)
-            }
-        }()
-
-        ZStack {
-            Color(NSColor.underPageBackgroundColor)
-            VStack {
-                Spacer(minLength: 0)
-                HStack {
-                    Spacer(minLength: 0)
-                    ZStack(alignment: .leading) {
-                        Image(nsImage: upscaled)
-                            .resizable()
-                            .interpolation(.high)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: displaySize.width, height: displaySize.height)
-                            .clipped()
-
-                        Image(nsImage: original)
-                            .resizable()
-                            .interpolation(.high)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: displaySize.width, height: displaySize.height)
-                            .clipped()
-                            .mask(alignment: .leading) {
-                                Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: max(1, displaySize.width * beforeAfterRatio), height: displaySize.height)
-                            }
-
-                        Rectangle()
-                            .fill(.white)
-                            .frame(width: 2, height: displaySize.height)
-                            .offset(x: displaySize.width * beforeAfterRatio - 1)
-                            .shadow(color: .black.opacity(0.45), radius: 3)
-
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 28, height: 28)
-                            .shadow(color: .black.opacity(0.35), radius: 4)
-                            .overlay {
-                                HStack(spacing: 2) {
-                                    Image(systemName: "chevron.left")
-                                        .font(.system(size: 8, weight: .bold))
-                                    Image(systemName: "chevron.right")
-                                        .font(.system(size: 8, weight: .bold))
-                                }
-                                .foregroundStyle(.black.opacity(0.6))
-                            }
-                            .offset(x: displaySize.width * beforeAfterRatio - 14, y: displaySize.height / 2 - 14)
-
-                        HStack {
-                            Text(languageManager.string("upscale.preview.before"))
-                                .font(.system(size: 10, weight: .bold))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(.black.opacity(0.55), in: Capsule())
-                            Spacer()
-                            Text(languageManager.string("upscale.preview.after"))
-                                .font(.system(size: 10, weight: .bold))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(.black.opacity(0.55), in: Capsule())
-                        }
-                        .padding(.horizontal, 10)
-                        .padding(.bottom, 8)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    }
-                    .frame(width: displaySize.width, height: displaySize.height)
-                    .clipped()
-                    .contentShape(Rectangle())
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { value in
-                                let relX = value.location.x / max(1, displaySize.width)
-                                beforeAfterRatio = max(0.05, min(0.95, relX))
-                            }
-                    )
-                    .handCursor()
-                    Spacer(minLength: 0)
-                }
-                Spacer(minLength: 0)
-            }
+    private func consumePendingAlerts() {
+        if appState.upscalePendingSuccess {
+            appState.upscalePendingSuccess = false
+            showSuccessAlert = true
         }
-        .frame(width: containerSize.width, height: containerSize.height)
+        if let msg = appState.upscalePendingErrorMessage {
+            appState.upscalePendingErrorMessage = nil
+            errorAlertMessage = msg
+            showErrorAlert = true
+        }
     }
 
-    private func runPreviewUpscale() {
-        guard let item = previewItem else { return }
-        isPreviewUpscaling = true
-        previewProgressPercent = 0
-        let scale = previewScale
-
+    private func loadFullImage(for item: ImageItem) {
         Task.detached(priority: .userInitiated) {
             let (url, accessed) = item.securityScopedURL()
             defer { if accessed { url.stopAccessingSecurityScopedResource() } }
-
-            let fm = FileManager.default
-            let tmpOut = fm.temporaryDirectory
-                .appendingPathComponent("comet_preview_\(UUID().uuidString).png")
-
-            do {
-                try await UpscaleEngine.upscale(inputURL: url, outputURL: tmpOut, scale: scale) { pct in
-                    Task { @MainActor in
-                        previewProgressPercent = pct
-                    }
+            let ext = url.pathExtension.lowercased()
+            let fullImage: NSImage?
+            if ext == "svg" || ext == "ai" {
+                fullImage = NSImage(contentsOf: url)
+            } else {
+                var srcOpts: [CFString: Any] = [:]
+                if ext == "jfif" || ext == "jpe" {
+                    srcOpts[kCGImageSourceTypeIdentifierHint] = "public.jpeg" as CFString
                 }
-
-                let resultImage: NSImage? = {
-                    if let img = NSImage(contentsOf: tmpOut) {
-                        return img
-                    }
-                    guard let src = CGImageSourceCreateWithURL(tmpOut as CFURL, nil),
-                          let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return nil }
-                    let rep = NSBitmapImageRep(cgImage: cg)
-                    let img = NSImage(size: rep.size)
-                    img.addRepresentation(rep)
-                    return img
-                }()
-                try? fm.removeItem(at: tmpOut)
-
-                await MainActor.run {
-                    guard let resultImage else {
-                        isPreviewUpscaling = false
-                        previewProgressPercent = 0
-                        errorAlertMessage = String(localized: "upscale.preview.loadFailed")
-                        showErrorAlert = true
-                        return
-                    }
-                    withAnimation(.easeInOut(duration: 0.25)) {
-                        previewUpscaledImage = resultImage
-                        beforeAfterRatio = 0.5
-                    }
-                    isPreviewUpscaling = false
-                    previewProgressPercent = 0
-                    if UserDefaults.standard.bool(forKey: "comet.upscale.autoSavePreview") {
-                        savePreviewResult()
-                    }
-                }
-            } catch {
-                try? fm.removeItem(at: tmpOut)
-                await MainActor.run {
-                    isPreviewUpscaling = false
-                    previewProgressPercent = 0
-                    errorAlertMessage = error.localizedDescription
-                    showErrorAlert = true
+                guard let src = CGImageSourceCreateWithURL(url as CFURL, srcOpts as CFDictionary),
+                      let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return }
+                fullImage = NSImage(cgImage: cg, size: NSSize(width: cg.width, height: cg.height))
+            }
+            guard let img = fullImage else { return }
+            await MainActor.run {
+                guard previewItem?.id == item.id else { return }
+                withAnimation(.easeInOut(duration: 0.15)) {
+                    previewFullImage = img
                 }
             }
         }
-    }
-
-    private static func previewImageData(from image: NSImage, format: UpscaleOutputFormat) -> Data? {
-        guard let tiff = image.tiffRepresentation,
-              let rep = NSBitmapImageRep(data: tiff) else { return nil }
-        switch format {
-        case .png:
-            return rep.representation(using: .png, properties: [:])
-        case .jpeg:
-            return rep.representation(using: .jpeg, properties: [.compressionFactor: 0.92])
-        }
-    }
-
-    private func savePreviewResult() {
-        guard let image = previewUpscaledImage, let item = previewItem else { return }
-        guard let folder = appState.targetFolder else {
-            errorAlertMessage = String(localized: "upscale.preview.saveNeedFolder")
-            showErrorAlert = true
-            return
-        }
-        isSavingPreview = true
-        let fmt = outputFormat
-        let base = item.url.deletingPathExtension().lastPathComponent
-        Task { @MainActor in
-            defer { isSavingPreview = false }
-            let accessed = folder.startAccessingSecurityScopedResource()
-            defer { if accessed { folder.stopAccessingSecurityScopedResource() } }
-            guard let data = Self.previewImageData(from: image, format: fmt) else {
-                errorAlertMessage = String(localized: "upscale.preview.saveFailed")
-                showErrorAlert = true
-                return
-            }
-            var outURL = folder.appendingPathComponent("\(base)_upscaled_preview.\(fmt.fileExtension)")
-            var n = 1
-            while FileManager.default.fileExists(atPath: outURL.path) {
-                n += 1
-                outURL = folder.appendingPathComponent("\(base)_upscaled_preview_\(n).\(fmt.fileExtension)")
-            }
-            do {
-                try data.write(to: outURL)
-                showSuccessAlert = true
-                CometAnalytics.shared.trackEvent(page: "upscaleImage", eventType: .imageUpscaled, metadata: ["previewSave": "1"])
-            } catch {
-                errorAlertMessage = error.localizedDescription
-                showErrorAlert = true
-            }
-        }
-    }
-
-    private func clampedOffset(_ offset: CGSize) -> CGSize {
-        let maxX = max(0, previewImageFrame.width * (previewZoom - 1) / 2)
-        let maxY = max(0, previewImageFrame.height * (previewZoom - 1) / 2)
-        return CGSize(
-            width: min(maxX, max(-maxX, offset.width)),
-            height: min(maxY, max(-maxY, offset.height))
-        )
     }
 
     // MARK: - Main
@@ -495,7 +158,7 @@ struct UpscaleView: View {
         if items.isEmpty {
             emptyDropZone
         } else {
-            imageGrid
+            imageList
         }
     }
 
@@ -544,19 +207,27 @@ struct UpscaleView: View {
         .animation(.easeInOut(duration: 0.15), value: isWrongTypeDrop)
     }
 
-    private var imageGrid: some View {
+    private var imageList: some View {
         VStack(spacing: 0) {
-            GeometryReader { geo in
-                ScrollView {
-                    let columnCount = max(2, Int(geo.size.width / 240))
-                    let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: columnCount)
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(items) { item in
-                            imageGridItem(item)
-                        }
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    ForEach(items) { item in
+                        UpscaleListRow(
+                            item: item,
+                            isProcessing: appState.upscaleActiveItemID == item.id,
+                            onOpen: {
+                                previewItem = item
+                            },
+                            onRemove: {
+                                appState.upscaleImages.removeAll(where: { $0.id == item.id })
+                                if previewItem?.id == item.id {
+                                    previewItem = nil
+                                }
+                            }
+                        )
                     }
-                    .padding(24)
                 }
+                .padding(.vertical, 6)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
@@ -574,6 +245,7 @@ struct UpscaleView: View {
             HStack(spacing: 16) {
                 Button {
                     appState.upscaleImages.removeAll()
+                    previewItem = nil
                 } label: {
                     HStack(spacing: 6) {
                         Image(systemName: "trash")
@@ -603,92 +275,11 @@ struct UpscaleView: View {
         }
     }
 
-    private func imageGridItem(_ item: ImageItem) -> some View {
-        GeometryReader { geo in
-            imageGridItemContent(item: item, geo: geo)
-        }
-        .frame(height: 180)
-    }
-
-    @ViewBuilder
-    private func imageGridItemContent(item: ImageItem, geo: GeometryProxy) -> some View {
-        ZStack(alignment: .topTrailing) {
-            Group {
-                if let nsImage = item.image {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Color.secondary.opacity(0.2)
-                }
-            }
-            .frame(width: geo.size.width, height: geo.size.height)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.easeInOut(duration: 0.2)) { previewItem = item }
-            }
-            .handCursor()
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-            )
-            .overlay(alignment: .bottom) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(item.fileName)
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                    Text(item.dimensionsString.isEmpty ? item.fileSizeString : "\(item.fileSizeString) · \(item.dimensionsString)")
-                        .font(.system(size: 9))
-                        .foregroundStyle(.white.opacity(0.75))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 6)
-                .background(
-                    LinearGradient(
-                        colors: [.clear, .black.opacity(0.72)],
-                        startPoint: .top, endPoint: .bottom
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                )
-                .allowsHitTesting(false)
-            }
-
-            Button {
-                appState.upscaleImages.removeAll(where: { $0.id == item.id })
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.white)
-                    .padding(5)
-                    .background(Color.black.opacity(0.55))
-                    .clipShape(Circle())
-            }
-            .buttonStyle(.plain)
-            .handCursor()
-            .padding(6)
-        }
-    }
-
     // MARK: - Inspector
 
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text(languageManager.string("upscale.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
                 inspectorSection("upscale.settings.model") {
                     HStack {
                         Text(languageManager.string("upscale.model.cometStandard"))
@@ -696,8 +287,6 @@ struct UpscaleView: View {
                         Spacer()
                     }
                 }
-
-                Divider()
 
                 inspectorSection("upscale.settings.scale") {
                     Picker("", selection: $selectedScale) {
@@ -716,82 +305,23 @@ struct UpscaleView: View {
                     }
                 }
 
-                Divider()
-
-                inspectorSection("upscale.settings.outputFormat") {
-                    Picker("", selection: $outputFormat) {
-                        Text("PNG").tag(UpscaleOutputFormat.png)
-                        Text("JPEG").tag(UpscaleOutputFormat.jpeg)
-                    }
-                    .pickerStyle(.segmented)
-                    .labelsHidden()
+                inspectorSection("inspector.output") {
+                    InspectorMenuChip(title: outputFormat.rawValue.uppercased(), selection: $outputFormat, options: Array(UpscaleOutputFormat.allCases)) { $0.rawValue.uppercased() }
                 }
-
-                Divider()
-
-                inspectorSection("upscale.preview.saveSettings") {
-                    Toggle(isOn: $autoSaveAfterPreview) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(languageManager.string("upscale.preview.autoSave"))
-                                .font(.system(size: 13, weight: .medium))
-                            Text(languageManager.string("upscale.preview.autoSaveHint"))
-                                .font(.system(size: 10))
-                                .foregroundStyle(Color.secondary)
-                        }
-                    }
-                    .toggleStyle(.switch)
-                }
-
-                Divider()
 
                 inspectorSection("convert.settings.targetFolder") {
-                    HStack(spacing: 8) {
-                        if let folderURL = appState.targetFolder {
-                            Text(truncatedPath(folderURL.path))
-                                .font(.system(size: 11, weight: .medium, design: .monospaced))
-                                .foregroundStyle(Color.primary.opacity(0.8))
-                                .lineLimit(1)
-                                .truncationMode(.middle)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.primary.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(Color.primary.opacity(0.1), lineWidth: 1)
-                                )
-                        } else {
-                            Text("convert.settings.noFolder")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.red.opacity(0.8))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.red.opacity(0.05))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.red.opacity(0.2), lineWidth: 1)
-                                )
+                    FolderPickerRow(
+                        folder: appState.targetFolder,
+                        isStale: appState.targetFolderStale
+                    ) {
+                        pickFolder { url in
+                            appState.handleFolderSelected(url)
+                            appState.targetFolder = url
                         }
-
-                        Button("convert.settings.chooseFolder") {
-                            pickFolder { url in
-                                appState.handleFolderSelected(url)
-                                appState.targetFolder = url
-                            }
-                        }
-                        .controlSize(.small)
                     }
                 }
 
                 if !UpscaleEngine.isBackendAvailable() {
-                    Divider()
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .foregroundStyle(.orange)
@@ -799,30 +329,48 @@ struct UpscaleView: View {
                             .font(.system(size: 11))
                             .foregroundStyle(Color.secondary)
                     }
-                    .padding(16)
+                    .padding(.horizontal, 14)
+                    .padding(.bottom, 12)
                 }
 
-                Divider()
-
-                VStack {
+                VStack(spacing: 8) {
                     Button {
-                        isProcessing = true
-                        progressLabel = ""
-                        Task { await performUpscale() }
+                        Task { await downloadCompletedUpscales() }
                     } label: {
                         HStack {
-                            if isProcessing {
+                            if isSavingDownloads {
                                 ProgressView()
                                     .controlSize(.small)
                                     .padding(.trailing, 4)
-                                if progressLabel.isEmpty {
+                            } else {
+                                Image(systemName: "square.and.arrow.down")
+                            }
+                            Text("upscale.downloadUpscaled")
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                    .disabled(completedCount == 0 || isSavingDownloads)
+
+                    Button {
+                        let ids = items.filter { $0.upscaledImage == nil }.map(\.id)
+                        let targetIDs = ids.isEmpty ? items.map(\.id) : ids
+                        startUpscale(itemIDs: targetIDs, scale: selectedScale)
+                    } label: {
+                        HStack {
+                            if appState.isUpscaling {
+                                ProgressView()
+                                    .controlSize(.small)
+                                    .padding(.trailing, 4)
+                                if appState.upscaleProgressLabel.isEmpty {
                                     Text(LocalizedStringKey("video.processing"))
                                 } else {
-                                    Text(progressLabel)
+                                    Text(appState.upscaleProgressLabel)
                                 }
                             } else {
                                 Image(systemName: "wand.and.stars")
-                                Text("upscale.runButton")
+                                Text("upscale.upscaleAll")
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -830,16 +378,17 @@ struct UpscaleView: View {
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                     .disabled(
-                        appState.targetFolder == nil
-                        || items.isEmpty
-                        || isProcessing
+                        items.isEmpty
+                        || appState.isUpscaling
                         || !UpscaleEngine.isBackendAvailable()
                     )
                 }
-                .padding(16)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
             }
+            .padding(.top, 16)
         }
-        .background(Material.bar)
+        .inspectorPanelChrome()
     }
 
     // MARK: - Drop & files
@@ -987,62 +536,760 @@ struct UpscaleView: View {
         }
     }
 
-    // MARK: - Upscale
+    // MARK: - Upscale (bellekte; sayfa değişince kesilmez)
 
-    private func performUpscale() async {
-        guard let targetFolder = appState.targetFolder else { return }
-        appState.processingMenuItem = .upscaleImage
-        defer {
-            isProcessing = false
-            appState.processingMenuItem = nil
+    @MainActor
+    private func startUpscale(itemIDs: [UUID], scale: UpscaleScale) {
+        guard appState.upscaleTask == nil, !itemIDs.isEmpty else { return }
+        let state = appState
+        state.isUpscaling = true
+        state.upscaleProgressPercent = 0
+        state.upscaleProgressLabel = ""
+        state.processingMenuItem = .upscaleImage
+
+        state.upscaleTask = Task { @MainActor in
+            defer {
+                state.isUpscaling = false
+                state.upscaleProgressLabel = ""
+                state.upscaleProgressPercent = 0
+                state.upscaleActiveItemID = nil
+                state.processingMenuItem = nil
+                state.upscaleTask = nil
+            }
+
+            var success = 0
+            var errors: [String] = []
+            let total = itemIDs.count
+
+            for (index, id) in itemIDs.enumerated() {
+                guard let item = state.upscaleImages.first(where: { $0.id == id }) else { continue }
+                state.upscaleActiveItemID = id
+                state.upscaleProgressLabel = "\(index + 1)/\(total)"
+                state.upscaleProgressPercent = 0
+
+                do {
+                    let image = try await Self.upscaleToMemory(item: item, scale: scale) { pct in
+                        Task { @MainActor in
+                            state.upscaleProgressPercent = pct
+                        }
+                    }
+                    if let i = state.upscaleImages.firstIndex(where: { $0.id == id }) {
+                        state.upscaleImages[i].upscaledImage = image
+                        state.upscaleImages[i].isCompleted = true
+                        state.upscaleImages[i].outputDimensionsString = Self.pixelDimensionsString(image)
+                    }
+                    success += 1
+                } catch {
+                    if error is CancellationError { break }
+                    errors.append("\(item.fileName): \(error.localizedDescription)")
+                }
+            }
+
+            if !errors.isEmpty {
+                state.upscalePendingErrorMessage = errors.joined(separator: "\n")
+            } else if success == 0 {
+                state.upscalePendingErrorMessage = String(localized: "upscale.error.none")
+            }
         }
+    }
 
-        let list = items
-        let scale = selectedScale
+    private static func upscaleToMemory(
+        item: ImageItem,
+        scale: UpscaleScale,
+        progress: @escaping @Sendable (Int) -> Void
+    ) async throws -> NSImage {
+        let (url, accessed) = item.securityScopedURL()
+        defer { if accessed { url.stopAccessingSecurityScopedResource() } }
+
+        let fm = FileManager.default
+        let tmpOut = fm.temporaryDirectory
+            .appendingPathComponent("comet_upscale_\(UUID().uuidString).png")
+        defer { try? fm.removeItem(at: tmpOut) }
+
+        try await UpscaleEngine.upscale(inputURL: url, outputURL: tmpOut, scale: scale, progress: progress)
+
+        if let img = NSImage(contentsOf: tmpOut) {
+            return img
+        }
+        guard let src = CGImageSourceCreateWithURL(tmpOut as CFURL, nil),
+              let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else {
+            throw UpscaleEngineError.processFailed(code: -1, message: String(localized: "upscale.preview.loadFailed"))
+        }
+        let rep = NSBitmapImageRep(cgImage: cg)
+        let img = NSImage(size: NSSize(width: cg.width, height: cg.height))
+        img.addRepresentation(rep)
+        return img
+    }
+
+    private static func pixelDimensionsString(_ image: NSImage) -> String {
+        if let cg = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            return "\(cg.width)×\(cg.height)"
+        }
+        if let rep = image.representations.first, rep.pixelsWide > 0, rep.pixelsHigh > 0 {
+            return "\(rep.pixelsWide)×\(rep.pixelsHigh)"
+        }
+        let w = Int(image.size.width.rounded())
+        let h = Int(image.size.height.rounded())
+        return w > 0 && h > 0 ? "\(w)×\(h)" : ""
+    }
+
+    private static func outputImageData(from image: NSImage, format: UpscaleOutputFormat) -> Data? {
+        guard let tiff = image.tiffRepresentation,
+              let rep = NSBitmapImageRep(data: tiff) else { return nil }
+        switch format {
+        case .png:
+            return rep.representation(using: .png, properties: [:])
+        case .jpeg:
+            return rep.representation(using: .jpeg, properties: [.compressionFactor: 0.92])
+        }
+    }
+
+    @MainActor
+    private func downloadCompletedUpscales() async {
+        let completed = appState.upscaleImages.filter { $0.isCompleted && $0.upscaledImage != nil }
+        guard !completed.isEmpty else { return }
+        guard let folder = await appState.resolveOutputFolder() else { return }
+
+        isSavingDownloads = true
+        defer { isSavingDownloads = false }
+
+        let accessed = folder.startAccessingSecurityScopedResource()
+        defer { if accessed { folder.stopAccessingSecurityScopedResource() } }
+
         let fmt = outputFormat
         var success = 0
         var errors: [String] = []
-        let total = list.count
 
-        let accessedOut = targetFolder.startAccessingSecurityScopedResource()
-        defer { if accessedOut { targetFolder.stopAccessingSecurityScopedResource() } }
-
-        for (index, item) in list.enumerated() {
-            await MainActor.run {
-                progressLabel = "\(index + 1)/\(total)"
+        for item in completed {
+            guard let image = item.upscaledImage else { continue }
+            guard let data = Self.outputImageData(from: image, format: fmt) else {
+                errors.append("\(item.fileName): \(String(localized: "upscale.preview.saveFailed"))")
+                continue
             }
-
-            let (inputURL, accessedIn) = item.securityScopedURL()
-            defer { if accessedIn { inputURL.stopAccessingSecurityScopedResource() } }
-
-            let base = inputURL.deletingPathExtension().lastPathComponent
-            let ext = fmt.fileExtension
-            var outURL = targetFolder.appendingPathComponent("\(base)_upscaled.\(ext)")
-            if FileManager.default.fileExists(atPath: outURL.path) {
-                outURL = targetFolder.appendingPathComponent("\(base)_upscaled_\(index + 1).\(ext)")
+            let base = item.url.deletingPathExtension().lastPathComponent
+            var outURL = folder.appendingPathComponent("\(base)_upscaled.\(fmt.fileExtension)")
+            var n = 1
+            while FileManager.default.fileExists(atPath: outURL.path) {
+                n += 1
+                outURL = folder.appendingPathComponent("\(base)_upscaled_\(n).\(fmt.fileExtension)")
             }
-
             do {
-                try await UpscaleEngine.upscale(inputURL: inputURL, outputURL: outURL, scale: scale)
+                try data.write(to: outURL)
+                let size = (try? FileManager.default.attributesOfItem(atPath: outURL.path)[.size] as? Int64) ?? Int64(data.count)
+                let sizeStr = ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
+                if let i = appState.upscaleImages.firstIndex(where: { $0.id == item.id }) {
+                    appState.upscaleImages[i].outputURL = outURL
+                    appState.upscaleImages[i].outputFileSizeString = sizeStr
+                }
                 success += 1
             } catch {
-                errors.append("\(inputURL.lastPathComponent): \(error.localizedDescription)")
+                errors.append("\(item.fileName): \(error.localizedDescription)")
             }
         }
 
-        await MainActor.run {
-            if success > 0 {
-                showSuccessAlert = true
-                CometAnalytics.shared.trackEvent(page: "upscaleImage", eventType: .imageUpscaled, metadata: ["count": "\(success)"])
+        if success > 0 {
+            appState.upscalePendingSuccess = true
+        }
+        if !errors.isEmpty {
+            appState.upscalePendingErrorMessage = errors.joined(separator: "\n")
+        } else if success == 0 {
+            appState.upscalePendingErrorMessage = String(localized: "upscale.error.none")
+        }
+    }
+}
+
+// MARK: - Compare modal
+
+private struct UpscaleCompareSheet: View {
+    let itemID: UUID
+    @Binding var previewScale: UpscaleScale
+    @Binding var previewFullImage: NSImage?
+    @Binding var beforeAfterRatio: CGFloat
+    @Binding var previewZoom: CGFloat
+    @Binding var previewOffset: CGSize
+    let onConvert: () -> Void
+    let onClose: () -> Void
+
+    @EnvironmentObject var appState: GlobalAppState
+    @EnvironmentObject var languageManager: LanguageManager
+
+    @State private var fittedSize: CGSize = .zero
+    @State private var panStart: CGSize = .zero
+    @State private var pinchStart: CGFloat = 1.0
+    @State private var isPinching = false
+    @State private var splitStart: CGFloat = 0.5
+    @State private var dragKind: CompareDragKind = .undecided
+
+    private static let minZoom: CGFloat = 1.0
+    private static let maxZoom: CGFloat = 8.0
+    private static let zoomStep: CGFloat = 1.25
+
+    private var live: ImageItem? {
+        appState.upscaleImages.first(where: { $0.id == itemID })
+    }
+
+    private var isThisProcessing: Bool {
+        appState.isUpscaling && appState.upscaleActiveItemID == itemID
+    }
+
+    private var zoomPercent: Int {
+        Int((previewZoom * 100).rounded())
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            header
+            Divider()
+            GeometryReader { containerGeo in
+                ZStack {
+                    Color(NSColor.underPageBackgroundColor)
+                    canvas(containerSize: containerGeo.size)
+                    if isThisProcessing {
+                        processingOverlay
+                    }
+                }
             }
-            if !errors.isEmpty {
-                errorAlertMessage = errors.joined(separator: "\n")
-                showErrorAlert = true
-            } else if success == 0 {
-                errorAlertMessage = String(localized: "upscale.error.none")
-                showErrorAlert = true
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
+            .onScrollWheel { event in
+                handleScrollWheel(event)
             }
         }
+    }
+
+    private var header: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "arrow.up.left.and.arrow.down.right")
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(Color.accentColor)
+            if let live {
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(live.fileName)
+                        .font(.system(size: 13, weight: .semibold))
+                        .lineLimit(1)
+                    Text(live.dimensionsString.isEmpty ? live.fileSizeString : "\(live.fileSizeString) · \(live.dimensionsString)")
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color.secondary)
+                }
+            }
+
+            Spacer()
+
+            zoomControls
+
+            Picker("", selection: $previewScale) {
+                ForEach(UpscaleScale.allCases) { scale in
+                    Text(scale.label).tag(scale)
+                }
+            }
+            .pickerStyle(.segmented)
+            .labelsHidden()
+            .frame(width: 180)
+
+            Button(action: onConvert) {
+                HStack(spacing: 4) {
+                    if isThisProcessing {
+                        ProgressView()
+                            .controlSize(.small)
+                    } else {
+                        Image(systemName: "wand.and.stars")
+                            .font(.system(size: 11, weight: .medium))
+                    }
+                    Text(languageManager.string("upscale.convert"))
+                        .font(.system(size: 11, weight: .medium))
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.small)
+            .disabled(appState.isUpscaling || !UpscaleEngine.isBackendAvailable())
+
+            Button(action: onClose) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundStyle(Color.secondary)
+                    .padding(7)
+                    .background(Color.primary.opacity(0.08))
+                    .clipShape(Circle())
+            }
+            .buttonStyle(.plain)
+            .handCursor()
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 14)
+    }
+
+    private var zoomControls: some View {
+        HStack(spacing: 0) {
+            Button {
+                withAnimation(.easeInOut(duration: 0.12)) {
+                    applyZoom(previewZoom / Self.zoomStep)
+                }
+            } label: {
+                Image(systemName: "minus")
+                    .font(.system(size: 10, weight: .bold))
+                    .frame(width: 22, height: 22)
+            }
+            .buttonStyle(.plain)
+            .disabled(previewZoom <= Self.minZoom + 0.001)
+            .help(languageManager.string("upscale.zoom.out"))
+            .accessibilityLabel(languageManager.string("upscale.zoom.out"))
+
+            Button(action: resetZoom) {
+                Text("\(zoomPercent)%")
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .frame(minWidth: 40)
+            }
+            .buttonStyle(.plain)
+            .help(languageManager.string("upscale.zoom.reset"))
+            .accessibilityLabel(languageManager.string("upscale.zoom.reset"))
+
+            Button {
+                withAnimation(.easeInOut(duration: 0.12)) {
+                    applyZoom(previewZoom * Self.zoomStep)
+                }
+            } label: {
+                Image(systemName: "plus")
+                    .font(.system(size: 10, weight: .bold))
+                    .frame(width: 22, height: 22)
+            }
+            .buttonStyle(.plain)
+            .disabled(previewZoom >= Self.maxZoom - 0.001)
+            .help(languageManager.string("upscale.zoom.in"))
+            .accessibilityLabel(languageManager.string("upscale.zoom.in"))
+        }
+        .foregroundStyle(Color.primary.opacity(0.78))
+        .padding(.horizontal, 4)
+        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .handCursor()
+    }
+
+    @ViewBuilder
+    private func canvas(containerSize: CGSize) -> some View {
+        let thumb = live?.image
+        let result = live?.upscaledImage
+        if previewFullImage == nil && thumb == nil {
+            ProgressView().controlSize(.large)
+        } else if let upscaled = result, let original = previewFullImage ?? thumb {
+            beforeAfterComparison(original: original, upscaled: upscaled, containerSize: containerSize)
+        } else if let nsImage = previewFullImage ?? thumb {
+            let displaySize = fittedDisplaySize(for: nsImage, in: containerSize)
+            ZStack {
+                Color(NSColor.underPageBackgroundColor)
+                VStack {
+                    Spacer(minLength: 0)
+                    HStack {
+                        Spacer(minLength: 0)
+                        withCompareZoom(displaySize: displaySize, allowsSplitDrag: false) {
+                            Image(nsImage: nsImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: displaySize.width, height: displaySize.height)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    Spacer(minLength: 0)
+                }
+
+                if !isThisProcessing && previewZoom <= 1.01 {
+                    VStack(spacing: 8) {
+                        Image(systemName: "wand.and.stars")
+                            .font(.system(size: 28, weight: .ultraLight))
+                            .foregroundStyle(.white.opacity(0.7))
+                        Text(languageManager.string("upscale.preview.hint"))
+                            .font(.system(size: 12))
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                    .padding(16)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+                    .allowsHitTesting(false)
+                }
+            }
+        }
+    }
+
+    private var processingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.3)
+            VStack(spacing: 10) {
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(.white)
+                Text(languageManager.string("upscale.preview.processing"))
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.white)
+                Text("\(appState.upscaleProgressPercent)%")
+                    .font(.system(size: 22, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.white)
+            }
+            .padding(24)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
+    }
+
+    @ViewBuilder
+    private func beforeAfterComparison(original: NSImage, upscaled: NSImage, containerSize: CGSize) -> some View {
+        let displaySize = fittedDisplaySize(for: original, in: containerSize)
+
+        ZStack {
+            Color(NSColor.underPageBackgroundColor)
+            VStack {
+                Spacer(minLength: 0)
+                HStack {
+                    Spacer(minLength: 0)
+                    withCompareZoom(displaySize: displaySize, allowsSplitDrag: true) {
+                        ZStack(alignment: .leading) {
+                            Image(nsImage: upscaled)
+                                .resizable()
+                                .interpolation(.high)
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: displaySize.width, height: displaySize.height)
+                                .clipped()
+
+                            Image(nsImage: original)
+                                .resizable()
+                                .interpolation(.high)
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: displaySize.width, height: displaySize.height)
+                                .clipped()
+                                .mask(alignment: .leading) {
+                                    Rectangle()
+                                        .fill(Color.white)
+                                        .frame(width: max(1, displaySize.width * beforeAfterRatio), height: displaySize.height)
+                                }
+
+                            Rectangle()
+                                .fill(.white)
+                                .frame(width: 2, height: displaySize.height)
+                                .offset(x: displaySize.width * beforeAfterRatio - 1)
+                                .shadow(color: .black.opacity(0.45), radius: 3)
+
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 28, height: 28)
+                                .shadow(color: .black.opacity(0.35), radius: 4)
+                                .overlay {
+                                    HStack(spacing: 2) {
+                                        Image(systemName: "chevron.left")
+                                            .font(.system(size: 8, weight: .bold))
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 8, weight: .bold))
+                                    }
+                                    .foregroundStyle(.black.opacity(0.6))
+                                }
+                                .offset(x: displaySize.width * beforeAfterRatio - 14, y: displaySize.height / 2 - 14)
+
+                            HStack {
+                                Text(languageManager.string("upscale.preview.before"))
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(.black.opacity(0.55), in: Capsule())
+                                Spacer()
+                                Text(languageManager.string("upscale.preview.after"))
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(.black.opacity(0.55), in: Capsule())
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.bottom, 8)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        }
+                    }
+                    Spacer(minLength: 0)
+                }
+                Spacer(minLength: 0)
+            }
+        }
+        .frame(width: containerSize.width, height: containerSize.height)
+    }
+
+    // MARK: - Zoom / pan
+
+    private func withCompareZoom<Content: View>(
+        displaySize: CGSize,
+        allowsSplitDrag: Bool,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        content()
+            .frame(width: displaySize.width, height: displaySize.height)
+            .clipped()
+            .scaleEffect(previewZoom)
+            .offset(previewOffset)
+            .contentShape(Rectangle())
+            .gesture(imageDragGesture(displaySize: displaySize, allowsSplitDrag: allowsSplitDrag))
+            .simultaneousGesture(magnifyGesture)
+            .simultaneousGesture(TapGesture(count: 2).onEnded { _ in resetZoom() })
+            .onAppear { fittedSize = displaySize }
+            .onChange(of: displaySize.width) { _ in fittedSize = displaySize }
+            .onChange(of: displaySize.height) { _ in fittedSize = displaySize }
+            .handCursor()
+    }
+
+    private var magnifyGesture: some Gesture {
+        MagnificationGesture()
+            .onChanged { value in
+                if !isPinching {
+                    isPinching = true
+                    pinchStart = previewZoom
+                }
+                applyZoom(pinchStart * value)
+            }
+            .onEnded { _ in
+                isPinching = false
+                pinchStart = previewZoom
+                if previewZoom < 1.05 {
+                    previewZoom = 1.0
+                    previewOffset = .zero
+                    panStart = .zero
+                }
+            }
+    }
+
+    private func imageDragGesture(displaySize: CGSize, allowsSplitDrag: Bool) -> some Gesture {
+        DragGesture(minimumDistance: 4)
+            .onChanged { value in
+                if dragKind == .undecided {
+                    let splitX = displaySize.width * beforeAfterRatio
+                    let handleSlop = 24 / max(previewZoom, 1)
+                    let nearSplit = abs(value.startLocation.x - splitX) < handleSlop
+                    if allowsSplitDrag && (previewZoom <= 1.01 || nearSplit) {
+                        dragKind = .split
+                        splitStart = beforeAfterRatio
+                    } else if previewZoom > 1.01 {
+                        dragKind = .pan
+                        panStart = previewOffset
+                    } else {
+                        dragKind = .ignored
+                    }
+                }
+                switch dragKind {
+                case .split:
+                    if previewZoom <= 1.01 {
+                        let relX = value.location.x / max(1, displaySize.width)
+                        beforeAfterRatio = max(0.05, min(0.95, relX))
+                    } else {
+                        beforeAfterRatio = max(0.05, min(0.95, splitStart + value.translation.width / max(1, displaySize.width)))
+                    }
+                case .pan:
+                    previewOffset = clampedOffset(CGSize(
+                        width: panStart.width + value.translation.width,
+                        height: panStart.height + value.translation.height
+                    ))
+                case .undecided, .ignored:
+                    break
+                }
+            }
+            .onEnded { _ in
+                if dragKind == .pan {
+                    panStart = previewOffset
+                }
+                dragKind = .undecided
+            }
+    }
+
+    private func handleScrollWheel(_ event: NSEvent) {
+        if event.type == .magnify {
+            let delta = event.magnification
+            guard abs(delta) > 0 else { return }
+            applyZoom(previewZoom * (1 + delta))
+            return
+        }
+        guard event.type == .scrollWheel else { return }
+
+        let dy = event.scrollingDeltaY
+        if abs(dy) > 0.01 {
+            if event.hasPreciseScrollingDeltas {
+                applyZoom(previewZoom * (1 + dy * 0.008))
+            } else {
+                applyZoom(previewZoom * (dy > 0 ? 1.08 : 1 / 1.08))
+            }
+            return
+        }
+
+        if previewZoom > 1.001, abs(event.scrollingDeltaX) > 0 {
+            previewOffset = clampedOffset(CGSize(
+                width: previewOffset.width - event.scrollingDeltaX,
+                height: previewOffset.height
+            ))
+        }
+    }
+
+    private func applyZoom(_ z: CGFloat) {
+        let clamped = min(Self.maxZoom, max(Self.minZoom, z))
+        previewZoom = clamped
+        if clamped <= 1.001 {
+            previewOffset = .zero
+            panStart = .zero
+        } else {
+            previewOffset = clampedOffset(previewOffset)
+        }
+    }
+
+    private func resetZoom() {
+        withAnimation(.spring(response: 0.28, dampingFraction: 0.86)) {
+            previewZoom = 1.0
+            previewOffset = .zero
+        }
+        panStart = .zero
+        pinchStart = 1.0
+        isPinching = false
+        dragKind = .undecided
+    }
+
+    private func clampedOffset(_ offset: CGSize) -> CGSize {
+        let maxX = max(0, fittedSize.width * (previewZoom - 1) / 2)
+        let maxY = max(0, fittedSize.height * (previewZoom - 1) / 2)
+        return CGSize(
+            width: min(maxX, max(-maxX, offset.width)),
+            height: min(maxY, max(-maxY, offset.height))
+        )
+    }
+
+    private func fittedDisplaySize(for image: NSImage, in container: CGSize) -> CGSize {
+        let imgW = image.representations.first.map { CGFloat($0.pixelsWide) } ?? image.size.width
+        let imgH = image.representations.first.map { CGFloat($0.pixelsHigh) } ?? image.size.height
+        let imgAspect = imgW / max(1, imgH)
+        let containerAspect = container.width / max(1, container.height)
+        if imgAspect > containerAspect {
+            let w = container.width
+            return CGSize(width: w, height: w / imgAspect)
+        }
+        let h = container.height
+        return CGSize(width: h * imgAspect, height: h)
+    }
+}
+
+private enum CompareDragKind {
+    case undecided, split, pan, ignored
+}
+
+// MARK: - Finder-style upscale list row
+
+private struct UpscaleListRow: View {
+    let item: ImageItem
+    let isProcessing: Bool
+    let onOpen: () -> Void
+    let onRemove: () -> Void
+
+    @State private var isHovered = false
+
+    private var formatLabel: String {
+        item.url.pathExtension.uppercased()
+    }
+
+    private var subtitle: String {
+        var parts: [String] = []
+        if !item.fileSizeString.isEmpty { parts.append(item.fileSizeString) }
+        if !item.dimensionsString.isEmpty { parts.append(item.dimensionsString) }
+        if !formatLabel.isEmpty { parts.append(formatLabel) }
+        return parts.joined(separator: " · ")
+    }
+
+    private var resultMint: Color {
+        Color(red: 0.40, green: 0.84, blue: 0.58)
+    }
+
+    private var resultSuffix: String? {
+        guard item.isCompleted else { return nil }
+        var parts: [String] = []
+        if let dim = item.outputDimensionsString, !dim.isEmpty {
+            parts.append(dim)
+        }
+        if let size = item.outputFileSizeString, !size.isEmpty {
+            parts.append(size)
+        }
+        guard !parts.isEmpty else { return nil }
+        return "→ " + parts.joined(separator: " · ")
+    }
+
+    private var metadataLine: Text {
+        let base = Text(subtitle).foregroundColor(Color.secondary)
+        guard let suffix = resultSuffix else { return base }
+        return base + Text(" \(suffix)").foregroundColor(resultMint)
+    }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Button(action: onOpen) {
+                HStack(spacing: 12) {
+                    thumbnail
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(item.fileName)
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(Color.primary)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        metadataLine
+                            .font(.system(size: 11))
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .handCursor()
+
+            if item.isCompleted {
+                Image(systemName: "checkmark.circle.fill")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.white, resultMint)
+                    .font(.system(size: 16))
+                    .accessibilityLabel(Text(LocalizedStringKey("upscale.convert")))
+            } else if isProcessing {
+                ProgressView()
+                    .controlSize(.small)
+            }
+
+            Button(action: onRemove) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundStyle(Color.secondary)
+                    .padding(6)
+                    .background(Color.primary.opacity(isHovered ? 0.12 : 0.07))
+                    .clipShape(Circle())
+            }
+            .buttonStyle(.plain)
+            .handCursor()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 7)
+        .background(isHovered ? Color.primary.opacity(0.05) : Color.clear)
+        .overlay(alignment: .bottom) {
+            Divider().padding(.leading, 72)
+        }
+        .onHover { isHovered = $0 }
+    }
+
+    private var thumbnail: some View {
+        Group {
+            if let nsImage = item.image {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                ZStack {
+                    Color.secondary.opacity(0.15)
+                    Image(systemName: "photo")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.secondary.opacity(0.55))
+                }
+            }
+        }
+        .frame(width: 44, height: 44)
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
+        )
     }
 }
 

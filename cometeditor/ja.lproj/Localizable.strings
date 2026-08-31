@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "画像をドラッグ＆ドロップ";
 "convert.drop.subtitle" = "またはクリックしてファイルを参照";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "幅 px";
 "convert.settings.height" = "高さ px";
+
 "meta.info" = "メタデータ保護";
+
 "convert.settings.targetFolder" = "保存先フォルダ";
 "convert.settings.noFolder" = "未選択";
 "convert.settings.chooseFolder" = "Finderから選択";
+
+"folder.missing.title" = "フォルダが見つかりません";
+"folder.missing.subtitle" = "保存されたフォルダのパスが存在しなくなりました。新しいものを選択してください。";
+"folder.missing.pick" = "新しいフォルダを選択";
+"folder.missing.panel.message" = "出力フォルダが見つかりません。新しいフォルダを選択してください。";
+
+"bgremove.error.noMaskFound" = "前景マスクが見つかりません。";
+"bgremove.error.maskConversionFailed" = "マスクの変換に失敗しました。";
+"bgremove.error.compositeFailed" = "画像の合成に失敗しました。";
+
 "convert.settings.convertButton" = "変換";
 "convert.clearAll" = "すべてクリア";
 "convert.addMore" = "追加";
 "convert.wrongType.image" = "ここでは画像のみ変換できます";
+
+"upscale.settings.title" = "設定";
+"upscale.settings.model" = "モデル";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI によるディテール強化";
+"upscale.settings.scale" = "倍率";
+"upscale.scale.multiPassHint" = "8× と 16× は複数回の AI 処理を行うため時間がかかります。";
+"upscale.settings.outputFormat" = "出力形式";
+"upscale.drop.title" = "画像をドラッグ＆ドロップ";
+"upscale.drop.subtitle" = "またはクリックしてファイルを選択";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "対応するラスター画像のみここで拡大できます";
+"upscale.runButton" = "拡大";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "プレビュー";
+"upscale.preview.hint" = "倍率を選び、プレビューをタップして比較";
+"upscale.preview.processing" = "プレビューを生成中…";
+"upscale.preview.before" = "前";
+"upscale.preview.after" = "後";
+"upscale.preview.save" = "保存";
+"upscale.preview.saveSettings" = "プレビューを保存";
+"upscale.preview.autoSave" = "プレビュー後に保存";
+"upscale.preview.autoSaveHint" = "プレビュー完了時に保存先フォルダへ書き込みます。";
+"upscale.preview.saveNeedFolder" = "先に保存先フォルダを選んでください。";
+"upscale.preview.saveFailed" = "プレビュー画像をエンコードできませんでした。";
+"upscale.preview.loadFailed" = "プレビュー画像を読み込めませんでした。";
+"upscale.backend.missing.hint" = "アプリバンドルに cometscaly エンジンまたはモデルファイルがありません。プロジェクトを再ビルドしてください。";
+"upscale.error.bundle" = "アプリに Upscale バンドルフォルダがありません。";
+"upscale.error.binary" = "アプリバンドルに cometscaly が見つかりません。";
+"upscale.error.model" = "モデルファイル upscayl-standard-4x.param/.bin がありません。";
+"upscale.error.process" = "拡大に失敗しました (exit %d): %@";
+"upscale.error.none" = "拡大された画像はありません。";
+
 "menu.home" = "ホーム";
 "menu.convertImage" = "画像変換";
 "menu.upscaleImage" = "画像を拡大";
@@ -28,9 +78,6 @@
 "menu.settings" = "設定";
 "menu.tools" = "ツール";
 "menu.document" = "ドキュメント";
-"menu.team" = "チーム";
-"menu.team.title" = "チーム";
-"menu.team.subtitle" = "Comet Editorを支える優秀なメンバー";
 "menu.stockImage" = "ストック画像";
 "menu.qrCode" = "QRコード";
 "menu.bgRemove" = "背景除去";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "フォントDL";
 "menu.videoConvert" = "動画変換";
 "menu.pdfEdit" = "PDF編集";
-"menu.suggestion" = "フィードバックを送る";
-"team.thanks_grafix" = "Grafixコミュニティのご協力に感謝します。";
+
 "alert.success.title" = "成功";
 "alert.error.title" = "エラー";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "フォルダを開く";
 "alert.success.message.image" = "画像が %@ に正常に保存されました。";
 "alert.success.message.video" = "動画が %@ に正常に保存されました。";
+"alert.error.conversion" = "一部の画像を変換できませんでした。";
+
 "home.welcome" = "Comet Editorへようこそ";
 "home.welcome.subtitle" = "必要な機能がこのアプリひとつに。";
 "home.visitWebsite" = "ウェブサイトを見る";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "バランスの取れた品質のMP4。変換または圧縮を一度に。";
 "home.quick.pdf.title" = "PDFを編集";
 "home.quick.pdf.subtitle" = "PDFエディタを開き、ページの並べ替え・圧縮・調整をまとめて行います。";
+"home.feature.convertImage.desc" = "画像をPNG、JPG、WebP、HEIFなどに変換します。";
+"home.feature.videoConvert.desc" = "動画を簡単に変換・圧縮します。";
+"home.feature.stockImage.desc" = "高品質な無料ストック写真を閲覧・ダウンロードします。";
+"home.feature.pdfEdit.desc" = "PDFの編集、ページの並べ替え、圧縮、管理を行います。";
+"home.feature.qrCode.desc" = "QRコードをすぐに生成・カスタマイズします。";
+"home.feature.bgRemove.desc" = "AIで画像の背景を自動削除します。";
+"home.feature.ocr.desc" = "光学式文字認識で画像からテキストを抽出します。";
+"home.feature.fontDownload.desc" = "Google FontsをMacに直接閲覧・ダウンロードします。";
 "home.preset.pdf.deletePage" = "ページを削除";
 "home.preset.pdf.reorder" = "ページを並べ替え";
 "home.preset.pdf.optimize" = "PDFを最適化";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "右パネルで出力形式（PNG、JPG、WebP、HEICなど）を選びます。";
 "home.guide.convertImage.step3" = "品質・スケール・寸法を調整してから変換します。";
 "home.guide.convertImage.tip" = "複数画像を一度に追加できます。各ファイルは同じ設定で個別に変換されます。";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "動画をMP4、MOV、AVIなどに変換・圧縮します。";
 "home.guide.video.step2" = "出力形式（MP4、MOVなど）を選び、FPSや解像度を調整します。";
 "home.guide.video.step3" = "音声のオン/オフを選び、「変換」をクリックします。";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "フォントをプレビューし、必要なスタイルを選びます。";
 "home.guide.font.step3" = "「ダウンロード」をクリックしてMacにフォントをインストールします。";
 "home.guide.font.tip" = "インストールしたフォントはシステム全体ですぐに使えます。";
-"home.feature.convertImage.desc" = "画像をPNG、JPG、WebP、HEIFなどに変換します。";
-"home.feature.videoConvert.desc" = "動画を簡単に変換・圧縮します。";
-"home.feature.stockImage.desc" = "高品質な無料ストック写真を閲覧・ダウンロードします。";
-"home.feature.pdfEdit.desc" = "PDFの編集、ページの並べ替え、圧縮、管理を行います。";
-"home.feature.qrCode.desc" = "QRコードをすぐに生成・カスタマイズします。";
-"home.feature.bgRemove.desc" = "AIで画像の背景を自動削除します。";
-"home.feature.ocr.desc" = "光学式文字認識で画像からテキストを抽出します。";
-"home.feature.fontDownload.desc" = "Google FontsをMacに直接閲覧・ダウンロードします。";
+
 "video.drop.subtitle" = "またはクリックして動画ファイルを参照";
 "video.settings.format" = "フォーマット";
 "video.settings.fps" = "FPS制限";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% サイズ";
 "video.resolution.50" = "50% サイズ";
 "video.resolution.25" = "25% サイズ（低品質）";
+
 "pdf.drop.title" = "PDFをドラッグ＆ドロップ";
 "pdf.drop.subtitle" = "またはクリックしてPDFファイルを参照";
 "pdf.page.count" = "%lld ページ";
 "pdf.page.info" = "%lld / %lld ページ";
 "pdf.estimatedSize" = "推定最適化サイズ";
+"pdf.quality.modal.title" = "最適化レベルを選択";
+"pdf.quality.modal.subtitle" = "ファイルサイズをどの程度削減するか選択してください。圧縮率が高いほどファイルは小さくなりますが、画質が低下します。";
+"pdf.quality.modal.estimated" = "予測サイズ";
+"pdf.quality.modal.confirm" = "最適化";
+"pdf.quality.modal.cancel" = "キャンセル";
+"pdf.quality.low.title" = "最大圧縮";
+"pdf.quality.low.desc" = "最小ファイルサイズ、画質の低下あり";
+"pdf.quality.medium.title" = "バランス";
+"pdf.quality.medium.desc" = "サイズと画質のバランスが良好";
+"pdf.quality.high.title" = "高画質";
+"pdf.quality.high.desc" = "画質の低下が最小限、適度なサイズ削減";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDFを最適化";
+"pdf.tools.quality" = "品質";
+"pdf.tools.quality.label" = "画像品質";
+"pdf.tools.quality.small" = "小さいファイル";
+"pdf.tools.quality.large" = "高品質";
+"pdf.tools.quality.lossless" = "可逆";
+"pdf.tools.resolution" = "解像度スケール";
+"pdf.tools.resolution.enable" = "解像度を下げる";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYKコンバーター";
+"pdf.color.enable" = "色空間を変換";
+"pdf.color.convert" = "変換して保存";
 "pdf.tools.save" = "PDFを保存";
 "pdf.reorder.title" = "ページ順序";
 "pdf.reorder.hint" = "Ctrlを押しながら複数選択し、ドラッグして並べ替え。";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "このページの後に挿入";
 "pdf.addContent.atEnd" = "末尾に追加";
 "pdf.addContent.chooseFile" = "ファイルを選択して挿入";
+
 "stock.deselectAll" = "すべての選択を解除";
 "stock.download" = "選択したものをダウンロード";
 "stock.download.count" = "%d 枚の写真をダウンロード";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "URLまたはテキストを入力...";
 "qr.settings.colors" = "色";
 "qr.settings.fgColor" = "前景色";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "解像度";
 "qr.settings.customSize" = "カスタムサイズ（px）";
 "qr.download" = "QRコードをダウンロード";
+"qr.settings.type" = "QRタイプ";
+"qr.type.website" = "ウェブサイト";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "連絡先（vCard）";
+"qr.type.email" = "メール";
+"qr.type.phone" = "電話";
+"qr.wifi.ssid" = "ネットワーク名（SSID）";
+"qr.wifi.password" = "パスワード";
+"qr.wifi.hidden" = "非表示ネットワーク";
+"qr.wifi.noEncryption" = "なし";
+"qr.vcard.firstName" = "名";
+"qr.vcard.lastName" = "姓";
+"qr.vcard.phone" = "電話";
+"qr.vcard.email" = "メール";
+"qr.vcard.company" = "会社";
+"qr.vcard.jobTitle" = "役職";
+"qr.vcard.address" = "住所";
+"qr.vcard.website" = "ウェブサイト";
+"qr.email.address" = "メールアドレス";
+"qr.email.subject" = "件名";
+"qr.email.body" = "本文";
+"qr.phone.number" = "電話番号";
+
 "bgremove.unavailable.title" = "macOS 14が必要";
 "bgremove.unavailable.subtitle" = "背景除去にはAppleのNeural Engine技術を使用しています。\nmacOS 14 Sonomaまたはそれ以降にアップデートしてください。";
 "bgremove.drop.title" = "画像をドラッグ＆ドロップ";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "エッジを調整";
 "bgremove.settings.feather" = "フェザー";
 "bgremove.settings.featherAmount" = "フェザー量";
+
 "ocr.drop.title" = "画像をドラッグ＆ドロップ";
 "ocr.drop.subtitle" = "またはクリックしてファイルを参照";
 "ocr.processing" = "テキストを認識中...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "クリア";
 "ocr.newFile" = "新規ファイル";
 "ocr.copied" = "コピーしました！";
+
 "app.comingSoon.title" = "近日公開";
 "app.comingSoon.message" = "この機能は近日中に利用可能になります。";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "フォントを検索...";
 "font.preview.custom" = "テキストを入力...";
 "font.inspector.preview" = "プレビュー";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "韓国語";
 "font.writing.thai" = "タイ語";
 "font.writing.vietnamese" = "ベトナム語";
-
 "font.families.count" = "%d ファミリー";
 "font.styles.count" = "%d スタイル · %@";
 "font.noResults" = "フォントが見つかりません";
-"suggestion.title" = "提案を送る";
-"suggestion.subtitle" = "アイデアを共有して改善にご協力ください";
-"suggestion.placeholder.title" = "タイトル";
-"suggestion.placeholder.body" = "提案の詳細を入力してください...";
-"suggestion.category.bug" = "バグ";
-"suggestion.category.feature" = "機能リクエスト";
-"suggestion.category.ui" = "UI/UX";
-"suggestion.category.performance" = "パフォーマンス";
-"suggestion.category.other" = "その他";
-"suggestion.send" = "提案を送る";
-"suggestion.sending" = "送信中...";
-"suggestion.sent.title" = "ありがとうございます！";
-"suggestion.sent.message" = "ご提案を受け付けました。近日中にご確認いたします。";
-"suggestion.error" = "送信に失敗しました。もう一度お試しください。";
-"suggestion.validation.title" = "入力エラー";
-"suggestion.validation.body" = "タイトルと説明を入力してください。";
-
-"suggestion.label.category" = "カテゴリ";
-"suggestion.label.title" = "タイトル";
-"suggestion.label.description" = "説明";
 
 "video.drop.title" = "ここにビデオをドロップ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "ここでは動画のみ変換できます";
+
 "app.maintenance.title" = "メンテナンスモード";
 "app.forceUpdate.title" = "アップデートが必要です";
 "app.forceUpdate.button" = "App Storeで更新";
@@ -283,49 +371,40 @@
 "stock.search.button" = "検索";
 "stock.search.placeholder" = "写真を検索...";
 "stock.selected" = "%d 件選択";
+
 "video.cancel" = "キャンセル";
 "video.error.decoder" = "動画をデコードできませんでした。";
 "video.saved.gain" = "節約";
 "video.saved.increased" = "大きくなりました";
 "video.settings.fps.desc" = "元のFPSを保持するには無効にしてください";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "画像";
 "pdf.tools.pageManagement" = "ページ管理";
 "pdf.tools.addContent" = "コンテンツを追加";
 "pdf.tools.reorder" = "並び替え";
 "pdf.tools.targetFolder" = "保存先フォルダ";
-"alert.error.conversion" = "一部の画像を変換できませんでした。";
-"pdf.color.convert" = "変換して保存";
-"pdf.color.enable" = "色空間を変換";
-"pdf.color.title" = "RGB/CMYKコンバーター";
-"pdf.tools.quality" = "品質";
-"pdf.tools.quality.label" = "画像品質";
-"pdf.tools.quality.large" = "高品質";
-"pdf.tools.quality.lossless" = "可逆";
-"pdf.tools.resolution" = "解像度スケール";
-"pdf.tools.resolution.enable" = "解像度を下げる";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "小さいファイル";
 
 "ad.sponsored" = "広告";
 "ad.visit" = "アクセス";
 
-"pdf.quality.modal.title" = "最適化レベルを選択";
-"pdf.quality.modal.subtitle" = "ファイルサイズをどの程度削減するか選択してください。圧縮率が高いほどファイルは小さくなりますが、画質が低下します。";
-"pdf.quality.modal.estimated" = "予測サイズ";
-"pdf.quality.modal.confirm" = "最適化";
-"pdf.quality.modal.cancel" = "キャンセル";
-"pdf.quality.low.title" = "最大圧縮";
-"pdf.quality.low.desc" = "最小ファイルサイズ、画質の低下あり";
-"pdf.quality.medium.title" = "バランス";
-"pdf.quality.medium.desc" = "サイズと画質のバランスが良好";
-"pdf.quality.high.title" = "高画質";
-"pdf.quality.high.desc" = "画質の低下が最小限、適度なサイズ削減";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editorをカスタマイズ";
+"settings.section.output" = "出力";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "情報";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "デフォルト出力フォルダ";
+"settings.noFolderSelected" = "未選択 — 毎回確認されます";
+"settings.chooseFolder" = "フォルダを選択";
+"settings.clearFolder" = "クリア";
+"settings.folderPicker.message" = "書き出したファイルのデフォルトフォルダを選択";
+"settings.folderPicker.button" = "フォルダを選択";
 
 "app.maintenance.title2" = "メンテナンス中";
 "app.maintenance.body" = "アプリは一時的にご利用いただけません。まもなく再開いたします。";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Storeで更新";
 "app.quit2" = "終了";
 
-"settings.subtitle" = "Comet Editorをカスタマイズ";
-"settings.section.output" = "出力";
-"settings.section.about" = "情報";
-"settings.defaultOutputFolder" = "デフォルト出力フォルダ";
-"settings.noFolderSelected" = "未選択 — 毎回確認されます";
-"settings.chooseFolder" = "フォルダを選択";
-"settings.clearFolder" = "クリア";
-"settings.folderPicker.message" = "書き出したファイルのデフォルトフォルダを選択";
-"settings.folderPicker.button" = "フォルダを選択";
-"menu.announcements" = "お知らせ";
-"announcements.subtitle" = "チームからの最新ニュースと更新情報";
-"announcements.empty" = "お知らせはありません";
-
 "settings.pdfOutputFolder" = "PDF出力フォルダ";
 
 "folder.default.prompt.title" = "デフォルトフォルダに設定しますか？";
 "folder.default.prompt.body" = "これをデフォルトの出力フォルダに設定しますか？設定はいつでも変更できます。";
 "folder.default.prompt.yes" = "デフォルトに設定";
 "folder.default.prompt.no" = "後で";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "クリップをトリムし、不要部分を削除し、複数動画を1つに結合します。";
-"home.guide.videoedit.preset.concat" = "動画を結合";
-"home.guide.videoedit.preset.trim" = "動画をトリム";
-"home.guide.videoedit.step1" = "＋ボタンまたはドラッグ＆ドロップで動画を追加します。";
-"home.guide.videoedit.step2" = "クリップを選び、タイムラインのトリムハンドルで開始・終了を設定します。";
-"home.guide.videoedit.step3" = "リスト内のクリップをドラッグして最終順序を決めます。";
-"home.guide.videoedit.step4" = "出力形式とフォルダを選び、「書き出し」をクリックします。";
-"home.guide.videoedit.tip" = "トリムはミリ秒単位でスナップします。再生バーでカット位置を確認してください。";
-"menu.videoEdit" = "動画編集";
-"qr.email.address" = "メールアドレス";
-"qr.email.body" = "本文";
-"qr.email.subject" = "件名";
-"qr.phone.number" = "電話番号";
-"qr.settings.type" = "QRタイプ";
-"qr.type.email" = "メール";
-"qr.type.phone" = "電話";
-"qr.type.vcard" = "連絡先（vCard）";
-"qr.type.website" = "ウェブサイト";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "住所";
-"qr.vcard.company" = "会社";
-"qr.vcard.email" = "メール";
-"qr.vcard.firstName" = "名";
-"qr.vcard.jobTitle" = "役職";
-"qr.vcard.lastName" = "姓";
-"qr.vcard.phone" = "電話";
-"qr.vcard.website" = "ウェブサイト";
-"qr.wifi.hidden" = "非表示ネットワーク";
-"qr.wifi.noEncryption" = "なし";
-"qr.wifi.password" = "パスワード";
-"qr.wifi.ssid" = "ネットワーク名（SSID）";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "写真を追加";
-"videoedit.addMore" = "追加";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "動画を追加";
-"videoedit.empty.subtitle" = "動画ファイルをここにドロップするか、下のボタンをクリック";
-"videoedit.empty.title" = "編集する動画を追加";
-"videoedit.export.merge" = "結合して書き出し";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "設定";
-"videoedit.export.trim" = "クリップを書き出し";
-"videoedit.exporting" = "書き出し中…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "写真の表示時間";
-"videoedit.imageDuration.default" = "新しい写真の既定値";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "保存先";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "適用";
-"watermark.button" = "透かしを追加";
-"watermark.cancel" = "キャンセル";
-"watermark.color.black" = "黒";
-"watermark.color.darkGray" = "ダークグレー";
-"watermark.color.gray" = "グレー";
-"watermark.color.lightGray" = "ライトグレー";
-"watermark.color.none" = "なし";
-"watermark.color.white" = "白";
-"watermark.colorOverlay" = "色オーバーレイ";
-"watermark.logo" = "ロゴ";
-"watermark.opacity" = "不透明度";
-"watermark.pos.bottomCenter" = "下中央";
-"watermark.pos.bottomLeft" = "左下";
-"watermark.pos.bottomRight" = "右下";
-"watermark.pos.center" = "中央";
-"watermark.pos.centerLeft" = "左中央";
-"watermark.pos.centerRight" = "右中央";
-"watermark.pos.topCenter" = "上中央";
-"watermark.pos.topLeft" = "左上";
-"watermark.pos.topRight" = "右上";
-"watermark.position" = "位置";
-"watermark.preview" = "プレビュー";
-"watermark.removeLogo" = "削除";
-"watermark.scale" = "スケール";
-"watermark.selectLogo" = "画像を選択";
-"watermark.tileMode" = "タイルモード";
-"watermark.tileMode.desc" = "画像全体に繰り返す";
+
 "watermark.title" = "透かし";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "透かしを追加";
+"watermark.logo" = "ロゴ";
+"watermark.selectLogo" = "画像を選択";
+"watermark.removeLogo" = "削除";
+"watermark.position" = "位置";
+"watermark.scale" = "スケール";
+"watermark.opacity" = "不透明度";
+"watermark.preview" = "プレビュー";
+"watermark.apply" = "適用";
+"watermark.cancel" = "キャンセル";
+"watermark.pos.topLeft" = "左上";
+"watermark.pos.topCenter" = "上中央";
+"watermark.pos.topRight" = "右上";
+"watermark.pos.centerLeft" = "左中央";
+"watermark.pos.center" = "中央";
+"watermark.pos.centerRight" = "右中央";
+"watermark.pos.bottomLeft" = "左下";
+"watermark.pos.bottomCenter" = "下中央";
+"watermark.pos.bottomRight" = "右下";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "色オーバーレイ";
+"watermark.color.none" = "なし";
+"watermark.color.black" = "黒";
+"watermark.color.darkGray" = "ダークグレー";
+"watermark.color.gray" = "グレー";
+"watermark.color.lightGray" = "ライトグレー";
+"watermark.color.white" = "白";
+"watermark.tileMode" = "タイルモード";
+"watermark.tileMode.desc" = "画像全体に繰り返す";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "設定";
-"upscale.settings.model" = "モデル";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI によるディテール強化";
-"upscale.settings.scale" = "倍率";
-"upscale.scale.multiPassHint" = "8× と 16× は複数回の AI 処理を行うため時間がかかります。";
-"upscale.settings.outputFormat" = "出力形式";
-"upscale.drop.title" = "画像をドラッグ＆ドロップ";
-"upscale.drop.subtitle" = "またはクリックしてファイルを選択";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "対応するラスター画像のみここで拡大できます";
-"upscale.runButton" = "拡大";
-"upscale.preview.run" = "プレビュー";
-"upscale.preview.hint" = "倍率を選び、プレビューをタップして比較";
-"upscale.preview.processing" = "プレビューを生成中…";
-"upscale.preview.before" = "前";
-"upscale.preview.after" = "後";
-"upscale.preview.save" = "保存";
-"upscale.preview.saveSettings" = "プレビューを保存";
-"upscale.preview.autoSave" = "プレビュー後に保存";
-"upscale.preview.autoSaveHint" = "プレビュー完了時に保存先フォルダへ書き込みます。";
-"upscale.preview.saveNeedFolder" = "先に保存先フォルダを選んでください。";
-"upscale.preview.saveFailed" = "プレビュー画像をエンコードできませんでした。";
-"upscale.preview.loadFailed" = "プレビュー画像を読み込めませんでした。";
-"upscale.backend.missing.hint" = "アプリバンドルに cometscaly エンジンまたはモデルファイルがありません。プロジェクトを再ビルドしてください。";
-"upscale.error.bundle" = "アプリに Upscale バンドルフォルダがありません。";
-"upscale.error.binary" = "アプリバンドルに cometscaly が見つかりません。";
-"upscale.error.model" = "モデルファイル upscayl-standard-4x.param/.bin がありません。";
-"upscale.error.process" = "拡大に失敗しました (exit %d): %@";
-"upscale.error.none" = "拡大された画像はありません。";
-"videoedit.resize.modePercent" = "倍率 (%)";
-"videoedit.resize.modeCustom" = "カスタムサイズ";
-"videoedit.resize.autoFill" = "キャンバスを自動で埋める";
-"videoedit.resize.autoFillHint" = "オン：ワイド素材はレターボックスで収まり、小さい素材は拡大して中央トリミングで埋めます。";
+"inspector.format" = "形式";
+"inspector.output" = "出力";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "プレビューする写真を追加";
+"watermark.rotation" = "回転";
+"watermark.text" = "ロゴテキスト";
+"watermark.text.placeholder" = "ロゴテキストを入力";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

@@ -405,17 +405,6 @@ struct QRCodeView: View {
     private var inspectorPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text(languageManager.string("convert.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
                 inspectorSection("qr.settings.type") {
                     VStack(spacing: 6) {
                         ForEach(QRContentType.allCases) { type in
@@ -447,8 +436,6 @@ struct QRCodeView: View {
                         }
                     }
                 }
-
-                Divider()
 
                 inspectorSection("qr.settings.resolution") {
                     VStack(alignment: .leading, spacing: 12) {
@@ -485,8 +472,6 @@ struct QRCodeView: View {
                         }
                     }
                 }
-
-                Divider()
 
                 inspectorSection("qr.settings.colors") {
                     VStack(spacing: 12) {
@@ -547,10 +532,10 @@ struct QRCodeView: View {
                         }
                     }
                 }
-
-                Divider()
             }
+            .padding(.top, 16)
         }
+        .inspectorPanelChrome()
     }
 
     // MARK: - QR Code Generation
@@ -672,12 +657,6 @@ struct QRCodeView: View {
             ?? FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
 
         guard savePanel.runModal() == .OK, let url = savePanel.url else { return }
-
-        CometAnalytics.shared.trackEvent(
-            page: "qrCode",
-            eventType: .qrGenerated,
-            metadata: ["format": selectedFormat.rawValue]
-        )
 
         switch selectedFormat {
         case .svg:

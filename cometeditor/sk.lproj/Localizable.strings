@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Potiahnite a pustite obrázok";
 "convert.drop.subtitle" = "alebo kliknite na prehľadávanie súborov";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Šírka px";
 "convert.settings.height" = "Výška px";
+
 "meta.info" = "Ochrana metadát";
+
 "convert.settings.targetFolder" = "Cieľový priečinok";
 "convert.settings.noFolder" = "Nevybrané";
 "convert.settings.chooseFolder" = "Vybrať vo Finderi";
+
+"folder.missing.title" = "Priečinok nenájdený";
+"folder.missing.subtitle" = "Uložená cesta k priečinku už neexistuje. Vyberte nový.";
+"folder.missing.pick" = "Vybrať nový priečinok";
+"folder.missing.panel.message" = "Výstupný priečinok nebol nájdený. Vyberte nový priečinok.";
+
+"bgremove.error.noMaskFound" = "Maska popredia nebola nájdená.";
+"bgremove.error.maskConversionFailed" = "Konverzia masky zlyhala.";
+"bgremove.error.compositeFailed" = "Kompozícia obrazu zlyhala.";
+
 "convert.settings.convertButton" = "Previesť";
 "convert.clearAll" = "Vymazať všetko";
 "convert.addMore" = "Pridať";
 "convert.wrongType.image" = "Tu môžete konvertovať iba obrázky";
+
+"upscale.settings.title" = "Nastavenia";
+"upscale.settings.model" = "Model";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — vylepšenie detailov pomocou AI";
+"upscale.settings.scale" = "Mierka";
+"upscale.scale.multiPassHint" = "8× a 16× spúšťajú viac AI priechodov — trvá to dlhšie.";
+"upscale.settings.outputFormat" = "Výstupný formát";
+"upscale.drop.title" = "Presuňte obrázky sem";
+"upscale.drop.subtitle" = "alebo kliknite na prehliadanie súborov";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Tu je možné zväčšiť len podporované rastrové obrázky";
+"upscale.runButton" = "Zväčšiť";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Náhľad";
+"upscale.preview.hint" = "Vyberte mierku a klepnite na Náhľad pre porovnanie";
+"upscale.preview.processing" = "Vytvára sa náhľad…";
+"upscale.preview.before" = "PRED";
+"upscale.preview.after" = "PO";
+"upscale.preview.save" = "Uložiť";
+"upscale.preview.saveSettings" = "Uložiť náhľad";
+"upscale.preview.autoSave" = "Uložiť po náhľade";
+"upscale.preview.autoSaveHint" = "Po dokončení náhľadu zapíše do cieľového priečinka.";
+"upscale.preview.saveNeedFolder" = "Najprv vyberte cieľový priečinok.";
+"upscale.preview.saveFailed" = "Nepodarilo sa zakódovať obrázok náhľadu.";
+"upscale.preview.loadFailed" = "Nepodarilo sa načítať obrázok náhľadu.";
+"upscale.backend.missing.hint" = "V balíku aplikácie chýba engine cometscaly alebo súbory modelu. Znova zostavte projekt.";
+"upscale.error.bundle" = "V aplikácii chýba priečinok balíka Upscale.";
+"upscale.error.binary" = "cometscaly sa v balíku aplikácie nenašiel.";
+"upscale.error.model" = "Chýbajú súbory modelu upscayl-standard-4x.param/.bin.";
+"upscale.error.process" = "Zväčšenie zlyhalo (exit %d): %@";
+"upscale.error.none" = "Nebolo zväčšené žiadne obrázky.";
+
 "menu.home" = "Domov";
 "menu.convertImage" = "Previesť obrázok";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Nastavenia";
 "menu.tools" = "Nástroje";
 "menu.document" = "DOKUMENT";
-"menu.team" = "Náš tím";
-"menu.team.title" = "Náš tím";
-"menu.team.subtitle" = "Spoznajte talentovaných ľudí za Comet Editorom";
 "menu.stockImage" = "Stock obrázok";
 "menu.qrCode" = "QR kód";
 "menu.bgRemove" = "Odstránenie pozadia";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Stiahnuť Písmo";
 "menu.videoConvert" = "Previesť video";
 "menu.pdfEdit" = "Upraviť PDF";
-"menu.suggestion" = "Odoslať spätnú väzbu";
-"team.thanks_grafix" = "Ďakujeme komunite Grafix za ich príspevky.";
+
 "alert.success.title" = "Úspech";
 "alert.error.title" = "Chyba";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Otvoriť priečinok";
 "alert.success.message.image" = "Obrázky boli úspešne uložené do %@.";
 "alert.success.message.video" = "Videá boli úspešne uložené do %@.";
+"alert.error.conversion" = "Niektoré obrázky sa nedali konvertovať.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "alebo kliknite na prehľadávanie súborov videa";
 "video.settings.format" = "FORMÁT";
 "video.settings.fps" = "LIMIT FPS";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% veľkosť";
 "video.resolution.50" = "50% veľkosť";
 "video.resolution.25" = "25% veľkosť (nízka kvalita)";
+
 "pdf.drop.title" = "Potiahnite a pustite PDF";
 "pdf.drop.subtitle" = "alebo kliknite na prehľadávanie súborov PDF";
 "pdf.page.count" = "%lld strán";
 "pdf.page.info" = "Strana %lld z %lld";
 "pdf.estimatedSize" = "Odhadovaná optimalizovaná veľkosť";
+"pdf.quality.modal.title" = "Vyberte úroveň optimalizácie";
+"pdf.quality.modal.subtitle" = "Vyberte, o koľko chcete zmenšiť súbor. Vyššia kompresia znamená menší súbor s miernou stratou kvality.";
+"pdf.quality.modal.estimated" = "Odhadovaná veľkosť";
+"pdf.quality.modal.confirm" = "Optimalizovať";
+"pdf.quality.modal.cancel" = "Zrušiť";
+"pdf.quality.low.title" = "Maximálna kompresia";
+"pdf.quality.low.desc" = "Najmenší súbor, viditeľná strata kvality";
+"pdf.quality.medium.title" = "Vyvážený";
+"pdf.quality.medium.desc" = "Dobrá rovnováha veľkosti a kvality";
+"pdf.quality.high.title" = "Vysoká kvalita";
+"pdf.quality.high.desc" = "Minimálna strata kvality, mierne zmenšenie";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimalizovať PDF";
+"pdf.tools.quality" = "KVALITA";
+"pdf.tools.quality.label" = "Kvalita obrazu";
+"pdf.tools.quality.small" = "Menší súbor";
+"pdf.tools.quality.large" = "Lepšia kvalita";
+"pdf.tools.quality.lossless" = "Bezstratový";
+"pdf.tools.resolution" = "ŠKÁLA ROZLÍŠENIA";
+"pdf.tools.resolution.enable" = "Znížiť rozlíšenie";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "KONVERTOR RGB/CMYK";
+"pdf.color.enable" = "Konvertovať farebný priestor";
+"pdf.color.convert" = "Konvertovať a uložiť";
 "pdf.tools.save" = "Uložiť PDF";
 "pdf.reorder.title" = "Poradie strán";
 "pdf.reorder.hint" = "Podržte Ctrl pre viacnásobný výber, potom presuňte pre preusporiadanie.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Vložiť za túto stranu";
 "pdf.addContent.atEnd" = "Pridať na koniec";
 "pdf.addContent.chooseFile" = "Vybrať súbor a vložiť";
+
 "stock.deselectAll" = "Zrušiť výber všetkých";
 "stock.download" = "Stiahnuť vybrané";
 "stock.download.count" = "Stiahnuť %d fotografií";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Zadajte URL alebo text...";
 "qr.settings.colors" = "Farby";
 "qr.settings.fgColor" = "Farba popredia";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Rozlíšenie";
 "qr.settings.customSize" = "Vlastná veľkosť (px)";
 "qr.download" = "Stiahnuť QR kód";
+"qr.settings.type" = "Typ QR";
+"qr.type.website" = "Webová stránka";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontakt (vCard)";
+"qr.type.email" = "E-mail";
+"qr.type.phone" = "Telefón";
+"qr.wifi.ssid" = "Názov siete (SSID)";
+"qr.wifi.password" = "Heslo";
+"qr.wifi.hidden" = "Skrytá sieť";
+"qr.wifi.noEncryption" = "Žiadne";
+"qr.vcard.firstName" = "Meno";
+"qr.vcard.lastName" = "Priezvisko";
+"qr.vcard.phone" = "Telefón";
+"qr.vcard.email" = "E-mail";
+"qr.vcard.company" = "Spoločnosť";
+"qr.vcard.jobTitle" = "Pracovná pozícia";
+"qr.vcard.address" = "Adresa";
+"qr.vcard.website" = "Webová stránka";
+"qr.email.address" = "E-mailová adresa";
+"qr.email.subject" = "Predmet";
+"qr.email.body" = "Správa";
+"qr.phone.number" = "Telefónne číslo";
+
 "bgremove.unavailable.title" = "Vyžaduje sa macOS 14";
 "bgremove.unavailable.subtitle" = "Odstránenie pozadia používa technológiu Neural Engine od Apple.\nAktualizujte na macOS 14 Sonoma alebo novší.";
 "bgremove.drop.title" = "Potiahnite a pustite obrázok";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "SPRESNIŤ OKRAJE";
 "bgremove.settings.feather" = "Mäkké okraje";
 "bgremove.settings.featherAmount" = "Hodnota mäkkých okrajov";
+
 "ocr.drop.title" = "Potiahnite a pustite obrázok";
 "ocr.drop.subtitle" = "alebo kliknite na prehľadávanie súborov";
 "ocr.processing" = "Rozpoznávanie textu...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Vymazať";
 "ocr.newFile" = "Nový súbor";
 "ocr.copied" = "Skopírované!";
+
 "app.comingSoon.title" = "Čoskoro";
 "app.comingSoon.message" = "Táto funkcia bude čoskoro dostupná.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Hľadať písma...";
 "font.preview.custom" = "Napíšte niečo...";
 "font.inspector.preview" = "Náhľad";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Kórejské";
 "font.writing.thai" = "Thajské";
 "font.writing.vietnamese" = "Vietnamské";
-
 "font.families.count" = "%d rodín";
 "font.styles.count" = "%d štýlov · %@";
 "font.noResults" = "Nenašli sa žiadne písma";
-"suggestion.title" = "Odoslať návrh";
-"suggestion.subtitle" = "Zdieľajte svoje nápady a pomôžte nám zlepšiť sa";
-"suggestion.placeholder.title" = "Názov";
-"suggestion.placeholder.body" = "Opíšte svoj návrh podrobne...";
-"suggestion.category.bug" = "Chyba";
-"suggestion.category.feature" = "Požiadavka na funkciu";
-"suggestion.category.ui" = "Rozhranie";
-"suggestion.category.performance" = "Výkon";
-"suggestion.category.other" = "Ostatné";
-"suggestion.send" = "Odoslať návrh";
-"suggestion.sending" = "Odosiela sa...";
-"suggestion.sent.title" = "Ďakujeme!";
-"suggestion.sent.message" = "Váš návrh bol prijatý. Čoskoro ho preskúmame.";
-"suggestion.error" = "Odoslanie zlyhalo. Skúste znova.";
-"suggestion.validation.title" = "Chýbajúce polia";
-"suggestion.validation.body" = "Vyplňte prosím názov a popis.";
-
-"suggestion.label.category" = "Kategória";
-"suggestion.label.title" = "Názov";
-"suggestion.label.description" = "Popis";
 
 "video.drop.title" = "Presuňte video sem";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Tu môžete konvertovať iba videá";
+
 "app.maintenance.title" = "Režim údržby";
 "app.forceUpdate.title" = "Vyžadovaná aktualizácia";
 "app.forceUpdate.button" = "Aktualizovať v App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Hľadať";
 "stock.search.placeholder" = "Hľadať fotografie...";
 "stock.selected" = "%d vybrané";
+
 "video.cancel" = "Zrušiť";
 "video.error.decoder" = "Video sa nepodarilo dekódovať.";
 "video.saved.gain" = "ušetrené";
 "video.saved.increased" = "väčší";
 "video.settings.fps.desc" = "Vypnúť pre zachovanie pôvodného FPS";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Obrázok";
 "pdf.tools.pageManagement" = "SPRÁVA STRÁN";
 "pdf.tools.addContent" = "Pridať obsah";
 "pdf.tools.reorder" = "Preskupiť";
 "pdf.tools.targetFolder" = "CIEĽOVÝ PRIEČINOK";
-"alert.error.conversion" = "Niektoré obrázky sa nedali konvertovať.";
-"pdf.color.convert" = "Konvertovať a uložiť";
-"pdf.color.enable" = "Konvertovať farebný priestor";
-"pdf.color.title" = "KONVERTOR RGB/CMYK";
-"pdf.tools.quality" = "KVALITA";
-"pdf.tools.quality.label" = "Kvalita obrazu";
-"pdf.tools.quality.large" = "Lepšia kvalita";
-"pdf.tools.quality.lossless" = "Bezstratový";
-"pdf.tools.resolution" = "ŠKÁLA ROZLÍŠENIA";
-"pdf.tools.resolution.enable" = "Znížiť rozlíšenie";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Menší súbor";
 
 "ad.sponsored" = "Sponzorované";
 "ad.visit" = "Navštíviť";
 
-"pdf.quality.modal.title" = "Vyberte úroveň optimalizácie";
-"pdf.quality.modal.subtitle" = "Vyberte, o koľko chcete zmenšiť súbor. Vyššia kompresia znamená menší súbor s miernou stratou kvality.";
-"pdf.quality.modal.estimated" = "Odhadovaná veľkosť";
-"pdf.quality.modal.confirm" = "Optimalizovať";
-"pdf.quality.modal.cancel" = "Zrušiť";
-"pdf.quality.low.title" = "Maximálna kompresia";
-"pdf.quality.low.desc" = "Najmenší súbor, viditeľná strata kvality";
-"pdf.quality.medium.title" = "Vyvážený";
-"pdf.quality.medium.desc" = "Dobrá rovnováha veľkosti a kvality";
-"pdf.quality.high.title" = "Vysoká kvalita";
-"pdf.quality.high.desc" = "Minimálna strata kvality, mierne zmenšenie";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Prispôsobte si Comet Editor";
+"settings.section.output" = "VÝSTUP";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Predvolená výstupná priečinok";
+"settings.noFolderSelected" = "Nevybratý — bude sa pýtať zakaždým";
+"settings.chooseFolder" = "Vybrať priečinok";
+"settings.clearFolder" = "Vymazať";
+"settings.folderPicker.message" = "Vyberte predvolený priečinok pre exportované súbory";
+"settings.folderPicker.button" = "Vybrať priečinok";
 
 "app.maintenance.title2" = "Prebieha údržba";
 "app.maintenance.body" = "Aplikácia je dočasne nedostupná. Čoskoro sa vrátime.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Aktualizovať v App Store";
 "app.quit2" = "Zavrieť aplikáciu";
 
-"settings.subtitle" = "Prispôsobte si Comet Editor";
-"settings.section.output" = "VÝSTUP";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Predvolená výstupná priečinok";
-"settings.noFolderSelected" = "Nevybratý — bude sa pýtať zakaždým";
-"settings.chooseFolder" = "Vybrať priečinok";
-"settings.clearFolder" = "Vymazať";
-"settings.folderPicker.message" = "Vyberte predvolený priečinok pre exportované súbory";
-"settings.folderPicker.button" = "Vybrať priečinok";
-"menu.announcements" = "Oznámenia";
-"announcements.subtitle" = "Najnovšie správy a aktualizácie od tímu";
-"announcements.empty" = "Žiadne oznámenia";
-
 "settings.pdfOutputFolder" = "Výstupný priečinok PDF";
 
 "folder.default.prompt.title" = "Nastaviť ako predvolenú priečinok?";
 "folder.default.prompt.body" = "Chcete tento priečinok nastaviť ako predvolený výstupný priečinok? Môžete to kedykoľvek zmeniť v Nastaveniach.";
 "folder.default.prompt.yes" = "Nastaviť ako predvolený";
 "folder.default.prompt.no" = "Teraz nie";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Úprava videa";
-"qr.email.address" = "E-mailová adresa";
-"qr.email.body" = "Správa";
-"qr.email.subject" = "Predmet";
-"qr.phone.number" = "Telefónne číslo";
-"qr.settings.type" = "Typ QR";
-"qr.type.email" = "E-mail";
-"qr.type.phone" = "Telefón";
-"qr.type.vcard" = "Kontakt (vCard)";
-"qr.type.website" = "Webová stránka";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Adresa";
-"qr.vcard.company" = "Spoločnosť";
-"qr.vcard.email" = "E-mail";
-"qr.vcard.firstName" = "Meno";
-"qr.vcard.jobTitle" = "Pracovná pozícia";
-"qr.vcard.lastName" = "Priezvisko";
-"qr.vcard.phone" = "Telefón";
-"qr.vcard.website" = "Webová stránka";
-"qr.wifi.hidden" = "Skrytá sieť";
-"qr.wifi.noEncryption" = "Žiadne";
-"qr.wifi.password" = "Heslo";
-"qr.wifi.ssid" = "Názov siete (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Pridať fotku";
-"videoedit.addMore" = "Pridať";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Pridať videá";
-"videoedit.empty.subtitle" = "Pretiahnite sem súbory videa alebo klepnite na tlačidlo nižšie";
-"videoedit.empty.title" = "Pridajte videá na úpravu";
-"videoedit.export.merge" = "Zlúčiť a exportovať";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Nastavenia";
-"videoedit.export.trim" = "Exportovať klip";
-"videoedit.exporting" = "Exportuje sa…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "TRVANIE FOTKY";
-"videoedit.imageDuration.default" = "Predvolené pre nové fotky";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "ULOŽIŤ DO";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Použiť";
-"watermark.button" = "Pridať vodoznak";
-"watermark.cancel" = "Zrušiť";
-"watermark.color.black" = "Čierna";
-"watermark.color.darkGray" = "Tmavosivá";
-"watermark.color.gray" = "Sivá";
-"watermark.color.lightGray" = "Svetlosivá";
-"watermark.color.none" = "Žiadne";
-"watermark.color.white" = "Biela";
-"watermark.colorOverlay" = "Prekrytie farby";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Nepriehľadnosť";
-"watermark.pos.bottomCenter" = "Stred dole";
-"watermark.pos.bottomLeft" = "Vľavo dole";
-"watermark.pos.bottomRight" = "Vpravo dole";
-"watermark.pos.center" = "Stred";
-"watermark.pos.centerLeft" = "Vľavo stred";
-"watermark.pos.centerRight" = "Vpravo stred";
-"watermark.pos.topCenter" = "Stred hore";
-"watermark.pos.topLeft" = "Vľavo hore";
-"watermark.pos.topRight" = "Vpravo hore";
-"watermark.position" = "Pozícia";
-"watermark.preview" = "Náhľad";
-"watermark.removeLogo" = "Odstrániť";
-"watermark.scale" = "Mierka";
-"watermark.selectLogo" = "Vybrať obrázok";
-"watermark.tileMode" = "Režim dlaždíc";
-"watermark.tileMode.desc" = "Opakovať cez obrázok";
+
 "watermark.title" = "Vodoznak";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Pridať vodoznak";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Vybrať obrázok";
+"watermark.removeLogo" = "Odstrániť";
+"watermark.position" = "Pozícia";
+"watermark.scale" = "Mierka";
+"watermark.opacity" = "Nepriehľadnosť";
+"watermark.preview" = "Náhľad";
+"watermark.apply" = "Použiť";
+"watermark.cancel" = "Zrušiť";
+"watermark.pos.topLeft" = "Vľavo hore";
+"watermark.pos.topCenter" = "Stred hore";
+"watermark.pos.topRight" = "Vpravo hore";
+"watermark.pos.centerLeft" = "Vľavo stred";
+"watermark.pos.center" = "Stred";
+"watermark.pos.centerRight" = "Vpravo stred";
+"watermark.pos.bottomLeft" = "Vľavo dole";
+"watermark.pos.bottomCenter" = "Stred dole";
+"watermark.pos.bottomRight" = "Vpravo dole";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Prekrytie farby";
+"watermark.color.none" = "Žiadne";
+"watermark.color.black" = "Čierna";
+"watermark.color.darkGray" = "Tmavosivá";
+"watermark.color.gray" = "Sivá";
+"watermark.color.lightGray" = "Svetlosivá";
+"watermark.color.white" = "Biela";
+"watermark.tileMode" = "Režim dlaždíc";
+"watermark.tileMode.desc" = "Opakovať cez obrázok";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Nastavenia";
-"upscale.settings.model" = "Model";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — vylepšenie detailov pomocou AI";
-"upscale.settings.scale" = "Mierka";
-"upscale.scale.multiPassHint" = "8× a 16× spúšťajú viac AI priechodov — trvá to dlhšie.";
-"upscale.settings.outputFormat" = "Výstupný formát";
-"upscale.drop.title" = "Presuňte obrázky sem";
-"upscale.drop.subtitle" = "alebo kliknite na prehliadanie súborov";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Tu je možné zväčšiť len podporované rastrové obrázky";
-"upscale.runButton" = "Zväčšiť";
-"upscale.preview.run" = "Náhľad";
-"upscale.preview.hint" = "Vyberte mierku a klepnite na Náhľad pre porovnanie";
-"upscale.preview.processing" = "Vytvára sa náhľad…";
-"upscale.preview.before" = "PRED";
-"upscale.preview.after" = "PO";
-"upscale.preview.save" = "Uložiť";
-"upscale.preview.saveSettings" = "Uložiť náhľad";
-"upscale.preview.autoSave" = "Uložiť po náhľade";
-"upscale.preview.autoSaveHint" = "Po dokončení náhľadu zapíše do cieľového priečinka.";
-"upscale.preview.saveNeedFolder" = "Najprv vyberte cieľový priečinok.";
-"upscale.preview.saveFailed" = "Nepodarilo sa zakódovať obrázok náhľadu.";
-"upscale.preview.loadFailed" = "Nepodarilo sa načítať obrázok náhľadu.";
-"upscale.backend.missing.hint" = "V balíku aplikácie chýba engine cometscaly alebo súbory modelu. Znova zostavte projekt.";
-"upscale.error.bundle" = "V aplikácii chýba priečinok balíka Upscale.";
-"upscale.error.binary" = "cometscaly sa v balíku aplikácie nenašiel.";
-"upscale.error.model" = "Chýbajú súbory modelu upscayl-standard-4x.param/.bin.";
-"upscale.error.process" = "Zväčšenie zlyhalo (exit %d): %@";
-"upscale.error.none" = "Nebolo zväčšené žiadne obrázky.";
-"videoedit.resize.modePercent" = "Mierka (%)";
-"videoedit.resize.modeCustom" = "Vlastná veľkosť";
-"videoedit.resize.autoFill" = "Automaticky vyplniť plátno";
-"videoedit.resize.autoFillHint" = "Zapnuté: široký záber sa zmestí s letterboxom; menší sa priblíži a oreže na stred.";
+"inspector.format" = "Formát";
+"inspector.output" = "Výstup";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Pridajte fotografiu na náhľad";
+"watermark.rotation" = "Otočenie";
+"watermark.text" = "Text loga";
+"watermark.text.placeholder" = "Zadajte text loga";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

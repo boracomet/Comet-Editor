@@ -12,11 +12,39 @@
 		747F04AF0D67742DAEDB93C3 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AB31E5439AA2FF0A6E378C /* libiconv.tbd */; };
 		7C25FC7041E21D639FC2EA87 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */; };
 		94E67E89A161288155BB6D18 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A0EE17DE5E26880FA3638198 /* libbz2.tbd */; };
-		B0E1A1C22F900001005B69FE /* upscale in Resources */ = {isa = PBXBuildFile; fileRef = B0E1A1C12F900001005B69FE /* upscale */; };
+		B0E1A1C22F900001005B69FE /* models in Copy upscale models */ = {isa = PBXBuildFile; fileRef = B0E1A1C12F900001005B69FE /* models */; };
+		B0E1A1C42F900002005B69FE /* cometscaly in Copy bundled helpers */ = {isa = PBXBuildFile; fileRef = B0E1A1C32F900002005B69FE /* cometscaly */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CA7BBB6C6D783CFA4D89AA62 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */; };
-		FF001A2B3C4D5E6F7A8B9C0D /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */; };
-		FF002A2B3C4D5E6F7A8B9C0D /* ffprobe in Resources */ = {isa = PBXBuildFile; fileRef = FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */; };
+		FF001A3B3C4D5E6F7A8B9C0D /* ffmpeg in Copy bundled helpers */ = {isa = PBXBuildFile; fileRef = FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		FF002A3B3C4D5E6F7A8B9C0D /* ffprobe in Copy bundled helpers */ = {isa = PBXBuildFile; fileRef = FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B0E1A1C52F900003005B69FE /* Copy upscale models */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = upscale;
+			dstSubfolderSpec = 7;
+			files = (
+				B0E1A1C22F900001005B69FE /* models in Copy upscale models */,
+			);
+			name = "Copy upscale models";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9BC311E2F783F1B00C8054C /* Copy bundled helpers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				FF001A3B3C4D5E6F7A8B9C0D /* ffmpeg in Copy bundled helpers */,
+				FF002A3B3C4D5E6F7A8B9C0D /* ffprobe in Copy bundled helpers */,
+				B0E1A1C42F900002005B69FE /* cometscaly in Copy bundled helpers */,
+			);
+			name = "Copy bundled helpers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2561A291041B12C3BF5DB623 /* libz.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
@@ -26,7 +54,8 @@
 		8EB5EBFE69631FE103E2A31B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		A0EE17DE5E26880FA3638198 /* libbz2.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
 		ABD576D0AAF4966BA27CF77A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		B0E1A1C12F900001005B69FE /* upscale */ = {isa = PBXFileReference; lastKnownFileType = folder; name = upscale; path = third_party/upscale; sourceTree = "<group>"; };
+		B0E1A1C12F900001005B69FE /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = third_party/upscale/models; sourceTree = "<group>"; };
+		B0E1A1C32F900002005B69FE /* cometscaly */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = cometscaly; path = third_party/upscale/cometscaly; sourceTree = "<group>"; };
 		F96E19BF2F58C27F005B69FE /* Comet Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comet Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffmpeg; path = third_party/ffmpeg/universal/ffmpeg; sourceTree = "<group>"; };
 		FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.executable"; name = ffprobe; path = third_party/ffmpeg/universal/ffprobe; sourceTree = "<group>"; };
@@ -79,7 +108,8 @@
 				0F64DA2CB5A5B9AB3A4B9D3B /* Frameworks */,
 				FF001A1B3C4D5E6F7A8B9C0D /* ffmpeg */,
 				FF002A1B3C4D5E6F7A8B9C0D /* ffprobe */,
-				B0E1A1C12F900001005B69FE /* upscale */,
+				B0E1A1C32F900002005B69FE /* cometscaly */,
+				B0E1A1C12F900001005B69FE /* models */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +131,9 @@
 				F96E19BB2F58C27F005B69FE /* Sources */,
 				F96E19BC2F58C27F005B69FE /* Frameworks */,
 				F96E19BD2F58C27F005B69FE /* Resources */,
-				F9BC311D2F783F1A00C8054C /* ShellScript */,
+				F9BC311E2F783F1B00C8054C /* Copy bundled helpers */,
+				B0E1A1C52F900003005B69FE /* Copy upscale models */,
+				F9BC311D2F783F1A00C8054C /* Sign bundled helpers */,
 			);
 			buildRules = (
 			);
@@ -201,6 +233,28 @@
 				th,
 				ms,
 				he,
+				ar,
+				fa,
+				sw,
+				fil,
+				ca,
+				gl,
+				eu,
+				ga,
+				cy,
+				be,
+				mn,
+				ne,
+				si,
+				ta,
+				te,
+				ml,
+				pa,
+				km,
+				lo,
+				my,
+				am,
+				af,
 			);
 			mainGroup = F96E19B62F58C27F005B69FE;
 			minimizedProjectReferenceProxies = 1;
@@ -219,16 +273,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF001A2B3C4D5E6F7A8B9C0D /* ffmpeg in Resources */,
-				FF002A2B3C4D5E6F7A8B9C0D /* ffprobe in Resources */,
-				B0E1A1C22F900001005B69FE /* upscale in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F9BC311D2F783F1A00C8054C /* ShellScript */ = {
+		F9BC311D2F783F1A00C8054C /* Sign bundled helpers */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -237,14 +288,18 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/cometeditor/ffmpeg.entitlements",
+				"$(SRCROOT)/scripts/sign_bundled_helpers.sh",
 			);
+			name = "Sign bundled helpers";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "FFMPEG_ENTITLEMENTS=\"${SRCROOT}/cometeditor/ffmpeg.entitlements\"\nfor BINARY in ffmpeg ffprobe upscale/cometscaly; do\n  BINARY_PATH=\"${CODESIGNING_FOLDER_PATH}/Contents/Resources/${BINARY}\"\n  if [ ! -f \"${BINARY_PATH}\" ]; then\n    BINARY_PATH=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/Resources/${BINARY}\"\n  fi\n  if [ -f \"${BINARY_PATH}\" ]; then\n    echo \"Signing: ${BINARY_PATH}\"\n    codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \\\n      --entitlements \"${FFMPEG_ENTITLEMENTS}\" \\\n      --options runtime \\\n      \"${BINARY_PATH}\" || true\n  else\n    echo \"Skipping ${BINARY}: not found\"\n  fi\ndone\nexit 0\n";
+			shellPath = /bin/bash;
+			shellScript = "\"${SRCROOT}/scripts/sign_bundled_helpers.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -293,11 +348,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -314,12 +370,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -357,11 +415,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -372,10 +431,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -388,10 +449,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = cometeditor/cometeditor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -408,6 +470,8 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Comet Editor";
 				INFOPLIST_KEY_CFBundleName = "Comet Editor";
+				INFOPLIST_KEY_CFBundleShortVersionString = 2.0;
+				INFOPLIST_KEY_CFBundleVersion = 11;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -421,7 +485,7 @@
 					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-w",
@@ -456,6 +520,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "cometeditor/cometeditor-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -468,10 +533,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = cometeditor/cometeditor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = BYDB65GJ4M;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -487,6 +553,8 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Comet Editor";
 				INFOPLIST_KEY_CFBundleName = "Comet Editor";
+				INFOPLIST_KEY_CFBundleShortVersionString = 2.0;
+				INFOPLIST_KEY_CFBundleVersion = 11;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,7 +568,7 @@
 					/opt/homebrew/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-w",
@@ -535,6 +603,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "cometeditor/cometeditor-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

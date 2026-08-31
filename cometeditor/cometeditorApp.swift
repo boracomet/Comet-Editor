@@ -17,19 +17,6 @@ struct cometeditorApp: App {
     @StateObject private var windowState = WindowStateObserver()
     @StateObject private var videoProcessor = VideoProcessor()
 
-    init() {
-        // configure sync olarak çalışır — ContentView.task başlamadan baseURL set olur
-        CometAnalytics.shared.configure(
-            apiKey: "4249dd53-7545-42f5-9ee7-2bd8ed209b22",
-            baseURL: "https://app.cometeditor.com"
-        )
-        // Uygulama açılışında aktif kullanıcı + oturum sayacını artır
-        Task {
-            await CometAnalytics.shared.trackSession()
-            await AdManager.shared.checkPurchaseStatus()
-        }
-    }
-
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -49,5 +36,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Pencere kapat butonuna (⌘W veya kırmızı X) basılınca uygulamayı tamamen kapat.
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         true
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        cleanupTempFiles()
+    }
+
+    private func cleanupTempFiles() {
+        let tmp = FileManager.default.temporaryDirectory
+        guard let files = try? FileManager.default.contentsOfDirectory(
+            at: tmp, includingPropertiesForKeys: nil
+        ) else { return }
+        for file in files where file.lastPathComponent.hasPrefix("ve_preview_") || file.lastPathComponent.hasPrefix("ve_thumb_") {
+            try? FileManager.default.removeItem(at: file)
+        }
     }
 }

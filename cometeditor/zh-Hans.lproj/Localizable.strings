@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "拖放图片";
 "convert.drop.subtitle" = "或点击浏览文件";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "宽度 px";
 "convert.settings.height" = "高度 px";
+
 "meta.info" = "元数据保护";
+
 "convert.settings.targetFolder" = "目标文件夹";
 "convert.settings.noFolder" = "未选择";
 "convert.settings.chooseFolder" = "从 Finder 选择";
+
+"folder.missing.title" = "找不到文件夹";
+"folder.missing.subtitle" = "保存的文件夹路径不再存在，请选择新路径。";
+"folder.missing.pick" = "选择新文件夹";
+"folder.missing.panel.message" = "找不到输出文件夹，请选择新文件夹。";
+
+"bgremove.error.noMaskFound" = "未找到前景蒙版。";
+"bgremove.error.maskConversionFailed" = "蒙版转换失败。";
+"bgremove.error.compositeFailed" = "图像合成失败。";
+
 "convert.settings.convertButton" = "转换";
 "convert.clearAll" = "清除全部";
 "convert.addMore" = "添加";
 "convert.wrongType.image" = "此处只能转换图片";
+
+"upscale.settings.title" = "设置";
+"upscale.settings.model" = "模型";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 细节增强";
+"upscale.settings.scale" = "缩放";
+"upscale.scale.multiPassHint" = "8× 和 16× 会运行多轮 AI，耗时更长。";
+"upscale.settings.outputFormat" = "输出格式";
+"upscale.drop.title" = "拖放图像";
+"upscale.drop.subtitle" = "或点击浏览文件";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "此处仅可放大支持的栅格图像";
+"upscale.runButton" = "放大";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "预览";
+"upscale.preview.hint" = "选择缩放比例并轻点“预览”以对比";
+"upscale.preview.processing" = "正在生成预览…";
+"upscale.preview.before" = "前";
+"upscale.preview.after" = "后";
+"upscale.preview.save" = "保存";
+"upscale.preview.saveSettings" = "保存预览";
+"upscale.preview.autoSave" = "预览后保存";
+"upscale.preview.autoSaveHint" = "预览完成后写入目标文件夹。";
+"upscale.preview.saveNeedFolder" = "请先选择目标文件夹。";
+"upscale.preview.saveFailed" = "无法编码预览图像。";
+"upscale.preview.loadFailed" = "无法加载预览图像。";
+"upscale.backend.missing.hint" = "应用包中缺少 cometscaly 引擎或模型文件。请重新构建项目。";
+"upscale.error.bundle" = "应用中缺少 Upscale 资源包文件夹。";
+"upscale.error.binary" = "在应用包中未找到 cometscaly。";
+"upscale.error.model" = "缺少模型文件 upscayl-standard-4x.param/.bin。";
+"upscale.error.process" = "放大失败 (exit %d): %@";
+"upscale.error.none" = "没有放大任何图像。";
+
 "menu.home" = "主页";
 "menu.convertImage" = "图片转换";
 "menu.upscaleImage" = "图像放大";
@@ -28,9 +78,6 @@
 "menu.settings" = "设置";
 "menu.tools" = "工具";
 "menu.document" = "文档";
-"menu.team" = "我们的团队";
-"menu.team.title" = "我们的团队";
-"menu.team.subtitle" = "认识 Comet Editor 背后的优秀人才";
 "menu.stockImage" = "素材图片";
 "menu.qrCode" = "二维码";
 "menu.bgRemove" = "背景移除";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "下载字体";
 "menu.videoConvert" = "视频转换";
 "menu.pdfEdit" = "PDF 编辑";
-"menu.suggestion" = "发送反馈";
-"team.thanks_grafix" = "感谢 Grafix 社区的贡献。";
+
 "alert.success.title" = "成功";
 "alert.error.title" = "错误";
 "alert.ok" = "确定";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "打开文件夹";
 "alert.success.message.image" = "图片已成功保存至 %@。";
 "alert.success.message.video" = "视频已成功保存至 %@。";
+"alert.error.conversion" = "部分图片无法转换。";
+
 "home.welcome" = "欢迎使用 Comet Editor";
 "home.welcome.subtitle" = "你需要的功能尽在一个应用。";
 "home.visitWebsite" = "访问我们的网站";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "平衡质量的 MP4，一站式转换或压缩。";
 "home.quick.pdf.title" = "编辑 PDF";
 "home.quick.pdf.subtitle" = "打开 PDF 编辑器，在同一处重排、压缩或微调。";
+"home.feature.convertImage.desc" = "将图像转换为 PNG、JPG、WebP、HEIF 等格式。";
+"home.feature.videoConvert.desc" = "轻松转换并压缩视频。";
+"home.feature.stockImage.desc" = "浏览并下载高质量免费库存照片。";
+"home.feature.pdfEdit.desc" = "编辑、重排、压缩并管理 PDF 文件。";
+"home.feature.qrCode.desc" = "即时生成并自定义二维码。";
+"home.feature.bgRemove.desc" = "使用 AI 自动去除图像背景。";
+"home.feature.ocr.desc" = "通过光学识别从图像中提取文字。";
+"home.feature.fontDownload.desc" = "在 Mac 上浏览并下载 Google Fonts 字体。";
 "home.preset.pdf.deletePage" = "删除页面";
 "home.preset.pdf.reorder" = "重排页面";
 "home.preset.pdf.optimize" = "优化 PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "在右侧面板选择输出格式（PNG、JPG、WebP、HEIC 等）。";
 "home.guide.convertImage.step3" = "调整质量、缩放或尺寸后转换。";
 "home.guide.convertImage.tip" = "可一次添加多张图片，每个文件使用相同设置单独转换。";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "将视频转换并压缩为 MP4、MOV、AVI 等格式。";
 "home.guide.video.step2" = "选择输出格式（MP4、MOV 等）并调整帧率或分辨率。";
 "home.guide.video.step3" = "开启或关闭音频后点击转换。";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "预览字体并选择需要的样式。";
 "home.guide.font.step3" = "点击下载将字体安装到 Mac。";
 "home.guide.font.tip" = "已安装字体会立即在所有应用中可用。";
-"home.feature.convertImage.desc" = "将图像转换为 PNG、JPG、WebP、HEIF 等格式。";
-"home.feature.videoConvert.desc" = "轻松转换并压缩视频。";
-"home.feature.stockImage.desc" = "浏览并下载高质量免费库存照片。";
-"home.feature.pdfEdit.desc" = "编辑、重排、压缩并管理 PDF 文件。";
-"home.feature.qrCode.desc" = "即时生成并自定义二维码。";
-"home.feature.bgRemove.desc" = "使用 AI 自动去除图像背景。";
-"home.feature.ocr.desc" = "通过光学识别从图像中提取文字。";
-"home.feature.fontDownload.desc" = "在 Mac 上浏览并下载 Google Fonts 字体。";
+
 "video.drop.subtitle" = "或点击浏览视频文件";
 "video.settings.format" = "格式";
 "video.settings.fps" = "帧率限制";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% 尺寸";
 "video.resolution.50" = "50% 尺寸";
 "video.resolution.25" = "25% 尺寸（低质量）";
+
 "pdf.drop.title" = "拖放 PDF";
 "pdf.drop.subtitle" = "或点击浏览 PDF 文件";
 "pdf.page.count" = "%lld 页";
 "pdf.page.info" = "第 %lld 页，共 %lld 页";
 "pdf.estimatedSize" = "预计优化后大小";
+"pdf.quality.modal.title" = "选择优化级别";
+"pdf.quality.modal.subtitle" = "选择压缩文件大小的程度。压缩率越高，文件越小，但会有一定画质损失。";
+"pdf.quality.modal.estimated" = "预计大小";
+"pdf.quality.modal.confirm" = "优化";
+"pdf.quality.modal.cancel" = "取消";
+"pdf.quality.low.title" = "最大压缩";
+"pdf.quality.low.desc" = "文件最小，画质损失明显";
+"pdf.quality.medium.title" = "均衡";
+"pdf.quality.medium.desc" = "大小与画质的良好平衡";
+"pdf.quality.high.title" = "高画质";
+"pdf.quality.high.desc" = "画质损失最小，适度减小文件";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "优化 PDF";
+"pdf.tools.quality" = "质量";
+"pdf.tools.quality.label" = "图像质量";
+"pdf.tools.quality.small" = "更小的文件";
+"pdf.tools.quality.large" = "更好的质量";
+"pdf.tools.quality.lossless" = "无损";
+"pdf.tools.resolution" = "分辨率缩放";
+"pdf.tools.resolution.enable" = "降低分辨率";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK 转换器";
+"pdf.color.enable" = "转换色彩空间";
+"pdf.color.convert" = "转换并保存";
 "pdf.tools.save" = "保存 PDF";
 "pdf.reorder.title" = "页面顺序";
 "pdf.reorder.hint" = "按住 Ctrl 多选，然后拖动以重新排列。";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "在此页面后插入";
 "pdf.addContent.atEnd" = "追加到末尾";
 "pdf.addContent.chooseFile" = "选择文件并插入";
+
 "stock.deselectAll" = "取消全选";
 "stock.download" = "下载所选";
 "stock.download.count" = "下载 %d 张照片";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "在此输入网址或文本...";
 "qr.settings.colors" = "颜色";
 "qr.settings.fgColor" = "前景色";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "分辨率";
 "qr.settings.customSize" = "自定义大小（px）";
 "qr.download" = "下载二维码";
+"qr.settings.type" = "二维码类型";
+"qr.type.website" = "网站";
+"qr.type.wifi" = "无线局域网";
+"qr.type.vcard" = "联系人（vCard）";
+"qr.type.email" = "电子邮件";
+"qr.type.phone" = "电话";
+"qr.wifi.ssid" = "网络名称（SSID）";
+"qr.wifi.password" = "密码";
+"qr.wifi.hidden" = "隐藏网络";
+"qr.wifi.noEncryption" = "无";
+"qr.vcard.firstName" = "名";
+"qr.vcard.lastName" = "姓";
+"qr.vcard.phone" = "电话";
+"qr.vcard.email" = "电子邮件";
+"qr.vcard.company" = "公司";
+"qr.vcard.jobTitle" = "职位";
+"qr.vcard.address" = "地址";
+"qr.vcard.website" = "网站";
+"qr.email.address" = "电子邮箱地址";
+"qr.email.subject" = "主题";
+"qr.email.body" = "正文";
+"qr.phone.number" = "电话号码";
+
 "bgremove.unavailable.title" = "需要 macOS 14";
 "bgremove.unavailable.subtitle" = "背景移除使用 Apple 神经网络引擎技术。\n请更新至 macOS 14 Sonoma 或更高版本。";
 "bgremove.drop.title" = "拖放图片";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "边缘细化";
 "bgremove.settings.feather" = "羽化";
 "bgremove.settings.featherAmount" = "羽化量";
+
 "ocr.drop.title" = "拖放图片";
 "ocr.drop.subtitle" = "或点击浏览文件";
 "ocr.processing" = "正在识别文字...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "清除";
 "ocr.newFile" = "新建文件";
 "ocr.copied" = "已复制！";
+
 "app.comingSoon.title" = "即将推出";
 "app.comingSoon.message" = "此功能即将上线。";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "搜索字体...";
 "font.preview.custom" = "输入文字...";
 "font.inspector.preview" = "预览";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "韩文";
 "font.writing.thai" = "泰文";
 "font.writing.vietnamese" = "越南文";
-
 "font.families.count" = "%d 个字体家族";
 "font.styles.count" = "%d 种样式 · %@";
 "font.noResults" = "未找到字体";
-"suggestion.title" = "发送建议";
-"suggestion.subtitle" = "分享您的想法，帮助我们改进";
-"suggestion.placeholder.title" = "标题";
-"suggestion.placeholder.body" = "详细描述您的建议...";
-"suggestion.category.bug" = "错误";
-"suggestion.category.feature" = "功能请求";
-"suggestion.category.ui" = "界面";
-"suggestion.category.performance" = "性能";
-"suggestion.category.other" = "其他";
-"suggestion.send" = "发送建议";
-"suggestion.sending" = "发送中...";
-"suggestion.sent.title" = "感谢！";
-"suggestion.sent.message" = "您的建议已收到，我们将尽快审查。";
-"suggestion.error" = "发送失败，请重试。";
-"suggestion.validation.title" = "缺少字段";
-"suggestion.validation.body" = "请填写标题和描述。";
-
-"suggestion.label.category" = "分类";
-"suggestion.label.title" = "标题";
-"suggestion.label.description" = "描述";
 
 "video.drop.title" = "将视频拖放到此处";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "此处只能转换视频";
+
 "app.maintenance.title" = "维护模式";
 "app.forceUpdate.title" = "需要更新";
 "app.forceUpdate.button" = "在 App Store 更新";
@@ -283,49 +371,40 @@
 "stock.search.button" = "搜索";
 "stock.search.placeholder" = "搜索照片...";
 "stock.selected" = "已选择 %d";
+
 "video.cancel" = "取消";
 "video.error.decoder" = "无法解码视频。";
 "video.saved.gain" = "已节省";
 "video.saved.increased" = "变大";
 "video.settings.fps.desc" = "禁用以保持原始帧率";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "图片";
 "pdf.tools.pageManagement" = "页面管理";
 "pdf.tools.addContent" = "添加内容";
 "pdf.tools.reorder" = "重新排序";
 "pdf.tools.targetFolder" = "目标文件夹";
-"alert.error.conversion" = "部分图片无法转换。";
-"pdf.color.convert" = "转换并保存";
-"pdf.color.enable" = "转换色彩空间";
-"pdf.color.title" = "RGB/CMYK 转换器";
-"pdf.tools.quality" = "质量";
-"pdf.tools.quality.label" = "图像质量";
-"pdf.tools.quality.large" = "更好的质量";
-"pdf.tools.quality.lossless" = "无损";
-"pdf.tools.resolution" = "分辨率缩放";
-"pdf.tools.resolution.enable" = "降低分辨率";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "更小的文件";
 
 "ad.sponsored" = "广告";
 "ad.visit" = "访问";
 
-"pdf.quality.modal.title" = "选择优化级别";
-"pdf.quality.modal.subtitle" = "选择压缩文件大小的程度。压缩率越高，文件越小，但会有一定画质损失。";
-"pdf.quality.modal.estimated" = "预计大小";
-"pdf.quality.modal.confirm" = "优化";
-"pdf.quality.modal.cancel" = "取消";
-"pdf.quality.low.title" = "最大压缩";
-"pdf.quality.low.desc" = "文件最小，画质损失明显";
-"pdf.quality.medium.title" = "均衡";
-"pdf.quality.medium.desc" = "大小与画质的良好平衡";
-"pdf.quality.high.title" = "高画质";
-"pdf.quality.high.desc" = "画质损失最小，适度减小文件";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "自定义您的 Comet Editor 体验";
+"settings.section.output" = "输出";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "关于";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "默认输出文件夹";
+"settings.noFolderSelected" = "未选择 — 每次都会询问";
+"settings.chooseFolder" = "选择文件夹";
+"settings.clearFolder" = "清除";
+"settings.folderPicker.message" = "选择导出文件的默认文件夹";
+"settings.folderPicker.button" = "选择文件夹";
 
 "app.maintenance.title2" = "维护中";
 "app.maintenance.body" = "应用程序暂时无法使用，我们将尽快恢复。";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "在 App Store 更新";
 "app.quit2" = "退出应用";
 
-"settings.subtitle" = "自定义您的 Comet Editor 体验";
-"settings.section.output" = "输出";
-"settings.section.about" = "关于";
-"settings.defaultOutputFolder" = "默认输出文件夹";
-"settings.noFolderSelected" = "未选择 — 每次都会询问";
-"settings.chooseFolder" = "选择文件夹";
-"settings.clearFolder" = "清除";
-"settings.folderPicker.message" = "选择导出文件的默认文件夹";
-"settings.folderPicker.button" = "选择文件夹";
-"menu.announcements" = "公告";
-"announcements.subtitle" = "来自团队的最新动态";
-"announcements.empty" = "暂无公告";
-
 "settings.pdfOutputFolder" = "PDF 输出文件夹";
 
 "folder.default.prompt.title" = "设为默认文件夹？";
 "folder.default.prompt.body" = "是否将此设为默认输出文件夹？您可以随时在设置中更改。";
 "folder.default.prompt.yes" = "设为默认";
 "folder.default.prompt.no" = "暂不";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "修剪片段、删除不需要的部分，并将多段视频合并为一个。";
-"home.guide.videoedit.preset.concat" = "合并视频";
-"home.guide.videoedit.preset.trim" = "修剪视频";
-"home.guide.videoedit.step1" = "使用 + 按钮或拖放添加一个或多个视频文件。";
-"home.guide.videoedit.step2" = "选择片段后在时间轴上拖动修剪手柄设置起止点。";
-"home.guide.videoedit.step3" = "在列表中拖动片段以设置最终顺序。";
-"home.guide.videoedit.step4" = "选择输出格式与文件夹，然后点击导出。";
-"home.guide.videoedit.tip" = "修剪手柄精确到毫秒，可用播放条预览剪切位置。";
-"menu.videoEdit" = "视频编辑";
-"qr.email.address" = "电子邮箱地址";
-"qr.email.body" = "正文";
-"qr.email.subject" = "主题";
-"qr.phone.number" = "电话号码";
-"qr.settings.type" = "二维码类型";
-"qr.type.email" = "电子邮件";
-"qr.type.phone" = "电话";
-"qr.type.vcard" = "联系人（vCard）";
-"qr.type.website" = "网站";
-"qr.type.wifi" = "无线局域网";
-"qr.vcard.address" = "地址";
-"qr.vcard.company" = "公司";
-"qr.vcard.email" = "电子邮件";
-"qr.vcard.firstName" = "名";
-"qr.vcard.jobTitle" = "职位";
-"qr.vcard.lastName" = "姓";
-"qr.vcard.phone" = "电话";
-"qr.vcard.website" = "网站";
-"qr.wifi.hidden" = "隐藏网络";
-"qr.wifi.noEncryption" = "无";
-"qr.wifi.password" = "密码";
-"qr.wifi.ssid" = "网络名称（SSID）";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "添加照片";
-"videoedit.addMore" = "添加";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "添加视频";
-"videoedit.empty.subtitle" = "将视频文件拖放到此处或点击下方按钮";
-"videoedit.empty.title" = "添加要编辑的视频";
-"videoedit.export.merge" = "合并并导出";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "设置";
-"videoedit.export.trim" = "导出片段";
-"videoedit.exporting" = "正在导出…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "照片时长";
-"videoedit.imageDuration.default" = "新照片的默认值";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "保存到";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "应用";
-"watermark.button" = "添加水印";
-"watermark.cancel" = "取消";
-"watermark.color.black" = "黑色";
-"watermark.color.darkGray" = "深灰色";
-"watermark.color.gray" = "灰色";
-"watermark.color.lightGray" = "浅灰色";
-"watermark.color.none" = "无";
-"watermark.color.white" = "白色";
-"watermark.colorOverlay" = "颜色叠加";
-"watermark.logo" = "标志";
-"watermark.opacity" = "不透明度";
-"watermark.pos.bottomCenter" = "下中";
-"watermark.pos.bottomLeft" = "左下";
-"watermark.pos.bottomRight" = "右下";
-"watermark.pos.center" = "居中";
-"watermark.pos.centerLeft" = "左中";
-"watermark.pos.centerRight" = "右中";
-"watermark.pos.topCenter" = "上中";
-"watermark.pos.topLeft" = "左上";
-"watermark.pos.topRight" = "右上";
-"watermark.position" = "位置";
-"watermark.preview" = "预览";
-"watermark.removeLogo" = "移除";
-"watermark.scale" = "缩放";
-"watermark.selectLogo" = "选择图片";
-"watermark.tileMode" = "平铺模式";
-"watermark.tileMode.desc" = "在图像上重复";
+
 "watermark.title" = "水印";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "添加水印";
+"watermark.logo" = "标志";
+"watermark.selectLogo" = "选择图片";
+"watermark.removeLogo" = "移除";
+"watermark.position" = "位置";
+"watermark.scale" = "缩放";
+"watermark.opacity" = "不透明度";
+"watermark.preview" = "预览";
+"watermark.apply" = "应用";
+"watermark.cancel" = "取消";
+"watermark.pos.topLeft" = "左上";
+"watermark.pos.topCenter" = "上中";
+"watermark.pos.topRight" = "右上";
+"watermark.pos.centerLeft" = "左中";
+"watermark.pos.center" = "居中";
+"watermark.pos.centerRight" = "右中";
+"watermark.pos.bottomLeft" = "左下";
+"watermark.pos.bottomCenter" = "下中";
+"watermark.pos.bottomRight" = "右下";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "颜色叠加";
+"watermark.color.none" = "无";
+"watermark.color.black" = "黑色";
+"watermark.color.darkGray" = "深灰色";
+"watermark.color.gray" = "灰色";
+"watermark.color.lightGray" = "浅灰色";
+"watermark.color.white" = "白色";
+"watermark.tileMode" = "平铺模式";
+"watermark.tileMode.desc" = "在图像上重复";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "设置";
-"upscale.settings.model" = "模型";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — AI 细节增强";
-"upscale.settings.scale" = "缩放";
-"upscale.scale.multiPassHint" = "8× 和 16× 会运行多轮 AI，耗时更长。";
-"upscale.settings.outputFormat" = "输出格式";
-"upscale.drop.title" = "拖放图像";
-"upscale.drop.subtitle" = "或点击浏览文件";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "此处仅可放大支持的栅格图像";
-"upscale.runButton" = "放大";
-"upscale.preview.run" = "预览";
-"upscale.preview.hint" = "选择缩放比例并轻点“预览”以对比";
-"upscale.preview.processing" = "正在生成预览…";
-"upscale.preview.before" = "前";
-"upscale.preview.after" = "后";
-"upscale.preview.save" = "保存";
-"upscale.preview.saveSettings" = "保存预览";
-"upscale.preview.autoSave" = "预览后保存";
-"upscale.preview.autoSaveHint" = "预览完成后写入目标文件夹。";
-"upscale.preview.saveNeedFolder" = "请先选择目标文件夹。";
-"upscale.preview.saveFailed" = "无法编码预览图像。";
-"upscale.preview.loadFailed" = "无法加载预览图像。";
-"upscale.backend.missing.hint" = "应用包中缺少 cometscaly 引擎或模型文件。请重新构建项目。";
-"upscale.error.bundle" = "应用中缺少 Upscale 资源包文件夹。";
-"upscale.error.binary" = "在应用包中未找到 cometscaly。";
-"upscale.error.model" = "缺少模型文件 upscayl-standard-4x.param/.bin。";
-"upscale.error.process" = "放大失败 (exit %d): %@";
-"upscale.error.none" = "没有放大任何图像。";
-"videoedit.resize.modePercent" = "缩放 (%)";
-"videoedit.resize.modeCustom" = "自定义尺寸";
-"videoedit.resize.autoFill" = "自动填充画布";
-"videoedit.resize.autoFillHint" = "开启：较宽素材以黑边适配；较小素材放大并居中裁剪以填满。";
+"inspector.format" = "格式";
+"inspector.output" = "输出";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "添加照片以预览";
+"watermark.rotation" = "旋转";
+"watermark.text" = "标志文字";
+"watermark.text.placeholder" = "输入标志文字";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

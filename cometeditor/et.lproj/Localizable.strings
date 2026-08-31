@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Lohistage pildid siia";
 "convert.drop.subtitle" = "Toetab PNG, JPG, WebP, HEIF ja muid formaate";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Laius";
 "convert.settings.height" = "Kõrgus";
+
 "meta.info" = "Metaandmed säilitatakse";
+
 "convert.settings.targetFolder" = "SIHTKAUSTA";
 "convert.settings.noFolder" = "Kausta pole valitud";
 "convert.settings.chooseFolder" = "Vali kaust";
+
+"folder.missing.title" = "Kausta ei leitud";
+"folder.missing.subtitle" = "Salvestatud kausta tee ei eksisteeri enam. Valige uus.";
+"folder.missing.pick" = "Vali uus kaust";
+"folder.missing.panel.message" = "Väljundkausta ei leitud. Valige uus kaust.";
+
+"bgremove.error.noMaskFound" = "Esiplaani maski ei leitud.";
+"bgremove.error.maskConversionFailed" = "Maski teisendamine ebaõnnestus.";
+"bgremove.error.compositeFailed" = "Pildi koostamine ebaõnnestus.";
+
 "convert.settings.convertButton" = "Teisenda";
 "convert.clearAll" = "Tühjenda kõik";
 "convert.addMore" = "Lisa veel";
 "convert.wrongType.image" = "Siia saab teisendada ainult pilte";
+
+"upscale.settings.title" = "Seaded";
+"upscale.settings.model" = "Mudel";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — tehisintellekti abil detailide parandus";
+"upscale.settings.scale" = "Skaala";
+"upscale.scale.multiPassHint" = "8× ja 16× käivitavad mitu tehisintellekti läbimist — võtab kauem.";
+"upscale.settings.outputFormat" = "Väljundvorming";
+"upscale.drop.title" = "Lohistage pilte siia";
+"upscale.drop.subtitle" = "või klõpsake failide sirvimiseks";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Siin saab suurendada ainult toetatud rasterpilte";
+"upscale.runButton" = "Suurenda";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Eelvaade";
+"upscale.preview.hint" = "Vali skaala ja puuduta võrdlemiseks Eelvaade";
+"upscale.preview.processing" = "Eelvaate loomine…";
+"upscale.preview.before" = "ENNE";
+"upscale.preview.after" = "PÄRAST";
+"upscale.preview.save" = "Salvesta";
+"upscale.preview.saveSettings" = "Salvesta eelvaade";
+"upscale.preview.autoSave" = "Salvesta pärast eelvaadet";
+"upscale.preview.autoSaveHint" = "Kirjutab sihtkausta, kui eelvaade lõpeb.";
+"upscale.preview.saveNeedFolder" = "Vali esmalt sihtkaust.";
+"upscale.preview.saveFailed" = "Eelvaate pilti ei saanud kodeerida.";
+"upscale.preview.loadFailed" = "Eelvaate pilti ei saanud laadida.";
+"upscale.backend.missing.hint" = "cometscaly mootor või mudelifailid puuduvad rakenduse paketis. Ehita projekt uuesti.";
+"upscale.error.bundle" = "Upscale bundle kaust puudub rakenduses.";
+"upscale.error.binary" = "cometscalyd ei leitud rakenduse paketist.";
+"upscale.error.model" = "Mudelifailid upscayl-standard-4x.param/.bin puuduvad.";
+"upscale.error.process" = "Suurendamine ebaõnnestus (exit %d): %@";
+"upscale.error.none" = "Ühtegi pilti ei suurendatud.";
+
 "menu.home" = "Avaleht";
 "menu.convertImage" = "Piltide teisendamine";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Seaded";
 "menu.tools" = "Tööriistad";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Meeskond";
-"menu.team.title" = "Arendas Comet Dev";
-"menu.team.subtitle" = "Loodud armastuse ja tähelepanuga detailidele";
 "menu.stockImage" = "Stock-fotod";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Tausta eemaldamine";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Fondid";
 "menu.videoConvert" = "Video teisendamine";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Saada tagasisidet";
-"team.thanks_grafix" = "Eriline tänu Grafix-ile disaini eest";
+
 "alert.success.title" = "Õnnestus";
 "alert.error.title" = "Viga";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Ava kaust";
 "alert.success.message.image" = "Pilt on salvestatud asukohta %@.";
 "alert.success.message.video" = "Video on salvestatud asukohta %@.";
+"alert.error.conversion" = "Mõningaid pilte ei saanud teisendada.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Toetab MP4, MOV, AVI ja muid formaate";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% originaalist";
 "video.resolution.50" = "50% originaalist";
 "video.resolution.25" = "25% originaalist (Madal kvaliteet)";
+
 "pdf.drop.title" = "Lohistage PDF-fail siia";
 "pdf.drop.subtitle" = "Valige PDF-fail redigeerimiseks";
 "pdf.page.count" = "%lld lehekülge";
 "pdf.page.info" = "Lehekülg %lld / %lld";
 "pdf.estimatedSize" = "Hinnanguline suurus";
+"pdf.quality.modal.title" = "Valige optimeerimise tase";
+"pdf.quality.modal.subtitle" = "Valige, kui palju faili suurust vähendada. Suurem tihendamine tähendab väiksemat faili mõningase kvaliteedi vähenemisega.";
+"pdf.quality.modal.estimated" = "Hinnanguline suurus";
+"pdf.quality.modal.confirm" = "Optimeeri";
+"pdf.quality.modal.cancel" = "Tühista";
+"pdf.quality.low.title" = "Maksimaalne tihendamine";
+"pdf.quality.low.desc" = "Väikseim fail, nähtav kvaliteedi vähenemine";
+"pdf.quality.medium.title" = "Tasakaalustatud";
+"pdf.quality.medium.desc" = "Hea tasakaal suuruse ja kvaliteedi vahel";
+"pdf.quality.high.title" = "Kõrge kvaliteet";
+"pdf.quality.high.desc" = "Minimaalne kvaliteedi vähenemine, mõõdukas vähendamine";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimeeri PDF";
+"pdf.tools.quality" = "KVALITEET";
+"pdf.tools.quality.label" = "Pildi kvaliteet";
+"pdf.tools.quality.small" = "Väiksem fail";
+"pdf.tools.quality.large" = "Parem kvaliteet";
+"pdf.tools.quality.lossless" = "Kadudeta";
+"pdf.tools.resolution" = "ERALDUSVÕIME SKAALA";
+"pdf.tools.resolution.enable" = "Vähenda eraldusvõimet";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK TEISENDAJA";
+"pdf.color.enable" = "Teisenda värviruum";
+"pdf.color.convert" = "Teisenda ja salvesta";
 "pdf.tools.save" = "Salvesta PDF";
 "pdf.reorder.title" = "Lehekülgede ümberjärjestamine";
 "pdf.reorder.hint" = "Lohistage lehekülgede järjekorra muutmiseks";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Pärast";
 "pdf.addContent.atEnd" = "Lõpus";
 "pdf.addContent.chooseFile" = "Vali fail";
+
 "stock.deselectAll" = "Tühista valik";
 "stock.download" = "Laadi alla";
 "stock.download.count" = "Laadi alla %d fotot";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Sisestage URL või tekst siia...";
 "qr.settings.colors" = "Värvid";
 "qr.settings.fgColor" = "Esaplaani värv";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Eraldusvõime";
 "qr.settings.customSize" = "Kohandatud suurus (px)";
 "qr.download" = "Laadi QR-kood alla";
+"qr.settings.type" = "QR tüüp";
+"qr.type.website" = "Veebileht";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Kontakt (vCard)";
+"qr.type.email" = "E-post";
+"qr.type.phone" = "Telefon";
+"qr.wifi.ssid" = "Võrgu nimi (SSID)";
+"qr.wifi.password" = "Parool";
+"qr.wifi.hidden" = "Peidetud võrk";
+"qr.wifi.noEncryption" = "Puudub";
+"qr.vcard.firstName" = "Eesnimi";
+"qr.vcard.lastName" = "Perekonnanimi";
+"qr.vcard.phone" = "Telefon";
+"qr.vcard.email" = "E-post";
+"qr.vcard.company" = "Ettevõte";
+"qr.vcard.jobTitle" = "Ametinimetus";
+"qr.vcard.address" = "Aadress";
+"qr.vcard.website" = "Veebileht";
+"qr.email.address" = "E-posti aadress";
+"qr.email.subject" = "Teema";
+"qr.email.body" = "Sõnum";
+"qr.phone.number" = "Telefoninumber";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "See funktsioon nõuab macOS 14 või uuemat versiooni";
 "bgremove.drop.title" = "Lohistage pildid siia";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Servade pehmendamine";
 "bgremove.settings.featherAmount" = "Pehmenduse aste";
+
 "ocr.drop.title" = "Lohistage pilt siia";
 "ocr.drop.subtitle" = "Toetab PNG, JPG ja WebP";
 "ocr.processing" = "Teksti tuvastamine...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Tühjenda";
 "ocr.newFile" = "Uus fail";
 "ocr.copied" = "Kopeeritud!";
+
 "app.comingSoon.title" = "Peagi";
 "app.comingSoon.message" = "See funktsioon on arendamisel ja on peagi saadaval.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Otsi fonte...";
 "font.preview.custom" = "Kohandatud eelvaade";
 "font.inspector.preview" = "EELVAADE";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d perekondi";
 "font.styles.count" = "%d stiili · %@";
 "font.noResults" = "Fonte ei leitud";
-"suggestion.title" = "Saada ettepanek";
-"suggestion.subtitle" = "Jaga oma ideid ja aita meil areneda";
-"suggestion.placeholder.title" = "Pealkiri";
-"suggestion.placeholder.body" = "Kirjelda oma ettepanekut üksikasjalikult...";
-"suggestion.category.bug" = "Viga";
-"suggestion.category.feature" = "Funktsiooni taotlus";
-"suggestion.category.ui" = "Liides";
-"suggestion.category.performance" = "Jõudlus";
-"suggestion.category.other" = "Muu";
-"suggestion.send" = "Saada ettepanek";
-"suggestion.sending" = "Saatmine...";
-"suggestion.sent.title" = "Täname!";
-"suggestion.sent.message" = "Teie ettepanek on vastu võetud. Vaatame selle peagi üle.";
-"suggestion.error" = "Saatmine ebaõnnestus. Proovige uuesti.";
-"suggestion.validation.title" = "Puuduvad väljad";
-"suggestion.validation.body" = "Täitke pealkiri ja kirjeldus.";
-
-"suggestion.label.category" = "Kategooria";
-"suggestion.label.title" = "Pealkiri";
-"suggestion.label.description" = "Kirjeldus";
 
 "video.drop.title" = "Lohistage video siia";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Siia saab teisendada ainult videoid";
+
 "app.maintenance.title" = "Hooldustalituse režiim";
 "app.forceUpdate.title" = "Nõutav uuendus";
 "app.forceUpdate.button" = "Uuenda App Store'is";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Otsi";
 "stock.search.placeholder" = "Otsi pilte...";
 "stock.selected" = "%d valitud";
+
 "video.cancel" = "Tühista";
 "video.error.decoder" = "Videot ei saanud dekodeerida.";
 "video.saved.gain" = "säästetud";
 "video.saved.increased" = "suurem";
 "video.settings.fps.desc" = "Keelake originaalse FPS säilitamiseks";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Pilt";
 "pdf.tools.pageManagement" = "LEHTEDE HALDAMINE";
 "pdf.tools.addContent" = "Lisa sisu";
 "pdf.tools.reorder" = "Järjesta ümber";
 "pdf.tools.targetFolder" = "SIHTKAUST";
-"alert.error.conversion" = "Mõningaid pilte ei saanud teisendada.";
-"pdf.color.convert" = "Teisenda ja salvesta";
-"pdf.color.enable" = "Teisenda värviruum";
-"pdf.color.title" = "RGB/CMYK TEISENDAJA";
-"pdf.tools.quality" = "KVALITEET";
-"pdf.tools.quality.label" = "Pildi kvaliteet";
-"pdf.tools.quality.large" = "Parem kvaliteet";
-"pdf.tools.quality.lossless" = "Kadudeta";
-"pdf.tools.resolution" = "ERALDUSVÕIME SKAALA";
-"pdf.tools.resolution.enable" = "Vähenda eraldusvõimet";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Väiksem fail";
 
 "ad.sponsored" = "Sponsoreeritud";
 "ad.visit" = "Külasta";
 
-"pdf.quality.modal.title" = "Valige optimeerimise tase";
-"pdf.quality.modal.subtitle" = "Valige, kui palju faili suurust vähendada. Suurem tihendamine tähendab väiksemat faili mõningase kvaliteedi vähenemisega.";
-"pdf.quality.modal.estimated" = "Hinnanguline suurus";
-"pdf.quality.modal.confirm" = "Optimeeri";
-"pdf.quality.modal.cancel" = "Tühista";
-"pdf.quality.low.title" = "Maksimaalne tihendamine";
-"pdf.quality.low.desc" = "Väikseim fail, nähtav kvaliteedi vähenemine";
-"pdf.quality.medium.title" = "Tasakaalustatud";
-"pdf.quality.medium.desc" = "Hea tasakaal suuruse ja kvaliteedi vahel";
-"pdf.quality.high.title" = "Kõrge kvaliteet";
-"pdf.quality.high.desc" = "Minimaalne kvaliteedi vähenemine, mõõdukas vähendamine";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Kohandage oma Comet Editori kogemust";
+"settings.section.output" = "VÄLJUND";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Vaikimisi väljundkaust";
+"settings.noFolderSelected" = "Pole valitud — küsitakse iga kord";
+"settings.chooseFolder" = "Vali kaust";
+"settings.clearFolder" = "Tühjenda";
+"settings.folderPicker.message" = "Valige eksporditud failide jaoks vaikekaust";
+"settings.folderPicker.button" = "Vali kaust";
 
 "app.maintenance.title2" = "Hooldus käib";
 "app.maintenance.body" = "Rakendus pole ajutiselt saadaval. Tuleme varsti tagasi.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Uuenda App Store'is";
 "app.quit2" = "Sulge rakendus";
 
-"settings.subtitle" = "Kohandage oma Comet Editori kogemust";
-"settings.section.output" = "VÄLJUND";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Vaikimisi väljundkaust";
-"settings.noFolderSelected" = "Pole valitud — küsitakse iga kord";
-"settings.chooseFolder" = "Vali kaust";
-"settings.clearFolder" = "Tühjenda";
-"settings.folderPicker.message" = "Valige eksporditud failide jaoks vaikekaust";
-"settings.folderPicker.button" = "Vali kaust";
-"menu.announcements" = "Teated";
-"announcements.subtitle" = "Meeskonna viimased uudised ja uuendused";
-"announcements.empty" = "Teateid pole veel";
-
 "settings.pdfOutputFolder" = "PDF väljundkaust";
 
 "folder.default.prompt.title" = "Määra vaikimisi kaustaks?";
 "folder.default.prompt.body" = "Kas soovite selle määrata oma vaikimisi väljundkaustaks? Saate seda igal ajal Seadetes muuta.";
 "folder.default.prompt.yes" = "Määra vaikimisi";
 "folder.default.prompt.no" = "Mitte praegu";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Videotöötlus";
-"qr.email.address" = "E-posti aadress";
-"qr.email.body" = "Sõnum";
-"qr.email.subject" = "Teema";
-"qr.phone.number" = "Telefoninumber";
-"qr.settings.type" = "QR tüüp";
-"qr.type.email" = "E-post";
-"qr.type.phone" = "Telefon";
-"qr.type.vcard" = "Kontakt (vCard)";
-"qr.type.website" = "Veebileht";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Aadress";
-"qr.vcard.company" = "Ettevõte";
-"qr.vcard.email" = "E-post";
-"qr.vcard.firstName" = "Eesnimi";
-"qr.vcard.jobTitle" = "Ametinimetus";
-"qr.vcard.lastName" = "Perekonnanimi";
-"qr.vcard.phone" = "Telefon";
-"qr.vcard.website" = "Veebileht";
-"qr.wifi.hidden" = "Peidetud võrk";
-"qr.wifi.noEncryption" = "Puudub";
-"qr.wifi.password" = "Parool";
-"qr.wifi.ssid" = "Võrgu nimi (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Lisa foto";
-"videoedit.addMore" = "Lisa";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Lisa videoid";
-"videoedit.empty.subtitle" = "Lohista videofailid siia või klõpsa all olevat nuppu";
-"videoedit.empty.title" = "Lisa muudetavaid videoid";
-"videoedit.export.merge" = "Ühenda ja ekspordi";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Seaded";
-"videoedit.export.trim" = "Ekspordi klipp";
-"videoedit.exporting" = "Eksportimine…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "FOTO KESTUS";
-"videoedit.imageDuration.default" = "Vaikimisi uutele fotodele";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "SALVESTA ASUKOHTA";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Rakenda";
-"watermark.button" = "Lisa vesimärk";
-"watermark.cancel" = "Tühista";
-"watermark.color.black" = "Must";
-"watermark.color.darkGray" = "Tumehall";
-"watermark.color.gray" = "Hall";
-"watermark.color.lightGray" = "Helehall";
-"watermark.color.none" = "Puudub";
-"watermark.color.white" = "Valge";
-"watermark.colorOverlay" = "Värvikate";
-"watermark.logo" = "Logo";
-"watermark.opacity" = "Läbipaistmatus";
-"watermark.pos.bottomCenter" = "All keskel";
-"watermark.pos.bottomLeft" = "All vasakul";
-"watermark.pos.bottomRight" = "All paremal";
-"watermark.pos.center" = "Keskel";
-"watermark.pos.centerLeft" = "Keskel vasakul";
-"watermark.pos.centerRight" = "Keskel paremal";
-"watermark.pos.topCenter" = "Üleval keskel";
-"watermark.pos.topLeft" = "Üleval vasakul";
-"watermark.pos.topRight" = "Üleval paremal";
-"watermark.position" = "Asukoht";
-"watermark.preview" = "Eelvaade";
-"watermark.removeLogo" = "Eemalda";
-"watermark.scale" = "Mõõtkava";
-"watermark.selectLogo" = "Vali pilt";
-"watermark.tileMode" = "Paanrežiim";
-"watermark.tileMode.desc" = "Korda üle pildi";
+
 "watermark.title" = "Vesimärk";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Lisa vesimärk";
+"watermark.logo" = "Logo";
+"watermark.selectLogo" = "Vali pilt";
+"watermark.removeLogo" = "Eemalda";
+"watermark.position" = "Asukoht";
+"watermark.scale" = "Mõõtkava";
+"watermark.opacity" = "Läbipaistmatus";
+"watermark.preview" = "Eelvaade";
+"watermark.apply" = "Rakenda";
+"watermark.cancel" = "Tühista";
+"watermark.pos.topLeft" = "Üleval vasakul";
+"watermark.pos.topCenter" = "Üleval keskel";
+"watermark.pos.topRight" = "Üleval paremal";
+"watermark.pos.centerLeft" = "Keskel vasakul";
+"watermark.pos.center" = "Keskel";
+"watermark.pos.centerRight" = "Keskel paremal";
+"watermark.pos.bottomLeft" = "All vasakul";
+"watermark.pos.bottomCenter" = "All keskel";
+"watermark.pos.bottomRight" = "All paremal";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,53 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Värvikate";
+"watermark.color.none" = "Puudub";
+"watermark.color.black" = "Must";
+"watermark.color.darkGray" = "Tumehall";
+"watermark.color.gray" = "Hall";
+"watermark.color.lightGray" = "Helehall";
+"watermark.color.white" = "Valge";
+"watermark.tileMode" = "Paanrežiim";
+"watermark.tileMode.desc" = "Korda üle pildi";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Seaded";
-"upscale.settings.model" = "Mudel";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — tehisintellekti abil detailide parandus";
-"upscale.settings.scale" = "Skaala";
-"upscale.scale.multiPassHint" = "8× ja 16× käivitavad mitu tehisintellekti läbimist — võtab kauem.";
-"upscale.settings.outputFormat" = "Väljundvorming";
-"upscale.drop.title" = "Lohistage pilte siia";
-"upscale.drop.subtitle" = "või klõpsake failide sirvimiseks";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Siin saab suurendada ainult toetatud rasterpilte";
-"upscale.runButton" = "Suurenda";
-"upscale.preview.run" = "Eelvaade";
-"upscale.preview.hint" = "Vali skaala ja puuduta võrdlemiseks Eelvaade";
-"upscale.preview.processing" = "Eelvaate loomine…";
-"upscale.preview.before" = "ENNE";
-"upscale.preview.after" = "PÄRAST";
-"upscale.preview.save" = "Salvesta";
-"upscale.preview.saveSettings" = "Salvesta eelvaade";
-"upscale.preview.autoSave" = "Salvesta pärast eelvaadet";
-"upscale.preview.autoSaveHint" = "Kirjutab sihtkausta, kui eelvaade lõpeb.";
-"upscale.preview.saveNeedFolder" = "Vali esmalt sihtkaust.";
-"upscale.preview.saveFailed" = "Eelvaate pilti ei saanud kodeerida.";
-"upscale.preview.loadFailed" = "Eelvaate pilti ei saanud laadida.";
-"upscale.backend.missing.hint" = "cometscaly mootor või mudelifailid puuduvad rakenduse paketis. Ehita projekt uuesti.";
-"upscale.error.bundle" = "Upscale bundle kaust puudub rakenduses.";
-"upscale.error.binary" = "cometscalyd ei leitud rakenduse paketist.";
-"upscale.error.model" = "Mudelifailid upscayl-standard-4x.param/.bin puuduvad.";
-"upscale.error.process" = "Suurendamine ebaõnnestus (exit %d): %@";
-"upscale.error.none" = "Ühtegi pilti ei suurendatud.";
-"videoedit.resize.modePercent" = "Skaala (%)";
-"videoedit.resize.modeCustom" = "Kohandatud suurus";
-"videoedit.resize.autoFill" = "Täida lõuend automaatselt";
-"videoedit.resize.autoFillHint" = "Sees: lai materjal sobitub letterboxiga; väiksem suurendatakse ja kärbitakse keskele.";
+"inspector.format" = "Vorming";
+"inspector.output" = "Väljund";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Lisa eelvaateks foto";
+"watermark.rotation" = "Pööramine";
+"watermark.text" = "Logo tekst";
+"watermark.text.placeholder" = "Sisestage logo tekst";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

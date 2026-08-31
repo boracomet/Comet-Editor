@@ -280,7 +280,6 @@ struct OCRView: View {
         switch result {
         case .success(let lines):
             appState.ocrRecognizedText = lines.joined(separator: "\n")
-            CometAnalytics.shared.trackEvent(page: "ocr", eventType: .ocrUsed)
         case .failure(let error):
             appState.ocrRecognizedText = error.localizedDescription
         }

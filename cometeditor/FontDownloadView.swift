@@ -71,7 +71,13 @@ enum FontFeeling: String, CaseIterable {
 
 @MainActor
 final class GoogleFontsService: ObservableObject {
-    static let apiKey = "AIzaSyA8dcK5a5Ych9R7zTQ-Np3b8t0q1774hUM"
+    static var apiKey: String {
+        guard let url = Bundle.main.url(forResource: "Secrets", withExtension: "plist"),
+              let dict = NSDictionary(contentsOf: url),
+              let key = dict["GoogleFontsAPIKey"] as? String
+        else { return "" }
+        return key
+    }
     static let baseURL = "https://www.googleapis.com/webfonts/v1/webfonts"
 
     @Published var fonts: [GoogleFont] = []
@@ -93,7 +99,14 @@ final class GoogleFontsService: ObservableObject {
         case .alphaDesc:  sortParam = "alpha"
         }
 
-        guard let url = URL(string: "\(Self.baseURL)?key=\(Self.apiKey)&sort=\(sortParam)") else {
+        let apiKey = Self.apiKey
+        guard !apiKey.isEmpty else {
+            errorMessage = "Google Fonts API key missing"
+            isLoading = false
+            return
+        }
+
+        guard let url = URL(string: "\(Self.baseURL)?key=\(apiKey)&sort=\(sortParam)") else {
             errorMessage = "Invalid URL"
             isLoading = false
             return
@@ -376,19 +389,6 @@ struct FontDownloadView: View {
     private var rightInspector: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-
-                // Header
-                HStack {
-                    Text(languageManager.string("convert.settings.title"))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(Color.primary)
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .frame(height: 52)
-
-                Divider()
-
                 // Preview settings
                 inspectorSection("font.inspector.preview") {
                     VStack(alignment: .leading, spacing: 10) {
@@ -412,8 +412,6 @@ struct FontDownloadView: View {
                     }
                 }
 
-                Divider()
-
                 // Feeling Filter
                 inspectorSection("font.inspector.feeling") {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
@@ -430,8 +428,6 @@ struct FontDownloadView: View {
                     }
                 }
 
-                Divider()
-
                 // Language / Writing System
                 inspectorSection("font.inspector.language") {
                     Picker("", selection: $selectedWritingSystem) {
@@ -441,13 +437,13 @@ struct FontDownloadView: View {
                     }
                     .pickerStyle(.menu)
                     .frame(maxWidth: .infinity)
-                    .padding(.horizontal, -16)
                 }
 
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 16)
         }
-        .background(Material.bar)
+        .inspectorPanelChrome()
     }
 
     // MARK: - Helpers
@@ -497,11 +493,6 @@ struct FontDownloadView: View {
                 try data.write(to: destURL)
                 downloadingFonts.remove(font.id)
                 downloadedFonts.insert(font.id)
-                CometAnalytics.shared.trackEvent(
-                    page: "fontDownload",
-                    eventType: .fontDownloaded,
-                    metadata: ["family": font.family]
-                )
             } catch {
                 downloadingFonts.remove(font.id)
             }

@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Քաշեք նկարները այստեղ";
 "convert.drop.subtitle" = "Աջակցում է PNG, JPG, WebP, HEIF և այլ ձևաչափեր";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Լայնություն";
 "convert.settings.height" = "Բարձրություն";
+
 "meta.info" = "Մետատվյալները կպահպանվեն";
+
 "convert.settings.targetFolder" = "ԹԻՐԱԽ ԹՂԹԱՊԱՆԱԿ";
 "convert.settings.noFolder" = "Թղթապանակ չի ընտրվել";
 "convert.settings.chooseFolder" = "Ընտրել թղթապանակ";
+
+"folder.missing.title" = "Թղթապանակը չի գտնվել";
+"folder.missing.subtitle" = "Պահված թղթապանակի ուղին այլևս գոյություն չունի: Ընտրեք նոր:";
+"folder.missing.pick" = "Ընտրել նոր թղթապանակ";
+"folder.missing.panel.message" = "Ելքի թղթապանակը չի գտնվել։ Ընտրեք նոր թղթապանակ:";
+
+"bgremove.error.noMaskFound" = "Առջևի պլանի դիմակ չի գտնվել։";
+"bgremove.error.maskConversionFailed" = "Դիմակի վերափոխումը ձախողվեց։";
+"bgremove.error.compositeFailed" = "Պատկերի հավաքումը ձախողվեց։";
+
 "convert.settings.convertButton" = "Փոխակերպել";
 "convert.clearAll" = "Մաքրել ամեն ինչ";
 "convert.addMore" = "Ավելացնել ևս";
 "convert.wrongType.image" = "Այստեղ կարող եք փոխակերպել միայն պատկերներ";
+
+"upscale.settings.title" = "Կարգավորումներ";
+"upscale.settings.model" = "Մոդել";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — մանրամասների բարելավում AI-ով";
+"upscale.settings.scale" = "Մասշտաբ";
+"upscale.scale.multiPassHint" = "8× և 16×-ը կատարում են մի քանի AI անցումներ — ավելի երկար է տևում:";
+"upscale.settings.outputFormat" = "Ելքի ձևաչափ";
+"upscale.drop.title" = "Քաշեք և գցեք պատկերներ";
+"upscale.drop.subtitle" = "կամ սեղմեք ֆայլերը դիտելու համար";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Այստեղ կարելի է մեծացնել միայն աջակցվող ռաստեր պատկերները";
+"upscale.runButton" = "Մեծացնել";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Նախադիտում";
+"upscale.preview.hint" = "Ընտրեք մասշտաբը և հպեք Նախադիտում համեմատելու համար";
+"upscale.preview.processing" = "Ստեղծվում է նախադիտում…";
+"upscale.preview.before" = "ՆԱԽՈՐԴ";
+"upscale.preview.after" = "ՀԵՏՈ";
+"upscale.preview.save" = "Պահել";
+"upscale.preview.saveSettings" = "Պահել նախադիտումը";
+"upscale.preview.autoSave" = "Պահել նախադիտումից հետո";
+"upscale.preview.autoSaveHint" = "Գրում է նպատակային թղթապանակում, երբ նախադիտումն ավարտվում է:";
+"upscale.preview.saveNeedFolder" = "Նախ ընտրեք նպատակային թղթապանակ:";
+"upscale.preview.saveFailed" = "Չհաջողվեց կոդավորել նախադիտման պատկերը:";
+"upscale.preview.loadFailed" = "Չհաջողվեց բեռնել նախադիտման պատկերը:";
+"upscale.backend.missing.hint" = "Դիմումի փաթեթում բացակայում է cometscaly շարժիչը կամ մոդելի ֆայլերը: Վերակառուցեք նախագիծը:";
+"upscale.error.bundle" = "Դիմումում բացակայում է Upscale bundle թղթապանակը:";
+"upscale.error.binary" = "cometscaly-ը չի գտնվել դիմումի փաթեթում:";
+"upscale.error.model" = "Բացակայում են upscayl-standard-4x.param/.bin մոդելի ֆայլերը:";
+"upscale.error.process" = "Մեծացումը ձախողվեց (exit %d): %@";
+"upscale.error.none" = "Ոչ մի պատկեր չի մեծացվել:";
+
 "menu.home" = "Գլխավոր";
 "menu.convertImage" = "Նկարների փոխակերպում";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Կարգավորումներ";
 "menu.tools" = "Գործիքներ";
 "menu.document" = "DOCUMENT";
-"menu.team" = "Khaghakain";
-"menu.team.title" = "Մշակված Comet Dev-ի կողմից";
-"menu.team.subtitle" = "Ստեղծված սիրով և ուշադրությամբ դետալների նկատմամբ";
 "menu.stockImage" = "Stock nkerner";
 "menu.qrCode" = "QR Code";
 "menu.bgRemove" = "Bagemi handel";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Taqaṙner";
 "menu.videoConvert" = "Տեսանյութի փոխակերպում";
 "menu.pdfEdit" = "PDF Edit";
-"menu.suggestion" = "Կարծիք ուղարկել";
-"team.thanks_grafix" = "Հատուկ շնորհակalություն Grafix-ին դիզայնի համար";
+
 "alert.success.title" = "Հaջolweak";
 "alert.error.title" = "Sphelt";
 "alert.ok" = "OK";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Bačap թetkap";
 "alert.success.message.image" = "Nkarš paxpanvel e %@-ow.";
 "alert.success.message.video" = "Tesanywth paxpanvel e %@-ow.";
+"alert.error.conversion" = "Որոշ պատկերներ չհաջողվեց փոխարկել.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "Աջակcum է MP4, MOV, AVI և այlն ձevacharformat";
 "video.settings.format" = "FORMAT";
 "video.settings.fps" = "FPS LIMIT";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "Bnorjnaki 75%";
 "video.resolution.50" = "Bnorjnaki 50%";
 "video.resolution.25" = "Bnorjnaki 25% (Tsaph orak)";
+
 "pdf.drop.title" = "Qasheet PDF fayl baysi";
 "pdf.drop.subtitle" = "Knteret PDF fayl khet anelu hamar";
 "pdf.page.count" = "%lld ejher";
 "pdf.page.info" = "Ej %lld / %lld";
 "pdf.estimatedSize" = "Kanknorvats charshaj";
+"pdf.quality.modal.title" = "Ընտրեք օպտիմիզացիայի մակարդակ";
+"pdf.quality.modal.subtitle" = "Ընտրեք, թե որքան կրճատել ֆայլի չափը: Ավելի բարձր սեղմումը նշանակում է փոքր ֆայլ՝ որոշ որակի կորստով:";
+"pdf.quality.modal.estimated" = "Գնահատված չափ";
+"pdf.quality.modal.confirm" = "Օպտիմիզացնել";
+"pdf.quality.modal.cancel" = "Չեղարկել";
+"pdf.quality.low.title" = "Առավելագույն սեղմում";
+"pdf.quality.low.desc" = "Ամենափոքր ֆայլ, տեսանելի որակի կորուստ";
+"pdf.quality.medium.title" = "Հավասարակշռված";
+"pdf.quality.medium.desc" = "Չափի և որակի լավ հավասարակշռություն";
+"pdf.quality.high.title" = "Բարձր որակ";
+"pdf.quality.high.desc" = "Նվազագույն որակի կորուստ, չափավոր կրճատում";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Optimalatsnel PDF";
+"pdf.tools.quality" = "ՈՐԱԿ";
+"pdf.tools.quality.label" = "Պատկերի որակ";
+"pdf.tools.quality.small" = "Փոքր ֆայլ";
+"pdf.tools.quality.large" = "Ավելի լավ որակ";
+"pdf.tools.quality.lossless" = "Անկորուստ";
+"pdf.tools.resolution" = "ԲԱՆԱՁԵՎԻ ՍԱՆԴՂԱԿ";
+"pdf.tools.resolution.enable" = "Նվազեցնել բանաձևը";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK ՓՈԽԱՐԿԻՉ";
+"pdf.color.enable" = "Փոխարկել գույնի տարածությունը";
+"pdf.color.convert" = "Փոխարկել և պահպանել";
 "pdf.tools.save" = "Pahpanel PDF";
 "pdf.reorder.title" = "Ejeri vershentshum";
 "pdf.reorder.hint" = "Qasheet ejeri hashvapaxel hamar";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Heto";
 "pdf.addContent.atEnd" = "Verji";
 "pdf.addContent.chooseFile" = "Entrel fayl";
+
 "stock.deselectAll" = "Handel ambogy";
 "stock.download" = "Berchat";
 "stock.download.count" = "Berchat %d nkerner";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Մուտքագրեք URL կամ տեքստ այստեղ...";
 "qr.settings.colors" = "Գույներ";
 "qr.settings.fgColor" = "Առաջին պլանի գույն";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Բանաչափ";
 "qr.settings.customSize" = "Պատվերով չափ (px)";
 "qr.download" = "Ներբեռնել QR կոդը";
+"qr.settings.type" = "QR տեսակ";
+"qr.type.website" = "Կայք";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Կոնտակտ (vCard)";
+"qr.type.email" = "Էլ. փոստ";
+"qr.type.phone" = "Հեռախոս";
+"qr.wifi.ssid" = "Ցանցի անուն (SSID)";
+"qr.wifi.password" = "Գաղտնաբառ";
+"qr.wifi.hidden" = "Թաքնված ցանց";
+"qr.wifi.noEncryption" = "Ոչ մեկը";
+"qr.vcard.firstName" = "Անուն";
+"qr.vcard.lastName" = "Ազգանուն";
+"qr.vcard.phone" = "Հեռախոս";
+"qr.vcard.email" = "Էլ. փոստ";
+"qr.vcard.company" = "Ընկերություն";
+"qr.vcard.jobTitle" = "Պաշտոն";
+"qr.vcard.address" = "Հասցե";
+"qr.vcard.website" = "Կայք";
+"qr.email.address" = "Էլ. փոստի հասցե";
+"qr.email.subject" = "Թեմա";
+"qr.email.body" = "Հաղորդագրություն";
+"qr.phone.number" = "Հեռախոսահամար";
+
 "bgremove.unavailable.title" = "macOS 14 Required";
 "bgremove.unavailable.subtitle" = "Ays gortsarky paytum e macOS 14 kam aveli nakhkhotovë";
 "bgremove.drop.title" = "Qasheet nkern baysi";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "REFINE EDGES";
 "bgremove.settings.feather" = "Edges smoothing";
 "bgremove.settings.featherAmount" = "Smoothing level";
+
 "ocr.drop.title" = "Qasheet nkary aystegh";
 "ocr.drop.subtitle" = "Ajkakumé PNG, JPG yev WebP";
 "ocr.processing" = "Bnagrutyuny chanadel...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Maqrel";
 "ocr.newFile" = "Nor fayl";
 "ocr.copied" = "Bazatvats!";
+
 "app.comingSoon.title" = "Shulov";
 "app.comingSoon.message" = "Ays gortsarky mshakman mej e yev shulov metachv e linel matesaneli.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Oroner taqaṙner...";
 "font.preview.custom" = "Anjnayin preview";
 "font.inspector.preview" = "PREVIEW";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korece";
 "font.writing.thai" = "Tayca";
 "font.writing.vietnamese" = "Vietnamca";
-
 "font.families.count" = "%d ընտanիք";
 "font.styles.count" = "%d ոnճ · %@";
 "font.noResults" = "Տatanатvaranner chi goradzntvel";
-"suggestion.title" = "Ուղարկել առաջարկ";
-"suggestion.subtitle" = "Կիսվեք ձեր գաղափարներով և օգնեք մեզ բարելավվել";
-"suggestion.placeholder.title" = "Վերնագիր";
-"suggestion.placeholder.body" = "Մանրամասն նկարագրեք ձեր առաջարկը...";
-"suggestion.category.bug" = "Սխալ";
-"suggestion.category.feature" = "Գործառույթի հարցում";
-"suggestion.category.ui" = "Ինտերֆեյս";
-"suggestion.category.performance" = "Կատարողականություն";
-"suggestion.category.other" = "Այլ";
-"suggestion.send" = "Ուղարկել առաջարկ";
-"suggestion.sending" = "Ուղարկվում է...";
-"suggestion.sent.title" = "Շնորհակալություն!";
-"suggestion.sent.message" = "Ձեր առաջարկն ստացվել է: Շուտով կդիտարկենք:";
-"suggestion.error" = "Ուղարկումը ձախողվեց: Խնդրում ենք կրկին փորձել:";
-"suggestion.validation.title" = "Դատարկ դաշտեր";
-"suggestion.validation.body" = "Խնդրում ենք լրացնել վերնագիրը և նկարագրությունը:";
-
-"suggestion.label.category" = "Կատեգoriyа";
-"suggestion.label.title" = "Վերնагир";
-"suggestion.label.description" = "Нкарагрутюн";
 
 "video.drop.title" = "Տեղափոխեք տեսանյութ այստեղ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Այստեղ կարող եք փոխակերպել միայն տեսանյութեր";
+
 "app.maintenance.title" = "Սպասարկման ռեժիմ";
 "app.forceUpdate.title" = "Պահանջվում է թարմացում";
 "app.forceUpdate.button" = "Թարմացրեք App Store-ում";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Որոշ պատկերներ չհաջողվեց փոխարկել.";
-"pdf.color.convert" = "Փոխարկել և պահպանել";
-"pdf.color.enable" = "Փոխարկել գույնի տարածությունը";
-"pdf.color.title" = "RGB/CMYK ՓՈԽԱՐԿԻՉ";
-"pdf.tools.quality" = "ՈՐԱԿ";
-"pdf.tools.quality.label" = "Պատկերի որակ";
-"pdf.tools.quality.large" = "Ավելի լավ որակ";
-"pdf.tools.quality.lossless" = "Անկորուստ";
-"pdf.tools.resolution" = "ԲԱՆԱՁԵՎԻ ՍԱՆԴՂԱԿ";
-"pdf.tools.resolution.enable" = "Նվազեցնել բանաձևը";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Փոքր ֆայլ";
 
 "ad.sponsored" = "Գovазнvор";
 "ad.visit" = "Aнцнvел";
 
-"pdf.quality.modal.title" = "Ընտրեք օպտիմիզացիայի մակարդակ";
-"pdf.quality.modal.subtitle" = "Ընտրեք, թե որքան կրճատել ֆայլի չափը: Ավելի բարձր սեղմումը նշանակում է փոքր ֆայլ՝ որոշ որակի կորստով:";
-"pdf.quality.modal.estimated" = "Գնահատված չափ";
-"pdf.quality.modal.confirm" = "Օպտիմիզացնել";
-"pdf.quality.modal.cancel" = "Չեղարկել";
-"pdf.quality.low.title" = "Առավելագույն սեղմում";
-"pdf.quality.low.desc" = "Ամենափոքր ֆայլ, տեսանելի որակի կորուստ";
-"pdf.quality.medium.title" = "Հավասարակշռված";
-"pdf.quality.medium.desc" = "Չափի և որակի լավ հավասարակշռություն";
-"pdf.quality.high.title" = "Բարձր որակ";
-"pdf.quality.high.desc" = "Նվազագույն որակի կորուստ, չափավոր կրճատում";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Հարմարեցրեք Comet Editor-ի ձեր փորձը";
+"settings.section.output" = "ԵԼՔ";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Ելքի լռելյայն թղթապանակ";
+"settings.noFolderSelected" = "Ընտրված չէ — ամեն անգամ կհարցնի";
+"settings.chooseFolder" = "Ընտրել թղթապանակ";
+"settings.clearFolder" = "Մաքրել";
+"settings.folderPicker.message" = "Ընտրեք լռելյայն թղթապանակ արտահանված ֆայլերի համար";
+"settings.folderPicker.button" = "Ընտրել թղթապանակ";
 
 "app.maintenance.title2" = "Տեխնիկական սպասարկում";
 "app.maintenance.body" = "Հավելվածն ժամանակավոր անհասանելի է: Շուտով կվերադառնանք:";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Թարմացնել App Store-ում";
 "app.quit2" = "Փակել հավելվածը";
 
-"settings.subtitle" = "Հարմարեցրեք Comet Editor-ի ձեր փորձը";
-"settings.section.output" = "ԵԼՔ";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Ելքի լռելյայն թղթապանակ";
-"settings.noFolderSelected" = "Ընտրված չէ — ամեն անգամ կհարցնի";
-"settings.chooseFolder" = "Ընտրել թղթապանակ";
-"settings.clearFolder" = "Մաքրել";
-"settings.folderPicker.message" = "Ընտրեք լռելյայն թղթապանակ արտահանված ֆայլերի համար";
-"settings.folderPicker.button" = "Ընտրել թղթապանակ";
-"menu.announcements" = "Հայտարարություններ";
-"announcements.subtitle" = "Թիմի վերջին նորությունները և թարմացումները";
-"announcements.empty" = "Հայտարարություններ չկան";
-
 "settings.pdfOutputFolder" = "PDF ելքի թղթապանակ";
 
 "folder.default.prompt.title" = "Սահմանե՞լ որպես լռելյայն թղթապանակ";
 "folder.default.prompt.body" = "Ցանկանո՞ւմ եք սահմանել այն որպես լռելյայն ելքային թղթապանակ: Կարող եք փոխել ցանկացած ժամանակ Կարգավորումներում:";
 "folder.default.prompt.yes" = "Սահմանել որպես լռելյայն";
 "folder.default.prompt.no" = "Ոչ հիմա";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Տեսանյութի խմբագրիչ";
-"qr.email.address" = "Էլ. փոստի հասցե";
-"qr.email.body" = "Հաղորդագրություն";
-"qr.email.subject" = "Թեմա";
-"qr.phone.number" = "Հեռախոսահամար";
-"qr.settings.type" = "QR տեսակ";
-"qr.type.email" = "Էլ. փոստ";
-"qr.type.phone" = "Հեռախոս";
-"qr.type.vcard" = "Կոնտակտ (vCard)";
-"qr.type.website" = "Կայք";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Հասցե";
-"qr.vcard.company" = "Ընկերություն";
-"qr.vcard.email" = "Էլ. փոստ";
-"qr.vcard.firstName" = "Անուն";
-"qr.vcard.jobTitle" = "Պաշտոն";
-"qr.vcard.lastName" = "Ազգանուն";
-"qr.vcard.phone" = "Հեռախոս";
-"qr.vcard.website" = "Կայք";
-"qr.wifi.hidden" = "Թաքնված ցանց";
-"qr.wifi.noEncryption" = "Ոչ մեկը";
-"qr.wifi.password" = "Գաղտնաբառ";
-"qr.wifi.ssid" = "Ցանցի անուն (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Ավելացնել լուսանկար";
-"videoedit.addMore" = "Ավելացնել";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Ավելացնել տեսանյութեր";
-"videoedit.empty.subtitle" = "Տեսանյութի ֆայլերը գցեք այստեղ կամ սեղմեք ներքևի կոճակը";
-"videoedit.empty.title" = "Ավելացրեք տեսանյութեր խմբագրելու համար";
-"videoedit.export.merge" = "Միավորել և արտահանել";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Կարգավորումներ";
-"videoedit.export.trim" = "Արտահանել կլիպը";
-"videoedit.exporting" = "Արտահանում…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "ԼՈՒՍԱՆԿԱՐԻ ՏևՈՂՈՒԹՅՈՒՆ";
-"videoedit.imageDuration.default" = "Լռելյայն նոր լուսանկարների համար";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "ՊԱՀԵԼ";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Կիրառել";
-"watermark.button" = "Ավելացնել ջրանիշ";
-"watermark.cancel" = "Չեղարկել";
-"watermark.color.black" = "Սև";
-"watermark.color.darkGray" = "Մուգ մոխրագույն";
-"watermark.color.gray" = "Մոխրագույն";
-"watermark.color.lightGray" = "Բաց մոխրագույն";
-"watermark.color.none" = "Ոչ մեկը";
-"watermark.color.white" = "Սպիտակ";
-"watermark.colorOverlay" = "Գույնի շերտ";
-"watermark.logo" = "Լոգո";
-"watermark.opacity" = "Անթափանություն";
-"watermark.pos.bottomCenter" = "Ներքև կենտրոն";
-"watermark.pos.bottomLeft" = "Ներքև ձախ";
-"watermark.pos.bottomRight" = "Ներքև աջ";
-"watermark.pos.center" = "Կենտրոն";
-"watermark.pos.centerLeft" = "Կենտրոն ձախ";
-"watermark.pos.centerRight" = "Կենտրոն աջ";
-"watermark.pos.topCenter" = "Վերև կենտրոն";
-"watermark.pos.topLeft" = "Վերև ձախ";
-"watermark.pos.topRight" = "Վերև աջ";
-"watermark.position" = "Դիրք";
-"watermark.preview" = "Նախադիտում";
-"watermark.removeLogo" = "Հեռացնել";
-"watermark.scale" = "Մասշտաբ";
-"watermark.selectLogo" = "Ընտրել պատկերը";
-"watermark.tileMode" = "Սալիկների ռեժիմ";
-"watermark.tileMode.desc" = "Կրկնել պատկերի վրա";
+
 "watermark.title" = "Ջրանիշ";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Ավելացնել ջրանիշ";
+"watermark.logo" = "Լոգո";
+"watermark.selectLogo" = "Ընտրել պատկերը";
+"watermark.removeLogo" = "Հեռացնել";
+"watermark.position" = "Դիրք";
+"watermark.scale" = "Մասշտաբ";
+"watermark.opacity" = "Անթափանություն";
+"watermark.preview" = "Նախադիտում";
+"watermark.apply" = "Կիրառել";
+"watermark.cancel" = "Չեղարկել";
+"watermark.pos.topLeft" = "Վերև ձախ";
+"watermark.pos.topCenter" = "Վերև կենտրոն";
+"watermark.pos.topRight" = "Վերև աջ";
+"watermark.pos.centerLeft" = "Կենտրոն ձախ";
+"watermark.pos.center" = "Կենտրոն";
+"watermark.pos.centerRight" = "Կենտրոն աջ";
+"watermark.pos.bottomLeft" = "Ներքև ձախ";
+"watermark.pos.bottomCenter" = "Ներքև կենտրոն";
+"watermark.pos.bottomRight" = "Ներքև աջ";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Գույնի շերտ";
+"watermark.color.none" = "Ոչ մեկը";
+"watermark.color.black" = "Սև";
+"watermark.color.darkGray" = "Մուգ մոխրագույն";
+"watermark.color.gray" = "Մոխրագույն";
+"watermark.color.lightGray" = "Բաց մոխրագույն";
+"watermark.color.white" = "Սպիտակ";
+"watermark.tileMode" = "Սալիկների ռեժիմ";
+"watermark.tileMode.desc" = "Կրկնել պատկերի վրա";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Կարգավորումներ";
-"upscale.settings.model" = "Մոդել";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — մանրամասների բարելավում AI-ով";
-"upscale.settings.scale" = "Մասշտաբ";
-"upscale.scale.multiPassHint" = "8× և 16×-ը կատարում են մի քանի AI անցումներ — ավելի երկար է տևում:";
-"upscale.settings.outputFormat" = "Ելքի ձևաչափ";
-"upscale.drop.title" = "Քաշեք և գցեք պատկերներ";
-"upscale.drop.subtitle" = "կամ սեղմեք ֆայլերը դիտելու համար";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Այստեղ կարելի է մեծացնել միայն աջակցվող ռաստեր պատկերները";
-"upscale.runButton" = "Մեծացնել";
-"upscale.preview.run" = "Նախադիտում";
-"upscale.preview.hint" = "Ընտրեք մասշտաբը և հպեք Նախադիտում համեմատելու համար";
-"upscale.preview.processing" = "Ստեղծվում է նախադիտում…";
-"upscale.preview.before" = "ՆԱԽՈՐԴ";
-"upscale.preview.after" = "ՀԵՏՈ";
-"upscale.preview.save" = "Պահել";
-"upscale.preview.saveSettings" = "Պահել նախադիտումը";
-"upscale.preview.autoSave" = "Պահել նախադիտումից հետո";
-"upscale.preview.autoSaveHint" = "Գրում է նպատակային թղթապանակում, երբ նախադիտումն ավարտվում է:";
-"upscale.preview.saveNeedFolder" = "Նախ ընտրեք նպատակային թղթապանակ:";
-"upscale.preview.saveFailed" = "Չհաջողվեց կոդավորել նախադիտման պատկերը:";
-"upscale.preview.loadFailed" = "Չհաջողվեց բեռնել նախադիտման պատկերը:";
-"upscale.backend.missing.hint" = "Դիմումի փաթեթում բացակայում է cometscaly շարժիչը կամ մոդելի ֆայլերը: Վերակառուցեք նախագիծը:";
-"upscale.error.bundle" = "Դիմումում բացակայում է Upscale bundle թղթապանակը:";
-"upscale.error.binary" = "cometscaly-ը չի գտնվել դիմումի փաթեթում:";
-"upscale.error.model" = "Բացակայում են upscayl-standard-4x.param/.bin մոդելի ֆայլերը:";
-"upscale.error.process" = "Մեծացումը ձախողվեց (exit %d): %@";
-"upscale.error.none" = "Ոչ մի պատկեր չի մեծացվել:";
-"videoedit.resize.modePercent" = "Մասշտաբ (%)";
-"videoedit.resize.modeCustom" = "Պատվերով չափ";
-"videoedit.resize.autoFill" = "Ինքնալրացնել կտավը";
-"videoedit.resize.autoFillHint" = "Միացված՝ լայն նյութը տեղավորվում է letterbox-ով. ավելի փոքրը մեծացվում և կտրվում է կենտրոնում:";
+"inspector.format" = "Ձևաչափ";
+"inspector.output" = "Ելք";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Ավելացրեք լուսանկար նախադիտման համար";
+"watermark.rotation" = "Պտույտ";
+"watermark.text" = "Լոգոյի տեքստ";
+"watermark.text.placeholder" = "Մուտքագրեք լոգոյի տեքստը";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

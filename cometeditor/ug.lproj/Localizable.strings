@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "رەسىمنى سۆرەپ تاشلاڭ";
 "convert.drop.subtitle" = "ياكى ھۆججەتلەرنى كۆرۈش ئۈچۈن بېسىڭ";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "كەڭلىك px";
 "convert.settings.height" = "ئېگىزلىك px";
+
 "meta.info" = "مېتا سانلىق مەلۇمات قوغداش";
+
 "convert.settings.targetFolder" = "نىشان قىسقۇچ";
 "convert.settings.noFolder" = "تاللانمىدى";
 "convert.settings.chooseFolder" = "Finder دىن تاللاڭ";
+
+"folder.missing.title" = "ھۆججەت قىسقۇچ تېپىلمىدى";
+"folder.missing.subtitle" = "ساقلانغان ھۆججەت قىسقۇچ يولى ئەمدى مەۋجۇت ئەمەس. يېڭىسىنى تاللاڭ.";
+"folder.missing.pick" = "يېڭى ھۆججەت قىسقۇچ تاللاش";
+"folder.missing.panel.message" = "چىقىش ھۆججەت قىسقۇچى تېپىلمىدى. يېڭى ھۆججەت قىسقۇچ تاللاڭ.";
+
+"bgremove.error.noMaskFound" = "ئالدىنقى قاتلام چۈمپەردىسى تېپىلمىدى.";
+"bgremove.error.maskConversionFailed" = "چۈمپەردە ئۆزگەرتىش مەغلۇپ بولدى.";
+"bgremove.error.compositeFailed" = "سۈرەت بىرلەشتۈرۈش مەغلۇپ بولدى.";
+
 "convert.settings.convertButton" = "ئايلاندۇرۇش";
 "convert.clearAll" = "ھەممىسىنى تازىلاش";
 "convert.addMore" = "قوشۇش";
 "convert.wrongType.image" = "بۇ يەردە پەقەت رەسىملەرنىلا ئايلاندۇرغىلى بولىدۇ";
+
+"upscale.settings.title" = "تەڭشەكلەر";
+"upscale.settings.model" = "تىزىلما";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — سۈنئىي ئەقلى تەپسىلات ياخشىلاش";
+"upscale.settings.scale" = "ئۆلچەم";
+"upscale.scale.multiPassHint" = "8× ۋە 16× بىر نەچچە AI قېتىم ئىجرا قىلىدۇ — ۋاقىت ئۇزىرەك.";
+"upscale.settings.outputFormat" = "چىقىش فورماتى";
+"upscale.drop.title" = "رەسىملەرنى سۆرەپ قويۇڭ";
+"upscale.drop.subtitle" = "ياكى ھۆججەتلەرنى كۆرۈش ئۈچۈن چېكىڭ";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "بۇ يەردە پەقەت قوللىنىدىغان راستر رەسىملەرنى چوڭايتقىلى بولىدۇ";
+"upscale.runButton" = "چوڭايتىش";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "ئالدىن كۆرۈش";
+"upscale.preview.hint" = "ئۆلچەم تاللاپ سېلىشتۇرۇش ئۈچۈن ئالدىن كۆرۈشنى بېسىڭ";
+"upscale.preview.processing" = "ئالدىن كۆرۈش ھاسىللىنىۋاتىدۇ…";
+"upscale.preview.before" = "ئىلگىرى";
+"upscale.preview.after" = "كېيىن";
+"upscale.preview.save" = "ساقلاش";
+"upscale.preview.saveSettings" = "ئالدىن كۆرۈشنى ساقلاش";
+"upscale.preview.autoSave" = "ئالدىن كۆرۈشتىن كېيىن ساقلاش";
+"upscale.preview.autoSaveHint" = "ئالدىن كۆرۈش تاماملانغاندا نىشان قىسقۇچقا يازىدۇ.";
+"upscale.preview.saveNeedFolder" = "ئاۋۋال نىشان قىسقۇچنى تاللاڭ.";
+"upscale.preview.saveFailed" = "ئالدىن كۆرۈش رەسىمىنى كودلىيالمىدى.";
+"upscale.preview.loadFailed" = "ئالدىن كۆرۈش رەسىمىنى يۈكلىيەلمىدى.";
+"upscale.backend.missing.hint" = "قوللانما بوغچىسىدا cometscaly ماتور ياكى تىزىلما ھۆججەتلىرى يوق. قايتا قۇرۇڭ.";
+"upscale.error.bundle" = "قوللانمىدا Upscale بوغچا قىسقۇچى يوق.";
+"upscale.error.binary" = "قوللانما بوغچىسىدا cometscaly تېپىلمىدى.";
+"upscale.error.model" = "تىزىلما ھۆججەتلىرى upscayl-standard-4x.param/.bin يوق.";
+"upscale.error.process" = "چوڭايتىش مەغلۇپ (exit %d): %@";
+"upscale.error.none" = "ھېچقانداق رەسىم چوڭايتىلمىدى.";
+
 "menu.home" = "باش بەت";
 "menu.convertImage" = "رەسىمنى ئايلاندۇرۇش";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Ayarlar";
 "menu.tools" = "Araçlar";
 "menu.document" = "ھۆججەت";
-"menu.team" = "جەمئىيىتىمىز";
-"menu.team.title" = "جەمئىيىتىمىز";
-"menu.team.subtitle" = "Comet Editor ئارقىسىدىكى ئىقتىدارلىق كىشىلەر بىلەن تونۇشۇڭ";
 "menu.stockImage" = "ستوك رەسىم";
 "menu.qrCode" = "QR كود";
 "menu.bgRemove" = "ئارقا كۆرۈنۈشنى ئۆچۈرگۈچى";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "خەت نۇسخا چۈشۈرۈش";
 "menu.videoConvert" = "ۋىدىيونى ئايلاندۇرۇش";
 "menu.pdfEdit" = "PDF تەھرىرلەش";
-"menu.suggestion" = "پىكىر يوللاش";
-"team.thanks_grafix" = "Grafix جامائىتىگە تۆھپىلىرى ئۈچۈن مىننەتدارلىقىمىزنى بىلدۈرىمىز.";
+
 "alert.success.title" = "مۇۋەپپەقىيەت";
 "alert.error.title" = "خاتالىق";
 "alert.ok" = "ياخشى";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "قىسقۇچنى ئاچىش";
 "alert.success.message.image" = "رەسىملەر مۇۋەپپەقىيەتلىك %@ غا ساقلاندى.";
 "alert.success.message.video" = "ۋىدىيولار مۇۋەپپەقىيەتلىك %@ غا ساقلاندى.";
+"alert.error.conversion" = "بەزى سۈرەتلەرنى ئايلاندۇرغىلى بولمىدى.";
+
 "home.welcome" = "Добро пожаловать в Comet Editor";
 "home.welcome.subtitle" = "Всё необходимое в одном приложении.";
 "home.visitWebsite" = "Посетить наш сайт";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 со сбалансированным качеством — конвертация или сжатие в одном потоке.";
 "home.quick.pdf.title" = "Редактировать PDF";
 "home.quick.pdf.subtitle" = "Откройте редактор PDF — переставляйте страницы, сжимайте и правьте в одном месте.";
+"home.feature.convertImage.desc" = "Конвертируйте изображения в PNG, JPG, WebP, HEIF и другие форматы.";
+"home.feature.videoConvert.desc" = "Конвертируйте и сжимайте видео с лёгкостью.";
+"home.feature.stockImage.desc" = "Просматривайте и загружайте бесплатные качественные стоковые фото.";
+"home.feature.pdfEdit.desc" = "Редактируйте, переставляйте страницы, сжимайте и управляйте PDF.";
+"home.feature.qrCode.desc" = "Создавайте и настраивайте QR-коды мгновенно.";
+"home.feature.bgRemove.desc" = "Удаляйте фоны на изображениях автоматически с помощью ИИ.";
+"home.feature.ocr.desc" = "Извлекайте текст с изображений с помощью оптического распознавания.";
+"home.feature.fontDownload.desc" = "Просматривайте и загружайте шрифты Google Fonts прямо на Mac.";
 "home.preset.pdf.deletePage" = "Удалить страницы";
 "home.preset.pdf.reorder" = "Изменить порядок страниц";
 "home.preset.pdf.optimize" = "Оптимизировать PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Выберите формат вывода (PNG, JPG, WebP, HEIC и т. д.) на правой панели.";
 "home.guide.convertImage.step3" = "Настройте качество, масштаб или размеры — затем конвертируйте.";
 "home.guide.convertImage.tip" = "Можно добавить несколько изображений сразу. Каждый файл конвертируется с теми же настройками.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Конвертируйте и сжимайте видео в MP4, MOV, AVI и другие форматы.";
 "home.guide.video.step2" = "Выберите формат вывода (MP4, MOV…) и настройте FPS или разрешение.";
 "home.guide.video.step3" = "Включите или отключите звук, затем нажмите «Конвертировать».";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Просмотрите образец и выберите нужные начертания.";
 "home.guide.font.step3" = "Нажмите «Загрузить», чтобы установить шрифт на Mac.";
 "home.guide.font.tip" = "Установленные шрифты доступны во всех приложениях сразу.";
-"home.feature.convertImage.desc" = "Конвертируйте изображения в PNG, JPG, WebP, HEIF и другие форматы.";
-"home.feature.videoConvert.desc" = "Конвертируйте и сжимайте видео с лёгкостью.";
-"home.feature.stockImage.desc" = "Просматривайте и загружайте бесплатные качественные стоковые фото.";
-"home.feature.pdfEdit.desc" = "Редактируйте, переставляйте страницы, сжимайте и управляйте PDF.";
-"home.feature.qrCode.desc" = "Создавайте и настраивайте QR-коды мгновенно.";
-"home.feature.bgRemove.desc" = "Удаляйте фоны на изображениях автоматически с помощью ИИ.";
-"home.feature.ocr.desc" = "Извлекайте текст с изображений с помощью оптического распознавания.";
-"home.feature.fontDownload.desc" = "Просматривайте и загружайте шрифты Google Fonts прямо на Mac.";
+
 "video.drop.subtitle" = "ياكى ۋىدىيو ھۆججەتلەرنى كۆرۈش ئۈچۈن بېسىڭ";
 "video.settings.format" = "فورمات";
 "video.settings.fps" = "FPS چەكلىمىسى";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% ئۆلچەم";
 "video.resolution.50" = "50% ئۆلچەم";
 "video.resolution.25" = "25% ئۆلچەم (تۆۋەن سۈپەت)";
+
 "pdf.drop.title" = "PDF نى سۆرەپ تاشلاڭ";
 "pdf.drop.subtitle" = "ياكى PDF ھۆججەتلەرنى كۆرۈش ئۈچۈن بېسىڭ";
 "pdf.page.count" = "%lld بەت";
 "pdf.page.info" = "%lld بەتنىڭ %lld";
 "pdf.estimatedSize" = "چاملانغان ئەڭ ئەلۋەرلىك ئۆلچەم";
+"pdf.quality.modal.title" = "ئەڭ ياخشىلاش دەرىجىسىنى تاللاڭ";
+"pdf.quality.modal.subtitle" = "ھۆججەت چوڭلۇقىنى قانچە كىچىكلىتىشنى تاللاڭ. يۇقىرى سىقىش — كىچىكرەك ھۆججەت، ئەمما سۈپەت بىر ئاز پەسىيىدى.";
+"pdf.quality.modal.estimated" = "تەخمىنىي چوڭلۇق";
+"pdf.quality.modal.confirm" = "ئەڭ ياخشىلاشتۇرۇش";
+"pdf.quality.modal.cancel" = "ئەمەلدىن قالدۇرۇش";
+"pdf.quality.low.title" = "ئەڭ يۇقىرى سىقىش";
+"pdf.quality.low.desc" = "ئەڭ كىچىك ھۆججەت، كۆرۈنىدىغان سۈپەت يوقىلىشى";
+"pdf.quality.medium.title" = "تەڭپۇڭلۇق";
+"pdf.quality.medium.desc" = "چوڭلۇق بىلەن سۈپەتنىڭ ياخشى تەڭپۇڭلىقى";
+"pdf.quality.high.title" = "يۇقىرى سۈپەت";
+"pdf.quality.high.desc" = "ئەڭ ئاز سۈپەت يوقىلىشى، ئوتتۇرا كىچىكلىتىش";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "PDF نى ئەڭ ئەلۋەرلىك ھالەتكە كەلتۈرۈش";
+"pdf.tools.quality" = "سۈپەت";
+"pdf.tools.quality.label" = "سۈرەت سۈپىتى";
+"pdf.tools.quality.small" = "كىچىكرەك ھۆججەت";
+"pdf.tools.quality.large" = "ياخشىراق سۈپەت";
+"pdf.tools.quality.lossless" = "يوقاتماستىن";
+"pdf.tools.resolution" = "ئېنىقلىق كۆلىمى";
+"pdf.tools.resolution.enable" = "ئېنىقلىقنى ئازايت";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK ئايلاندۇرغۇچ";
+"pdf.color.enable" = "رەڭ بوشلۇقىنى ئايلاندۇر";
+"pdf.color.convert" = "ئايلاندۇر ۋە ساقلا";
 "pdf.tools.save" = "PDF نى ساقلاش";
 "pdf.reorder.title" = "بەت تەرتىبى";
 "pdf.reorder.hint" = "كۆپ تاللاش ئۈچۈن Ctrl بېسىپ تۇرۇپ، سۆرەڭ.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "بۇ بەتتىن كەينىگە قىستۇرۇش";
 "pdf.addContent.atEnd" = "ئاخىرىغا قوشۇش";
 "pdf.addContent.chooseFile" = "ھۆججەت تاللاپ قىستۇرۇش";
+
 "stock.deselectAll" = "ھەممىسىنى بىكار قىلىش";
 "stock.download" = "تاللانغانلارنى چۈشۈرۈش";
 "stock.download.count" = "%d سۈرەت چۈشۈرۈش";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Введите URL или текст...";
 "qr.settings.colors" = "Цвета";
 "qr.settings.fgColor" = "Цвет переднего плана";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Разрешение";
 "qr.settings.customSize" = "Свой размер (px)";
 "qr.download" = "Скачать QR-код";
+"qr.settings.type" = "Тип QR";
+"qr.type.website" = "Веб-сайт";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Контакт (vCard)";
+"qr.type.email" = "Эл. почта";
+"qr.type.phone" = "Телефон";
+"qr.wifi.ssid" = "Имя сети (SSID)";
+"qr.wifi.password" = "Пароль";
+"qr.wifi.hidden" = "Скрытая сеть";
+"qr.wifi.noEncryption" = "Нет";
+"qr.vcard.firstName" = "Имя";
+"qr.vcard.lastName" = "Фамилия";
+"qr.vcard.phone" = "Телефон";
+"qr.vcard.email" = "Эл. почта";
+"qr.vcard.company" = "Компания";
+"qr.vcard.jobTitle" = "Должность";
+"qr.vcard.address" = "Адрес";
+"qr.vcard.website" = "Веб-сайт";
+"qr.email.address" = "Адрес эл. почты";
+"qr.email.subject" = "Тема";
+"qr.email.body" = "Сообщение";
+"qr.phone.number" = "Номер телефона";
+
 "bgremove.unavailable.title" = "macOS 14 زۆرۈر";
 "bgremove.unavailable.subtitle" = "ئارقا كۆرۈنۈشنى ئۆچۈرگۈچى Apple نىڭ Neural Engine تېخنىكىسىنى ئىشلىتىدۇ.\nmacOS 14 Sonoma ياكى ئۇنىڭدىن كېيىنكىسىگە يەڭىلاڭ.";
 "bgremove.drop.title" = "رەسىمنى سۆرەپ تاشلاڭ";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "چېتىنى يېتىلدۈرۈش";
 "bgremove.settings.feather" = "يۇمشاتما";
 "bgremove.settings.featherAmount" = "يۇمشاتما مىقدارى";
+
 "ocr.drop.title" = "رەسىمنى سۆرەپ تاشلاڭ";
 "ocr.drop.subtitle" = "ياكى ھۆججەتلەرنى كۆرۈش ئۈچۈن بېسىڭ";
 "ocr.processing" = "تېكىست تونۇلۇۋاتىدۇ...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "تازىلاش";
 "ocr.newFile" = "يېڭى ھۆججەت";
 "ocr.copied" = "كۆچۈرۈلدى!";
+
 "app.comingSoon.title" = "يېقىندا";
 "app.comingSoon.message" = "بۇ ئىقتىدار يېقىندا ئىشلىتىشكە بولىدۇ.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Search fonts...";
 "font.preview.custom" = "Type something...";
 "font.inspector.preview" = "Preview";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
-
 "font.families.count" = "%d ئائىلە";
 "font.styles.count" = "%d ئۇسلۇب · %@";
 "font.noResults" = "خەت نۇسخىسى تېپىلمىدى";
-"suggestion.title" = "تەكلىپ يوللاش";
-"suggestion.subtitle" = "ئىدىيەڭىزنى ئورتاقلاشتۇرۇڭ ھەمدە بىزنىڭ ياخشىلىنىشىمىزغا ياردەم بېرىڭ";
-"suggestion.placeholder.title" = "تېما";
-"suggestion.placeholder.body" = "تەكلىپىڭىزنى تەپسىلىي تەسۋىرلەڭ...";
-"suggestion.category.bug" = "خاتالىق";
-"suggestion.category.feature" = "ئىقتىدار ئىلتىماسى";
-"suggestion.category.ui" = "ئارايۈز";
-"suggestion.category.performance" = "ئىقتىدار";
-"suggestion.category.other" = "باشقا";
-"suggestion.send" = "تەكلىپ يوللاش";
-"suggestion.sending" = "يوللىنىۋاتىدۇ...";
-"suggestion.sent.title" = "رەھمەت!";
-"suggestion.sent.message" = "تەكلىپىڭىز قوبۇل قىلىندى. يېقىندا كۆرۈپ چىقىمىز.";
-"suggestion.error" = "يوللاش مەغلۇپ بولدى. قايتا سىناپ بېقىڭ.";
-"suggestion.validation.title" = "بوش ئورۇنلار";
-"suggestion.validation.body" = "تېما ۋە تەسۋىرلەشنى تولدۇرۇڭ.";
-
-"suggestion.label.category" = "تۈر";
-"suggestion.label.title" = "ماۋزۇ";
-"suggestion.label.description" = "چۈشەندۈرۈش";
 
 "video.drop.title" = "بۇ يەرگە ۋىدېئو تاشلاڭ";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "بۇ يەردە پەقەت ۋىدېئولارنىلا ئايلاندۇرغىلى بولىدۇ";
+
 "app.maintenance.title" = "تېخنىكى تەكشۈرۈش ھالىتى";
 "app.forceUpdate.title" = "يېڭىلاش زۆرۈر";
 "app.forceUpdate.button" = "App Store دا يېڭىلاڭ";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "بەزى سۈرەتلەرنى ئايلاندۇرغىلى بولمىدى.";
-"pdf.color.convert" = "ئايلاندۇر ۋە ساقلا";
-"pdf.color.enable" = "رەڭ بوشلۇقىنى ئايلاندۇر";
-"pdf.color.title" = "RGB/CMYK ئايلاندۇرغۇچ";
-"pdf.tools.quality" = "سۈپەت";
-"pdf.tools.quality.label" = "سۈرەت سۈپىتى";
-"pdf.tools.quality.large" = "ياخشىراق سۈپەت";
-"pdf.tools.quality.lossless" = "يوقاتماستىن";
-"pdf.tools.resolution" = "ئېنىقلىق كۆلىمى";
-"pdf.tools.resolution.enable" = "ئېنىقلىقنى ئازايت";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "كىچىكرەك ھۆججەت";
 
 "ad.sponsored" = "ئىلان";
 "ad.visit" = "زىيارەت";
 
-"pdf.quality.modal.title" = "ئەڭ ياخشىلاش دەرىجىسىنى تاللاڭ";
-"pdf.quality.modal.subtitle" = "ھۆججەت چوڭلۇقىنى قانچە كىچىكلىتىشنى تاللاڭ. يۇقىرى سىقىش — كىچىكرەك ھۆججەت، ئەمما سۈپەت بىر ئاز پەسىيىدى.";
-"pdf.quality.modal.estimated" = "تەخمىنىي چوڭلۇق";
-"pdf.quality.modal.confirm" = "ئەڭ ياخشىلاشتۇرۇش";
-"pdf.quality.modal.cancel" = "ئەمەلدىن قالدۇرۇش";
-"pdf.quality.low.title" = "ئەڭ يۇقىرى سىقىش";
-"pdf.quality.low.desc" = "ئەڭ كىچىك ھۆججەت، كۆرۈنىدىغان سۈپەت يوقىلىشى";
-"pdf.quality.medium.title" = "تەڭپۇڭلۇق";
-"pdf.quality.medium.desc" = "چوڭلۇق بىلەن سۈپەتنىڭ ياخشى تەڭپۇڭلىقى";
-"pdf.quality.high.title" = "يۇقىرى سۈپەت";
-"pdf.quality.high.desc" = "ئەڭ ئاز سۈپەت يوقىلىشى، ئوتتۇرا كىچىكلىتىش";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Comet Editor تەجرىبىڭىزنى ماسلاشتۇرۇڭ";
+"settings.section.output" = "چىقىش";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "كۆڭۈلدىكى چىقىش ھۆججەت قىسقۇچى";
+"settings.noFolderSelected" = "تاللانمىدى — قېتىم-قېتىم سورايدۇ";
+"settings.chooseFolder" = "ھۆججەت قىسقۇچ تاللاڭ";
+"settings.clearFolder" = "تازىلاڭ";
+"settings.folderPicker.message" = "چىقىرىلغان ھۆججەتلەر ئۈچۈن كۆڭۈلدىكى ھۆججەت قىسقۇچ تاللاڭ";
+"settings.folderPicker.button" = "ھۆججەت قىسقۇچ تاللاڭ";
 
 "app.maintenance.title2" = "تېخنىكلىق بەت";
 "app.maintenance.body" = "ئەپ ۋاقتىنچە ئىشلىمەيدۇ. كۆپ ئۆتمەي قايتىمىز.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "App Store دا يېڭىلا";
 "app.quit2" = "ئەپنى تاقا";
 
-"settings.subtitle" = "Comet Editor تەجرىبىڭىزنى ماسلاشتۇرۇڭ";
-"settings.section.output" = "چىقىش";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "كۆڭۈلدىكى چىقىش ھۆججەت قىسقۇچى";
-"settings.noFolderSelected" = "تاللانمىدى — قېتىم-قېتىم سورايدۇ";
-"settings.chooseFolder" = "ھۆججەت قىسقۇچ تاللاڭ";
-"settings.clearFolder" = "تازىلاڭ";
-"settings.folderPicker.message" = "چىقىرىلغان ھۆججەتلەر ئۈچۈن كۆڭۈلدىكى ھۆججەت قىسقۇچ تاللاڭ";
-"settings.folderPicker.button" = "ھۆججەت قىسقۇچ تاللاڭ";
-"menu.announcements" = "ئېلانلار";
-"announcements.subtitle" = "تىزىمدىن يېڭى خەۋەر ۋە يېڭىلانمىلار";
-"announcements.empty" = "ھازىرچە ئېلان يوق";
-
 "settings.pdfOutputFolder" = "PDF چىقىش ھۆججەت قىسقۇچى";
 
 "folder.default.prompt.title" = "كۆڭۈلدىكى ھۆججەت قىسقۇچ قىلامسىز؟";
 "folder.default.prompt.body" = "بۇنى كۆڭۈلدىكى چىقىرىش ھۆججەت قىسقۇچى قىلامسىز؟ ئۇنى ئىستىكاملار بۆلىمىدە ھەرقاچان ئۆزگەرتسەڭىز بولىدۇ.";
 "folder.default.prompt.yes" = "كۆڭۈلدىكى قىل";
 "folder.default.prompt.no" = "ھازىر ئەمەس";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Обрезайте клипы, удаляйте лишнее и объединяйте несколько роликов в один.";
-"home.guide.videoedit.preset.concat" = "Объединить видео";
-"home.guide.videoedit.preset.trim" = "Обрезать видео";
-"home.guide.videoedit.step1" = "Добавьте один или несколько файлов кнопкой «+» или перетаскиванием.";
-"home.guide.videoedit.step2" = "Выберите клип и перетащите маркеры обрезки на шкале времени.";
-"home.guide.videoedit.step3" = "Перетащите клипы в списке, чтобы задать порядок.";
-"home.guide.videoedit.step4" = "Выберите формат вывода и папку, затем нажмите «Экспорт».";
-"home.guide.videoedit.tip" = "Маркеры обрезки привязываются к миллисекунде — используйте полосу воспроизведения для точной проверки.";
-"menu.videoEdit" = "Видеоредактор";
-"qr.email.address" = "Адрес эл. почты";
-"qr.email.body" = "Сообщение";
-"qr.email.subject" = "Тема";
-"qr.phone.number" = "Номер телефона";
-"qr.settings.type" = "Тип QR";
-"qr.type.email" = "Эл. почта";
-"qr.type.phone" = "Телефон";
-"qr.type.vcard" = "Контакт (vCard)";
-"qr.type.website" = "Веб-сайт";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Адрес";
-"qr.vcard.company" = "Компания";
-"qr.vcard.email" = "Эл. почта";
-"qr.vcard.firstName" = "Имя";
-"qr.vcard.jobTitle" = "Должность";
-"qr.vcard.lastName" = "Фамилия";
-"qr.vcard.phone" = "Телефон";
-"qr.vcard.website" = "Веб-сайт";
-"qr.wifi.hidden" = "Скрытая сеть";
-"qr.wifi.noEncryption" = "Нет";
-"qr.wifi.password" = "Пароль";
-"qr.wifi.ssid" = "Имя сети (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Добавить фото";
-"videoedit.addMore" = "Добавить";
-"videoedit.cancel" = "Отмена";
-"videoedit.clip.remove" = "Удалить клип";
-"videoedit.clip.trimmed" = "обрезано";
-"videoedit.clips" = "Клипы";
-"videoedit.clips.total" = "всего";
-"videoedit.drop.subtitle" = "Перетащите видео сюда или нажмите +";
-"videoedit.drop.title" = "Добавить видеофайлы";
-"videoedit.empty.button" = "Добавить видео";
-"videoedit.empty.subtitle" = "Перетащите видеофайлы сюда или нажмите кнопку ниже";
-"videoedit.empty.title" = "Добавьте видео для редактирования";
-"videoedit.export.merge" = "Объединить и экспортировать";
-"videoedit.export.noFolder" = "Сначала выберите папку сохранения";
-"videoedit.export.settings" = "Настройки";
-"videoedit.export.trim" = "Экспорт клипа";
-"videoedit.exporting" = "Экспорт…";
-"videoedit.folder.change" = "Сменить папку";
-"videoedit.imageDuration" = "ДЛИТЕЛЬНОСТЬ ФОТО";
-"videoedit.imageDuration.default" = "По умолчанию для новых фото";
-"videoedit.insert.after" = "Вставить после";
-"videoedit.insert.append" = "В конец";
-"videoedit.insert.before" = "Вставить перед";
-"videoedit.insert.prepend" = "В начало";
-"videoedit.inspector.folder" = "СОХРАНИТЬ В";
-"videoedit.inspector.format" = "Формат";
-"videoedit.inspector.output" = "ФОРМАТ ВЫВОДА";
-"videoedit.inspector.quality" = "Качество";
-"videoedit.inspector.trim" = "ОБРЕЗКА";
-"videoedit.noClip" = "Выберите клип для предпросмотра";
-"videoedit.noClip.hint" = "Добавьте видеофайлы слева, чтобы начать.";
-"videoedit.timeline.title" = "Обрезка";
-"videoedit.trim.confirm" = "Подтвердить обрезку";
-"videoedit.trim.duration" = "Длительность";
-"videoedit.trim.end" = "Конец";
-"videoedit.trim.reset" = "Сброс";
-"videoedit.trim.start" = "Начало";
-"watermark.apply" = "Применить";
-"watermark.button" = "Добавить водяной знак";
-"watermark.cancel" = "Отмена";
-"watermark.color.black" = "Чёрный";
-"watermark.color.darkGray" = "Тёмно-серый";
-"watermark.color.gray" = "Серый";
-"watermark.color.lightGray" = "Светло-серый";
-"watermark.color.none" = "Нет";
-"watermark.color.white" = "Белый";
-"watermark.colorOverlay" = "Цветовое наложение";
-"watermark.logo" = "Логотип";
-"watermark.opacity" = "Непрозрачность";
-"watermark.pos.bottomCenter" = "Внизу по центру";
-"watermark.pos.bottomLeft" = "Внизу слева";
-"watermark.pos.bottomRight" = "Внизу справа";
-"watermark.pos.center" = "По центру";
-"watermark.pos.centerLeft" = "Слева по центру";
-"watermark.pos.centerRight" = "Справа по центру";
-"watermark.pos.topCenter" = "Вверху по центру";
-"watermark.pos.topLeft" = "Вверху слева";
-"watermark.pos.topRight" = "Вверху справа";
-"watermark.position" = "Позиция";
-"watermark.preview" = "Предпросмотр";
-"watermark.removeLogo" = "Удалить";
-"watermark.scale" = "Масштаб";
-"watermark.selectLogo" = "Выбрать изображение";
-"watermark.tileMode" = "Режим плитки";
-"watermark.tileMode.desc" = "Повторять по изображению";
+
 "watermark.title" = "Водяной знак";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Добавить водяной знак";
+"watermark.logo" = "Логотип";
+"watermark.selectLogo" = "Выбрать изображение";
+"watermark.removeLogo" = "Удалить";
+"watermark.position" = "Позиция";
+"watermark.scale" = "Масштаб";
+"watermark.opacity" = "Непрозрачность";
+"watermark.preview" = "Предпросмотр";
+"watermark.apply" = "Применить";
+"watermark.cancel" = "Отмена";
+"watermark.pos.topLeft" = "Вверху слева";
+"watermark.pos.topCenter" = "Вверху по центру";
+"watermark.pos.topRight" = "Вверху справа";
+"watermark.pos.centerLeft" = "Слева по центру";
+"watermark.pos.center" = "По центру";
+"watermark.pos.centerRight" = "Справа по центру";
+"watermark.pos.bottomLeft" = "Внизу слева";
+"watermark.pos.bottomCenter" = "Внизу по центру";
+"watermark.pos.bottomRight" = "Внизу справа";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Цветовое наложение";
+"watermark.color.none" = "Нет";
+"watermark.color.black" = "Чёрный";
+"watermark.color.darkGray" = "Тёмно-серый";
+"watermark.color.gray" = "Серый";
+"watermark.color.lightGray" = "Светло-серый";
+"watermark.color.white" = "Белый";
+"watermark.tileMode" = "Режим плитки";
+"watermark.tileMode.desc" = "Повторять по изображению";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "تەڭشەكلەر";
-"upscale.settings.model" = "تىزىلما";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — سۈنئىي ئەقلى تەپسىلات ياخشىلاش";
-"upscale.settings.scale" = "ئۆلچەم";
-"upscale.scale.multiPassHint" = "8× ۋە 16× بىر نەچچە AI قېتىم ئىجرا قىلىدۇ — ۋاقىت ئۇزىرەك.";
-"upscale.settings.outputFormat" = "چىقىش فورماتى";
-"upscale.drop.title" = "رەسىملەرنى سۆرەپ قويۇڭ";
-"upscale.drop.subtitle" = "ياكى ھۆججەتلەرنى كۆرۈش ئۈچۈن چېكىڭ";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "بۇ يەردە پەقەت قوللىنىدىغان راستر رەسىملەرنى چوڭايتقىلى بولىدۇ";
-"upscale.runButton" = "چوڭايتىش";
-"upscale.preview.run" = "ئالدىن كۆرۈش";
-"upscale.preview.hint" = "ئۆلچەم تاللاپ سېلىشتۇرۇش ئۈچۈن ئالدىن كۆرۈشنى بېسىڭ";
-"upscale.preview.processing" = "ئالدىن كۆرۈش ھاسىللىنىۋاتىدۇ…";
-"upscale.preview.before" = "ئىلگىرى";
-"upscale.preview.after" = "كېيىن";
-"upscale.preview.save" = "ساقلاش";
-"upscale.preview.saveSettings" = "ئالدىن كۆرۈشنى ساقلاش";
-"upscale.preview.autoSave" = "ئالدىن كۆرۈشتىن كېيىن ساقلاش";
-"upscale.preview.autoSaveHint" = "ئالدىن كۆرۈش تاماملانغاندا نىشان قىسقۇچقا يازىدۇ.";
-"upscale.preview.saveNeedFolder" = "ئاۋۋال نىشان قىسقۇچنى تاللاڭ.";
-"upscale.preview.saveFailed" = "ئالدىن كۆرۈش رەسىمىنى كودلىيالمىدى.";
-"upscale.preview.loadFailed" = "ئالدىن كۆرۈش رەسىمىنى يۈكلىيەلمىدى.";
-"upscale.backend.missing.hint" = "قوللانما بوغچىسىدا cometscaly ماتور ياكى تىزىلما ھۆججەتلىرى يوق. قايتا قۇرۇڭ.";
-"upscale.error.bundle" = "قوللانمىدا Upscale بوغچا قىسقۇچى يوق.";
-"upscale.error.binary" = "قوللانما بوغچىسىدا cometscaly تېپىلمىدى.";
-"upscale.error.model" = "تىزىلما ھۆججەتلىرى upscayl-standard-4x.param/.bin يوق.";
-"upscale.error.process" = "چوڭايتىش مەغلۇپ (exit %d): %@";
-"upscale.error.none" = "ھېچقانداق رەسىم چوڭايتىلمىدى.";
-"videoedit.resize.modePercent" = "ئۆلچەم (%)";
-"videoedit.resize.modeCustom" = "ئىختىيارىي چوڭلۇق";
-"videoedit.resize.autoFill" = "خەتلىك تاختىنى ئاپتوماتىك تولدۇرۇش";
-"videoedit.resize.autoFillHint" = "ئوچۇق: كەڭ ماتېرىيال letterbox بىلەن ماس كېلىدۇ؛ كىچىكىرەك چوڭايتىلىپ ئوتتۇرىدىن كېسىلىدۇ.";
+"inspector.format" = "فورمات";
+"inspector.output" = "چىقىرىش";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Добавьте фото для предпросмотра";
+"watermark.rotation" = "Поворот";
+"watermark.text" = "Текст логотипа";
+"watermark.text.placeholder" = "Введите текст логотипа";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";

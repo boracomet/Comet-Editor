@@ -1,3 +1,6 @@
+/* Comet Editor — Localizable.strings */
+/* Regenerated from i18n/master.json. Do not mix deleted-feature keys. */
+
 "convert.drop.title" = "Dragðu og slepptu mynd";
 "convert.drop.subtitle" = "eða smelltu til að fletta í skrám";
 "convert.drop.formats" = "PNG, JPEG, JFIF, HEIC, WebP, AVIF, TIFF, GIF, BMP, ICO, PDF, SVG, PSD, AI, JP2, RAW";
@@ -11,14 +14,61 @@
 "convert.scale.original" = "Original";
 "convert.settings.width" = "Breidd px";
 "convert.settings.height" = "Hæð px";
+
 "meta.info" = "Vernd lýsigagna";
+
 "convert.settings.targetFolder" = "Markmappa";
 "convert.settings.noFolder" = "Ekki valið";
 "convert.settings.chooseFolder" = "Velja úr Finder";
+
+"folder.missing.title" = "Mappa fannst ekki";
+"folder.missing.subtitle" = "Vista skráarslóðin er ekki lengur til. Veldu nýja.";
+"folder.missing.pick" = "Veldu nýja möppu";
+"folder.missing.panel.message" = "Úttaksmappan finnst ekki. Veldu nýja möppu.";
+
+"bgremove.error.noMaskFound" = "Engin forgrunnsmaski fannst.";
+"bgremove.error.maskConversionFailed" = "Maskabreyting mistókst.";
+"bgremove.error.compositeFailed" = "Samsetning myndar mistókst.";
+
 "convert.settings.convertButton" = "Umbreyta";
 "convert.clearAll" = "Hreinsa allt";
 "convert.addMore" = "Bæta við";
 "convert.wrongType.image" = "Hér er aðeins hægt að breyta myndum";
+
+"upscale.settings.title" = "Stillingar";
+"upscale.settings.model" = "Líkan";
+"upscale.model.cometStandard" = "Comet Standard";
+"upscale.model.scaleHint" = "Upscayl Standard (4×) — gervigreindar endurbæting á smáatriðum";
+"upscale.settings.scale" = "Kvarði";
+"upscale.scale.multiPassHint" = "8× og 16× keyra margar gervigreindar umferðir — tekur lengri tíma.";
+"upscale.settings.outputFormat" = "Úttakssnið";
+"upscale.drop.title" = "Dragðu og slepptu myndum";
+"upscale.drop.subtitle" = "eða smelltu til að skoða skrár";
+"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
+"upscale.wrongType" = "Aðeins studdar raster-myndir má stækka hér";
+"upscale.runButton" = "Stækka";
+"upscale.convert" = "Convert";
+"upscale.downloadUpscaled" = "Download upscaled";
+"upscale.upscaleAll" = "Upscale all";
+"upscale.preview.run" = "Forskoðun";
+"upscale.preview.hint" = "Veldu kvarða og pikkaðu á Forskoðun til að bera saman";
+"upscale.preview.processing" = "Býr til forskoðun…";
+"upscale.preview.before" = "ÁÐUR";
+"upscale.preview.after" = "EFTIR";
+"upscale.preview.save" = "Vista";
+"upscale.preview.saveSettings" = "Vista forskoðun";
+"upscale.preview.autoSave" = "Vista eftir forskoðun";
+"upscale.preview.autoSaveHint" = "Skrifar í markmöppu þegar forskoðun lýkur.";
+"upscale.preview.saveNeedFolder" = "Veldu markmöppu fyrst.";
+"upscale.preview.saveFailed" = "Ekki tókst að kóða forskoðunarmynd.";
+"upscale.preview.loadFailed" = "Ekki tókst að hlaða forskoðunarmynd.";
+"upscale.backend.missing.hint" = "cometscaly-vélinn eða líkanskrár vantar í forritspakkann. Endurbyggðu verkefnið.";
+"upscale.error.bundle" = "Upscale bundle möppan vantar í forritinu.";
+"upscale.error.binary" = "cometscaly fannst ekki í forritspakkanum.";
+"upscale.error.model" = "Líkanskrár upscayl-standard-4x.param/.bin vantar.";
+"upscale.error.process" = "Uppskalun mistókst (exit %d): %@";
+"upscale.error.none" = "Engar myndir voru stækkaðar.";
+
 "menu.home" = "Heim";
 "menu.convertImage" = "Umbreyta mynd";
 "menu.upscaleImage" = "Image Upscale";
@@ -28,9 +78,6 @@
 "menu.settings" = "Stillingar";
 "menu.tools" = "Verkfæri";
 "menu.document" = "SKJAL";
-"menu.team" = "Lið okkar";
-"menu.team.title" = "Lið okkar";
-"menu.team.subtitle" = "Kynnstu hæfileikaríku fólkinu á bakvið Comet Editor";
 "menu.stockImage" = "Myndasafnsmynd";
 "menu.qrCode" = "QR-kóði";
 "menu.bgRemove" = "Bakgrunnsfjarlæging";
@@ -38,8 +85,7 @@
 "menu.fontDownload" = "Hlaða Niður Leturgerð";
 "menu.videoConvert" = "Umbreyta myndband";
 "menu.pdfEdit" = "Breyta PDF";
-"menu.suggestion" = "Senda ábendingu";
-"team.thanks_grafix" = "Við þökkum Grafix-samfélaginu fyrir framlag þeirra.";
+
 "alert.success.title" = "Tókst";
 "alert.error.title" = "Villa";
 "alert.ok" = "Í lagi";
@@ -47,6 +93,8 @@
 "alert.openFolder" = "Opna möppu";
 "alert.success.message.image" = "Myndir vistaðar á %@.";
 "alert.success.message.video" = "Myndbönd vistuð á %@.";
+"alert.error.conversion" = "Ekki tókst að umbreyta sumum myndum.";
+
 "home.welcome" = "Bienvenido a Comet Editor";
 "home.welcome.subtitle" = "Todo lo que necesitas en una sola app.";
 "home.visitWebsite" = "Visita nuestro sitio web";
@@ -65,6 +113,14 @@
 "home.quick.video.subtitle" = "MP4 con calidad equilibrada — convertir o comprimir en un solo flujo.";
 "home.quick.pdf.title" = "Editar PDF";
 "home.quick.pdf.subtitle" = "Abre el editor PDF — reordena, comprime o ajusta en un solo lugar.";
+"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
+"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
+"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
+"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
+"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
+"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
+"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
+"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
 "home.preset.pdf.deletePage" = "Eliminar páginas";
 "home.preset.pdf.reorder" = "Reordenar páginas";
 "home.preset.pdf.optimize" = "Optimizar PDF";
@@ -85,6 +141,11 @@
 "home.guide.convertImage.step2" = "Elige el formato de salida (PNG, JPG, WebP, HEIC, etc.) en el panel derecho.";
 "home.guide.convertImage.step3" = "Ajusta calidad, escala o dimensiones y luego convierte.";
 "home.guide.convertImage.tip" = "Puedes añadir varias imágenes a la vez. Cada archivo se convierte con los mismos ajustes.";
+"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
+"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
+"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
+"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
+"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
 "home.guide.video.desc" = "Convierte y comprime vídeos a MP4, MOV, AVI y más.";
 "home.guide.video.step2" = "Elige el formato de salida (MP4, MOV…) y ajusta FPS o resolución.";
 "home.guide.video.step3" = "Activa o desactiva el audio y luego pulsa Convertir.";
@@ -118,14 +179,7 @@
 "home.guide.font.step2" = "Previsualiza la fuente y selecciona los estilos que quieras.";
 "home.guide.font.step3" = "Pulsa Descargar para instalar la fuente en tu Mac.";
 "home.guide.font.tip" = "Las fuentes instaladas están disponibles en todas las aplicaciones de inmediato.";
-"home.feature.convertImage.desc" = "Convierte imágenes a PNG, JPG, WebP, HEIF y más.";
-"home.feature.videoConvert.desc" = "Convierte y comprime tus vídeos con facilidad.";
-"home.feature.stockImage.desc" = "Explora y descarga fotos de stock gratuitas de alta calidad.";
-"home.feature.pdfEdit.desc" = "Edita, reordena, comprime y gestiona tus archivos PDF.";
-"home.feature.qrCode.desc" = "Genera y personaliza códigos QR al instante.";
-"home.feature.bgRemove.desc" = "Elimina fondos de imagen automáticamente con IA.";
-"home.feature.ocr.desc" = "Extrae texto de imágenes mediante reconocimiento óptico.";
-"home.feature.fontDownload.desc" = "Explora y descarga fuentes de Google Fonts directamente en tu Mac.";
+
 "video.drop.subtitle" = "eða smelltu til að fletta í myndbandsskrám";
 "video.settings.format" = "SNIÐ";
 "video.settings.fps" = "FPS TAKMÖRK";
@@ -146,13 +200,38 @@
 "video.resolution.75" = "75% stærð";
 "video.resolution.50" = "50% stærð";
 "video.resolution.25" = "25% stærð (lág gæði)";
+
 "pdf.drop.title" = "Dragðu og slepptu PDF";
 "pdf.drop.subtitle" = "eða smelltu til að fletta í PDF-skrám";
 "pdf.page.count" = "%lld síður";
 "pdf.page.info" = "Síða %lld af %lld";
 "pdf.estimatedSize" = "Áætluð fínstillt stærð";
+"pdf.quality.modal.title" = "Veldu bestunarstig";
+"pdf.quality.modal.subtitle" = "Veldu hversu mikið á að minnka stærð skráarinnar. Meiri þjöppun þýðir minni skrá með einhverja gæðamissi.";
+"pdf.quality.modal.estimated" = "Áætluð stærð";
+"pdf.quality.modal.confirm" = "Bestun";
+"pdf.quality.modal.cancel" = "Hætta við";
+"pdf.quality.low.title" = "Hámarks þjöppun";
+"pdf.quality.low.desc" = "Minnsta skrá, sýnileg gæðamissi";
+"pdf.quality.medium.title" = "Jafnvægt";
+"pdf.quality.medium.desc" = "Gott jafnvægi á milli stærðar og gæða";
+"pdf.quality.high.title" = "Há gæði";
+"pdf.quality.high.desc" = "Lágmarks gæðamissi, hóflæg minnkun";
 "pdf.deleting" = "Siliniyor...";
 "pdf.tools.optimize" = "Fínstilla PDF";
+"pdf.tools.quality" = "GÆÐI";
+"pdf.tools.quality.label" = "Myndgæði";
+"pdf.tools.quality.small" = "Minni skrá";
+"pdf.tools.quality.large" = "Betri gæði";
+"pdf.tools.quality.lossless" = "Án taps";
+"pdf.tools.resolution" = "UPPLAUSNARSKALI";
+"pdf.tools.resolution.enable" = "Minnka upplausn";
+"pdf.tools.resolution.75" = "75%";
+"pdf.tools.resolution.50" = "50%";
+"pdf.tools.resolution.25" = "25%";
+"pdf.color.title" = "RGB/CMYK UMBREYTIR";
+"pdf.color.enable" = "Umbreyta litarými";
+"pdf.color.convert" = "Umbreyta og vista";
 "pdf.tools.save" = "Vista PDF";
 "pdf.reorder.title" = "Röð síðna";
 "pdf.reorder.hint" = "Haltu Ctrl til að velja margar, dragðu svo til að endurraða.";
@@ -169,11 +248,13 @@
 "pdf.addContent.after" = "Setja inn á eftir þessari síðu";
 "pdf.addContent.atEnd" = "Bæta við í lok";
 "pdf.addContent.chooseFile" = "Velja skrá og setja inn";
+
 "stock.deselectAll" = "Afvelja allt";
 "stock.download" = "Sækja valið";
 "stock.download.count" = "Sækja %d myndir";
 "stock.quality.original" = "Original size";
 "stock.quality.low" = "Low quality";
+
 "qr.input.placeholder" = "Sláðu inn vefslóð eða texta hér...";
 "qr.settings.colors" = "Litir";
 "qr.settings.fgColor" = "Litur í forgrunni";
@@ -183,6 +264,29 @@
 "qr.settings.resolution" = "Upplausn";
 "qr.settings.customSize" = "Sérsniðin stærð (px)";
 "qr.download" = "Sækja QR-kóða";
+"qr.settings.type" = "QR-tegund";
+"qr.type.website" = "Vefsíða";
+"qr.type.wifi" = "Wi-Fi";
+"qr.type.vcard" = "Tengiliður (vCard)";
+"qr.type.email" = "Tölvupóstur";
+"qr.type.phone" = "Sími";
+"qr.wifi.ssid" = "Heiti nets (SSID)";
+"qr.wifi.password" = "Lykilorð";
+"qr.wifi.hidden" = "Falið net";
+"qr.wifi.noEncryption" = "Ekkert";
+"qr.vcard.firstName" = "Fornafn";
+"qr.vcard.lastName" = "Eftirnafn";
+"qr.vcard.phone" = "Sími";
+"qr.vcard.email" = "Tölvupóstur";
+"qr.vcard.company" = "Fyrirtæki";
+"qr.vcard.jobTitle" = "Starfsheiti";
+"qr.vcard.address" = "Heimilisfang";
+"qr.vcard.website" = "Vefsíða";
+"qr.email.address" = "Netfang";
+"qr.email.subject" = "Efni";
+"qr.email.body" = "Skilaboð";
+"qr.phone.number" = "Símanúmer";
+
 "bgremove.unavailable.title" = "macOS 14 þarf";
 "bgremove.unavailable.subtitle" = "Bakgrunnsfjarlæging notar Neural Engine tækni Apple.\nVinsamlegast uppfærðu í macOS 14 Sonoma eða nýrra.";
 "bgremove.drop.title" = "Dragðu og slepptu mynd";
@@ -199,6 +303,7 @@
 "bgremove.settings.refine" = "FÍNSTILLA BRÚNIR";
 "bgremove.settings.feather" = "Mjúk brúnaáhrif";
 "bgremove.settings.featherAmount" = "Gildi mjúkrar brúnar";
+
 "ocr.drop.title" = "Dragðu og slepptu mynd";
 "ocr.drop.subtitle" = "eða smelltu til að fletta í skrám";
 "ocr.processing" = "Þekkir texta...";
@@ -208,9 +313,11 @@
 "ocr.clear" = "Hreinsa";
 "ocr.newFile" = "Ný skrá";
 "ocr.copied" = "Afritað!";
+
 "app.comingSoon.title" = "Kemur fljótlega";
 "app.comingSoon.message" = "Þessi eiginleiki verður fljótlega tiltækur.";
 "app.version" = "v1.0.0-beta";
+
 "font.search.placeholder" = "Search fonts...";
 "font.preview.custom" = "Type something...";
 "font.inspector.preview" = "Preview";
@@ -244,34 +351,15 @@
 "font.writing.korean" = "Korean";
 "font.writing.thai" = "Thai";
 "font.writing.vietnamese" = "Vietnamese";
-
 "font.families.count" = "%d fjölskyldur";
 "font.styles.count" = "%d stílar · %@";
 "font.noResults" = "Engar leturgerðir fundust";
-"suggestion.title" = "Senda tillögu";
-"suggestion.subtitle" = "Deildu hugmyndum þínum og hjálpaðu okkur að bæta okkur";
-"suggestion.placeholder.title" = "Titill";
-"suggestion.placeholder.body" = "Lýstu tillögu þinni nákvæmlega...";
-"suggestion.category.bug" = "Villa";
-"suggestion.category.feature" = "Beiðni um eiginleika";
-"suggestion.category.ui" = "Viðmót";
-"suggestion.category.performance" = "Afköst";
-"suggestion.category.other" = "Annað";
-"suggestion.send" = "Senda tillögu";
-"suggestion.sending" = "Sendir...";
-"suggestion.sent.title" = "Takk!";
-"suggestion.sent.message" = "Tillaga þín var móttekin. Við munum fara yfir hana fljótlega.";
-"suggestion.error" = "Sending mistókst. Vinsamlegast reyndu aftur.";
-"suggestion.validation.title" = "Vantar reiti";
-"suggestion.validation.body" = "Vinsamlegast fylltu út titil og lýsingu.";
-
-"suggestion.label.category" = "Flokkur";
-"suggestion.label.title" = "Titill";
-"suggestion.label.description" = "Lýsing";
 
 "video.drop.title" = "Slepptu myndbandi hér";
 "video.drop.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
+
 "convert.wrongType.video" = "Hér er aðeins hægt að breyta myndböndum";
+
 "app.maintenance.title" = "Viðhaldshamur";
 "app.forceUpdate.title" = "Uppfærsla nauðsynleg";
 "app.forceUpdate.button" = "Uppfæra í App Store";
@@ -283,49 +371,40 @@
 "stock.search.button" = "Ara";
 "stock.search.placeholder" = "Fotoğraf ara...";
 "stock.selected" = "%d seçildi";
+
 "video.cancel" = "İptal";
 "video.error.decoder" = "Video kodu çözülemedi.";
 "video.saved.gain" = "tasarruf edildi";
 "video.saved.increased" = "daha büyük";
 "video.settings.fps.desc" = "Orijinal FPS değerini korumak için devre dışı bırakın";
+
 "pdf.addContent.typePDF" = "PDF";
 "pdf.addContent.typeImage" = "Görsel";
 "pdf.tools.pageManagement" = "SAYFA YÖNETİMİ";
 "pdf.tools.addContent" = "İçerik Ekle";
 "pdf.tools.reorder" = "Yeniden Sırala";
 "pdf.tools.targetFolder" = "HEDEF KLASÖR";
-"alert.error.conversion" = "Ekki tókst að umbreyta sumum myndum.";
-"pdf.color.convert" = "Umbreyta og vista";
-"pdf.color.enable" = "Umbreyta litarými";
-"pdf.color.title" = "RGB/CMYK UMBREYTIR";
-"pdf.tools.quality" = "GÆÐI";
-"pdf.tools.quality.label" = "Myndgæði";
-"pdf.tools.quality.large" = "Betri gæði";
-"pdf.tools.quality.lossless" = "Án taps";
-"pdf.tools.resolution" = "UPPLAUSNARSKALI";
-"pdf.tools.resolution.enable" = "Minnka upplausn";
-"pdf.tools.resolution.75" = "75%";
-"pdf.tools.resolution.50" = "50%";
-"pdf.tools.resolution.25" = "25%";
-"pdf.tools.quality.small" = "Minni skrá";
 
 "ad.sponsored" = "Styrkt";
 "ad.visit" = "Fara";
 
-"pdf.quality.modal.title" = "Veldu bestunarstig";
-"pdf.quality.modal.subtitle" = "Veldu hversu mikið á að minnka stærð skráarinnar. Meiri þjöppun þýðir minni skrá með einhverja gæðamissi.";
-"pdf.quality.modal.estimated" = "Áætluð stærð";
-"pdf.quality.modal.confirm" = "Bestun";
-"pdf.quality.modal.cancel" = "Hætta við";
-"pdf.quality.low.title" = "Hámarks þjöppun";
-"pdf.quality.low.desc" = "Minnsta skrá, sýnileg gæðamissi";
-"pdf.quality.medium.title" = "Jafnvægt";
-"pdf.quality.medium.desc" = "Gott jafnvægi á milli stærðar og gæða";
-"pdf.quality.high.title" = "Há gæði";
-"pdf.quality.high.desc" = "Lágmarks gæðamissi, hóflæg minnkun";
-
-
-"announcement.understood" = "OK";
+"settings.subtitle" = "Sérsniðið Comet Editor reynsluna þína";
+"settings.section.output" = "ÚTTAK";
+"settings.section.language" = "LANGUAGE";
+"settings.language" = "Language";
+"settings.section.about" = "ABOUT";
+"settings.credits" = "Credits";
+"settings.credits.app" = "Application";
+"settings.credits.version" = "Version";
+"settings.credits.website" = "Website";
+"settings.credits.developer" = "Developer";
+"settings.credits.visualContributor" = "Visual Contributor";
+"settings.defaultOutputFolder" = "Sjálfgefin úttaksmappa";
+"settings.noFolderSelected" = "Ekki valin — spurt verður í hvert skipti";
+"settings.chooseFolder" = "Velja möppu";
+"settings.clearFolder" = "Hreinsa";
+"settings.folderPicker.message" = "Veldu sjálfgefna möppu fyrir útfluttar skrár";
+"settings.folderPicker.button" = "Velja möppu";
 
 "app.maintenance.title2" = "Viðhald í gangi";
 "app.maintenance.body" = "Forritið er tímabundið óaðgengilegt. Við erum brátt til baka.";
@@ -334,136 +413,40 @@
 "app.forceUpdate.button2" = "Uppfæra í App Store";
 "app.quit2" = "Loka forriti";
 
-"settings.subtitle" = "Sérsniðið Comet Editor reynsluna þína";
-"settings.section.output" = "ÚTTAK";
-"settings.section.about" = "ABOUT";
-"settings.defaultOutputFolder" = "Sjálfgefin úttaksmappa";
-"settings.noFolderSelected" = "Ekki valin — spurt verður í hvert skipti";
-"settings.chooseFolder" = "Velja möppu";
-"settings.clearFolder" = "Hreinsa";
-"settings.folderPicker.message" = "Veldu sjálfgefna möppu fyrir útfluttar skrár";
-"settings.folderPicker.button" = "Velja möppu";
-"menu.announcements" = "Tilkynningar";
-"announcements.subtitle" = "Nýjustu fréttir og uppfærslur frá teyminu";
-"announcements.empty" = "Engar tilkynningar enn";
-
 "settings.pdfOutputFolder" = "PDF úttaksmappa";
 
 "folder.default.prompt.title" = "Stilla sem sjálfgefna möppu?";
 "folder.default.prompt.body" = "Viltu stilla þetta sem sjálfgefna úttaksmöppu? Þú getur breytt því hvenær sem er í Stillingar.";
 "folder.default.prompt.yes" = "Stilla sem sjálfgefið";
 "folder.default.prompt.no" = "Ekki núna";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"font.installed" = "Installed";
-"home.guide.videoedit.desc" = "Recorta clips, elimina partes no deseadas y une varios vídeos en uno.";
-"home.guide.videoedit.preset.concat" = "Unir vídeos";
-"home.guide.videoedit.preset.trim" = "Recortar un vídeo";
-"home.guide.videoedit.step1" = "Añade uno o más vídeos con el botón + o arrastrando y soltando.";
-"home.guide.videoedit.step2" = "Selecciona un clip y arrastra los tiradores en la línea de tiempo para inicio y fin.";
-"home.guide.videoedit.step3" = "Reordena los clips en la lista arrastrándolos para la secuencia final.";
-"home.guide.videoedit.step4" = "Elige formato de salida y carpeta, luego pulsa Exportar.";
-"home.guide.videoedit.tip" = "Los tiradores encajan al milisegundo — usa la barra de reproducción para previsualizar el corte.";
-"menu.videoEdit" = "Myndvinnsla myndskeiða";
-"qr.email.address" = "Netfang";
-"qr.email.body" = "Skilaboð";
-"qr.email.subject" = "Efni";
-"qr.phone.number" = "Símanúmer";
-"qr.settings.type" = "QR-tegund";
-"qr.type.email" = "Tölvupóstur";
-"qr.type.phone" = "Sími";
-"qr.type.vcard" = "Tengiliður (vCard)";
-"qr.type.website" = "Vefsíða";
-"qr.type.wifi" = "Wi-Fi";
-"qr.vcard.address" = "Heimilisfang";
-"qr.vcard.company" = "Fyrirtæki";
-"qr.vcard.email" = "Tölvupóstur";
-"qr.vcard.firstName" = "Fornafn";
-"qr.vcard.jobTitle" = "Starfsheiti";
-"qr.vcard.lastName" = "Eftirnafn";
-"qr.vcard.phone" = "Sími";
-"qr.vcard.website" = "Vefsíða";
-"qr.wifi.hidden" = "Falið net";
-"qr.wifi.noEncryption" = "Ekkert";
-"qr.wifi.password" = "Lykilorð";
-"qr.wifi.ssid" = "Heiti nets (SSID)";
-"suggestion.captcha.body" = "Too many submissions. Please solve: %d + %d = ?";
-"suggestion.captcha.cancel" = "Cancel";
-"suggestion.captcha.confirm" = "Confirm";
-"suggestion.captcha.placeholder" = "Answer";
-"suggestion.captcha.title" = "Spam Prevention";
-"suggestion.captcha.wrong" = "Wrong answer. Please try again.";
-"videoedit.addImage" = "Bæta við mynd";
-"videoedit.addMore" = "Bæta við";
-"videoedit.cancel" = "Cancel";
-"videoedit.clip.remove" = "Remove Clip";
-"videoedit.clip.trimmed" = "trimmed";
-"videoedit.clips" = "Clips";
-"videoedit.clips.total" = "total";
-"videoedit.drop.subtitle" = "Drop videos here or click +";
-"videoedit.drop.title" = "Add Video Files";
-"videoedit.empty.button" = "Bæta við myndböndum";
-"videoedit.empty.subtitle" = "Slepptu myndbandaskrám hér eða smelltu á hnappinn fyrir neðan";
-"videoedit.empty.title" = "Bæta við myndböndum til að breyta";
-"videoedit.export.merge" = "Sameina og flytja út";
-"videoedit.export.noFolder" = "Choose a save folder first";
-"videoedit.export.settings" = "Stillingar";
-"videoedit.export.trim" = "Flytja út klipp";
-"videoedit.exporting" = "Flyt út…";
-"videoedit.folder.change" = "Change Folder";
-"videoedit.imageDuration" = "LJÓSMYNDALENGd";
-"videoedit.imageDuration.default" = "Sjálfgefið fyrir nýjar myndir";
-"videoedit.insert.after" = "Insert after";
-"videoedit.insert.append" = "Add to end";
-"videoedit.insert.before" = "Insert before";
-"videoedit.insert.prepend" = "Add to beginning";
-"videoedit.inspector.folder" = "VISTA Í";
-"videoedit.inspector.format" = "Format";
-"videoedit.inspector.output" = "OUTPUT FORMAT";
-"videoedit.inspector.quality" = "Quality";
-"videoedit.inspector.trim" = "TRIM";
-"videoedit.noClip" = "Select a clip to preview";
-"videoedit.noClip.hint" = "Add video files from the left panel to get started.";
-"videoedit.timeline.title" = "Trim";
-"videoedit.trim.confirm" = "Confirm trim";
-"videoedit.trim.duration" = "Duration";
-"videoedit.trim.end" = "End";
-"videoedit.trim.reset" = "Reset";
-"videoedit.trim.start" = "Start";
-"watermark.apply" = "Virkja";
-"watermark.button" = "Bæta við vatnsmerki";
-"watermark.cancel" = "Hætta við";
-"watermark.color.black" = "Svartur";
-"watermark.color.darkGray" = "Dökkgrár";
-"watermark.color.gray" = "Grár";
-"watermark.color.lightGray" = "Ljósgrár";
-"watermark.color.none" = "Enginn";
-"watermark.color.white" = "Hvítur";
-"watermark.colorOverlay" = "Litahluti";
-"watermark.logo" = "Merki";
-"watermark.opacity" = "Ógegnsæi";
-"watermark.pos.bottomCenter" = "Neðst miðja";
-"watermark.pos.bottomLeft" = "Neðst til vinstri";
-"watermark.pos.bottomRight" = "Neðst til hægri";
-"watermark.pos.center" = "Miðja";
-"watermark.pos.centerLeft" = "Miðja vinstri";
-"watermark.pos.centerRight" = "Miðja hægri";
-"watermark.pos.topCenter" = "Efst miðja";
-"watermark.pos.topLeft" = "Efst til vinstri";
-"watermark.pos.topRight" = "Efst til hægri";
-"watermark.position" = "Staðsetning";
-"watermark.preview" = "Forskoðun";
-"watermark.removeLogo" = "Fjarlægja";
-"watermark.scale" = "Kvarði";
-"watermark.selectLogo" = "Velja mynd";
-"watermark.tileMode" = "Flísastilling";
-"watermark.tileMode.desc" = "Endurtaka yfir mynd";
+
 "watermark.title" = "Vatnsmerki";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"watermark.button" = "Bæta við vatnsmerki";
+"watermark.logo" = "Merki";
+"watermark.selectLogo" = "Velja mynd";
+"watermark.removeLogo" = "Fjarlægja";
+"watermark.position" = "Staðsetning";
+"watermark.scale" = "Kvarði";
+"watermark.opacity" = "Ógegnsæi";
+"watermark.preview" = "Forskoðun";
+"watermark.apply" = "Virkja";
+"watermark.cancel" = "Hætta við";
+"watermark.pos.topLeft" = "Efst til vinstri";
+"watermark.pos.topCenter" = "Efst miðja";
+"watermark.pos.topRight" = "Efst til hægri";
+"watermark.pos.centerLeft" = "Miðja vinstri";
+"watermark.pos.center" = "Miðja";
+"watermark.pos.centerRight" = "Miðja hægri";
+"watermark.pos.bottomLeft" = "Neðst til vinstri";
+"watermark.pos.bottomCenter" = "Neðst miðja";
+"watermark.pos.bottomRight" = "Neðst til hægri";
+
+"font.installed" = "Installed";
 "font.preview.pangram" = "Whereas recognition of the inherent dignity";
+"font.variant.regular" = "Regular 400";
+"font.variant.italic" = "Italic 400";
 "font.typography.weightPair" = "%@ %d";
 "font.typography.weightPairItalic" = "%@ %d Italic";
-"font.variant.italic" = "Italic 400";
-"font.variant.regular" = "Regular 400";
 "font.weight.100" = "Thin";
 "font.weight.200" = "Extra Light";
 "font.weight.300" = "Light";
@@ -472,54 +455,34 @@
 "font.weight.700" = "Bold";
 "font.weight.800" = "Extra Bold";
 "font.weight.900" = "Black";
+
+"watermark.colorOverlay" = "Litahluti";
+"watermark.color.none" = "Enginn";
+"watermark.color.black" = "Svartur";
+"watermark.color.darkGray" = "Dökkgrár";
+"watermark.color.gray" = "Grár";
+"watermark.color.lightGray" = "Ljósgrár";
+"watermark.color.white" = "Hvítur";
+"watermark.tileMode" = "Flísastilling";
+"watermark.tileMode.desc" = "Endurtaka yfir mynd";
+
 "qr.wifi.enc.wpa" = "WPA/WPA2";
 "qr.wifi.enc.wep" = "WEP";
 "qr.settings.sizeUnit" = "px";
-"videoedit.empty.formats" = "MP4, MOV, MKV, AVI, WEBM, M4V, MPEG, 3GP, FLV, WMV";
-"videoedit.output.mp4" = "MP4 (H.264)";
-"videoedit.output.mov" = "MOV (H.264)";
-"videoedit.output.mkv" = "MKV (H.265)";
-"videoedit.output.avi" = "AVI";
-// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
 
-// MARK: - Upscale & video resize (localized)
-"upscale.settings.title" = "Stillingar";
-"upscale.settings.model" = "Líkan";
-"upscale.model.cometStandard" = "Comet Standard";
-"upscale.model.scaleHint" = "Upscayl Standard (4×) — gervigreindar endurbæting á smáatriðum";
-"upscale.settings.scale" = "Kvarði";
-"upscale.scale.multiPassHint" = "8× og 16× keyra margar gervigreindar umferðir — tekur lengri tíma.";
-"upscale.settings.outputFormat" = "Úttakssnið";
-"upscale.drop.title" = "Dragðu og slepptu myndum";
-"upscale.drop.subtitle" = "eða smelltu til að skoða skrár";
-"upscale.drop.formats" = "PNG, JPEG, WebP, TIFF, GIF, HEIC, BMP";
-"upscale.wrongType" = "Aðeins studdar raster-myndir má stækka hér";
-"upscale.runButton" = "Stækka";
-"upscale.preview.run" = "Forskoðun";
-"upscale.preview.hint" = "Veldu kvarða og pikkaðu á Forskoðun til að bera saman";
-"upscale.preview.processing" = "Býr til forskoðun…";
-"upscale.preview.before" = "ÁÐUR";
-"upscale.preview.after" = "EFTIR";
-"upscale.preview.save" = "Vista";
-"upscale.preview.saveSettings" = "Vista forskoðun";
-"upscale.preview.autoSave" = "Vista eftir forskoðun";
-"upscale.preview.autoSaveHint" = "Skrifar í markmöppu þegar forskoðun lýkur.";
-"upscale.preview.saveNeedFolder" = "Veldu markmöppu fyrst.";
-"upscale.preview.saveFailed" = "Ekki tókst að kóða forskoðunarmynd.";
-"upscale.preview.loadFailed" = "Ekki tókst að hlaða forskoðunarmynd.";
-"upscale.backend.missing.hint" = "cometscaly-vélinn eða líkanskrár vantar í forritspakkann. Endurbyggðu verkefnið.";
-"upscale.error.bundle" = "Upscale bundle möppan vantar í forritinu.";
-"upscale.error.binary" = "cometscaly fannst ekki í forritspakkanum.";
-"upscale.error.model" = "Líkanskrár upscayl-standard-4x.param/.bin vantar.";
-"upscale.error.process" = "Uppskalun mistókst (exit %d): %@";
-"upscale.error.none" = "Engar myndir voru stækkaðar.";
-"videoedit.resize.modePercent" = "Kvarði (%)";
-"videoedit.resize.modeCustom" = "Sérsniðin stærð";
-"videoedit.resize.autoFill" = "Fylla striga sjálfkrafa";
-"videoedit.resize.autoFillHint" = "Kveikt: breitt efni passar með letterbox; minna er zoomað og skorið í miðju til að fylla.";
+"inspector.format" = "Snið";
+"inspector.output" = "Úttak";
 // MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
-"home.guide.upscale.desc" = "Sharpen and enlarge photos with the on-device AI upscaler (2×–16×).";
-"home.guide.upscale.step2" = "Choose scale and output format (PNG, JPEG, WebP…) in the right panel.";
-"home.guide.upscale.step3" = "Optionally tap Preview to compare before and after with the slider.";
-"home.guide.upscale.step4" = "Pick a target folder, then tap Upscale to save all processed images.";
-"home.guide.upscale.tip" = "8× and 16× run multiple AI passes and take longer. Supported raster formats only.";
+"convert.cancel" = "Stop";
+"stock.sendToConvert" = "Send to Image Convert";
+"stock.sendToConvert.error" = "Could not download the selected photos.";
+"watermark.preview.empty" = "Bættu við mynd til forskoðunar";
+"watermark.rotation" = "Snúningur";
+"watermark.text" = "Lógótexti";
+"watermark.text.placeholder" = "Sláðu inn lógótexta";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"upscale.zoom.in" = "Zoom in";
+"upscale.zoom.out" = "Zoom out";
+"upscale.zoom.reset" = "Reset zoom";
+// MARK: - Auto-filled missing keys (i18n_sync.py — translate from ref_locale)
+"convert.scale.percent" = "Reduce to %lld%% of current resolution";
